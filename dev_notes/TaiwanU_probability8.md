@@ -1,0 +1,189 @@
+
+
+<h2 id="1223874fb29922e4e7bb1474bbc33147"></h2>
+
+
+# Week 8  联合概率，边际概率，双变数期望值
+
+<h2 id="7a6e0b2a0774b9a999a5e891f7cc3d2c"></h2>
+
+
+## 8.1 联合概率分布 
+
+JOINT PROBABILITY DISTRIBUTION
+
+- 当小明出国去交换时
+    - 𝑿: 小美脸书/QQ 脱机时间，𝑿~𝑼𝑵𝑰𝑭(𝟖, 𝟏𝟐)
+    - 𝒀: 小华脸书/QQ 脱机时间，𝒀~𝑼𝑵𝑰𝑭(𝟖, 𝟏𝟐)
+    - 𝒁: 小园脸书/QQ 离线时间，𝒁~𝑼𝑵𝑰𝑭(𝟖, 𝟏𝟐)
+    - 假设 𝑿, 𝒀, 𝒁 都是离散随机变数
+- 若将小美脱机时间 𝑿 与小园脱机时间 𝒁一起看呢?
+    - 画出𝑷𝑿=𝒙,𝒁=𝒛:
+    - ![](../imgs/TU_prob2_8.1_01.png)
+- 若将小美脱机时间 𝑿 与小园脱机时间 𝒀一起看呢?
+    - 画出𝑷 𝑿=𝒙,𝒀=𝒚 ，赫然发现!
+    - ![](../imgs/TU_prob2_8.1_02.png)
+
+
+- 同时将多个随机变量的行为一起拿来看， 我们可以看出更多以往看不到的信息!
+- 同时考虑多个随机变量的机率分布称之为联合机率分布 (joint probability distribution)
+
+<h2 id="ecfdf56b8825bb6021bc398b2687da18"></h2>
+
+
+### 联合 PMF (Joint PMF)
+
+- 若𝑿,𝒀皆为离散随机变量，我们 可以定义他们的联合PMF
+    - p<sub>X,Y</sub>(x,y) = P( X=x 且 Y=y )
+    - 联合PMF决定了𝑿,𝒀的联合机率分布
+- Ex: 小美脱机时间 𝑿 与小华脱机时间 𝒀 的联合 PMF:
+    - p<sub>X,Y</sub>(x,y) = P( X=x, Y=y )
+    - ![](../imgs/TU_prob2_8.1_02.png)
+
+
+<h2 id="12c3181de32d16311d0a1a1c713d480c"></h2>
+
+
+### 联合 PMF 的性质
+
+- ![](../imgs/TU_prob2_8.1_03.png)
+
+<h2 id="ae2555933cfea0bde5a2585b0d731631"></h2>
+
+
+### 联合 CDF (Joint CDF)
+
+- 若考虑两个随机变数 𝑿, 𝒀 的联合机率分布， 我们也可定义出所谓的联合 CDF:
+
+- ![](../imgs/TU_prob2_8.1_04.png)
+
+- 即, (X,Y) 会落在黄色区域的几率
+
+
+<h2 id="2ddfa5d23aecf6d8e642c4f5063fa615"></h2>
+
+
+### 联合 CDF 的性质
+
+- ![](../imgs/TU_prob2_joint_CDF_prop1.png)
+
+
+- 四方格性质
+    - ![](../imgs/TU_prob2_joint_CDF_prop2.png)
+    - 你只需要知道4个顶点的 cdf 值
+
+
+
+
+<h2 id="82a4552a73f360a69c244464918476f9"></h2>
+
+
+### 联合 PDF 例子
+
+- Ex:小美等公交车时间为 𝑿, 小园等公交车时间为 𝒀 𝑿, 𝒀 两者独立且皆为连续之机率分布 𝑼𝑵𝑰𝑭 𝟎, 𝟏𝟎 。则 𝑿, 𝒀之联合 PDF 为
+    - ![](../imgs/TU_prob2_joint_ex1.png)
+- 其他的联合pdf例子
+    - ![](../imgs/TU_prob2_joint_ex2.png)
+
+
+<h2 id="62cff33c593fc9c62714039fbd68d2f3"></h2>
+
+
+### 若𝑿, 𝒀 皆为连续随机变数怎办?
+
+- ![](../imgs/TU_prob2_8.1_cont_joint_pdf1.png)
+
+- 若 𝑿, 𝒀 皆为连续随机变量，我们可以定义联合 PDF:
+    - ![](../imgs/TU_prob2_8.1_cont_joint_pdf2.png)
+    - ![](../imgs/TU_prob2_8.1_cont_joint_pdf3.png)
+
+
+<h2 id="81b351c0506c1a71878441a0a81088d1"></h2>
+
+
+### 连续联合 PDF 的性质 
+
+- ![](../imgs/TU_prob2_cont_joint_pdf_prop.png)
+    - P(B) 是圆锥体体积
+
+
+<h2 id="2ddbe1ee6b0b9481c8a52627056fedd5"></h2>
+
+
+## 8.2 边际机率分布
+
+MARGINAL PROBABILITY DISTRIBUTION
+
+<h2 id="41d4f6592d31a4b16ba8e2d84689f26b"></h2>
+
+
+### 已知联合 PMF，欲得个别 PMF
+
+- Ex: 𝑿,𝒀分别为小美、小丽脸书/QQ 脱机时间。联合 PMF 如下:
+
+p<sub>X,Y</sub>(x,y) | X = 8 | X = 9 | X = 10
+--- | --- | --- | --- 
+Y = 8 | 0.2 | 0.1 | 0.05
+Y = 9 | 0.05 | 0.2 | 0.1
+Y = 10 | 0.05 | 0.1 | 0.15
+
+- p<sub>X</sub>(x) = ?   p<sub>Y</sub>(y) = ?
+    - p<sub>X</sub>(8) = 0.2 + 0.05 + 0.05 = 0.3
+    - p<sub>X</sub>(9) = 0.1 + 0.2 + 0.1 = 0.4
+    - p<sub>X</sub>(10) = 0.05 + 0.1 + 0.15 = 0.3
+- 整列加起来，然后(在它的边缘)写上数字，这就是 "边际"的由来
+
+
+<h2 id="88467bd1b22479904c4cda0b92cbed46"></h2>
+
+
+### 边际 PMF (Marginal PMF)
+
+- 已知联合PMF p<sub>X,Y</sub>(𝒙,𝒚)，则可求得 p<sub>X</sub>(x), p<sub>Y</sub>(y) ，称之为边际 PMF
+- ![](../imgs/TU_prob2_8.2_02.png)
+
+
+<h2 id="dcfc73f8fb33ef1e323fa7af282e7f12"></h2>
+
+
+### 边际 PDF (Marginal PDF)
+
+- 已知联合PDF f<sub>X,Y</sub>(𝒙,𝒚)，则可求得 f<sub>X</sub>(x), f<sub>Y</sub>(y) ，称之为边际 PDF
+- ![](../imgs/TU_prob2_8.2_01.png)
+
+- Ex:
+    - ![](../imgs/TU_prob2_8.2_ex1.png)
+
+
+
+<h2 id="b7c12c38cf6f0bd638bb87f785c54a6b"></h2>
+
+
+## 8.3 双变数期望值
+
+- 离散
+    - 回想只考虑一个离散随机变数𝑿时 其任意函数 g(x)的期望值是:
+        - ![](../imgs/TU_prob2_8.1_E1.png)
+    - 若同时考虑两个离散随机变量𝑿,𝒀时，他们的任 意函数 h(X,Y) 的期望值是
+        - ![](../imgs/TU_prob2_8.1_E2.png)
+    - Ex. 参考上面 小美、小丽脸书/QQ 脱机 时间的例子, 求 E[ |X-Y| ]
+        - ![](../imgs/TU_prob2_8.1_E3.png)
+
+- 连续
+    - 回想只考虑一个连续随机变量𝑿时 其任意函数 g(X) 的期望值是:
+        - ![](../imgs/TU_prob2_8.1_E4.png)
+    - 若同时考虑两个连续随机变数𝑿,𝒀时，他们的任 意函数 h(X,Y) 的期望值是
+        - ![](../imgs/TU_prob2_8.1_E5.png)
+
+- 性质
+    - E[ αh₁(X,Y) + βh₂(X,Y) ] =  αE[h₁(X,Y)] + βE[h₂(X,Y)]
+    - 若 X,Y 独立， 则
+        - E[g(X)h(Y)] = E[g(X)]·E[h(Y)]
+    - ![](../imgs/TU_prob2_8.1_var.png)
+
+    - Var[aX+bY] = a²Var[X] + b²Var[Y] + 2Cov[X,Y]
+        - Cov[X,Y] = E[ X-E[X] ]·E[ Y-E[Y] ]
+    - 如果X，Y独立
+        - Var[aX+bY] = a²Var[X] + b²Var[Y]
+
+
