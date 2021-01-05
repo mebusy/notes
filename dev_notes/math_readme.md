@@ -63,8 +63,10 @@
 
 # Probability 
 
-- [台大概率笔记](TaiwanU_probability.md)
-- [台大概率笔记2](TaiwanU_probability2.md) 
+- 台大概率笔记
+    - [台大概率笔记](TaiwanU_probability.md)
+    - [台大概率笔记2](TaiwanU_probability2.md) 
+    - [多个随机变量之和的概率分布](TaiwanU_probability9.md) 
 - [随机数](Dev_Random.md) , [random number](random_number.md)
 
 
