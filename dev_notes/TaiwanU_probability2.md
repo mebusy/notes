@@ -332,3 +332,35 @@ plt.show()
 ```
 
 ---
+
+
+## QUIZ
+
+1. 又一个连续随机变数X， 已知其概率密度PDF: f<sub>X</sub>(x) 在任何x都是连续的， 则下列的叙述何者正确?
+    - ∫₀<sup>∞</sup> f<sub>X</sub>(x)dx = 0.5  - 错
+    - 因为 P(X=x₀) == 0. 所以 {X=x₀} 事件必为∅ - 错
+    - P(X=x) = f<sub>X</sub>(x)·dx = 0    - ✓
+    - f<sub>X</sub>(x) = P(X=x)                - 错
+2. 有一公平的幸運之輪，轉盤上有[0,1)的區間，隨機變數X代表轉盤轉到的所對應的數值，也就是PDF:
+    - f<sub>X</sub>(x) = 
+        - 1, 1>x≥0
+        - 0, otherwise
+    - 寶做一個實驗，連續轉這個幸運之輪三次，紀錄這三次結果的最大值，發現這也會是個隨機變數，暫且稱他為Y, Y=max{ X₁,X₂,X₃ }
+        - 其中 X₁,X₂,X₃ 分別是第一到第三次轉動幸運之輪的結果，也就是這三個的PDF都與X 一樣. 
+    - 假設每次轉動幸運之輪都是獨立的操作，請試著推導出Y的CDF: F<sub>Y</sub>(y) = P(Y≤y) , 然后如果小寶希望三次轉動的結果的最大值小於等於0.75，請問此機率 F<sub>Y</sub>(0.75)  是多少?
+    - A: 
+        - **F<sub>max</sub>(z) = P{ Y≤z } = P{ X₁≤z, X₂≤z, X₃≤z } = P{X₁≤z}·P{X₂≤z}·P{X₃≤z} = F<sub>X₁</sub>(z)·F<sub>X₂</sub>(z)·F<sub>X₃</sub>(z)**
+        - 0.75**3 == 0.421875
+            ```python
+            import numpy as np
+
+            nSample = 10000000
+            a = np.random.sample( [3, nSample])
+
+            d =  a.max(axis=0)
+            d = d[ d <= 0.75 ]
+            print( "prob:", len(d)/nSample )
+            # 0.4217941
+            ```
+    - **F<sub>min</sub>(z) = 1-P{X₁>z}·P{X₂>z}·P{X₃>z} = 1- ( 1-F<sub>X₁</sub>(z) )( 1-F<sub>X₂</sub>(z) )( 1-F<sub>X₃</sub>(z) )** 
+3. 
