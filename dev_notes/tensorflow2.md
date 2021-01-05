@@ -11,6 +11,11 @@
     - [Deployment](#ea355214fd4bc7c57f471bd92918879b)
     - [Keras, tf.keras, NumPy](#b0370f35e9505d9b8de1d25ab4abfdf6)
     - [Terms](#6f1bf85c9ebb3c7fa26251e1e335e032)
+    - [TensorFlow2 ecosystem](#a42fb8f43b10d96c419920ddd04fafc6)
+    - [Examples](#ff7c0fcd6a31e735a61c001f75426961)
+- [TF-Agents](#45938e48290149dc7fa28a87ad23cf31)
+    - [Implementing an Enviroment](#26bebfa63975fd82d0727ceb77db053e)
+    - [Loading Gym CartPole](#9c80ab06e0196e3d5832372c733ad601)
 
 ...menuend
 
@@ -439,12 +444,18 @@ print("Model is %d bytes" % basic_model_size)
     - Optimizers are the extended class, which include added information to train a specific model. The optimizer class is initialized with given parameters but it is important to remember that no Tensor is needed. The optimizers are used for improving speed and performance for training a specific model.
 
 
+<h2 id="a42fb8f43b10d96c419920ddd04fafc6"></h2>
+
+
 ## TensorFlow2 ecosystem
 
 - TF Probability , for Bayes modeling
 - TF Agents , for Reinforcement Learning
 - TF Text  , for text proprocessing
 - TF Federated or TF Privacy , for privacy or insecure
+
+
+<h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
 
 
 ## Examples
@@ -454,7 +465,13 @@ print("Model is %d bytes" % basic_model_size)
 
 ---
 
+<h2 id="45938e48290149dc7fa28a87ad23cf31"></h2>
+
+
 # TF-Agents
+
+<h2 id="26bebfa63975fd82d0727ceb77db053e"></h2>
+
 
 ## Implementing an Enviroment
 
@@ -470,6 +487,9 @@ class CartPole( tf_agents.py_environment.PyEnvironment ):
     def _step(sefl, action):
         "Apply the action and return the next time_step(reward, observation)"
 ```
+
+<h2 id="9c80ab06e0196e3d5832372c733ad601"></h2>
+
 
 ## Loading Gym CartPole
 

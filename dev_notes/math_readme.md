@@ -65,7 +65,7 @@
 
 - 台大概率笔记
     - [台大概率笔记](TaiwanU_probability.md)
-    - [台大概率笔记2](TaiwanU_probability2.md) 
+    - [连续机率分布](TaiwanU_probability2.md) 
     - [期望值 条件概率 失忆性](TaiwanU_probability67.md) 
     - [联合概率 边际概率 双变数期望值](TaiwanU_probability8.md) 
     - [多个随机变量之和的概率分布](TaiwanU_probability9.md) 

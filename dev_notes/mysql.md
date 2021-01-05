@@ -62,6 +62,10 @@
     - [5.6 B+树索引的使用](#a3f3f22ce2ecd49e0899aa0470bb4188)
         - [5.6.1 不同应用中的 B+树索引](#cc473a5ef59e8cf3e28bc6618a4db748)
         - [5.6.2 联合索引](#121f3825a3bc99fa74e52a95c6fcb3fa)
+    - [索引的正确打开方式](#7535a44e5d93f60d15f1187543edcffb)
+        - [索引失效常见原因](#2ce5b1beb2306d329e99a537597759a6)
+        - [索引失效的常见误区](#aeaaf2a2e7441a1ca755480330667fcc)
+        - [避坑口诀](#5b282679c2e2107534f4003530525bd9)
 
 ...menuend
 
@@ -879,9 +883,15 @@ mysql> SELECT * from v_t;
     - `SELECT ... FROM TABLE WHERE a=xxx ORDER BY c`
 
 
+<h2 id="7535a44e5d93f60d15f1187543edcffb"></h2>
+
+
 ## 索引的正确打开方式
 
 https://mp.weixin.qq.com/s/p7NTu1NpAgt9frOg-ivVIA
+
+<h2 id="2ce5b1beb2306d329e99a537597759a6"></h2>
+
 
 ### 索引失效常见原因
 
@@ -924,6 +934,9 @@ https://mp.weixin.qq.com/s/p7NTu1NpAgt9frOg-ivVIA
     ```
 
 
+<h2 id="aeaaf2a2e7441a1ca755480330667fcc"></h2>
+
+
 ### 索引失效的常见误区
 
 1. 使用not in会导致索引失效
@@ -937,6 +950,9 @@ https://mp.weixin.qq.com/s/p7NTu1NpAgt9frOg-ivVIA
     - 有没有使用索引跟where后面的条件有关，而跟order by 后面的字段没关系
     - **但是** order by 字段 可能会导致 *Using filesort*，即按文件重排序
         - 一般是联合索引中索引字段的顺序，跟sql中where条件及order by 不一致导致的，只要顺序调整一致就不会出现这个问题
+
+
+<h2 id="5b282679c2e2107534f4003530525bd9"></h2>
 
 
 ### 避坑口诀

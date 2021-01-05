@@ -1,3 +1,19 @@
+...menustart
+
+- [Week 9 多个随机变数之和的概率分布](#1762299309d6cb253f2fdb43d353f294)
+    - [9.1 随机变数之和](#193f6cd419c84d21dae97441a455bb44)
+    - [9.2 MGF(MOMENT GENERATING FUNCTION)](#09fcfdc987674ca8b8ddac2800de6f82)
+        - [MGF](#cdd64cb797821d59ddd73236bda46533)
+        - [MFG重要性质](#f8dbbf3c577f493b3b6ff0bffd301e3f)
+        - [常见离散概率分布 之 MGF](#2be4a5f7d9346b585956a97eade6ba53)
+        - [常见连续概率分布之 MGF](#a143407576e230d845a8f65a6a5354f9)
+    - [9.3 多个随机变数之和](#cd35de7f4e9cf36be5b82a16fe6c9164)
+        - [独立随机变数之和](#5394b4fb8d4f5a0a0bb2b7475ea106d6)
+        - [随机个数个 独立随机变数之和](#665c6ab9ba9d1f2d7fadf5c4ff5cd580)
+    - [9.4 中央極限定理-萬佛朝宗](#7578c5441d21a59eddc6f9dcf8436a1c)
+        - [中央极限定律(CLT)的应用](#3a6f6a5a83db8d71e439b1482fd9d360)
+
+...menuend
 
 
 <h2 id="1762299309d6cb253f2fdb43d353f294"></h2>
@@ -136,6 +152,9 @@ if __name__ == '__main__':
 - 上面的期望值里，s不是随机变量，s只是一个变量,可以用期望值运算中拿出来
 
 
+<h2 id="2be4a5f7d9346b585956a97eade6ba53"></h2>
+
+
 ### 常见离散概率分布 之 MGF
 
 - X~Bernoulli(p):  p<sub>X</sub>(0) = 1-p, p(1)=p
@@ -158,6 +177,9 @@ if __name__ == '__main__':
     - ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/676b2ba303d07df696f47c19ad4640d036c09dfc)
 
 
+<h2 id="a143407576e230d845a8f65a6a5354f9"></h2>
+
+
 ### 常见连续概率分布之 MGF
 
 
@@ -172,7 +194,13 @@ if __name__ == '__main__':
     - e<sup>μs+σ/2·s²</sup>
 
 
+<h2 id="cd35de7f4e9cf36be5b82a16fe6c9164"></h2>
+
+
 ## 9.3 多个随机变数之和
+
+<h2 id="5394b4fb8d4f5a0a0bb2b7475ea106d6"></h2>
+
 
 ### 独立随机变数之和
 
@@ -191,6 +219,9 @@ if __name__ == '__main__':
     - X = X₁+X₂+ ... +X₁₀₀
         - ⇒ ɸ<sub>X</sub>(s) = ( ɸ<sub>X₁</sub>(s) )¹⁰⁰ = ( e<sup>14s+9/2·s²</sup> )¹⁰⁰ = e<sup>1400s+900/2·s²</sup> -> N(1400,900)
         - ⇒ X~N(1400,900)
+
+<h2 id="665c6ab9ba9d1f2d7fadf5c4ff5cd580"></h2>
+
 
 ### 随机个数个 独立随机变数之和
 
@@ -222,6 +253,9 @@ if __name__ == '__main__':
         - = e<sup>75( e<sup>14s+8s²</sup> -1)</sup>
 
 
+<h2 id="7578c5441d21a59eddc6f9dcf8436a1c"></h2>
+
+
 ## 9.4 中央極限定理-萬佛朝宗
 
 
@@ -244,6 +278,9 @@ if __name__ == '__main__':
     - 若 X₁+X₂+ ... +X<sub>n</sub> 为 I.I.D,
     - 则当 n 越接近 ∞ 时:
     - ![](../imgs/TU_prob2_9.4_clt.png)
+
+
+<h2 id="3a6f6a5a83db8d71e439b1482fd9d360"></h2>
 
 
 ### 中央极限定律(CLT)的应用

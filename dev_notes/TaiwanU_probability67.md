@@ -1,3 +1,30 @@
+...menustart
+
+- [Week6 Week7 期望值 条件概率 失忆性](#884b6b277b1c5c27d38fbc97f6560af9)
+    - [6-2: 期望值 I (EXPECTATION)](#699f5bed3f92e270bce0a95ed5bf89d3)
+        - [随机变量的函数之期望值](#7a410c29ec1783458c2d5c679f790eee)
+        - [期望值运算性质](#09a5fcc38b3f4c96f745b665bfb42cea)
+        - [常见的随机变量函数期望值](#487e3e26c9963764a55fe4f8b597d389)
+        - [变异数 (variance)](#d43aa7d625393a9c328a86c60568b12e)
+        - [Variance 便利算法](#d57572a47dea71843856503c0ef5c154)
+        - [常见离散分布之期望值/变异数](#33805636b57d3a4f61be9c79a1d93947)
+        - [几率推导奥义： 「凑」字诀](#367685545196820c0c173d14fe4c9421)
+        - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
+- [Week7](#b9d0e738b55594e8d3824de9b91b0914)
+    - [7-1 期望值II](#041a19cd2e4bebb61913e1566b7cfb67)
+        - [随机变数函数 期望值](#45c2600156e6a1f700dfe4260c9694c4)
+        - [常见连续分布的期望值/变异数](#29e116aede7ee7f00af95ca5edd4c6d0)
+        - [期望值推导](#4fdbd553cf6f3c5cfd46baa1993c8dc2)
+    - [7.2 隨機變數之函數](#27fdd10ac05020268c5d6bb6954f4099)
+        - [如何求 g(X)几率分布?](#317aa5bd89ce045575f8cb8491b70c62)
+    - [7.3a 条件概率分布](#33f8148fbbdcedb32e214651afcff8d9)
+    - [7.3a 失忆性 (Memoryless)](#f16b66e705a9a610a0da37b5dae105eb)
+    - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
+
+...menuend
+
+
+<h2 id="884b6b277b1c5c27d38fbc97f6560af9"></h2>
 
 
 # Week6 Week7 期望值 条件概率 失忆性

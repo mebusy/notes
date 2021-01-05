@@ -1,62 +1,27 @@
 ...menustart
 
-- [5-1: 机率密度函数 PDF (PROBABILITY DENSITY FUNCTION)](#fc548c0411701f3a57c7799ad18245e3)
-    - [PDF](#bcd1b68617759b1dfcff0403a6b5a8d1)
-    - [PDF 跟机率的关系](#0b821c7256491cd7494160a47d4a1023)
-    - [PDF 有哪些性质呢?](#5bc2e5b291e2fbe5196f9a425ad6a0c9)
-- [5-2: 连续机率分布 I (CONTINUOUS PROBABILITY DISTRIBUTION)](#423296d40fd5d59d1f076d73508c42e6)
-    - [Uniform 机率分布](#f7bf1cb803a0ab0539a6dc3ed526dd4f)
-    - [Exponential 机率分布](#894ad572b4888ac89196f741cd003480)
-        - [指数分布和 柏松分布之间的关系](#a781eb710c59f5f1dffeb4d79e0bf04d)
-        - [指数分布和 几何分布之间的关系](#ee8d241828945ff9c5d39465a5c65f25)
-        - [指数分布和 uniform 分布的关系](#dc45153d24cf787ea2b2917ec03ca044)
-        - [指数分布和 正态分布的关系](#6d91070e066c0b53115e187e5f194191)
-    - [Erlang 机率分布](#7d09f590df9dfcbd10d1b8cbffce9514)
-        - [Erlang 和 Exponential  关系](#a37b5c85c6d082e170925dbe09051a82)
-- [Week6](#63995e860d87301917bfed4525e36993)
-    - [6-1: 连续微积分分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )](#292420e2932b158fe9de18af72e0f2ff)
+- [Week5 连续机率分布](#61746ec0f4a80bc5cb5caef1f62afd5b)
+    - [5-1: 机率密度函数 PDF (PROBABILITY DENSITY FUNCTION)](#fc548c0411701f3a57c7799ad18245e3)
+        - [PDF](#bcd1b68617759b1dfcff0403a6b5a8d1)
+        - [PDF 跟机率的关系](#0b821c7256491cd7494160a47d4a1023)
+        - [PDF 有哪些性质呢?](#5bc2e5b291e2fbe5196f9a425ad6a0c9)
+    - [5-2: 连续机率分布 I (CONTINUOUS PROBABILITY DISTRIBUTION)](#423296d40fd5d59d1f076d73508c42e6)
+        - [Uniform 机率分布](#f7bf1cb803a0ab0539a6dc3ed526dd4f)
+        - [Exponential 机率分布](#894ad572b4888ac89196f741cd003480)
+            - [指数分布和 柏松分布之间的关系](#a781eb710c59f5f1dffeb4d79e0bf04d)
+            - [指数分布和 几何分布之间的关系](#ee8d241828945ff9c5d39465a5c65f25)
+            - [指数分布和 uniform 分布的关系](#dc45153d24cf787ea2b2917ec03ca044)
+            - [指数分布和 正态分布的关系](#6d91070e066c0b53115e187e5f194191)
+        - [Erlang 机率分布](#7d09f590df9dfcbd10d1b8cbffce9514)
+            - [Erlang 和 Exponential  关系](#a37b5c85c6d082e170925dbe09051a82)
+    - [6-1: 连续机率分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )](#2f5c9c5eb9da34f36d7092d770b94259)
         - [Normal 机率分布(常态分布)](#a638878f993f94c84c6c050963d0f635)
             - [Standard Normal Distribution 标准常态分布](#b672e9679aa32ead876e8b9c6c43d78c)
-    - [6-2: 期望值 I (EXPECTATION)](#699f5bed3f92e270bce0a95ed5bf89d3)
-        - [随机变量的函数之期望值](#7a410c29ec1783458c2d5c679f790eee)
-        - [期望值运算性质](#09a5fcc38b3f4c96f745b665bfb42cea)
-        - [常见的随机变量函数期望值](#487e3e26c9963764a55fe4f8b597d389)
-        - [变异数 (variance)](#d43aa7d625393a9c328a86c60568b12e)
-        - [Variance 便利算法](#d57572a47dea71843856503c0ef5c154)
-        - [常见离散分布之期望值/变异数](#33805636b57d3a4f61be9c79a1d93947)
-        - [几率推导奥义： 「凑」字诀](#367685545196820c0c173d14fe4c9421)
-        - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
-- [Week7](#b9d0e738b55594e8d3824de9b91b0914)
-    - [7-1 期望值II](#041a19cd2e4bebb61913e1566b7cfb67)
-        - [随机变数函数 期望值](#45c2600156e6a1f700dfe4260c9694c4)
-        - [常见连续分布的期望值/变异数](#29e116aede7ee7f00af95ca5edd4c6d0)
-        - [期望值推导](#4fdbd553cf6f3c5cfd46baa1993c8dc2)
-    - [7.2 隨機變數之函數](#27fdd10ac05020268c5d6bb6954f4099)
-        - [如何求 g(X)几率分布?](#317aa5bd89ce045575f8cb8491b70c62)
-    - [7.3a 条件概率分布](#33f8148fbbdcedb32e214651afcff8d9)
-    - [7.3a 失忆性 (Memoryless)](#f16b66e705a9a610a0da37b5dae105eb)
-    - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
-- [Week 8](#1223874fb29922e4e7bb1474bbc33147)
-    - [8.1 联合概率分布](#7a6e0b2a0774b9a999a5e891f7cc3d2c)
-        - [联合 PMF (Joint PMF)](#ecfdf56b8825bb6021bc398b2687da18)
-        - [联合 PMF 的性质](#12c3181de32d16311d0a1a1c713d480c)
-        - [联合 CDF (Joint CDF)](#ae2555933cfea0bde5a2585b0d731631)
-        - [联合 CDF 的性质](#2ddfa5d23aecf6d8e642c4f5063fa615)
-        - [联合 PDF 例子](#82a4552a73f360a69c244464918476f9)
-        - [若𝑿, 𝒀 皆为连续随机变数怎办?](#62cff33c593fc9c62714039fbd68d2f3)
-        - [连续联合 PDF 的性质](#81b351c0506c1a71878441a0a81088d1)
-    - [8.2 边际机率分布](#2ddbe1ee6b0b9481c8a52627056fedd5)
-        - [已知联合 PMF，欲得个别 PMF](#41d4f6592d31a4b16ba8e2d84689f26b)
-        - [边际 PMF (Marginal PMF)](#88467bd1b22479904c4cda0b92cbed46)
-        - [边际 PDF (Marginal PDF)](#dcfc73f8fb33ef1e323fa7af282e7f12)
-    - [8.3 双变数期望值](#b7c12c38cf6f0bd638bb87f785c54a6b)
-- [Week 9 多个随机变数之和的概率分布](#1762299309d6cb253f2fdb43d353f294)
-    - [9.1 随机变数之和](#193f6cd419c84d21dae97441a455bb44)
-    - [9.2 MGF(MOMENT GENERATING FUNCTION)](#09fcfdc987674ca8b8ddac2800de6f82)
-        - [MGF](#cdd64cb797821d59ddd73236bda46533)
-        - [MFG重要性质](#f8dbbf3c577f493b3b6ff0bffd301e3f)
 
 ...menuend
+
+
+<h2 id="61746ec0f4a80bc5cb5caef1f62afd5b"></h2>
 
 
 # Week5 连续机率分布
@@ -282,7 +247,7 @@ pylab.show()
 ---
 
 
-<h2 id="292420e2932b158fe9de18af72e0f2ff"></h2>
+<h2 id="2f5c9c5eb9da34f36d7092d770b94259"></h2>
 
 
 ## 6-1: 连续机率分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )
