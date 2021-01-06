@@ -352,6 +352,11 @@ plt.show()
 
 ## QUIZ
 
+<details>
+<summary>
+quiz ...
+</summary>
+
 - 有一个连续随机变数X， 已知其概率密度PDF: f<sub>X</sub>(x) 在任何x都是连续的， 则下列的叙述何者正确?
     - ∫₀<sup>∞</sup> f<sub>X</sub>(x)dx = 0.5  - 错
     - 因为 P(X=x₀) == 0. 所以 {X=x₀} 事件必为∅ - 错
@@ -390,3 +395,4 @@ plt.show()
 
 
 
+</details>
