@@ -398,6 +398,7 @@ if __name__ == '__main__':
     4. 阿正是個大胃王，但是食量大不代表每一餐都可以吃很多或是義天可以吃很多餐，因為阿正也還只是一個要靠打工過日的大學生，一天能吃幾餐、一餐能吃幾碗飯都是獨立且不確定的。
         - 但是根據阿正自己的統計，若以隨機變數M代表阿正一天能吃幾餐，而隨機變數N代表阿正一餐能吃到幾碗飯, 则
         - `M~Uniform(3,5), N~Poisson(2)` , 请问， 若以W代表阿正一天总共吃几碗饭，则 Var[W]=?
+        - 注： 下面的第一个算法似乎是错误的... 因为M,N独立的假设是错误的 ❌
         - **M,N独立，Var[W] = Var[MN] = E[M²]E[N²]-E[M]²E[N]²**
         - E[M] = 4, E[M²] = (9+16+25)/3.0 
         - E[N] = 2, Var[N] = 2 , E[N²] = Var[N]+E[N]² = 6
@@ -408,7 +409,7 @@ if __name__ == '__main__':
                 >>> stats.poisson(2).moment(2)
                 6
                 ```
-        - Var[W] = E[M²]E[N²]-E[M]²E[N]² = (9+16+25)/3.0*6 - 4*4*2*2 = 36.0
+        - Var[W] = E[M²]E[N²]-E[M]²E[N]² = (9+16+25)/3.0*6 - 4*4*2*2 = 36.0  ❌  同样M,N不独立的的话，下方的随机取样的计算也是不对的
             ```python
             import numpy as np
             from scipy import stats
@@ -421,6 +422,11 @@ if __name__ == '__main__':
             print(W.mean(), W.var())
             # 8.0029521 36.03444838510554
             ```
+        - 但是作业系统提示 36不对，用 Wolfram Alpha 硬算二阶导数计算的话，可以得到 
+            - [calc on wolfram](https://www.wolframalpha.com/input/?i=second+derivative&assumption=%7B%22C%22%2C+%22second+derivative%22%7D+-%3E+%7B%22Calculator%22%7D&assumption=%7B%22F%22%2C+%22SecondDerivativeCalculator%22%2C+%22derivativefunction%22%7D+-%3E%22%28e%5E%286*%28e%5Es+-+1%29%29+-+e%5E%2812*%28e%5Es+-+1%29%29+%29+%2F+%28+3*%281-+e%5E%282+*+%28e%5Es-1%29+%29%29+%29%22&assumption=%7B%22F%22%2C+%22SecondDerivativeCalculator%22%2C+%22derivativevariable%22%7D+-%3E%22s%22)
+            - E[W] = 8
+            - E[W²] = 224/3.0
+            - Var[W] = E[W²] - E[W]² = 10.666666666666671
 
     5. 下列有關隨機變數的中央極限定理(Central Limit Theorem [CLT])的敘述，何者錯誤?
         - 湯米買了十罐同樣標示容量為600\pm 10600±10毫升的飲料，然後全部倒進為了今天晚會所準備的大容器裡，隨機變數VV代表這個大容器裡飲料的總容量，則根據中央極限定理VV的分佈會是個期望值為6000毫升的高斯分布
