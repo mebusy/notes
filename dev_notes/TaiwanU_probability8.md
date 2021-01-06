@@ -14,6 +14,7 @@
         - [边际 PMF (Marginal PMF)](#88467bd1b22479904c4cda0b92cbed46)
         - [边际 PDF (Marginal PDF)](#dcfc73f8fb33ef1e323fa7af282e7f12)
     - [8.3 双变数期望值](#b7c12c38cf6f0bd638bb87f785c54a6b)
+    - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
 
 ...menuend
 
@@ -205,3 +206,17 @@ Y = 10 | 0.05 | 0.1 | 0.15
         - Var[aX+bY] = a²Var[X] + b²Var[Y]
 
 
+
+<h2 id="e1f7ff5183a361cd3b41e3ab5e647cb5"></h2>
+
+
+## QUIZ
+
+<details>
+<summary>
+quiz
+</summary>
+
+![](../imgs/TU_prob2_8_quiz_1.png)
+
+</details>

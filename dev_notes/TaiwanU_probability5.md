@@ -17,6 +17,8 @@
     - [6-1: 连续机率分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )](#2f5c9c5eb9da34f36d7092d770b94259)
         - [Normal 机率分布(常态分布)](#a638878f993f94c84c6c050963d0f635)
             - [Standard Normal Distribution 标准常态分布](#b672e9679aa32ead876e8b9c6c43d78c)
+    - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
+        - [max/min](#cd1c601d65c97e1393f70771cd14e8a1)
 
 ...menuend
 
@@ -350,6 +352,9 @@ plt.show()
 ---
 
 
+<h2 id="e1f7ff5183a361cd3b41e3ab5e647cb5"></h2>
+
+
 ## QUIZ
 
 <details>
@@ -367,6 +372,9 @@ quiz ...
     - **易错**
     - cdf 为半径为x的圆的面积，因为 F(2) = 1 , 所以， F(x) = π*x² / (π*4) , 求导得到 pdf: f(x) = x/2
     - **pdf/cdf 都和π没关系了, 神奇...**
+
+<h2 id="cd1c601d65c97e1393f70771cd14e8a1"></h2>
+
 
 ### max/min
 

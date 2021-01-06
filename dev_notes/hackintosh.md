@@ -20,6 +20,7 @@
     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
     - [Create a normal bootable usb installer](#e4b093a32d54db737e399188ce596791)
     - [Intel Blueteeth-Wifi card](#d65ecd37b6aeebc52147b6f8b23404ed)
+    - [Iris Plus 655 and OpenCore ?](#ed7d1307fc41f3139d09fd753a5e0a7c)
 
 ...menuend
 
@@ -432,6 +433,9 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 - [wifi](https://github.com/OpenIntelWireless/itlwm)
     - itlwm 
 - [blueteeth](https://github.com/zxystd/IntelBluetoothFirmware)
+
+
+<h2 id="ed7d1307fc41f3139d09fd753a5e0a7c"></h2>
 
 
 ## Iris Plus 655 and OpenCore ?

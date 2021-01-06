@@ -12,6 +12,7 @@
         - [随机个数个 独立随机变数之和](#665c6ab9ba9d1f2d7fadf5c4ff5cd580)
     - [9.4 中央極限定理-萬佛朝宗](#7578c5441d21a59eddc6f9dcf8436a1c)
         - [中央极限定律(CLT)的应用](#3a6f6a5a83db8d71e439b1482fd9d360)
+    - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
 
 ...menuend
 
@@ -332,6 +333,9 @@ if __name__ == '__main__':
         >>> stats.norm.cdf( (7.5-10)/(5**0.5) ) - stats.norm.cdf( (6.5-10)/(5**0.5) )
         0.07301380459316678
         ```
+
+<h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
+
 
 ## Quiz
 
