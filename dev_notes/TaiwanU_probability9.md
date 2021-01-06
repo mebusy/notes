@@ -424,6 +424,7 @@ if __name__ == '__main__':
             ```
         - 但是作业系统提示 36不对，用 Wolfram Alpha 硬算二阶导数计算的话，可以得到 
             - [calc on wolfram](https://www.wolframalpha.com/input/?i=second+derivative&assumption=%7B%22C%22%2C+%22second+derivative%22%7D+-%3E+%7B%22Calculator%22%7D&assumption=%7B%22F%22%2C+%22SecondDerivativeCalculator%22%2C+%22derivativefunction%22%7D+-%3E%22%28e%5E%286*%28e%5Es+-+1%29%29+-+e%5E%2812*%28e%5Es+-+1%29%29+%29+%2F+%28+3*%281-+e%5E%282+*+%28e%5Es-1%29+%29%29+%29%22&assumption=%7B%22F%22%2C+%22SecondDerivativeCalculator%22%2C+%22derivativevariable%22%7D+-%3E%22s%22)
+            - 只需看附的泰勒级数的第一项
             - E[W] = 8
             - E[W²] = 224/3.0
             - Var[W] = E[W²] - E[W]² = 10.666666666666671
