@@ -434,6 +434,76 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 - [blueteeth](https://github.com/zxystd/IntelBluetoothFirmware)
 
 
+## Iris Plus 655 and OpenCore ?
+
+```text
+1. Bios   gpu memory setting
+	- Allocation : depending on the frame buffer ( look value TOTAL_STOLEN in frame buffer list )
+	- DVMT total memory size: max
+	- https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md
+	- 但是 似乎没什么问题。。。
+2. remove AppleALC ?  (enabling native macOS HD audio)
+
+
+To inject DeviceProperties
+
+Only these properties may be added:
+— AAPL,ig-platform-id or AAPL,snb-platform-id framebuffer
+— device-id for IGPU (if faking is necessary)
+— device-id for IMEI (if faking is necessary)
+— properties for patches (if necessary)
+
+And layout-id for HDEF
+
+
+### AAPL,ig-platform-id
+
+Iris Plus 655
+
+ID: 3EA50005, STOLEN: 57 MB, FBMEM: 0 bytes, VRAM: 1536 MB, Flags: 0x00E30B0A
+TOTAL STOLEN: 58 MB, TOTAL CURSOR: 1 MB (1572864 bytes), MAX STOLEN: 172 MB, MAX OVERALL: 173 MB (181940224 bytes)
+Model name: Intel Iris Plus Graphics 655
+
+
+Recommended framebuffers:
+
+Laptop:
+0x3EA50009 (default)
+
+
+CFL:
+0x3E9B
+0x3EA5
+0x3EA6
+0x3E92
+0x3E91
+0x3E98
+
+# And now you have your final framebuffer profile
+0900A53E = AAPL,ig-platform-id
+
+
+https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i5-8259u-processor-6m-cache-up-to-3-80-ghz.html
+
+
+#### device-id
+
+https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i5-8259u-processor-6m-cache-up-to-3-80-ghz.html
+
+
+Device ID
+0x3EA5   // lucky
+
+# And voila, you have your device-id
+0000A53E = device-id
+
+
+DeviceProperties
+  Add
+    PciRoot(0x0)/Pci(0x2,0x0)
+      AAPL,ig-platform-id  Data <>
+      device-id            Data <>
+```
 
 
 
