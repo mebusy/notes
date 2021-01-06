@@ -499,7 +499,7 @@ Device ID
 0x3EA5   // lucky
 
 # And voila, you have your device-id
-0000A53E = device-id
+A53E0000 = device-id
 
 
 DeviceProperties
