@@ -201,8 +201,7 @@ Y = 10 | 0.05 | 0.1 | 0.15
     - ![](../imgs/TU_prob2_8.1_var.png)
 
     - Var[aX+bY] = a²Var[X] + b²Var[Y] + 2Cov[X,Y]
-        - Cov[X,Y] = E[ X-E[X] ]·E[ Y-E[Y] ]
-        - ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/b82a8c24b0063ffd95d8624f460acaaacb2a99b3)
+    - ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/b82a8c24b0063ffd95d8624f460acaaacb2a99b3)
     - 如果X，Y独立
         - Var[aX+bY] = a²Var[X] + b²Var[Y]
 
