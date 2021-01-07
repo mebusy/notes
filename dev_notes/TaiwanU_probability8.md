@@ -233,10 +233,12 @@ quiz
             >>> delta = 1000./100000
             >>> delta
             0.01
-            >>> (pdf * delta * x ).sum()  # 应该求积分计算期望值 (这里偷懒了: pdf*delta 近似pmf)
+            >>> (pdf * delta * x ).sum() # E[U]
             14.001260126012166
             ```
         - for min(X,Y)
             - ![](../imgs/TU_prob2_min_expon.png)
 
 </details>
+
+
