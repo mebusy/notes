@@ -190,6 +190,11 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
 
 ### Quiz
 
+<details>
+<summary>
+quiz...
+</summary>
+
 1. 一个随机变数X, E[X]=μ, Var[X]=σ², σ>0 请问下列何者叙述正确(正確選項只有一個)
     - Y=-X, E[Y]=-μ, Var[Y]=σ²
         - 正确: E[-X]=-E[X] , Var[-X]=(-1)²Var[X]
@@ -263,6 +268,7 @@ x 和 x！约分，变成 (x-1)! , 这样 ∑ 运算就不能包括 x=0了， �
             - σ<sub>X</sub> = 5.3
             - 5.83 ≠ 1 + 5.3*1.1 = 1 + 5.3*1.1
 
+</details>
 
 <h2 id="b9d0e738b55594e8d3824de9b91b0914"></h2>
 
@@ -488,27 +494,7 @@ quiz...
         0.10516068318563022
         >>> E = P  # Bernoulli
         ```
-5. 某便利超商今天早上09:00開始推出兩款限量的商品，一個是可愛的馬克杯，另外一個是熱門卡通玩偶，假設限量商品全部賣完所需的時間都是Exponential Distribution的隨機變數，而且互相獨立，馬克杯和玩偶賣完所需的時間分別是T_1,T_2 (單位是hr)，而兩者的λ 分别为 1/12, 1/6. 請幫店長估計，平均需要幾個小時才能把兩項商品都賣完。
-    - A:
-        - U = max(X,Y)
-        - F<sub>U</sub>(u) = P(U≤u) = P(max(X,Y)≤u) = P(X≤u, Y≤u) 
-            - = P(X≤u)P(Y≤u) = F<sub>X</sub>(u)F<sub>Y</sub>(u)
-        - 两边求导，得
-            - f<sub>U</sub>(u) = f<sub>X</sub>(u)F<sub>Y</sub>(u) + F<sub>X</sub>(u)f<sub>Y</sub>(u)
-        - scipy
-            ```python
-            >>> x = scipy.linspace(0,1000,100000)
-            >>> pdf = scipy.stats.expon.pdf( x , scale=12 )*scipy.stats.expon.cdf( x , scale=6 ) + 
-                scipy.stats.expon.pdf( x , scale=6 )*scipy.stats.expon.cdf( x , scale=12 )
-            >>> delta = 1000./100000
-            >>> delta
-            0.01
-            >>> (pdf * delta * x ).sum()  # 应该求积分计算期望值 (这里偷懒了: pdf*delta 近似pmf)
-            14.001260126012166
-            ```
-        - for min(X,Y)
-            - ![](../imgs/TU_prob2_min_expon.png)
-6. X的CDF 定义如下
+5. X的CDF 定义如下
     - F<sub>X</sub>(x) = 
         - 0 , 0>x
         - 1-e<sup>-x/2</sup>  ,  x≥0
