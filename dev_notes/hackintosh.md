@@ -407,12 +407,10 @@ https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
 
 ```bash
 # unmount it first
-# if your usb is partitioned, then you may use `of=/dev/rdisk3s3`
-# /dev/rdiskxxx -> /dev/diskxxx, 但是速度更快
 sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 ```
 
-**Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**.
+**Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**, but more faster
 
 <h2 id="e4b093a32d54db737e399188ce596791"></h2>
 
