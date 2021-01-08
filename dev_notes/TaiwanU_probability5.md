@@ -114,13 +114,28 @@
 import scipy, scipy.stats
 x = scipy.linspace(0,10,101)
 lamda = 1
-pmf = scipy.stats.expon.pdf(x, 0, 1.0/lamda)
+pmf = scipy.stats.expon.pdf(x, 0, 1.0/lamda)  # theta = 1/lamda
 cdf = scipy.stats.expon.cdf(x, 0, 1.0/lamda)
 import pylab
 pylab.plot(x,pmf)
 pylab.plot(x,cdf,color="red")
 pylab.show()
 ```
+
+- 注意: λ = 1.0/θ , scipy.stats 参数是θ
+    ```python
+    >>> theta = 1
+    >>> x = 3
+    >>> 1/theta* math.e**( -x/theta )
+    0.04978706836786395
+    >>> stats.expon.pdf( x , scale=theta )
+    0.049787068367863944
+    >>> theta = 2
+    >>> 1/theta* math.e**( -x/theta )
+    0.11156508007421492
+    >>> stats.expon.pdf( x , scale=theta )
+    0.11156508007421491
+    ```
 
 ![](../imgs/TU_probability2_exp_dist2.png)
 
@@ -239,7 +254,7 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 import scipy, scipy.stats
 x = scipy.linspace(0,10,101)
 lamda = 1
-pmf = scipy.stats.erlang.pdf(x, 3, 0, 1.0/lamda)
+pmf = scipy.stats.erlang.pdf(x, 3, 0, 1.0/lamda)  # theta = 1/lambda
 cdf = scipy.stats.erlang.cdf(x, 3, 0, 1.0/lamda)
 import pylab
 pylab.plot(x,pmf)

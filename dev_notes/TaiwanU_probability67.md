@@ -500,5 +500,22 @@ quiz...
         - 1-e<sup>-x/2</sup>  ,  x≥0
     - f<sub>X</sub>(x) = e<sup>-x/2</sup> / 2  => X~Exp(2)
         - E[X] = 2 , Var[X] = 4
+6. 條件機率的一大應用就是在醫學疾病檢驗的判斷，假設有一疾病只要病患確診，這病患三個月內的死亡率將會是90%，但是人群中只有2%的人確定患有此疾病(Disease)。而如今開發出一套檢驗方式可以針對此疾病作檢驗，根據檢驗結果是陽性(Positive)或是陰性(Negative)以判斷是否染上此疾病，陽性就是出現罹患此疾病會有的現象，陰性則反之。但是這套檢驗方法卻不是百分之百完全準確的，因為有些環境或是其他疾病會讓已經確定自己是健康的人(Health)也檢驗也出陽性，假設這種狀況的機率是0.3%；而實際上已經確定患有此疾病(Disease)但是卻因為一些環境或是體質差異也有可能檢驗出陰性，假設這樣的機率是0.2%。某天小豐擔心自己患上此疾病，於是前往醫院進行這種檢驗，結果檢驗結果為陽性，請幫忙小豐分析，小豐沒有染上此疾病(Health)的機率為何?
+    ```
+    P(health) = 0.98 , P(disease) = 0.02
+    P(positive | health) = 0.003
+    P(negative | disease) = 0.002
+    求 P( health | positive )
+    P( health | positive )  = P(health, positive) / P(positive)
+
+    P(health, positive) = P(positive | health)*P(health) = 0.003 * 0.98
+    怎么求 P(positive)？
+    P(positive) = P(positive, health ) + P( positive, disease )
+                = 0.003 * 0.98 +  P( positive |  disease ) * P( disease )
+                = 0.003 * 0.98 + ( 1 - P( negative |  disease ) )  * P( disease )
+                = 0.003 * 0.98 + ( 1 - 0.002 ) * 0.02
+                = 0.0229
+    P( health | positive )  = 0.003 * 0.98 / 0.0229 = 0.128
+    ```
 
 </details>
