@@ -86,7 +86,7 @@ JOINT PROBABILITY DISTRIBUTION
 
 - ![](../imgs/TU_prob2_joint_CDF_prop1.png)
 - if X and Y are independent, then F<sub>X,Y</sub>(x,y) = F<sub>X</sub>(x)·F<sub>X</sub>(y)
-    - 反向不成立，见 quiz 3
+    - 反之亦然？
 
 - 四方格性质
     - ![](../imgs/TU_prob2_joint_CDF_prop2.png)
@@ -238,8 +238,7 @@ quiz
         - for min(X,Y)
             - ![](../imgs/TU_prob2_min_expon.png)
 3. 圈圈擲公正六面骰子兩次，隨機變數X代表兩次的點數和，隨機變數Y代表兩次點數的相差值 (不會是負數)，X,Y的join PDF 为P<sub>X,Y</sub>(x,y), 请问下列何者敘述正確?  (敘述正確的選項只有一個)
-    - F<sub>X,Y</sub>(4,1) = 1/9  ✓  为什么不独立也得到了1/9的答案？
-        - 这题说明了，如果恰巧 F<sub>X,Y</sub>(x,y) = F<sub>X</sub>(x)F<sub>Y</sub>(y), 并不能说明X，Y独立
+    - F<sub>X,Y</sub>(4,1) = 1/9
     - E[X] = 6   ❌  E[X] = 3.5 + 3.5 = 7
     - P<sub>Y</sub>(2)  = 1/9  ❌   1-3,2-4,3-5,4-6, 3-1,4-2,5-3,6-4  = 2/9
     - P<sub>Y|X=4</sub>(0) = 1/9  ❌  1/3
