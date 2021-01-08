@@ -86,7 +86,7 @@ JOINT PROBABILITY DISTRIBUTION
 
 - ![](../imgs/TU_prob2_joint_CDF_prop1.png)
 - if X and Y are independent, then F<sub>X,Y</sub>(x,y) = F<sub>X</sub>(x)·F<sub>X</sub>(y)
-    - 反之亦然？
+    - 反之亦然 !!!
 
 - 四方格性质
     - ![](../imgs/TU_prob2_joint_CDF_prop2.png)
