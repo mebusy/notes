@@ -406,6 +406,9 @@ https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
 5. Test usb drive in Parallels virtual machine
 
 ```bash
+# unmount it first
+# if your usb is partitioned, then you may use `of=/dev/rdisk3s3`
+# /dev/rdiskxxx -> /dev/diskxxx, 但是速度更快
 sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 ```
 
