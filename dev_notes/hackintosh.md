@@ -30,92 +30,6 @@
 
 # AirDrop/Continuity for those unsupported Mac device 
 
-<h2 id="7f77ab6117c55a32468b643b1cc6cf31"></h2>
-
-
-## use Air Drop with ethernet
-
-```bash
-defaults write com.Apple.NetworkBrowser BrowseAllInterfaces 1
-```
-
-
-
-<h2 id="c544b3043a75d36024e96b058bfd617f"></h2>
-
-
-## Catalina Continuity Activation 
-
-For earlier mac device which has replaced with newer wifi-bluetooth moudle:
-
-https://github.com/dokterdok/Continuity-Activation-Tool/issues/463
-
-
-```bash
-// 重要
-sudo mount -uw /
-```
-
-```bash
-// 另一个，不确定是否需要
-$ ioreg -l | grep "board-id" | awk -F\" '{print $4}'
-Mac-*YourBoardID*
-
-
-sudo /usr/libexec/PlistBuddy -c "Set:Mac-*YourBoardID*:ContinuitySupport true" "/System/Library/Frameworks/IOBluetooth.framework/Versions/A/Resources/SystemParameters.plist"
-
-
-sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcm4360.kext/Contents/MacOS/AirPortBrcm4360
-
-sudo -E perl -pi -e "s/\Mac-00BE6ED71E35EB86/\Mac-*YourBoardID*/" /System/Library/Extensions/IO80211Family.kext/Contents/PlugIns/AirPortBrcmNIC.kext/Contents/MacOS/AirPortBrcmNIC
-```
-
-<h2 id="da39d68f2cf6c3c46123458cd98bd79d"></h2>
-
-
-# NUC8i5BEK Hackintosh
-
-<h2 id="90b4244131823d7d8c05f4f1c274183e"></h2>
-
-
-## NUC8i5BEK BISO setting
-
-<details>
-<summary>
-BIOS 077
-</summary>
-
-- « Intel VT for directed I/VO (VT-d) » ： disabled
-- « Secure Boot » ： disabled
-- « Fast Boot » ： disabled
-- UEFI boot enalbe /   Legacy Boot disable
-- SATA mode ： AHCI
-- Boot->Boot Configuration-> « Boot Network Devices Last » ： disabled
-- Power->Secondary Power Settings, « Wake on LAN from S4/S5 », set to « Stay Off »
-- Devices->Video, « IGD Minimum Memory » set to 64mb
-- Devices->Video, « IGD Aperture Size » set to MAX
-- disable reader-card
-
-</details>
-
-
-<details>
-<summary>
-BIOS 085
-</summary>
-
-https://github.com/zearp/Nucintosh
-
-- Devices -> USB -> Port Device Charging Mode: off
-    - wifi -> disable
-    - readcard -> disable
-- Security -> Thunderbolt Security Level: Legacy Mode
-- Power -> Wake on LAN from S4/S5: Stay Off
-- Boot -> Boot Configuration -> Network Boot: Disable
-- Boot -> Secure Boot -> Disable
-
-</details>
-
 
 <h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
 
@@ -315,6 +229,11 @@ Does it need specifiy root user ?
 
 ## update Clover
 
+<details>
+<summary>
+update clover
+</summary>
+
 1. colver configurator
     - Install/Update Clover
     - click "Save to desktop"
@@ -329,6 +248,8 @@ Does it need specifiy root user ?
     - EFI/CLOVER/CLOVERX64.efi
     - EFI/CLOVER/driver64UEFI/
     - EFI/CLOVER/tools/
+
+</details>
 
 <h2 id="4aef377d2268514c138fb8df812de501"></h2>
 
@@ -377,7 +298,7 @@ rm -R com.apple.parsecd
 <h2 id="ace0a6e80bf6d7d994c5993c5e53a6f9"></h2>
 
 
-## Big Sur
+## Big Sur Sleep problem
 
 ```bash
 launchctl unload -w  /System/Library/LaunchAgents/com.apple.triald.plist
@@ -406,11 +327,10 @@ https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
 5. Test usb drive in Parallels virtual machine
 
 ```bash
-# unmount it first
 sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 ```
 
-**Note the additional “r” prepended to the usb partition name rdisk2 instead of disk2**, but more faster
+- **Note** the additional ***r*** prepended to the usb partition name rdisk2 instead of disk2**, but more faster
 
 <h2 id="e4b093a32d54db737e399188ce596791"></h2>
 
@@ -424,16 +344,6 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 # Catalina:*
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 ```
-
-
-<h2 id="d65ecd37b6aeebc52147b6f8b23404ed"></h2>
-
-
-## Intel Blueteeth-Wifi card
-
-- [wifi](https://github.com/OpenIntelWireless/itlwm)
-    - itlwm 
-- [blueteeth](https://github.com/zxystd/IntelBluetoothFirmware)
 
 
 <h2 id="ed7d1307fc41f3139d09fd753a5e0a7c"></h2>
