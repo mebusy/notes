@@ -99,7 +99,8 @@ a | b | c | d
 --- | --- | --- | ---
 [cast,smart pointer](dev_notes/cpp_cast_smart.md) | [cpp RAII](dev_notes/cppRAII.md) |  [cpp note](dev_notes/cpp_notes.md) |
 [cpp guide in CS144](dev_notes/cpp_cs144_guide.md) | [c++ Core Guidelines](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) |
-[CppCon 2019: The Best Parts of C++](https://nbviewer.jupyter.org/github/mebusy/cppcontalk/blob/main/pdfs/back_to_basics_the_best_parts_of_cpp__jason_turner__cppcon_2019.pdf) | 
+[CppCon 2019: The Best Parts of C++](https://nbviewer.jupyter.org/github/mebusy/cppcontalk/blob/main/pdfs/back_to_basics_the_best_parts_of_cpp__jason_turner__cppcon_2019.pdf) | [CppCon 2019: RAII and the Rule of Zero](https://nbviewer.jupyter.org/github/mebusy/cppcontalk/blob/main/pdfs/back_to_basics_raii_and_the_rule_of_zero__arthur_odwyer__cppcon_2019.pdf) |
+ 
 
 
 
