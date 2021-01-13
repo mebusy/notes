@@ -120,9 +120,9 @@ import (
 * 发送方: signString -> private key 签名 -> sig
 * 接收方: signString -> sha1rsa + publickey 
 */
-func oppoVerifySignature( signString string, sig string ) error {
+func oppoVerifySignature( public_key, signString string, sig string ) error {
     // public key
-    k := `MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDXX/MsKEBLcLeKA1d/i7ufG1qsqS97xFkIRSeX3TwmHic843AfVrzoh2pZUeOvK9ZLZQpHSM7DoHMYDGD1273+FvZXYpf5LiFtecfxko/Cku16zy6WAeCYVFjjlveBhwPmPCIk+qDRYeiIW05QE2XK+CuDnJ7sxxXIJSSgD3Jo5wIDAQAB`
+    k := public_key
 
     key, _ := base64.StdEncoding.DecodeString(k)
     re, err := x509.ParsePKIXPublicKey(key)
@@ -157,9 +157,9 @@ func oppoVerifySignature( signString string, sig string ) error {
 * 发送方: signString -> private key 签名 -> sig
 * 接收方: signString -> sha1rsa + publickey 
 */
-func VerifySignatureSHA256withRSA( channel, signString string, sig string ) error {
+func VerifySignatureSHA256withRSA( public_key, signString string, sig string ) error {
     // public key
-    k := conf.CHANNELS[channel].APP_IAP_PUBLIC
+    k := public_key
 
     key, _ := base64.StdEncoding.DecodeString(k)
     re, err := x509.ParsePKIXPublicKey(key)
