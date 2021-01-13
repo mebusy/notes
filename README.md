@@ -177,6 +177,7 @@ a | b | c | d
 [roguelike note](dev_notes/roguelike_note.md) | 
 [bit operation](dev_notes/bitop.md) |
 [GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
+[openssl 生成密钥](dev_notes/openssl.md)
 
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
