@@ -25,10 +25,52 @@
 ...menuend
 
 
-<h2 id="8578ff6a91accdcff6d3de6a3b278a69"></h2>
+
+# NUC8i5BEK Hackintosh
+
+<h2 id="90b4244131823d7d8c05f4f1c274183e"></h2>
 
 
-# AirDrop/Continuity for those unsupported Mac device 
+## NUC8i5BEK BISO setting
+
+<details>
+<summary>
+BIOS 077
+</summary>
+
+- « Intel VT for directed I/VO (VT-d) » ： disabled
+    - can be enabled if you set DisableIoMapper to YES
+- « Secure Boot » ： disabled
+- « Fast Boot » ： disabled
+- UEFI boot enalbe /   Legacy Boot disable
+- SATA mode ： AHCI
+- Boot->Boot Configuration-> « Boot Network Devices Last » ： disabled
+- Power->Secondary Power Settings, « Wake on LAN from S4/S5 », set to « Stay Off »
+- Devices->Video, « IGD Minimum Memory » set to 64mb
+- Devices->Video, « IGD Aperture Size » set to MAX
+- disable reader-card
+
+</details>
+
+
+<details>
+<summary>
+BIOS 085
+</summary>
+
+https://github.com/zearp/Nucintosh
+
+- Devices -> USB -> Port Device Charging Mode: off
+    - wifi -> disable
+    - readcard -> disable
+- Security -> Thunderbolt Security Level: Legacy Mode
+- Power -> Wake on LAN from S4/S5: Stay Off
+- Boot -> Boot Configuration -> Network Boot: Disable
+- Boot -> Secure Boot -> Disable
+
+</details>
+
+
 
 
 <h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
