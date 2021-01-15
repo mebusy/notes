@@ -1,8 +1,5 @@
 ...menustart
 
-- [AirDrop/Continuity for those unsupported Mac device](#8578ff6a91accdcff6d3de6a3b278a69)
-    - [use Air Drop with ethernet](#7f77ab6117c55a32468b643b1cc6cf31)
-    - [Catalina Continuity Activation](#c544b3043a75d36024e96b058bfd617f)
 - [NUC8i5BEK Hackintosh](#da39d68f2cf6c3c46123458cd98bd79d)
     - [NUC8i5BEK BISO setting](#90b4244131823d7d8c05f4f1c274183e)
     - [Clover USB Creation](#fca6772f09655f60d2a1571eb468f4b5)
@@ -15,15 +12,16 @@
     - [update Clover](#b661467e7a885061e79bcd1aff928d46)
 - [PMSET](#4aef377d2268514c138fb8df812de501)
     - [Catalina 10.5.2 Sleep problem](#bcbe6e609bff0627e2e3654d1a1123e8)
-    - [Big Sur](#ace0a6e80bf6d7d994c5993c5e53a6f9)
+    - [Big Sur Sleep problem](#8793db1e9550cee531b14bcf6086ff68)
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
     - [Create a normal bootable usb installer](#e4b093a32d54db737e399188ce596791)
-    - [Intel Blueteeth-Wifi card](#d65ecd37b6aeebc52147b6f8b23404ed)
     - [Iris Plus 655 and OpenCore ?](#ed7d1307fc41f3139d09fd753a5e0a7c)
 
 ...menuend
 
+
+<h2 id="da39d68f2cf6c3c46123458cd98bd79d"></h2>
 
 
 # NUC8i5BEK Hackintosh
@@ -337,7 +335,7 @@ cd ~/Library/Caches
 rm -R com.apple.parsecd
 ```
 
-<h2 id="ace0a6e80bf6d7d994c5993c5e53a6f9"></h2>
+<h2 id="8793db1e9550cee531b14bcf6086ff68"></h2>
 
 
 ## Big Sur Sleep problem
