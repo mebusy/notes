@@ -16,7 +16,7 @@
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
     - [Create a normal bootable usb installer](#e4b093a32d54db737e399188ce596791)
-    - [Iris Plus 655 and OpenCore ?](#ed7d1307fc41f3139d09fd753a5e0a7c)
+    - [Iris Plus 655  Without WhatEverGreen](#b629a48f87baa1255d141a0d31957405)
 
 ...menuend
 
@@ -384,6 +384,9 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 # Catalina:*
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 ```
+
+
+<h2 id="b629a48f87baa1255d141a0d31957405"></h2>
 
 
 ## Iris Plus 655  Without WhatEverGreen
