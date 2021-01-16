@@ -386,17 +386,48 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 ```
 
 
-<h2 id="ed7d1307fc41f3139d09fd753a5e0a7c"></h2>
+## Iris Plus 655  Without WhatEverGreen
+
+1. Add SSDT for Iris Plus 655 iGPU
+    - a) find it from network
+    - or b) Hackintool / PCIe / update & export 
+2. rename  GFX0 to IGPU , HECI to IMEI ( whatever once take over it )
+    ```plist
+            <dict>
+                <key>Comment</key>
+                <string>change GFX0 to IGPU</string>
+                <key>Enabled</key>
+                <true/>
+                <key>Find</key>
+                <data>R0ZYMA==</data>
+                <key>Replace</key>
+                <data>SUdQVQ==</data>
+            </dict>
+            <dict>
+                <key>Comment</key>
+                <string>change HECI to IMEI</string>
+                <key>Enabled</key>
+                <true/>
+                <key>Find</key>
+                <data>SEVDSQ==</data>
+                <key>Replace</key>
+                <data>SU1FSQ==</data>
+            </dict>
+    ```
+3. Add patch to DeviceProperties
 
 
-## Iris Plus 655 and OpenCore ?
+<details>
+<summary>
+Iris Plus 655  platform-id / device-id
+</summary>
 
 ```text
 1. Bios   gpu memory setting
-	- Allocation : depending on the frame buffer ( look value TOTAL_STOLEN in frame buffer list )
-	- DVMT total memory size: max
-	- https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md
-	- 但是 似乎没什么问题。。。
+    - Allocation : depending on the frame buffer ( look value TOTAL_STOLEN in frame buffer list )
+    - DVMT total memory size: max
+    - https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md
+    - 但是 似乎没什么问题。。。
 2. remove AppleALC ?  (enabling native macOS HD audio)
 
 
@@ -426,19 +457,8 @@ Laptop:
 0x3EA50009 (default)
 
 
-CFL:
-0x3E9B
-0x3EA5
-0x3EA6
-0x3E92
-0x3E91
-0x3E98
-
 # And now you have your final framebuffer profile
 0900A53E = AAPL,ig-platform-id
-
-
-https://ark.intel.com/content/www/us/en/ark/products/135935/intel-core-i5-8259u-processor-6m-cache-up-to-3-80-ghz.html
 
 
 #### device-id
@@ -460,5 +480,6 @@ DeviceProperties
       device-id            Data <>
 ```
 
+</details>
 
 
