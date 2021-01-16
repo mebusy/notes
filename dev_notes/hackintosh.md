@@ -391,6 +391,27 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 1. Add SSDT for Iris Plus 655 iGPU
     - a) find it from network
     - or b) Hackintool / PCIe / update & export 
+    ```aml
+    DefinitionBlock ("", "SSDT", 2, "HACK", "_IGPU", 0x00000000)
+    {
+        External (_SB_.PCI0.IGPU, DeviceObj)
+        Device (_SB.PCI0.IGPU)
+        {
+            Name (_ADR, 0x00020000)
+            Method (_DSM, 4, NotSerialized)
+            {
+                If (LEqual (Arg2, Zero)) { Return (Buffer() { 0x03 } ) }
+                Return (Package ()
+                {
+                    "AAPL,ig-platform-id", Buffer () { 0x09, 0x00, 0xA5, 0x3E },
+                    "model", Buffer () { "Intel Iris Plus Graphics 655" },
+                    "device-id", Buffer () { 0xA5, 0x3E, 0x00, 0x00 },
+                    "hda-gfx", Buffer() { "onboard-1" },
+                })
+            }
+        }
+    }
+    ```
 2. rename  GFX0 to IGPU , HECI to IMEI ( whatever once take over it )
     ```plist
             <dict>
