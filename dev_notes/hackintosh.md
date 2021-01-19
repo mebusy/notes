@@ -37,7 +37,7 @@ BIOS 077
 </summary>
 
 - « Intel VT for directed I/VO (VT-d) » ： disabled
-    - can be enabled if you set DisableIoMapper to YES
+    - **can be enabled if you set DisableIoMapper to YES**
 - « Secure Boot » ： disabled
 - « Fast Boot » ： disabled
 - UEFI boot enalbe /   Legacy Boot disable
@@ -74,7 +74,7 @@ https://github.com/zearp/Nucintosh
 <h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
 
 
-## Clover USB Creation
+## Hackintosh USB Creation
 
 - [post on tonymac86](https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/#post-917900)
 
@@ -100,7 +100,7 @@ https://github.com/zearp/Nucintosh
 - step 2, partion , in this example, it create 3 partions 
     - 
     ```bash
-    diskutil partitionDisk /dev/disk1 3 MBR FAT32 "CLOVER EFI" 200Mi HFS+J "install_osx" 12000Mi ExFat "ExFat" R
+    diskutil partitionDisk /dev/disk1 3 MBR FAT32 "OpenCore EFI" 200Mi HFS+J "install_osx" 12000Mi ExFat "ExFat" R
     Finished partitioning on disk1
     /dev/disk1 (external, physical):
        #:                       TYPE NAME                    SIZE       IDENTIFIER
@@ -111,185 +111,12 @@ https://github.com/zearp/Nucintosh
     ```
     - Note: If you're using Clover legacy, the USB should must be MBR.
     - Note: Some BIOS implementations require GPT, some require MBR (many allow both). If you can't get BIOS to recognize your USB for booting, try GPT instead of MBR.
-- Clover
-    1. download [Clover installer](https://github.com/CloverHackyColor/CloverBootloader/releases) 
-    2. run Clover installer
-        - if using MBR, select the target of the install to "CLOVER EFI" using "Change Install Location"
-        - select "Customize" (the default is a legacy install -- we need to change it)
-            - check "Install for UEFI booting only", "Install Clover in the ESP" will automatically select
-            - 
 - OSX installation
     - 
     ```bash
     sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/install_osx/ --nointeraction --downloadassets
     ```
 
-<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
-
-
-## Misc
-
-```
-DataHubDxe-64.efi = DataHub protocol and mandatory for macOS.
-FSInject-64.efi = Driver responsible for Clover kext injection into kernel cache.
-SMCHelper-64.efi = Restore SMC keys left in NVRAM by FakeSMC (VirtualSMC.efi incompatible)
-VBoxHfs-64.efi = Open source EFI file-system driver for HFS+ file system.
-+
-ApfsDriverLoader-64.efi = Recognize and boot from APFS volumes needed by Mojave.
-AptioMemoryFix-64.efi = Needed for Afps driver; includes NVRAM fixes and better memory management.
-EmuVariableUefi-64.efi = Support for NVRAM variables if hardware NVRAM is not supported.
-NvmExpressDxe-64.efi = Driver support for NVM Express devices.
-```
-
-
-<h2 id="41fcd485d3c9d5dbc0a06851ea1cda21"></h2>
-
-
-## 改3码
-
-0. Hackintool 查看 System ID,  Gq3489ugfi 等一堆信息...
-1. 挂载硬盘的EFI分区用Clover Configurator打开config.plist..
-2. System Parameters /  从系统中获取
-3. RT Variable  / 依次点击 from SMBIOS 获取 然后 from system /  hack 获取。command+s  保存
-
-> 有同学说不是三码吗，怎么才改了两个地方？其实还有一个最重要的序列号没改，这就是为什么安装后序列号搜是一样的原因。主要是因为我们是黑苹果，只需要iMessage info就够了，尽量避免污染其他的序列号。改动方式是，选择SMBIOS，然后点击生成新的（generate）。
-
-> 需要 EmuVariableUefi-64.efi
-
-
-<h2 id="584ee5f9f8b24f6f275547b4d05d20e4"></h2>
-
-
-## Clover 自动启动
-
-use volume name of your OSX volume.
-
-<h2 id="80aa301beb5576eafb123ce4f8d0536d"></h2>
-
-
-## Clover 目录结构
-
-- BOOT   clover引导文件
-- CLOVER 
-    1. ACPI/
-        - origin  提取/储存 DSDT/SSDT 的问题， 如果你需要修改你的 DSDT/SSDT, 可以在4叶草引导界面下 直接按F4进行提取，提取的DSDT/SSDT 就会存放到这里。
-        - patched  提取的DSDT/SSDT 修改好后，放到这个文件夹中，它会被自动加载。
-    2. CLOVERX64.efi  引导clover最主要的文件之一
-    3. config.plist   clover引导配置文件. 通过它的配置，可以驱动你的声卡 显卡 睡眠，等等.
-    4. doc  clover 帮助文档
-    5. driver   驱动 legacy boot
-    6. driver64-UEFI  驱动 for UEFI boot
-    7. kerts   可以配置各个OS版本的驱动，一般只留下Other 一个文件夹
-        - Other
-            - Lilu.kext  补丁驱动，多用于配合其他驱动使用
-            - AppleALC.kext  Realtek onboard audio  需要配合lilu.kext使用，主要的作用就是加载原生AppleHDA声卡驱动。
-                - 目前AppleACL 已经能够进行很好的仿冒声卡
-            - VoodooHDA-2.9.1.kext黑苹果万能声卡驱动
-                - 万能声卡，适用于很少一部分人。万能声卡是个玄学驱动，但对hdmi音频输出却基本能做到
-            - CodecCommander.kext   解决耳机有杂音和睡眠唤醒无法自动切换或无声的问题
-            - CPUFriend.kextCPU  变频动态注入 CPU 电源管理数据
-            - Fake-PCI-ID.kext  牛逼
-            - USBInjectAll.kext  In 10.11+ Apple has changed significantly the way the USB drivers work.
-            - WhateverGreen.kext  Lilu plugin providing patches to select GPUs on macOS. 显卡驱动补丁集
-                - 对于集显，A/N卡显示的补丁驱动，解决黑屏，花屏等问题。
-            - XHCI-unsupported.kext： 英特X99系列主板驱动
-    8. misc  主要存放日志，用于排错
-    9. OEM   存放不同主板电脑型号的一个配置文件. OEM可以包含整个clover文件夹下面的所有文件(除了OEM). 除了你希望用一个引导去引导多台电脑，否则没什么用
-    10. ROM  一般用于存放显卡提取
-    11. themes 开机引导界面主题
-    12. tools  没什么用, 一般可以忽略
-
-
-<h2 id="41f234410b778a2c38d3ad364d2f32dd"></h2>
-
-
-## Clover 引导界面快捷键
-
-- F4 如上
-- F5 保存初步修复的 DSDT
-- F6 保存显卡 BIOS 文件
-
-
-<h2 id="8097784a066a6a0cad28895ddd08926d"></h2>
-
-
-## active native bluetooth , not work since 10.15.4
-
-<details>
-<summary>
-deprecated
-</summary>
-
-- brew install libusb
-- firmware source:  https://github.com/wulf7/iwmbt-firmware
-- firmware download: https://www.tonymacx86.com/attachments/bluetooth_fix-zip.439550/
-- thread: https://www.tonymacx86.com/threads/guide-intel-nuc7-nuc8-using-clover-uefi-nuc7i7bxx-nuc8i7bxx-etc.261711/page-207
-
-```bash
-sudo launchctl load -w /Library/LaunchDaemons/iwmbtfw.plist
-
-iwmbtfw.plist
----------------------------------------------------------------------------------
-```
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>Label</key>
-    <string>com.iwmbtfw.firmwares</string>
-    <key>ProgramArguments</key>
-    <array>
-        <string>/etc/rc.boot.d/30.fix_bluetooth.local</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>KeepAlive</key>
-    <true/>
-</dict>
-</plist>
-```
-
-Does it need specifiy root user ?
-
-```xml
-<key>UserName</key>
-<string>root</string>
-```
-
-</details>
-
-
-
-
-
-<h2 id="b661467e7a885061e79bcd1aff928d46"></h2>
-
-
-## update Clover
-
-<details>
-<summary>
-update clover
-</summary>
-
-1. colver configurator
-    - Install/Update Clover
-    - click "Save to desktop"
-2. 安装
-    - 不要勾选。 安装Clover 到 EFI系统区
-    - 不要勾选。安装Clover系统偏好设置面板
-    - 会安装到 root 目录 /
-        - EFI
-        - EFI_backup   删除
-3. 升级
-    - EFI/BOOT/BOOTX64.efi
-    - EFI/CLOVER/CLOVERX64.efi
-    - EFI/CLOVER/driver64UEFI/
-    - EFI/CLOVER/tools/
-
-</details>
 
 <h2 id="4aef377d2268514c138fb8df812de501"></h2>
 
@@ -360,7 +187,7 @@ rm -R com.apple.proactive.eventtracker
 
 https://cloudwrk.com/create-centos-7-bootable-usb-on-osx/
 
-1. Format a USB drive as eFAT with Disk Utility
+1. Format a USB drive as **MBR**/eFAT with Disk Utility
 2. Download CentOS 7 Full or Minimal iso file
 3. Open terminal and find USB drive partition name with command “diskutil list“
 4. In terminal, use dd command to copy CentOS iso to usb
@@ -372,18 +199,6 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 
 - **Note** the additional ***r*** prepended to the usb partition name rdisk2 instead of disk2**, but more faster
 
-<h2 id="e4b093a32d54db737e399188ce596791"></h2>
-
-
-## Create a normal bootable usb installer
-
-1. Usb format to **Mac OS Extended**, at least 12G
-2. *MyVolume* is the name of the USB flash drive 
-
-```bash
-# Catalina:*
-sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
-```
 
 
 <h2 id="b629a48f87baa1255d141a0d31957405"></h2>
@@ -394,7 +209,7 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 1. Add SSDT for Iris Plus 655 iGPU
     - a) find it from network
     - or b) Hackintool / PCIe / update & export 
-    - PS: no more needed !!!, just renaming & patching !!!
+    - **PS: no more needed !!!, just renaming & patching !!!**
 2. rename  GFX0 to IGPU , HECI to IMEI ( whatever once take over it )
     ```plist
             <dict>
@@ -432,8 +247,6 @@ Iris Plus 655  platform-id / device-id
     - DVMT total memory size: max
     - https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md
     - 但是 似乎没什么问题。。。
-2. remove AppleALC ?  (enabling native macOS HD audio)
-
 
 To inject DeviceProperties
 
@@ -442,8 +255,6 @@ Only these properties may be added:
 — device-id for IGPU (if faking is necessary)
 — device-id for IMEI (if faking is necessary)
 — properties for patches (if necessary)
-
-And layout-id for HDEF
 
 
 ### AAPL,ig-platform-id
@@ -482,6 +293,7 @@ DeviceProperties
     PciRoot(0x0)/Pci(0x2,0x0)
       AAPL,ig-platform-id  Data <>
       device-id            Data <>
+      ...
 ```
 
 </details>
