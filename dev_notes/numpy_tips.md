@@ -108,6 +108,12 @@ for i, j in zip(test, test2):
 [3 8 0] + [ 9 64  0] = [12 72  0]
 ```
 
+## samply from non-zero entries in an array
+
+```python
+    idxs = np.flatnonzero(y_train == y)
+    idxs = np.random.choice(idxs, samples_per_class, replace=False)
+```
 
 --------
 
