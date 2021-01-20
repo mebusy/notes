@@ -17,10 +17,12 @@
 ...menuend
 
 
+# Derivatives  df/dx
+
 <h2 id="5c6d0419bdcc965d881019d989ad6f1a"></h2>
 
 
-# chapter 1: Essense of Calculus
+## chapter 1: Essense of Calculus
 
 **The art of doing mathematics is finding that** ***special case*** **that contains all the germs of generality**.
 
@@ -57,7 +59,7 @@
 <h2 id="b872997f4e311706ca6628e823fc3459"></h2>
 
 
-# chapter 2: Paradox of the derivatives
+## chapter 2: Paradox of the derivatives
  
 - Goal
     - 1 : Learn Derivatives
@@ -83,7 +85,7 @@
 <h2 id="13e7953947a312a1272a400065326d94"></h2>
 
 
-# chapter 3: Derivative formulas through geometry 
+## chapter 3: Derivative formulas through geometry 
 
 - Derivatives are fundamentally about just looking at tiny changes to some quantity, and how that relates to a resulting tiny change in another quantity.
     - **The tiny nudges are at the heart of derivatives.**
@@ -128,7 +130,7 @@
 <h2 id="9546814bd16cc3f81d041e7b9b643ecb"></h2>
 
 
-# chapter 4: Visualizing the chain rule and product rule
+## chapter 4: Visualizing the chain rule and product rule
 
 **Using the chain rule is like peeling an onion: you have to deal with each layer at a time, and if it is too big you will start crying**,
 
@@ -140,7 +142,7 @@
 <h2 id="06aa9025652035d38814388a75abf573"></h2>
 
 
-## Sum rule
+### Sum rule
 
 - sum rule is the easiest. 
     - the derivative of a sum of n functions ,  is the sum of their derivatives.
@@ -152,7 +154,7 @@
 <h2 id="418eebdc34081971062598381d44d9ad"></h2>
 
 
-## Multiply rule
+### Multiply rule
 
 - thinking df in area increasing 
 - Left·*d(Right)* + Right·*d(Left)*
@@ -161,7 +163,7 @@
 <h2 id="eb0c844221ea9727339a6c0c9233c27f"></h2>
 
 
-## Chain rule 
+### Chain rule 
 - g(h(x))
 - for an example: f = sin(x²)
     - ![](../imgs/ess_of_calc_chain_rule_ex.png)
@@ -178,7 +180,7 @@
 <h2 id="a80580cc58514e0b419bbc32ed0e79d2"></h2>
 
 
-# chapter 5: What's so special about Euler's number e?
+## chapter 5: What's so special about Euler's number e?
 
 **Who has not been amazed to learn that the function y=eˣ, like a phoenix rising again from its own ashes, is its own derivative?**
 
@@ -223,7 +225,7 @@
 <h2 id="91cb2bc00b850ea33ca8919983c5f6fe"></h2>
 
 
-# chapter 6: Implicit differentiation, what's going on here? 
+## chapter 6: Implicit differentiation, what's going on here? 
 
 <details>
 
@@ -300,10 +302,14 @@ some hints in Chinese...
 - By the way, all of this a little sneak peek into **multivariable** calculus , where you consider functions with multiple inputs, and how they change as you tweak those multiple inputs. 
     - The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they **depend on each other**.
 
+
+# Limit
+
+
 <h2 id="59a59b02331a322ab57018951bb6d886"></h2>
 
 
-# chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions
+## chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions
 
 "Calculus required **continuity**, and **continuity** was supposed to require the *infinitely little*; but nobody could discover what the *infinitely little* might be."
 
@@ -319,7 +325,7 @@ some hints in Chinese...
     - Goal 3: L'Hopital's rule
         - clever trick for computing limits
 
-## Formal definition of a derivative
+### Formal definition of a derivative
 
 - ![](../imgs/eoc_lim_0.png)
     - Lefthand side: Limit idea is built in (*d*) , it is just a shorthand for what the righthand side 
@@ -329,7 +335,7 @@ some hints in Chinese...
         - This value h is the exact something as the *dx* referenced throughout the series. It's a nudge to the input of *f* with some nonzero, finitely small size, like 0.001.
         - In fact, the only reason people introduce a new variable name into this formal definition, rather than just using dx, is to be super-extra clear that these changes to the input are ordinary numbers that have nothing to do with the infinitesimal. 
 
-## (ε,δ) definition of limits
+### (ε,δ) definition of limits
 
 - What it means for one value to approach another ?
 - consider the function ((2+h)³-2³)/h, and let's just think of it as any function with an input h.
@@ -358,7 +364,7 @@ some hints in Chinese...
     - ![](../imgs/eoc_lim_20.png)
     - you can find a sufficiently small ε , like 0.4, so that no matter how tiny δ is , the corresponding range of outputs is just always too big. 
 
-## L'Hopital's rule
+### L'Hopital's rule
 
 
 - How do you compute limits ?
@@ -392,10 +398,12 @@ some hints in Chinese...
     - This clever trick is called **L'Hopital's rule**. 
 
 
+# Integral
+
 <h2 id="eeacb3a6987b61fae56993eb1f78fd4f"></h2>
 
 
-# chapter 8: Integration and the fundamental theorem of calculus
+## chapter 8: Integration and the fundamental theorem of calculus
 
 - 小车匀速行驶 v=10m/s, 8秒后 s=10x8 =80米.
     - ![](../imgs/eoc_integral_0.png)
@@ -436,7 +444,7 @@ some hints in Chinese...
 <h2 id="b9130735d7a51c85445d7b6434f2dea9"></h2>
 
 
-# chapter 9: What does area have to do with slope? 
+## chapter 9: What does area have to do with slope? 
 
 - Here, I want to disscuss one common type of problem where integration comes up:
     - Finding the average of a continuous variable. 
@@ -454,7 +462,7 @@ some hints in Chinese...
 <h2 id="f4c4612f181889150de4d5e6175f2839"></h2>
 
 
-# chapter 11: Taylor series
+## chapter 11: Taylor series
 
 - Taylor series are one of the most powerful tools that math has to offer for approximating functions. 
 - i.e.   Near θ=0, cos(θ) = 1- 1/2·θ² 
