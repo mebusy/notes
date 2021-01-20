@@ -49,7 +49,7 @@
     - Once you gain enough familiarity with computing derivatives, you'll be able to look at a situation like this one:
         - when you don't know what a function is , but you do know that its derivative should be x².
         - and from that , reverse engineer what the function must be. 
-- And this back and forth between integrals and derivatives , where the derivative of a function for the area under a graph gives you back the function defining the graph itself is called the 
+- And this **back and forth between integrals and derivatives** , where the derivative of a function for the area under a graph gives you back the function defining the graph itself is called the 
     - **Fundamental theorem of calculus**. 
     - It ties together the 2 big ideas of integrals and derivatives.  in some sense , eacho one is an inverse of the other. 
 
@@ -66,7 +66,7 @@
     - Instantaneous rate of change
         - instantaneous means over a very small time 
 - example 
-    - 距离时间 s(t) = t³, 计算 t=2 时的速度
+    - the distance function of a car moving :  s(t) = t³,  compute the speed when t = 2.
     - 
     ```
     ds/dt(2) = ( (2+dt)³ - 2³ ) / dt 
@@ -76,6 +76,8 @@
     ```
     - There was nothing special about choosing t=2, more generally we'd say that 
         - the derivative of t³ , as a function of t, is 3t²
+- ![](../imgs/ess_of_calc_car_dis_vel.png)
+    - Using "d" announces that **dt** → 0. 
 
 
 <h2 id="13e7953947a312a1272a400065326d94"></h2>
@@ -83,11 +85,44 @@
 
 # chapter 3: Derivative formulas through geometry 
 
-- how to calculate the derivative of f(x)=x²
-- let's see what happens when x is increased a bit :
-    - ![](../imgs/eoc_fx_x2_incr.png)
-    - Since the *dx* is very tiny, a good rule of thumb is that **you can ingore anything that includes a dx raised to a power greate than 1**.
-    - so, df = 2xdx  =>   df/dx = 2x 
+- Derivatives are fundamentally about just looking at tiny changes to some quantity, and how that relates to a resulting tiny change in another quantity.
+    - **The tiny nudges are at the heart of derivatives.**
+- How to calculate the derivative of f(x)=x²
+    - let's see what happens when x is increased a bit :
+        - ![](../imgs/eoc_fx_x2_incr.png)
+        - Since the *dx* is very tiny, a good rule of thumb is that **you can ingore anything that includes a dx raised to a power greate than 1**.
+        - so, df = 2xdx  =>   df/dx = 2x 
+- What is the derivative of f(x) = xⁿ ?
+    - **(x+dx)ⁿ** 
+        - = (x+dx)(x+dx)(x+dx)...(x+dx)
+        - = xⁿ + n(dx·x·x...·x) + (multiple of dx²) + ...
+        - = xⁿ + n·x<sup>n-1</sup>dx
+    - that is , d(xⁿ) = xⁿ + n·x<sup>n-1</sup>dx - xⁿ = n·x<sup>n-1</sup>dx
+    - **d(xⁿ)/dx = n·x<sup>n-1</sup>**
+        - **Power rule !!**
+- Think of the function f(x)=1/x
+    - by power rule , df/dx = -1·x⁻²
+    - Let's have some fun and see if we can reason about this geometrically rather than just plugging it through some formula.
+    - The value 1/x is asking what number multiplied by x equals 1
+        - 1/x <-> (?)* x = 1
+        - ![](../imgs/ess_of_calculus_1_over_x.png)
+        - PS: d(1/x) is negative !!!
+        - ❌ d(1/x) = 1/x·dx + x·d(1/x) + dx· d(1/x)
+            - ❌ ⇒ (1-x-dx)d(1/x) = 1/x·dx
+            - ❌ ⇒ d(1/x)/dx = 1/( x-x²-xdx )  ???
+        - the area must keep as 1, that is, the area gained must equal the area lost !
+        - 0 = 1/x·dx + x·d(1/x) + dx· d(1/x)
+            - ⇒ 0 = 1/x·dx + x·d(1/x)     // ignore dx· d(1/x) ?
+            - ⇒ (x)·d(1/x) = -1/x·dx
+            - ⇒ d(1/x)/dx = -1/x² = -1·x⁻²
+- f(x)=√x, d√x /dx = ???
+    - ![](../imgs/ess_of_calc_sqr_x.png)
+    - dx = 2·√x·d√x
+        - ⇒ d√x /dx = 1/(2·√x) = 1/2·x<sup>-1/2</sup>
+- f(θ) = sin(θ) , df/dθ = ???
+    - ![](../imgs/ess_of_calc_sin.png)
+    - d(sin(θ))/dθ = Adjacent/Hypotenuse = cos(θ)
+
 
 
 <h2 id="9546814bd16cc3f81d041e7b9b643ecb"></h2>
@@ -109,6 +144,10 @@
 
 - sum rule is the easiest. 
     - the derivative of a sum of n functions ,  is the sum of their derivatives.
+    - d/dx ( g(x) + h(x) )  = dg/dx + dh/dx
+- an example in geometry
+    - ![](../imgs/ess_of_calc_sum_rule_ex.png)
+
 
 <h2 id="418eebdc34081971062598381d44d9ad"></h2>
 
@@ -117,6 +156,7 @@
 
 - thinking df in area increasing 
 - Left·*d(Right)* + Right·*d(Left)*
+    - ![](../imgs/ess_of_calc_product_rule_ex.png)
 
 <h2 id="eb0c844221ea9727339a6c0c9233c27f"></h2>
 
@@ -124,11 +164,15 @@
 ## Chain rule 
 - g(h(x))
 - for an example: f = sin(x²)
+    - ![](../imgs/ess_of_calc_chain_rule_ex.png)
     - let h = x²
     - df = cos(h)dh ,  substitude h with x²
     - df = cos(x²)d(x²) = cos(x²) 2x dx
 - ![](../imgs/eoc_chain_rule.png)
 - ![](../imgs/eoc_chain_of_rule2.png)
+    - if we cancel out those *dh*s, it will give us the **ratio** between a tiny change in the final output, and the tiny change to the input x : dg/dx
+    - ![](../imgs/eoc_chain_of_rule2_cancel_out.png)
+    - **That cancellation of dh is not just a notational trick !!!** It's a genuine reflection of what's going on of the tiny nudges that underpin calculus.
 
 
 <h2 id="a80580cc58514e0b419bbc32ed0e79d2"></h2>
@@ -142,24 +186,38 @@
 - let's start with M(t) = 2ᵗ
 - dM/dt(t) = (2ᵗ⁺ᵈᵗ - 2ᵗ)/dt
     - = (2ᵗ·2ᵈᵗ - 2ᵗ)/dt
-    - = 2ᵗ· (2ᵈᵗ-1)/dt
-- 右半部分的 只和 *dt* 有关的项非常重要, 它并不依赖于 *t*
-    - when dt→0, this value (right part) approaches a very specific number: 0.6931...
-- so, the derivative of 2ᵗ is itself, but multiplied by some constant. 
+    - = 2ᵗ· **(2ᵈᵗ-1)/dt**
+- the term on the right where all of the *dt* stuff lives, is completely separate from the *t* term itself. It doesn't depend on the actual time where we started.
+    - when dt→0, this value (term on the right) approaches a very specific number: 0.6931...
+- **so, the derivative of 2ᵗ is just itself, but multiplied by some constant.** 
 - And there's not too much special about the number 2 here,  if instead we had dealt with the function 3ᵗ, the derivative of 3ᵗ is proportional to itself, but this time it would have had a proportional constant 1.0986... .
+    - d(8ᵗ)/dt = 8ᵗ·2.0794
+    - maybe you would notice that this number 2.0794 happens to be exactly 3 times the constant associated with the base for 2.
+        - ![](../imgs/ess_of_calc_ex_2_and_8.png)
+    - So these numbers certainly aren't random, there is some kind of pattern, but what is it ?
 - **d(aᵗ)/dt = aᵗ(some constant)**
     - whether there's some base where that proportional constant is 1 ? 
     - There is !  e = 2.71828... 
-- d(e<sup>ct</sup>)/dt = ce<sup>ct</sup>
+- There is a different way to think about functions that are proportional to their own derivative.
+    - The key is to use the chain rule.
+    - for example, what is the derivative of e³ᵗ ? 3·e³ᵗ 
+- Either way, the point is, the derivative of e<sup>ct</sup> is equal to that same constant *c* times itself.
+    - ![](../imgs/ess_of_calc_ex_c.png)
+- And from here, the question of those mystery constants really just comes down to a certain algebraic manipulation.
     - 2 = e<sup>ln(2)</sup>
     - 2ᵗ = e<sup>ln(2)t</sup>  -- Derivative --> ln(2)e<sup>ln(2)t</sup>  = ln(2)2ᵗ
     - ln(2) = 0.6931...
 - **The mystery proportional constant** that pops up when taking derivatives is just the natural log of the base.
-    - 事实上，在微积分的应用中， 你很少见到 aᵗ 这种写法，而经常会以 e<sup>ct</sup> 出现 : 5ᵗ = e<sup>(1.6094...)t</sup>
+    - In fact, throughout applications of calculus, you rarely see expoentials written as some base to a power *t*: ❌ aᵗ.  Instead you almost always write the exponential as e<sup>ct</sup>
 - I really want to emphasize that there are many many ways to write down any particular exponential function,
     - ![](../imgs/eoc_e.png)
-    - 指数函数之所以 选择使用  e<sup>ct</sup>,  is to gives that constant *c*  a nice, readable meaning. 
-    - e<sup>ct</sup> = (e<sup>c</sup>)ᵗ
+    - The number *e* is not fundamental to that function itself.
+    - What is special about writing exponentials in terms of e<sup>ct</sup> is that it gives that constant *c* in the exponent a nice, readable meaning. 
+- Let me show your what I mean.
+    - All sorts of natual phenomena involve **some rate of change** that's proportional to **the thing that's changing**. 
+    - For example, the rate of growth of a polulation actually does tend to be proportional to the size of the population itself.  And if you put a cup of hot water in a cool room, the rate at which the water cools is proportional to the difference in termperature between the room and the water. dΔT/dt = -kΔT. The rate at which that difference changes is proportional to itself. If you invest you money, the rate at which it grows is proportional to the amount of money there at any time. dM/dt = (1+r)M.
+    - The function describing that variable over time is going to look like some kind of exponential.  And even though there are lots of ways to write any exponential function, it's very natural to choose to express these functions a e<sup>ct</sup>  since that constant carries a very natural meaning. It's the same as the proportionality constant between the size of the changing varialbe and the rate of change.
+        - ![](../imgs/ess_of_calc_ex_temperature.png)
 
 
 <h2 id="91cb2bc00b850ea33ca8919983c5f6fe"></h2>
@@ -167,40 +225,71 @@
 
 # chapter 6: Implicit differentiation, what's going on here? 
 
+<details>
+
+<summary>
+some hints in Chinese...
+</summary>
+
 - implicit differentiation 隐微分 是一种在特殊情况下使用的求导方法
     - 一般我们碰到y=xsinx还是可以很轻松的直接求导的，但是面对x²+y²=5² 的时候，就比较棘手了.
     - 这时用implicit differentiation来解决就能方便很多。(要用到chain rule)
-- 举例: x²+y²=5² 求导
+- For example: x²+y²=5² 求导
     - 方法1: y=±√(5²-x²) ,  看到根号就不想进行下去了...
     - 方法2: 使用隐微分.
+
+</details>
+
+- x² + y² = 5² , it is not y=f(x), how to compute dy/dx?
 - This curve is not the graph of a function. so we can not take a simple derivative. 
-    - x is not an input, and y is not an output. they're both just independent values related by some equation. 
-    - This is called an "implicit curve".  It's just the set of all points (x,y) that satisfy some property written in terms of 2 variables x and y. 
-- The procedure for how you acutllay find dy/dx for curve like this ( implicit differentiation ) is the thing I fould very weird as a calculus student. 
+    - x is not an input, and y is not an output. they're both just interdependent values related by some equation. 
+    - This is called an "**implicit curve**".  It's just the set of all points (x,y) that satisfy some property written in terms of 2 variables x and y. 
+- The procedure for how you acutllay find dy/dx for curve like this ( **implicit differentiation** ) is the thing I fould very weird as a calculus student. 
     1. take derivative of both sides
         - 2xdx + 2ydy = 0 
     2. you get 
         - dy/dx = -x/y
         - this is the slop of point(3,4)  , is -3/4
-- But first, I want to set aside this particular problem, and show how this is related to a different type of calculus problem : **Related rates**. 
+- Wait, how you can interpret taking a derivative of an expression with 2 variables like this ?
+- But first, I want to set aside this particular problem, and show how this is related to a different type of calculus problem : **Related rates** problem. 
     - Imagining a 5 meter long ladder up against a wall, where the top of the ladder starts 4 meters above the ground, which means the bottom is 3 meters away from the wall. 
     - and let's say it's slipping down in such way that the top of the ladder is dropping at 1m/s. 
-- The question is , in that initial moment , what is the rate at which the bottom of the ladder is moving away from the wall. 
+    - The question is , in that initial moment , what is the rate at which the bottom of the ladder is moving away from the wall ?
+        - ![](../imgs/ess_of_calc_ladder.png )
     - Let's label that distance from the top of the ladder to the ground y(t) ,  written in a function of time t because it's changing. 
     - Likewise label the distance between the bottom of the ladder to the wall x(t).
-    - ![](../imgs/eoc_ralated_rates_0.png)
+        - ![](../imgs/eoc_ralated_rates_0.png)
     - key equation:  x(t)² + y(t)² = 5²
-        - The left-hand side is a function of time, it just so **happens to equal a constant**, meaning this value evidently doesn't change while time passes, but it's still written as an expression dependent on time. 
+        - One way to solve this would be to isolate x(t), x(t) = (5²-y(t)²)<sup>1/2</sup>, and then find dx/dt.
+            - It involves a couple layers of using the chain rule, and it will definitely work.
+            - But I want to show a different way to think about the same thing.
+        - The left-hand side is a function of time, it just so **happens to equal a constant**, meaning this value evidently doesn't change while time passes, but it's still written as an expression dependent on time which we can manipulate like any other function with *t* as an input.
         - In particular, we can take a derivative of the left-hand side, which is a way of saying 
-            - "If I let a little bit of time pass, dt, which causes y to slightly decrease, and x to slightly increase, how much does this expression change"
+            - "If I let a little bit of time pass, dt, which causes y to slightly decrease, and x to slightly increase, how much does this expression *x(t)² + y(t)²* change"
         - d(x(t)² + y(t)²)/dt = 0 
         - what you get when you computing the derivative ? 
-        - 2x(t)dx/dt + 2y(t)dy/dt = 0  
+            - by chain rule
+            - 2x(t)·dx/dt + 2y(t)·dy/dt = 0
         - That is equivalent to saying x²+y² must not change while the ladder moves. 
     - so, at the initial beginning 
         - 2(3)dx/dt + 2(4)-1 = 0  =>  dx/dt = 4/3
 - The reason I bring up this ladder problem is that I want to compare this to the problem of finding the slope of tangent line to the circle.
-- As one more example, let me show how you can use this technique to help find new derivative formulas.
+    - in both cases, we had the equation x² + y² = 5².
+    - and in both cases, we ended up taking the derivative of each side of this expression.
+    - but for the ladder problem, these expressions were function of time, so taking the derivative has a clear meaning.
+    - but what makes the circle situation strange is that the derivative has the tiny nudges *dx* and *dy* both just floating free, not tied to some other common variable like time *t*. how to think about this ?
+        - give this expression x² + y² a name S.  S is essentially a function a 2 variable S(x,y) = 25. 
+        - what it means to take a derivative of this expression ? A derivative os S, is to consider a tiny changes to both these varialbes: some tiny change dx to x, and some tiny change dy to y. how much the value of S changes ?
+        - ![](../imgs/ess_of_calc_xy5_dxdy.png)
+            - dS = 2xdx + 2ydy
+        - the key point here is that when you restrict yourself to steps along the circle, you're essentially saying you want to ensure that this value S doesn't change. 
+            - ![](../imgs/ess_of_calc_xy5_dxdy2.png)
+            - that is , dS = 0 ⇒ 2xdx + 2ydy = 0.
+- Of course, there's nothing special about the expression x² + y² = 25.  It's always nice to think through more examples.
+    - sin(x)y² = x
+    - take derivative of both sides
+    - sin(x)·2ydy + y²·cos(x)dx = dx  ( Commonly, solve for dy/dx )
+- As one more example, let me show how you can use this technique, **implicit differentiation**,  to help find new derivative formulas.
     - d(ln(x))/dx = ???
     - The curve is `y = ln(x)` , first rearrange this equation to be 
         - eʸ = x 
@@ -208,48 +297,82 @@
         - eʸdy = dx 
     - we get
         - dy/dx = 1/eʸ =>  dy/dx = 1/x 
-- By the way, all of this a little peek into **multivariable** calculus , where you consider functions with multiple inputs, and how they change as you tweak those multiple inputs. 
-    - The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they depend on each other 
+- By the way, all of this a little sneak peek into **multivariable** calculus , where you consider functions with multiple inputs, and how they change as you tweak those multiple inputs. 
+    - The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they **depend on each other**.
 
 <h2 id="59a59b02331a322ab57018951bb6d886"></h2>
 
 
 # chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions
 
+"Calculus required **continuity**, and **continuity** was supposed to require the *infinitely little*; but nobody could discover what the *infinitely little* might be."
+
+
 - this course
     1. df/dx
     2. lim
     3. ∫
-- lim
+- Goals this lecture
     - Goal 1: Formal definition of a derivative
     - Goal 2: (ε,δ) definition of limits
+        - what exactly mathematicians mean by "approach"
     - Goal 3: L'Hopital's rule
+        - clever trick for computing limits
+
+## Formal definition of a derivative
+
 - ![](../imgs/eoc_lim_0.png)
-    - Lefthand side: Limit idea is built in , it is just a shorthand for what the righthand side 
+    - Lefthand side: Limit idea is built in (*d*) , it is just a shorthand for what the righthand side 
     - righthand side: Formal derivative difinition
-        - here, I want to emphasize that nothing about this righthand side references the paradoxical idea of an "infinitely small" change. 
+        - here, I want to emphasize that nothing about this righthand side references the paradoxical idea of an "infinitely small" change.
         - the point of limits is to avoid that. 
         - This value h is the exact something as the *dx* referenced throughout the series. It's a nudge to the input of *f* with some nonzero, finitely small size, like 0.001.
+        - In fact, the only reason people introduce a new variable name into this formal definition, rather than just using dx, is to be super-extra clear that these changes to the input are ordinary numbers that have nothing to do with the infinitesimal. 
+
+## (ε,δ) definition of limits
+
+- What it means for one value to approach another ?
+- consider the function ((2+h)³-2³)/h, and let's just think of it as any function with an input h.
+    - it's graph is this nice continuous looking parabola.
+    - ![](../imgs/ess_of_calc_parabola.png)
+    - but actually,  this graph has a hole at the point h=0, which was undefined. And you have to exaggerate to draw that hole, often with a little empty circle like this
+    - ![](../imgs/ess_of_calc_parabola2.png)
+    - but keep in mind, the function is perfectly well-defined for inputs as close to 0 as you want.
+- But what exactly it means by approach ?
+    - For a given range of inputs within some distance of 0, excluding the forbidden point 0, look at all of the corresponding outputs, all possible heights of the graph above that range.
+        - ![](../imgs/eoc_lim_1.png)
+    - As that range of input values closes in more and more tightly around 0, the range of output values closes in more and more closely around 12. **Importantly** the size of that range of outpus can be made as small as you want.
+    - As a counterexample, consider a function that looks like this
+        - ![](../imgs/eoc_lim_2.png)
+    - As you approach h=0 from the right,  the function approaches 2, but as you come at 0 from the left, it approaches 1. The lim<sub>h→</sub>f(h) is simply not defined.
+        - When you look at any range of inputs around 0, and the corresponding range of outpus, as you shrink that input range the corresponding outpus don't narrow in on any specific value. Instead those outpus straddle a range that never even shrinks smaller that 1 in this example.
 - when a limit exists , you can make this output range as small as you want, 
-    - ![](../imgs/eoc_lim_1.png)
-- but when the limit doesn't exists, that output range can't get smaller thant some value, not matter how much you shrink the input range around the limiting input. 
+    - but when the limit doesn't exists, that output range can't get smaller thant some value, not matter how much you shrink the input range around the limiting input. 
     - ![](../imgs/eoc_lim_2.png)
-- What it means for the limit to exist is that you can always find a range of inputs around our limiting input , some distance δ around from some value x , 
+- **What it means for the limit to exist is that you can always find a range of inputs around our limiting input , some distance δ around from some value x ,** 
     - ![](../imgs/eoc_lim_10.png)
-    - so that any input within a distance δ of x corresponds to an output with a distance ε of f(x). 
+    - **so that any input within a distance δ of x corresponds to an output with a distance ε of f(x).** 
     - ![](../imgs/eoc_lim_11.png)
-    - The key point here is that this is true for any ε , no matter how small, you always be able to find a corresponding δ.
+    - **And the key point here is that this is true for any ε , no matter how small, you always be able to find a corresponding δ.**
 - In contrast, when a limit doesn't exist, as in this example , 
     - ![](../imgs/eoc_lim_20.png)
     - you can find a sufficiently small ε , like 0.4, so that no matter how tiny δ is , the corresponding range of outputs is just always too big. 
+
+## L'Hopital's rule
+
+
 - How do you compute limits ?
     - For example, let's say for some reason you were studying the functiong  sin(πx)/(x²-1)
         - ![](../imgs/eoc_lim_30.png)
         - it looks pretty continuous , but there's a problematic value, x=1. The function is actually not defined there, and the graph should really have a hole there.
     - The graph certainly does seem to approach some distinct value at that point. So you might ask, how do you figure out what output this approaches as x approaches 1, since you can't just plug in 1 ?
-    - Well, one way to approximate it would be to plug in a number very close to 1, like 1.00001 , sin(π·1.00001)/(1.00001²-1) = 1.5708...
+    - Well, one way to approximate it would be to plug in a number very close to 1, like 1.00001 , sin(π·1.00001)/(1.00001²-1) = -1.5708...
     - But is there away to know exactly what it is ? Some systematic process to take an expression like this one , 0/0 at some input?
+- Well, after limits so helpful let us write the definition for a derivative, derivatives can come back to return the favor and help us evaluate limits.
+    - ![](../imgs/eoc_lim_deriv_to_limit.png)
+    - Let me show you what I mean. Here's the graph of sin(π*x) and the graph of x²-1, and focus on what's happening around x=1.
         - ![](../imgs/eoc_lim_31.png)
+        - The point here is that sin(π*x) and x²-1 are both 0 at that point, the both cross the x-axis.
     - consider what happends just a tiny nudge dx away. 
         - The value of sin(πx) is bumped down. 
         - and the value of that nudge, is d(sin(πx)) = cos(πx)πdx , we plug in x=1 to this expression. we get  -πdx. 
@@ -260,10 +383,13 @@
         - ![](../imgs/eoc_lim_33.png)
 - More generally , think of any 2 functions f(x) and g(x) , which are both 0 at some common value x = a.
     - 0/0 型， 两条曲线 f(x),g(x) 相交于某个点 a  , f(a)=g(a) = 0
-    - The only constraints is they have to be functions where you're able to take a derivative of them at x=a. Which means that they each basically look like a line when you zoom in close enough to that value. 
+    - The only constraints is they have to be functions where you're **able to take a derivative of them at x=a**. Which means that they each basically look like a line when you zoom in close enough to that value. 
     - ![](../imgs/eoc_lim_34.png)
     - Even though you can't compute f/g at the trouble point, you **CAN** ask about this ratio for values of x very close to a, the limit as x approaches a. 
-    -This clever trick is called **L'Hopital's rule**. 
+    - Near that trouble point, the ratio between the outputs of f and g is actually about the same as the derivative of f(a) times dx, divided by the derivative of g(a) times dx.
+    - ![](../imgs/eoc_lim_lhop_rule.png)
+        - Those dx can cancel out, so the ratio of f and g near a is about the same as the ratio between their derivatives. For smaller nudegs, this ratio of derivatives gives the precise value for the limit.
+    - This clever trick is called **L'Hopital's rule**. 
 
 
 <h2 id="eeacb3a6987b61fae56993eb1f78fd4f"></h2>
