@@ -3,6 +3,7 @@
 - [numpy tips](#c2bfb8f194cb52abbd9cc9397dafc5d4)
     - [Combining Arrays](#84df0f6a0e96bb96e66fdba51a103ad5)
     - [Iterating Over Arrays](#f32b904edd83a21e8b374913f5631504)
+    - [samply from non-zero entries in an array](#bf91cb5aab8fb7ca430a74e12051e4a8)
 - [SciPy 2019](#e7bb3b7194c96eb93fb9a2777411aca8)
     - [Array Slicing](#458a3cb8ba7cd1c7a812c577db825242)
     - [Fancy Indexing](#d5dddb265184f7c2f2d357bcefb39a2c)
@@ -107,6 +108,9 @@ for i, j in zip(test, test2):
 [0 4 5] + [ 0 16 25] = [ 0 20 30]
 [3 8 0] + [ 9 64  0] = [12 72  0]
 ```
+
+<h2 id="bf91cb5aab8fb7ca430a74e12051e4a8"></h2>
+
 
 ## samply from non-zero entries in an array
 

@@ -2,20 +2,12 @@
 
 - [NUC8i5BEK Hackintosh](#da39d68f2cf6c3c46123458cd98bd79d)
     - [NUC8i5BEK BISO setting](#90b4244131823d7d8c05f4f1c274183e)
-    - [Clover USB Creation](#fca6772f09655f60d2a1571eb468f4b5)
-    - [Misc](#74248c725e00bf9fe04df4e35b249a19)
-    - [改3码](#41fcd485d3c9d5dbc0a06851ea1cda21)
-    - [Clover 自动启动](#584ee5f9f8b24f6f275547b4d05d20e4)
-    - [Clover 目录结构](#80aa301beb5576eafb123ce4f8d0536d)
-    - [Clover 引导界面快捷键](#41f234410b778a2c38d3ad364d2f32dd)
-    - [active native bluetooth , not work since 10.15.4](#8097784a066a6a0cad28895ddd08926d)
-    - [update Clover](#b661467e7a885061e79bcd1aff928d46)
+    - [Hackintosh USB Creation](#3144f57f7c88cbc932e24094440b99d8)
 - [PMSET](#4aef377d2268514c138fb8df812de501)
     - [Catalina 10.5.2 Sleep problem](#bcbe6e609bff0627e2e3654d1a1123e8)
     - [Big Sur Sleep problem](#8793db1e9550cee531b14bcf6086ff68)
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
-    - [Create a normal bootable usb installer](#e4b093a32d54db737e399188ce596791)
     - [Iris Plus 655  Without WhatEverGreen](#b629a48f87baa1255d141a0d31957405)
 
 ...menuend
@@ -71,7 +63,7 @@ https://github.com/zearp/Nucintosh
 
 
 
-<h2 id="fca6772f09655f60d2a1571eb468f4b5"></h2>
+<h2 id="3144f57f7c88cbc932e24094440b99d8"></h2>
 
 
 ## Hackintosh USB Creation

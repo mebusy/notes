@@ -1,20 +1,29 @@
 ...menustart
 
-- [chapter 1: Essense of Calculus](#5c6d0419bdcc965d881019d989ad6f1a)
-- [chapter 2: Paradox of the derivatives](#b872997f4e311706ca6628e823fc3459)
-- [chapter 3: Derivative formulas through geometry](#13e7953947a312a1272a400065326d94)
-- [chapter 4: Visualizing the chain rule and product rule](#9546814bd16cc3f81d041e7b9b643ecb)
-    - [Sum rule](#06aa9025652035d38814388a75abf573)
-    - [Multiply rule](#418eebdc34081971062598381d44d9ad)
-    - [Chain rule](#eb0c844221ea9727339a6c0c9233c27f)
-- [chapter 5: What's so special about Euler's number e?](#a80580cc58514e0b419bbc32ed0e79d2)
-- [chapter 6: Implicit differentiation, what's going on here?](#91cb2bc00b850ea33ca8919983c5f6fe)
-- [chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions](#59a59b02331a322ab57018951bb6d886)
-- [chapter 8: Integration and the fundamental theorem of calculus](#eeacb3a6987b61fae56993eb1f78fd4f)
-- [chapter 9: What does area have to do with slope?](#b9130735d7a51c85445d7b6434f2dea9)
-- [chapter 11: Taylor series](#f4c4612f181889150de4d5e6175f2839)
+- [Derivatives  df/dx](#b461af1d54daa29a3224bb5d5d3be4c6)
+    - [chapter 1: Essense of Calculus](#5c6d0419bdcc965d881019d989ad6f1a)
+    - [chapter 2: Paradox of the derivatives](#b872997f4e311706ca6628e823fc3459)
+    - [chapter 3: Derivative formulas through geometry](#13e7953947a312a1272a400065326d94)
+    - [chapter 4: Visualizing the chain rule and product rule](#9546814bd16cc3f81d041e7b9b643ecb)
+        - [Sum rule](#06aa9025652035d38814388a75abf573)
+        - [Multiply rule](#418eebdc34081971062598381d44d9ad)
+        - [Chain rule](#eb0c844221ea9727339a6c0c9233c27f)
+    - [chapter 5: What's so special about Euler's number e?](#a80580cc58514e0b419bbc32ed0e79d2)
+    - [chapter 6: Implicit differentiation, what's going on here?](#91cb2bc00b850ea33ca8919983c5f6fe)
+- [Limit](#80d2677cf518f4d04320042f4ea6c146)
+    - [chapter 7: Limits, L'Hopital's rule, and epsilon delta definitions](#59a59b02331a322ab57018951bb6d886)
+        - [Formal definition of a derivative](#58ef473d67c96b102b2867faaa293f4d)
+        - [(ε,δ) definition of limits](#3b1ccdb7da21c616702ec7103a4e4155)
+        - [L'Hopital's rule](#b16a480bfeec6fa7754f653505d9f8ac)
+- [Integral](#4ea94552a2bec56a29592359a1b6069e)
+    - [chapter 8: Integration and the fundamental theorem of calculus](#eeacb3a6987b61fae56993eb1f78fd4f)
+    - [chapter 9: What does area have to do with slope?](#b9130735d7a51c85445d7b6434f2dea9)
+    - [chapter 11: Taylor series](#f4c4612f181889150de4d5e6175f2839)
 
 ...menuend
+
+
+<h2 id="b461af1d54daa29a3224bb5d5d3be4c6"></h2>
 
 
 # Derivatives  df/dx
@@ -106,7 +115,7 @@
     - by power rule , df/dx = -1·x⁻²
     - Let's have some fun and see if we can reason about this geometrically rather than just plugging it through some formula.
     - The value 1/x is asking what number multiplied by x equals 1
-        - 1/x <-> (?)* x = 1
+        - 1/x ⭤ (?)* x = 1
         - ![](../imgs/ess_of_calculus_1_over_x.png)
         - PS: d(1/x) is negative !!!
         - ❌ d(1/x) = 1/x·dx + x·d(1/x) + dx· d(1/x)
@@ -303,6 +312,9 @@ some hints in Chinese...
     - The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they **depend on each other**.
 
 
+<h2 id="80d2677cf518f4d04320042f4ea6c146"></h2>
+
+
 # Limit
 
 
@@ -325,6 +337,9 @@ some hints in Chinese...
     - Goal 3: L'Hopital's rule
         - clever trick for computing limits
 
+<h2 id="58ef473d67c96b102b2867faaa293f4d"></h2>
+
+
 ### Formal definition of a derivative
 
 - ![](../imgs/eoc_lim_0.png)
@@ -334,6 +349,9 @@ some hints in Chinese...
         - the point of limits is to avoid that. 
         - This value h is the exact something as the *dx* referenced throughout the series. It's a nudge to the input of *f* with some nonzero, finitely small size, like 0.001.
         - In fact, the only reason people introduce a new variable name into this formal definition, rather than just using dx, is to be super-extra clear that these changes to the input are ordinary numbers that have nothing to do with the infinitesimal. 
+
+<h2 id="3b1ccdb7da21c616702ec7103a4e4155"></h2>
+
 
 ### (ε,δ) definition of limits
 
@@ -363,6 +381,9 @@ some hints in Chinese...
 - In contrast, when a limit doesn't exist, as in this example , 
     - ![](../imgs/eoc_lim_20.png)
     - you can find a sufficiently small ε , like 0.4, so that no matter how tiny δ is , the corresponding range of outputs is just always too big. 
+
+<h2 id="b16a480bfeec6fa7754f653505d9f8ac"></h2>
+
 
 ### L'Hopital's rule
 
@@ -396,6 +417,9 @@ some hints in Chinese...
     - ![](../imgs/eoc_lim_lhop_rule.png)
         - Those dx can cancel out, so the ratio of f and g near a is about the same as the ratio between their derivatives. For smaller nudegs, this ratio of derivatives gives the precise value for the limit.
     - This clever trick is called **L'Hopital's rule**. 
+
+
+<h2 id="4ea94552a2bec56a29592359a1b6069e"></h2>
 
 
 # Integral
