@@ -429,6 +429,8 @@ some hints in Chinese...
 
 ## chapter 8: Integration and the fundamental theorem of calculus
 
+- The thing I want to become "almost obvious" is that integrals are an inverse of derivatives.
+    - ![](../imgs/eoc_intergral_inverse_to_derivatives.png)
 - 小车匀速行驶 v=10m/s, 8秒后 s=10x8 =80米.
     - ![](../imgs/eoc_integral_0.png)
 - What if the velocity is not constant? 
