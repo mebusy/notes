@@ -431,40 +431,69 @@ some hints in Chinese...
 
 - The thing I want to become "almost obvious" is that integrals are an inverse of derivatives.
     - ![](../imgs/eoc_intergral_inverse_to_derivatives.png)
-- 小车匀速行驶 v=10m/s, 8秒后 s=10x8 =80米.
+
+---
+
+- Imagine you're setting in a car, and you can't see out the window, all you see is the speedometer.
+    - car start moving, speed up, then slow back down to stop, all over 8 seconds.
+    - the question is, is there a nice way to figure out how far you've traveled during that time, based only on your view of the speedometer ?
+    - Or better yet, find a distance function s(t) that tells you how far you've traveled after a given amount of time, between 0 and 8 seconds.
+- Let's say you take note of the velocity at each second, and make a plot over time.
+    - any maybe you find that a nice function to model your velocity overtime in meter per second, is  `v(t) = t(8-t)`
+    - ![](../imgs/eoc_integral_speedometer.png)
+    - you might remember, in chapter 2 we were looking at the opposite situation, where you know a distance function s(t) and you want to figure out a velocity function.
+    - in our current situation, where all we know is the velocity function, it should make sense that finding a distance function s(t) comes down to asking what function has a derivative t(8-t).
+- First, I want to show you how this question is related to finding the area bounded by velocity graph because that helps to build an intuition for a whole class of what are called "integral problems" in math and science.
+    - ![](../imgs/eoc_integral_speedometer_2_dis.png)
+- This question would be much simpler if the car was moving with a constant velocity.
     - ![](../imgs/eoc_integral_0.png)
+    - you could just multiply the velocity, by the amount of time passed, and that gives you the number of meters traveled.
+    - notice that you can visualize that distance as an area.
 - What if the velocity is not constant? 
     - v(t) = t(8-t)
+    - `Sum` → ∫
     - ∫₀⁸v(t)dt
+        - the reason we don't use the usual ∑ notation to indicate a ❌sum is this expression is technically not any particular sum for any particular choice of dt, it's whatever that sum approaches as dt approaches 0.
     - ![](../imgs/eoc_integral_1.png)
-- But finding the area between a function's graph and the horizontal axis is somewhat a common language for many disparate problems that can be broken down and approximated as the sum of a large number of small things. 
-- How interpret and compute the area under a graph is a very general problem-solving tool. 
-
----
+    - as you can see, what that approaches is the area bounded by this curve and the horizontal axix.
+    - `∫₀⁸v(t)dt` this expression is called an "integral" of v(t), since it brings all of its values together, it integrates them.
+- But how does this help?
+    - Finding the area between a function's graph and the horizontal axis is somewhat a common language for many disparate problems that can be broken down and approximated as the **sum of a large number** of **small things**. 
+    - How interpret and compute the area under a graph is a very general problem-solving tool. 
 
 - For our velocity example, think of this right endpoint as a variable, T. 
-- So we thinking of this integral of the velocity function between 0 and T , the area under the curve between those two inputs , as a function, where that upper bound is the variable.  ∫₀ᵀ v(t)dt.
-- That area represents the distance the car has traveled after T seconds. So this is really a distance vs. time function s(T).
-- ![](../imgs/eoc_intergral_2.png)
-- Now ask yourself, what is the deriviate of that function ? 
-    - A slight nudge of dT to the input causes that area to increase , some little ds represented by the area of this sliver. 
-    - The height of that sliver is the height of the graph at that point, v(T),  and its width is dT. 
-    - And for small enough dT, we can basically consider that sliver to be a rectangle. 
-    - ![](../imgs/eoc_intergral_3.png)
-    - ds, is paproximately equals to `v(T)*dT`.   so  ds/dT = v(T).
-    - And right there, that is super general idea, **the derivative of any function giving the area under a graph is equal to the function for the graph itself.**
-
----
+    - So we thinking of this integral of the velocity function between 0 and T , the area under the curve between those two inputs , as a function, where that upper bound is the variable.  ∫₀ᵀ v(t)dt.
+    - That area represents the distance the car has traveled after T seconds. So this is really a distance vs. time function s(T).
+    - ![](../imgs/eoc_intergral_2.png)
+    - Now ask yourself, what is the deriviate of that function ? 
+        - A slight nudge of dT to the input causes that area to increase , some little ds represented by the area of this sliver. 
+        - The height of that sliver is the height of the graph at that point, v(T),  and its width is dT. 
+        - And for small enough dT, we can basically consider that sliver to be a rectangle. 
+        - ![](../imgs/eoc_intergral_3.png)
+        - ds, is paproximately equals to `v(T)*dT`.   so  ds/dT = v(T), the value of the velocity function at whatever time we started on.
+        - And right there, that is super general idea, **the derivative of any function giving the area under a graph is equal to the function for the graph itself.**
+        - ![](../imgs/eoc_intergral_Ff.png)
+- So what function of t has a derivative of t(8-t)
+    - it's simple.  4t²-1/3·t³
+    - But there's a slight issue here. we could add any constant to this function, and the derivative would still be t(8-t).
+    - And if we graph s(t), you can think of this in the sense that moving a graph of a distance up and down does nothing to affect its slope above each input, 
+        - ![](../imgs/eoc_intergral_plus_constant.png)
+    - So there are actually infinitely many different possible antiderivative functions, 4t²-1/3·t³ **+ c**
+    - But there is one piece of information we haven't used yet that let's us zero in on which antiderivative to use: **the lower bound on the integral.**
+        - This integral must be 0 when we drag that right endpoint all the way to the left endpoint.  ∫₀⁰ t(8-t)dt **= 0**
+    - ∫₁⁷ t(8-t)dt = ( 4 **(7)** ² - 1/3· **(7)** ³ ) - ( 4 **(1)** ² - 1/3· **(1)** ³ )
+        - notice, it doesn't matter what antiderivative we choose here, the constant would just cancel out.
 
 - **Fundamental theorem of calculus**
-    - ∫<sub>a</sub>ᵇf(x)dx = F(b) - F(a)
+    - ![](../imgs/eoc_integral_fund_theorem.png)
 - One important thing to bring up before leaving is the idea of negative area. 
     - What if our velocity function was negative at some point ? It means the car is going backwards. 
-    - In terms of our thin rectangles, if the rectangle goes below the horizontal axis like this, its area represents a bit of distance traveled backwards. 
+        - It's still true ds = v(t)dt, it's just that v(t) is negative, so the tiny change in distance ds is also negative.
+        - In terms of our thin rectangles, if the rectangle goes below the horizontal axis like this, its area represents a bit of distance traveled backwards. 
+        - ![](../imgs/eoc_integral_4.png)
     - So if what you want is to find the distance between the car's start point and end point, you'd want to **subtract** it. 
-- This is generally true of integrals: Whenever a graph dips below the horizontal axis, the area underneath is counted as negative. 
-- What you'll commonly hear is that integrals measure the "signed" area between a graph and the horizontal axis. 
-- ![](../imgs/eoc_integral_4.png)
+- This is generally true of integrals: Whenever a graph dips below the horizontal axis, the area underneath is counted as **negative**. 
+    - What you'll commonly hear is that integrals measure the "**signed**" area between a graph and the horizontal axis. 
 
 
 <h2 id="b9130735d7a51c85445d7b6434f2dea9"></h2>
@@ -477,12 +506,20 @@ some hints in Chinese...
     - ![](../imgs/eoc_integral_10.png)
     - It gives a completely different perspective for why integrals and derivatives are inverses of each other. 
 - What is the average of f(x) = sin(x) , between 0 and π? 
-    - Usually, with averages , we think of a finite number of values, where you add all them up , and divide that sum by how many values there are. 
-    - BUt there are infinitely many values of sin(x) between 0 and π, and it's not like we can add them up and divide by infinity. 
-    - When you have this vague sense that you want to add together infinitely many values associated with a continuum like this, even though that doesn't really make sense. Almost always, when you get this sense, the key will be to use an integral somehow. 
-    - Average height = Area / Width = ∫₀<sup>π</sup>sin(x)dx / π . 
+    - ![](../imgs/eoc_integral_sinx_avg_height.png)
+- Usually, with averages , we think of a finite number of values, where you add all them up , and divide that sum by how many values there are. 
+    - BUt there are infinitely many values of sin(x) between 0 and π, and it's not like we can add them up and divide by ∞ . 
+    - When you have this vague sense that you want to add together infinitely many values associated with a continuum like this, even though that doesn't really make sense. Almost always, when you get this sense, **the key will be to use an integral** somehow. 
+- Average height = Area / Width = ∫₀<sup>π</sup>sin(x)dx / π = 2/π
     - ![](../imgs/eoc_integral_11.png)
     - ![](../imgs/eoc_9_100.png)
+- Now, for any integral, evaluating it comes down to find an antiderivative of f(x), commonly denoted capital F(x).
+    - What we want is the change to this antiderivative between a and b, F(b) - F(a), which you can think of as the change in the height of the new yellow graph between the 2 bounds.
+    - So the solution to the average problem is the change in the height of this new graph, divided by the change to its x value between a and b. In other words, it's the **slope** of the antiderivative graph between these end points.
+    - ![](../imgs/eoc_9_slope_of_Fx.png)
+- So why are antiderivative the key to sloving integrals ?
+    - The above is a second perspective that when you reframe the question of finding the average of a continuous value as instead finding the average slope of bunch of tangent lines, it lets you see the answer just comparing the endpoints, rather than having to actually tally up all points in between.
+
 
 
 <h2 id="f4c4612f181889150de4d5e6175f2839"></h2>
@@ -523,7 +560,7 @@ some hints in Chinese...
     - This ensurs that the way your approximation changes as you move away from x=0, and the way that the rate of change itself changes, is as similar as possible to behavior of cos(x), given the amount of control you have. 
 - You could give yourself more control by allowing more terms in your polynomial , and matching higher order derivatives of cos(x). 
     - ![](../imgs/eoc_ts_4.png)
-    - ![](../imgs/eco_ts_5.png)
+    - ![](../imgs/eoc_ts_5.png)
 - Notice a few things
     - First, **factorial** terms naturally come up in this process.
         - d³(c₈x⁸)dx³ = 6·7·8·c₈x⁵
