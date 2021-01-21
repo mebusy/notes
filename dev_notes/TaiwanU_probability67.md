@@ -284,6 +284,8 @@ quiz...
 - E[X] = lim<sub>Δ→0</sub>E[Y] = lim<sub>Δ→0</sub> ∑<sub>n=-∞</sub><sup>∞</sup> nΔ·P<sub>Y</sub>(nΔ)
     - = ∫<sub>-∞</sub><sup>∞</sup> xf<sub>X</sub>(x)dx
     - 即， x乘上pdf,然后积分
+        - 一般来说, 求一个 函数 f(x) 在 x∈ [a,b] 之间的均值, 一般是 求出原函数F, 均值就是 (F(b)-F(a))/(b-a)
+        - pdf 本身就蕴含一点均值的计算，求期望值只需要计算 F(b)-F(a) ?
 
 <h2 id="45c2600156e6a1f700dfe4260c9694c4"></h2>
 
