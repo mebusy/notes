@@ -527,11 +527,11 @@ some hints in Chinese...
 
 ## chapter 11: Taylor series
 
-- Taylor series are one of the most powerful tools that math has to offer for approximating functions. 
+- Taylor series are one of the most powerful tools that math has to offer for **approximating functions**. 
 - i.e.   Near θ=0, cos(θ) = 1- 1/2·θ² 
     - ![](../imgs/eoc_ts_0.png)
 - Bug how would you even think to make this approximation ? And how would you find this particular quadratic ? 
-- The study of Taylor series is largely about takeing non-polynomial functions, and finding polynomials that approximate them near some input. 
+- The study of Taylor series is largely about **taking non-polynomial functions**, and **finding polynomials** that approximate them near some input. 
 - The motive is that polynomials tend to be much easier to deal with than other functions: 
     - They're easier to compute , easier to take derivative, easier to integrate... 
 - Let's look at the function cos(x) , and think about how you might constructor a quadratic approximation near x=0. 
@@ -561,7 +561,7 @@ some hints in Chinese...
 - You could give yourself more control by allowing more terms in your polynomial , and matching higher order derivatives of cos(x). 
     - ![](../imgs/eoc_ts_4.png)
     - ![](../imgs/eoc_ts_5.png)
-- Notice a few things
+- Notice a few things about this process
     - First, **factorial** terms naturally come up in this process.
         - d³(c₈x⁸)dx³ = 6·7·8·c₈x⁵
         - d⁸(c₈x⁸)dx⁸ = 1·2·3·4·5·6·7·8·c₈x⁰.   Set c₈ = Desired derivative value/8!
@@ -569,16 +569,17 @@ some hints in Chinese...
         - ![](../imgs/eoc_ts_6.png)
         - For example, the second derivative of this polynomial at x=0 is still equal to 2 times the second coefficient, even after introducing higher order terms to the polynomial.
             - ![](../imgs/eoc_ts_7.png)
-            - It's becuase we're plugging in x=0, so the second derivative of any higher order terms , which all include an x, will wash away. 
-        - The same goes for any other derivative, which is why each derivative of a polynomial at x=0  is controlled by one and only one coefficient. 
+            - It's becuase we're **plugging in x=0**, so the second derivative of any higher order terms , which all include an x, will wash away. 
+        - The same goes for any other derivative, which is why each derivative of a polynomial at x=0  is controlled by **one and only one** coefficient. 
             - ![](../imgs/eoc_ts_8.png)
     - If instead you were approximating near an input other that 0, like x=π,  in order to get the same effect you would have to write your polynomial in terms of powers of (x-π), or whatever input you're looking at. 
+        - ![](../imgs/eoc_ts_approximate_at_pi.png)
         - **P<sub>π</sub>(x) = c₀ + c₁(x-π)¹ + c₂(x-π)² + c₃(x-π)³ + c₄(x-π)⁴**
         - This makes it look more complicated, but all we are doing is just making sure that the point π looks and behaviors like 0.  
         - so the pluggin in x=π will result in a lot of nice cancelation that leaves only one constant. 
         - **Plugging in x=π is very nice.**
     - And finally, on a more philosophical level, notice how what we're doing here is basically taking information about the higher order derivatives of a function at a single point, and then translateing it into information about the value of that function near that point. 
-        - Derivative information at a point ---> Output information near that point  
+        - **Derivative information at a point ---> Output information near that point**
         - We can take as many derivatives of cos(x) as we want, it follows a nice cyclic pattern.  And the value of these derivative of x=0 have the cyclic pattern 1,0,-1,0, and repeat.
         - ![](../imgs/eoc_ts_10.png)
         - So what we are doing is leveraging that information to get an approximation around this input. And we do it by creating a polynomial whose higher order derivatives are designed to match up those of cos(x), following this same 1,0,-1,0 cyclic pattern. 
@@ -588,31 +589,42 @@ some hints in Chinese...
 - More generally , for any function f(x)
     - ![](../imgs/eoc_ts_12.png)
     - for input other than 0 
-    - ![](../imgs/eoc_ts_13.png)
-        - Changing the value of a changes where the approximation is hugging the original function; where its higher order derivative will be equal to those of the original function. 
-
---- 
+        - ![](../imgs/eoc_ts_13.png)
+    - Changing the value of a changes where the approximation is hugging the original function; where its higher order derivative will be equal to those of the original function. 
 
 - One of the simplest meaningful examples is eˣ , around the input x=0. 
     - ![](../imgs/eoc_ts_14.png)
-- A geometric view  to understand the second order term.  d²f/dx²(a) (x-a)².
+    - coe = high order derivative value at 0 / factorial
+
+---
+
+- Now for something fun !
+    - A geometric view  to understand the second order term.  d²f/dx²(a) (x-a)².
     - It's related to the fundamental theorem of calculus: graph itself represents the derivative of the area function.
+    - Consider a function that gives the area under some graph between a fixed left point and a variable right point. What we're going to do is think about how to approximate this area function. Focusing on that area is what will make the second order term pop out.
     - ![](../imgs/eoc_ts_15.png)
+        - if dx is not approach to 0, you can not ignore the pink area, which is approximately a triangle.
     - Each term has a clear meaning you can point to on the diagram, and they are exactly what you see with Taylor polynomials. 
-- If you add up infinite Taylor polynomial terms , it's called Taylor series.
+
+---
+
+- If you add up infinite Taylor polynomial terms , it's called **Taylor series**.
     - for functions like eˣ , the taylor series converges to eˣ for any input, even though these Taylor polynomials are constructed only from derivative information gathered at input 0. 
         - ![](../imgs/eoc_ts_14.png)
-        - In case like this, we say eˣ equals its own Taylor series at all inputs x, which is kind of a magical thing to have happen.
-        - Although this is also true for some other important functions, like sine and cosine, sometimes these series only converge with a certain range around the input whose derivative information you're using.
-    - buf for functions like ln(x), around the input x=1.
+    - In case like this, we say eˣ **equals its own Taylor series at all inputs x**, which is kind of a magical thing to have happen.
+        - Although this is also true for some other important functions, like sine and cosine, sometimes these series **only converge with a certain range** around the input whose derivative information you're using.
+    - If you work out the Taylor series for the ln(x) around the input x = 1, which is built from evaluating the higher order derivatives of ln(x) at x=1.
         - ![](../imgs/eoc_ts_20.png)
         - When you plug in an input between 0 and 2, adding more and more terms of this series will indeed get you closer and closer to the ln of that input. 
-        - But outside that range, even by just a bit, the series fails to approach anything. You say the series diverges. And the maximum distance between the input you're approximating near , and points where the outputs of these polynomials actually do converge , is called the **radius of convergence** for the Taylor series. 
-        - ![](../imgs/eoc_ts_21.png)
+        - But outside that range, even by just a bit, the series fails to approach anything. In some sense, the derivative information of ln(x) at x=1 doesn't propagate out that far. You say the series **diverges**. 
+            - And the maximum distance between the input you're approximating near , and points where the outputs of these polynomials actually do converge , is called the **radius of convergence** for the Taylor series. 
+            - ![](../imgs/eoc_ts_21.png)
 
 ---
 
 - Keep in your mind, Taylor series translate derivative information at a single point  to approximation information around that point. 
+
+
 
 
 
