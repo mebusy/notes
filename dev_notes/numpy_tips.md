@@ -119,6 +119,13 @@ for i, j in zip(test, test2):
     idxs = np.random.choice(idxs, samples_per_class, replace=False)
 ```
 
+## n-largest / n-smallest elements
+
+```python
+>>> arr.argsort()[:n]   # n-smallest
+>>> arr.argsort()[-n:][::-1]  # n-largest
+```
+
 --------
 
 <h2 id="e7bb3b7194c96eb93fb9a2777411aca8"></h2>
