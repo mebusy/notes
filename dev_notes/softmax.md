@@ -62,6 +62,21 @@ def softmax( f ):
 array([  1.26641655e-14,   5.60279641e-09,   9.99999994e-01])
 ```
 
+```python
+# vvectorized version
+# f: normally a 2D array, X*W ( NxC )
+#   N: number of training example
+#   C: number of classes
+# return NxC , element is softmax value
+def softmax( f, aggregate_axis = 0 ):
+    # instead: first shift the values of f so that the highest number is 0:
+    f_max = np.max(f, axis= aggregate_axis )
+    f -= f_max.reshape( f_max.shape + (1,) )
+    f_exp = np.exp(f)
+    f_sum = np.sum( f_exp, axis=aggregate_axis )
+    return f_exp / f_sum.reshape( f_sum.shape + (1,) )
+```
+
 
 [cs231n softmax notes](http://cs231n.github.io/linear-classify/#softmax)
 
