@@ -360,7 +360,7 @@ x = 1;     x = 2;
     - These must be atomic operations – if two threads are waiting for the lock and both see it’s free, only one succeeds to grab the lock
 - Then, our milk problem is easy:
  
-```c
+```cpp
 milklock.Acquire();
 if (nomilk)
  buy milk;
@@ -507,7 +507,7 @@ Release() {
 - Other cases where this will be a concern?
     - What about exceptions that occur after lock is acquired? Who releases the lock?
 
-```c
+```cpp
 mylock.acquire();
 a = b / 0;
 mylock.release()

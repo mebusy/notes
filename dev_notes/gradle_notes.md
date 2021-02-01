@@ -655,7 +655,7 @@ buildAPI.dependsOn build
  4. create a folder `jni` , In that folder, create a file called *hello-world.c*
  5. in java Activity class, call the method in *hello-world.c*
 
-```c
+```cpp
 // hello-world.c
 #include <string.h>
 #include <jni.h>
@@ -706,7 +706,7 @@ public class Main extends Activity
 - 这个例子中，我们演示了 java 调用 native 方法， c++ 调用 java的情况会更复杂
 - 有时候，我们需要获取 JAVA VM
 
-```c
+```cpp
 extern "C" {
     JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void *reserved)
         JniHelper::setJavaVM(vm);

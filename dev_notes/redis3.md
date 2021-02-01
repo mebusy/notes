@@ -240,7 +240,7 @@ def MULTI():
 
 - 每个redis客户端都有自己的事务状态 mstate 属性：
 
-```c
+```cpp
 typedef struct redisClient {
     // ...
     multiState mstate ;     
@@ -250,7 +250,7 @@ typedef struct redisClient {
 
 - 事务状态包含一个事务队列， 以及一个 已入队命令的计数器，也即 事务队列的长度
 
-```c
+```cpp
 typedef struct multiState {
     multiCmd *commands;
     int count ;    
@@ -311,7 +311,7 @@ redis:6379> EXEC
 
 - 每个redis数据库都保存着一个 watched_keys 字典， 这个字典的key是某个被 WATCH命令监视的数据库键，而value 是一个链表， 记录了所有监视 相应key的客户端
 
-```c
+```cpp
 typedef struct redisDb {
     // ...
     dict *watched_keys ;
@@ -956,7 +956,7 @@ redis:6379> SORT numbers
 
 ![](../imgs/redis_sort.png)
 
-```c
+```cpp
 typedef struct _redisSortObject {
     // value to sort
     robj *obj ;

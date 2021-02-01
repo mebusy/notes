@@ -329,7 +329,7 @@ Another way to combine simple functions to make complex functions is *functional
 
 function *step(a,x)* returns the value 0 when x is less than a and returns 1 otherwise.
 
-```c
+```cpp
 float
 step(float a, float x) {
     return (float) (x >= a);
@@ -583,7 +583,7 @@ Figure 2.17 is an image shaded with the metallic reflection map shader.
 
 Since *mix* functions and so many other selection functions are controlled by values that range over the [0, 1] interval, mappings from the unit interval to itself can be especially useful. Monotonically increasing functions on the unit interval can be used to change the distribution of values in the interval. The best-known example of such a function is the "gamma correction" function used to compensate for the nonlinearity of CRT display systems:
 
-```c
+```cpp
 float
 gammacorrect(float gamma, float x) {
     return pow(x, 1/gamma);
@@ -612,7 +612,7 @@ Figure 2.19 shows the shape of the bias function for different choices of b.
 
 Perlin and Hoffert (1989) present another function to remap the unit interval. This function is called *gain* and can be implemented as follows:
 
-```c
+```cpp
 float
 gain(float g, float x) {
     if (x < 0.5)
@@ -794,7 +794,7 @@ Finally, the shading normal Nf is computed based on the bump height as described
 
 增加的 bump shader 代码如下：
 
-```c
+```cpp
 Ct = mix(Cmortar, Cbrick, w*h);
 
 // code added ...
@@ -823,7 +823,7 @@ Recall that the shader displaces the surface position by a bump height stbump al
 
 To avoid this problem, we could have transformed the surface point and normal vector into shader space, done the displacement there, and transformed the new normal back to current space, as follows:
 
-```c
+```cpp
 point Nsh, Psh;
 Psh = transform("shader", P);
 Nsh = normalize(ntransform("shader", N)); 
@@ -853,7 +853,7 @@ Figure 2.26 shows that each point of a five-pointed star is 72 degrees wide. Eac
 
 The end points of the edge are a point at radius rmin from the center of the star and another point at radius rmax from the center of the star.
 
-```c
+```cpp
 surface
 star(
     uniform float Ka = 1;
@@ -1109,7 +1109,7 @@ Clamping is a very direct method of eliminating high frequencies from texture pa
 
 Let’s begin with the following simple spectral synthesis loop, with a texture coordinate s:
 
-```c
+```cpp
 value = 0;
 for (f = MINFREQ; f < MAXFREQ; f *= 2)
     value += sin(2*PI*f*s)/f;
@@ -1121,7 +1121,7 @@ for (f = MINFREQ; f < MAXFREQ; f *= 2)
 
 The following version is antialiased using the simplest form of clamping. The sampling interval in *s* is *swidth*.
 
-```c
+```cpp
 value = 0;
 cutoff = clamp(0.5/swidth, 0, MAXFREQ); 
 
@@ -1134,7 +1134,7 @@ for (f = MINFREQ; f < cutoff; f *= 2)
 
 In order to avoid “pops,” sudden changes in the texture as the sampling rate changes (e.g., as we zoom in toward the textured surface), it is important to fade out each component gradually as the Nyquist frequency approaches the component frequency. The following texture function incorporates this gradual fade-out strategy:
 
-```c
+```cpp
 value = 0;
 cutoff = clamp(0.5/swidth, 0, MAXFREQ); 
 
@@ -1345,7 +1345,7 @@ The generation of a lattice noise begins with one or more uniformly distributed 
 
 All lattice noises need some way to generate one or more pseudorandom numbers at every lattice point. The *noise* functions in this chapter use a table of PRNs that is generated the first time *noise* is called.  To find the PRNs in the table that are to be used for a particular integer lattice point (ix,iy,iz), we’ll use the following code:
 
-```c
+```cpp
 #define TABSIZE        256
 #define TABMASK        (TABSIZE-1)
 #define PERM(x)        perm[(x)&TABMASK]
@@ -1356,7 +1356,7 @@ The macro *INDEX* returns an index into an array with *TABSIZE* entries. The sel
 
 The array *perm* contains a previously generated random permutation of the integers from zero to TABMASK onto themselves.
 
-```c
+```cpp
 static unsigned char perm[TABSIZE] = {
         225,155,210,108,175,199,221,144,203,116, 70,213, 69,158, 33,252,
           5, 82,173,133,222,139,174, 27,  9, 71, 90,246, 75,130, 91,191,
@@ -1384,7 +1384,7 @@ static unsigned char perm[TABSIZE] = {
 
 Given a PRN between −1 and 1 at each lattice point, a noise function can be computed by interpolating among these random values. This is called value noise. The following routine will initialize a table of PRNs for value noise:
 
-```c
+```cpp
 #define RANDMASK Ox0fffffff
 #define RANDNBR ((random() & RANDMASK)/(double) RANDMASK)
 
@@ -1486,7 +1486,7 @@ The ***noise*** function in the RenderMan shading language is an implementation 
 
 The RenderMan function is unusual in that it has been ***scaled and offset to range from 0 to 1***, instead of the more usual range of −1 to 1.  This means that the RenderMan noise function has a value of 0.5 at the integer lattice points. The −1 to 1 range is sometimes more convenient, and we can use the following signed noise macro in RenderMan shaders to get a noise in this range:
 
-```c
+```cpp
 #define snoise(x) (2 * noise(x) - 1)
 ```
 
@@ -1494,7 +1494,7 @@ The RenderMan noise function can be called with a 1D, 2D, or 3D input point, and
 
 Most textures need several calls to noise to independently determine a variety of stochastic properties of the material. Remember that repeated calls to noise with the same inputs will give the same results. Different results can be obtained by shifting to another position in the noise space. It is common to call
 
-```c
+```cpp
 noise(Q * frequency + offset)
 ```
 

@@ -693,7 +693,7 @@ void surf (Input IN, inout SurfaceOutputStandard o) {
 - 1. Create a variable to control the height and width of our texture, and a Texture2D variable to store our generated texture
     - We will also need some private variables to store some data while the script is working.
 
-```c#
+```cpp#
 public int widthHeight = 512;
 public Texture2D generatedTexture; 
 
@@ -704,7 +704,7 @@ private Vector2 centerPosition;
 - 2. In the Start() function of the script, we need to  rst check to see if the object , to which this script is attached , does in fact have a Material assigned to it. 
     - If it does, we will call our custom function GenerateParabola() and pass its return value back to our Texture2D variable:
 
-```c#
+```cpp#
 void Start () {
     if (!currentMaterial) {
         currentMaterial = transform.GetComponent<Renderer>().sharedMaterial;
@@ -723,7 +723,7 @@ void Start () {
 
 - 3. `GenerateParabola()` 
 
-```c#
+```cpp#
 private Texture2D GenerateParabola() {
     // Createa new Texture2D
     Texture2D proceduralTexture = new Texture2D(widthHeight, widthHeight);
@@ -754,7 +754,7 @@ private Texture2D GenerateParabola() {
 
 - 1. Here is the math to create rings around the center of the texture:
 
-```c#
+```cpp#
 ...
 pixelDistance = Mathf.Abs( 1-Mathf.Clamp( pixelDistance, 0f, 1f ) ) ;
 // effect 1 , new 
@@ -763,7 +763,7 @@ pixelDistance = Mathf.Sin( pixelDistance * 30f ) * pixelDistance  ; // new
 
 - 2. The following is the math for creating the dot product of the pixel direction as compared with the right and up world vectors:
 
-```c#
+```cpp#
 // effect 2 
 Vector2 pixelDirection = centerPixelPositon - currentPosition ; 
 pixelDirection.Normalize() ;
@@ -775,7 +775,7 @@ pixelColor = new Color( rightDirection , leftDirection , upDirection ) ;
 
 - 3. The following is the math for creating the angle of the pixel direction as compared to world directions:
 
-```c#
+```cpp#
 // effect 3 
 Vector2 pixelDirection = centerPixelPositon - currentPosition ; 
 pixelDirection.Normalize();
@@ -1205,7 +1205,7 @@ struct Output -> Lighting<Name>
 - How to do it...
 - 1. Properties
 
-```c#
+```cpp#
 Properties
 {
     _MainTint ("Diffuse Tint", Color) = (1,1,1,1)
@@ -1228,7 +1228,7 @@ Properties
 
 - 2. We now need to declare our new lighting model and tell the #pragma statement to look for it:
 
-```c#
+```cpp#
 #pragma surface surf MetallicSoft
 
 inline fixed4 LightingMetallicSoft (SurfaceOutput s, fixed3 lightDir, half3 viewDir, fixed atten) {
@@ -1239,7 +1239,7 @@ inline fixed4 LightingMetallicSoft (SurfaceOutput s, fixed3 lightDir, half3 view
 - 3. At this point we are ready to  fill in our custom lighting model function with our lighting calculations. 
     - We are  rst going to want to generate all of our diffuse and view dependent vectors, as this lighting model is going to make use of them all.
 
-```c#
+```cpp#
 //Compute simple diffuse and view direction values
 float3 halfVector = normalize(lightDir + viewDir);
 float NdotL = saturate(dot(s.Normal, normalize(lightDir)));
@@ -1251,7 +1251,7 @@ float VdotH = saturate(dot(halfVector, normalize(viewDir)));
 
 - 4. The next section of code in the Shader takes care of producing the roughness values for our Specular, by using a texture to de ne the Specular shape and to procedurally simulate micro bumps in the surface of the object.
 
-```c#
+```cpp#
 //Micro facets distribution
 float geoEnum = 2.0*NdotH;
 float3 G1 = (geoEnum * NdotV)/NdotH;u3d_shader_meta_soft_effect.pngu3d_shader_meta_soft_effect.png
@@ -1265,7 +1265,7 @@ float roughness = tex2D(_RoughnessTex, float2(NdotH_raw * 0.5 + 0.5, _Roughness)
 - 5. The last element we need for our Specular calculation is a **Fresel** term.
     - This will help us mask off the Specular when your view becomes very glancing to the object's surface.
 
-```c#
+```cpp#
 //Create our custom fresnel value
 float fresnel = pow(1.0-VdotH, 5.0);
 fresnel *= (1.0 - _Fresnel);
@@ -1274,14 +1274,14 @@ fresnel += _Fresnel;
 
 - 6. Now that we have all the components ready for our Specular, we just need to combine them together to generate our  nal Specular value.
 
-```c#
+```cpp#
 //Create the final spec
 float3 spec = float3(fresnel * G * roughness * roughness) * _SpecPower;
 ```
 
 - 7. To complete the lighting model, we simply need to add our Diffuse terms and our Specular terms together:
 
-```c#
+```cpp#
 float4 c;
 c.rgb = (s.Albedo * _LightColor0.rgb * NdotL)+  (spec * _SpecularColor.rgb) * (atten * 2.0f);
 c.a = s.Alpha;

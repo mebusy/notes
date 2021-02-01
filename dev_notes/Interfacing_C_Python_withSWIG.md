@@ -123,7 +123,7 @@ Extending | | Embedding
     - Need to convert function arguments from Python to C.
     - Need to return results in a Python-friendly form
 
-```c
+```cpp
 // C Function
 int fact(int n) {
     if (n <= 1) return 1;
@@ -131,7 +131,7 @@ int fact(int n) {
 }
 ```
 
-```c
+```cpp
 // Wrapper
 PyObject *wrap_fact(PyObject *self, PyObject *args) {
     int n, result;
@@ -147,7 +147,7 @@ PyObject *wrap_fact(PyObject *self, PyObject *args) {
     - `PyObject *Py_BuildValue(char *format, ...)`
 - For each function, the format string contains conversion codes according to the following table :
 
-```c
+```cpp
 s = char *
 i = int
 l = long int
@@ -181,7 +181,7 @@ Py_BuildValue(“(ddd)”,a,b,c); // Create a 3-item tuple of doubles
     - The initialization function registers new methods with the Python interpreter
 - A simple initialization function :
 
-```c
+```cpp
 static PyMethodDef exampleMethods[] = {
      { "fact", wrap_fact, 1 },
       { NULL, NULL }
@@ -201,7 +201,7 @@ void initexample() {
 
 ## A Complete Extension Example
 
-```c
+```cpp
 #include <Python.h>
 PyObject *wrap_fact(PyObject *self, PyObject *args) {
     int n, result;
@@ -370,7 +370,7 @@ Also ...
 
 Some C code
 
-```c
+```cpp
 /* example.c */
 double Foo = 7.5;
 int fact(int n) {
@@ -381,7 +381,7 @@ int fact(int n) {
 
 A SWIG interface file
 
-```c
+```cpp
 // example.i
 %module example
 %{
@@ -409,7 +409,7 @@ double Foo;
 
 - Building a Python Interface
 
-```c
+```cpp
 % swig -python example.i
 Generating wrappers for Python
 % cc -c example.c example_wrap.c \
@@ -592,7 +592,7 @@ Generating wrappers for Python
     - SWIG converts pass-by-value arguments into pointers and creates a wrapper equivalent to the following :
     - This transforms all pass-by-value arguments into pass-by reference.
 
-```c
+```cpp
 double wrap_dot_product(Vector *a, Vector *b) {
      return dot_product(*a,*b);
 }
@@ -620,7 +620,7 @@ double wrap_dot_product(Vector *a, Vector *b) {
     - Can’t generate a Python representation of it (well, not easily), can’t throw it away.
     - SWIG is forced to perform a memory allocation and return a pointer.
 
-```c
+```cpp
 Vector *wrap_cross_product(Vector *a, Vector *b) {
     Vector *result = (Vector *) malloc(sizeof(Vector));
     *result = cross_product(*a,*b);
@@ -635,7 +635,7 @@ Vector *wrap_cross_product(Vector *a, Vector *b) {
 - Notes
     - When SWIG is processing C++ libraries, it uses the default copy constructor instead. For example :
 
-```c
+```cpp
 Vector *wrap_cross_product(Vector *a, Vector *b) {
     Vector *result = new Vector(cross_product(*a,*b));
     return result;
@@ -655,7 +655,7 @@ Vector *wrap_cross_product(Vector *a, Vector *b) {
     - The %readonly and %readwrite directives can be used to change access permissions to variables.
     - Read-only mode stays in effect until it is explicitly disabled.
 
-```c
+```cpp
 double foo; // A global variable (read/write)
 %readonly
 double bar; // A global variable (read only)
@@ -687,7 +687,7 @@ double spam; // (read only)
 
 - Including the proper header files (extremely common)
 
-```c
+```cpp
 %module opengl
 %{
 #include <GL/gl.h>
@@ -698,7 +698,7 @@ double spam; // (read only)
 
 - Module specific initialization
 
-```c
+```cpp
 %module matlab
 ...
 // Initialize the module when imported.
@@ -717,7 +717,7 @@ double spam; // (read only)
     - Providing access to arrays.
     - Accessing internal pieces of data structures.
 
-```c
+```cpp
 %module darray
 %inline %{
 double *new_darray(int size) {
@@ -797,7 +797,7 @@ def printelements(a, first, last):
     - Allows a large interface to be built out of smaller pieces.
     - Allows for interface libraries and reuse.
 
-```c
+```cpp
 %module opengl.i
 
 %include gl.i
@@ -867,7 +867,7 @@ def printelements(a, first, last):
 
 ## Preparing the Files
 
-```c
+```cpp
 // gl.i
 %{
 #include <GL/gl.h>
@@ -939,13 +939,13 @@ c++ -dynamiclib -lpython -framework OpenGL -framework GLUT opengl_wrap.o   -o _o
 
 - Objects can be created and destroyed by writing special functions :
 
-```c
+```cpp
 typedef struct {
     double x,y,z;
 } Vector; 
 ```
 
-```c
+```cpp
 %inline %{
     Vector *new_Vector(double x, double y, double z) {
         Vector *v = (Vector *) malloc(sizeof(Vector));
@@ -966,7 +966,7 @@ typedef struct {
 - This is also accomplished using accessor functions
 - Admittedly crude, but conceptually simple
 
-```c
+```cpp
 %inline %{
     double Vector_x_get(Vector *v) {
         return v->x;
@@ -985,7 +985,7 @@ typedef struct {
 - You guessed it ....
 - Basically, we just create ANSI C wrappers around C++ methods
 
-```c
+```cpp
 class Stack {
 public:
     Stack();
@@ -995,7 +995,7 @@ public:
 };
 ```
 
-```c
+```cpp
 %inline %{
     void Stack_push(Stack *s, Object *o) {
         s->push(o);
@@ -1042,7 +1042,7 @@ public:
 
 - Structure members can be renamed using %name
 
-```c
+```cpp
 struct Foo {
     %name(spam) void bar(double);
     %name(status) int s;
@@ -1051,7 +1051,7 @@ struct Foo {
 
 - Access can be restricted using %readonly and %readwrite
 
-```c
+```cpp
 class Stack {
 public:
     Stack();
@@ -1086,7 +1086,7 @@ public:
     - Contrast to writing a new Python type in C
 
 
-```c
+```cpp
 class Stack {
 public:
     Stack();
@@ -1191,7 +1191,7 @@ _1008fe8_Stack_p
 
 - Shadow classing even works with nested objects
 
-```c
+```cpp
 struct Vector {
     double x;
     double y;
@@ -1236,7 +1236,7 @@ struct Particle {
     - The owner of an object is responsible for its deletion!
 - Caveat : sometimes you have to explicitly change the ownership
 
-```c
+```cpp
 struct Node {
     Node();
     ~Node();
@@ -1280,7 +1280,7 @@ def listtonode(l):
 
 A C structure
 
-```c
+```cpp
 struct Image {
     int width;
     int height;
@@ -1290,7 +1290,7 @@ struct Image {
 
 Some C functions
 
-```c
+```cpp
 Image *imgcreate(int w, int h);
 void imgclear(Image *im, int color);
 void imgplot(Image *im,int x,int y,int color);
@@ -1323,7 +1323,7 @@ class Image:
 
 - The %addmethods directive 
 
-```c
+```cpp
 %module image
 struct Image {
     int width;
@@ -1359,7 +1359,7 @@ struct Image {
     - SWIG creates an accessor/helper function, but uses the code you supply.
     - The variable ‘self’ contains a pointer to the corresponding C/C++ object.
 
-```c
+```cpp
 %addmethods Image {
     ...
     void clear(int color) {
@@ -1371,7 +1371,7 @@ struct Image {
 
 =>
 
-```c
+```cpp
 void Image_clear(Image *self, int color) {
      clear(self,color);
 };
@@ -1387,7 +1387,7 @@ void Image_clear(Image *self, int color) {
 
 - %addmethods can be used to add Python specific functions
 
-```c
+```cpp
 typedef struct {
     double x,y,z;
 } Vector;
@@ -1426,7 +1426,7 @@ char *__str__() {
 
 - Added methods to the rescue...
 
-```c
+```cpp
 typedef struct {
     double x,y,z;
 } Vector;
@@ -1497,7 +1497,7 @@ Vector *varray(int nitems);
 - eg. library for python , installed via brew
     - `/usr/local/Cellar/swig/3.0.12/share/swig/3.0.12/python/`
 
-```c
+```cpp
 %module example
 
 %include malloc.i
@@ -1532,7 +1532,7 @@ Vector *varray(int nitems);
     - Fully configurable (you can do anything you want with it).
     - Exception handling code gets inserted into all of the wrapper functions.
 
-```c
+```cpp
 %except(python) {
     try {
         $function /* This gets replaced by the real function call */
@@ -1553,7 +1553,7 @@ Vector *varray(int nitems);
     - Language independent (works with Python, Tcl, Perl5, etc...)
     - Mainly just a set of macros and utility functions.
 
-```c
+```cpp
 %include exceptions.i
 %except(python) {
     try {
@@ -1574,7 +1574,7 @@ Vector *varray(int nitems);
     - An exception handling might be something as simple as the following :
         - where check_error() and get_error_msg() are C functions to query the state of an application.
 
-```c
+```cpp
 %except(python) {
     $function
     if (check_error()) {
@@ -1633,7 +1633,7 @@ Vector *varray(int nitems);
     - A SWIG library file containing a variety of useful typemaps.
     - Handling input/output arguments and other special datatypes.
 
-```c
+```cpp
 %module example
 %include typemaps.i
 
@@ -1830,7 +1830,7 @@ or simply ...
 - Linking dynamic Python extensions against static libraries is generally a bad idea :
     - When both Python modules are created, they are linked against libspam.a.
 
-```c
+```cpp
 /* libspam.a */
 static int spam = 7;
 int get_spam() {
@@ -1843,14 +1843,14 @@ void set_spam(int val) {
 
 =>
 
-```c
+```cpp
 %module foo
 ...
 extern int get_spam();
 ...
 ```
 
-```c
+```cpp
 %module bar
 ...
 extern void set_spam(int);
@@ -1877,13 +1877,13 @@ extern void set_spam(int);
     - Neither module contains the complete library (the linker only resolves used symbols).
     - Both modules contain a private copy of a variable.
 
-```c
+```cpp
 //foo
 int spam;
 int get_spam();
 ```
 
-```c
+```cpp
 //bar
 int spam;
 void set_spam(int);
@@ -1908,7 +1908,7 @@ void set_spam(int);
 - Now it works
 
 
-```c
+```cpp
 /* libspam.so */
 static int spam = 7;
 int get_spam() {

@@ -156,7 +156,7 @@ In order to do any rendering from the plugin, you should call ***GL.IssuePluginE
 
 An example of function exposed in plugin:
 
-```C
+```Cpp
 static IUnityGraphics* s_Graphics = NULL;
 
 
@@ -197,7 +197,7 @@ Native plugin rendering events are only called if a plugin is used by some Unity
 
 This means we have to DllImport at least one function in some active script.
 
-```C#
+```Cpp#
 #if UNITY_IPHONE && !UNITY_EDITOR
     [DllImport ("__Internal")]
 #else

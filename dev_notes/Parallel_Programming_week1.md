@@ -215,7 +215,7 @@ Vector addition:
 
 Normal C:
 
-```c
+```cpp
 void vecAdd(float* h_A,float* h_B,float* h_C,int n){
     int i;
     for (i=0;i<n;i++) {
@@ -229,7 +229,7 @@ void mian() {
 
 Parallel CUDA code:
 
-```c
+```cpp
 #include <cuda.h>
 void vecAdd(float* h_A,float* h_B,float* h_C,int n){
     int size = n*sizeof(float);
@@ -298,7 +298,7 @@ All threads will have access to a shared global memory. It's important that the 
     - Transfer to device is asyncronous
 
 
-```c
+```cpp
 #include <cuda.h>
 void vecAdd(float* h_A,float* h_B,float* h_C,int n){
     int size =n*sizeof(float);
@@ -327,7 +327,7 @@ In general , when we actually try to get performance from this kind of code, we 
 
 In practise , I will encourage you to always check for error conditions.
 
-```c
+```cpp
 cudaError_t err = cudaMalloc( (void**)&d_A,size );
 
 if (err != cudaSuccess) {
@@ -352,7 +352,7 @@ if (err != cudaSuccess) {
 
 Declare a CUDA kernel:
 
-```c
+```cpp
 // Compute vector sum C=A+B
 // Each thread performs one pair-wise(配对) addition
 
@@ -376,7 +376,7 @@ This is the vector addition kernel that we will eventually be launching from the
 #### Vector Addition Kernel *Host Code*:
 
 
-```c
+```cpp
 // only 1 demensional grids
 int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
     // d_A, d_B, d_C allocations and copies omitted
@@ -402,7 +402,7 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
 
 #### More on kernel launch *Host Code*:
 
-```c
+```cpp
 int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
     dim3 DimGrid( (n-1)/256+1,1,1 );
     dim3 DimBlock( 256,1,1 ) ;
@@ -484,7 +484,7 @@ In the x dimension, we're going to need to launch 5 thread blocks, that will giv
 
 **Source code of a PictureKernel**:
 
-```c
+```cpp
 __global__ void PictureKernel( float* d_Pin, float* d_Pout, int n, int m ) {
     int Row = blockIdx.y * blockDim.y + threadIdx.y;
     int Col = blockIdx.x * blockDIm.x + threadIdx.x;
@@ -497,7 +497,7 @@ __global__ void PictureKernel( float* d_Pin, float* d_Pout, int n, int m ) {
 
 **Host Code for Launching PictureKernel**
 
-```c
+```cpp
 // assume picture is mxn
 // input d_Pin has been allocated on and copied to device
 // out d_Pin has been allocated on device

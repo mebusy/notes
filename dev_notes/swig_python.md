@@ -122,7 +122,7 @@ enum Beverage { ALE, LAGER, STOUT, PILSNER };
 
 - If you wrap a C structure, it is wrapped by a Python class. 
 
-```c++
+```cpp++
 struct Vector {
     double x, y, z;
 };
@@ -143,7 +143,7 @@ struct Vector {
 
 - When a member of a structure is itself a structure, it is handled as a pointer. For example, suppose you have two structures like this:
 
-```c++
+```cpp++
 struct Foo {
     int a;
 };
@@ -168,7 +168,7 @@ struct Bar {
 
 Static class members present a special problem for Python
 
-```c++
+```cpp++
 class Spam {
     public:
         static void foo();
@@ -200,7 +200,7 @@ Static member variables are currently accessed as global variables. This means, 
 - C++ overloaded functions, methods, and constructors are mostly supported by SWIG
 - Overloading support is not quite as flexible as in C++. Sometimes there are methods that SWIG can't disambiguate. For example:
 
-```c++
+```cpp++
 void spam(int);
 void spam(short);
 
@@ -240,7 +240,7 @@ void spam(short);   // Ignored
 
 - Certain C++ overloaded operators can be handled automatically by SWIG
 
-```c++
+```cpp++
 Complex &operator=(const Complex &c);
 
 Complex operator+=(const Complex &c) const;
@@ -252,7 +252,7 @@ Complex operator-() const;
 
 - One restriction with operator overloading support is that SWIG is not able to fully handle operators that aren't defined as part of the class. For example, if you had code like this
 
-```c++
+```cpp++
 class Complex {
     ...
     friend Complex operator+(double, const Complex &c);
@@ -375,7 +375,7 @@ template<class T> class SmartPtr {
 
 Then, if you have a class like this,
 
-```c++
+```cpp++
 class Foo {
     public:
         int x;
@@ -385,7 +385,7 @@ class Foo {
 
 A smart pointer would be used in C++ as follows:
 
-```c++
+```cpp++
 SmartPtr<Foo> p = CreateFoo();   // Created somehow (not shown)
 ...
 p->x = 3;                        // Foo::x
@@ -455,7 +455,7 @@ Directors can also be generated implicitly through **inheritance**.
 
 In the following, class Bar will get a director class that handles the methods one() and two() (but not three()):
 
-```c++
+```cpp++
 %feature("director") Foo;
 class Foo {
     public:
@@ -487,7 +487,7 @@ This section describes some common SWIG features that are used to improve your t
 
 Sometimes when you create a module, it is missing certain bits of functionality. For example, if you had a function like this
 
-```c++
+```cpp++
 void set_transform(Image *im, double m[4][4]);
 ```
 
@@ -509,7 +509,7 @@ The problem here is that there is no easy way to construct and manipulate a suit
 
 To fix this, you can write some extra C helper functions. Just use the %inline directive. For example:
 
-```c++
+```cpp++
 %inline %{
     /* Note: double[4][4] is equivalent to a pointer to an array double (*)[4] */
     double (*new_mat44())[4] {
@@ -875,7 +875,7 @@ This chapter discusses the common techniques for solving these problems.
 
 A common problem in some C programs is handling parameters passed as simple pointers or references. For example:
 
-```c
+```cpp
 void add(int x, int y, int *result) {
     *result = x + y;
 }
@@ -883,7 +883,7 @@ void add(int x, int y, int *result) {
 
 or perhaps
 
-```c
+```cpp
 int sub(int *x, int *y) {
     return *x-*y;
 }
@@ -931,7 +931,7 @@ int  sub(int *x, int *y);
 
 If a function mutates one of its parameters like this,
 
-```c
+```cpp
 void negate(int *x) {
     *x = -(*x);
 }
@@ -939,7 +939,7 @@ void negate(int *x) {
 
 you can use INOUT like this:
 
-```c
+```cpp
 %include "typemaps.i"
 ...
 void negate(int *INOUT);
@@ -957,7 +957,7 @@ The most common use of these special typemap rules is to handle functions that r
 
 For example, sometimes a function returns a result as well as a special error code:
 
-```c
+```cpp
 /* send message, return number of bytes sent, along with success code */
 int send_message(char *text, int len, int *success);
 ```
@@ -1000,7 +1000,7 @@ If you must work with simple pointers such as int \* or double \* and you don't 
 
 The %pointer_functions(type, name) macro generates five helper functions that can be used to create, destroy, copy, assign, and dereference a pointer. In this case, the functions are as follows:
 
-```c
+```cpp
 int  *new_intp();
 int  *copy_intp(int *x);
 void  delete_intp(int *x);
@@ -1035,7 +1035,7 @@ If you replace %pointer_functions() by %pointer_class(type, name), the interface
 
 Sometimes a C function expects an array to be passed as a pointer. For example,
 
-```c
+```cpp
 int sumitems(int *first, int nitems) {
     int i, sum = 0;
     for (i = 0; i < nitems; i++) {
@@ -1108,7 +1108,7 @@ int parity(char *data, int size, int initial);
 
 For example:
 
-```c++
+```cpp++
 struct CDA {
     int fff(int a = 1, bool b = false);
 };
@@ -1152,7 +1152,7 @@ The default arguments are obtained in the C++ wrapper layer instead of the Pytho
 
 Note that not all default arguments can be converted into a Python equivalent. When SWIG does not convert them, it will generate code to obtain them from the C++ layer as if python:cdefaultargs was specified. This will happen if just one argument cannot be converted into a Python equivalent. This occurs typically when the argument is not fully numeric, such as int(1):
 
-```c
+```cpp
 struct CDA {
     int fff(int a = int(1), bool b = false);
 };
@@ -1182,7 +1182,7 @@ A typemap is nothing more than a code generation rule that is attached to a spec
 
 For example, to convert integers from Python to C, you might define a typemap like this:
 
-```c
+```cpp
 %module example
 
 %typemap(in) int {
@@ -1423,7 +1423,7 @@ TODO
 
 Suppose that you had a collection of C functions with arguments such as the following:
 
-```c
+```cpp
 int foo(int argc, char **argv);
 ```
 
@@ -1448,7 +1448,7 @@ With the above typemap in place, you will find it no longer necessary to supply 
 
 If your function is overloaded in C++, for example:
 
-```c
+```cpp
 int foo(int argc, char **argv);
 int foo();
 ```
@@ -1468,7 +1468,7 @@ don't forget to also provide a suitable [typecheck typemap for overloading](http
 
 A common problem in some C programs is that values may be returned in arguments rather than in the return value of a function. For example:
 
-```c
+```cpp
 /* Returns a status value and two values in out1 and out2 */
 int spam(double a, double b, double *out1, double *out2) {
   ... Do a bunch of stuff ...
@@ -1488,7 +1488,7 @@ TODO
 
 In some applications, it is sometimes desirable to pass small arrays of numbers as arguments. For example :
 
-```c
+```cpp
 extern void set_direction(double a[4]);       // Set direction vector
 ```
 
@@ -1538,7 +1538,7 @@ Occasionally, it might be necessary to convert pointer values that have been sto
 
 Since there are several ways in which pointers can be represented, the following two functions are used to safely perform this conversion:
 
-```c
+```cpp
 int SWIG_ConvertPtr(PyObject *obj, void **ptr, swig_type_info *ty, int flags)
 ```
 

@@ -294,7 +294,7 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
     - 3 input, 1 output
     - kind of `if` condition expression
 
-```c
+```cpp
 if (sel==0)
     out=a
 else

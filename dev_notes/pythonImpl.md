@@ -37,7 +37,7 @@
     - 头部信息由 引用计数, 和 类型指针 组成
 - 以 int 为例
 
-```c
+```cpp
 #define PyObject_HEAD                   \
     Py_ssize_t ob_refcnt;               \
     struct _typeobject *ob_type;
@@ -85,7 +85,7 @@ True
     - 其头部多出 1个记录元素项数量的字段。
     -  如 str 的字节数量，list 列表的长度等等
 
-```c
+```cpp
 define PyObject_VAR_HEAD \
     PyObject_HEAD \
     Py_ssize_t ob_size;   /* Number of items in variable part */
@@ -239,7 +239,7 @@ True
 - 对于这类对象，虚拟机在为其分配内存时，会额外添加用于追踪的 PyGC_Head
     - 这些对象被添加到特殊链表 ，以便 GC 进行管理。
 
-```c
+```cpp
 typedef union _gc_head {
     struct {
         union _gc_head *gc_next;
@@ -268,7 +268,7 @@ typedef union _gc_head {
 - 每级代龄都有一个最大容量阈值
 - 每次 GEN0 对象数量超出阈值时，都将引发垃圾回收操作。
 
-```c
+```cpp
 #define NUM_GENERATIONS 3
 
 /* linked lists of container objects */

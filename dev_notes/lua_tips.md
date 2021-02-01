@@ -406,13 +406,13 @@ c:perform()
 
 ## c access lua  Global  variable
 
-```c
+```cpp
     lua_getglobal(L, "z");
     z = (int)lua_tointeger(L, -1);
     lua_pop(L, 1);
 ```
 
-```c
+```cpp
     lua_pushnumber(L, 10);
     lua_setglobal(L, "z");
 ```

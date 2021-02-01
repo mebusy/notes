@@ -224,7 +224,7 @@ C#中的 delegate 类似于C或C++中的函数指针。
 与函数指针相比,delegate既可以引用静态函数，又可以引用非静态成员函数。在引用非静态成员函数时，delegate不但保存了对此函数入口指针的引用，而且还保存了调用此函数的类实例的引用。( 闭包？) 
 其次，与函数指针相比，delegate是面向对象、类型安全、可靠的受控（managed）对象。也就是说，runtime能够保证delegate指向一个有效的方法，你无须担心delegate会指向无效地址或者越界地址。
 
-```C#
+```Cpp#
 class TestDelegate
 {
     //声明了一个Delegate Type

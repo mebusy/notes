@@ -690,7 +690,7 @@ A modern process has more than one thread. The idea is the process still has one
 
 - Imagine the following C program:
 
-```c
+```cpp
 main() {
     ComputePI(“pi.txt”);
     PrintClassList(“clist.text”);
@@ -708,7 +708,7 @@ main() {
 
 - Version of program with Threads:
 
-```c
+```cpp
 main() {
     CreateThread(ComputePI(“pi.txt”));
     CreateThread(PrintClassList(“clist.text”));
@@ -1262,12 +1262,12 @@ ThreadRoot() {
 
 - A traditional procedure call is logically equivalent to doing a ThreadFork followed by ThreadJoin
 
-```c
+```cpp
 A() { B(); }
 B() { Do interesting, complex stuff }
 ```
 
-```c
+```cpp
 A’() {
     tid = ThreadFork(B,null);
     ThreadJoin(tid);

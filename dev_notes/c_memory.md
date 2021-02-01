@@ -42,7 +42,7 @@ http://marek.vavrusa.com/c/memory/2015/02/20/memory/
     - 就像今天的银行一样。 这被称为overcommiting
     - 而它有合法的应用程序（稀疏数组），这也意味着内存分配不会简单地说“No”。
 
-```c
+```cpp
 char *block = malloc(1024 * sizeof(char));
 if (block == NULL) {
     return -ENOMEM; /* Sad :( */
@@ -89,7 +89,7 @@ if (block == NULL) {
     - 一般的栈上分配的变量内存，出了 scope就会被释放
     - alloca() 分配的内存，只有 函数返回时 才会释放
 
-```c
+```cpp
 void laugh(void) {
     for (unsigned i = 0; i < megatron; ++i) {
         char *res = alloca(2);
@@ -122,7 +122,7 @@ void laugh(void) {
     - 移动 `program_brk` 新的位置，并要求(claim) 新位置和就位置的之间的内存
 - 到目前为止，堆分配和堆栈分配一样快（如果没有分页，并 假设堆栈已经被锁定在内存中）. 但是...
 
-```c
+```cpp
 char *block = sbrk(1024 * sizeof(char));  // increase 1024 byte
 ```
 
@@ -179,7 +179,7 @@ anonymous mapping.
     - 假定每个片段至少可以容纳一个指针或一个整数
     - 你可以将它们链接到一个列表中，列表头指向第一个空闲的元素。
 
-```c
+```cpp
 /* Super-simple slab. */
 struct slab {
     void **head;
@@ -201,7 +201,7 @@ for(unsigned i = 0; i < item_count; ++i) {
 *((void**)item) = NULL;
 ```
 
-```c
+```cpp
 /* Free an element */
 struct slab *slab = (void *)((size_t)ptr & PAGESIZE_BITS);
 *((void**)ptr) = (void*)slab->head;
@@ -231,7 +231,7 @@ if((item = slab->head)) {
     - 它被称为obstacks，就像“堆栈对象”一样。 
     - 它可以让你进行池分配，也可以完全或部分地展开。
 
-```c
+```cpp
 /* Define block allocator. */
 #define obstack_chunk_alloc malloc
 #define obstack_chunk_free free
@@ -269,7 +269,7 @@ obstack_free(&animal_stack, NULL);
     - This is also called “demand paging” or “lazy loading”.
 - 您可以将连续内存块 [锁定](https://linux.die.net/man/2/mlock) 在物理内存中，避免进一步的页面错误：
 
-```c
+```cpp
 char *block = malloc(1024 * sizeof(char));
 mlock(block, 1024 * sizeof(char));
 ```
@@ -289,7 +289,7 @@ mlock(block, 1024 * sizeof(char));
 - 我们将从现在开始处理整个页面。 
     - 一个页面通常是一个4K块，但是你不应该依赖它, 使用sysconf（）来发现它。
 
-```c
+```cpp
 long page_size = sysconf(_SC_PAGESIZE); /* Slice and dice. */
 ```
 

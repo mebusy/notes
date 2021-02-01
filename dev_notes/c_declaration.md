@@ -107,7 +107,7 @@ and also look at enums.
     - `struct fruit_tag` can now be used as a shorthand for `struct {stuff... }` , in future declarations.
 - A struct thus has the general form:
 
-```c
+```cpp
 struct optional_tag {
 type_1 identifier_1;
 type_2 identifier_2;
@@ -116,7 +116,7 @@ type_N identifier_N;
 } optional_variable_definitions;
 ```
 
-```c
+```cpp
 struct date_tag { short dd,mm,yy; } my_birthday, xmas;
 struct date_tag easter, groundhog_day;
 ```
@@ -127,7 +127,7 @@ struct date_tag easter, groundhog_day;
     - This is commonly used for "programming right down to the silicon," and you'll see it in systems programs. 
     - A bit field must have a type of int, unsigned int, or signed int (or a qualified version of one of these)
 
-```c
+```cpp
 /* process ID info */
 struct pid_tag {
 unsigned int inactive :1;
@@ -146,7 +146,7 @@ struct pid_tag *link;
     - Assuming an int parameter is typically passed in a register, you may find that structs are instead passed on the stack.
 - The second point to note is that by putting an array inside a struct like this:
 
-```c
+```cpp
 /* array inside a struct */
 struct s_tag { int a[100]; };
 ```
@@ -157,7 +157,7 @@ struct s_tag { int a[100]; };
     - and make it the return type of a function.
         - 数组终于可以做这些事情了。。。
 
-```c
+```cpp
 struct s_tag { int a[100]; };
 struct s_tag orange, lime, lemon;
 struct s_tag twofold (struct s_tag s) {
@@ -175,7 +175,7 @@ main() {
 
 - Let's finish up by showing one way to make a struct contain a pointer to its own type, as needed for lists, trees, and many dynamic data structures.
 
-```c
+```cpp
 /* struct that points to the next struct */
 struct node_tag { int datum;
                   struct node_tag *next;
@@ -195,7 +195,7 @@ a.next->next=NULL;
 - 公式1:成员在结构体的起始地址，必须是 自身字节长度的整数倍,不是就补齐
 - 公式2:整个Struct的长度 必须是最大成员字节长度 的整数倍
 
-```c
+```cpp
 struct E1 { 
     int a;char b; char c
 } e1;
@@ -211,7 +211,7 @@ struct E1 {
 - CAUTION:
     - 每个特定平台上的编译器都有自己的默认“对齐系数”。可以通过预编译命令#pragma pack(n) 
 
-```c
+```cpp
 struct E2 {
     char b; int a ; char c
 }
@@ -238,7 +238,7 @@ struct E2 {
 - The good news is that unions have exactly the same general appearance as structs, but with the keyword `struct` replaced by `union`.
 - A union has the general form:
 
-```c
+```cpp
 union optional_tag {
     type_1 identifier_1;
     type_2 identifier_2;
@@ -251,7 +251,7 @@ union optional_tag {
     1. for one interpretation of two different pieces of data 
     2. two different interpretations of the same data
 
-```c
+```cpp
 // case 1
 union secondary_characteristics {
     char has_fur;
@@ -263,7 +263,7 @@ struct creature {
 };
 ```
 
-```c
+```cpp
 // case 2
 union bits32_tag {
     int whole;                       /* one 32-bit value */
@@ -282,13 +282,13 @@ union bits32_tag {
 - Enums (enumerated types) are simply a way of associating a series of names with a series of integer values. 
 - In a weakly typed language like C, they provide very little that can't be done with a `#define`
 
-```c
+```cpp
 enum optional_tag {stuff... } optional_variable_definitions;
 ```
 
 - `The stuff...` in this case is a list of identifiers, possibly with integer values assigned to them. 
 
-```c
+```cpp
 enum sizes { small=7, medium, large=10, humungous };
 ```
 
@@ -312,7 +312,7 @@ enum sizes { small=7, medium, large=10, humungous };
 
 ![](../imgs/c_precedence_rule_for_declaration.png%20.png)
 
-```c
+```cpp
 // example
 char* const *(*next)();
 ```
@@ -336,7 +336,7 @@ char* const *(*next)();
 - if you prefer something a little more intuitive, use
     - ![](../imgs/c_magic_ring_for_c_declare.png)
 
-```c
+```cpp
 char *(*c[10])(int **p);  //  how 2 read ?
 ```
 
@@ -361,7 +361,7 @@ char *(*c[10])(int **p);  //  how 2 read ?
 - Example:
     - The ANSI Standard shows that signal is declared as:
 
-```c
+```cpp
 void (*signal(int sig, void (*func)(int)) ) (int);
 ```
 
@@ -372,7 +372,7 @@ void (*signal(int sig, void (*func)(int)) ) (int);
     - is a pointer to a function , which taking an int argument and returning void. 
 - Here's how it can be simplified by a typedef :
 
-```c
+```cpp
 typedef void (*ptr_to_func) (int);
 /* this says that ptr_to_func is a pointer to a function
  * that takes an int argument, and returns void
@@ -386,7 +386,7 @@ ptr_to_func signal(int, ptr_to_func);
 
 - **注意区别**:
 
-```c
+```cpp
 cdecl> explain void (*signal ) (int);
 declare signal as POINTER to function (int) returning void
 
@@ -405,7 +405,7 @@ declare signal as FUNCTION returning pointer to function (int) returning void
     - You can extend a macro typename with other type specifiers ,
     - but not a typedef 'd typename
 
-```c
+```cpp
 #define peach int
 unsigned peach i; /* works fine */
 typedef int banana;
@@ -417,7 +417,7 @@ unsigned banana i; /* Bzzzt! illegal */
 
 ### What typedef struct foo { ... foo; } foo; Means
 
-```c
+```cpp
 typedef struct my_tag {int i;} my_type;
         struct my_tag variable_1;
 my_type variable_2;
@@ -429,21 +429,21 @@ my_type variable_2;
     - which provides completely the wrong mental model for what is going on.
 - So although these two declarations have a similar form, ery different things are happening
 
-```c
+```cpp
 typedef struct fruit {int weight, price_per_lb } fruit; /* statement 1 */
         struct veg   {int weight, price_per_lb } veg;   /* statement 2 */
 ```
 
 - Statement 1 declares a structure tag "fruit" and a structure typedef "fruit" which can be used like this:
 
-```c
+```cpp
 struct fruit mandarin; /* uses structure tag "fruit" */ 
        fruit tangerine; /* uses structure type "fruit" */
 ```
 
 - Statement 2 declares a structure tag "veg" and a variable veg. Only the structure tag can be used in further declarations, like this:
 
-```c
+```cpp
 struct veg potato;
 ```
 
@@ -457,7 +457,7 @@ struct veg potato;
     - casts.
         - A typedef can provide a simple name for a complicated type cast. E.g.
 
-```c
+```cpp
 typedef int (*ptr_to_int_fun)(void);
 char * p =  (ptr_to_int_fun) p;
 ```

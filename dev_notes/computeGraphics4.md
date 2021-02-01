@@ -270,12 +270,12 @@
     - The property must be GL_SHININESS.
     - And the value is a float in the range 0.0 to 128.0.
 
-```c
+```cpp
 float bgcolor[4] = { 0.0, 0.7, 0.5, 1.0 };
 glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, bgcolor );
 ```
 
-```c
+```cpp
 float gold[13] = { 0.24725, 0.1995, 0.0745, 1.0,      /* ambient */
                    0.75164, 0.60648, 0.22648, 1.0,    /* diffuse */
                    0.628281, 0.555802, 0.366065, 1.0, /* specular */
@@ -316,7 +316,7 @@ glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, gold[12] );
 - When a vertex is specified with `glVertex*`, a copy of the current normal vector is saved as an attribute of the vertex.
     - glNormal3f, glNormal3d, glNormal3fv, and glNormal3dv. 
 
-```c
+```cpp
 glNormal3f( 0, 0, 1 );  // (This is the default value.)
 glNormal3d( 0.707, 0.707, 0.0 );
 float normalArray[3] = { 0.577, 0.577, 0.577 };
@@ -338,7 +338,7 @@ glNormal3fv( normalArray );
 - When we draw the side of the cylinder as a triangle strip, we have to generate pairs of vertices on alternating edges(top & buttom).
     - The normal vector is the same for the two vertices in the pair, but it is different for different pairs. Here is the code:
 
-```c
+```cpp
 glBegin(GL_TRIANGLE_STRIP);
 for (i = 0; i <= 16; i++) {
    double angle = 2*3.14159/16 * i;  // i 16-ths of a full circle
@@ -353,7 +353,7 @@ glEnd();
 
 - When we draw the top and bottom of the cylinder, on the other hand, we want a flat polygon, with the normal vector pointing in the direction (0,0,1) for the top and in the direction (0,0,−1) for the bottom:
 
-```c
+```cpp
 glNormal3f( 0, 0, 1);
 glBegin(GL_TRIANGLE_FAN);  // Draw the top, in the plane z = 1.
 for (i = 0; i <= 16; i++) {
@@ -420,7 +420,7 @@ glEnd();
         - **the ambient color is simply added to the global ambient light when the light is enabled**.
 - For example, to set up light zero as a bluish light, with blue specular highlights, that adds a bit of blue to the ambient light when it is turned on, you might use:
 
-```c
+```cpp
 float blue1[4] = { 0.4, 0.4, 0.6, 1 };
 float blue2[4] = { 0.0, 0, 0.8, 1 };
 float blue3[4] = { 0.0, 0, 0.15, 1 };
@@ -448,7 +448,7 @@ glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
     - Calling glLightfv with the property set to GL_POSITION is very much like calling `glVertex*`. The light position is transformed in the same way that the vertex coordinates would be transformed. 
     - For example,
 
-```c
+```cpp
     float position[4] = { 1,2,3,1 }
     glLightfv(GL_LIGHT1, GL_POSITION, position);
 
@@ -484,13 +484,13 @@ glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
     - Global ambient light will be present in the environment even if all of GL_LIGHT0, GL_LIGHT1, ... are disabled.
     - By default, the global ambient light is black. The value can be changed using the function
     - 
-    ```c
+    ```cpp
     void glLightModelfv( int property, float* value )
     ```
     - where the property must be GL_LIGHT_MODEL_AMBIENT. 
     - In general, the global ambient light level should be quite low. For example, in C:
     - 
-    ```c
+    ```cpp
     float ambientLevel[] = { 0.15, 0.15, 0.15, 1 };
     glLightModelfv( GL_LIGHT_MODEL_AMBIENT, ambientLevel );
     ``` 
@@ -500,7 +500,7 @@ glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
     - GL_LIGHT_MODEL_LOCAL_VIEWER
     - They can be set using the function 
     - 
-    ```c
+    ```cpp
     void glLightModeli( int property, int value )
     ```
 - GL_LIGHT_MODEL_TWO_SIDE is used to turn on two-sided lighting. 
@@ -512,7 +512,7 @@ glLightfv( GL_LIGHT1, GL_AMBIENT, blue3 );
     - With two-sided lighting, you have the option of using the same material on both faces or specifying different materials for the two faces. 
     - For example, to put a shiny purple material on front faces and a duller yellow material on back faces:
 
-```c
+```cpp
 glLightModeli( GL_LIGHT_MODEL_TWO_SIDE, 1 ); // Turn on two-sided lighting.
 
 float purple[] = { 0.6, 0, 0.6, 1 };
@@ -568,7 +568,7 @@ glMaterialfv( GL_BACK, GL_SPECULAR, black );  // no specular highlights
     - `glTexCoord2f(s,t), glTexCoord2d(s,t), glTexCoord2fv(array), glTexCoord2dv(array)`
 - The OpenGL state includes a current set of texture coordinates , as specified by these functions.
 
-```c
+```cpp
 glNormal3d(0,0,1);       // This normal works for all three vertices.
 glBegin(GL_TRIANGLES);
 glTexCoord2d(0.3,0.1);   // Texture coords for vertex (0,0)
@@ -589,7 +589,7 @@ glEnd();
 - To draw a textured primitive using glDrawArrays or glDrawElements, you will need to supply the texture coordinates in a  vertex array, 
     - in the same way that you supply vertex coordinates, colors, and normal vectors.
 
-```c
+```cpp
 glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 void glTexCoordPointer( int size, int dataType, int stride, void* array)
@@ -643,7 +643,7 @@ void glTexCoordPointer( int size, int dataType, int stride, void* array)
 - There are a number of options that apply to textures, to control the details of how textures are applied to surfaces. 
     - Some of the options can be set using the glTexParameteri() function.
 
-```c
+```cpp
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, magFilter);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
 ```
@@ -665,7 +665,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, minFilter);
     - The alternative is to "clamp" the texture. 
         - This means that when texture coordinates outside the range 0 to 1 are specified, those values are forced into that range: Values less than 0 are replaced by 0, and values greater than 1 are replaced by 1. 
 
-```c
+```cpp
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 ```
@@ -695,7 +695,7 @@ glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 - The texture matrix can represent scaling, rotation, translation and combinations of these basic transforms. 
     - For example to install a texture transform that scales texture coordinates by a factor of two in each direction, you could say:
 
-```c
+```cpp
 glMatrixMode(GL_TEXTURE);
 glLoadIdentity(); // Make sure we are starting from the identity matrix.
 glScalef(2,2,1);
@@ -721,7 +721,7 @@ glMatrixMode(GL_MODELVIEW); // Leave matrix mode set to GL_MODELVIEW.
 - For now, we assume that the file has already been loaded from the file into the computer's memory.
 - The OpenGL function for loading image data from the computer's memory into a 2D texture:
 
-```c
+```cpp
 glTexImage2D(target, mipmapLevel, internalFormat, width, height, border,
                             format, dataType, pixels);
 ```
@@ -741,7 +741,7 @@ glTexImage2D(target, mipmapLevel, internalFormat, width, height, border,
     - And pixels is a pointer to the start of the actual color data for the pixels. 
 - This all looks rather complicated, but in practice, a call to glTexImage2D generally takes the following form
 
-```c
+```cpp
 glEnable(GL_TEXTURE_2D);
 ...
 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
@@ -760,7 +760,7 @@ glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0,
     - This is possible because OpenGL can read texture data from its own color buffer, where it does its drawing.
 - To create a texture image using OpenGL, you just have to draw the image using standard OpenGL drawing commands and then load that image as a texture using 
 
-```c
+```cpp
 glCopyTexImage2D( target, mipmapLevel, internalFormat,
                                      x, y, width, height, border );
 ```
@@ -773,7 +773,7 @@ glCopyTexImage2D( target, mipmapLevel, internalFormat,
     - and border should be 0.
 - A call to glCopyTexImage2D will typically look like
 
-```c
+```cpp
 glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, width, height, 0);
 ```
 
@@ -800,7 +800,7 @@ glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, width, height, 0);
 - A texture object is identified by an integer ID number. 
 - To use a texture object, you need to obtain an ID number from OpenGL. This is done with the glGenTextures function:
 
-```c
+```cpp
 void glGenTexures( int textureCount, int* array )
 ```
 
@@ -810,7 +810,7 @@ void glGenTexures( int textureCount, int* array )
     - It should be an array whose length is at least textureCount. 
 - For example, if you plan to use three texture objects, you can say
 
-```c
+```cpp
 int idList[3];
 glGenTextures( 3, idList );
 ```
@@ -818,7 +818,7 @@ glGenTextures( 3, idList );
 - Every texture object has its own state, which includes the values of texture parameters such as GL_TEXTURE_MIN_FILTER as well as the texture image itself. 
 - To work with a specific texture object, you must first call
 
-```c
+```cpp
 // use a texture
 glBindTexture( GL_TEXTURE_2D, texID )
 ```
@@ -827,7 +827,7 @@ glBindTexture( GL_TEXTURE_2D, texID )
 - After this call, any use of glTexParameteri, glTexImage2D, or glCopyTexImage2D will be applied to the texture object with ID texID.
 - A typical pattern would be to load and configure a number of textures during program initialization:
 
-```c
+```cpp
 glGenTextures( n, textureIdList );
 for (i = 0; i < n; i++) {
     glBindTexture( textureIDList[i] );
@@ -910,7 +910,7 @@ for (i = 0; i < n; i++) {
 - OpenGL has a variety of "get" functions for reading the values of various state variables. I will discuss just some of them here. 
 - For example,
     - 
-    ```c
+    ```cpp
     glGetFloatv( GL_CURRENT_COLOR, floatArray );
     ```
     - retrieves the current color value, as set by `glColor*`.  The floatArray parameter should be an array of float, whose length is at least four. 
@@ -918,12 +918,12 @@ for (i = 0; i < n; i++) {
 - The same function can be used with different first parameters to read the values of different floating-point state variables.
     - To find the current value of the viewport, use
     - 
-    ```c
+    ```cpp
     glGetIntegerv( GL_VIEWPORT, intArray );
     ```
     - To read the current values of material properties, use
     - 
-    ```c
+    ```cpp
     glGetMaterialfv( face, property, floatArray );
     ```
 - Finally, I will mention `glIsEnabled(name)`, which can be used to check the enabled/disabled status of state variables such as GL_LIGHTING and GL_DEPTH_TEST. 

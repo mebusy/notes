@@ -11,7 +11,7 @@
 # Fast Distance 2D
 
 
-```c
+```cpp
 nt FastDistance2D(int x, int y)
 {
     x = abs(x);

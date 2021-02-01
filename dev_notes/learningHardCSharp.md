@@ -48,7 +48,7 @@
     4. 作为参数传递给方法 `someMethond( d );`
 - someMethond 定义
  
-```c#
+```cpp#
 private void someMethod( Mydelegate mydelegate ) {
     mydelegate( arg1, arg2 );
 }
@@ -57,7 +57,7 @@ private void someMethod( Mydelegate mydelegate ) {
 - 调用单个方法,不通过 步骤2，3 实例化委托， 直接传入 和delegate相同类型的函数 也可
 - 实例化委托的强大在于 委托链
 
-```c#
+```cpp#
 DelegateTest d1 = new ...
 DelegateTest d2 = new ...
 DelegateTest d3 = new ...
@@ -94,7 +94,7 @@ delegatechain += d3 ;
 
 ## 3 泛型
 
-```c#
+```cpp#
 public static class ListPool<T> { 
     ...
 }
@@ -136,7 +136,7 @@ public static void Swap<T> (ref T a, ref T b) {
 - 匿名方法建立在 委托基础上
     - 委托是方法的包装， 匿名方法也是方法， 所以委托也可以包装匿名方法
 
-```c#
+```cpp#
 MyDelagate my = delegate(string param)  
 {  
     string str2 = " 匿名方法内部 ";  
@@ -146,7 +146,7 @@ MyDelagate my = delegate(string param)
 
 - C#3.0之后匿名方法可以使用λ表达式来进行定义
 
-```c#
+```cpp#
 MyDelagate my = param => param + str1 + str2;
 ```
 
@@ -157,7 +157,7 @@ MyDelagate my = param => param + str1 + str2;
  
 - 实现一个迭代器， 必须实现 IEnumeralbe 接口
 
-```c#
+```cpp#
 public class Friends: IEnumeralbe {
     ...
     //索引器
@@ -191,7 +191,7 @@ public class Friends: IEnumeralbe {
 
 从迭代器的执行过程中，可以知道 迭代器是延迟计算的。
 
-```c#
+```cpp#
 public static IEnumerable<int> WithIterator() {
     for (int i=0;i<5;i++) {
         Console.WriteLine( ""+i ) ;
@@ -220,7 +220,7 @@ public static IEnumerable<int> WithIterator() {
 
 C# 3 之前一般这样定义属性
 
-```c#
+```cpp#
 private string _name ;
 public string Name {
     get { return _name; }
@@ -230,7 +230,7 @@ public string Name {
 
 C# 3之后又自动实现的属性之后，对于不需要额外验证的属性，可以使用 自动属性，不再需要额外定义一个私有字段了。 编译器编译时 会 自动创建一个私有的匿名字段。
 
-```c#
+```cpp#
 public string Name { get ; set ; }
 ```
 
@@ -256,7 +256,7 @@ public string Name { get ; set ; }
 
 3.0前
 
-```c#
+```cpp#
 Person person1 = new Person();
 person1.Name = "bob" ;
 person1.Age = 1 ; 
@@ -264,7 +264,7 @@ person1.Age = 1 ;
 
 3.0后
 
-```c#
+```cpp#
 # 构造函数 + 初始化
 Person person4 = new Person() { Name="Bob", Age=1 };
 ```
@@ -273,7 +273,7 @@ Person person4 = new Person() { Name="Bob", Age=1 };
 
 3.0 前
 
-```c#
+```cpp#
 List<string> names = new List<string>();
 names.Add( "Bob1" ) ;
 names.Add( "Bob2" ) ;
@@ -282,7 +282,7 @@ names.Add( "Bob3" ) ;
 
 3.0 后
 
-```c#
+```cpp#
 var names = new List<string> {
     "Bob1" , "Bob2" , "Bob3"     
 };
@@ -293,7 +293,7 @@ var names = new List<string> {
 
 ### 四.匿名类型
 
-```c#
+```cpp#
 var person1 = new { Name="Bob", Age=1 };
 ```
 
@@ -302,7 +302,7 @@ var person1 = new { Name="Bob", Age=1 };
 
 ## 8 Lambda 表达式
 
-```c#
+```cpp#
 // c# 2 匿名方法 创建委托
 // 不需要额外定义回调方法
 Func<string,int> delegate=delegate(string text) {return text.Length};
@@ -330,7 +330,7 @@ C# 编译器还可以把 lambda表达式 转换成 表达式树。
 - 为现有的类 扩展添加方法
     - 没有扩展方法之前，只能通过继承，这样会带来若干问题：1.需要重现实现所有抽象方法，2.密封类无法被继承
 
-```c#
+```cpp#
 public static class StreamExten {
     // 定义扩展方法
     public static void CopyToNewStream( this Stream inputsteam , Stream outputstream) {
@@ -363,7 +363,7 @@ public static class StreamExten {
 - 在C#中，在空引用上调用实例方法是会引发NullReferenceException异常
 - 但是可以在空引用上调用扩展方法
 
-```c#
+```cpp#
 public static class NullExten {
     public static bool isNull(this string str) {
         return str == null;
@@ -433,7 +433,7 @@ public static class NullExten {
 - typeof 的参数 只能是 int, string, class, 自定义类型， 不能为具体实例
 
 
-```c#
+```cpp#
 object m1 = 1 ;
 Console.WriteLine( typeof(ValueType).IsValueType ) ; // False
 Console.WriteLine( m1.GetType().IsValueType ) ;      // True

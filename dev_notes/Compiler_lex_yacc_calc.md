@@ -312,7 +312,7 @@ This symbol table is an array of structures each containing the name of the vari
 
 > ch3hdr.h :
 
-```c
+```cpp
 #define NSYMS    20 /* maximum number of symbols */
 struct symtab {
     char *name;

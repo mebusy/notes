@@ -35,7 +35,7 @@ def name([arg,... arg = value,... *arg, **kwarg]):
 
 - 结构定义:
 
-```c
+```cpp
 typedef struct {
     PyObject_HEAD
     PyObject *func_code;     // PyCodeObject

@@ -63,7 +63,7 @@ number | the total frames to wait
 
 下面是一个例子，DoHijack 是一个自动执行的协程, 它负责切换两个协程的执行
 
-```C#
+```Cpp#
 ...
 StartCoroutine(DoHijack());
 ...
@@ -98,7 +98,7 @@ The yield return value specifies when the coroutine is resumed.
 
 StartCoroutine function always returns immediately:
 
-```C#
+```Cpp#
     print("Starting " + Time.time);   // 0
     StartCoroutine(WaitAndPrint(2.0F));
     print("Before WaitAndPrint Finishes " + Time.time // 0 );
@@ -106,7 +106,7 @@ StartCoroutine function always returns immediately:
 
 however you can yield the result. This will wait until the coroutine has finished execution (完全执行完，而不是 yield return ) .
 
-```C#
+```Cpp#
     IEnumerator Start() {
         print("Starting " + Time.time);  // 0
         yield return StartCoroutine(WaitAndPrint(2.0F));

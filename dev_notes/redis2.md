@@ -95,7 +95,7 @@ redis:6379[2]>
 
 - 在服务器内部，客户端状态 redisClient 结构的 db属性纪录了客户端当前的目标数据库
 
-```c
+```cpp
 typedef struct redisClient {
     // ,,,
     redisDb *db ;
@@ -113,7 +113,7 @@ typedef struct redisClient {
 
 - `redis.h/redisDb` 结构中的 dict 字典保存了 这个 redisDb 中 所有的 key-value pair, 我们将这个字典成为 key space.
 
-```c
+```cpp
 typedef struct redisDb {
     // ...
     dict *dict ;

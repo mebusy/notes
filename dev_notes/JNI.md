@@ -87,7 +87,7 @@ objects  对象   以"L"开头，以";"结尾，中间是用"/"隔开的包及�
 
 ## Get JavaVM
 
-```c
+```cpp
 jint JNI_OnLoad(JavaVM* vm, void* reserved) {
     ...
 }
@@ -115,7 +115,7 @@ JNI_OnLoad will be invoked when library was loaded
 
 ## Get JNIEnv in threads
 
-```c
+```cpp
 JNIEnv* getJNIEnv( bool *isAttached ) {
     JavaVM* g_vm = pJavaVm ;
     JNIEnv * g_env;
@@ -142,7 +142,7 @@ JNIEnv* getJNIEnv( bool *isAttached ) {
 
 Detach:
 
-```c
+```cpp
 void endJNICall(JNIEnv* g_env) {
     JavaVM* g_vm = pJavaVm ;
 
@@ -162,7 +162,7 @@ A: Basically this can occur if the thread where you ask FindClass is not the mai
 
 The following example code is to show how to use `ClassLoader` to find the target class. Further more, it use a global reference to keep the target class. 
 
-```c
+```cpp
 
 // used to find java class in any thread
 static jobject gClassLoader;
@@ -238,7 +238,7 @@ CallStaticStringMethod
 CallStaticVoidMethod
 ```
 
-```c
+```cpp
 bool JNI_startupBink(char* filename) {
     bool isAttached = false ;
     JNIEnv* jniEnv  = getJNIEnv( &isAttached );
@@ -258,7 +258,7 @@ bool JNI_startupBink(char* filename) {
 
 Call a java function which returned an array , don't forget to invoke  `ReleaseByteArrayElements` method:
 
-```c
+```cpp
     bool isAttached = false ;
     JNIEnv* jniEnv  = getJNIEnv( &isAttached );
 
@@ -286,7 +286,7 @@ Call a java function which returned an array , don't forget to invoke  `ReleaseB
 
 You many got crash if the local reference table overflow, so it's useful to dump the info of "local reference table"
 
-```c
+```cpp
 jclass vm_class = env->FindClass("dalvik/system/VMDebug");
 jmethodID dump_mid = env->GetStaticMethodID( vm_class, "dumpReferenceTables", "()V" );
 env->CallStaticVoidMethod( vm_class, dump_mid );

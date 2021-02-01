@@ -79,7 +79,7 @@
 
 ## `char **argv` 和 `const char **p` 并不匹配
 
-```c
+```cpp
 foo(const char **p) { }
 
 main(int argc, char **argv) {
@@ -96,7 +96,7 @@ main(int argc, char **argv) {
     - and the type pointed to by the left has all the qualifiers of the type pointed to by the right. 
 - 所以下面的语句是 完全合法的
 
-```c
+```cpp
 char * cp;
 const char *ccp;
 ccp = cp;
@@ -109,7 +109,7 @@ ccp = cp;
         - the type pointed to by the left operand has all the qualifiers of the type pointed to by the right operand (none) , plus one of its own (const)
 - 但是 operand 反过来 就会触发一个编译警告
 
-```c
+```cpp
 cp = ccp; /* results in a compilation warning */
 ```
 
@@ -137,7 +137,7 @@ cp = ccp; /* results in a compilation warning */
     - So d is promoted to unsigned int, yields a big positive number
 
 
-```c
+```cpp
 int array[] = { 23, 34, 12, 17, 204, 99, 16 };
 #define TOTAL_ELEMENTS (sizeof(array) / sizeof(array[0]))
 
@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
 
 ## 空格连接字符串 
 
-```c
+```cpp
     printf(  "a" 
              "b" 
              "c"  ) ;  // $ abc
@@ -169,7 +169,7 @@ int main(int argc, char **argv) {
 
 - 这个特性 在以下情况下有可怕的后果：
  
-```c
+```cpp
 char *available_resources[] = {
   "color monitor",
   "big disk",
@@ -190,7 +190,7 @@ char *available_resources[] = {
     - The function is visible to anything that links with that object file
 - 如果你想限制对函数的访问，你必须指定static关键字。
 
-```c
+```cpp
        function apple (){ /* visible everywhere */ }
 extern function pear () { /* visible everywhere */ }
 static function turnip(){ /* not visible outside this file */ }
@@ -207,7 +207,7 @@ static function turnip(){ /* not visible outside this file */ }
 - when sizeof's operand is a type it has to be enclosed in parentheses 
 - when operand is variable , parentheses is not required .
 
-```c
+```cpp
 p = N * sizeof * q; // there is noly 1 multiplication
 r = malloc( p ); 
 ```
@@ -217,7 +217,7 @@ r = malloc( p );
 
 ## Some of the Operators Have the Wrong Precedence
 
-```c
+```cpp
 int i ;
 i=1,2;
 ```
@@ -234,7 +234,7 @@ i=1,2;
 
 ## Order of Evaluation is always undefined
 
-```c
+```cpp
 x = f() + g() * h();
 ```
 
@@ -267,14 +267,14 @@ x = f() + g() * h();
     - since these keywords appear only in a declaration (not in a use), there are now fewer cases in which the use of a variable mimics its declaration. 
 - If you want to cast something to the type of pointer-to-array, you have to express the cast as:
 
-```c
+```cpp
 char (*j)[20]; /* j is a pointer to an array of 20 char */
 j = (char (*)[20]) malloc( 20 );
 ```
 
 - What exactly, for example, does the following declaration (adapted from the telnet program) declare?
 
-```c
+```cpp
 char* const *(*next)();
 ```
 
@@ -291,7 +291,7 @@ char* const *(*next)();
 
 ## Arrays Are NOT Pointers!
 
-```c
+```cpp
 extern int *x;
 extern int y[];
 ```
@@ -320,7 +320,7 @@ declaration | can occur multiple times | describes the type of an object; is use
 
 - address y and contents of address y
 
-```c
+```cpp
 x = y ;
 ```
 
@@ -349,7 +349,7 @@ An **l-value** says where to store the result | "The value of y" means the **r-v
     - In contrast, the current value of a pointer must be retrieved at runtime before it can be dereferenced
 - A Subscripted Array Reference:
 
-```c
+```cpp
 char a[9] = "abcdefg" ; 
 ...
 c = a[i] ;
@@ -571,7 +571,7 @@ text    data     bss     dec     hex filename
 
 - Compile and run this small test program to discover the approximate location of the stack on your system:
 
-```c
+```cpp
 #include <stdio.h>
 main() {
     int i;
@@ -606,7 +606,7 @@ main() {
     - `/usr/include/sys/frame.h`, shows how a stack frame looks on your UNIX system.
 - The runtime maintains a pointer, often in a register and usually called `fp`,  which indicates the active stack frame. This will be the stack frame nearest to or at the top of the stack.
 
-```c
+```cpp
 a (int i) {
     if (i>0)
         a(--i);
@@ -663,7 +663,7 @@ main() {
         - Longjmp takes an additional integer argument that is passed back, and lets you figure out whether you got here from longjmp or from carrying on from the previous statement.
 - Example 
 
-```c
+```cpp
 #include <setjmp.h>
 jmp_buf buf;
 #include <setjmp.h>
@@ -698,7 +698,7 @@ back in main
 - A setjmp/longjmp is most useful for error recovery.
     - They have mutated into the more general exception routines "catch" and "throw" in C++.
 
-```c
+```cpp
 switch(setjmp(jbuf)) {
     case 0:
         apple = *suspicious;
@@ -839,7 +839,7 @@ Line | A Line 是访问缓存的单位。 每一行都有两个部分：一个�
 Block | 一个行的数据部分 称为一个block. 通常32字节.
  
 
-```c
+```cpp
 #include <string.h>
 
 #define DUMBCOPY for (i = 0; i < 65536; i++) \
@@ -923,7 +923,7 @@ sys 0m0.002s
 - Page and cache sizes are carefully designed so that keeping the alignment rule will ensure that no atomic data item spills over a page or cache block boundary.
 - 一个会导致总线错误的小程序是：
 
-```c
+```cpp
 union { char a[10];
     int i;
 } u;
@@ -940,7 +940,7 @@ int *p= (int*) &(u.a[1]);
 
 - 导致分段错误的小程序是：
 
-```c
+```cpp
 int *p=0;
 *p = 17;     /* causes a segmentation fault */
 ```
@@ -998,7 +998,7 @@ int *p=0;
 - 函数的返回值也不能是数组或函数，只能是指向数组或函数的指针。
 - 给出以下定义
 
-```c
+```cpp
    func( int * turnip){...}
 or
     func( int turnip[]){...}
@@ -1013,7 +1013,7 @@ int my_int_array[10];
 - 以下调用都是合法的
     - 所以， 在func（）里面，你没有任何简单方法知道 这个函数调用的方式和目的.
 
-```c
+```cpp
 func(&my_int );
 func( my_int_ptr );
 func( my_int_array );
@@ -1080,7 +1080,7 @@ void f(int i) {
 
 - call it 
 
-```c
+```cpp
 /* C code: */
 void f(int);
 void cc(int i) {
@@ -1106,7 +1106,7 @@ extern "C" double call_C_f(C* p, int i) // wrapper function
 
 - call `C::F()`
 
-```c
+```cpp
 /* C code: */
 double call_C_f(struct C* p, int i);
 void ccc(struct C* p, int i) {

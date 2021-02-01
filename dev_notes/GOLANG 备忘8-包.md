@@ -122,7 +122,7 @@ import "相对目录/包主文件名"
     以标准库为例:
 
 ```go
-￼import "fmt"      ->  /usr/local/go/pkg/darwin_amd64/fmt.a
+import "fmt"      ->  /usr/local/go/pkg/darwin_amd64/fmt.a
 import "os/exec"  ->  /usr/local/go/pkg/darwin_amd64/os/exec.a
 ```
 

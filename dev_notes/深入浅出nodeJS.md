@@ -1301,7 +1301,7 @@ function(message, handle, emit) {
 - Node 底层对每个端口监听都设置了 SO_REUSEADDR 选项，这个选项的含义是 不同的进程 可以就相同的网卡和端口进行监听，这个套接字可以被不同的进程复用
      - 对于 send() 发送的句柄还原出服务而言, 他们的文件描述符是相同的，所以监听相同端口不会引起一场。
 
-```C
+```Cpp
 setsockopt(tcp->io_watcher.fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on))
 ```
 

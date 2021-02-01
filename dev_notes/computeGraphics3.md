@@ -76,7 +76,7 @@
 - A primitive in OpenGL is defined by its vertices.
 - Let's jump right in and see how to draw a triangle. It takes a few steps:
 
-```c
+```cpp
 glBegin(GL_TRIANGLES);
 glVertex2f( -0.7, -0.5 );
 glVertex2f( 0.7, -0.5 );
@@ -153,7 +153,7 @@ glColor4f(1, 0, 0, 0.5);  // Draw in transparent red, but only if OpenGL
     - Colors are associated with individual vertices, not with complete shapes. 
     - By changing the current color between calls to glBegin() and glEnd(), you can get a shape in which different vertices have different color attributes. 
 
-```c
+```cpp
 glBegin(GL_TRIANGLES);
 glColor3f( 1, 0, 0 ); // red
 glVertex2f( -0.8, -0.8 );
@@ -166,7 +166,7 @@ glEnd();
 
 - Note that when drawing a primitive, you do not need to explicitly set a color for each vertex, as was done here. If you want a shape that is all one color, you just have to set the current color once, before drawing the shape (or just after the call to glBegin(). 
 
-```c
+```cpp
 glColor3ub(255,255,0);  // yellow
 glBegin(GL_TRIANGLES);
 glVertex2f( -0.5, -0.5 );
@@ -202,7 +202,7 @@ glEnd();
     - For example, in the function call `glVertex3fv(coords)`, coords would be an array containing at least three floating point numbers.
 - The existence of array parameters in OpenGL forces some differences between OpenGL implementations in different programming languages. 
 
-```c
+```cpp
 // c , draw a rectangle
 float coords[] = { -0.5, -0.5,  0.5, -0.5,  0.5, 0.5,  -0.5, 0.5 };
 
@@ -340,7 +340,7 @@ gl2.glEnd();
     - It will set the current matrix to be the identity transform.
 - As an example, suppose that we want to draw a cube. It's not hard to draw each face using glBegin/glEnd.
 
-```c
+```cpp
 void square( float r, float g, float b ) {
     glColor3f(r,g,b);
     glBegin(GL_TRIANGLE_FAN);
@@ -357,7 +357,7 @@ void square( float r, float g, float b ) {
 - To make a red front face for the cube, we just need to call square(1,0,0).    
     - and we can draw a green right face for the cube with:
 
-```c
+```cpp
 glPushMatrix();
 glRotatef(90, 0, 1, 0);
 square(0, 1, 0);
@@ -436,7 +436,7 @@ glPopMatrix();
     - When the drawing surface is first given to OpenGL, the viewport is set to be the entire drawing surface. 
     - However, it is possible for OpenGL to draw to a different rectangle by calling
 
-```c
+```cpp
 // custom viewport
 glViewport( x, y, width, height );
 ```
@@ -489,7 +489,7 @@ glViewport( x, y, width, height );
         - The call to glLoadIdentity ensures that the starting point is the identity transform.
         - This is important since glFrustum modifies the existing projection matrix rather than replacing it. 
 
-```c
+```cpp
 glMatrixMode(GL_PROJECTION);
 glLoadIdentity();
 glFrustum( xmin, xmax, ymin, ymax, near, far );
@@ -509,7 +509,7 @@ glMatrixMode(GL_MODELVIEW);
         - `glOrtho( xmin, xmax, ymin, ymax, near, far );`
     - As an example, suppose that we want the view volume to be the box centered at the origin containing x, y, and z values in the range from -10 to 10. 
 
-```c
+```cpp
 glMatrixMode(GL_PROJECTION);
 glLoadIdentity();
 glOrtho( -10, 10, -10, 10, -10, 10 );
@@ -522,7 +522,7 @@ glMatrixMode(GL_MODELVIEW);
     - There is a library known as GLU that contains some utility functions for use with OpenGL. 
     - The GLU library includes the method gluPerspective as an easier way to set up a perspective projection. 
 
-```c
+```cpp
 gluPerspective( fieldOfViewAngle, aspect, near, far );
 ```
 
@@ -546,7 +546,7 @@ gluPerspective( fieldOfViewAngle, aspect, near, far );
 - It can be difficult to set up a view by combining rotations, scalings, and translations, so OpenGL provides an easier way to set up a typical view.
     - The command is not part of OpenGL itself but is part of the GLU library.
 
-```c
+```cpp
 gluLookAt( eyeX,eyeY,eyeZ, refX,refY,refZ, upX,upY,upZ );
 ```
 
@@ -557,7 +557,7 @@ gluLookAt( eyeX,eyeY,eyeZ, refX,refY,refZ, upX,upY,upZ );
 - With all this, we can give an outline for a typical display routine for drawing an image of a 3D scene with OpenGL 1.1:
 
 
-```c
+```cpp
 // possibly set clear color here, if not set elsewhere
 
 glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -697,7 +697,7 @@ for (int i = 0; i < faceList.length; i++) {
 - There are other ways to store the data for an IFS. 
     - In C, for example, where two-dimensional arrays are more problematic, we might use one dimensional arrays for the data.
 
-```c
+```cpp
 int vertexCount = 10;  // Number of vertices.
 double vertexData[] =
           {  2,-1,2, 2,-1,-2, 2,1,-2, 2,1,2, 1.5,1.5,0,
@@ -711,7 +711,7 @@ int[][] faceData =
 
 - We can use the following C code to draw the house:
 
-```c
+```cpp
 int i,j;
 j = 0; // index into the faceData array
 for (i = 0; i < faceCount; i++) {
@@ -743,7 +743,7 @@ for (i = 0; i < faceCount; i++) {
         - a value of 1 seems to work in all cases.
     - You also have to enable the GL_POLYGON_OFFSET_FILL feature while drawing the faces.
 
-```c
+```cpp
 glPolygonOffset(1,1);
 glEnable( GL_POLYGON_OFFSET_FILL );
    .
@@ -776,20 +776,20 @@ glDisable( GL_POLYGON_OFFSET_FILL );
     - (描述数据的存取方式)
 - For example, suppose that we want to draw a square in the xy-plane. 
 
-```c
+```cpp
 float coords[8] = { -0.5,-0.5, 0.5,-0.5, 0.5,0.5, -0.5,0.5 };
 glVertexPointer( 2, GL_FLOAT, 0, coords );
 ```
 
 - In addition to setting the location of the vertex coordinates, you have to enable use of the array by calling
 
-```c
+```cpp
 glEnableClientState(GL_VERTEX_ARRAY);
 ```
 
 - Finally, in order to actually draw the primitive, you would call the function
 
-```c
+```cpp
 void glDrawArrays( int primitiveType, int firstVertex, int vertexCount)
 ```
 
@@ -803,7 +803,7 @@ void glDrawArrays( int primitiveType, int firstVertex, int vertexCount)
 - Often there is other data associated with each vertex in addition to the vertex coordinates. 
     - For example, you might want to specify a different color for each vertex.
 
-```c
+```cpp
 glEnableClientState(GL_COLOR_ARRAY);
 
 void glColorPointer(int size, int type, int stride, void* array)
@@ -811,7 +811,7 @@ void glColorPointer(int size, int type, int stride, void* array)
 
 - Let's put this together to draw the standard OpenGL red/green/blue triangle:
 
-```c
+```cpp
 float coords[6] = { -0.9,-0.9,  0.9,-0.9,  0,0.7 }; // two coords per vertex.
 float colors[9] = { 1,0,0,  0,1,0,  1,0,0 };  // three RGB values per vertex.
 
@@ -834,14 +834,14 @@ glDrawArrays( GL_TRIANGLES, 0, 3 ); // Use 3 vertices, starting with vertex 0.
     - The numbers in the array can be 8, 16, or 32 bit integers.
     - You also need arrays to store the vertex coordinates and other vertex data, and you must enable those arrays in the same way as for glDrawArrays, using functions such as glVertexArray and glEnableClientState.
 
-```c
+```cpp
 void glDrawElements( int primitiveType, vertexCount, dataType, void *array)
 ```
 
 - vertexCount is the number of vertices to be drawn, dataType specifies the type of data in the array (in GL_UNSIGNED_BYTE, GL_UNSIGNED_SHORT, or GL_UNSIGNED_INT ), and array is the array that holds the list of vertex numbers. 
 - As an example, we can draw a cube. 
 
-```c
+```cpp
 float vertexCoords[24] = {  // Coordinates for the vertices of a cube.
            1,1,1,   1,1,-1,   1,-1,-1,   1,-1,1,
           -1,1,1,  -1,1,-1,  -1,-1,-1,  -1,-1,1  };
@@ -1049,7 +1049,7 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
 - To use GLUT, you need to include the header file glut.h (or freeglut.h) , along with the general OpenGL header file, gl.h. 
     - The header files should be installed in a standard location, in a folder named GL. So, the program usually begins with
 
-```c
+```cpp
 #include <GL/gl.h>
 #include <GL/glut.h>
 // #include <GL/freeglut.h>
@@ -1059,12 +1059,12 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
     - After this setup, it must call a function that runs the GLUT event-handling loop. 
 - To set up the event-handling functions, GLUT uses the fact that in C, it is possible to pass a function name as a parameter to another function.
 
-```c
+```cpp
     glutDisplayFunc(display);
 ```
 
 
-```c
+```cpp
 void display() {
    .
    .  // OpenGL drawing code goes here!
@@ -1074,7 +1074,7 @@ void display() {
 
 - There are a lot of possible event-handling functions, and I will only cover some of them here. Let's jump right in and look at a possible main() routine for a GLUT program that uses most of the common event handlers:
 
-```c
+```cpp
 int main(int argc, char** argv) {
     glutInit(&argc, argv);  // Required initialization!
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
@@ -1114,7 +1114,7 @@ int main(int argc, char** argv) {
     - This is similar to calling repaint() in Java. 
 - `glutMouseFunc(mouseFunc)`
 
-```c
+```cpp
 void mouseFunc(int button, int buttonState, int x, int y) {
    if (buttonState == GLUT_DOWN) {
         // handle mousePressed event

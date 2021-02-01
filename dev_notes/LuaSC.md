@@ -50,7 +50,7 @@
     - we can store them in global variables, local variables and table fields,
     - pass them as arguments to functions, return them from functions, etc.
 
-```c
+```cpp
 typedef struct { 
     int t;  // tag: type of v
     Value v;

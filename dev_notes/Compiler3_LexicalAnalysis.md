@@ -133,7 +133,7 @@ Figure 3.2: Examples of tokens
 
 Example 3.1: 
 
-```c
+```cpp
     printf("Total = %d\ ", score);
 ```
 
@@ -203,7 +203,7 @@ It is hard for a lexical analyzer to tell, without the aid of other components, 
 
 For instance, if the string **fi** is encountered for the first time in a C program in the context:
 
-```c
+```cpp
     fi ( a == f(x)) ...
 ```
 

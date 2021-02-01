@@ -43,7 +43,7 @@
     - 将 网格mesh 数据输入到 Shader 
     - 使用 appdata struct 把网格数据 直接给 顶点函数
 
-```c
+```cpp
 struct appdata
 {
     float4 vertex : POSITION ;
@@ -66,7 +66,7 @@ struct appdata
 - 用来构建对象
 - 输入参数是 网格数据， 输出的是  顶点到片元struct ( Vertex to Fragment , 简称 v2f )
 
-```c
+```cpp
 v2f vert(appdata v) 
 {
     v2f o;
@@ -87,7 +87,7 @@ v2f vert(appdata v)
 - v2f 用于存储从 顶点函数 输出和 片元函数 输入的数据
 - 计算输出的 顶点位置， 自动绘制在屏幕上
 
-```c
+```cpp
 struct v2f
 {
     float2 uv : TEXCOORD0 ; 
@@ -98,7 +98,7 @@ struct v2f
 - SV_POSITION : sv 是 system value的简写，system 代表屏幕
 - 同样可以根据需要，输出更多的需要的数据
 
-```c
+```cpp
 struct v2f
 {
     float2 uv : TEXCOORD0 ; 
@@ -124,7 +124,7 @@ struct v2f
 - 用于 画 你的对象
 - 将输入的 v2f结构体 和输出数据绘制到 屏幕上
 
-```c
+```cpp
 fixed4 frag (v2f i) : SV_Target
 {
     // 纹理采样
@@ -172,7 +172,7 @@ fixed4 frag (v2f i) : SV_Target
 - Texture Blending - lerp
 - Texture Cutout : 渐渐消失的效果
 
-```c
+```cpp
 _Cutout_Value( "Cutout Value" , Range(0.0, 1.0))=0.5 
 
 float4 cutoutTextureColor = tex2D(_Cutout_Texture, IN.cutoutUV);

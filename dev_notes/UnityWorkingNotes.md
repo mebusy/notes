@@ -616,7 +616,7 @@ image.sprite = [your sprite]
 
 C# code:
 
-```c#
+```cpp#
 using UnityEngine;
 using System ;
 using System.Collections;
@@ -655,7 +655,7 @@ public class PluginTools : MonoBehaviour {
 
 c/c++ code
 
-```c
+```cpp
 #include <string.h>
 #include <stdio.h>
 
@@ -671,7 +671,7 @@ void SetDebugFunction(FuncPtr fp )
 
 for using:
 
-```c
+```cpp
 typedef void (*FuncPtr)( const char * );
 extern FuncPtr _DebugFunc;
 
@@ -715,7 +715,7 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
 
 ## reset scroll rect content to original postion 
 
-```c#
+```cpp#
 scrollrect.content.anchoredPosition = Vector2.zero;
 ```
 
@@ -724,7 +724,7 @@ scrollrect.content.anchoredPosition = Vector2.zero;
 
 ## Dictionary iteration 
 
-```c#
+```cpp#
 foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEvents )
 {
     // to use entry.Key , entry.Value 
@@ -752,7 +752,7 @@ base_encrypt = aes.encrypt(PKCS7Encoder().encode( d.encode( "utf8" ) ))
 encrypt_d = base64.b64encode( iv + base_encrypt   )
 ```
 
-```c#
+```cpp#
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -800,7 +800,7 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
 
 ## convert Input.mouseposition to object local space 
 
-```c#
+```cpp#
 Vector2 localpoint;
 RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, Input.mousePosition, GetComponentInParent<Canvas>().worldCamera, out localpoint);
 Vector2 normalizedPoint = Rect.PointToNormalized(rectTransform.rect, localpoint);

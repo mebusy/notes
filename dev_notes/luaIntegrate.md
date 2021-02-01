@@ -29,7 +29,7 @@
 
 ## 1. include lua header files
 
-```c
+```cpp
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
@@ -42,7 +42,7 @@ extern "C" {
 
 ## 2. create your lua state class
 
-```c
+```cpp
     LuaState::LuaState(void) {
     }
 
@@ -64,7 +64,7 @@ extern "C" {
 
 - sometime lua print function will not output to your engine's console 
 
-```c
+```cpp
 namespace {
 int lua_print(lua_State * luastate) {
     int nargs = lua_gettop(luastate);
@@ -112,7 +112,7 @@ int lua_print(lua_State * luastate) {
 
 - register lua_print 
 
-```c
+```cpp
     // Register our version of the global "print" function
     const luaL_reg global_functions [] = {
         {"print", lua_print},

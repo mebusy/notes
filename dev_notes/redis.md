@@ -90,7 +90,7 @@ docker run -it --link redis:redis --rm redis redis-cli -h redis -p 6379
 
 - 每个 `sds.h/sdshdr` 结构表示一个SDS值
 
-```c
+```cpp
 struct sdshdr {
     // 所保存字符串长度
     int len;
@@ -190,7 +190,7 @@ struct sdshdr {
 
 ## 3.1 链表和链表节点的实现
 
-```c
+```cpp
 // adlist.h/listNode
 typedef struct listNode {
     struct listNode *prev ;
@@ -199,7 +199,7 @@ typedef struct listNode {
 } listNode ;
 ```
 
-```c
+```cpp
 // addlist.h/list
 typedef struct list {
     listNode *head;
@@ -242,7 +242,7 @@ typedef struct list {
 
 ### 4.1.1 哈希表
 
-```c
+```cpp
 // dict.h/dictht
 typedef struct dictht {
     // 哈希表数据
@@ -266,7 +266,7 @@ typedef struct dictht {
 
 ### 4.1.2 哈希表节点
 
-```c
+```cpp
 typedef struct dictEntry {
    void *key;
    union {
@@ -289,7 +289,7 @@ typedef struct dictEntry {
 
 ### 4.1.3 字典
 
-```c
+```cpp
 // dict.h/dict
 typedef struct dict {
     dictType *type;
@@ -343,7 +343,7 @@ redis:6379> OBJECT ENCODING numbers
 
 - intset 可以保存类型为 int16_t, int32_t 或 int64_t 的整数值， 并且保证集合中 不会出现重复的元素
 
-```c
+```cpp
 typedef struct intset {
     uint32_t encoding;
     // 集合包含的元素数量
@@ -408,7 +408,7 @@ typedef struct intset {
 - redis 数据库中的键和值都是对象。
 - redis 中的每个对象都由一个 redisObject 结构表示
 
-```c
+```cpp
 typedef struct redisObject {
     unsigned type:4;
     unsigned encoding:4;
@@ -615,7 +615,7 @@ redis:6379> OBJECT ENCODING story
 - redis 使用引用计数的内存回收机制
 - 每个对象的引用计数信息 由 redisObject 结构的 refcount 属性纪录：
 
-```c
+```cpp
 typedef struct redisObject {
     // ...
     int refcount;
@@ -655,7 +655,7 @@ redis:6379> OBJECT REFCOUNT A
 
 - redisObject 结构还包含一个 名为 lru 的属性，该属性记录了对象最后一次被命令程序访问的时间
 
-```c
+```cpp
 typedef struct redisObject {
         // ...
         unsigned lru:22;

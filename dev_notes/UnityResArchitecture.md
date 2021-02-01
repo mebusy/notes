@@ -122,7 +122,7 @@
 
 - 完全从脚本打包
 
-```c#
+```cpp#
 BuildPipeline.BuildAssetBundles(
     string outputPath , 
     AssetBundleBuild[] builds ,
@@ -133,7 +133,7 @@ BuildPipeline.BuildAssetBundles(
 
 - AssetBundleBuild 结构如下
 
-```c#
+```cpp#
 struct AssetBundleBuild {
     public string assetBundleName ;
     public string assetBundleVariant ;

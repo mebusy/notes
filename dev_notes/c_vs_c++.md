@@ -440,7 +440,7 @@ catch (...) {
 - is the simple concept that a constructor for an object acquires that object's resources and the destructor releases them.
 - To understand how this is useful,  consider a function that uses a C file handle:
 
-```c
+```cpp
 void doSomethingWithAFile(const char* filename) {
     // To begin with, assume nothing can fail.
     FILE* fh = fopen(filename, "r"); // Open the file in read mode.

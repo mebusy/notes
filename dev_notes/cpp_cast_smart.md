@@ -23,13 +23,13 @@ Error found at compile-time.
 
 1. replacing C-Style casting 
     - 
-    ```c
+    ```cpp
     a = f ; // hard to find in code in case your app failed
     a = static_cast<int>(f);
     ```
 2. more restrictive than C-Style
     - 
-    ```c
+    ```cpp
     char c ;
     int *p = (int*)&c ;
      *p = 5 ; // PASS at compile-time but may FAIL at run-time.
@@ -37,7 +37,7 @@ Error found at compile-time.
     ```
 3. avoid cast from derived to private base pointer.
     - 
-    ```c
+    ```cpp
     class Base();
     class Derived: private Base{};
     int main() {
@@ -48,7 +48,7 @@ Error found at compile-time.
     ```
 4. Use for all upcasts, but never use for confused down cast
     - 
-    ```c
+    ```cpp
     Base *bp1 = static_cast<Base*>(&d1); //OK
     Base *bp2 = static_cast<Base*>(&d2); //OK
 
@@ -57,7 +57,7 @@ Error found at compile-time.
     ```
 5. should be prefered when converting to `void*` OR from `void*`
     - 
-    ```c
+    ```cpp
     int i = 10 ;
     void *v = static_cast<void*>(&i);
     int *ip = static_cast<int*>(v);
@@ -82,7 +82,7 @@ Dynamic_cast is used for only 1 reason:  to find out correct down-cast(base -> d
         - new_type is a reference type, it throws an exception.
 
 
-```c
+```cpp
 Derived1 d1;
 Base *bp = dynamic_cast<Base*>(&d1);
 

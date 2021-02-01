@@ -490,7 +490,7 @@ After the tree is built function **ex** is called to do a depth-first walk of th
 
 **Include File: calc3.h**
 
-```c
+```cpp
 typedef enum { typeCon, typeId, typeOpr } nodeEnum;
 /* constants */
 typedef struct {
@@ -727,7 +727,7 @@ int main(void) {
 
 **Interpreter**
 
-```c
+```cpp
 #include <stdio.h>
 #include "calc3.h"
 #include "y.tab.h"

@@ -1657,7 +1657,7 @@ This syntax tree represents an expression formed by applying the operator **op**
 
 For example, the semantically meaningful components of a C while-statement
 
-```c
+```cpp
     while ( expr ) stmt
 ```
 
