@@ -26,6 +26,7 @@
 - [2D clostest pair](Algorithm_closestPair.md) 
 - [Fast Distance 2D](Algorithm_fastdistance2D.md)
 - [2D Tree](2dTree.md)
+- [Fast Inverse Square Root (Quake3)](fastinversesqrt.md)
 
 ---
 
