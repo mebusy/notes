@@ -809,6 +809,13 @@ def float2IEEE754_64bit( num ):
 [online convert](https://www.binaryconvert.com/result_double.html?decimal=049)
 
 
+```python
+# use numpy
+>>> b = bin( np.float32( 0.15625 ).view(np.int32) )
+>>> b[ -23-8:-23 ] , b[ -23: ]
+('b1111100', '01000000000000000000000')
+```
+
 
 <h2 id="dd6b35cfcf7bc2919f28aaba9e65fa92"></h2>
 
