@@ -231,6 +231,106 @@ Example: Particle-particle collision, event-driven simulation
         - Update the velocities of the colliding particle(s).
         - re-Predict future particle-wall and particle-particle collisions involving the colliding particle(s) and insert events onto PQ.
 
+---
+
+
+# 小结
+
+## 一个中心
+
+**动态求极值**
+
+## 两个实现
+
+1. 跳表
+    - ![](https://tva1.sinaimg.cn/large/0081Kckwly1glle4lyjv9j30ui0bm0tz.jpg)
+2. 二叉堆
+    - ![](https://tva1.sinaimg.cn/large/0081Kckwly1glle5g74zaj30i60gwwfb.jpg)
+
+
+实现 | 问题 | 解决
+--- | --- | ---
+有序数组 | 插队麻烦
+有序链表 | 查找O(N)  | 借助索引→跳表
+树 | · ｜ 二叉堆 
+
+
+<details>
+<summary>
+Ex: 定一个二叉树，在树的最后一行找到最左边的值。
+</summary>
+
+
+```bash
+输入:
+
+    2
+   / \
+  1   3
+
+输出:
+1
+
+输入:
+
+        1
+       / \
+      2   3
+     /   / \
+    4   5   6
+       /
+      7
+
+输出:
+7
+```
+
+- solution
+    1. BFS, 从右向左遍历, 遍历的最后一个节点就是**树左下角的节点**
+    2. 双端队列
+
+
+</details>
+
+
+
+
+## 三个技巧
+
+### 1 固定堆
+
+固定堆的大小 k 不变，代码上可通过每 pop 出去一个就 push 进来一个来实现。
+
+固定堆一个典型的应用就是求第 k 小的数。 这个问题 最简单的思路是建立小顶堆，将所有的数先全部入堆，然后逐个出堆，一共出堆 k 次。最后一次出堆的就是第 k 小的数。
+
+然而，我们也可不先全部入堆，而是建立**大顶堆**，并维持堆的大小为 k 个。如果新的数入堆之后堆的size > k，则需要 pop ，维持 size == k. 此时堆顶就是我们要求的第k小的数。
+
+**总结**: 固定一个大顶堆(k)，可以快速求 第k小数， 固定一个小顶堆(k), 可以快速求第k大数。
+
+-  应用: 
+    - 数据流的中位数: 大顶堆( (n+1)/2 )  +  小顶堆 ( n - *(n+1)/2*  )
+    - 雇佣 K 名工人的最低成本
+
+### 2 多路归并 ?
+
+### 3 因子分解
+
+### 4 堆排序
+
+
+## 四大应用
+
+### 1 topK
+
+### 2 带权最短距离
+
+使用优先队列的 BFS 实现典型的就是 dijkstra 算法。
+
+### 3 因子分解
+
+
+
+
 
 
 
