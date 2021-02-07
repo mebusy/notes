@@ -389,6 +389,7 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     2. 向下移动光标 选中所有行
     3. shift i 进入多行插入模式， 编辑 , esc 
     4. 等 1秒钟， 修改完成
+    - note: v 以字元为单位，V 以行为单位，ctrl-v 以列为单位
 
 - 多行 行尾插入字符
     - 和上边的 多行行首插入 类似，只是 第三步进行修改
@@ -405,6 +406,21 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :g/^$/d
     :v/./d
     ```
+- make multiple line word into java string
+    ```bash
+    # record
+    qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
+    @q
+    8@@
+    ```
+- 复制/移动 行
+    ```bash
+    :6t.  // 复制第6行到当前位置
+    :6,8t. // 复制6-8行到当前位置
+    :6m.   // 移动 第6行
+    ;6,8m. // 移动 6-8行
+    ```
+
 
 <h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
 
@@ -466,8 +482,8 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     - Thus, `:.,$j` meaning "from the current line to the last line, join them all into one line".
     - `:%` is synonymous with `:1,$` (all the lines).
 - The `:...g` and `:...v` commands are incredibly powerful.
-    - `:...g` is a prefix for "globally" applying a subsequent command to all lines which match a pattern (regular expression) 
-    - while `:...v` applies such a command to all lines which do NOT match the given pattern ("v" from "conVerse").
+    - `:...g` is a prefix for "globally" applying a subsequent command to current line which match a pattern (regular expression) 
+    - while `:...v` applies such a command to current line which do NOT match the given pattern ("v" from "conVerse").
     - Thus `:.,+21g/foo/d` means "delete any lines containing the string "foo" from the current one through the next 21 lines"
     - while `:.,$v/bar/d` means "from here to the end of the file, delete any lines which DON'T contain the string "bar."
     - > It's interesting that the common Unix command **grep** is named after this way. The command `:g/re/p` was the way how to "globally" "print" lines containing a "regular expression" (re). 
