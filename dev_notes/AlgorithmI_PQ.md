@@ -12,6 +12,18 @@
         - [Priority queues implementation cost summary](#dee2139d14dc9b4129086c422806e8a4)
         - [Binary heap considerations](#08fdfb23883b137987adc5a563f835b0)
     - [event-driven simulation](#2b3a9baf85c09205eff605615163f824)
+- [小结](#5db9fd7c5a5554033a1f4bb7e6d86e7e)
+    - [一个中心](#ed2a2da47524e594ad80b8d3a94b8353)
+    - [两个实现](#83e6e32df206c6b61a6fe3d66c6e89d9)
+    - [三个技巧](#b51cdf3f3ef0de4345b0b63ec64be908)
+        - [1 固定堆](#d32f136a751ba76a0636ecbb50398dd9)
+        - [2 多路归并 ?](#002ced69d1e2f3a427ea2e66cfb0a508)
+        - [3 事后小诸葛](#a887f271ce5c9f8af0c13cc45421d2f6)
+    - [四大应用](#868b74e8fa2e704564ca9371abe462e1)
+        - [1 topK](#b3ad9ed4110eace789735fcd1a619652)
+        - [2 带权最短距离](#839ae6a672a3550fda6c7da07759f734)
+        - [3 因子分解](#85aa4864cc0a1e194558073f4156c589)
+        - [4 堆排序](#e23808f74e9e31be5f05858035c5c3a1)
 
 ...menuend
 
@@ -234,11 +246,20 @@ Example: Particle-particle collision, event-driven simulation
 ---
 
 
+<h2 id="5db9fd7c5a5554033a1f4bb7e6d86e7e"></h2>
+
+
 # 小结
+
+<h2 id="ed2a2da47524e594ad80b8d3a94b8353"></h2>
+
 
 ## 一个中心
 
 **动态求极值**
+
+<h2 id="83e6e32df206c6b61a6fe3d66c6e89d9"></h2>
+
 
 ## 两个实现
 
@@ -295,7 +316,13 @@ Ex: 定一个二叉树，在树的最后一行找到最左边的值。
 
 
 
+<h2 id="b51cdf3f3ef0de4345b0b63ec64be908"></h2>
+
+
 ## 三个技巧
+
+<h2 id="d32f136a751ba76a0636ecbb50398dd9"></h2>
+
 
 ### 1 固定堆
 
@@ -311,20 +338,41 @@ Ex: 定一个二叉树，在树的最后一行找到最左边的值。
     - 数据流的中位数: 大顶堆( (n+1)/2 )  +  小顶堆 ( n - *(n+1)/2*  )
     - 雇佣 K 名工人的最低成本
 
+<h2 id="002ced69d1e2f3a427ea2e66cfb0a508"></h2>
+
+
 ### 2 多路归并 ?
+
+<h2 id="a887f271ce5c9f8af0c13cc45421d2f6"></h2>
+
 
 ### 3 事后小诸葛
 
 
+<h2 id="868b74e8fa2e704564ca9371abe462e1"></h2>
+
+
 ## 四大应用
 
+<h2 id="b3ad9ed4110eace789735fcd1a619652"></h2>
+
+
 ### 1 topK
+
+<h2 id="839ae6a672a3550fda6c7da07759f734"></h2>
+
 
 ### 2 带权最短距离
 
 使用优先队列的 BFS 实现典型的就是 dijkstra 算法。
 
+<h2 id="85aa4864cc0a1e194558073f4156c589"></h2>
+
+
 ### 3 因子分解
+
+<h2 id="e23808f74e9e31be5f05858035c5c3a1"></h2>
+
 
 ### 4 堆排序
 

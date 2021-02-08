@@ -1,3 +1,22 @@
+...menustart
+
+- [Fast inverse square root](#fd0c1d9aa5c1114b0d1a121361ec3fcd)
+    - [Quick Explanation](#6c3b212bf86a46fbb98a3085f6fdec14)
+    - [Float Number](#faafd474460843cc23aab577dafe2eed)
+        - [IEEE 754](#776e1df999f0815d67390cb5cae8bde7)
+    - [Take Logarithm](#a324623c1acc31a4a79c6a4d1bfb9c74)
+    - [Evil Bit Hack](#01dc9266d320e77910fce13444702445)
+    - [What The Fuck](#421fbe1be97360cced700a3845a5d5a3)
+    - [Newton's Method](#34f2f7625c65991e958b586401593541)
+- [Misc](#74248c725e00bf9fe04df4e35b249a19)
+    - [Union version](#3c83e77ab96c7ece28fefa6d07cc1848)
+    - [Cpp version](#9b2cb47f99e0c720811fd0291ac1a143)
+
+...menuend
+
+
+<h2 id="fd0c1d9aa5c1114b0d1a121361ec3fcd"></h2>
+
 
 # Fast inverse square root
 
@@ -34,6 +53,9 @@ The fast inverse square root is such an approximation with only an error of at m
     2. What the fuck
     3. Newton Iteration
 
+<h2 id="6c3b212bf86a46fbb98a3085f6fdec14"></h2>
+
+
 ## Quick Explanation
 
 - The algorithm accepts a 32-bit floating-point number as the input and stores a halved value for later use. 
@@ -46,6 +68,9 @@ The algorithm compute 1⁄√x by performing the following steps:
     2. Use this approximation to compute an approximation of log₂(1/√x) = -1/2·log₂(x).
     3. Alias back to a float, as a way to compute an approximation of the base-2 exponential.
     4. Refine the approximation using a single iteration of Newton's method.
+
+
+<h2 id="faafd474460843cc23aab577dafe2eed"></h2>
 
 
 ## Float Number
@@ -82,6 +107,9 @@ We can also represent them in a **binary system**.
 ```
 
 The standard they came up with takes the name IEEE 754.
+
+
+<h2 id="776e1df999f0815d67390cb5cae8bde7"></h2>
 
 
 ### IEEE 754
@@ -140,6 +168,9 @@ This is the main part of IEEE 754, just so-called **normalized number**.  IEEE 7
 
 For the rest of this article it will be useful to think of the mantissa and exponent as the binary numbers they are.
 
+<h2 id="a324623c1acc31a4a79c6a4d1bfb9c74"></h2>
+
+
 ## Take Logarithm
 
 If we are given 2 numbers, one being the mantissa M , and 1 being the exponent E, we can get a bit representation with 
@@ -193,6 +224,9 @@ Let's think about what we just did. We applied the logarithm to our formular, an
 Armed with this knowledge, we can finally start with the 3 steps of the fast inverse square root.
 
 
+<h2 id="01dc9266d320e77910fce13444702445"></h2>
+
+
 ## Evil Bit Hack
 
 ```cpp
@@ -200,6 +234,9 @@ Armed with this knowledge, we can finally start with the 3 steps of the fast inv
 ```
 
 Floats unfortunately don't come with the tools we need to do bit manipulation.  Here treating the bits representing the floating-point number as a 32-bit integer.  The address itself doesn't change, but now think the number living at that address is now a *long*.
+
+
+<h2 id="421fbe1be97360cced700a3845a5d5a3"></h2>
 
 
 ## What The Fuck
@@ -224,6 +261,9 @@ But why is this number `0x5f3759df` here ?  Because our logarithm is actually sc
 - ![](../imgs/fisqrt_magic_number_2.png)
 
 The magic number turns out to be the remnants of the error term μ, the scaling factor and the shifting.
+
+
+<h2 id="34f2f7625c65991e958b586401593541"></h2>
 
 
 ## Newton's Method
@@ -277,7 +317,13 @@ f'(y) = -2/y³
     ```
 
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+
 # Misc
+
+<h2 id="3c83e77ab96c7ece28fefa6d07cc1848"></h2>
+
 
 ## Union version
 
@@ -301,6 +347,9 @@ float Q_rsqrt( float number )
 	return conv.f;
 }
 ```
+
+
+<h2 id="9b2cb47f99e0c720811fd0291ac1a143"></h2>
 
 
 ## Cpp version

@@ -1,11 +1,31 @@
+...menustart
+
+- [openwrt](#27d03b6f0fc0a15464669d7950529cae)
+    - [刷固件](#066d67c2a791210e63c8e6777ff65294)
+    - [R2S 连接硬件](#752b8691dd263cd43606d53be8c481fd)
+    - [R2S 设置](#50253fdec44f8701e984f78844b449a5)
+    - [Rpi 连接](#510b0501c2ea4da197aed7494488e288)
+    - [Rpi 设置](#f669ab422f5fcf79de0338fae12db0ea)
+
+...menuend
+
+
+<h2 id="27d03b6f0fc0a15464669d7950529cae"></h2>
+
 
 # openwrt
+
+<h2 id="066d67c2a791210e63c8e6777ff65294"></h2>
+
 
 ## 刷固件
 
 - [lean openwrt](https://github.com/coolsnowwolf/lede)
 - [openwrt-rpi](https://github.com/SulingGG/Openwrt-rpi)
 - [tool: balena Etcher](https://www.balena.io/etcher/?ref=etcher_footer)
+
+
+<h2 id="752b8691dd263cd43606d53be8c481fd"></h2>
 
 
 ## R2S 连接硬件
@@ -25,6 +45,9 @@
 
 
 
+<h2 id="50253fdec44f8701e984f78844b449a5"></h2>
+
+
 ## R2S 设置
 
 1. 修改密码  系统/管理权
@@ -37,9 +60,15 @@
     - 默认只有第一项开启了
     - 可以 再开启 BBR / DNS 加速
 
+<h2 id="510b0501c2ea4da197aed7494488e288"></h2>
+
+
 ## Rpi 连接
 
 - 接到主路由 LAN口
+
+<h2 id="f669ab422f5fcf79de0338fae12db0ea"></h2>
+
 
 ## Rpi 设置
 

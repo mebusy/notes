@@ -1,5 +1,20 @@
+...menustart
+
+- [How do network wire transfer data](#a72b585979e2a802cc4e30267140fbf0)
+    - [Sending digital information](#2e93b2722a25e672038503290f437f50)
+    - [Clock synchronization and Manchester coding](#2d621ea33cd5386ff3d62866531ad421)
+    - [The importance of framing](#cea236777a5b0b57374a56302852f404)
+
+...menuend
+
+
+<h2 id="a72b585979e2a802cc4e30267140fbf0"></h2>
+
 
 # How do network wire transfer data 
+
+<h2 id="2e93b2722a25e672038503290f437f50"></h2>
+
 
 ## Sending digital information
 
@@ -15,6 +30,9 @@
         - frequency modulation ![](https://www.qrg.northwestern.edu/projects/vss/docs/media/Communications/FM.gif)
     - Phase-Shift
         - ![](https://www.networkcomputing.com/sites/default/files/RF%20image%207.jpg)
+
+
+<h2 id="2d621ea33cd5386ff3d62866531ad421"></h2>
 
 
 ## Clock synchronization and Manchester coding
@@ -33,6 +51,9 @@
             - instead of the symbol for a 1 is just a 5v signal, instead the symbol for a 1 is a transition from negative voltage to positive voltage
             - the symbol for a 0 is a transition from  positive voltage to negative voltage
         - ![](../imgs/nt_manchester_coding.png)
+
+<h2 id="cea236777a5b0b57374a56302852f404"></h2>
+
 
 ## The importance of framing
 

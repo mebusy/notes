@@ -4,6 +4,7 @@
     - [Combining Arrays](#84df0f6a0e96bb96e66fdba51a103ad5)
     - [Iterating Over Arrays](#f32b904edd83a21e8b374913f5631504)
     - [samply from non-zero entries in an array](#bf91cb5aab8fb7ca430a74e12051e4a8)
+    - [n-largest / n-smallest elements](#72d3788db3f58a0a81b981182c17b7d6)
 - [SciPy 2019](#e7bb3b7194c96eb93fb9a2777411aca8)
     - [Array Slicing](#458a3cb8ba7cd1c7a812c577db825242)
     - [Fancy Indexing](#d5dddb265184f7c2f2d357bcefb39a2c)
@@ -118,6 +119,9 @@ for i, j in zip(test, test2):
     idxs = np.flatnonzero(y_train == y)
     idxs = np.random.choice(idxs, samples_per_class, replace=False)
 ```
+
+<h2 id="72d3788db3f58a0a81b981182c17b7d6"></h2>
+
 
 ## n-largest / n-smallest elements
 

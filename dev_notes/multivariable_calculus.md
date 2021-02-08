@@ -1,3 +1,21 @@
+...menustart
+
+- [Multivariable Calculus](#8ed36a2358db5f51e14738b08adae1e8)
+    - [Vector Fields](#3b7f54591e7f5474a014162323f133b3)
+    - [Transformations](#e4ba47693cf74a797e63f4557d4b88f4)
+    - [Partial derivatives](#0528ae3ac84335726cdb869c37f074b5)
+    - [Formal definition of partial derivatives](#720490b1bfd5d1d881f484a660c17cbe)
+    - [Symmetry of second partial derivatives](#a32eb790ef82890d3d0f9fa9b2baa39b)
+    - [Gradient](#5e59525cb7d1d1cd93be0b9f36e9d09a)
+    - [Directional derivative](#5b6aea879e0205053b5c2ead9de77092)
+    - [Why the gradient is the direction of steepest ascent](#b4e20dd468bf9adb89509b770119bd85)
+    - [Gradient and contour maps](#9201e0fe2c81168aca84873317f7d525)
+
+...menuend
+
+
+<h2 id="8ed36a2358db5f51e14738b08adae1e8"></h2>
+
 
 # Multivariable Calculus
 
@@ -13,6 +31,9 @@ It would probably be more accurate to call it multidimensional calculus. Because
 
 **And you'd think of this as a function that takes a point to a number, or a point to a vector.**
 
+
+
+<h2 id="3b7f54591e7f5474a014162323f133b3"></h2>
 
 
 ## Vector Fields
@@ -58,6 +79,9 @@ f(x,y,z) = |y|
 - ![](../imgs/mc_vector_field_4.png)
 
 
+<h2 id="e4ba47693cf74a797e63f4557d4b88f4"></h2>
+
+
 ## Transformations
 
 ```bash
@@ -85,6 +109,9 @@ The general idea of starting with a square and somehow warping that  is acutally
 And as we get into multi variable calculus and you start thinking a little more deeply about surfaces, I think it really helps if you think about a slight little movement on your input space, what happens to that tiny little movement, or that tiny little traversal, what it looks like if you do that same movement somewhere on the output space.
 
 
+<h2 id="0528ae3ac84335726cdb869c37f074b5"></h2>
+
+
 ## Partial derivatives
 
 ```
@@ -107,9 +134,15 @@ You're thinking this is because you're just moving in one direction for the inpu
 - ![](../imgs/mc_partical_2.png)
 
 
+<h2 id="720490b1bfd5d1d881f484a660c17cbe"></h2>
+
+
 ## Formal definition of partial derivatives
 
 ![](../imgs/mc_partical_3.png) ![](../imgs/mc_partical_4.png)
+
+
+<h2 id="a32eb790ef82890d3d0f9fa9b2baa39b"></h2>
 
 
 ## Symmetry of second partial derivatives
@@ -119,6 +152,9 @@ You're thinking this is because you're just moving in one direction for the inpu
 > notice the x,y order in 2 different notations for second partial derivatives.
 
 That is a pretty cool result.   What's surprising is that  this turns out to be true under certain criterion , **not all functions**. There's a special theorem called **Schwarz's theorem**, where if the second partial derivatives of your function are continuous at the relevant point, that's the circumstance for this being true. But for all intents and purposes, the kind of functions you can expect to run into , this is the case.  **The order of partial derivatives doesn't matter.**
+
+
+<h2 id="5e59525cb7d1d1cd93be0b9f36e9d09a"></h2>
 
 
 ## Gradient
@@ -143,6 +179,9 @@ The gradient can be thought of as pointing in the "**direction of steepest ascen
 ![](../imgs/mc_radient_3.png)
 
 
+<h2 id="5b6aea879e0205053b5c2ead9de77092"></h2>
+
+
 ## Directional derivative
 
 Directional derivatives tell you how a multivariable function changes as you move along some vector in its input space.  That is, what does a nudge in that vector's direction do to the function itself? 
@@ -162,6 +201,9 @@ Formal definition:
 - ![](../imgs/mc_direct_deriv_3.png)
 
 
+<h2 id="b4e20dd468bf9adb89509b770119bd85"></h2>
+
+
 ## Why the gradient is the direction of steepest ascent
 
 ```bash
@@ -177,6 +219,9 @@ Why does the gradient, the combination of partial derivatives, has anything to d
 - ![](../imgs/mc_direct_deriv_5.png)
 
 When ∇f(a,b) has the same direction as v , dot product has the greatest value.
+
+
+<h2 id="9201e0fe2c81168aca84873317f7d525"></h2>
 
 
 ## Gradient and contour maps
