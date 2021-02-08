@@ -165,9 +165,17 @@ def visit( arg, dirname, fnames):
 if '__main__' == __name__ :
 
     all_md_filenames = {}
-    if len( sys.argv ) >=2 and os.path.isfile(  sys.argv[1] ) :
-        createMenu4MD( sys.argv[1] )
+    if len( sys.argv ) >=2 :
+        # debug single file
+        if os.path.isfile(  sys.argv[1] ):
+            createMenu4MD( sys.argv[1] )
+        else:
+            # parse other directory
+            os.path.walk( sys.argv[1] , visit , None )
+
         sys.exit(1)
+
+    # normally for this repository
     os.path.walk( "../" , visit , None )
 
     print '-----'
