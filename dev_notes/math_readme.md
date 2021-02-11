@@ -10,6 +10,8 @@
     - the 2nd half, 4,5,6, is about eigenvalues and eigenvectors and singular values.
     - A =  Column matrix * Row matrix
         - **CR** decomposition, a technique that is highly used in many Data Science, Statistics, and Data Analysis problems.
+        - Matrix C contains the independent columns of matrix A
+        - Matrix R contains the basis of the row space of A
     - LU  famous computer commands for elimination, for solving equations, the first job of linear algebra.
     - S is symmetric matrix
     - You really don't want to miss Singualr value.
