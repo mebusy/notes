@@ -428,4 +428,33 @@ li | list item
 
 ## 2 Introduction to CSS3
 
+- CSS: Cascading style sheets
+
+### 2.12 Anatomy of a CSS Rule
+
+```css
+<style>
+p {
+    color: blue;
+    font-size: 20px;
+}
+
+h1 {
+    color: green;
+    width: 200px;
+    text-align: center;
+}
+</style>
+```
+
+- *p* is a **Selector**
+    - which is basically saying that whatever rules I'm about to give should apply to the content of **every single** paragraph tag in the entire HTML page.
+- Inside the braces, we have CSS declaration.
+    - it consists of 2 parts: property and value.
+    - **Property** name is something predefined by CSS specification.
+    - technically speaking, a semicolon is not a requirement, but it's a best practice to always use it.
+    - 0 or more declarations are allowed.
+- style sheet
+    - the collection of CSS rules.
+
 
