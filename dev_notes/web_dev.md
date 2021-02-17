@@ -552,11 +552,25 @@ h1 {
 - Those combinations are  **Not Limited** To Element Selectors
     ```css
     .colored p {
-        color: blue;
+        color: green;
     }
     article > .colored {
         color: red;
     }
+    div.makeMeBlue p {
+      color: blue;
+    }
     ```
-
+    ```html
+    <div>
+      <div>
+        <div class="makeMeBlue">
+          <p> Show in blue</p>
+        </div>
+      </div>
+      <section class="makeMeBlue">
+        <p> Unaffect </p>
+      </section>
+    </div>    
+    ```
 
