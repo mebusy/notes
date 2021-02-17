@@ -652,4 +652,25 @@ h1 {
     - Simple/Readable > Complicated/Tricky.
 
 
+### 2.16 Style Placement
+
+- Where to place ?
+    1. style tag inside the head tag
+        - only works for this page, can not be reused for other pages
+    2. specify a CSS style directly on the element by providing the style attribute.
+        - `<p style="text-align: center;">I am centered!</p>`
+        - The only thing that's missing from these styles is the target, and it's for a good reason, since we're inside the element, so we don't really need a target any more. 
+        - least reusable
+    3. external style sheets
+        ```css
+        <link rel="stylesheet" href="style.css">
+        ```
+        - a tag called *link*, `rel` tells the browser that it's a style sheet
+        - and its location using the `href` attribute.
+
+
+### 2.17
+
+
+
 
