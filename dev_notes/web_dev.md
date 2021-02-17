@@ -60,6 +60,7 @@
 
 - The term *content model* refers to which elements are allowed to be nested inside which other elements
 - Prior to html5 specification, HTML elements were either block level or inline elements.
+    - By default, a block-level element tries to take up as much horizontal space as its containing element will allow
 
 Block-Level Elements | Inline Elements
 --- | ---
@@ -585,12 +586,70 @@ h1 {
     }
     ```
 - Many pseudo-class selectors exist
-    - :link
-    - :visited
-    - :hover
-    - :active
+    - :link     // unvisited 
+    - :visited  // visited 
+    - :hover    // mouse curor over it
+    - :active   // clicked, but not release yet
     - :nth-child(...)
     - ...
+
+- example: remove the prefix dot from an unorderd list 
+    ```css
+    li {
+        list-style: none;
+    }
+    ```
+- example: links has status, after be clicking, another style will be applied to the visited link
+    - to make no difference between those 2 status, and create a menu style
+    ```css
+    a:link, a:visited {
+        text-decoration: none;
+        background-color: green;
+        border: 1px solid blue;
+        display: block ;  // now the bg will fill whole line
+        width: 200px ; // fix the menu item width
+        text-align: center;
+        margin-bottom: 1px;
+    }
+    ```
+- change line style when mouse cursor is on it ,or click on it but not yet releasing.
+    ```css
+    a:hover, a:active {
+        background-color: red;
+        color: purple;
+    }
+    ```
+- In a simple form, the nth child pseudo-selector allows you to target a particular element within a list. 
+    - change the font-size of 3rd list item to 24px ( start from 1 )
+    ```css
+    ul li:nth-child(3) {
+        font-size: 24px;
+    }
+    ```
+- The nth child pseudo-selector can do much more.
+    - ex: change the bg color of all odd line div element
+    ```css
+    section div:nth-child(odd) {
+        background-color: gray;
+    }
+    ```
+    ```html
+    <section>
+      <div>DIV 1</div>
+      <div>DIV 2</div>
+      <div>DIV 3</div>
+      ...
+    </section>
+    ```
+    - ex: change bg color of 2nd div element when mouse over it
+    ```css
+    section div:nth-child(2):hover {
+        background-color: green;
+    }
+    ```
+- Pseudo-class selectors are very powerful.
+    - **Make sure your select is still readable**.
+    - Simple/Readable > Complicated/Tricky.
 
 
 
