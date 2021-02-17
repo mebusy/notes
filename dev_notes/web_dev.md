@@ -458,3 +458,105 @@ h1 {
     - the collection of CSS rules.
 
 
+### 2.13 Element, Class, and ID Selectors
+
+- Selectors
+    - CSS selectors are used to determine which HTML element, or set of elements, to apply the CSS declarations to. 
+    - The browser uses its selector API to traverse the DOM or Document Object Model, and pick out the elements matching the selector. 
+    - Now crafting a selector is a great skill to have and not only for styling using CSS. That's because a lot of JavaScript libraries out there use the browser selector API to attach behavior and data to HTML elements. Much in the same way that CSS applies style to those elements.
+- There are 3 different types of selectors: element, class, and id selector.
+    - Element Selector: just you specifying the element name
+        ```css
+        p {
+            color: blue;
+        }
+        ```
+        ```html
+        <p> ... </p>
+        ```
+    - Class Selector: is specifyied with a dot and the name of the class
+        ```css
+        .blue {
+            color: blue;
+        }
+        ```
+        ```html
+        <p class="blue"> ... </p>
+        <div class="blue"> ... </div>
+        ```
+    - id Selector: specify the value of an id of an element, preceded by a pound sign
+        - **least reusable** one, because one id can only appear once in a document.
+        ```css
+        #name {
+            color: blue;
+        }
+        ```
+        ```html
+        <div id="name"> ... </div>
+        ```
+- Grouping Selectors
+    ```css
+    div, .blue {
+        color: blue;
+    }
+    ```
+    - separate selectors with commas
+
+
+### 2.14 Combining Selectors
+
+- Combining Selectors is a very powerful technique that allows you to more precisely target dumb elements.
+- most common ways of combining CSS selectors
+    - Element With Class Selector
+        ```css
+        p.big {
+            font-size: 20px; 
+        }
+        ```
+        ```html
+        <p class="big"> ... </p>
+        ```
+    - Child Selector
+        - affect on the **direct** child
+        ```css
+        article > p {
+            color: blue;
+        }
+        ```
+        ```html
+        <article>
+            <p> affected </p>
+        </article>
+        <article>
+            <div> <p> Unaffected </p> </div>
+        </article>
+        ```
+    - Descendant Selector
+        - affect on child at any level, even if it's not a direct child
+        ```css
+        article p {
+            color: blue;
+        }
+        ```
+        ```html
+        <article>
+            <p> affected </p>
+        </article>
+        <article>
+            <div> <p> affected </p> </div>
+        </article>
+        ```
+    - Another 2 Selector (less common)
+        - Adjacent sibling selector ( selector + selector )
+        - General sibling selector ( selector ~ selector )
+- Those combinations are  **Not Limited** To Element Selectors
+    ```css
+    .colored p {
+        color: blue;
+    }
+    article > .colored {
+        color: red;
+    }
+    ```
+
+
