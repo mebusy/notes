@@ -574,3 +574,23 @@ h1 {
     </div>    
     ```
 
+### 2.15 Pseudo-Class Selectors
+
+- Pseudo-class selectors address targeting only the structures that can be targeted by simple combinations of regular selectors, or targeting the ability to style based on user interaction with the page. 
+    - For example, we would want the styling of an element to change if the user hovers or moves their mouse over that element
+-  The way you specify pseudo-class selector, is by specifying some selector, with a colon, and a predefined pseudo-class
+    ```css
+    selector:pseudo-class {
+        ...
+    }
+    ```
+- Many pseudo-class selectors exist
+    - :link
+    - :visited
+    - :hover
+    - :active
+    - :nth-child(...)
+    - ...
+
+
+
