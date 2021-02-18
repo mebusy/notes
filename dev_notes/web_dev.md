@@ -651,6 +651,7 @@ h1 {
     - **Make sure your select is still readable**.
     - Simple/Readable > Complicated/Tricky.
 
+### -- CSS Rules Conflict Resulution and Text Styling --
 
 ### 2.16 Style Placement
 
@@ -669,7 +670,172 @@ h1 {
         - and its location using the `href` attribute.
 
 
-### 2.17
+### 2.17 Conflict Resolution
+
+- If CSS rules conflict, which one would win ?
+- 4 Concepts
+    1. Origin (Precedence)
+    2. Merge
+    3. Inheritance
+    4. Specificity
+- Origin Precedence (when in conflict)
+    - same target and same property
+    - Last Declaration Wins
+- Merge
+    - same target , but different property
+    - Declarations Merge 
+- Inheritance
+    - if you specify some CSS property on some element, all the children and grandchildren and so on of the that element will also inherit that property.
+- Specificity
+    - **Most Specific Selector Combination Wins**.
+    - You can think of specificity of your selectors as keeping a score
+        - The selectors with the highest score win. 
+        - In other words, the selectors with the higher score would be considered the most specific. 
+    - It's easier to calculate the score if you arrange the types of things that affect the score from left to right, with the left being the highest value of specificity.
+        - `style="..."` , `ID` , `Class, pseudo-class, attribute` , `# of Elements`
+        ```html
+        // 1 ,0, 0, 0
+        <h2 style="color: green;">
+        ```
+        ```css
+        // 0, 0, 0, 2   // 2 element div and p
+        div p { color; green;}
+        ```
+    - example
+        ```css
+        // css 1
+        // 0, 1, 0, 1
+        div #myParag {
+            color: blue;
+        }
+        ```
+        ```css
+        // css 2
+        // 0, 0, 1, 2
+        div.big p {
+            color: green;
+        }
+        ```
+        - css 1 wins!
+    - `!important`
+        - An !important basically says, it doesn't matter what the specificity is, I want to override everything and make this property the way I'm defining it. 
+        ```css
+        p {
+            color green: !important;
+        }
+        ```
+        - **Avoid using !important unless you absolutely have to!**. It leads to nightmare.
+
+
+### 2.18 Styling Text
+
+- font family
+    - [CSS Web Safe Fonts](https://www.w3schools.com/cssref/css_websafe_fonts.asp)
+    ```css
+    xxx {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    ```
+- styling
+    ```css
+    xxx {
+        color: #0000FF;
+        font-style: italic;
+        font-weight: bold;   // normal, bold, or numbers, e.g. 900
+        font-size: 24px;  // 16px by default
+        text-transform: capitalize; // lowercase
+        text-align: right;
+    }
+    ```
+- **Relative** Font Sizing
+    1. percent
+        ```css
+        body {
+            font-size: 120%;
+        }
+        ```
+    2. em
+        - a unit of measurement that is equivalent to the width of the letter
+        - it is a relative size, it is relative to something.
+        ```html
+        <div style="font-size: 2em;" > ...  </div>
+        ```
+        - PS. now the font-size in this div, is 240% large.  Why not `2m` override `120%` ? 
+            - That is kind of where the game of the relative sizing.  They don't have an overriding effect, they have a **cumulative** effect instead.
+
+### -- The Box Model and Layout --
+
+### 2.19 The Box Model
+
+- In HTML every element is considered a box. However, there's more to that box than just the content that the element wraps around.
+    - ![](../imgs/html_box_model.png)
+    - margin > border > padding
+    - PS. element includes content, padding and border.   Margin is used for layout.
+- ex
+    ```css
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    #box {
+        margin-bottom: 30px;
+        border: 3px solid black;
+        width: 300px; // width of content, not include border,pardding width
+        box-sizing: border-box; // content + padding + border 
+    }
+    ```
+- box width / height
+    - By default, the box sizing actually set to **content box**, not the entire thing.
+    - CSS3 came out with a new value for that propery, called *border-box*.
+    - All the mordern frameworks use **border-box** as its sizing model.
+        - So, make sure you always stay with a box sizeing of border-box.
+
+- Since you should always try to use border-box. Now, of course, you don't want to specify box-sizing on every element in your entire HTML.
+    - So you definitely want to specify it once and then have it be inherited everywhere.  And you try to put it in the `body` style sheet. But it does not work.
+    - **box-sizing** is one of those CSS properties that is **not inherited**.
+    - The way we get around it is by learning about one more selector, the star select.
+- `*` (universal) selector
+    ```css
+    * {
+        box-sizing: border-box;
+    }
+    ```
+    - What star does is going ahead and select every element there is and apply these particular CSS properties to them. 
+- Cumulative and Collapsing Margins
+    - So if I have a box
+        ```css
+        #box {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            margin-left: 40px;
+            margin-right: 50px;
+        }
+        ```
+    - When 2 boxes is next to each other 
+        - The cumulative margin will be 90 pixels. ( [box1]--90-- [box2])
+    - But what happens if you have one element on top of the other element ?
+        - 50? ❌
+        - It is 30. **Margin collapse**. The large margin wins.
+            ```
+            [box1]
+            --30px--
+            [box2]
+            ```
+- Content Overflow
+    - if we apply `box-sizing: border-box;`,  and speicfy the `width`, `height` property of box, but the content's actually height is bigger than our `height` value
+        - our contents will spill outside of our box
+        - ![](../imgs/css_box_content_spill_over.png)
+        - How do we deal with this ?
+    - *overflow* property
+        ```css
+        {
+            ...
+            overflow: auto;  // visible(defualt), hidden(clip), auto(scrollbar), scroll(2 scrollbars)
+        }
+        ```
+
+
+### 2.20 The background Property
 
 
 
