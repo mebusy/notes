@@ -1345,5 +1345,54 @@ p {
     </html>
     ```
 
+### 2.26 The Bootstrap Grid System
 
+- Bootstrap Grid System Basic
+    ```html
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">Col 1</div>
+        </div>
+    </div>
+    ```
+    - Any Bootstrap grid layout is going to have these components as part of it.
+    - First of all, your Bootstrap grid always has to be inside of a **container** wrapper
+        - or **container-fluid**, 
+        - container-fluid class stretches your layout the full width of the browser and provides consistent padding around your grid and other content.
+        - regular container has predetermined fixed width that is still responsive based on the width of browser. In other words, different width at different break point. (break point: media query boundary )
+        - ![](../imgs/css_bootstrap_row_1.png) 
+    - The next component of the grid is the **row**.
+        - row class creates horizontal groups of columns, which means that the columns collapsed and interact with each other as a group, but independently from columns in another row.
+        - the row class also creates a negative margin, to counteract the padding that the container class sets up. Why is that done? 
+            - Well, each column already has its own padding because we want to visually separate columns from each other. If negative margin wasn't applied to the row, the padding of the container would then be in addition to the padding of the edge column. So the content of the column will no longer align nicely with the rest of the content outside of the grid.
+            - ![](../imgs/css_bootstrap_row_1.png) , ![](../imgs/css_bootstrap_row_2.png)
+    - Now move to the column. 
+        - Every Bootstrap column class is defined using this template.
+        - `col-SIZE-SPAN`
+            - SIZE: screen width range identifier, columns will collapse(stack) below that *SIZE* unless another rule applies
+            - SPAN: how many columns one element shoud span, 1~12
+    - Lastly, there's nothing magical about using DIVs. You're free to use whatever makes sense to you in your design.
+        ```html
+        <header class="container">
+            <nav class="row">
+                <div class="col-md-4">Col 1</div>
+            </nav>
+        </header>
+        ```
+- Example
+    ```html
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">Col 1</div>
+          <div class="col-md-4 col-sm-6">Col 2</div>
+          <div class="col-md-4 col-sm-6">Col 3</div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-6">Col 1</div>
+          <div class="col-xs-6">Col 2</div>
+          <div class="col-xs-6">Col 3</div>
+        </div>
+      </div>``
+    ```
 
