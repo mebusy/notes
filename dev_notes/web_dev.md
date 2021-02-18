@@ -1,3 +1,43 @@
+...menustart
+
+- [Web Development](#e9f65fa4000d038efa0cdff8bb824632)
+    - [1 Introduction to HTML5](#be5996bed7586523463bbcd76d0bf636)
+        - [1.1 Basic HTML Document Structure](#76b85f6530d019c1c72a47dc5b48bae1)
+        - [1.2 HTML Content Models](#04c59e93b33f6071a57b9e6938f738b5)
+        - [1.6 Essential HTML5 Tags](#b705e94447e9c6428ee553f502ccc743)
+            - [Heading Elements (and some new HTML5 semantic comments)](#260261c999584b61d137523241da00d0)
+        - [1.7 Lists](#a7226cd0574e19a2aeafda5137c921c7)
+        - [1.8 HTML Character](#e3781d141885ee49010e8cec1a4b8fe7)
+        - [1.9 Creating Links](#0a832c76dba506c4db480a4430b81453)
+        - [1.10 Displaying Images](#198371eb55bb0b0e5388b4cabe3fce14)
+        - [Tag List](#8992b3733c2fabf637100ef09d8a919e)
+    - [2 Introduction to CSS3](#9ed1ec1761d9045458cb0194e97ee375)
+        - [2.12 Anatomy of a CSS Rule](#3ee16177d865441b806b3b4b549be2cc)
+        - [2.13 Element, Class, and ID Selectors](#c451c31d2248f0e6bb75efe3476200bb)
+        - [2.14 Combining Selectors](#fd2c9cc9ff66d61b66cfc89a23377201)
+        - [2.15 Pseudo-Class Selectors](#ef5ba5d82dce56bbc09fdcc89e36e982)
+        - [-- CSS Rules Conflict Resulution and Text Styling --](#e96d5f253dc565df6d115639e013e019)
+        - [2.16 Style Placement](#f3479f331d0432d148042fd4ba034751)
+        - [2.17 Conflict Resolution](#c1b8822d870403c4cc5ba08ba1b9b546)
+        - [2.18 Styling Text](#1417d1be7a57c828a6af9c2753faae90)
+        - [-- The Box Model and Layout --](#4bd507279265ea26e3ff1179790a80b7)
+        - [2.19 The Box Model](#abd7dc5c80c72e29b2eee3cd3c0c7d78)
+        - [2.20 The background Property](#55564951a2060cde6320d03887d7cdea)
+        - [2.21 Positioning Elements by Floating](#8530d9fda0ebcc0e0d8e9e153931da3a)
+        - [2.22 Relative and Absolute Element Positioning](#ad2a919d3751f45696dda50b54c70ded)
+        - [-- Introduction to Responsive Design](#b227c190d97886d7100f1a6412165474)
+        - [2.23 Media Queries](#23d37412a01263f81cfb0aa9bed66201)
+        - [2.24 Responsive Design](#231c665e5cdd84530dcdcce59571f704)
+        - [-- Twitter Bootstrap --](#5d936cee2711b61f0cd5d9e2513e73fa)
+        - [2.25 Introduction to Twitter Bootstrap](#91fa20c155a7637398afbe3fa1d70045)
+        - [2.26 The Bootstrap Grid System](#da8b77a4befed25e1250a8c43b01654d)
+
+...menuend
+
+
+<h2 id="e9f65fa4000d038efa0cdff8bb824632"></h2>
+
+
 # Web Development
 
 - cool sites
@@ -6,10 +46,16 @@
 - [course repo](https://github.com/jhu-ep-coursera/fullstack-course4)
 
 
+<h2 id="be5996bed7586523463bbcd76d0bf636"></h2>
+
+
 ## 1 Introduction to HTML5
 
 - [check wheter a tag can use](https://caniuse.com/)
 - [W3C validator for your page](https://validator.w3.org/)
+
+<h2 id="76b85f6530d019c1c72a47dc5b48bae1"></h2>
+
 
 ### 1.1 Basic HTML Document Structure
 
@@ -54,6 +100,9 @@
 
 </details>
 
+
+
+<h2 id="04c59e93b33f6071a57b9e6938f738b5"></h2>
 
 
 ### 1.2 HTML Content Models
@@ -105,7 +154,13 @@ Roughly Flow Content (HTML5 category) |Roughly Phrasing Content (HTML5 category)
 
 
 
+<h2 id="b705e94447e9c6428ee553f502ccc743"></h2>
+
+
 ### 1.6 Essential HTML5 Tags
+
+<h2 id="260261c999584b61d137523241da00d0"></h2>
+
 
 #### Heading Elements (and some new HTML5 semantic comments)
 
@@ -190,6 +245,9 @@ Some new HTML5 semantic
 
 </details>
 
+<h2 id="a7226cd0574e19a2aeafda5137c921c7"></h2>
+
+
 ### 1.7 Lists
 
 <details>
@@ -265,6 +323,9 @@ Ordered List
 </details>
 
 
+<h2 id="e3781d141885ee49010e8cec1a4b8fe7"></h2>
+
+
 ### 1.8 HTML Character
 
 - 3 Characters You Should Always Escape: 
@@ -277,6 +338,9 @@ Ordered List
         - If you ever wanted to have spaces, or extra spaces, between some words, what you would do is warpping around those text in a *span* tag, and then apply some left margin.
 - `"` may be rendered incorrectly when viewing under some limited encoding.
     - can use `&quot;` instead.
+
+
+<h2 id="0a832c76dba506c4db480a4430b81453"></h2>
 
 
 ### 1.9 Creating Links
@@ -395,6 +459,9 @@ Same Page Links
 
 </details>
 
+<h2 id="198371eb55bb0b0e5388b4cabe3fce14"></h2>
+
+
 ### 1.10 Displaying Images
 
 ```html
@@ -413,6 +480,9 @@ Same Page Links
     - because if the image take time to load, the page might appear jumpy.
     - this is actually the promary reason why you would want to use the width and height of the image. You want to tell the browser to reserver this space.
 
+<h2 id="8992b3733c2fabf637100ef09d8a919e"></h2>
+
+
 ### Tag List
 
 tag | stands for | desc
@@ -427,9 +497,15 @@ li | list item
 
 ---
 
+<h2 id="9ed1ec1761d9045458cb0194e97ee375"></h2>
+
+
 ## 2 Introduction to CSS3
 
 - CSS: Cascading style sheets
+
+<h2 id="3ee16177d865441b806b3b4b549be2cc"></h2>
+
 
 ### 2.12 Anatomy of a CSS Rule
 
@@ -457,6 +533,9 @@ h1 {
     - 0 or more declarations are allowed.
 - style sheet
     - the collection of CSS rules.
+
+
+<h2 id="c451c31d2248f0e6bb75efe3476200bb"></h2>
 
 
 ### 2.13 Element, Class, and ID Selectors
@@ -502,6 +581,9 @@ h1 {
     }
     ```
     - separate selectors with commas
+
+
+<h2 id="fd2c9cc9ff66d61b66cfc89a23377201"></h2>
 
 
 ### 2.14 Combining Selectors
@@ -574,6 +656,9 @@ h1 {
       </section>
     </div>    
     ```
+
+<h2 id="ef5ba5d82dce56bbc09fdcc89e36e982"></h2>
+
 
 ### 2.15 Pseudo-Class Selectors
 
@@ -651,7 +736,13 @@ h1 {
     - **Make sure your select is still readable**.
     - Simple/Readable > Complicated/Tricky.
 
+<h2 id="e96d5f253dc565df6d115639e013e019"></h2>
+
+
 ### -- CSS Rules Conflict Resulution and Text Styling --
+
+<h2 id="f3479f331d0432d148042fd4ba034751"></h2>
+
 
 ### 2.16 Style Placement
 
@@ -668,6 +759,9 @@ h1 {
         ```
         - a tag called *link*, `rel` tells the browser that it's a style sheet
         - and its location using the `href` attribute.
+
+
+<h2 id="c1b8822d870403c4cc5ba08ba1b9b546"></h2>
 
 
 ### 2.17 Conflict Resolution
@@ -727,6 +821,9 @@ h1 {
         - **Avoid using !important unless you absolutely have to!**. It leads to nightmare.
 
 
+<h2 id="1417d1be7a57c828a6af9c2753faae90"></h2>
+
+
 ### 2.18 Styling Text
 
 - font family
@@ -763,7 +860,13 @@ h1 {
         - PS. now the font-size in this div, is 240% large.  Why not `2m` override `120%` ? 
             - That is kind of where the game of the relative sizing.  They don't have an overriding effect, they have a **cumulative** effect instead.
 
+<h2 id="4bd507279265ea26e3ff1179790a80b7"></h2>
+
+
 ### -- The Box Model and Layout --
+
+<h2 id="abd7dc5c80c72e29b2eee3cd3c0c7d78"></h2>
+
 
 ### 2.19 The Box Model
 
@@ -835,6 +938,9 @@ h1 {
         ```
 
 
+<h2 id="55564951a2060cde6320d03887d7cdea"></h2>
+
+
 ### 2.20 The background Property
 
 ```css
@@ -848,6 +954,9 @@ h1 {
     /* background:  url("xxx.png") no-repeat  top right blue; /* put together */
 }
 ```
+
+
+<h2 id="8530d9fda0ebcc0e0d8e9e153931da3a"></h2>
 
 
 ### 2.21 Positioning Elements by Floating
@@ -1016,6 +1125,9 @@ section {
     - To resume normal document flow, use the **clear** property
 
 
+<h2 id="ad2a919d3751f45696dda50b54c70ded"></h2>
+
+
 ### 2.22 Relative and Absolute Element Positioning
 
 - Static Positioning (default)
@@ -1053,7 +1165,13 @@ Absolute Positioning Element is taken out of normal document flow.
 </details>
 
 
+<h2 id="b227c190d97886d7100f1a6412165474"></h2>
+
+
 ### -- Introduction to Responsive Design
+
+<h2 id="23d37412a01263f81cfb0aa9bed66201"></h2>
+
 
 ### 2.23 Media Queries
 
@@ -1176,6 +1294,9 @@ p {
 ```
 
 </details>
+
+
+<h2 id="231c665e5cdd84530dcdcce59571f704"></h2>
 
 
 ### 2.24 Responsive Design
@@ -1309,7 +1430,13 @@ p {
 </details>
 
 
+<h2 id="5d936cee2711b61f0cd5d9e2513e73fa"></h2>
+
+
 ### -- Twitter Bootstrap --
+
+<h2 id="91fa20c155a7637398afbe3fa1d70045"></h2>
+
 
 ### 2.25 Introduction to Twitter Bootstrap
 
@@ -1344,6 +1471,9 @@ p {
     </body>
     </html>
     ```
+
+<h2 id="da8b77a4befed25e1250a8c43b01654d"></h2>
+
 
 ### 2.26 The Bootstrap Grid System
 
