@@ -32,4 +32,19 @@
     - escape ( or select other object that is not in this group)
 
 
+## Text and Fonts
+
+- modify positions of some specific characters in a text
+    - selet those characters ( line wise by default ) , then hold Alt key  + arrow keys
+- more tools
+    - menu/Extensions/Text/
+        - capitalize, lowercase, uppercase, split ...
+    - menu/Text/Put on Path
+        - then menu/Path/Object to path , to finalize it. ( you now can remove the object used to path )
+    - how to put the text on the path inside a circle  ?
+        - Put on Path
+        - flip horizontally
+        - but the letters are too close, choose the text tool, set the letter space.
+
+
 
