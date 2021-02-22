@@ -83,14 +83,16 @@
     - Number : double-precision 64-bit
     - String
     - Boolean
-    - Symbol (new in ES2015)
+    - Symbol (new in ES6 2015)
     - Object
         - Function
         - Array 
         - Date
         - RegExp
     - null
+        - lack of value
     - undefined
+        - lack of definition
 
 - And there are some built-in Error types as well.
 
@@ -162,7 +164,7 @@ isFinite(NaN); // false
 
 - javascript 区分 null 和 undefined
 - boolean  ( support `&& || !` , **`&& ||` 更像python里面的 and / or**  )
-    1. false, 0, empty strings (""), NaN, null, and undefined all become false.
+    1. **false, 0, empty strings (""), NaN, null, and undefined** all become false.
     2. All other values become true.
 
 ```
@@ -217,6 +219,47 @@ for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
     - **in JavaScript, blocks do not have scope; only functions have a scope**. 
     - So if a variable is defined using var in a compound statement (for example inside an if control structure), it will be visible to the entire function. 
     - However, starting with ECMAScript 2015, let and const declarations allow you to create block-scoped variables.
+
+
+<details>
+<summary>
+Scope Chain
+</summary>
+
+- Everything is executed in an Execution Context
+- Function invocation creates a new Execution Context
+- Each Execution Context has:
+    - It's own Variable Environment
+    - Special 'this' object
+    - Reference to its Outer Environment
+- Global scope does not have an Outer Environment as it's the most outer there is.
+
+- How scope chain works
+    - Referenced ( **not defined** ) variable will be searched for in its **current** scope first.
+        - If not found, the **Outer** Reference will be searched, etc
+    - This will keep going until the Global scope.
+        - If not found in Global scope, the variable is *undefined*.
+- Example
+    ```javascript
+    var x = 2;
+    A();
+
+    function A() {
+        var x = 5;
+        B();
+    }
+
+    function B() {
+        console.log(x)
+    }
+
+    // Result: x=2
+    ```
+    - Even though *B* is called within *A*, and *A*  has its own *x*, what actually matters as far as resolving where x is coming from is its **outer reference**. 
+    - And *B* is defined within the global scope. Therefore, the outer reference of function *B* is the global scope, not function *A*. 
+
+
+</details>
 
 <h2 id="b3c5827f54218753bb2c3338236446c2"></h2>
 
@@ -662,66 +705,62 @@ var s = new Person('Simon', 'Willison');
 
 - 我们的 Person 看起来已经不错了。但是每次创建一个  Person 对象，我们就会创建一个全新的 function 对象。
     - function 应该是共享的才好
-
-```
-// try 1
-function personFullName() {
-  return this.first + ' ' + this.last;
-}
-function Person(first, last) {
-  this.first = first;
-  this.last = last;
-  this.fullName = personFullName;
-}
+    ```javascript
+    // try 1
+    function personFullName() {
+      return this.first + ' ' + this.last;
+    }
+    function Person(first, last) {
+      this.first = first;
+      this.last = last;
+      this.fullName = personFullName;
+    }
 ```
 
 - 更好的做法:
-
-```
-function Person(first, last) {
-  this.first = first;
-  this.last = last;
-}
-Person.prototype.fullName = function() {
-  return this.first + ' ' + this.last;
-};
-```
+    ```javascript
+    function Person(first, last) {
+      this.first = first;
+      this.last = last;
+    }
+    Person.prototype.fullName = function() {
+      return this.first + ' ' + this.last;
+    };
+    ```
 
 - **Person.prototype** is an object shared by all instances of Person.
     - 当你尝试 访问 没有设置的 Person属性时， Javascript 都会检查 Person.prototype 看属性是否存在。
 
 - Interestingly, you can also add things to the prototype of built-in JavaScript objects.
+    ```javascript
+    var s = 'Simon';
+    s.reversed(); // TypeError on line 1: s.reversed is not a function
 
-```
-var s = 'Simon';
-s.reversed(); // TypeError on line 1: s.reversed is not a function
+    String.prototype.reversed = function() {
+      var r = '';
+      for (var i = this.length - 1; i >= 0; i--) {
+        r += this[i];
+      }
+      return r;
+    };
 
-String.prototype.reversed = function() {
-  var r = '';
-  for (var i = this.length - 1; i >= 0; i--) {
-    r += this[i];
-  }
-  return r;
-};
+    s.reversed(); // nomiS
 
-s.reversed(); // nomiS
-
-'This can now be reversed'.reversed(); // desrever eb won nac sihT
-```
+    'This can now be reversed'.reversed(); // desrever eb won nac sihT
+    ```
 
 - the prototype forms part of a chain
     - The root of that chain is Object.prototype, whose methods include toString() 
     - This is useful for debugging our Person objects:
+    ```javascript
+    var s = new Person('Simon', 'Willison');
+    s.toString(); // [object Object]
 
-```
-var s = new Person('Simon', 'Willison');
-s.toString(); // [object Object]
-
-Person.prototype.toString = function() {
-  return '<Person: ' + this.fullName() + '>';
-}
-s.toString(); // "<Person: Simon Willison>"
-```
+    Person.prototype.toString = function() {
+      return '<Person: ' + this.fullName() + '>';
+    }
+    s.toString(); // "<Person: Simon Willison>"
+    ```
 
 - Remember how avg.apply() had a null first argument? 
     - The first argument to apply() is the object that should be treated as 'this'.
@@ -1030,5 +1069,51 @@ class Lion extends Cat {
 npm install -g uglify-js
 uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
 ```
+
+
+## Where to Place Javascript Code
+
+```html
+<head>
+<script src="js/script.js"> </script>
+<script> 
+    ...
+</script>
+</head>
+
+<body>
+
+<script src="js/script.js"> </script>
+<script>
+    ...
+</script>
+
+</body>
+
+```
+
+
+## Fake Namespace
+
+- Immediately Invoked Function Expressions are usually used to place code into its own execution context not to conflict with the global scope.
+    - This can be used create fake namespace
+    ```javascript
+    // Immediately Invoked Function
+    (
+        function(window) {
+            var name = "John";
+            var greeting = "Hi ";
+            var sayHi = function() {
+                console.log( greeting + name )
+            }
+
+            window.sayHi = sayHi;
+        }
+
+    )(global);   // for nodejs
+    // )(window);  // for browser
+
+    sayHi();
+    ```
 
 
