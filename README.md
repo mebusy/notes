@@ -124,6 +124,7 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [HTML,CSS](dev_notes/web_dev.md) | 
+[Coding A Static Restaurant Site](dev_notes/web_dev_3.md) |
 
 
 <h2 id="55f37d1fd483f6a85379640fe51aafa8"></h2>

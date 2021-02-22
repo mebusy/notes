@@ -139,9 +139,6 @@
     - `font-size: 5vw; /* 1vw = 1% of viewport width */`
 
 
-### -- Coding the Homepage and the Footer
-
-### 3.37 Coding the Menu Categories
 
 
 
