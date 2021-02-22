@@ -236,6 +236,33 @@ Which one does it with the shortest distance ? It's gonna be the one that connec
 Keep it in the back of you mind: **Gradient is always perpendicular to contour lines**.
 
 
+## Multivariable chain rule
+
+- Here are 3 functions
+    1. `f(x,y) = x²y`   (in yellow)
+    2. `x(t) = cos(t)`  (in blue)
+    3. `y(t) = sin(t)`
+- What I want to do is start thinking about the composition of them.
+    - `f( x(t), y(t) )`   (in green)
+    - So the image that you might have in your head for something like this
+        - *t* is just living on a number line
+        - *x,y* is just the plane
+        - and the out put *f*
+    - for this whole composition of functions, you're thinking of xₜ,yₜ as taking a single point in t, and kind of moving it over to 2D space somewhere, and then from there, our multivariable function takes that back down.
+        - ![](../imgs/multivar_calculus_chain_rule_1.png)
+    - And what I want to know is what's the derivative of this function df/dt. It's just an ordinary derivative, not a partial derivative, because this is just a single variable function.
+        - How do you take this dirivative ? And there's a special rule for this, it's called the multivariable chain rule. But **you don't actually need it**.
+        - d/dt f(cos²(t)sin(t) ) = cos²(t)cos(t) + sin(t)( 2(cos(t))(-sint(t)) )
+    - We can also solve it by using partial derivative.
+        - ∂f/∂x = 2xy
+        - ∂f/∂y = x²
+        - dx/dt = -sin(t)
+        - dy/dt = cos(t)
+    - **multivariable chain rule**
+        - ![](../imgs/multivar_calculus_chain_rule_2.png)
+        - ![](../imgs/multivar_calculus_chain_rule_3.png)
+
+
 
 
 
