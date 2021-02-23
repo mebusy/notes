@@ -1100,20 +1100,22 @@ uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
     ```javascript
     // Immediately Invoked Function
     (
-        function(window) {
-            var name = "John";
-            var greeting = "Hi ";
-            var sayHi = function() {
-                console.log( greeting + name )
+        function(global) {
+
+            function sayHi() {
+                var name = "John";
+                var greeting = "Hi ";
+                var sayHi = function() {
+                    console.log( greeting + name )
             }
 
-            window.sayHi = sayHi;
         }
+
+        // Export to the global object
+        global.sayHi = sayHi;
 
     )(global);   // for nodejs
     // )(window);  // for browser
-
-    sayHi();
     ```
 
 
