@@ -30,6 +30,8 @@
             - [Super class calls with super](#e5b796fae796980b73c254cccd1851d5)
 - [tips](#e4c9479b11955648dad558fe717a4eb2)
     - [compress js code](#1102ba00437059603c9604fb050a22f8)
+    - [Where to Place Javascript Code](#e59dff2a7bc095a7b28e848acf35037f)
+    - [Fake Namespace](#8a1b8ba8dbe3ebda08deb8be54811e88)
 
 ...menuend
 
@@ -1071,6 +1073,9 @@ uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
 ```
 
 
+<h2 id="e59dff2a7bc095a7b28e848acf35037f"></h2>
+
+
 ## Where to Place Javascript Code
 
 ```html
@@ -1091,6 +1096,9 @@ uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
 </body>
 
 ```
+
+
+<h2 id="8a1b8ba8dbe3ebda08deb8be54811e88"></h2>
 
 
 ## Fake Namespace

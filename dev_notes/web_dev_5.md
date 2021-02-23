@@ -1,7 +1,32 @@
+...menustart
+
+- [Web Dev](#e038f9e554416040d7422224d511efc8)
+    - [5. Using Javascript to Build Web Applications](#971c3edf4a623656caf1415857320a21)
+        - [5.53 DOM Manipulation](#d6d94075fb5693e67ff2de8dc28db24c)
+        - [5.54 Handling Events](#6881202a8d5a42748445262c96828cd8)
+        - [5.55 The 'event' Argument](#d13624125089387d2440648bcb744b0d)
+        - [-- Introduction to Ajax --](#e6a17d9f8a09a9d0ef440dc03373f839)
+        - [5.57 Ajax Basics](#22a138df746af464d4bb0714165920ee)
+        - [5.58 Processing JSON](#99087eec50334e0324a44b8fca0e8a9c)
+        - [5.59 jQuery](#e0fc39e216d6b8be690711f8c6d5cde3)
+        - [5.60 Dynamically Loading Home View Content](#e4f31e3ba5bc19547905cf6f376e1257)
+        - [5.63 Changing 'active' Button Style Through Javascript](#66281d7e27c790e5a010b5790aa8e0cd)
+
+...menuend
+
+
+<h2 id="e038f9e554416040d7422224d511efc8"></h2>
+
 
 # Web Dev
 
+<h2 id="971c3edf4a623656caf1415857320a21"></h2>
+
+
 ## 5. Using Javascript to Build Web Applications
+
+<h2 id="d6d94075fb5693e67ff2de8dc28db24c"></h2>
+
 
 ### 5.53 DOM Manipulation
 
@@ -62,6 +87,9 @@
     // document.querySelector( "h1" )   // will return the first matching element
     // document.queryAllSelector( "h1" )   // a list of all matching element
     ```
+
+
+<h2 id="6881202a8d5a42748445262c96828cd8"></h2>
 
 
 ### 5.54 Handling Events
@@ -125,13 +153,22 @@
         - This function will get executed when this Event files called, dom content loaded and that will happen before any images, or any CSS, or any other script is loaded. 
 
 
+<h2 id="d13624125089387d2440648bcb744b0d"></h2>
+
+
 ### 5.55 The 'event' Argument
 
 - When mouse-left clicking the button, the object that *event* is `MouseEvent`.
     - PS. you would not get *event* if you bind the function via `on-event` attributes in HTML.
 
 
+<h2 id="e6a17d9f8a09a9d0ef440dc03373f839"></h2>
+
+
 ### -- Introduction to Ajax --
+
+<h2 id="22a138df746af464d4bb0714165920ee"></h2>
+
 
 ### 5.57 Ajax Basics
 
@@ -223,6 +260,9 @@ global.$ajaxUtils = ajaxUtils;
     ```
 
 
+<h2 id="99087eec50334e0324a44b8fca0e8a9c"></h2>
+
+
 ### 5.58 Processing JSON
 
 - converts from json string to object
@@ -312,6 +352,9 @@ global.$ajaxUtils = ajaxUtils;
 </details>
 
 
+<h2 id="e0fc39e216d6b8be690711f8c6d5cde3"></h2>
+
+
 ### 5.59 jQuery
 
 - The name of the jQuery function is `$`.
@@ -340,6 +383,9 @@ global.$ajaxUtils = ajaxUtils;
     });
     ```
 - 
+
+<h2 id="e4f31e3ba5bc19547905cf6f376e1257"></h2>
+
 
 ### 5.60 Dynamically Loading Home View Content
 
@@ -375,6 +421,9 @@ var showLoading = function (selector) {
       false);
     });
     ```
+
+
+<h2 id="66281d7e27c790e5a010b5790aa8e0cd"></h2>
 
 
 ### 5.63 Changing 'active' Button Style Through Javascript

@@ -10,6 +10,7 @@
     - [Directional derivative](#5b6aea879e0205053b5c2ead9de77092)
     - [Why the gradient is the direction of steepest ascent](#b4e20dd468bf9adb89509b770119bd85)
     - [Gradient and contour maps](#9201e0fe2c81168aca84873317f7d525)
+    - [Multivariable chain rule](#c6b56a77a991e01195baa8b3a6c425a1)
 
 ...menuend
 
@@ -234,6 +235,9 @@ Question:  of all of the vectors that move from this output of 2 , up to the val
 Which one does it with the shortest distance ? It's gonna be the one that connects them pretty much perpendicular to the original line. Because if you think about these as lines, and the more you zoom in, the more the pretty much look like parallel lines, the path that connects one to the other is gonna be perpendicular to both of them.
 
 Keep it in the back of you mind: **Gradient is always perpendicular to contour lines**.
+
+
+<h2 id="c6b56a77a991e01195baa8b3a6c425a1"></h2>
 
 
 ## Multivariable chain rule

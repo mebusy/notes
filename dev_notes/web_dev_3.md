@@ -1,8 +1,27 @@
+...menustart
+
+- [Web Dev](#e038f9e554416040d7422224d511efc8)
+    - [Build A Site](#7c966884500df50e99e58ad85756a2e0)
+        - [3.27 Visit with the Client](#25780d343c9a7a3ced213f0ceae7143f)
+        - [3.30 Coding Basics of Navbar Header](#b827c8b2fe3c152fc53d255717668023)
+
+...menuend
+
+
+<h2 id="e038f9e554416040d7422224d511efc8"></h2>
+
+
 # Web Dev
 
 [bootstrap 3.4 Glyphicons](https://getbootstrap.com/docs/3.4/components/)
 
+<h2 id="7c966884500df50e99e58ad85756a2e0"></h2>
+
+
 ## Build A Site
+
+<h2 id="25780d343c9a7a3ced213f0ceae7143f"></h2>
+
 
 ### 3.27 Visit with the Client
 
@@ -10,6 +29,9 @@
     - It's YOUR JOB to ask questions to figure it out
 - LESS (information) IS MORE!
     - Encourage your client not to cram information on the site
+
+
+<h2 id="b827c8b2fe3c152fc53d255717668023"></h2>
 
 
 ### 3.30 Coding Basics of Navbar Header
