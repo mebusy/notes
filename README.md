@@ -123,8 +123,8 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[HTML,CSS](dev_notes/web_dev.md) | [reintro JS](dev_notes/reintro_JS.md) | 
-[Coding A Static Restaurant Site](dev_notes/web_dev_3.md) |
+[HTML,CSS](dev_notes/web_dev.md) | [reintro JS](dev_notes/reintro_JS.md) | [DOM Manipulation](dev_notes/web_dev_5.md) |  [Coding A Static Restaurant Site](dev_notes/web_dev_3.md)
+
 
 
 <h2 id="55f37d1fd483f6a85379640fe51aafa8"></h2>

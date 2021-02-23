@@ -143,13 +143,264 @@
 - ![](../imgs/ajax_how_work.png)
 - ![](../imgs/ajax_how_work_2.png)
 
+<details>
+<summary>
+ajax-utils.js
+</summary>
+
+```javascript
+(function (global) {
+
+// Set up a namespace for our utility
+var ajaxUtils = {};
 
 
+// Returns an HTTP request object
+function getRequestObject() {
+  if (global.XMLHttpRequest) {
+    return (new XMLHttpRequest());
+  } 
+  else if (global.ActiveXObject) {
+    // For very old IE browsers (optional)
+    return (new ActiveXObject("Microsoft.XMLHTTP"));
+  } 
+  else {
+    global.alert("Ajax is not supported!");
+    return(null); 
+  }
+}
 
 
+// Makes an Ajax GET request to 'requestUrl'
+ajaxUtils.sendGetRequest = 
+  function(requestUrl, responseHandler) {
+    var request = getRequestObject();
+    request.onreadystatechange = 
+      function() { 
+        handleResponse(request, responseHandler); 
+      };
+    // true: async, false: sync
+    request.open("GET", requestUrl, true);
+    request.send(null); // for POST only
+  };
 
 
+// Only calls user provided 'responseHandler'
+// function if response is ready
+// and not an error
+function handleResponse(request,
+                        responseHandler) {
+  if ((request.readyState == 4) &&
+     (request.status == 200)) {
+    responseHandler(request);
+  }
+}
 
 
+// Expose utility to the global object
+
+// just like jQuery uses `$`, we use `$` as well.
+global.$ajaxUtils = ajaxUtils;
+
+
+})(window);
+
+
+```
+
+</details>
+
+- Sending Ajax request
+    ```javascript
+    // Call server to get the name
+    $ajaxUtils
+      .sendGetRequest("data/name.txt", 
+        function (request) {
+          var name = request.responseText;
+          document.querySelector("#content")
+            .innerHTML = "<h2>Hello " + name + "!</h2>";
+        });    
+    ```
+
+
+### 5.58 Processing JSON
+
+- converts from json string to object
+    ```javascrip
+    var obj = JSON.parse( jsonString ) ;
+    ```
+- converts from object to json string
+    ```javascript
+    var str = JSON.stringify( obj ) ;
+    ```
+
+
+<details>
+<summary>
+ajax-utils.js improved by JSON support
+</summary>
+
+```javascript
+(function (global) {
+
+// Set up a namespace for our utility
+var ajaxUtils = {};
+
+
+// Returns an HTTP request object
+function getRequestObject() {
+  if (global.XMLHttpRequest) {
+    return (new XMLHttpRequest());
+  } 
+  else if (global.ActiveXObject) {
+    // For very old IE browsers (optional)
+    return (new ActiveXObject("Microsoft.XMLHTTP"));
+  } 
+  else {
+    global.alert("Ajax is not supported!");
+    return(null); 
+  }
+}
+
+
+// Makes an Ajax GET request to 'requestUrl'
+ajaxUtils.sendGetRequest = 
+  function(requestUrl, responseHandler, isJsonResponse) {
+    var request = getRequestObject();
+    request.onreadystatechange = 
+      function() { 
+        handleResponse(request, 
+                       responseHandler,
+                       isJsonResponse); 
+      };
+    request.open("GET", requestUrl, true);
+    request.send(null); // for POST only
+  };
+
+
+// Only calls user provided 'responseHandler'
+// function if response is ready
+// and not an error
+function handleResponse(request,
+                        responseHandler,
+                        isJsonResponse) {
+  if ((request.readyState == 4) &&
+     (request.status == 200)) {
+
+    // Default to isJsonResponse = true
+    if (isJsonResponse == undefined) {
+      isJsonResponse = true;
+    }
+
+    if (isJsonResponse) {
+      responseHandler(JSON.parse(request.responseText));
+    }
+    else {
+      responseHandler(request.responseText);
+    }
+  }
+}
+
+
+// Expose utility to the global object
+global.$ajaxUtils = ajaxUtils;
+
+
+})(window);
+```
+
+</details>
+
+
+### 5.59 jQuery
+
+- The name of the jQuery function is `$`.
+    - example
+    ```javascript
+    $( // Same as document.addEventListener("DOMContentLoaded"...
+      function () { 
+
+      // Same as document.querySelector("#navbarToggle").addEventListener("blur",...
+      $("#navbarToggle").blur(function (event) {
+        var screenWidth = window.innerWidth; // browse window, not entire monitor screen
+        if (screenWidth < 768) {
+          $("#collapsable-nav").collapse('hide'); // collapse function is from bootstrap
+        }
+      });
+
+      // In Firefox and Safari, the click event doesn't retain the focus
+      // on the clicked button. Therefore, the blur event will not fire on
+      // user clicking somewhere else in the page and the blur event handler
+      // which is set up above will not be called.
+      // Refer to issue #28 in the repo.
+      // Solution: force focus on the element that the click event fired on
+      $("#navbarToggle").click(function (event) {
+        $(event.target).focus();
+      });
+    });
+    ```
+- 
+
+### 5.60 Dynamically Loading Home View Content
+
+```javascript
+// Convenience function for inserting innerHTML for 'select'
+var insertHtml = function (selector, html) {
+  var targetElem = document.querySelector(selector);
+  targetElem.innerHTML = html;
+};
+
+// Show loading icon inside element identified by 'selector'.
+var showLoading = function (selector) {
+  var html = "<div class='text-center'>";
+  html += "<img src='images/ajax-loader.gif'></div>";
+  insertHtml(selector, html);
+};
+
+```
+
+- where to get that `ajax-loader.gif` ?
+    - http://ajaxload.info/
+
+- Issue Ajax request
+    ```javascript
+    // On first load, show home view
+    showLoading("#main-content");
+    $ajaxUtils.sendGetRequest(
+      homeHtml,
+      function (responseText) {
+        document.querySelector("#main-content")
+          .innerHTML = responseText;
+      },
+      false);
+    });
+    ```
+
+
+### 5.63 Changing 'active' Button Style Through Javascript
+
+```html
+<li id="navHomeButton" class="visible-xs active">
+  <a href="index.html">
+    <span class="glyphicon glyphicon-home"></span> Home</a>
+</li>
+```
+
+```javascript
+// Remove the class 'active' from home and switch to Menu button
+var switchMenuToActive = function () {
+  // Remove 'active' from home button
+  var classes = document.querySelector("#navHomeButton").className;
+  classes = classes.replace(new RegExp("active", "g"), "");
+  document.querySelector("#navHomeButton").className = classes;
+
+  // Add 'active' to menu button if not already there
+  classes = document.querySelector("#navMenuButton").className;
+  if (classes.indexOf("active") == -1) {
+    classes += " active";
+    document.querySelector("#navMenuButton").className = classes;
+  }
+};
+```
 
 
