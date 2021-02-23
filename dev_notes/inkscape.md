@@ -68,5 +68,20 @@
         - flip horizontally
         - but the letters are too close, choose the text tool, set the letter space.
 
+## Drawing Lines and Paths vs Objects
+
+- FreeHand Drawing tool creates path, while tools like rectange, circle creating objects.
+- Draw Line
+    - Recommended way is to use `Bezier Curve Tools`
+- We can convert a object to a path
+    - menu/Path/Object to Path
+    - We can also add node to path, by double clicking on the path (edge).
+
+
+
+
+
+
+
 
 
