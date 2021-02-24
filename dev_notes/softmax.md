@@ -63,7 +63,7 @@ array([  1.26641655e-14,   5.60279641e-09,   9.99999994e-01])
 ```
 
 ```python
-# vvectorized version
+# Vectorized version
 # f: normally a 2D array, X*W ( NxC )
 #   N: number of training example
 #   C: number of classes
