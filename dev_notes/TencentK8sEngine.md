@@ -367,6 +367,11 @@ kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 
 ## Duplicate service , deployment one namespece to another namespace
 
+<details>
+<summary>
+kubectl command ...
+</summary>
+
 ```bash
 
 cur_ns="umc-hse-dev"
@@ -395,6 +400,7 @@ kbctl -n $cur_ns get deploy --export -o yaml | sed -e "s/namespace: $cur_ns/name
 # try container repository trigger
 ```
 
+</details>
 
 
 
