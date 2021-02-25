@@ -365,6 +365,38 @@ docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
 kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 ```
 
+## Duplicate service , deployment one namespece to another namespace
+
+```bash
+
+cur_ns="umc-hse-dev"
+dst_ns="umc-hse-dev-vivo"
+
+alias kbctl="kubectl_tke --context=umc-k8s-cluster"
+
+# create namespace
+kbctl create namespace $dst_ns
+
+# 先去webpage   namespace下发一个secret 凭证
+
+# dup service and then apply
+kbctl -n $cur_ns get svc --export -o yaml | sed -e "s/namespace: $cur_ns/namespace: $dst_ns/"  | yq eval 'del(.items[].metadata.resourceVersion, .items[].metadata.uid, .items[].metadata.annotations, .items[].metadata.creationTimestamp, .items[].metadata.selfLink, .items[].spec.clusterIP, .items[].spec.ports[].nodePort )' - |  kbctl apply -f -
+
+# dup role, and role banding, if necessary
+kbctl -n $cur_ns get role,rolebinding --export -o yaml | sed -e "s/namespace: $cur_ns/namespace: $dst_ns/"  | yq eval 'del(.items[].metadata.resourceVersion, .items[].metadata.uid, .items[].metadata.annotations, .items[].metadata.creationTimestamp, .items[].metadata.selfLink)' - |  kbctl apply -f -
+
+
+# dup deployment and then apply
+kbctl -n $cur_ns get deploy --export -o yaml | sed -e "s/namespace: $cur_ns/namespace: $dst_ns/"  | yq eval 'del(.items[].metadata.resourceVersion, .items[].metadata.uid, .items[].metadata.annotations, .items[].metadata.creationTimestamp, .items[].metadata.selfLink, .items[].status)' - |  kbctl apply -f -
+
+
+# update some other info, like mysql
+
+# try container repository trigger
+```
+
+
+
 
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
 
