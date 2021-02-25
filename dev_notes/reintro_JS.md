@@ -116,7 +116,7 @@
     - parseFloat() always uses base 10. 
 - You can also use the unary + operator to convert values to numbers:
 
-```
+```javascript
 + '42';   // 42
 + '010';  // 10
 + '0x10'; // 16
@@ -124,7 +124,7 @@
 
 - A special value called `NaN` (short for "Not a Number") is returned if the string is non-numeric:
 
-```
+```javascript
 parseInt('hello', 10); // NaN
 ```
 
@@ -132,14 +132,14 @@ parseInt('hello', 10); // NaN
     - `isNaN(NaN); // true`
 - JavaScript also has the special values Infinity and -Infinity:
 
-```
+```javascript
 1 / 0; //  Infinity
 -1 / 0; // -Infinity
 ```
 
 - You can test for Infinity, -Infinity and NaN values using the built-in isFinite() function
 
-```
+```javascript
 isFinite(1 / 0); // false
 isFinite(-Infinity); // false
 isFinite(NaN); // false
@@ -152,7 +152,7 @@ isFinite(NaN); // false
 
 - sequences of Unicode characters , More accurately, they are sequences of UTF-16 code units
 
-```
+```javascript
 'hello'.length; // 5
 'hello'.charAt(0); // "h"
 'hello, world'.replace('hello', 'goodbye'); // "goodbye, world"
@@ -169,7 +169,7 @@ isFinite(NaN); // false
     1. **false, 0, empty strings (""), NaN, null, and undefined** all become false.
     2. All other values become true.
 
-```
+```javascript
 // rarely necessary, 
 // as JavaScript will silently perform this conversion
 Boolean('');  // false
@@ -178,7 +178,7 @@ Boolean(234); // true
 
 - The && and || operators use short-circuit logic
 
-```
+```javascript
 var name = o && o.getName();
 var name = cachedName || (cachedName = getName());
 ```
@@ -199,7 +199,7 @@ var name = cachedName || (cachedName = getName());
     - var 
         - available from the function it is declared in.
 
-```
+```javascript
 // myLetVariable is *not* visible out here
 for (let myLetVariable = 0; myLetVariable < 5; myLetVariable++) {
   // myLetVariable is only visible in here
@@ -207,7 +207,7 @@ for (let myLetVariable = 0; myLetVariable < 5; myLetVariable++) {
 // myLetVariable is *not* visible out here
 ```
 
-```
+```javascript
 // myVarVariable *is* visible out here
 
 for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) {
@@ -271,21 +271,21 @@ Scope Chain
 - `+, -, *, / , % `
 - `>= , <= , ==`
 
-```
+```javascript
 '3' + 4 + 5;  // "345"
  3 + 4 + '5'; // "75"
 ```
 
 - `==` operator performs type coercion if you give it different types
 
-```
+```javascript
 123 == '123'; // true
 1 == true; // true
 ```
 
 - To avoid type coercion, use the triple-equals operator:
 
-```
+```javascript
 123 === '123'; // false
 1 === true;    // false
 ```
@@ -311,7 +311,7 @@ Scope Chain
 
 ### if / eles if / else 
 
-```
+```javascript
 if (name == 'puppies') {
   name += ' woof';
 } else if (name == 'kittens') {
@@ -326,7 +326,7 @@ if (name == 'puppies') {
 
 ### while / do-while
 
-```
+```javascript
 while (true) {
   // an infinite loop!
 }
@@ -342,7 +342,7 @@ do {
 
 ### for 
 
-```
+```javascript
 // for loop is the same as that in C and Java
 for (var i = 0; i < 5; i++) {
   // Will execute 5 times
@@ -356,7 +356,7 @@ for (var i = 0; i < 5; i++) {
 
 - JavaScript also contains two other prominent for loops: for...of
 
-```
+```javascript
 for (let value of array) {
   // do something with value
 }
@@ -365,7 +365,7 @@ for (let value of array) {
 
 - and for...in:
 
-```
+```javascript
 for (let property in object) {
   // do something with object property
 }
@@ -380,7 +380,7 @@ for (let property in object) {
 
 - JavaScript has a ternary operator for conditional expressions:
 
-```
+```javascript
 var allowed = (age > 18) ? 'yes' : 'no';
 ```
 
@@ -391,7 +391,7 @@ var allowed = (age > 18) ? 'yes' : 'no';
 
 - The switch statement can be used for multiple branches based on a number or string:
 
-```
+```javascript
 switch (action) {
   case 'draw':
     drawIt();
@@ -413,7 +413,7 @@ switch (action) {
     - As such, they are similar to: Dictionaries in Python.
 - create an empty object:
 
-```
+```javascript
 var obj = new Object();
 // or
 var obj = {};
@@ -421,7 +421,7 @@ var obj = {};
 
 - This syntax is also the **core of JSON format** and should be preferred at all times.
 
-```
+```javascript
 var obj = {
   name: 'Carrot',
   for: 'Max', // 'for' is a reserved word, use '\_for' instead.
@@ -441,7 +441,7 @@ obj['for'] = 'Simon'; // works fine
 
 - The following example creates an object prototype, Person and an instance of that prototype, You.
 
-```
+```javascript
 function Person(name, age) {
   this.name = name;
   this.age = age;
@@ -457,7 +457,7 @@ var you = new Person('You', 24);
 
 ## Arrays
 
-```
+```javascript
 var a = new Array();
 a[0] = 'dog';
 a[1] = 'cat';
@@ -465,7 +465,7 @@ a[2] = 'hen';
 a.length; // 3
 ```
 
-```
+```javascript
 var a = ['dog', 'cat', 'hen'];
 a.length; // 3
 ```
@@ -473,7 +473,7 @@ a.length; // 3
 - Note that array.length isn't necessarily the number of items in the array. 
     - the length of the array is one more than the highest index.
 
-```
+```javascript
 var a = ['dog', 'cat', 'hen'];
 a[100] = 'fox';
 a.length; // 101
@@ -485,7 +485,7 @@ a.length; // 101
     - Therefore this loop type is not recommended for arrays.
 - Another way of iterating over an array that was added with ECMAScript 5 is forEach():
 
-```
+```javascript
 ['dog', 'cat', 'hen'].forEach(function(currentValue, index, array) {
   // Do something with currentValue or array[index]
 });
@@ -493,7 +493,7 @@ a.length; // 101
 
 - append an item
 
-```
+```javascript
 a.push(item);
 ```
 
@@ -524,7 +524,7 @@ a.unshift(item1[, item2[, ...[, itemN]]]) | Prepends items to the start of the a
 
 - The most basic function couldn't be much simpler:
 
-```
+```javascript
 function add(x, y) {
   var total = x + y;
   return total;
@@ -533,7 +533,7 @@ function add(x, y) {
 
 - That may seem a little silly, but functions have access to an additional variable inside their body called *arguments*
 
-```
+```javascript
 function add() {
   var sum = 0;
   for (var i = 0, j = arguments.length; i < j; i++) {
@@ -548,7 +548,7 @@ add(2, 3, 4, 5); // 14
 - This is pretty useful, but it does seem a little verbose
     - you can also use **rest parameter operator** to do same thing
 
-```
+```javascript
 function avg(...args) {
   var sum = 0;
   for (let value of args) {
@@ -563,7 +563,7 @@ avg(2, 3, 4, 5); // 3.5
 - but how do you calc average on all array's elements ?
     - you may re-write another function like :
 
-```
+```javascript
 function avgArray(arr) { ... }  
 avgArray([2, 3, 4, 5]); // 3.5 
 ```
@@ -572,20 +572,20 @@ avgArray([2, 3, 4, 5]); // 3.5
     - Luckily, JavaScript lets you call a function with an arbitrary array of arguments,
     - using the apply() method of any function object.
 
-```
+```javascript
 avg.apply(null, [2, 3, 4, 5]); // 3.5
 ```
 
 - 你还可以使用 **spread operator**  把数组展开
 
-```
+```javascript
 const numbers = [1, 2, 3];
 avg( ...numbers )
 ```
 
 - anonymous functions
 
-```
+```javascript
 var avg = function() { ... }
 ```
 
@@ -593,7 +593,7 @@ var avg = function() { ... }
     - This enables all sorts of clever tricks. 
 - Here's a way of "hiding" some local variables — like block scope in C:
 
-```
+```javascript
 var a = 1;
 var b = 2;
 
@@ -610,7 +610,7 @@ b; // 2
     - You can use named IIFEs (Immediately Invoked Function Expressions)
     - see `counter` in above codes
 
-```
+```javascript
 var charsInBody = (function counter(elm) {
   if (elm.nodeType == 3) { // TEXT_NODE
     return elm.nodeValue.length;
@@ -632,7 +632,7 @@ var charsInBody = (function counter(elm) {
 - JavaScript is a prototype-based language that contains no class statement
 - Instead, JavaScript uses functions as classes. 
 
-```
+```javascript
 function makePerson(first, last) {
   return {
     first: first,
@@ -653,7 +653,7 @@ personFullName(s); // "Simon Willison"
 - What we really need is a way to attach a function to an object. 
     - Since functions are objects, this is easy:
 
-```
+```javascript
 function makePerson(first, last) {
   return {
     first: first,
@@ -673,7 +673,7 @@ s.fullName(); // "Simon Willison"
     - Used inside a function, `this` refers to the current object. 
 - Note that this is a frequent cause of mistakes
 
-```
+```javascript
 s = makePerson('Simon', 'Willison');
 var fullName = s.fullName;
 fullName(); // undefined undefined
@@ -682,7 +682,7 @@ fullName(); // undefined undefined
 - When we call fullName() alone, without using s.fullName(), `this` is bound to the global object.
 - We can take advantage of the this keyword to improve our makePerson function:
 
-```
+```javascript
 function Person(first, last) {
   this.first = first;
   this.last = last;
@@ -717,7 +717,7 @@ var s = new Person('Simon', 'Willison');
       this.last = last;
       this.fullName = personFullName;
     }
-```
+    ```
 
 - 更好的做法:
     ```javascript
@@ -768,7 +768,7 @@ var s = new Person('Simon', 'Willison');
     - The first argument to apply() is the object that should be treated as 'this'.
     - For example, here's a trivial implementation of *new*:
 
-```
+```javascript
 function trivialNew(constructor, ...args) {
   var o = {}; // Create an object
   constructor.apply(o, args);
@@ -776,7 +776,7 @@ function trivialNew(constructor, ...args) {
 }
 ```
 
-```
+```javascript
 // Calling
 var bill = trivialNew(Person, 'William', 'Orange');
 
@@ -787,7 +787,7 @@ var bill = new Person('William', 'Orange');
 - apply() has a sister function named `call`
     - which again lets you set `this` but takes an expanded argument list as opposed to an array.
 
-```
+```javascript
 function lastNameCaps() {
   return this.last.toUpperCase();
 }
@@ -811,7 +811,7 @@ s.lastNameCaps(); // WILLISON
 - An arrow function expression has a shorter syntax than a function expression and does not have its own `this, arguments, super, or new.target`. 
 - These function expressions are best suited for non-method functions, and they cannot be used as constructors.
 
-```
+```javascript
 var materials = [
   'Hydrogen',
   'Helium',
@@ -834,7 +834,7 @@ console.log(materials.map(material => material.length));
 
 #### Defining classes
 
-```
+```javascript
 class Rectangle {
   constructor(height, width) {
     this.height = height;
@@ -848,7 +848,7 @@ class Rectangle {
 
 #### Class expressions
 
-```
+```javascript
 // unnamed
 var Rectangle = class {
   constructor(height, width) {
@@ -883,7 +883,7 @@ console.log(Rectangle.name);
 - Prototype methods
     - see  method definitions
 
-```
+```javascript
 class Rectangle {
   constructor(height, width) {
     this.height = height;
@@ -906,7 +906,7 @@ console.log(square.area); // 100
 - Static methods
     - Static methods are called without instantiating their class and **cannot** be called through a class instance. 
 
-```
+```javascript
 class Point {
   constructor(x, y) {
     this.x = x;
@@ -928,7 +928,7 @@ console.log(Point.distance(p1, p2));
 
 - Instance properties must be defined inside of class methods:
 
-```
+```javascript
 class Rectangle {
   constructor(height, width) {
     this.height = height;
@@ -939,7 +939,7 @@ class Rectangle {
 
 - Static class-side properties and prototype data properties must be defined outside of the ClassBody declaration:
 
-```
+```javascript
 Rectangle.staticWidth = 20;
 Rectangle.prototype.prototypeWidth = 25;
 ```
@@ -949,7 +949,7 @@ Rectangle.prototype.prototypeWidth = 25;
 
 #### Sub classing with extends
 
-```
+```javascript
 class Animal {
   constructor(name) {
     this.name = name;
@@ -974,7 +974,7 @@ d.speak(); // Mitzie barks.
 
 - One may also extend traditional function-based "classes":
 
-```
+```javascript
 function Animal (name) {
   this.name = name;
 }
@@ -996,7 +996,7 @@ d.speak(); // Mitzie barks.
 - Note that classes cannot extend regular (non-constructible) objects. 
     - If you want to inherit from a regular object, you can instead use `Object.setPrototypeOf()`:
 
-```
+```javascript
 var Animal = {
   speak() {
     console.log(this.name + ' makes a noise.');
@@ -1027,7 +1027,7 @@ d.speak(); // Mitzie makes a noise.
     - you want these methods to return a parent Array object, 
     - instead of the MyArray object. The Symbol.species symbol lets you do this:
 
-```
+```javascript
 class MyArray extends Array {
   // Overwrite species to the parent Array constructor
   static get [Symbol.species]() { return Array; }
@@ -1047,7 +1047,7 @@ console.log(mapped instanceof Array);   // true
 
 - The super keyword is used to call corresponding methods of super class.
 
-```
+```javascript
 class Lion extends Cat {
   speak() {
     super.speak();
@@ -1067,7 +1067,7 @@ class Lion extends Cat {
 
 ## compress js code
 
-```
+```javascript
 npm install -g uglify-js
 uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
 ```
