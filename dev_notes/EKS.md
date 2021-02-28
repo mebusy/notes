@@ -350,13 +350,13 @@ For TLS loader balancer
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: umc-test-ingress-443
+  name: co-test-ingress-443
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
   labels:
-    k8s-app: umc-test-ingress-443
+    k8s-app: co-test-ingress-443
 spec:
   rules:
   - host: server1-test.domain.com

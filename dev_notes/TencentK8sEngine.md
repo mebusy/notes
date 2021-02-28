@@ -230,7 +230,7 @@ example: when this pod restart , before it really ready,  make 1 another service
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh", "-c", "_NS=umc-hse-dev && _APP=umc-hse-app  && replinum=`kubectl -n $_NS get deploy $_APP -o=jsonpath='{.status.replicas}'` && kubectl -n $_NS  scale  deployments/$_APP --replicas=$(($replinum-1)) && kubectl -n $_NS  scale  deployments/$_APP --replicas=$replinum"]
+              command: ["/bin/sh", "-c", "_NS=co-hse-dev && _APP=co-hse-app  && replinum=`kubectl -n $_NS get deploy $_APP -o=jsonpath='{.status.replicas}'` && kubectl -n $_NS  scale  deployments/$_APP --replicas=$(($replinum-1)) && kubectl -n $_NS  scale  deployments/$_APP --replicas=$replinum"]
 ```
 
 
@@ -350,10 +350,10 @@ $ kubectl get nodes \
 ## 清除不再使用的 image 
 
 ```
-docker images | grep "<none>" | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
+docker images | grep "<none>" | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 
 # more aggressive 
-docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
+docker images | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 ```
 
 <h2 id="145f750dc8c7bde1231227e5d027eafd"></h2>
@@ -362,7 +362,7 @@ docker images | grep umc-app-images | awk "{print \$3}" | xargs docker rmi
 ## 查找不是 running 状态的 pod
 
 ```
-kubectl_umc get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
+kubectl_co get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 ```
 
 ## Duplicate service , deployment one namespece to another namespace
@@ -374,10 +374,10 @@ kubectl command ...
 
 ```bash
 
-cur_ns="umc-hse-dev"
-dst_ns="umc-hse-dev-vivo"
+cur_ns="co-hse-dev"
+dst_ns="co-hse-dev-vivo"
 
-alias kbctl="kubectl_tke --context=umc-k8s-cluster"
+alias kbctl="kubectl_tke --context=co-k8s-cluster"
 
 # create namespace
 kbctl create namespace $dst_ns
