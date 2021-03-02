@@ -313,3 +313,81 @@ $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf -A
 ```bash
 $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf  -d ../dist/Android/libs/armeabi-v7a/libgo.so
 ```
+
+-------------------------------------
+
+## TODO ...
+
+
+
+
+-----------------------------------
+
+# Android App Quich Start
+
+## Layer VS. Activity
+
+A **layout** is made up of definitions written in XML. Each definition is used to create an object that appears on screen, like a button or some text. 
+
+An **activity** is the java code which attaches actions and puts content to/in a layout. 
+
+For this the **Activity** loads the **layout**.
+
+This is how layouts gets connected to our activity.
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // connect layout to activity
+        // activity_main.xml is the layout XML file
+        setContentView(R.layout.activity_main)
+    }
+}
+```
+
+
+## Constraint Layout
+
+When we're putting some views inside of another view, the **Constraint Layout** is called out.
+
+Constraint Layout lets us position the sub-views by using constraints, which makes creating a layout super simple.
+
+You can drag the white circle to edge of the screen to make the connection.
+
+- ![](../imgs/android_app_quick_1.png)
+
+
+## View ID
+
+Each view has it's own **ID**. sometimes you'd better to rename the default **ID** to a meaningful name.
+
+We can access any view by its ID.
+
+```koltin
+import android.widget.Button
+...
+    setContentView(R.layout.activity_main)
+
+    // PS. Must invoke findViewById after `setContentView` finish
+
+    val rollButton = findViewById<Button>( R.id.rollButton )
+    val resultsTextView = findViewById<TextView>(  R.id.resultTextView )
+    val seekBar = findViewById<SeekBar>(R.id.seekBar2)
+```
+
+## Add Listener
+
+```koltin
+    rollButton.setOnClickListener {
+        Log.d( "MyApp", "roll dice" )
+        val rand = Random().nextInt( seekBar.progress + 1 )
+        resultsTextView.text = rand.toString()
+    }
+```
+
+
+
+
+
+
