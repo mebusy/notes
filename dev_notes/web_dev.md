@@ -1526,13 +1526,115 @@ p {
       </div>``
     ```
 
-### Css Grid
+# Css Grid
 
 [youtube video](https://www.youtube.com/watch?v=jV8B24rSN5o)
 
 - [css grid ex 1](https://mebusy.github.io/notes/css_grid_example/cssgrid1.html)
 - [css grid ex 2](https://mebusy.github.io/notes/css_grid_example/cssgrid2.html)
 - [css grid ex 3](https://mebusy.github.io/notes/css_grid_example/cssgrid3.html)
+
+[CSS Grid Changes EVERYTHING - Amazing Presentation](https://www.youtube.com/watch?v=7kVeCqQCxlk)
+
+## CSS Grid Terminology
+
+- Grid **containter**
+    - any container in your document that you create a grid inside
+    - defined by setting
+        ```css
+        {
+            display: grid
+        }
+        ```
+- Grid **item**
+    - any **direct** descendant of a grid container
+- Grid **line**
+    - horizontal(row) or vertical(column) line separating the grid into sections
+    - the grid lines are numbered by default
+    - start from 1
+    - ![](../imgs/css_grid_lines_1.png)
+- Grid **cell**
+    - any cell in grid
+    - ![](../imgs/css_grid_cell.png)
+- Grid **area**
+    - any defined rectangular area inside the grid that covers more than 1 grid cell.
+    - ![](../imgs/css_grid_rect.png)
+- Grid **track**
+    - either a horizontal track or a vertical track
+    - ![](../imgs/css_grid_track.png)
+- Grid **gap**
+    - space between grid tracks(shown in blue)
+    - ![](../imgs/css_grid_gap.png)
+
+
+## CSS Grid in nutshell
+
+```css
+{
+    grid-template-columns: 2fr 1fr 1fr;
+}
+```
+
+- Draws grid lines. Takes list of length values (em, px, %, fr, ect.) denoting the distance between each line.
+    - ![](../imgs/grid-template-columns.png)
+
+```css
+{
+    grid-template-rows: auto 1fr 3fr;
+}
+```
+
+- denoting distance between each line.
+    - ![](../imgs/grid-template-rows.png)
+
+- Grid items automatically populate grid from top left to bottom right based on HTML source order.
+    - ![](../imgs/css_grid_item_populate.png)
+
+```css
+{
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+```
+
+- Applied to grid items. Defines the start and end grid lines for columns and rows.
+    - ![](../imgs/grid-items-grid-column.png)
+
+```css
+.site {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-areas:
+        "title title title"
+        "main header header"
+        "main siderbar sidebar"
+}
+
+.masthead {
+    grid-area: header;
+}
+.page-title {
+    grid-area: title;
+}
+.main-content {
+    grid-area: main;
+}
+/* etc etc */
+```
+
+- `grid-template-areas` applied to grid container. Uses a text-based grid map to apply **grid area names** to individual cells.
+    - `grid-area` specifies what grid area the element is placed within.
+    - ![](../imgs/grid-template-areas.png)
+    - **This allows us to do crazy responsive web design.** Because this means instead of doing a bunch of crazy stuff, all you have to do is change the `grid-template-areas` and then the grid items will just move around. And you media-queries become very very simple.
+
+
+## Problem: IE10/IE11 Only Partial Support
+
+[css-grid support](https://caniuse.com/css-grid)
+
+- Use *feature queries* to test for grid support in the current browser.
+
 
 
 
