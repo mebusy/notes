@@ -19,3 +19,12 @@
 http://bobrost.com/nes/
 
 
+
+# Nes Simulator Project
+
+[Nes Simulator in Go](https://github.com/mebusy/NesDev)
+
+![](https://nbviewer.jupyter.org/github/mebusy/NesDev/blob/master/imgs/nes_screenshot.jpg)
+
+
+
