@@ -78,7 +78,24 @@
     - We can also add node to path, by double clicking on the path (edge).
 
 
+## Bezier Tool and Nodes
 
+- Mode: "Creating Regular Bezier Path"
+    - single left click to create path with line segment
+        - hold on shift-key can drag the handler out from node so as to make curve
+            - or left-click(hold) on the line(curve) , to change its shape.
+    - when create 2nd, 3rd, ... node, hold left mouse key and move mouse can make curve as well.
+    - Choose different "Shape" to get additional effect
+- Mode: "Creating Spiro Path"
+
+
+
+## Trace Bitmap Tool (Convert Raster to SVG) 
+
+- Path/Trace Bitmap..
+
+
+## 12
 
 
 
