@@ -41,21 +41,19 @@
         - for the transformation shown here, we can read off that î lands on (1,-2) , ĵ lands on (3,0) , this means v⃑ ends up `-1*(1,-2) +2*(3,0) = (5,2)` 
         - ![](../imgs/ESS_LA_linear_transformation.png)
 - 所以，只要记录了 变换后的 î,ĵ, 我们就可以推断出任意向量在 变化后的 位置，完全不必 观察变换本身是什么样
-
-```
-⎡x⎤ = x⎡ 1⎤ +y⎡ 3⎤ = ⎡ 1x + 3y⎤
-⎣y⎦    ⎣-2⎦   ⎣ 0⎦   ⎣-2x + 0y⎦  
-```
+    ```octave
+    ⎡x⎤ -> x⎡ 1⎤ +y⎡ 3⎤ = ⎡ 1x + 3y⎤
+    ⎣y⎦     ⎣-2⎦   ⎣ 0⎦   ⎣-2x + 0y⎦  
+    ```
 
 - you can calculate where any transformed vector lands using this formula.
 - what all of this is saying that a 2D linear transormation is completely described by just 4 numbers
     - the 2 coordinates for î lands
     - and the 2 coordinates for ĵ lands
-
-```
-⎡ 1 3⎤
-⎣-2 0⎦
-```
+        ```octave
+        ⎡ 1 3⎤
+        ⎣-2 0⎦
+        ```
 
 ---
 
@@ -96,12 +94,10 @@ ans =
 
 - 描述 逆时针旋转90度矩阵
    - î lands on (0,1), ĵ lands on (-1,0), 所以矩阵就是
-
-       
-```
-⎡ 0 -1⎤
-⎣,1  0⎦
-```
+        ```octave
+        ⎡ 0 -1⎤
+        ⎣,1  0⎦
+        ```
 
 - **记住，矩阵是空间的变换**
  
@@ -197,11 +193,10 @@ ans =
 - 这个矩阵的几何意义就是 将二维空间 映射到 三位空间上
     - 因为矩阵 有两列，表明 输入空间有 两个基向量
     - 有三行，表明 每一个基向量在 变换后 都用三个独立的坐标来描述
-
-```
-⎡ 3 1 4⎤
-⎣ 1 5 9⎦
-```
+        ```octave
+        ⎡ 3 1 4⎤
+        ⎣ 1 5 9⎦
+        ```
 
 - 2x3 matrix
 - 输入空间 有3个基向量
@@ -218,7 +213,7 @@ ans =
     - 如果w的投影 与 v的方向相反，`= -(Length of projected w)(Length of v)`
     - v·w > 0 方向大致相同
     - v·w = 0 垂直
-    - v·w < 0 方向大致相反
+    - v·w `<` 0 方向大致相反
 - 为什么 对应坐标相乘 并相加，和投影有所联系?
     - The most satisfactory answer comes from **duality**.
     - 数值计算角度, 点积 等同于 一个1x2 matrix 乘以向量
