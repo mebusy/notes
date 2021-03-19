@@ -100,7 +100,12 @@ if let actualString = myString {
 <h2 id="37f80459b8739bb1626224a44c92b348"></h2>
 
 
-### 隐式解包Optional
+### 隐式解包Optional 
+
+<details>
+<summary>
+隐式解包: 历史包袱
+</summary>
 
 相较于普通的Optional值，在Swift中我们还有一种特殊的Optional，在对它的成员或者方法进行访问时，编译器会自动进行解包，被称为隐式解包。
 
@@ -115,6 +120,10 @@ let implicitString: String = possibleString //此处我们不需要!来对possib
 很显然，隐式解包的写法会带来一个潜在的危险，如果尝试访问一个为空的隐式解包Optional, 就会遇到一个runtime error。
 
 引入隐式解包Optional 完全是 历史的锅...
+
+
+</details>
+
 
 
 <h2 id="c6b4dba958efc3f0aa8e21e2cb38d36a"></h2>
