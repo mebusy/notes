@@ -31,4 +31,8 @@ OpenSSL> exit #退出OpenSSL程序
 经过以上步骤，开发者可以在当前文件夹中（OpenSSL运行文件夹），看到 app_private_key.pem（开发者RSA私钥，非 Java 语言适用）、app_private_key_pkcs8.pem（pkcs8格式开发者RSA私钥，Java语言适用）和app_public_key.pem（开发者RSA公钥）3个文件。
 ```
 
+如果要求 去掉 换行符
 
+```bash
+tr -d '\n' < public.txt
+```
