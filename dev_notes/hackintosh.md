@@ -291,3 +291,8 @@ DeviceProperties
 </details>
 
 
+## check your opencore plist
+
+https://opencore.slowgeek.com/
+
+
