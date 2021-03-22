@@ -95,9 +95,15 @@
 - Path/Trace Bitmap..
 
 
-## 12
+## 12 Difference, Union, Intersection, Combination
 
+- select both objects,  /path/union
+    - it is no longer an object now, it is a path
 
+## 13 Align and Distribute
+
+- /Object/Align and Distribute , shift-cmd-A
+- distribute:  setting distance between objects
 
 
 
