@@ -42,6 +42,17 @@
 
 - `http://www.blender.org/api`
 - `http://www.blender.org/api/blender_python_api_2_78c_release`
+- [command line arguments](https://docs.blender.org/manual/en/dev/advanced/command_line/arguments.html)
+    ```bash
+    # run script
+    blender --background --python myscript.py
+    # rendering from the cli without a script
+    blender -b mymodel.blend --render-frame 1
+    # or render an animation
+    blender -b mymodel.blend --frame-start 1 --frame-end 100 --render-anim
+    # use blenders built-in python console
+    blender -b --python-console
+    ```
 
 <h2 id="b8836758104839a89ea645e997c6f8cb"></h2>
 
