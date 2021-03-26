@@ -31,6 +31,10 @@
         - [-- Twitter Bootstrap --](#5d936cee2711b61f0cd5d9e2513e73fa)
         - [2.25 Introduction to Twitter Bootstrap](#91fa20c155a7637398afbe3fa1d70045)
         - [2.26 The Bootstrap Grid System](#da8b77a4befed25e1250a8c43b01654d)
+- [Css Grid](#116e493217e09482fcaf24a39021cad3)
+    - [CSS Grid Terminology](#a6dbe45d51621c7d20203ec1d88736bd)
+    - [CSS Grid in nutshell](#b12841bcc5cd0f679a2eaa70d351023d)
+    - [Problem: IE10/IE11 Only Partial Support](#f6d87847ecb564221a76d95c8ff105e4)
 
 ...menuend
 
@@ -1526,6 +1530,9 @@ p {
       </div>``
     ```
 
+<h2 id="116e493217e09482fcaf24a39021cad3"></h2>
+
+
 # Css Grid
 
 [youtube video](https://www.youtube.com/watch?v=jV8B24rSN5o)
@@ -1535,6 +1542,9 @@ p {
 - [css grid ex 3](https://mebusy.github.io/notes/css_grid_example/cssgrid3.html)
 
 [CSS Grid Changes EVERYTHING - Amazing Presentation](https://www.youtube.com/watch?v=7kVeCqQCxlk)
+
+<h2 id="a6dbe45d51621c7d20203ec1d88736bd"></h2>
+
 
 ## CSS Grid Terminology
 
@@ -1565,6 +1575,9 @@ p {
 - Grid **gap**
     - space between grid tracks(shown in blue)
     - ![](../imgs/css_grid_gap.png)
+
+
+<h2 id="b12841bcc5cd0f679a2eaa70d351023d"></h2>
 
 
 ## CSS Grid in nutshell
@@ -1627,6 +1640,9 @@ p {
     - `grid-area` specifies what grid area the element is placed within.
     - ![](../imgs/grid-template-areas.png)
     - **This allows us to do crazy responsive web design.** Because this means instead of doing a bunch of crazy stuff, all you have to do is change the `grid-template-areas` and then the grid items will just move around. And you media-queries become very very simple.
+
+
+<h2 id="f6d87847ecb564221a76d95c8ff105e4"></h2>
 
 
 ## Problem: IE10/IE11 Only Partial Support

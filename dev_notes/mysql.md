@@ -1,23 +1,6 @@
 ...menustart
 
 - [Mysql](#9edb3c572b56b91542af659480518681)
-- [Misc](#74248c725e00bf9fe04df4e35b249a19)
-    - [Mysql 并发更新数据 加锁处理](#f12a4c82c151d110c6ea3521e6aca5b2)
-        - [SELECT显式加锁](#18a31fbbef71484ce0cc52995764a78b)
-        - [使用乐观锁](#4e7e4e0d4b9110317f8e672b2aa3af35)
-    - [mysql 慢日志查询](#1838954ac65225f29f4cccf9131bb24f)
-    - [mysql 操作记录查询](#e1a8175ef9a04770289a68720bff0ffc)
-    - [mysql 记录 未使用 index的查询](#06380fb607958af6dbecb617ce31f2cd)
-    - [how to check whether mysql reuse the connection](#005022c3c2f0c952bbd1532235bc4959)
-    - [`select count(*)` is very slow on large table](#c4935fa15c0a1305da238eec81cc54b3)
-    - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
-    - [use default value if select get no result](#7b83de8606257483382081d2e0e808de)
-    - [Sub query example](#60df3279b8377ba6468528ab017f1dc0)
-    - [CASE ... WHEN ... ELSE...](#06eb0ebfd08b098bd2c0529968e05930)
-    - [restore database from dump file](#c4606a5312075cb8424b31a364e46848)
-    - [Create a `new_user` and Grant all privileges on db `db_test`](#c3b5d31eac469e51b08ec13a8edc866e)
-    - [Convert a timestamp to seconds(GMT)](#551a3f8ce4409963ec6de228ccc44ae0)
-    - [三元表达式](#6ada22780ed552c34465864a2648f7e9)
 - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
     - [1.1 配置文件](#bdf6b309174103a16017dcf95cfd0efa)
     - [1.3 MySQL 存储引擎](#d515f90f3281ec25eef39dd7a232630f)
@@ -62,10 +45,6 @@
     - [5.6 B+树索引的使用](#a3f3f22ce2ecd49e0899aa0470bb4188)
         - [5.6.1 不同应用中的 B+树索引](#cc473a5ef59e8cf3e28bc6618a4db748)
         - [5.6.2 联合索引](#121f3825a3bc99fa74e52a95c6fcb3fa)
-    - [索引的正确打开方式](#7535a44e5d93f60d15f1187543edcffb)
-        - [索引失效常见原因](#2ce5b1beb2306d329e99a537597759a6)
-        - [索引失效的常见误区](#aeaaf2a2e7441a1ca755480330667fcc)
-        - [避坑口诀](#5b282679c2e2107534f4003530525bd9)
 
 ...menuend
 
@@ -74,10 +53,6 @@
 
 
 # Mysql
-
-<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
-
-
 
 --- 
 

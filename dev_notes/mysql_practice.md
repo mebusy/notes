@@ -1,5 +1,33 @@
+...menustart
+
+- [Mysql实践](#dc994915bbbd438c2b523c6b1e4008ba)
+- [运维](#60eec86da0dbf4c99b14a66d4a37c1e3)
+    - [mysql 慢日志查询](#1838954ac65225f29f4cccf9131bb24f)
+    - [mysql 操作记录查询](#e1a8175ef9a04770289a68720bff0ffc)
+    - [mysql 记录 未使用 index的查询](#06380fb607958af6dbecb617ce31f2cd)
+    - [how to check whether mysql reuse the connection](#005022c3c2f0c952bbd1532235bc4959)
+    - [restore database from dump file](#c4606a5312075cb8424b31a364e46848)
+    - [Create a `new_user` and Grant all privileges on db `db_test`](#c3b5d31eac469e51b08ec13a8edc866e)
+- [Query Tips](#1eeba8438a86727ddaeaaac5710a83ff)
+    - [`select count(*)` is very slow on large table](#c4935fa15c0a1305da238eec81cc54b3)
+    - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
+    - [use COALESCE to return a default value if select get no result](#471e27dbca2b606ef2e3110b2bc36fcc)
+    - [Sub Query example](#a21afd692dc65c7ff60c8f549b7f1f5a)
+    - [CASE ... WHEN ... ELSE... END](#cba58cab71d7e6df49942060252f546d)
+    - [Convert a timestamp to seconds(GMT)](#551a3f8ce4409963ec6de228ccc44ae0)
+    - [三元表达式](#6ada22780ed552c34465864a2648f7e9)
+    - [Update RANK while doing query](#9b22da090fcab767f2930f6e0b9b3251)
+
+...menuend
+
+
+<h2 id="dc994915bbbd438c2b523c6b1e4008ba"></h2>
+
 
 # Mysql实践
+
+<h2 id="60eec86da0dbf4c99b14a66d4a37c1e3"></h2>
+
 
 # 运维
 
@@ -72,6 +100,9 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 ```
 
 
+<h2 id="1eeba8438a86727ddaeaaac5710a83ff"></h2>
+
+
 # Query Tips
 
 <h2 id="c4935fa15c0a1305da238eec81cc54b3"></h2>
@@ -101,7 +132,7 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
     - `id` is the auto incr primary key , and should be continous (that is , you should NOT delete the rows )
 
 
-<h2 id="7b83de8606257483382081d2e0e808de"></h2>
+<h2 id="471e27dbca2b606ef2e3110b2bc36fcc"></h2>
 
 
 ## use COALESCE to return a default value if select get no result
@@ -112,7 +143,7 @@ COALESCE returns 1st non-NULL value
 select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
 ```
 
-<h2 id="60df3279b8377ba6468528ab017f1dc0"></h2>
+<h2 id="a21afd692dc65c7ff60c8f549b7f1f5a"></h2>
 
 
 ## Sub Query example
@@ -125,7 +156,7 @@ where
     paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
 ```
 
-<h2 id="06eb0ebfd08b098bd2c0529968e05930"></h2>
+<h2 id="cba58cab71d7e6df49942060252f546d"></h2>
 
 
 ## CASE ... WHEN ... ELSE... END
@@ -158,6 +189,9 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
 ```mysql
 ... status=if(status="created","paid",status)
 ```
+
+<h2 id="9b22da090fcab767f2930f6e0b9b3251"></h2>
+
 
 ## Update RANK while doing query
 

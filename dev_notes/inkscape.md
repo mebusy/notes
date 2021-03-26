@@ -4,6 +4,11 @@
     - [Interface and Basic Drawing](#6c546416d94ec089c4686f1ec4c78a2c)
     - [Groups, Levels, and Object Selection](#5c74f7d0a5781996cdcdbd804ba6a0c2)
     - [Text and Fonts](#9ab84a8448ee6c390dc41477b364f2b3)
+    - [Drawing Lines and Paths vs Objects](#ad660906612d8b3fef07e54b70d88690)
+    - [Bezier Tool and Nodes](#17f95c6bc3b807798b7acdf63a60f391)
+    - [Trace Bitmap Tool (Convert Raster to SVG)](#5b982918e0c8628311e23fb170b924db)
+    - [12 Difference, Union, Intersection, Combination](#9b4dc60a782520206cbb06586e275a3f)
+    - [13 Align and Distribute](#adb66e29613380734e6e61bcdfcdb868)
 
 ...menuend
 
@@ -68,6 +73,9 @@
         - flip horizontally
         - but the letters are too close, choose the text tool, set the letter space.
 
+<h2 id="ad660906612d8b3fef07e54b70d88690"></h2>
+
+
 ## Drawing Lines and Paths vs Objects
 
 - FreeHand Drawing tool creates path, while tools like rectange, circle creating objects.
@@ -76,6 +84,9 @@
 - We can convert a object to a path
     - menu/Path/Object to Path
     - We can also add node to path, by double clicking on the path (edge).
+
+
+<h2 id="17f95c6bc3b807798b7acdf63a60f391"></h2>
 
 
 ## Bezier Tool and Nodes
@@ -90,15 +101,24 @@
 
 
 
+<h2 id="5b982918e0c8628311e23fb170b924db"></h2>
+
+
 ## Trace Bitmap Tool (Convert Raster to SVG) 
 
 - Path/Trace Bitmap..
+
+
+<h2 id="9b4dc60a782520206cbb06586e275a3f"></h2>
 
 
 ## 12 Difference, Union, Intersection, Combination
 
 - select both objects,  /path/union
     - it is no longer an object now, it is a path
+
+<h2 id="adb66e29613380734e6e61bcdfcdb868"></h2>
+
 
 ## 13 Align and Distribute
 

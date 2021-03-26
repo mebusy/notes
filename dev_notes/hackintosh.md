@@ -9,6 +9,7 @@
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
     - [Iris Plus 655  Without WhatEverGreen](#b629a48f87baa1255d141a0d31957405)
+    - [check your opencore plist](#f9a1aa084270d908f100a833ffc5f42d)
 
 ...menuend
 
@@ -289,6 +290,9 @@ DeviceProperties
 ```
 
 </details>
+
+
+<h2 id="f9a1aa084270d908f100a833ffc5f42d"></h2>
 
 
 ## check your opencore plist

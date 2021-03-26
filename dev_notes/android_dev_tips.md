@@ -13,6 +13,12 @@
     - [MacOSX multiple Java version](#1346a911b293f1e15ae203e43f3af6b1)
     - [How to determine ABI of Android .so file](#bd8841fe31193f151e81534a3c94b0d7)
     - [Find dependency of android shared library](#965580fe8a8a7a0a7ce16fce7262e029)
+    - [TODO ...](#dde7b2c0e90a2ea977a549fa578014f4)
+- [Android App Quich Start](#05e31eeeb64c02a5efbaecf9beae6f7a)
+    - [Layer VS. Activity](#9a3925495881ed0aa40f9c7d9e186fb9)
+    - [Constraint Layout](#ef909efaacfd7878bb54f218d1a5a784)
+    - [View ID](#f35ac60b4a12dc8f045f1b185bf5d959)
+    - [Add Listener](#bf2b2baf96389d81762a6f701f2e110d)
 
 ...menuend
 
@@ -316,6 +322,9 @@ $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf  -
 
 -------------------------------------
 
+<h2 id="dde7b2c0e90a2ea977a549fa578014f4"></h2>
+
+
 ## TODO ...
 
 
@@ -323,7 +332,13 @@ $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf  -
 
 -----------------------------------
 
+<h2 id="05e31eeeb64c02a5efbaecf9beae6f7a"></h2>
+
+
 # Android App Quich Start
+
+<h2 id="9a3925495881ed0aa40f9c7d9e186fb9"></h2>
+
 
 ## Layer VS. Activity
 
@@ -347,6 +362,9 @@ class MainActivity : AppCompatActivity() {
 ```
 
 
+<h2 id="ef909efaacfd7878bb54f218d1a5a784"></h2>
+
+
 ## Constraint Layout
 
 When we're putting some views inside of another view, the **Constraint Layout** is called out.
@@ -356,6 +374,9 @@ Constraint Layout lets us position the sub-views by using constraints, which mak
 You can drag the white circle to edge of the screen to make the connection.
 
 - ![](../imgs/android_app_quick_1.png)
+
+
+<h2 id="f35ac60b4a12dc8f045f1b185bf5d959"></h2>
 
 
 ## View ID
@@ -375,6 +396,9 @@ import android.widget.Button
     val resultsTextView = findViewById<TextView>(  R.id.resultTextView )
     val seekBar = findViewById<SeekBar>(R.id.seekBar2)
 ```
+
+<h2 id="bf2b2baf96389d81762a6f701f2e110d"></h2>
+
 
 ## Add Listener
 
