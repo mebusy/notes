@@ -113,5 +113,75 @@ where id=<id> and version=<version>
 - InnoDB根据每个事务访问的每个页对锁进行管理，采用位图的方式。因此不管一个事务锁住页中一个记录还是多个记录，其开销通常都是一致的。
 
 
+---
+
+<h2 id="f12a4c82c151d110c6ea3521e6aca5b2"></h2>
+
+
+# Mysql 并发更新数据 加锁处理
+
+- MySQL是支持给数据行加锁（InnoDB）的，并且在UPDATE/DELETE等操作时确实会自动加上排它锁
+- 只是并非只要有UPDATE关键字就会全程加锁 , 如
+
+```
+UPDATE table1 SET num = num + 1 WHERE id=1;
+```
+
+这句 其实并不只是一条UPDATE语句 ，而应该类似于两条SQL语句（伪代码）：
+
+```
+a = SELECT * FROM table1 WHERE id=1；
+UPDATE table1 SET num = a.num + 1 WHERE id=1;
+```
+
+- 其中执行SELECT语句时没有加锁，只有在执行UPDATE时才进行加锁的。
+- 会出现并发操作时的更新数据不一致。
+- 解决的方法可以有2种：
+    - 1 通过事务显式的对SELECT进行加锁
+    - 2 使用乐观锁机制
+
+
+<h2 id="18a31fbbef71484ce0cc52995764a78b"></h2>
+
+
+## SELECT显式加锁
+
+- 对SELECT进行加锁的方式有两种，如下：
+
+```
+SELECT ... LOCK IN SHARE MODE       #共享锁，其它事务可读，不可更新
+SELECT ... FOR UPDATE       #排它锁，其它事务不可读写
+```
+
+- 对于上面提到的场景，必须使用排它锁.
+- 上面的2种语句只有在事务之中才能生效，否则不会生效。 在MySQL命令行使用事务的方式如下：
+
+```
+SET AUTOCOMMIT=0;
+BEGIN WORK;
+    a = SELECT num FROM table1 WHERE id=2 FOR UPDATE;
+    UPDATE table1 SET num = a.num + 1 WHERE id=2;
+COMMIT WORK;
+```
+
+- 这样只要以后更新数据时，都使用这样事务来进行操作；那么在并发的情况下，后执行的事务就会被堵塞，直到当前事务执行完成。（通过锁把并发改成了顺序执行）
+
+
+<h2 id="4e7e4e0d4b9110317f8e672b2aa3af35"></h2>
+
+
+## 使用乐观锁
+
+- 乐观锁是锁实现的一种机制，它总是会天真的认为所有需要修改的数据都不会冲突。
+- 所以在更新之前它不会给数据加锁，而只是查询了数据行的版本号（这里的版本号属于自定义的字段，需要在业务表的基础上额外增加一个字段，每当更新一次就会自增或者更新）。
+- 在具体更新数据的时候更新条件中会添加版本号信息，当版本号没有变化的时候说明该数据行未被更新过，并且也满足更新条件，所以会更新成功。
+- 当版本号有变化的时候，则无法更新数据行，因为条件不满足，此时就需要在进行一次SQL操作。（重新查询记数据行，再次使用新的版本号更新数据）
+
+原则上，这2种方式都可以支持。具体使用哪一种就看实际的业务场景，对哪种支持更好，并且对性能的影响最小。
+
+
+---
+
+[深入理解SELECT ... LOCK IN SHARE MODE和SELECT ... FOR UPDATE](https://blog.csdn.net/cug_jiang126com/article/details/50544728)
 
 
