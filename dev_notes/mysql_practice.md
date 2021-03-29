@@ -218,15 +218,16 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
 - how to handle ties ?
     ```mysql
     select 
-        CASE   -- increate only if has different score
-          WHEN @score = rank_score THEN @rownum
+        CASE -- increate only if has different score
+          WHEN @rowscore = rank_score THEN @rownum
           ELSE @rownum:=@rownum+1 
         END as 'rank', 
         uuid, 
-        @score := rank_score as rank_score -- get value
-    from pvp_hsw,
-    (SELECT @rownum:=0) as r  -- Every derived table must have its own alias
-    order by rank_score desc;
+        @rowscore:=rank_score as rank_score, -- to update the variable
+        bonus_honor_points, bonus_coin, bonus_diamond
+    from pvp_hsw, 
+    (SELECT @rownum:=0, @rowscore:=0 ) as r  -- Every derived table must have its own alias
+    order by rank_score desc FOR UPDATE `  )
     ```
 
 
