@@ -217,7 +217,7 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
     ```
     - OR in one line...
         ```mysql
-        update pvp_hsw  r set week_rank=@rownum:=@rownum+1   order by rank_score desc , (SELECT @rownum:=0)  ;
+        update pvp_hsw  set week_rank=@rownum:=@rownum+1   order by rank_score desc , (SELECT @rownum:=0)  ;
         ```
 
 
