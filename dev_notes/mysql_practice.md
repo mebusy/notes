@@ -218,7 +218,71 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
 
 
 
+## Bulk Update
 
+
+```mysql
+func BulkInsert( tx *sql.Tx, unsavedRows []PVP_HSW_t ) error {
+    // nothing update
+    if len(unsavedRows)== 0 {
+        return nil
+    }
+    valueStrings := make([]string, 0, len(unsavedRows))
+    valueArgs := make([]interface{}, 0, len(unsavedRows) * 3)
+    for _, post := range unsavedRows {
+        valueStrings = append(valueStrings, "(?, ?, ?, ?, ?, ?)")
+        valueArgs = append(valueArgs, post.Uuid)
+        valueArgs = append(valueArgs, post.Rank_score)
+        valueArgs = append(valueArgs, post.Bonus_honor_points)
+        valueArgs = append(valueArgs, post.Bonus_coin)
+        valueArgs = append(valueArgs, post.Bonus_diamond)
+        valueArgs = append(valueArgs, post.Rank)
+    }
+
+    cmd_update := fmt.Sprintf( `INSERT into pvp_hsw ( uuid, rank_score, bonus_honor_points, bonus_coin, bonus_diamond,week_rank ) VALUES %s ON DUPLICATE KEY UPDATE
+                            rank_score=VALUES(rank_score),
+                            bonus_honor_points=VALUES(bonus_honor_points),
+                            bonus_coin=VALUES(bonus_coin),
+                            bonus_diamond=VALUES(bonus_diamond),
+                            week_rank=VALUES(week_rank)`, strings.Join(valueStrings, ",")  )
+    _ , err := tx.Exec(cmd_update, valueArgs...)
+    if err != nil {
+        return err
+    }
+
+    log.Printf( "pvp_hsw bulk updated %d rows", len( unsavedRows ) )
+
+    return nil
+}
+```
+
+```mysql
+    unsavedRows := []PVP_HSW_t {}
+    for rows.Next() {
+        var data PVP_HSW_t
+        err := rows.Scan( &data.Rank, &data.Uuid, &data.Rank_score, 
+                        &data.Bonus_honor_points, &data.Bonus_coin, &data.Bonus_diamond )
+        if err != nil {
+            log.Println(err)
+            return
+        }
+
+        unsavedRows = append( unsavedRows , data )
+    }
+
+    batch_size := 10000
+    for i:=0; i<len(unsavedRows); i+= batch_size {
+        open_end := i+batch_size
+        if open_end > len(unsavedRows) {
+            open_end = len(unsavedRows)
+        }
+        err := BulkInsert( tx, unsavedRows[ i:open_end] )
+        if err != nil {
+            log.Println(err)
+            return
+        }
+    }
+```
 
 
 
