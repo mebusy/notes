@@ -223,8 +223,7 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
           ELSE @rownum:=@rownum+1 
         END as 'rank', 
         uuid, 
-        rank_score,
-        @score := rank_score  -- get value
+        @score := rank_score as rank_score -- get value
     from pvp_hsw,
     (SELECT @rownum:=0) as r  -- Every derived table must have its own alias
     order by rank_score desc;
