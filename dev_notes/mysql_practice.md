@@ -135,13 +135,17 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 <h2 id="471e27dbca2b606ef2e3110b2bc36fcc"></h2>
 
 
-## use COALESCE to return a default value if select get no result
+## return a default value if select get no result
 
-COALESCE returns 1st non-NULL value
-
-```
-select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
-```
+1. COALESCE returns 1st non-NULL value
+    ```mysql
+    select COALESCE(AVG(distance), 0) as baseline from records where uuid=?
+    ```
+2. use UNION
+    ```mysql
+    (select value from conf where entry = ? for update ) UNION (SELECT '' )
+    ```
+    - replace the value `''` in right-hand select with your expected value.
 
 <h2 id="a21afd692dc65c7ff60c8f549b7f1f5a"></h2>
 
