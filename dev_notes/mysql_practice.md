@@ -215,7 +215,20 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
     ```mysql
     update pvp_hsw as p set week_rank=@rownum:=@rownum+1 order by rank_score desc;
     ```
-
+- how to handle ties ?
+    ```mysql
+    select 
+        CASE   -- increate only if has different score
+          WHEN @score = rank_score THEN @rownum
+          ELSE @rownum:=@rownum+1 
+        END as 'rank', 
+        uuid, 
+        rank_score,
+        @score := rank_score  -- get value
+    from pvp_hsw,
+    (SELECT @rownum:=0) as r  -- Every derived table must have its own alias
+    order by rank_score desc;
+    ```
 
 
 ## Bulk Update
