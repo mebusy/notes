@@ -112,7 +112,7 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
 
 - Here's a cheap way to get an estimated row count:
 
-```
+```bash
 > select TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA='your_db_name' and TABLE_NAME='your_table_name';
 +------------+
 | TABLE_ROWS |
@@ -182,7 +182,7 @@ where
 不同时区的数据库，存放的date 受时区影响, UNIX_TIMESTAMP方法不是我们想要的...
 
 ```mysql
-SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , "2020-05-01 12:05:55" );
+SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQL> );
 ```
 
 <h2 id="6ada22780ed552c34465864a2648f7e9"></h2>
