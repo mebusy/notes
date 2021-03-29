@@ -143,7 +143,7 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
     ```
 2. use UNION
     ```mysql
-    (select value from conf where entry = ? for update ) UNION (SELECT '' )
+    select value from conf where entry = ? UNION (SELECT '' )
     ```
     - replace the value `''` in right-hand select with your expected value.
 
