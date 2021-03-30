@@ -217,6 +217,7 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
     ```
 - how to handle ties ?
     ```mysql
+    -- 90,80,80,70 will generate rank 1,2,2,3
     select 
         CASE -- increate only if has different score
           WHEN @rowscore = rank_score THEN @rownum
@@ -227,7 +228,22 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
         bonus_honor_points, bonus_coin, bonus_diamond
     from pvp_hsw, 
     (SELECT @rownum:=0, @rowscore:=0 ) as r  -- Every derived table must have its own alias
-    order by rank_score desc FOR UPDATE `  )
+    order by rank_score desc
+    ```
+    ```mysql
+    -- 90,80,80,70 will generate rank 1,2,2,4
+    select
+        @rownum:=@rownum+1 as rowindex,
+        CASE -- lastrank increated only if has different score
+          WHEN @rowscore = rank_score THEN @lastrank
+          ELSE @lastrank:=@rownum
+        END as 'rank', 
+        uuid, 
+        @rowscore:=rank_score as rank_score, -- to update the variable
+        bonus_honor_points, bonus_coin, bonus_diamond
+    from pvp_hsw, 
+    (SELECT @rownum:=0, @rowscore:=0, @lastrank:=0 ) as r  -- Every derived table must have its own alias
+    order by rank_score desc 
     ```
 
 
