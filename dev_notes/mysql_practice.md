@@ -242,7 +242,7 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
         @rowscore:=rank_score , -- to update the variable
         bonus_honor_points, bonus_coin, bonus_diamond
     from pvp_hsw, 
-    (SELECT @rownum:=0, @rowscore:=0, @lastrank:=0 ) as r  -- Every derived table must have its own alias
+    (SELECT @rownum:=0, @rowscore:=0, @lastrank:=1 ) as r  -- Every derived table must have its own alias
     order by rank_score desc 
     ```
 
