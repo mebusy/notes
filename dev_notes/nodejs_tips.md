@@ -26,6 +26,21 @@ let b64 = Buffer.from( data , 'binary' ).toString('base64')
 let unb64 = Buffer.from("SGVsbG8gV29ybGQ=", 'base64').toString('binary') ? or 'ascii' ?
 ```
 
+## string format 
 
+```javascript
+// First, checks if it isn't implemented yet.
+if (!String.prototype.format) {
+  String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
+```
 
 
