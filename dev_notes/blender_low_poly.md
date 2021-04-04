@@ -75,6 +75,7 @@
 
 - unselect this 
     - ![](../imgs/blender_mirror.png)
+    - in 2.8, enable "toggle X-ray" in top-right corner instead
 - b  boxing select 
 - delete vertex 
     - ![](../imgs/blender_mirror_2.png)

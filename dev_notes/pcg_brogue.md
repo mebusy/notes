@@ -47,5 +47,24 @@ And these are again just cellular automata blobs that we create and then again f
 
 - ![](../imgs/pcg_brogue_6.png)
 
+After that you just iterate through place dungeon features, you have trees, you have grass, you have doors... 
+
+The next step is what I call **machines**.
+
+## Machines
+
+- ![](../imgs/pcg_brogue_7.png)
+
+Let's say you come into a room, it's full of dry grass. It's a big open space, and there is an altar with a key at far end of the room. There's a torch on the wall near the door. So the player runs over to the altar and grabs the key and the torch falls off the wall and ignites the grass near the entrance.
+
+- ![](../imgs/pcg_brogue_8.png)
+
+And then the fire gradually spreads toward the player and then the player has to either to use a teleport if he has , or find a spot that's already burned out before the fire reaches you. 
+
+- ![](../imgs/pcg_brogue_9.png)
+
+So this is kind of an interesting spatial puzzle it's like a little different every time the stakes are super high although they can be defpending on what other monsters are around what your health level is and so on.
+
+
 
 
