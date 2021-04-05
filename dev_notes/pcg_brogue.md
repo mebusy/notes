@@ -65,6 +65,57 @@ And then the fire gradually spreads toward the player and then the player has to
 
 So this is kind of an interesting spatial puzzle it's like a little different every time the stakes are super high although they can be defpending on what other monsters are around what your health level is and so on.
 
+There is another example that the player runs down to the altar grabs the key and somebody's find them on the way out. 
+
+- ![](../imgs/pcg_brogue_10.png)
+
+Another example is lava field. The player comes in from the top left.  There's the altar with the key in the top right. There's a door that's completely inaccessible. Somewhere on the level there's probably a potion of fire immunity or potion of levitation or maybe there's a lever hidden in one of the walls and use that to reach the altar and when you reach it then the lava kind of disintegrate or evaporates leaving a pathway to get back out.
+
+- ![](../imgs/pcg_brogue_11.png)
+
+So how do these machines work ?
+
+## Machine components
+
+- Machine depends on specific types of terrain and items
+- Spatial relationship between these features is **qualitative**.
+    - Far / Near / in doorway
+    - Within line of sight of door
+    - Later features ≥ X spaces away from current feature
+    - In the wall
+    - Elsewhere on the level
+    - How many to generate ? ( Everywhere that qualifies ? )
+        - Minimum number required for success ?
+- Define with minimal necessary specification (not on a grid)
+- Level generator chooses a preexisting area of the level to repurpose.
+
+You just describe it kind of qualitatively in terms of how the things interlock. It's not mapped out on a grid. All that you need is the room to be full of grass, the altar is distant and the torches is near. So come up with a bunch of different relationships that define where these items need to be, where the terrain types need to be, how much space each one needs, whether they need to be in line of signt of the doorway, the minimum number that need to be generated for the room to succeed and actually be built. So the idea is you define it with the minimum amount of specification that you need to make the machine work, and that way the level generator can take this pre-existing level that we saw at the beginning where you just build rooms off of one another can take that kind of skeleton and choose a spot and turn it into one of those machines instead of just placing a machine from a predefined grid and that makes them more interesting.
+
+## Organic pathways between two points
+
+- Static bridges
+- Extending walkways
+- Winding tunnels
+- Pathway amony traps
+
+How ?
+
+- Build obstructive terrain everywhere in random order
+- BUT, don't build in a square if that would block the level
+- Repeart until no progress
+
+One kind of sub technique is how you build these sort of meandering pathways between two points. It can be used in bunch of things, bridges, tunnels through granite, pathways between traps.
+
+So how do you do this? 
+
+You just build obstructive terrain everywhere in random order, one cell at a time, and you don't build it if it would block the level. You just keep doing that until all that's left is a single wandering pathways between two points.
+
+
+![](../imgs/pcg_brogue_12.png)  ![](../imgs/pcg_brogue_13.png)  ![](../imgs/pcg_brogue_14.png)  ![](../imgs/pcg_brogue_15.png)  ![](../imgs/pcg_brogue_16.png)
+
+
+## "Functional" Types of Machines
+
 
 
 
