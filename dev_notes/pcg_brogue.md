@@ -116,6 +116,18 @@ You just build obstructive terrain everywhere in random order, one cell at a tim
 
 ## "Functional" Types of Machines
 
+- Reward Machines
+    - Generation is "rubber-banded": the probability goes up every time one is not generated and drops down when one is.
+- Key guarding machines
+    - something kind of an altar with a key in it
+    - Sometimes generate another key item, handed off to another key guarding room, etc.
+- Flavor machines
+    - interesting terrain, e.g. every room with a decaying sleeping bag and a glyph of warding on the door, and a pile of bones somewhere in the room, maybe an item.
 
+## "Spatial" Types of Machines: Room Machines
 
+- Interior of an area that has a single chokepoint
+    - basically the level generator will look for any point in the level where there's a choke point that dominates a particular number of sort of subordinate cells it doesn't need to be generated as a root at the outsied, just kind of analyzes the level and finds a place where there's a single point that dominates a certain number of other points, and it can turn that into room and sometimes it'll alter the room once it gets there, I'll use cellular automata to widen it out or open it up a bit. 
+
+![](../imgs/pcg_brogue_17.png)  ![](../imgs/pcg_brogue_18.png) 
 
