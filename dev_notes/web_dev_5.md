@@ -79,6 +79,12 @@
         ```javascript
             // document.getElementById( "content" ).textContent = message;
             document.getElementById( "content" ).innerHTML = message;
+            // or append to existing ones
+            document.getElementById( "content" ).innerHTML += message;
+        ```
+    - but, altering innerHTML will **destory all EventListener** on that dom element. To preserve existing EventListener, use `insertAdjacentHTML` instead.
+        ```javascript
+        targetElem.insertAdjacentHTML('beforeend', html );
         ```
 - QuerySelector
     - the way you select things using CSS
