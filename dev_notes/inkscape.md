@@ -127,7 +127,9 @@
 
 ## 14 Spray Tool, Copy, Clone
 
-- 喷雾工具
+- how to do
+    1. create any object
+    2. choose 喷雾工具, draw as you want
 - options
     - prevent overlaping objects ( right most icon in tool bar)
 
