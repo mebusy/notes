@@ -125,6 +125,12 @@
 - /Object/Align and Distribute , shift-cmd-A
 - distribute:  setting distance between objects
 
+## 14 Spray Tool, Copy, Clone
+
+- 喷雾工具
+- options
+    - prevent overlaping objects ( right most icon in tool bar)
+
 
 
 
