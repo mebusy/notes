@@ -53,6 +53,7 @@
 
 [Offering, Completing, and Restoring In-App Purchases](https://developer.apple.com/documentation/storekit/in-app_purchase/offering_completing_and_restoring_in-app_purchases)
 
+[toolkit test](https://developer.apple.com/documentation/xcode/setting_up_storekit_testing_in_xcode)
 
 <h2 id="f05fa4d8ea2700881fb6150bac6cdf69"></h2>
 
