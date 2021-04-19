@@ -60,7 +60,7 @@
 <h2 id="f05fa4d8ea2700881fb6150bac6cdf69"></h2>
 
 
-## IAP Process
+## IAP Process Flow
 
 - Load In-App identifiers
 - Fetch Product Info
@@ -305,10 +305,18 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:
 
 **Do not use online validation directly from the device**
 
+
+
 <h2 id="e0f2a22d127bdcb42f3437e829be742c"></h2>
 
 
 ### On-device validation 
+
+![](https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Art/InAppReceipts_2x.png)
+
+Doc: https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateLocally.html
+
+[Receipt Fields Doc](https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ReceiptFields.html)
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_0.png)
 
@@ -655,6 +663,9 @@ request.start()
     - 从app服务器返回的是最新的receipt副本，你不能再进行刷新操作
 
 
+
+
+
 <h2 id="87bf076f38bc5a9288b536cbc7593a83"></h2>
 
 
@@ -716,4 +727,84 @@ request.start()
 - Not separate production and Sandbox servers
 - Sandboxing is handled by a parameter in the payload
 - Use the `environment` key in payload
+
+
+
+# Testing on Xcode12
+
+
+## Receipt Validation 
+
+
+Receipt validation is different in Xcode. While Apple’s root certificate signs receipts in Sandbox, a certificate local to Xcode signs receipts in Xcode.
+
+To use the local Xcode certificate, you must first retrieve and store it in your Xcode project. Then you have to tell Xcode to use the certificate when locally validating receipts.
+
+To get the certificate:
+
+1. open a StoreKit configuration file
+2. select **Editor ▸ Save Public Certificate** from the menu
+3. Save the certificate in the provided **Certificates** folder.
+
+Next, you’ll change the validation code to use that certificate.
+
+```swift
+#if DEBUG
+let certificate = "StoreKitTestCertificate"
+#else
+let certificate = "AppleIncRootCertificate"
+#endif
+```
+
+### Fetch the Receipt Data
+
+```swift
+// Get the receipt if it's available
+if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
+    FileManager.default.fileExists(atPath: appStoreReceiptURL.path) {
+
+    do {
+        let receiptData = try Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped)
+        print(receiptData)
+
+        let receiptString = receiptData.base64EncodedString(options: [])
+
+        // Read receiptData
+    }
+    catch { print("Couldn't read receipt data with error: " + error.localizedDescription) }
+}
+```
+
+
+
+
+## Testing at All Stages of Development with Xcode and Sandbox
+
+https://developer.apple.com/documentation/storekit/in-app_purchase/testing_at_all_stages_of_development_with_xcode_and_sandbox
+
+
+Testing Environment | Requires App Store Connect Setup | Provides app receipts that are signed by App Store |  Charges users when testing Buy transactions
+--- | --- | --- | --- 
+StoreKit Testing in Xcode | No | No (signed by Xcode) | No 
+Sandbox | Yes | Yes | No
+TestFlight (uses Sandbox) | Yes | Yes | No
+
+
+Test Scenario | Sandbox | StoreKit Testing in Xcode
+--- | --- | ---
+Test different storefronts to affect price tiers and locale | Yes | Limited. (No price tiers)
+Clear the purchase history | No | Yes
+Test subscription upgrades, downgrades, crossgrades, and canceling auto-renew | Yes | Yes
+Reset eligibility for introductory offers | Yes | Yes
+Introduce forced StoreKit errors for testing | No | Yes
+Speed up or slow down the rate of time for testing subscription renewals | No | Yes
+Common StoreKit Scenarios | ... | ...
+Repurchase a non-consumable purchase, for repeated testing | No | Yes
+Refund an in-app purchase | No | Yes
+Test a failed purchase attempt when payment authorization failed | No |  Yes
+Retrieve configured in-app purchases from App Store Connect | Yes | No (Returns data from the StoreKit configuration file)
+Subscriptions and Ask to Buy | ... | ...
+Resolve an Ask to Buy transaction by approving or rejecting it | No | Yes
+Process a canceled or refunded subscription |  No | Yes
+
 
