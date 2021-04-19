@@ -50,6 +50,7 @@
 
 
 # IAP
+[in-app-purchase](https://developer.apple.com/in-app-purchase/)
 
 [Offering, Completing, and Restoring In-App Purchases](https://developer.apple.com/documentation/storekit/in-app_purchase/offering_completing_and_restoring_in-app_purchases)
 
@@ -85,6 +86,10 @@
 
 - when it comes to loading these identifiers  in your applications, you can do it a couple of ways.
     - Firstly, you can just bake them directly into your application
+        ```swift
+        // example: hard code IPA identifiers
+        let identifiers = ["com.temporary.renew" , "not_exist_iap_id" , "com.temporary.c" , "com.temporary.nc"]
+        ```
     - Or the other way, of course, is to maybe fetch them from your own server.
 - anyways you will have this set of strings
 
@@ -113,18 +118,16 @@ Now, you've set a delegate method on this so you'll get a response in the `didRe
 
 ### Show In-App UI 
 
-- https://developer.apple.com/in-app-purchase/
 - There has useful tips about how to format this particular page in a way that can, you know, improve your sales.
 - One tip, though, just on formatting the product price.
     - So, when it comes to the product price, this is the technique you can use to actually display that in your UI. 
     - Create a number formatter object. Set the number style to be the currency style.
-
-```swift
-let formatter = NumberFormatter()
-formatter.numberStyle = .currency
-formatter.locale = product.priceLocale // Not the device locale!
-let formattedString = formatter.string( from: product.price )
-```
+        ```swift
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = product.priceLocale // Not the device locale!
+        let formattedString = formatter.string( from: product.price )
+        ```
 
 - Another point, here, don't perform any currency conversion yourself.  
 - You can let StoreKit handle all this for you.
@@ -136,11 +139,10 @@ let formattedString = formatter.string( from: product.price )
 
 - You take that SKProduct that the user's agreed to buy, pass it into an SKPayment initializer to create a payment object.
 - Then, you add that payment to the SKPaymentQueue's default queue.
-
-```swift
-let payment = SKPayment(product: product)
-SKPaymentQueue.default().add(payment)
-```
+    ```swift
+    let payment = SKPayment(product: product)
+    SKPaymentQueue.default().add(payment)
+    ```
 
 - Now, as soon as you add the payment to the default queue, the user sees this great new looking in-app purchase payment sheet. So, this is new in iOS 11.
 - And the user, of course, can just authenticate the purchase using Touch ID, and then, continue using your app. 
@@ -149,13 +151,11 @@ Now, at this point, I'll just take a quick sidestep to talk a bit about detectin
 
 - For applications with their own account management 
 - Provide an `opaque identifier` for `your user's account`
-
-
-```swift
-let payment = SKPayment(product: product)
-payment.applicationUsername = hash( yourCustomerAccountName )
-SKPaymentQueue.default().add(payment)
-```
+    ```swift
+    let payment = SKPayment(product: product)
+    payment.applicationUsername = hash( yourCustomerAccountName )
+    SKPaymentQueue.default().add(payment)
+    ```
 
 <h2 id="9e9b93d51ddf2aa1ede1858c33f1ecd6"></h2>
 
@@ -165,20 +165,25 @@ SKPaymentQueue.default().add(payment)
 - Right at the beginning of your application lifecycle. 
     - And here, I'm doing it at the `didFinishLaunchingWithOptions` app delegate method.
     - It's important to set a transaction observer onto the SKPayment queue.
+        ```swift
+        func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+            // Attach an observer to the payment queue.
+            SKPaymentQueue.default().add(StoreObserver.shared)
+            return true
+        }
+        
+        func applicationWillTerminate(_ application: UIApplication) {
+            // Remove the observer.
+            SKPaymentQueue.default().remove(StoreObserver.shared)
+        }
+        ```
 
-```swift
-SKPaymentQueue.default().add(self)
-return true 
-```
-
-- here I'm adding the actual AppDelegate, itself, as my SKPayment transaction observer. 
-- But you could use another object if you want to actually monitor these transactions. 
+- here I'm adding the actual AppDelegate,  as my SKPayment transaction observer. 
 - The really important thing here, is that it's happening as early on in the application lifecycle, as possible. 
     - See, transactions can come into this transaction observer any point during your application lifecycle.
 - So, make sure that you're registering it right at the start.
 - But once that's registered, you're ready to start receiving transactions in the callbacks.
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_process_transaction_1.png)
+    ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_process_transaction_1.png)
 
 - There's this one callback updated transactions, which is kind of the center of where this all happens.
 - You receive an array of transactions that come in, and you can check the transaction state on each of these transactions.
@@ -190,19 +195,17 @@ return true
     - So, a child might ask to buy an in-app purchase and a request goes to their parent for approval to actually approve the purchase.
 - So, it's important if something comes through in this deferred state, while they're waiting for an approval, that you allow access to the application.
 - Allow them to keep using your app, and don't let them get stuck on any kind of modal loading spinners or things like that. 
-- In order to test out deferred transactions, we provide a way for you to do this.
+- In order to test out **deferred transactions**, we provide a way for you to do this.
     - You can create a mutable payment object.
     - And you can set the simulatesAskToBuy flag on this object. 
-    - Now, this is effective when you're using the Sandbox environment.  
-
-```swift
-let payment = SKPayment(product: product)
-payment.simulatesAskToBuyInSandbox = true 
-SKPaymentQueue.default().add(payment)
-```
+    - Now, this is effective when you're using the Sandbox environment. 
+        ```swift
+        let payment = SKPayment(product: product)
+        payment.simulatesAskToBuyInSandbox = true 
+        SKPaymentQueue.default().add(payment)
+        ```
 
 When it comes to handling errors, couple of points to remember. 
-
 - Now, not all errors that come through this process are equal.
 - And that means you really need to pay attention to the error code that comes through with a transaction.
 - Now, once a transaction comes through in the purchased state, I mentioned that it's important for you to verify that transaction. 
@@ -237,27 +240,23 @@ When it comes to handling errors, couple of points to remember.
 ### Finish Transaction
 
 - it's important to finish all transactions that come through this process.
+    ```swift
+    SKPaymentQueue.default().finishTransaction(transaction)
+    ```
     - if downloading hosted content, wait until after the download completes
 - Even if they're in like an error state, you got to finish all transactions that come through in this flow.
     - And that includes when you're dealing with auto-renewable subscriptions. Any renewal transactions that come in this flow, as well.
 - Otherwise , the payment will stay in the queue.
-
-```swift
-SKPaymentQueue.default().finishTransaction(transaction)
-```
 
 - When you're in app review, you must have a Restore button if you've got non-consumable or auto-renewable subscription products in your application. 
     - And this Restore button has to be a separate button from the actual purchase button. 
 - So, if you're selling consumable products or non-renewing subscriptions, you've got to persist the state of those things, yourself. 
 - In order to actually restore them, this is the API for it. It's `restoreCompletedTransactions` as the method, and it's on the default payment queue.
     - If you call that, that's going to cause all the completed transactions in those categories to reappear on the updated transactions callback. So, you can just do the same process that we just saw, check for them being in the purchase state, do receipt validation, unlock all the features accordingly. 
-    
-
-```swift
-SKPaymentQueue.default().restoreCompletedTransaction()
-```
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_restore_completed_transactions.png)
+    ```swift
+    SKPaymentQueue.default().restoreCompletedTransaction()
+    ```
+    - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_restore_completed_transactions.png)
 
 ---
 
@@ -325,9 +324,9 @@ Doc: https://developer.apple.com/library/archive/releasenotes/General/ValidateAp
         - API to get the path
     - Single file
         - Purchase data
-            - 包含有程序的所有购买数据，和已经发生的IAP购买
         - Signature to check authenticity
 - Standards 工业标准
+    - It is actually a pkcs7 DER stream
     - Signing
         - PKCS#7 Cryptographic Container
     - Data Encoding
@@ -342,16 +341,22 @@ Doc: https://developer.apple.com/library/archive/releasenotes/General/ValidateAp
 
 #### Locate the receipt using Bundle API
 
-- 读取 receipt对象的 加密二进制数据
 
 ```swift
-// Locate the file
-guard let url = Bundle.main.appStoreReceiptURL else { // Handle failure
-    return
-}
-// Read the contents
-let receipt = Data(contentsOf: url)
+// get receipt data from StoreKit,  encode it by base64
+        // Get the receipt if it's available
+        if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
+            FileManager.default.fileExists(atPath: appStoreReceiptURL.path) {
 
+            do {
+                let receiptData = try Data(contentsOf: appStoreReceiptURL, options: .alwaysMapped)
+                print(receiptData)
+                let receiptString = receiptData.base64EncodedString(options: [])
+                print( receiptString )
+                // Read receiptData
+            }
+            catch { print("Couldn't read receipt data with error: " + error.localizedDescription) }
+        }
 ```
 
 
@@ -392,21 +397,13 @@ let receipt = Data(contentsOf: url)
 - When you're verifying the receipt -- the actual certificate used to sign the receipt, a couple of tips here.
 - **Do not check the expiry date of the certificate relative to current date**
     - Compare expiry date to purchase date of the transaction
-    - 在生成收条时，证书是否有效
-
-
 
 
 <h2 id="a57740e6c71bea91d87abc940ac67f42"></h2>
 
-
 #### Receipt payload
 
-
-
-
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload.png)
-
+- ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload.png)
 - Series of attributes
     - Type
     - Value
@@ -418,8 +415,6 @@ let receipt = Data(contentsOf: url)
 
 #### Verify application
 
-- 现在你已经检查实际文件是否已经使用正确的Apple证书进行签名, 你需要确定进行签名的程序就是用户运行的程序。
-    - 使用 type2 / type3
 - Check the bundle identifier
 - Check the bundle version
 - Use **hardcoded values**
@@ -437,18 +432,17 @@ let receipt = Data(contentsOf: url)
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload2.png)
 
 - Attribute 5 is a SHA-1 hash of three key values
-    - Bundle identifier
     - Device identifier
-        - 提供API 读取?
+        - `device.identifierForVendor`
     - Opaque value (Attribute 4)
         - it's a little bit of cryptographic entropy.
         - A bit of secret salt that allows that SHA-1 hash to change over time, even the bundle ID and the device ID aren't changing. 
+    - Bundle identifier
 - Unique to your app on this device
-    - this SHA-1 hash is unique to this app on the device. ?
-- Create hash using **hardcoded** values, compare it to the one in type number 5.
+    - this SHA-1 hash is unique to this app on the device.
+- Create hash using **those** values, compare it to the one in type number 5.
 
 So now you've done those three checks. That's the process of validating the receipt on the device.
-
 
 
 <h2 id="11fd4b761490e26bfc03282dad341fd5"></h2>
@@ -464,7 +458,6 @@ So now you've done those three checks. That's the process of validating the rece
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_process_transactions.png)
 
-- 现在你知道这是一个可信文件，可以从它读取更多信息。
 - So let's take a look at the next step which is to actually update state and inspect the contents of these in-app purchases inside the receipt.
 
 <h2 id="4f3f99d97127265360c73642828cdbda"></h2>
@@ -477,11 +470,11 @@ So now you've done those three checks. That's the process of validating the rece
 
 #### In-app purchase attributes
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_iap_attributes.png)
+![](../../imgs/IAP_iap_attributes.png)
 
 - The receipt contains a specific type, type 17 for every transaction that occurs for this user on this device.
 
-![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_attributes_17.png)
+![](../../imgs/IAP_attributes_17.png)
 
 - Now in each type 17, the actual payload is another ASN.1 encoded container.
 - So we have things like a quantity, a product identifier, a transaction ID. 
@@ -498,8 +491,6 @@ So now you've done those three checks. That's the process of validating the rece
 
 #### Unlocking content on-device
 
-- 现在你可以读出这些交易信息，你可以适用这些信息来核实它们是否与 StoreKit 告诉你的用户购买内容一致
-
 - Transaction will appear in updatedTransactions callback
     - Transaction observer must be registered early in lifecycle
 - Receipt payload contains in-app purchase transactions
@@ -515,7 +506,6 @@ So now you've done those three checks. That's the process of validating the rece
 
 - Valid receipt ≠ subscribed
 - Filter transactions by originalTransactionId
-    - 进行分组
     - Matches the first in-app purchase for that subscription
 - Check matching transactions for latest expiry date
     - Type 1708
@@ -550,7 +540,7 @@ So now you've done those three checks. That's the process of validating the rece
 - Receipt refresh will require network
 - Store sign-in will be required
 - Avoid continuous loop of validate-and-refresh
-    - 因为这会反复提示用户登录， 只应该发送一次请求
+    - it will prompt user to login again and again, you should send only 1 request.
 
 ```swift
 let request = SKReceiptRefreshRequest() 
@@ -635,9 +625,8 @@ request.start()
 - Response is in JSON
     - Returns status on whether receipt is valid or not
 - AGAIN: **Never send the receipt directly from your app to the App Store server**
-    - 只有在你的服务器 与 App Store 之间的通道上 进行这些处理才是安全的
+    - only the http channel between your server and AppStore Server is secure.
 - these are whole steps to validate receipt by server, it is very simple.
-    - 下一步就是，你如何 解锁内容，并检查交易
 
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_server_validate2.png)
 
@@ -660,9 +649,7 @@ request.start()
 - Filter transactions by `originalTransactionId`
     - Matches the first IAP for taht subscription
 - Check matching transactions for latest expiry date
-    - 从app服务器返回的是最新的receipt副本，你不能再进行刷新操作
-
-
+    - the receipt data returned from AppStore server is latest.
 
 
 
@@ -690,7 +677,6 @@ request.start()
 ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_sandbox_certificate.png)
 
 - Can request expired and/or revoked receipts
-    - 以进行不同的方式处理
 - Time contraction for subscriptions
 - There's a different endpoint as well when it comes to server-to-server validation. We provide a different url for that verify receipt endpoint. 
 
