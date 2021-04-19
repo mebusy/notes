@@ -134,5 +134,29 @@
     - prevent overlaping objects ( right most icon in tool bar)
 
 
+## 15 - Using Layers
+
+- CMD-Shift-L , to open layer panel
+    - and then , you can add/delete/hierarchy layers
+
+## 16 - Using Filters
+
+- Menu  Filter/
+
+
+## 17 - Rendering Paths and Objects
+
+- generate random shape
+- Menu extension/render 
+
+## 22
+
+
+
+
+
+
+
+
 
 
