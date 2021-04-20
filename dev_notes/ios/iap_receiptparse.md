@@ -39,7 +39,7 @@ And then we decode it in order to use openssl to parse it.
 $ base64 -d receipt.b64 > receipt
 ```
 
-receipt is pkcs7 DER stream. Now we can use openssl to analyze it.
+receipt is pkcs7 ans1 encoded stream. Now we can use openssl to analyze it.
 
 ```bash
 $ openssl asn1parse -inform DER -in receipt -i
