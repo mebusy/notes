@@ -68,7 +68,7 @@ Results:
 
 </details>
 
-The raw receipt data is in indefinite length format, to make it easier to understand, we will convert it to definite length.
+The raw receipt data is in indefinite length format(BER, not DER), to make it easier to understand, we will convert it to definite length.
 
 ```bash
 # convert DER to PEM
