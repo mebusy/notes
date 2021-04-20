@@ -74,7 +74,10 @@ The raw receipt data is in indefinite length format, to make it easier to unders
 # convert DER to PEM
 # !!! PEM is just a base64 encoding of a DER-encoded stream surrounded with `-----BEGIN PKCS7-----`  `-----END PKCS7-----`
 $ openssl pkcs7 -inform DER -in receipt > receipt.pkcs7
+# if you just want the PEM data with ---- BEGIN ---END , and line break
+# $ openssl pkcs7 -inform DER -in receipt -outform DER | base64
 ```
+
 <details>
 <summary>
 $ cat receipt.pkcs7
