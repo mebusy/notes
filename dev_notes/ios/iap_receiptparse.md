@@ -39,7 +39,7 @@ And then we decode it in order to use openssl to parse it.
 $ base64 -d receipt.b64 > receipt
 ```
 
-receipt is pkcs7 ans1 encoded stream. Now we can use openssl to analyze it.
+receipt is pkcs7 DER encoded stream. Now we can use openssl to analyze it.
 
 ```bash
 $ openssl asn1parse -inform DER -in receipt -i
@@ -68,7 +68,7 @@ Results:
 
 </details>
 
-The raw receipt data is in indefinite length format(BER, not DER), to make it easier to understand, we will convert it to definite length.
+The raw receipt data is in indefinite length format, to make it easier to understand, we will convert it to definite length.
 
 ```bash
 # convert DER to PEM
