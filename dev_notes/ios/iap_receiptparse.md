@@ -343,7 +343,27 @@ $ echo "c68bce287e27494aa082acecb932817157FFAEFF040000000C18636F6D2E74656D706F72
 
 Moving ahead, within the receipt, you have more ASN.1 packets.  They are in Attribute 17.
 
-
+```bash
+# 66+187+2 = 255
+$ openssl asn1parse -length 92 -offset 255 -in receipt.pkcs7 -i
+    0:d=0  hl=2 l=  90 cons: SET
+    2:d=1  hl=2 l=  12 cons:  SEQUENCE
+    4:d=2  hl=2 l=   2 prim:   INTEGER           :06A5
+    8:d=2  hl=2 l=   1 prim:   INTEGER           :01
+   11:d=2  hl=2 l=   3 prim:   OCTET STRING      [HEX DUMP]:020101
+   16:d=1  hl=2 l=  26 cons:  SEQUENCE
+   18:d=2  hl=2 l=   2 prim:   INTEGER           :06A6
+   22:d=2  hl=2 l=   1 prim:   INTEGER           :01
+   25:d=2  hl=2 l=  17 prim:   OCTET STRING      [HEX DUMP]:0C0F636F6D2E74656D706F726172792E63
+   44:d=1  hl=2 l=  13 cons:  SEQUENCE
+   46:d=2  hl=2 l=   2 prim:   INTEGER           :06A7
+   50:d=2  hl=2 l=   1 prim:   INTEGER           :01
+   53:d=2  hl=2 l=   4 prim:   OCTET STRING      [HEX DUMP]:0C023836
+   59:d=1  hl=2 l=  31 cons:  SEQUENCE
+   61:d=2  hl=2 l=   2 prim:   INTEGER           :06A8
+   65:d=2  hl=2 l=   1 prim:   INTEGER           :01
+   68:d=2  hl=2 l=  22 prim:   OCTET STRING      [HEX DUMP]:1614323032312D30342D31365431303A35393A33335A
+```
 
 
 
