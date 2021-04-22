@@ -305,6 +305,7 @@ switch attributeType {
 
 - Attribute 5 (`977FCE5A312B1BE9B755274E17FAC423375C5089`) is a SHA-1 hash of 3 key values
     - Device identifier
+        - for my example, it is `c68bce287e27494aa082acecb9328171`
     - Opaque value (Attribute 4)
         - for may example, `57FFAEFF04000000`
     - Bundle identifier
@@ -330,7 +331,7 @@ switch attributeType {
           return data
     }
     ```
-- Now I have the entire data to calculate the hash
+- Now I have the entire data to calculate the hash, just a simple SHA-1 value
 
 ```bash
 $ echo "c68bce287e27494aa082acecb932817157FFAEFF040000000C18636F6D2E74656D706F726172792E69706174657374617070" |  xxd -r -p | openssl dgst -sha1 -hex

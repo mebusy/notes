@@ -766,6 +766,8 @@ if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
 
 ## Testing at All Stages of Development with Xcode and Sandbox
 
+[StoreKit Testing in Xcode 12: Getting Started](https://www.raywenderlich.com/15410082-storekit-testing-in-xcode-12-getting-started)
+
 https://developer.apple.com/documentation/storekit/in-app_purchase/testing_at_all_stages_of_development_with_xcode_and_sandbox
 
 
