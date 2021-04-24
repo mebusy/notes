@@ -172,6 +172,13 @@ a | b | c | d
 [Linux performace tool](imgs/linux_performance.jpg) |
 
 
+#### PCG
+
+ a | b | c | d
+--- | --- | --- | ---
+[PCG for every1](dev_notes/pcg_for_every1.md) | [PCG brogue](dev_notes/pcg_brogue.md) | 
+[dwarf fortress](dev_notes/dwarf_fortress_details.md) | 
+
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
 

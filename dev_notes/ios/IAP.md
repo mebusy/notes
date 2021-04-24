@@ -1,7 +1,7 @@
 ...menustart
 
 - [IAP](#0390e809a5857323f39ee1814afca57d)
-    - [IAP Process](#f05fa4d8ea2700881fb6150bac6cdf69)
+    - [IAP Process Flow](#58915c1729b0554fba11908a387eecc6)
         - [Load In-App identifiers](#0581a394c7c5b9dbd1f282ec2281c044)
         - [Fetch Product Info](#0cd9982c3996eda6c09deadde434e851)
         - [Show In-App UI](#a6f26c670dcdf3da2ef9a710e89d9912)
@@ -42,6 +42,10 @@
             - [Setting up the test environment](#46e951d214c2ed98e37d9b65f91f0734)
             - [App review considerations](#8109b0c0205566f624c6df98ca2c431c)
             - [Server notifications](#601c6fb1a4ee18105f8a5159346c6dfa)
+- [Testing on Xcode12](#c675b06c3fc1ebebbf279bdfb5cd75ed)
+    - [Receipt Validation](#0fa00b92b841e60b0d01285867edb59e)
+        - [Fetch the Receipt Data](#728c9904540d234597cb4dc230d43b78)
+    - [Testing at All Stages of Development with Xcode and Sandbox](#d0a9d932f2aaa582b416301992653063)
 
 ...menuend
 
@@ -58,7 +62,7 @@
 
 [storekit testing2](https://www.raywenderlich.com/15410082-storekit-testing-in-xcode-12-getting-started)
 
-<h2 id="f05fa4d8ea2700881fb6150bac6cdf69"></h2>
+<h2 id="58915c1729b0554fba11908a387eecc6"></h2>
 
 
 ## IAP Process Flow
@@ -401,6 +405,7 @@ Doc: https://developer.apple.com/library/archive/releasenotes/General/ValidateAp
 
 <h2 id="a57740e6c71bea91d87abc940ac67f42"></h2>
 
+
 #### Receipt payload
 
 - ![](https://raw.githubusercontent.com/mebusy/notes/master/imgs/IAP_receipt_payload.png)
@@ -716,7 +721,13 @@ request.start()
 
 
 
+<h2 id="c675b06c3fc1ebebbf279bdfb5cd75ed"></h2>
+
+
 # Testing on Xcode12
+
+
+<h2 id="0fa00b92b841e60b0d01285867edb59e"></h2>
 
 
 ## Receipt Validation 
@@ -742,6 +753,9 @@ let certificate = "AppleIncRootCertificate"
 #endif
 ```
 
+<h2 id="728c9904540d234597cb4dc230d43b78"></h2>
+
+
 ### Fetch the Receipt Data
 
 ```swift
@@ -762,6 +776,9 @@ if let appStoreReceiptURL = Bundle.main.appStoreReceiptURL,
 ```
 
 
+
+
+<h2 id="d0a9d932f2aaa582b416301992653063"></h2>
 
 
 ## Testing at All Stages of Development with Xcode and Sandbox

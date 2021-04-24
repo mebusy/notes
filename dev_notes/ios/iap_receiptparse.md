@@ -1,7 +1,25 @@
+...menustart
+
+- [Use Openssl To Parse IAP Receipt file](#14dff148d5b6f781fceb9c83c1ec12e3)
+    - [Get IAP Receipt Data from StoreKiet Receipt file](#3b17a8a988ca44ca5fc4a6181c9d2735)
+    - [Verify The Receipt is Issued By Apple](#eb609cbc47b275dfe2cda50963c3c1fc)
+    - [Parse the ASN.1 Payload](#09f5fe831238a5f80558921fed00ec42)
+    - [Receipt Fields](#c04afafd323695b16603734fecddd172)
+    - [Verify Device](#f4f8ebf21aad754ee899c2c55ddf9feb)
+    - [Attribute 17](#20c7185953d3c2b8367ddf770274d232)
+
+...menuend
+
+
+<h2 id="14dff148d5b6f781fceb9c83c1ec12e3"></h2>
+
 
 # Use Openssl To Parse IAP Receipt file
 
 [How to Validate iOS In-App Purchase Receipts Locally](https://betterprogramming.pub/how-to-validate-ios-in-app-purchase-receipts-locally-ce57ba752cae)
+
+<h2 id="3b17a8a988ca44ca5fc4a6181c9d2735"></h2>
+
 
 ## Get IAP Receipt Data from StoreKiet Receipt file
 
@@ -132,6 +150,9 @@ Export the certs information:
 openssl pkcs7 -print_certs -in receipt.pkcs7 > receipt.pkcs7.certs
 ```
 
+<h2 id="eb609cbc47b275dfe2cda50963c3c1fc"></h2>
+
+
 ## Verify The Receipt is Issued By Apple
 
 Get the Google Apple root certificate:  https://www.apple.com/certificateauthority/
@@ -159,6 +180,9 @@ Now we have the AppleIncRootCertificate as a *.pem, and we have the chain of cer
 $ openssl verify -CAfile receipt.pkcs7.certs AppleIncRootCertificate.pem
 AppleIncRootCertificate.pem: OK
 ```
+
+
+<h2 id="09f5fe831238a5f80558921fed00ec42"></h2>
 
 
 ## Parse the ASN.1 Payload
@@ -258,6 +282,9 @@ We get the receipt data, which is made up of a number of fields.
 </details>
 
 
+<h2 id="c04afafd323695b16603734fecddd172"></h2>
+
+
 ## Receipt Fields
 
 ```bash
@@ -301,6 +328,9 @@ switch attributeType {
 ```
 
 
+<h2 id="f4f8ebf21aad754ee899c2c55ddf9feb"></h2>
+
+
 ## Verify Device
 
 - Attribute 5 (`977FCE5A312B1BE9B755274E17FAC423375C5089`) is a SHA-1 hash of 3 key values
@@ -338,6 +368,9 @@ $ echo "c68bce287e27494aa082acecb932817157FFAEFF040000000C18636F6D2E74656D706F72
 977fce5a312b1be9b755274e17fac423375c5089
 # exactly same as attribute 5 !
 ```
+
+<h2 id="20c7185953d3c2b8367ddf770274d232"></h2>
+
 
 ## Attribute 17
 

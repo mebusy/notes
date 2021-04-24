@@ -2,6 +2,7 @@
 
 - [Node JS tips](#668bb941cde619613ceca40c1b9c1350)
     - [base64 and md5](#b6378067abb58e102f5e83f58a8718aa)
+    - [string format](#b04b1ebb0112a4e9ce1adf84bfda1677)
 
 ...menuend
 
@@ -25,6 +26,9 @@ console.log( m  , data.length ) ;
 let b64 = Buffer.from( data , 'binary' ).toString('base64')
 let unb64 = Buffer.from("SGVsbG8gV29ybGQ=", 'base64').toString('binary') ? or 'ascii' ?
 ```
+
+<h2 id="b04b1ebb0112a4e9ce1adf84bfda1677"></h2>
+
 
 ## string format 
 

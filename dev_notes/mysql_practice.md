@@ -11,12 +11,13 @@
 - [Query Tips](#1eeba8438a86727ddaeaaac5710a83ff)
     - [`select count(*)` is very slow on large table](#c4935fa15c0a1305da238eec81cc54b3)
     - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
-    - [use COALESCE to return a default value if select get no result](#471e27dbca2b606ef2e3110b2bc36fcc)
+    - [return a default value if select get no result](#7ddf721cdb15b5dfbfdae520c698160d)
     - [Sub Query example](#a21afd692dc65c7ff60c8f549b7f1f5a)
     - [CASE ... WHEN ... ELSE... END](#cba58cab71d7e6df49942060252f546d)
     - [Convert a timestamp to seconds(GMT)](#551a3f8ce4409963ec6de228ccc44ae0)
     - [三元表达式](#6ada22780ed552c34465864a2648f7e9)
     - [Update RANK while doing query](#9b22da090fcab767f2930f6e0b9b3251)
+    - [Bulk Update](#b18d852fa0d2465fe38b05b96dd5b736)
 
 ...menuend
 
@@ -132,7 +133,7 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
     - `id` is the auto incr primary key , and should be continous (that is , you should NOT delete the rows )
 
 
-<h2 id="471e27dbca2b606ef2e3110b2bc36fcc"></h2>
+<h2 id="7ddf721cdb15b5dfbfdae520c698160d"></h2>
 
 
 ## return a default value if select get no result
@@ -245,6 +246,9 @@ SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQ
     (SELECT @rownum:=0, @rowscore:=0, @lastrank:=1 ) as r  -- Every derived table must have its own alias
     order by rank_score desc 
     ```
+
+
+<h2 id="b18d852fa0d2465fe38b05b96dd5b736"></h2>
 
 
 ## Bulk Update

@@ -9,6 +9,11 @@
     - [Trace Bitmap Tool (Convert Raster to SVG)](#5b982918e0c8628311e23fb170b924db)
     - [12 Difference, Union, Intersection, Combination](#9b4dc60a782520206cbb06586e275a3f)
     - [13 Align and Distribute](#adb66e29613380734e6e61bcdfcdb868)
+    - [14 Spray Tool, Copy, Clone](#5e998916953970748f03784a139c283c)
+    - [15 - Using Layers](#7fb90a99cc8ccb7dadeeb6a1fc587d44)
+    - [16 - Using Filters](#86b97c880a25b935be6c9810121e887f)
+    - [17 - Rendering Paths and Objects](#bf272c95baaec4d007bd36649e901985)
+    - [22](#b6d767d2f8ed5d21a44b0e5886680cb9)
 
 ...menuend
 
@@ -125,6 +130,9 @@
 - /Object/Align and Distribute , shift-cmd-A
 - distribute:  setting distance between objects
 
+<h2 id="5e998916953970748f03784a139c283c"></h2>
+
+
 ## 14 Spray Tool, Copy, Clone
 
 - how to do
@@ -134,20 +142,32 @@
     - prevent overlaping objects ( right most icon in tool bar)
 
 
+<h2 id="7fb90a99cc8ccb7dadeeb6a1fc587d44"></h2>
+
+
 ## 15 - Using Layers
 
 - CMD-Shift-L , to open layer panel
     - and then , you can add/delete/hierarchy layers
+
+<h2 id="86b97c880a25b935be6c9810121e887f"></h2>
+
 
 ## 16 - Using Filters
 
 - Menu  Filter/
 
 
+<h2 id="bf272c95baaec4d007bd36649e901985"></h2>
+
+
 ## 17 - Rendering Paths and Objects
 
 - generate random shape
 - Menu extension/render 
+
+<h2 id="b6d767d2f8ed5d21a44b0e5886680cb9"></h2>
+
 
 ## 22
 
