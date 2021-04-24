@@ -177,7 +177,7 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [PCG for every1](dev_notes/pcg_for_every1.md) | [PCG brogue](dev_notes/pcg_brogue.md) | 
-[dwarf fortress](dev_notes/dwarf_fortress_details.md) | 
+[dwarf fortress](dev_notes/dwarf_fortress_details.md) | [roguelike note](dev_notes/roguelike_note.md) | 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
@@ -191,7 +191,6 @@ a | b | c | d
 [MacOSX Tips](dev_notes/MacOSX_Tips.md) | [workingTips](dev_notes/workingTips.md)	|  [VIM](dev_notes/vim.md) | [brew](dev_notes/homebrew.md)
 [blender api](dev_notes/blender.md) |  [blender lowpoly model](dev_notes/blender_low_poly.md) | 
 [mdfind](dev_notes/mdfind.md) | 
-[roguelike note](dev_notes/roguelike_note.md) | 
 [bit operation](dev_notes/bitop.md) |
 [GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
 [openssl 生成密钥](dev_notes/openssl.md)

@@ -169,6 +169,11 @@ http://roguecentral.org/doryen/articles/bsp-dungeon-generation/
 https://indienova.com/indie-game-development/tile-based-line-of-sight-explained/
 
 
+### Tools
+
+[Markov text generation](https://github.com/jsvine/markovify)
+
+
 
 
 
