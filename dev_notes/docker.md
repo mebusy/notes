@@ -1009,6 +1009,12 @@ CMD [ "redis-server" ]
 
 可以看到其中为了 redis 服务创建了 redis 用户，并在最后指定了 ENTRYPOINT 为 docker-entrypoint.sh 脚本。
 
+**场景三：docker run 传递命令参数**
+
+当你使用 docker run 运行你的容器，并想传递一些额外的参数 给你在 CMD 或 ENTRYPOINT 中定义的命令时, 使用 ENTRYPOINT 的效果是 这些额外的参数会被 传递(添加)给 ENTRYPOINT ; 而如果没有ENTRYPOINT 只有 CMD, 这些参数会完全替换掉你的 CMD 设置。
+
+
+
 <h2 id="15a80d9facd5298221ecbed6e7ee75c7"></h2>
 
 
