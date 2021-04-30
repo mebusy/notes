@@ -2,7 +2,7 @@
 
 - [Tips](#a0d4cc0f54602c3f247c72f15a7d2dbf)
     - [符号化crash 日志](#f3339d94a6bf27a7a019412ed2bd3ba9)
-    - [IAP create , app -> ipa](#baf92b6a6a0ac6be9b16cf0d77c0a8c4)
+    - [IPA create , app -> ipa](#baf92b6a6a0ac6be9b16cf0d77c0a8c4)
     - [mobile provision file 解码](#4b90af20d825ac9eb566c44390737682)
     - [设备版本过高，xcode无法真机debug](#b4d10ee9fb12a9e01a388d8b359f6f52)
     - [Swift use OC framework](#984efa6584f291218a16fe061a1abaa2)
@@ -32,7 +32,7 @@ symbolicatecrash -v ScaryCrash.crash > Symbolicated.crash
 <h2 id="baf92b6a6a0ac6be9b16cf0d77c0a8c4"></h2>
 
 
-## IAP create , app -> ipa
+## IPA create , app -> ipa
 
 ```shell
 #!/bin/bash  
@@ -82,5 +82,7 @@ security cms -D -i example.mobileprovision
 
 3. In YourProject-Bridging-Header.h:
     - `#import "<#yourFrameWork/yourheader>.h"`
+
+
 
 
