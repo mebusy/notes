@@ -636,6 +636,7 @@ h1 {
     - Another 2 Selector (less common)
         - Adjacent sibling selector ( selector + selector )
         - General sibling selector ( selector ~ selector )
+        - both of them will select the last element, [CSS Previous sibling selectors and how to fake them](https://medium.com/free-code-camp/how-to-make-the-impossible-possible-in-css-with-a-little-creativity-bd96bb42b29d)
 - Those combinations are  **Not Limited** To Element Selectors
     ```css
     .colored p {
