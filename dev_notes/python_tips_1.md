@@ -1028,6 +1028,23 @@ streamdata = child.communicate()[0]
 rc = child.returncode
 ```
 
+- Python3 subprocess.run
+    ```python
+    subprocess.run( [...] )
+    ```
+    - parent process will be blocked to wait child process to finish.
+    - `catputre_output=True` to acquire the output
+    ```python
+    >>> import subprocess
+    >>> result = subprocess.run( ["rm", "does not exist"], capture_output=True, shell=True )
+    >>> result
+    CompletedProcess(args=['rm', 'does not exist'], returncode=1, stdout=b'', stderr=b'rm: does not exist: No such file or directory\n')
+    >>> print ( result.stdout )
+    b''
+    >>> print ( result.stderr.decode() ) # to utf8 by default
+    rm: does not exist: No such file or directory
+    ```
+
 <h2 id="c88f2db1064b41d03c5779d4ef9aef26"></h2>
 
 
