@@ -136,7 +136,7 @@ Repeat until the queue is empty:
 - replace `queue` with stack ,and this algorithm can work as DFS.
 
 - Proposition
-    - FS computes shortest paths (fewest number of edges) from *s* to all other vertices in a graph in time proportional to E + V.
+    - BFS computes shortest paths (fewest number of edges) from *s* to all other vertices in a graph in time proportional to E + V.
 
 ---
 
