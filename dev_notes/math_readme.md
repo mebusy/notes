@@ -45,7 +45,8 @@
 ---
 
 - 3Brown1Blue
-    - [Essence of LA](3blue1brown.md)
+    - [Essence of LA #1-#14](3blue1brown.md)
+    - [Essence of LA #15 quick trick for computing eigenvalues](3b1b_quick_compute_eigenvalue.md)
 
 
 <h2 id="0349a55a6a70f89e604c28892ce24d82"></h2>
