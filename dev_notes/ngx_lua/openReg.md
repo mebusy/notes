@@ -130,7 +130,7 @@ location ~ ^/static/([-_a-zA-Z0-9/]+).jpg {
     content_by_lua_block {
         ngx.exec("/download_internal/images/"
                 .. ngx.var.image_name .. ".jpg");
-    };
+    }
 }
 
 location /download_internal {
