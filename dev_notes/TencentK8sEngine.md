@@ -366,6 +366,15 @@ docker images | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 kubectl_co get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 ```
 
+## Pod Stuck in Terminating
+
+很多原因会导致这个问题，可以先排除，是不是 node 坏了
+
+```bash
+k get po -o wide # this will show which Node is running the pod
+k get nodes # Check status of that node... I got it NotReady
+```
+
 <h2 id="12847d0d05565b4f2c885fa89ab4049b"></h2>
 
 
