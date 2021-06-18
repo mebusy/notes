@@ -78,7 +78,7 @@
 <h2 id="e7c8aa5b143e53ecad41b3612dab23ed"></h2>
 
 
-# python tips
+# python tips (most 2.7)
 
 ---
 
