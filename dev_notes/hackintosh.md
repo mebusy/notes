@@ -167,6 +167,15 @@ launchctl unload -w  /System/Library/LaunchAgents/com.apple.proactiveeventtracke
 rm -R com.apple.proactive.eventtracker
 ```
 
+## Big Sur Sleep Awaken Crash
+
+fixed in opencore 0.6,8
+
+```plist
+    <key>ForceBooterSignature</key>
+    <true/>
+```
+
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
 
