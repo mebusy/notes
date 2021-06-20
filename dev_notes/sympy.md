@@ -15,15 +15,15 @@ import sympy as smp
 
 ```python
 # pretty print
->>> from sympy import init_session
->>> init_session(quiet=True)
+from sympy import init_session
+init_session(quiet=True)
+# init_session will also init common symbols below
 ```
 
 ```python
-# default
->>> x, y, z, t = symbols('x y z t')
->>> k, m, n = symbols('k m n', integer=True)
->>> f, g, h = symbols('f g h', cls=Function)
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
 ```
 
 ## Basic

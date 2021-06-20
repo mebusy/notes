@@ -96,5 +96,8 @@
 - [Tricks](Tricks.md)
 - [softmax implementation](softmax.md)
 - [prime number](math_prime.md)
+- [Dot Product and Normals to Lines and Planes](dot_norm_lines_planes.md)
+- [sympy](sympy.md) , [sympy2](sympy_2.md) 
+
 
 
