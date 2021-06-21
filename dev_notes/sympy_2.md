@@ -123,6 +123,106 @@ See [Dot Product and Normals to Lines and Planes](dot_norm_lines_planes.md).
 
 ## Vector Calculus
 
+### Vector Derivatives
+
+```python
+>>> r = smp.Matrix( [3*t, smp.sin(t), t**2] )
+>>> r
+⎡ 3⋅t  ⎤
+⎢      ⎥
+⎢sin(t)⎥
+⎢      ⎥
+⎢   2  ⎥
+⎣  t   ⎦
+>>> smp.diff(r,t)
+⎡  3   ⎤
+⎢      ⎥
+⎢cos(t)⎥
+⎢      ⎥
+⎣ 2⋅t  ⎦
+```
+
+Example: Find the angle between the velocity and acceleration as a function of time θ(t).
+
+```python
+>>> v = smp.diff(r,t)
+>>> a = smp.diff(v,t)
+>>> theta = smp.acos( v.dot(a)/(v.norm()*a.norm()) ).simplify()
+>>> 
+>>> theta.subs(t,6).evalf()
+0.251108015692338
+
+>>> tt = np.linspace(0,10,100)
+>>> aa = smp.lambdify([t], theta) (tt)
+>>> plt.plot(tt,aa)
+[Line2D(_line0)]
+>>> plt.xlabel( 't'. fontsize=20 )
+>>> plt.show()
+```
+
+### Vector Integrals
+
+```python
+>>> r = smp.Matrix( [smp.exp(t) * smp.cos(t), t**4, 1/(1+t**2)] )
+>>> r
+⎡ t       ⎤
+⎢ℯ ⋅cos(t)⎥
+⎢         ⎥
+⎢    4    ⎥
+⎢   t     ⎥
+⎢         ⎥
+⎢   1     ⎥
+⎢ ──────  ⎥
+⎢  2      ⎥
+⎣ t  + 1  ⎦
+>>>
+>>> smp.Integral(r).doit()
+⎡ t           t       ⎤
+⎢ℯ ⋅sin(t)   ℯ ⋅cos(t)⎥
+⎢───────── + ─────────⎥
+⎢    2           2    ⎥
+⎢                     ⎥
+⎢          5          ⎥
+⎢         t           ⎥
+⎢         ──          ⎥
+⎢         5           ⎥
+⎢                     ⎥
+⎣       atan(t)       ⎦
+>>>
+>>> r = smp.Matrix( [smp.exp(t**2)*smp.cos(t)**3, smp.exp(-t**4), 1/(3+t**2) ] )
+>>> r
+⎡ ⎛ 2⎞        ⎤
+⎢ ⎝t ⎠    3   ⎥
+⎢ℯ    ⋅cos (t)⎥
+⎢             ⎥
+⎢       4     ⎥
+⎢     -t      ⎥
+⎢    ℯ        ⎥
+⎢             ⎥
+⎢     1       ⎥
+⎢   ──────    ⎥
+⎢    2        ⎥
+⎣   t  + 3    ⎦
+>>> # Integrate from t=0 to t=4
+>>> smp.Integral(r).doit()  # can not solve ∫ smp.exp(t**2)*smp.cos(t)**3
+>>> r_num = smp.lambdify([t], r)
+>>> r_num(3)
+ [[-7.86223546e+03]
+  [ 6.63967720e-36]
+ [ 8.33333333e-02]]
+>>> # _vec means this function is a vector function
+>>> # quad_vec returns ( result, error )
+>>> quad_vec(r_num, 0, 4)[0]
+ [[-4.83559254e+05]
+  [ 9.06402477e-01]
+ [ 6.70972506e-01]]
+>>> # smp.Integral(r, (t,0,4) ).n()    WON't work
+```
+
+## Arclength
+
+
+
 
 
 
