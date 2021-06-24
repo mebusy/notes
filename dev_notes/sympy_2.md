@@ -8,6 +8,10 @@ from sympy.vector import *
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
 from scipy.integrate import quad_vec
+
+import sympy as smp
+from sympy import init_session
+init_session(quiet=True)
 ```
 
 ```python
@@ -219,7 +223,81 @@ Example: Find the angle between the velocity and acceleration as a function of t
 >>> # smp.Integral(r, (t,0,4) ).n()    WON't work
 ```
 
-## Arclength
+## Partial/Directional Derivatives
+
+### Basic
+
+```python
+>>> f = y**2 * smp.sin(x+y)
+>>> smp.diff(f,x)
+ 2
+y ⋅cos(x + y)
+>>> smp.diff(f,y)
+ 2
+y ⋅cos(x + y) + 2⋅y⋅sin(x + y)
+>>>
+>>> smp.diff(f, x,y,y )
+   2
+- y ⋅cos(x + y) - 4⋅y⋅sin(x + y) + 2⋅cos(x + y)
+>>> smp.diff(f, y,x,y )
+# same result, the order does not matter
+   2
+- y ⋅cos(x + y) - 4⋅y⋅sin(x + y) + 2⋅cos(x + y)
+```
+
+
+### The Chain Rule
+
+```python
+>>> x,y,z,w,v = smp.symbols( 'x y z w v', cls=smp.Function )
+>>> # suppse x,y,z are functions of t
+>>> #   w is a function of x,y,z
+>>> x = x(t)
+>>> y = y(t)
+>>> z = z(t)
+>>> w = w(x,y,z)
+>>> # find dw/dt
+>>> smp.diff( w,t)
+  d                        d            d                        d            d                        d
+─────(w(x(t), y(t), z(t)))⋅──(x(t)) + ─────(w(x(t), y(t), z(t)))⋅──(y(t)) + ─────(w(x(t), y(t), z(t)))⋅──(z(t))
+dx(t)                      dt         dy(t)                      dt         dz(t)                      dt
+```
+
+Or put in specific functions
+
+```python
+>>> w1 = x**2 + smp.exp(y)*smp.sin(z)
+>>> smp.diff(w1,t).subs( [ (x, smp.sin(t)), (y, smp.cos(t)), (z, t**2) ] ).doit()
+     cos(t)    ⎛ 2⎞    cos(t)           ⎛ 2⎞                  
+2⋅t⋅ℯ      ⋅cos⎝t ⎠ - ℯ      ⋅sin(t)⋅sin⎝t ⎠ + 2⋅sin(t)⋅cos(t)
+```
+
+### Gradients
+
+```python
+>>> from sympy.vector import CoordSys3D
+>>> C = CoordSys3D('')
+>>>
+>>> C.x, C.y, C.z
+(x_, y_, z_)
+>>> f = C.x * smp.sin(C.y)
+>>> f
+x_⋅sin(y_)
+>>> smp.vector.gradient(f)
+(sin(y_)) i_ + (x_⋅cos(y_)) j_
+>>> smp.vector.gradient(f).to_matrix(C)
+⎡ sin(y_)  ⎤
+⎢          ⎥
+⎢x_⋅cos(y_)⎥
+⎢          ⎥
+⎣    0     ⎦
+```
+
+### Directional Derivatives
+
+
+
+
 
 
 
