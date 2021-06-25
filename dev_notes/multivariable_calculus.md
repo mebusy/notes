@@ -267,9 +267,45 @@ Keep it in the back of you mind: **Gradient is always perpendicular to contour l
         - ![](../imgs/multivar_calculus_chain_rule_3.png)
 
 
+## Vector form of the multivariable chain rule
+
+Instead of writing x(t), y(t) as separate functions, it's better and a little bit cleaner if we say there's a vector valued function , that takes in a single number *t*, and then it outputs some kind of vector.
+
+```python
+v(t) =  ⎡x(t)⎤
+        ⎢    ⎥
+        ⎣y(t)⎦
+```
+
+```octave
+dv/dt = ⎡d       ⎤
+        ⎢──(x(t))⎥
+        ⎢dt      ⎥
+        ⎢        ⎥
+        ⎢d       ⎥
+        ⎢──(y(t))⎥
+        ⎣dt      ⎦
+```
 
 
+- ![](../imgs/multivar_calculus_chain_rule_3.png)
 
+And now you might start to notice something here. You may recognize the right part as a dot product.
+
+- ![](../imgs/multivar_calculus_chain_rule_4.png)
+
+The left one is the gradient of f, ∇f. And the right vector is just the derivative of v, v'(t).
+
+And it's another way to write the multi-variable chain rule.
+
+And if you were being a little bit more exact you would emphasize that when you take the gradient of f , the thing that you input into it is the output of that vector valued function, and then you dot-product it by the derivative of v, v'(t).
+
+```octave
+∇f( v(t) )·v'(t)
+```
+
+
+## Multivariable chain rule and directional derivatives
 
 
 
