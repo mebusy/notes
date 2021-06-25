@@ -360,11 +360,86 @@ x_⋅sin(y_)
 
 ### Directional Derivatives
 
+Directional derivatives Dᵤf = ∇f·u
 
+```python
+>>> u = 4*C.i - 3*C.j + 2*C.k
+>>> u
+(4) i_ + (-3) j_ + (2) k_
+>>> u = u.normalize()
+>>> u
+⎛4⋅√29⎞      ⎛-3⋅√29 ⎞      ⎛2⋅√29⎞   
+⎜─────⎟ i_ + ⎜───────⎟ j_ + ⎜─────⎟ k_
+⎝  29 ⎠      ⎝   29  ⎠      ⎝  29 ⎠   
+>>>
+>>> f
+x_⋅sin(y_)
+>>> smp.vector.gradient(f).dot(u)
+  3⋅√29⋅x_⋅cos(y_)   4⋅√29⋅sin(y_)
+- ──────────────── + ─────────────
+         29                29
+```
 
+## Extreme Values and Saddle Points
 
+Extreme values of f(x,y) can occur at 
 
+1. Boundary points of the domain of f
+    - e.g. a surface with boundary
+2. Critical Points ( f<sub>x</sub> = f<sub>y</sub> = 0 )
 
+```python
+>>> x, y = smp.symbols('x y', real = True)
+>>> f = x**3 + 3*x*y + y**3
+>>> f
+ 3            3
+x  + 3⋅x⋅y + y
+>>> smp.solve( [smp.diff(f,x ), smp.diff(f,y)] ) # solve to make all equations to be 0.
+[{x: -1, y: -1}, {x: 0, y: 0}]
+```
+
+More, use 2nd derivatives to check...
+
+## Multiple Integrals 
+
+```python
+>>> smp.Integral( f, (z, 3,4-x**2-y**2 ), (y, 0,1-x**2), (x,0,1) )
+        2      2   2               
+1  1 - x     -x  -y  +4           
+⌠   ⌠          ⌠                 
+⎮   ⎮          ⎮       x dz dy dx
+⌡   ⌡          ⌡                 
+0   0          3          
+>>> smp.integrate( f, (z, 3,4-x**2-y**2 ), (y, 0,1-x**2), (x,0,1) )
+1/8
+```
+
+But most of the time, they need to be done numerically. e.g.:
+
+```python
+>>> f = x*smp.exp(-y)*smp.cos(z)
+>>> smp.Integral( f, (z, 3,4-x**2-y**2 ), (y, 0,1-x**2), (x,0,1) )
+       2     2   2
+1 1 - x    -x  -y  +4
+⌠   ⌠          ⌠
+⎮   ⎮          ⎮          -y
+⎮   ⎮          ⎮       x⋅ℯ  ⋅cos(z) dz dy dx
+⌡   ⌡          ⌡
+0   0          3
+```
+
+Use scipy to evaluate this numerically.
+
+```python
+>>> from scipy.integrate import tplquad
+>>> f = lambda z,y,x : x*np.exp(-y) * np.cos(z)
+>>> tplquad( f, 0, 1,
+...     lambda x: 0, lambda x: 1-x**2,
+...     lambda x, y: 3, lambda x,y: 4-x**2-y**2)[0]
+-0.09109526451447894
+```
+
+## Integrals and Vector Fields 
 
 
 
