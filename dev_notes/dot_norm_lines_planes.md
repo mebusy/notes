@@ -1,3 +1,13 @@
+...menustart
+
+- [Dot Product and Normals to Lines and Planes](#8c74fbe5491cc80df8a6aeac75b11cb7)
+    - [Normal Vector A](#26d5cd5f94257c59f16c4137aae7cd7c)
+
+...menuend
+
+
+<h2 id="8c74fbe5491cc80df8a6aeac75b11cb7"></h2>
+
 
 # Dot Product and Normals to Lines and Planes
 
@@ -13,6 +23,9 @@ The equation of a line in the form ax + by + cz = d can be written as a dot prod
  `(a,b, c) · (x,y, z) = d, or A · X = d,`
 
 where A = (a, b, c) and X = (x,y, z). 
+
+
+<h2 id="26d5cd5f94257c59f16c4137aae7cd7c"></h2>
 
 
 ## Normal Vector A

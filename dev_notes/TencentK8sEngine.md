@@ -23,6 +23,7 @@
     - [k8s node 磁盘占用过高查找并清理](#e8dfbb86e3e1d39df969144ae4d3f06b)
     - [清除不再使用的 image](#77563c3ed75c144a6617a7077a1b4771)
     - [查找不是 running 状态的 pod](#145f750dc8c7bde1231227e5d027eafd)
+    - [Pod Stuck in Terminating](#f33345d63406b6b6402c63cb4275d5b7)
     - [Duplicate service , deployment one namespece to another namespace](#12847d0d05565b4f2c885fa89ab4049b)
 - [cntlm 设置代理 (Centos7)](#c36aef5f4c92632a2362a83ed0523565)
 - [cntlm (Macosx)](#48cd1b6a59fb119e19d9f83e6cf43668)
@@ -365,6 +366,9 @@ docker images | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 ```
 kubectl_co get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 ```
+
+<h2 id="f33345d63406b6b6402c63cb4275d5b7"></h2>
+
 
 ## Pod Stuck in Terminating
 

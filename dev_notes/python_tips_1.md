@@ -1,6 +1,6 @@
 ...menustart
 
-- [python tips](#e7c8aa5b143e53ecad41b3612dab23ed)
+- [python tips (most 2.7)](#149b164aabd9e2da3e4ff789cbfefe85)
     - [语法技巧](#cd82da5cf3ee760792e950b087be3d29)
         - [eval 环境](#49bdb1b4a214a6bc00824eb4f7b2c5f1)
         - [获取变量x的内存地址](#f372cdc8f82db5bb3a311edc6743e412)
@@ -75,7 +75,7 @@
 ...menuend
 
 
-<h2 id="e7c8aa5b143e53ecad41b3612dab23ed"></h2>
+<h2 id="149b164aabd9e2da3e4ff789cbfefe85"></h2>
 
 
 # python tips (most 2.7)

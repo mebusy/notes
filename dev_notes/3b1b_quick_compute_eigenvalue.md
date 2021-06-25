@@ -1,3 +1,12 @@
+...menustart
+
+- [15. A quick trick for computing eigenvalues](#7caa83ff4a782038db7aea2476ea082a)
+
+...menuend
+
+
+<h2 id="7caa83ff4a782038db7aea2476ea082a"></h2>
+
 
 # 15. A quick trick for computing eigenvalues
 

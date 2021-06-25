@@ -1,3 +1,26 @@
+...menustart
+
+- [Sympy II](#801a16e14d536204d62b1027d930e55b)
+    - [Vectors and Geometry](#74b1059efb1bc9a7532a2ce3d5a81ca3)
+    - [Dot Product](#5bdd3e655ff234af7768b8653b0f60d7)
+    - [Cross Product](#9760c5309454db44d51707f32c0060ff)
+    - [Length of vector](#f9bba2010e97be89ce1fc95f71647f89)
+    - [Vector projection](#3b70d9f00a42a7046ded4e6bff7584e2)
+    - [Plane in Space](#bcf24edbc600408e71f9aa704d3e765d)
+    - [Vector Calculus](#c8eaf42af0904e677cb2a80b96160a91)
+        - [Vector Derivatives](#10a81f2e36fc0ac7aab0584b0ec2b4d6)
+        - [Vector Integrals](#eeb3262d99392c5b5ff1fffceb4ab63a)
+    - [Partial/Directional Derivatives](#c64b5c9a944ab2b58eb473454d41d985)
+        - [Basic](#972e73b7a882d0802a4e3a16946a2f94)
+        - [The Chain Rule](#62568a512f5b51ee525d33114a235b26)
+        - [Gradients](#e99e133f4481158db879726b7335d967)
+        - [Directional Derivatives](#304e4b6f83f27847ed4376143530e7fe)
+
+...menuend
+
+
+<h2 id="801a16e14d536204d62b1027d930e55b"></h2>
+
 
 # Sympy II
 
@@ -17,6 +40,9 @@ init_session(quiet=True)
 ```python
 x,y,z, u1,u2,u3, v1,v2,v3, t = smp.symbols( 'x y z  u1 u2 u3  v1 v2 v3  t' )
 ```
+
+<h2 id="74b1059efb1bc9a7532a2ce3d5a81ca3"></h2>
+
 
 ## Vectors and Geometry
 
@@ -39,6 +65,9 @@ x,y,z, u1,u2,u3, v1,v2,v3, t = smp.symbols( 'x y z  u1 u2 u3  v1 v2 v3  t' )
 ⎣2⋅u₃ + v₃⎦
 ```
 
+<h2 id="5bdd3e655ff234af7768b8653b0f60d7"></h2>
+
+
 ## Dot Product
 
 ```python
@@ -47,6 +76,9 @@ x,y,z, u1,u2,u3, v1,v2,v3, t = smp.symbols( 'x y z  u1 u2 u3  v1 v2 v3  t' )
 >>> u.dot(v)
 u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 ```
+
+
+<h2 id="9760c5309454db44d51707f32c0060ff"></h2>
 
 
 ## Cross Product
@@ -62,6 +94,9 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 ⎣u₁⋅v₂ - u₂⋅v₁ ⎦
 ```
 
+<h2 id="f9bba2010e97be89ce1fc95f71647f89"></h2>
+
+
 ## Length of vector
 
 ```python
@@ -72,6 +107,9 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
   ╱     2       2       2 
 ╲╱  │u₁│  + │u₂│  + │u₃│  
 ```
+
+<h2 id="3b70d9f00a42a7046ded4e6bff7584e2"></h2>
+
 
 ## Vector projection
 
@@ -96,6 +134,9 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 ⎢      2       2       2   ⎥
 ⎣  │v₁│  + │v₂│  + │v₃│    ⎦
 ```
+
+<h2 id="bcf24edbc600408e71f9aa704d3e765d"></h2>
+
 
 ## Plane in Space 
 
@@ -125,7 +166,13 @@ See [Dot Product and Normals to Lines and Planes](dot_norm_lines_planes.md).
 [14  2 15]
 ```
 
+<h2 id="c8eaf42af0904e677cb2a80b96160a91"></h2>
+
+
 ## Vector Calculus
+
+<h2 id="10a81f2e36fc0ac7aab0584b0ec2b4d6"></h2>
+
 
 ### Vector Derivatives
 
@@ -163,6 +210,9 @@ Example: Find the angle between the velocity and acceleration as a function of t
 >>> plt.xlabel( 't'. fontsize=20 )
 >>> plt.show()
 ```
+
+<h2 id="eeb3262d99392c5b5ff1fffceb4ab63a"></h2>
+
 
 ### Vector Integrals
 
@@ -223,7 +273,13 @@ Example: Find the angle between the velocity and acceleration as a function of t
 >>> # smp.Integral(r, (t,0,4) ).n()    WON't work
 ```
 
+<h2 id="c64b5c9a944ab2b58eb473454d41d985"></h2>
+
+
 ## Partial/Directional Derivatives
+
+<h2 id="972e73b7a882d0802a4e3a16946a2f94"></h2>
+
 
 ### Basic
 
@@ -244,6 +300,9 @@ y ⋅cos(x + y) + 2⋅y⋅sin(x + y)
    2
 - y ⋅cos(x + y) - 4⋅y⋅sin(x + y) + 2⋅cos(x + y)
 ```
+
+
+<h2 id="62568a512f5b51ee525d33114a235b26"></h2>
 
 
 ### The Chain Rule
@@ -272,6 +331,9 @@ Or put in specific functions
 2⋅t⋅ℯ      ⋅cos⎝t ⎠ - ℯ      ⋅sin(t)⋅sin⎝t ⎠ + 2⋅sin(t)⋅cos(t)
 ```
 
+<h2 id="e99e133f4481158db879726b7335d967"></h2>
+
+
 ### Gradients
 
 ```python
@@ -292,6 +354,9 @@ x_⋅sin(y_)
 ⎢          ⎥
 ⎣    0     ⎦
 ```
+
+<h2 id="304e4b6f83f27847ed4376143530e7fe"></h2>
+
 
 ### Directional Derivatives
 
