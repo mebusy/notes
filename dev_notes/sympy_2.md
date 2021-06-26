@@ -441,6 +441,10 @@ Use scipy to evaluate this numerically.
 
 ## Integrals and Vector Fields 
 
+TODO 32:00
+
+https://www.youtube.com/watch?v=Teb28OFMVFc
+
 
 
 
