@@ -1,6 +1,15 @@
 
 # Docker k8s desktop
 
+Ingress controller is a service which type is `LoadBalancer`. It is also another set of pods that run on your nodes in your k8s cluster, and thus evaluation and processing of ingress routes.
+
+- evaluates all the rules
+- manages redirections
+- entrypoint to cluster
+- many third-party implementations
+    - there is one from kubernetes itself which is `K8s nginx ingress controller`
+    - if you are using a cloud service, you would have a cloud load balancer that is specifically implemented by that cloud provider.
+
 ## Enable Kuberneters on Docker Desktop
 
 Preferences / Kuberneters / Enable Kuberneters
