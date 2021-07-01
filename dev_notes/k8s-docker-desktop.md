@@ -42,7 +42,9 @@ ingress-nginx-controller-b6cb664bc-tnzbm   1/1     Running     0          51s
 
 [ingress sample](http://threelambda.com/2020/07/06/run-ingress-example-on-mac/)
 
-Be sure your ingress have got address.
+**Do NOT add ANNOTATIONS that are not recognized by ingress nginx !! e.g. aws alb annotations**
+
+To check whether your ingress have got address.
 
 ```bash
 $ kubectl get ingress -A
@@ -52,5 +54,23 @@ default       example-ingress       <none>   *                  localhost   80  
 $ curl localhost:10080/apple  # because we have changed the listening port to 10080
 apple
 ```
+
+route with specific host:
+
+```bash
+$ kubectl get ingress -A
+NAMESPACE     NAME                  CLASS    HOSTS              ADDRESS     PORTS   AGE
+umc-dot-dev   dot-iap-ingress-443   <none>   dot-iap-dev.imac   localhost   80      28m
+
+$ curl localhost:10080
+$ curl dot-iap-dev.imac:10080
+ok
+$ curl localhost:10080
+404 Not Found
+$ curl -H "host: dot-iap-dev.imac" localhost:10080
+ok
+```
+
+
 
 
