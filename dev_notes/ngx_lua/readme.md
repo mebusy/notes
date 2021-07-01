@@ -5,7 +5,7 @@
  5. [LuaNginxModule](LuaNginxModule.md)
  6. [nginx 转发wss](../nginx_Reverse_proxy_wss.md)
  7. [nginx 转发 mysql 链接](../nginx_mysql.md)
-
+ 8. [nginx 转发 udp](../nginx_fwd_udp.md)
 
 
 ---

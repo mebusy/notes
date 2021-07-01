@@ -184,7 +184,7 @@ extern "C" {
       JNIEnv* env = getJNIEnv( & isAttached );
       //replace with one of your classes in the line below
 
-      const char* name = "com/ubi/androidmediadecode/JNI_Method" ;
+      const char* name = "com/company/androidmediadecode/JNI_Method" ;
       jclass randomClass = env->FindClass( name );
       jclass classClass = env->GetObjectClass(randomClass);
       jclass classLoaderClass = env->FindClass("java/lang/ClassLoader");
