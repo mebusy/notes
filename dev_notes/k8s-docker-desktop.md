@@ -10,20 +10,19 @@ Preferences / Kuberneters / Enable Kuberneters
 
 [ingress for desktop](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac)
 
-The problem is the default listening port 80 is gonna easily conflict with other service you already have, so sometimes you may need to alter ingress' default http listening port.
-
+There may be a problem that the default listening port 80 is gonna easily conflict with other service you already have, so sometimes you may need to alter ingress' default http listening port to another one.
 
 ```bash
 # 1. dowdload deploy.yaml
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/cloud/deploy.yaml
 # 2. modify 1:  replace 2 http 80 port to the number you want to listening, e.g. we can use 10080
 # 3. modify 2:  Deployment / containers / args , add  `- --http-port=10080` , 
-#        so as to ingress listening 10080 -> 80 ingress
+#        so as to make the traffic works: ingress listening 10080 -> 80 ingress
 # 4. apply
 kubectl apply -f deploy.yaml
 ```
 
-ingress-nginx-controller listening port has been changed
+You will notice that ingress-nginx-controller listening port has been changed
 
 ```bash
 $ kubectl get svc -A
@@ -41,9 +40,9 @@ ingress-nginx-admission-patch-b85nx        0/1     Completed   1          50s
 ingress-nginx-controller-b6cb664bc-tnzbm   1/1     Running     0          51s
 ```
 
-[ingress sample](http://threelambda.com/2020/07/06/run-ingress-example-on-mac/)
 
-**Do NOT add ANNOTATIONS that are not recognized by ingress nginx !! e.g. aws alb annotations**
+Here is a [simple sample](http://threelambda.com/2020/07/06/run-ingress-example-on-mac/) to test ingress on Mac OSX docker desktop.
+
 
 <details>
 <summary>
@@ -154,11 +153,16 @@ $ curl localhost:10080/apple  # because we have changed the listening port to 10
 apple
 ```
 
-route with specific host:
+**PS. Do NOT add ANNOTATIONS that are not recognized by ingress nginx !! e.g. aws alb annotations**
+
+---
+
+route with specific host sample:
+
 
 <details>
 <summary>
-ingress host specified
+ingress with specified host
 </summary>
 
 ```yaml
