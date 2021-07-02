@@ -39,7 +39,7 @@ $ docker run --rm -it  --user="$(id -u):$(id -g)" -v "$(pwd)":/manim manimcommun
 
 Pretty long command ...
 
-To save life, on linux of OSX, you can create a bash function in your bash profile file to later use
+To save life, on linux or OSX, you can create a bash function in your bash profile file to later use
 
 ```bash
 function manim() {
