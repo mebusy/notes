@@ -55,7 +55,41 @@ $ manim test_scene.py SquareToCircle -ql
     File ready at /manim/media/videos/test_scene/480p15/SquareToCircle.mp4   
 ```
 
+But can use `-p` parameter to play video right after things done when we use docker manin.
 
+Solution on OSX:
+
+Create a python3 script mplay.py
+
+```python
+#!python3
+import sys
+import re
+
+RE_MP4 = re.compile( r'File ready at /manim\/(.+?\.mp4)' )
+RE_COLOR_TAG = re.compile( r'\[\d+(;\d+)?m' )
+
+if __name__=="__main__":
+    output=""
+    for line in sys.stdin:
+        # output stderr, so wont pass to next pipe
+        print(line, end="", file=sys.stderr )
+        output += line.strip()
+
+    output = RE_COLOR_TAG.sub("",output)
+
+
+    all_mp4 = RE_MP4.findall( output )
+    # output 1st video
+    if len(all_mp4) > 0 :
+        print( all_mp4[0])
+```
+
+```bash
+$ chmod +x mplay.py
+$ cp mplay /usr/local/bin/
+$ manim test_scene.py SquareToCircle -ql | mplay.py | xargs open 
+```
 
 
 
