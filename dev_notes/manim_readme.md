@@ -11,7 +11,7 @@ Manim Community's version is updated more frequently and better tested than Gran
 <h2 id="05bff63b61f38b96b6f040dfdfc00fa4"></h2>
 
 
-## Quick Starting
+## Quick Start
 
 create a python file `test_scene.py`
 
@@ -66,7 +66,7 @@ Create a python3 script mplay.py
 import sys
 import re
 
-RE_MP4 = re.compile( r'File ready at /manim\/(.+?\.mp4)' )
+RE_DST_FILE = re.compile( r'File ready at /manim\/(.+?\.(?:mp4|gif))' )
 RE_COLOR_TAG = re.compile( r'\[\d+(;\d+)?m' )
 
 if __name__=="__main__":
@@ -79,7 +79,7 @@ if __name__=="__main__":
     output = RE_COLOR_TAG.sub("",output)
 
 
-    all_mp4 = RE_MP4.findall( output )
+    all_mp4 = RE_DST_FILE.findall( output )
     # output 1st video
     if len(all_mp4) > 0 :
         print( all_mp4[0])
@@ -87,9 +87,92 @@ if __name__=="__main__":
 
 ```bash
 $ chmod +x mplay.py
-$ cp mplay /usr/local/bin/
+$ cp mplay.py /usr/local/bin/
 $ manim test_scene.py SquareToCircle -ql | mplay.py | xargs open 
 ```
+
+## Get Start
+
+### Create a Blue Square that Grows from the Center
+
+![](../imgs/manim_point2square.gif)
+
+```python
+# start.py
+from manim import *
+
+class PointMovingOnShapes(Scene):
+    def construct(self):
+        square = Square(color=BLUE) # Create a square
+        square.flip(RIGHT) # Flip the square to the right
+        square.rotate(-3 * TAU / 8) # Rotate the square -3/8 * 2*PI
+
+         # Play the animation of a square growing from the center
+        self.play(GrowFromCenter(square))
+```
+
+- A class that derives from `Scene`
+    - `construct` method
+
+```bash
+$ manim -ql start.py PointMovingOnShapes | mplay.py | xargs open
+```
+
+- `-ql` means quality low
+
+### create a gif
+
+- `-i` create a Gif instead of video
+
+```bash
+$ manim -i -ql start.py PointMovingOnShapes | mplay.py 
+media/videos/start/480p15/PointMovingOnShapes_ManimCE_v0.7.0.gif
+```
+
+### Turn a Square into a Circle, with rotate and flip
+
+![](../imgs/manim_square2circle.gif)
+
+```python
+from manim import *
+
+class PointMovingOnShapes(Scene):
+    def construct(self):
+
+        # Create a square
+        square = Square(color=BLUE)
+        square.flip(RIGHT)
+        square.rotate(-3 * TAU / 8)
+
+        # Create a circle
+        circle = Circle()
+        circle.set_fill(PINK, opacity=0.5) # set the color and transparency
+
+        # Create animations
+        self.play(GrowFromCenter(square))
+        self.play(Transform(square, circle))  # turn the square into a circle
+
+        self.wait() # wait for some seconds
+```
+
+
+### List of Manim Shapes
+
+[list of manim shapes](https://docs.manim.community/en/stable/reference/manim.mobject.geometry.html#module-manim.mobject.geometry)
+
+### Customize Manim
+
+- change backgroud color
+    ```python
+    from manim import *
+
+    config.background_color = YELLOW
+    ```
+    - ![](../imgs/manim_square2circle2.gif)
+
+### Manim Configurations
+
+- [manim configuration](https://docs.manim.community/en/stable/tutorials/configuration.html)
 
 
 
