@@ -37,9 +37,9 @@ run manim ( docker ), render video in low quality.
 $ docker run --rm -it  --user="$(id -u):$(id -g)" -v "$(pwd)":/manim manimcommunity/manim:stable manim test_scene.py SquareToCircle -ql
 ```
 
-Too long command ...
+Pretty long command ...
 
-To save life, on linux of OSX, you can create a bash function to later use 
+To save life, on linux of OSX, you can create a bash function in your bash profile file to later use
 
 ```bash
 function manim() {
