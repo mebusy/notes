@@ -196,7 +196,7 @@ a | b | c | d
 [github](dev_notes/github.md) | [sublime](dev_notes/sublime.md)   | [深入浅出nodeJS](dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](dev_notes/Html5GameProgramming.md)
 [MacOSX Tips](dev_notes/MacOSX_Tips.md) | [workingTips](dev_notes/workingTips.md)	|  [VIM](dev_notes/vim.md) | [brew](dev_notes/homebrew.md)
 [blender api](dev_notes/blender.md) |  [blender lowpoly model](dev_notes/blender_low_poly.md) | 
-[inkscape](dev_notes/inkscape.md) |
+[inkscape](dev_notes/inkscape.md) | [manim](dev_notes/manim_read.md) |
 [mdfind](dev_notes/mdfind.md) | 
 [bit operation](dev_notes/bitop.md) |
 [GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
