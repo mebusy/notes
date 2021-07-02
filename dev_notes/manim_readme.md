@@ -1,12 +1,3 @@
-...menustart
-
-- [Manim](#cbcd3fecff4c0ef0c063f8c41726d34a)
-    - [Quick Starting](#05bff63b61f38b96b6f040dfdfc00fa4)
-    - [Others](#52ef9633d88a7480b3a938ff9eaa2a25)
-
-...menuend
-
-
 <h2 id="cbcd3fecff4c0ef0c063f8c41726d34a"></h2>
 
 
@@ -56,7 +47,7 @@ function manim() {
 }
 ```
 
-So life is easy ...
+Life becomes easy ...
 
 ```bash
 $ manim test_scene.py SquareToCircle -ql
