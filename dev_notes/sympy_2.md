@@ -15,6 +15,9 @@
         - [The Chain Rule](#62568a512f5b51ee525d33114a235b26)
         - [Gradients](#e99e133f4481158db879726b7335d967)
         - [Directional Derivatives](#304e4b6f83f27847ed4376143530e7fe)
+    - [Extreme Values and Saddle Points](#9ead2491dd2b785094f496773bc0b7c8)
+    - [Multiple Integrals](#16755d7bea6907481a5e19b6a00a97e6)
+    - [Integrals and Vector Fields](#feaf4037dd6168c2b44df65e617ebc7d)
 
 ...menuend
 
@@ -380,6 +383,9 @@ x_⋅sin(y_)
          29                29
 ```
 
+<h2 id="9ead2491dd2b785094f496773bc0b7c8"></h2>
+
+
 ## Extreme Values and Saddle Points
 
 Extreme values of f(x,y) can occur at 
@@ -399,6 +405,9 @@ x  + 3⋅x⋅y + y
 ```
 
 More, use 2nd derivatives to check...
+
+<h2 id="16755d7bea6907481a5e19b6a00a97e6"></h2>
+
 
 ## Multiple Integrals 
 
@@ -438,6 +447,9 @@ Use scipy to evaluate this numerically.
 ...     lambda x, y: 3, lambda x,y: 4-x**2-y**2)[0]
 -0.09109526451447894
 ```
+
+<h2 id="feaf4037dd6168c2b44df65e617ebc7d"></h2>
+
 
 ## Integrals and Vector Fields 
 

@@ -1,3 +1,14 @@
+...menustart
+
+- [Docker k8s desktop](#b63b5716d67330c388528bca20bf0165)
+    - [Enable Kuberneters on Docker Desktop](#834aecdedbdc4ab95c71a729214c47ab)
+    - [Install ingress controller](#588da1e7cecfc3f40fa3e015ff722499)
+
+...menuend
+
+
+<h2 id="b63b5716d67330c388528bca20bf0165"></h2>
+
 
 # Docker k8s desktop
 
@@ -10,9 +21,15 @@ Ingress controller is a service which type is `LoadBalancer`. It is also another
     - there is one from kubernetes itself which is `K8s nginx ingress controller`
     - if you are using a cloud service, you would have a cloud load balancer that is specifically implemented by that cloud provider.
 
+<h2 id="834aecdedbdc4ab95c71a729214c47ab"></h2>
+
+
 ## Enable Kuberneters on Docker Desktop
 
 Preferences / Kuberneters / Enable Kuberneters
+
+
+<h2 id="588da1e7cecfc3f40fa3e015ff722499"></h2>
 
 
 ## Install ingress controller 

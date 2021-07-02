@@ -11,6 +11,8 @@
     - [Why the gradient is the direction of steepest ascent](#b4e20dd468bf9adb89509b770119bd85)
     - [Gradient and contour maps](#9201e0fe2c81168aca84873317f7d525)
     - [Multivariable chain rule](#c6b56a77a991e01195baa8b3a6c425a1)
+    - [Vector form of the multivariable chain rule](#3c1eaf19d0cdbb7207ae3fee0af4defd)
+    - [Multivariable chain rule and directional derivatives](#4291d8b552cce8e49e10e7162e73e79a)
 
 ...menuend
 
@@ -267,6 +269,9 @@ Keep it in the back of you mind: **Gradient is always perpendicular to contour l
         - ![](../imgs/multivar_calculus_chain_rule_3.png)
 
 
+<h2 id="3c1eaf19d0cdbb7207ae3fee0af4defd"></h2>
+
+
 ## Vector form of the multivariable chain rule
 
 Instead of writing x(t), y(t) as separate functions, it's better and a little bit cleaner if we say there's a vector valued function , that takes in a single number *t*, and then it outputs some kind of vector.
@@ -303,6 +308,9 @@ And if you were being a little bit more exact you would emphasize that when you 
 ```octave
 ∇f( v(t) )·v'(t)
 ```
+
+
+<h2 id="4291d8b552cce8e49e10e7162e73e79a"></h2>
 
 
 ## Multivariable chain rule and directional derivatives
