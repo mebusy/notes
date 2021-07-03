@@ -7,6 +7,8 @@ There are 2 versions of manim.  One is created by [Grant](https://github.com/3b1
 
 Manim Community's version is updated more frequently and better tested than Grant’s version.
 
+[Manim Community Doc](https://docs.manim.community/en/stable/tutorials.html)
+
 
 <h2 id="05bff63b61f38b96b6f040dfdfc00fa4"></h2>
 
@@ -363,10 +365,52 @@ class GroupCircles(Scene):
         self.wait()
 ```
 
+### Trace Path
+
+![](../imgs/manim_tracedpathex.gif)
+
+```python
+from manim import *
+
+class TracedPathEx(Scene):
+    def construct(self):
+        # Create circle and dot
+        circ = Circle(color=BLUE).shift(4*LEFT)
+        dot = Dot(color=BLUE).move_to(circ.get_start())
+
+        # Group dot and circle
+        rolling_circle = VGroup(circ, dot)
+        trace = TracedPath(circ.get_start)
+
+        rolling_circle.add_updater(lambda m: m.rotate(-0.3))  # Rotate the circle
+
+        self.add(trace, rolling_circle) # add trace and rolling circle to the scene
+
+        # Shift the circle to 8*RIGHT
+        self.play(rolling_circle.animate.shift(8*RIGHT), run_time=4, rate_func=linear)
+```
+
+Note: the traced path do really **depends your quality setting**. If we switch to high quality ( `-qh` ): 
+
+![](../imgs/manim_tracedpathex_h.gif)
+
+
+## Recap
+
+There are 3 kinds of objects that manim provides:
+
+1. [Mobjects](https://docs.manim.community/en/stable/reference.html#mobjects)
+    - Objects that can be displayed on the screen, such as `Circle`, `Square`, `Matrix`, `Angle`, etc
+2. [Scenes](https://docs.manim.community/en/stable/reference.html#scenes)
+    - Canvas for animations such as `Scene`, `MovingCameraScene`, etc
+3. [Animations](https://docs.manim.community/en/stable/reference.html#animations)
+    - Animations applied to Mobjects such as `Write`, `Create`, `GrowFromCenter`, `Transform`, etc
+
+
 <h2 id="52ef9633d88a7480b3a938ff9eaa2a25"></h2>
 
 
-## Others
+## Old NON-recommended Tutorial
 
 Tutorial using Grant version manim. Not recommended.
 
