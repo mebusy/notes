@@ -407,10 +407,15 @@ There are 3 kinds of objects that manim provides:
     - Animations applied to Mobjects such as `Write`, `Create`, `GrowFromCenter`, `Transform`, etc
 
 
+# More Tutorials
+
+[Graph](manim_graph.md)
+
+
 <h2 id="52ef9633d88a7480b3a938ff9eaa2a25"></h2>
 
 
-## Old NON-recommended Tutorial
+# Old NON-recommended Tutorial
 
 Tutorial using Grant version manim. Not recommended.
 
