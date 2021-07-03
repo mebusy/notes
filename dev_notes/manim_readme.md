@@ -66,8 +66,8 @@ Create a python3 script mplay.py
 import sys
 import re
 
-RE_DST_FILE = re.compile( r'File ready at /manim\/(.+?\.(?:mp4|gif))' )
-RE_COLOR_TAG = re.compile( r'\[\d+(;\d+)?m' )
+RE_DST_FILE = re.compile( r'File ready at [\'"]?/manim\/(.+?\.(?:mp4|gif))' )
+RE_COLOR_TAG = re.compile( r'·\[\d+(;\d+)?m' )
 
 if __name__=="__main__":
     output=""
@@ -76,13 +76,16 @@ if __name__=="__main__":
         print(line, end="", file=sys.stderr )
         output += line.strip()
 
-    output = RE_COLOR_TAG.sub("",output)
+    # \x1b, i.e. \e, is not supported in re
+    output = output.replace( "\x1b" , "·" )
 
+    output = RE_COLOR_TAG.sub("",output)
 
     all_mp4 = RE_DST_FILE.findall( output )
     # output 1st video
     if len(all_mp4) > 0 :
         print( all_mp4[0])
+
 ```
 
 ```bash
@@ -122,7 +125,7 @@ $ manim -ql start.py PointMovingOnShapes | mplay.py | xargs open
 
 ### create a gif
 
-- `-i` create a Gif instead of video
+- `-i` to create a Gif instead of video
 
 ```bash
 $ manim -i -ql start.py PointMovingOnShapes | mplay.py 
@@ -174,6 +177,7 @@ class PointMovingOnShapes(Scene):
 
 - [manim configuration](https://docs.manim.community/en/stable/tutorials/configuration.html)
 
+### Mathematical Equations with a Moving Frame
 
 
 <h2 id="52ef9633d88a7480b3a938ff9eaa2a25"></h2>
