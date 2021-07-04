@@ -409,7 +409,9 @@ There are 3 kinds of objects that manim provides:
 
 # More Tutorials
 
-[Graph](manim_graph.md)
+- [Graph](manim_graph.md)
+- [Integral](manim_integral.md)
+
 
 
 <h2 id="52ef9633d88a7480b3a938ff9eaa2a25"></h2>
