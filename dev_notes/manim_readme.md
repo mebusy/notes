@@ -411,6 +411,7 @@ There are 3 kinds of objects that manim provides:
 
 - [Graph](manim_graph.md)
 - [Integral](manim_integral.md)
+- [create a Logo 4 Youtube](manim_logo.md)
 
 
 
