@@ -68,7 +68,7 @@ Create a python3 script mplay.py
 import sys
 import re
 
-RE_DST_FILE = re.compile( r'File ready at [\'"]?/manim\/(.+?\.(?:mp4|gif))' )
+RE_DST_FILE = re.compile( r'File ready at [\'"]?/manim\/(.+?\.(?:mp4|gif|png))' )
 RE_COLOR_TAG = re.compile( r'·\[\d+(;\d+)?m' )
 
 if __name__=="__main__":
@@ -126,6 +126,32 @@ $ manim -ql start.py PointMovingOnShapes | mplay.py | xargs open
 ```
 
 - `-ql` means quality low
+
+
+### Mobject Placement
+
+![](../imgs/manim_mobjplacement.gif)
+
+```python
+from manim import *
+
+class MobjectPlacement(Scene):
+    def construct(self):
+        circle = Circle()
+        square = Square()
+        triangle = Triangle()
+
+        # place the circle two units left from the origin
+        circle.move_to(LEFT * 2)  # eq : .shift()
+        # place the square to the left of the circle
+        square.next_to(circle, LEFT)
+        # align the left border of the triangle to the left border of the circle
+        triangle.align_to(circle, LEFT)
+
+        self.add(circle, square, triangle)
+        self.wait(1)
+```
+
 
 ### create a gif
 
@@ -399,16 +425,24 @@ Note: the traced path do really **depends your quality setting**. If we switch t
 
 There are 3 kinds of objects that manim provides:
 
-1. [Mobjects](https://docs.manim.community/en/stable/reference.html#mobjects)
+1. [Mathematical Objects](https://docs.manim.community/en/stable/reference.html#mobjects)
     - Objects that can be displayed on the screen, such as `Circle`, `Square`, `Matrix`, `Angle`, etc
-2. [Scenes](https://docs.manim.community/en/stable/reference.html#scenes)
-    - Canvas for animations such as `Scene`, `MovingCameraScene`, etc
-3. [Animations](https://docs.manim.community/en/stable/reference.html#animations)
+    - Any object that can be displayed on the screen is a mobject, even if it is not necessarily mathematical in nature.
+    - move_to(), next_to(), and align_to() to place
+2. [Animations](https://docs.manim.community/en/stable/reference.html#animations)
     - Animations applied to Mobjects such as `Write`, `Create`, `GrowFromCenter`, `Transform`, etc
+    - play( AnimationClass( mobject )  ) to add an animation to your scene
+        - default run_time is 1 seconds
+    - Any property of a mobject that can be changed can be animated 
+        - play( ApplyMethod(mobject.property_mothod , property_value  )  ) 
+        - e.g. `self.play(ApplyMethod(square.set_fill, WHITE))`
+3. [Scenes](https://docs.manim.community/en/stable/reference.html#scenes)
+    - Canvas for animations such as `Scene`, `MovingCameraScene`, etc
 
 
 # More Tutorials
 
+- [Text](manim_text.md)
 - [Graph](manim_graph.md)
 - [Integral](manim_integral.md)
 - [create a Logo 4 Youtube](manim_logo.md)
