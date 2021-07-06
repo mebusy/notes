@@ -436,6 +436,7 @@ There are 3 kinds of objects that manim provides:
     - Any property of a mobject that can be changed can be animated 
         - play( ApplyMethod(mobject.property_mothod , property_value  )  ) 
         - e.g. `self.play(ApplyMethod(square.set_fill, WHITE))`
+    - [yet another Animation presentation](https://azarzadavila-manim.readthedocs.io/en/latest/animation.html)
 3. [Scenes](https://docs.manim.community/en/stable/reference.html#scenes)
     - Canvas for animations such as `Scene`, `MovingCameraScene`, etc
 
