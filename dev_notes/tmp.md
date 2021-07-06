@@ -63,6 +63,9 @@ Two vectors of the same dimension
 所以，向量 [xxx] , 和 向量 [yyy] 做点积， 就等于 xxxx .
 
 
+从几何上说，两个向量 v,w 做点积, 
+
+
 
 
 
