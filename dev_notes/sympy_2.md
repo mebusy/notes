@@ -159,7 +159,8 @@ Q: Find vector parallel to the line of intersection of the two planes
 
 We know the normal vector of this plane *3x-6y-2z = 15* is its coefficient,
 
-See [Dot Product and Normals to Lines and Planes](dot_norm_lines_planes.md).
+See [Dot Product and Normals to Lines and Planes](dot_norm_lines_planes.md) , or [三维空间中的平面方程](https://blog.csdn.net/hb707934728/article/details/72772443)
+
 
 ```python
 >>> n1 = np.array( [3, -6, -2] )
