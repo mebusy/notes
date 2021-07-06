@@ -233,7 +233,8 @@ ans =
             - 以上推理过程对 ĵ 几乎一致，ĵ投影后的数，就是 u<sub>y</sub> 
         - 所以描述投影变换的1x2矩阵的两列，就分别是û的两个坐标。 而空间中任意向量经过投影变换的结果，也就是投影矩阵与这个向量相乘，和这个向量与û的点积在计算上完全相同.
             - Maxtix-vector product `<==>` Dot product
-        - 这就是为什么 单位向量的点积， 可以解读为 将向量投影到 单位向量所在直线上 所得到的投影长度
+        - **This is why taking the dot product with a unit vector, can be interpreted as projecting a vector onto the span of that unit vector and taking the length.**
+            - 这就是为什么 单位向量的点积， 可以解读为 将向量投影到 单位向量所在直线上 所得到的投影长度
     - 如果 û 是非单位向量呢？eg. ( 3uₓ , 3u<sub>y</sub>  )
         - 数值上说，它的每个坐标都被放大为原来的3倍，所以要寻找这个向量相关的投影矩阵，实际上就是之前î,ĵ 投影得到的值的3倍
         - 更普遍的说，因为这个变换是线性的，意味着这个新矩阵可以看作 将任意向量 向数轴上投影，然后将结果乘以3； 
