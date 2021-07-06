@@ -71,6 +71,8 @@ can I see it？
 
 - Planes (aka walls/slopes/triangles)
 
+v<sub>out</sub> = v<sub>in</sub> - 2( v<sub>in</sub> · n ) n
+
 
 
 
