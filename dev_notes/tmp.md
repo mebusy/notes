@@ -87,7 +87,7 @@ https://hackernoon.com/applications-of-the-vector-dot-product-for-game-programmi
 
 
 
-
+[Cross Product Application](https://amirazmi.net/cross-products-in-game-development-and-their-use-cases/)
 
 
 
