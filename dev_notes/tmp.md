@@ -53,14 +53,10 @@ In mathematics, the dot product or scalar product[note 1] is an algebraic operat
 Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them.
 
 
-在游戏开发中, 点积是一个非常有用的工具。
 
 Two vectors of the same dimension 
 
 
-在游戏开发中, 点积是一个非常有用的工具。
-
-代数上说,  两个维度相同的变量, 或着说  两组长度相同的数字序列, 对它们 做点积, 就是 把它们的各自对应的条目, 分别配对做乘法, 再把结果相加，最终得到一个数字。  
 
 
 所以，向量 [xxx] , 和 向量 [yyy] 做点积， 就等于 xxxx .
