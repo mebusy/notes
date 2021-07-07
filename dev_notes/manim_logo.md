@@ -10,7 +10,7 @@ from manim import *
 class MyLogo(Scene):
     def construct(self):
         # create logo
-        circle_logo = Circle( fill_opacity = 5 ).scale(2)
+        circle_logo = Circle( fill_opacity = 0.5 ).scale(2)
         circle_logo.set_fill()
         circle_logo.set_color(BLUE)
 
