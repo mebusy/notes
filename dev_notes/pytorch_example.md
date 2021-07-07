@@ -51,13 +51,14 @@ def data_gen():
 
 ### Loading Data, Devices and CUDA
 
-- numpy → CPU tensor
-    - [from_numpy()](https://pytorch.org/docs/stable/torch.html#torch.from_numpy)
-- CPU tensor → GPU tensor
-    - [to()](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.to)
-    - [cuda.is_available()](https://pytorch.org/docs/stable/cuda.html?highlight=is_available#torch.cuda.is_available) to find out whether you have a GPU
-- tensor -> float32 tensor
-    - [float()](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.float)
+data from | data to | method | comments
+--- | --- | --- | ---
+numpy | cpu tensor | [from_numpy()](https://pytorch.org/docs/stable/torch.html#torch.from_numpy) |
+cpu tensor | gpu tensor | [to()](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.to) | [cuda.is_available()](https://pytorch.org/docs/stable/cuda.html?highlight=is_available#torch.cuda.is_available) to find out whether you have a GPU
+cpu tensor | to float32 | [float()](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.float) |
+cpu tensor | numpy | [numpy()](https://pytorch.org/docs/stable/tensors.html?highlight=numpy#torch.Tensor.numpy) | you can convert CUDA(GPU) tensor to numpy
+gpu tensor | cpu tensor | [cpu()](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.cpu) | 
+
 
 ```python
 import torch
@@ -75,7 +76,37 @@ y_train_tensor = torch.from_numpy(y_train).float().to(device)
 # Here we can see the difference - notice that .type() is more useful
 # since it also tells us WHERE the tensor is (device)
 print(type(x_train), type(x_train_tensor), x_train_tensor.type())
+# <class 'numpy.ndarray'> <class 'torch.Tensor'> torch.FloatTensor
 ```
 
+### Creating Parameters
+
+
+- Initializes parameters "a" and "b" randomly
+    - set `requires_grad=True` tells PyTorch we want it to compute gradients for us.
+    ```python
+    a = torch.randn(1, requires_grad=True, dtype=torch.float)
+    b = torch.randn(1, requires_grad=True, dtype=torch.float)
+    print(a, b)
+    # tensor([-0.5836], requires_grad=True) tensor([-0.7957], requires_grad=True)
+    ```
+- if we want to run it on a GPU
+    ```python
+    a = torch.randn(1, dtype=torch.float).to(device)
+    b = torch.randn(1, dtype=torch.float).to(device)
+    # and THEN set them as requiring gradients...
+    a.requires_grad_()
+    b.requires_grad_()
+    ```
+- or specify the device at the moment of creation -- RECOMMENDED! 
+    ```python
+    a = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+    b = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+    ```
+
+In PyTorch, every method that ends with an underscore (_) makes changes **in-place**, meaning, they will modify the underlying variable.
+
+
+### Autograd
 
 
