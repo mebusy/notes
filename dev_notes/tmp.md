@@ -58,7 +58,7 @@ Algebraically, the dot product is the sum of the products of the corresponding e
 Two vectors of the same dimension 
 
 
-代数上说, 对 两个维度相同的变量, 或着说 对 两组维度相同的数字序列 做点积, 就是 把它们的各自对应的条目一一配对做乘法, 然后把结果相加，最后得到一个数字。
+代数上说,  两个维度相同的变量, 或着说  两组长度相同的数字序列, 对它们 做点积, 就是 把它们的各自对应的条目, 一一配对做乘法, 然后把结果相加，最终得到一个数字。
 
 所以，向量 [xxx] , 和 向量 [yyy] 做点积， 就等于 xxxx .
 
