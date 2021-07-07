@@ -14,5 +14,16 @@
 - [Understanding PyTorch with an example](pytorch_example.md)
 
 
+## Docker
 
+```bash
+function pytorch() {
+    docker run --rm -it  --user="$(id -u):$(id -g)" -v "$(pwd)":/workspace --pids-limit 16384 pytorch/pytorch:latest python3 $@
+}
+```
 
+usage:
+
+```bash
+$ pytorch ex.py
+```
