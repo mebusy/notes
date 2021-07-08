@@ -450,6 +450,25 @@ There are 3 kinds of objects that manim provides:
 
 
 
+# Tips 
+
+## FadeOut entire scene
+
+```python
+        # fade out entire scene
+        self.play(
+            *[FadeOut(mob)for mob in self.mobjects]
+        )
+```
+
+## Delay sound play
+
+```python
+    # load sound, wait 1 seconds, then play
+    self.add_sound( "mp3/dp_0010.mp3", time_offset = 1 )
+```
+
+
 <h2 id="52ef9633d88a7480b3a938ff9eaa2a25"></h2>
 
 
