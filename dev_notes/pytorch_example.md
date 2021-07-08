@@ -109,4 +109,130 @@ In PyTorch, every method that ends with an underscore (_) makes changes **in-pla
 
 ### Autograd
 
+- how do we tell PyTorch to do "auto-grad" ?
+    - [backward()](https://pytorch.org/docs/stable/autograd.html#torch.autograd.backward)
+    - invoke `loss.backward()`
+- What about the actual values of the gradients? 
+    - We can inspect them by looking at the [grad](https://pytorch.org/docs/stable/autograd.html#torch.Tensor.grad) attribute of a tensor.
+- PS. **the gradients are accumulated**
+    - So, every time we use the gradients to update the parameters, we need to zero the gradients afterwards.
+    - [zero_()](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.zero_)
+
+```python
+    lr = 1e-1
+    n_epochs = 1000
+
+    torch.manual_seed(42)
+    a = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+    b = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+
+    for epoch in range(n_epochs):
+        yhat = a + b * x_train_tensor
+        error = y_train_tensor - yhat
+        loss = (error ** 2).mean()
+
+        # No more manual computation of gradients!
+        # a_grad = -2 * error.mean()
+        # b_grad = -2 * (x_tensor * error).mean()
+
+        # We just tell PyTorch to work its way BACKWARDS from the specified loss!
+        loss.backward()
+        # Let's check the computed gradients...
+        print(a.grad)
+        print(b.grad)
+
+        # What about UPDATING the parameters? Not so fast...
+
+        # FIRST ATTEMPT
+        # AttributeError: 'NoneType' object has no attribute 'zero_'
+        #   reassigning the update results to our parameters lost the gradient
+        # a = a - lr * a.grad
+        # b = b - lr * b.grad
+        # print(a)
+
+        # SECOND ATTEMPT
+        # RuntimeError: a leaf Variable that requires grad has been used in an in-place operation.
+        #   python is gonna build a dynamic computation graph from every Python operation 
+        #   that involves any gradient-computing tensor or its dependencies.
+        # a -= lr * a.grad
+        # b -= lr * b.grad
+
+        # THIRD ATTEMPT
+        # We need to use NO_GRAD to keep the update out of the gradient computation
+        # Why is that? It boils down to the DYNAMIC GRAPH that PyTorch uses...
+        #   no_grad() allows us to perform regular Python operations on tensors, 
+        #   independent of PyTorch’s computation graph.
+        with torch.no_grad():
+            a -= lr * a.grad
+            b -= lr * b.grad
+
+        # PyTorch is "clingy" to its computed gradients, we need to tell it to let it go...
+        a.grad.zero_()
+        b.grad.zero_()
+
+    print(a, b)
+
+# tensor([1.0235], requires_grad=True) tensor([1.9690], requires_grad=True)
+```
+
+### Dynamic Computation Graph
+
+[PyTorchViz](https://github.com/szagoruyko/pytorchviz) package and its `make_dot(variable)` method allows us to easily visualize a graph associated with a given Python variable.
+
+```python
+from torchviz import make_dot
+...
+
+    make_dot(yhat)
+```
+
+### Optimizer
+
+So far, we’ve been **manually** updating the parameters using the computed gradients. 
+
+That’s probably fine for two parameters… but what if we had a whole lot of them?!
+
+We use one of PyTorch’s **optimizers**, like [SGD](https://pytorch.org/docs/stable/optim.html#torch.optim.SGD) or [Adam](https://pytorch.org/docs/stable/optim.html#torch.optim.Adam).
+
+- An optimizer takes 
+    - the **parameters** we want to update,
+    - the **learning rate** we want to use,  (and possibly many other hyper-parameters as well!) 
+    - and performs the updates through its [step()](https://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer.step) method.
+
+Besides, we also don’t need to zero the gradients one by one anymore. We just invoke the optimizer’s [zero_grad()](https://pytorch.org/docs/stable/optim.html#torch.optim.Optimizer.zero_grad) method and that’s it!
+
+```python
+    torch.manual_seed(42)
+    # parameters
+    a = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+    b = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+
+    lr = 1e-1
+    n_epochs = 1000
+
+    # Defines a SGD optimizer to update the parameters
+    optimizer = optim.SGD([a, b], lr=lr)
+
+    for epoch in range(n_epochs):
+        yhat = a + b * x_train_tensor
+        error = y_train_tensor - yhat
+        loss = (error ** 2).mean()
+
+        loss.backward()
+
+        # No more manual update!
+        # with torch.no_grad():
+        #     a -= lr * a.grad
+        #     b -= lr * b.grad
+        optimizer.step()
+
+        # No more telling PyTorch to let gradients go!
+        # a.grad.zero_()
+        # b.grad.zero_()
+        optimizer.zero_grad()
+
+    print(a, b)
+```
+
+
 
