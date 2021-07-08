@@ -229,4 +229,16 @@ curl ifconfig.co
     - URL: `smb://<printer's IP or domain name>/<printer name>`
 
 
+## Bash , exit or ret ? 
+
+if you execute your bash script with `source` , `exit` command will stop the user shell. 
+
+to prevent it 
+
+```bash
+[[ "$0" == "$BASH_SOURCE" ]] && ret=exit || ret=return
+...
+$ret 1
+```
+
 
