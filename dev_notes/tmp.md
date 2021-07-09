@@ -48,25 +48,6 @@ Expectimax Search -> MDP
 
 Dot Product
 
-In mathematics, the dot product or scalar product[note 1] is an algebraic operation that takes two equal-length sequences of numbers (usually coordinate vectors), and returns a single number.
-
-Algebraically, the dot product is the sum of the products of the corresponding entries of the two sequences of numbers. Geometrically, it is the product of the Euclidean magnitudes of the two vectors and the cosine of the angle between them.
-
-
-
-Two vectors of the same dimension 
-
-
-
-
-所以，向量 [xxx] , 和 向量 [yyy] 做点积， 就等于 xxxx .
-
-
-从几何上说，两个向量 v,w 做点积, 
-
-
-
-
 
 - Measuring direction
 
