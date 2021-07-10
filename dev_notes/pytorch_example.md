@@ -235,4 +235,116 @@ Besides, we also don’t need to zero the gradients one by one anymore. We just 
 ```
 
 
+### Loss
+
+```python
+    loss = (error ** 2).mean()
+```
+
+We now tackle the loss computation. As expected, PyTorch got us covered once again. There are many [loss functions](https://pytorch.org/docs/stable/nn.html#loss-functions) to choose from, depending on the task at hand. 
+
+Since ours is a regression, we are using the Mean Square Error (MSE) loss. `nn.MSELoss`.
+
+> Notice that nn.MSELoss actually creates a loss function for us — it is NOT the loss function itself. Moreover, you can specify a reduction method to be applied, that is, how do you want to aggregate the results for individual points — you can average them (reduction=’mean’) or simply sum them up (reduction=’sum’).
+
+```python
+    torch.manual_seed(42)
+    a = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+    b = torch.randn(1, requires_grad=True, dtype=torch.float, device=device)
+    print(a, b)
+
+    lr = 1e-1
+    n_epochs = 1000
+
+    # Defines a MSE loss function
+    loss_fn = nn.MSELoss(reduction='mean')
+
+    optimizer = optim.SGD([a, b], lr=lr)
+
+    for epoch in range(n_epochs):
+        yhat = a + b * x_train_tensor
+
+        # No more manual loss!
+        # error = y_tensor - yhat
+        # loss = (error ** 2).mean()
+        loss = loss_fn(y_train_tensor, yhat)
+
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+
+    print(a, b)
+```
+
+At this point, there’s only one piece of code left to change: the **predictions**. It is then time to introduce PyTorch’s way of implementing a…
+
+### Model
+
+In PyTorch, a model is represented by a regular Python class that inherits from the [Model class](https://pytorch.org/docs/stable/nn.html#torch.nn.Module)
+
+- `__init__(self)`
+    - **it defines the parts that make up the model**
+    - in our case, two parameters, **a** and **b**.
+- [forward(self, x)](https://pytorch.org/docs/stable/nn.html#torch.nn.Module.forward)
+    - it performs the actual computation, that is, it outputs a prediction, given the input x.
+    - **You should NOT call the forward(x) method**.  You should call the whole model itself, `model(x)`.
+
+Let’s build a proper (yet simple) model
+
+```python
+
+class ManualLinearRegression(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # To make "a" and "b" real parameters of the model, we need to wrap them with nn.Parameter
+        self.a = nn.Parameter(torch.randn(1, requires_grad=True, dtype=torch.float))
+        self.b = nn.Parameter(torch.randn(1, requires_grad=True, dtype=torch.float))
+        
+    def forward(self, x):
+        # Computes the outputs / predictions
+        return self.a + self.b * x
+```
+
+Moreover, we can get the current values for all parameters using our model’s state_dict() method.
+
+**IMPORTANT: we need to send our model to the same device where the data is. If our data is made of GPU tensors, our model must “live” inside the GPU as well.**
+
+```python    
+    # training
+    torch.manual_seed(42)
+
+    # Now we can create a model and send it at once to the device
+    model = ManualLinearRegression().to(device)
+    # We can also inspect its parameters using its state_dict
+    print(model.state_dict())
+
+    lr = 1e-1
+    n_epochs = 1000
+
+    loss_fn = nn.MSELoss(reduction='mean')
+    # parameters() instead of a,b
+    optimizer = optim.SGD(model.parameters(), lr=lr)
+
+    for epoch in range(n_epochs):
+        # What is this?!?
+        # does NOT perform a training step
+        # Its only purpose is to set the model to training mode. 
+        # Some models may use mechanisms like Dropout, for instance, 
+        #   which have distinct behaviors in training and evaluation phases.
+        model.train()
+
+        # No more manual prediction!
+        # yhat = a + b * x_tensor
+        yhat = model(x_train_tensor)
+        
+        loss = loss_fn(y_train_tensor, yhat)
+        loss.backward()    
+        optimizer.step()
+
+    print(model.state_dict())
+
+# OrderedDict([('a', tensor([0.3367])), ('b', tensor([0.1288]))])
+# OrderedDict([('a', tensor([1.0235])), ('b', tensor([1.9690]))])
+```
+
 
