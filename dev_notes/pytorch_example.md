@@ -347,4 +347,142 @@ Moreover, we can get the current values for all parameters using our model’s s
 # OrderedDict([('a', tensor([1.0235])), ('b', tensor([1.9690]))])
 ```
 
+### Full Code
+
+
+<details>
+<summary>
+<b>Full Code</b>
+</summary>
+
+```python
+#!python3
+import numpy as np
+
+import torch
+import torch.optim as optim
+import torch.nn as nn
+# from torchviz import make_dot
+import torchvision
+
+
+class ManualLinearRegression(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # To make "a" and "b" real parameters of the model, we need to wrap them with nn.Parameter
+        self.a = nn.Parameter(torch.randn(1, requires_grad=True, dtype=torch.float))
+        self.b = nn.Parameter(torch.randn(1, requires_grad=True, dtype=torch.float))
+
+    def forward(self, x):
+        # Computes the outputs / predictions
+        return self.a + self.b * x
+
+def data_gen():
+    # Data Generation
+    np.random.seed(42)
+
+    a,b = 1,2
+    x = np.random.rand(100, 1)
+    y = a + b * x + .1 * np.random.randn(100, 1)
+
+    # Shuffles the indices
+    idx = np.arange(100)
+    np.random.shuffle(idx)
+
+    # Uses first 80 random indices for train
+    train_idx = idx[:80]
+    # Uses the remaining indices for validation
+    val_idx = idx[80:]
+
+    # Generates train and validation sets
+    x_train, y_train = x[train_idx], y[train_idx]
+    x_val, y_val = x[val_idx], y[val_idx]
+
+    return x_train, y_train , x_val, y_val
+
+def show_data( x, y ):
+    # import matplotlib.pyplot as plt
+    # plt.scatter( x,y )
+    # plt.show()
+    pass
+    
+
+if __name__ == '__main__':
+    x_train, y_train , x_val, y_val = data_gen()
+    show_data( x_train, y_train )
+
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+    # Our data was in Numpy arrays, but we need to transform them into PyTorch's Tensors
+    # and then we send them to the chosen device
+    x_train_tensor = torch.from_numpy(x_train).float().to(device)
+    y_train_tensor = torch.from_numpy(y_train).float().to(device)
+
+    # Here we can see the difference - notice that .type() is more useful
+    # since it also tells us WHERE the tensor is (device)
+    print(type(x_train), type(x_train_tensor), x_train_tensor.type())
+
+    # training
+    torch.manual_seed(42)
+
+    # Now we can create a model and send it at once to the device
+    model = ManualLinearRegression().to(device)
+    # We can also inspect its parameters using its state_dict
+    print(model.state_dict())
+
+    lr = 1e-1
+    n_epochs = 1000
+
+    loss_fn = nn.MSELoss(reduction='mean')
+    # parameters() instead of a,b
+    optimizer = optim.SGD(model.parameters(), lr=lr)
+
+    for epoch in range(n_epochs):
+        # What is this?!?
+        model.train()
+
+        # No more manual prediction!
+        # yhat = a + b * x_tensor
+        yhat = model(x_train_tensor)
+        
+        loss = loss_fn(y_train_tensor, yhat)
+        loss.backward()    
+        optimizer.step()
+        optimizer.zero_grad()
+    
+    print(model.state_dict())
+```
+
+
+### Nested Models
+
+In our model, we manually created two parameters to perform a linear regression.
+
+Let’s use PyTorch’s [Linear](https://pytorch.org/docs/stable/nn.html#torch.nn.Linear) model as an attribute of our own, thus creating a nested model.  Even though this clearly is a contrived example...
+</details>
+
+```python
+class LayerLinearRegression(nn.Module):
+    def __init__(self):
+        super().__init__()
+        # Instead of our custom parameters, we use a Linear layer with single input and single output
+        self.linear = nn.Linear(1, 1)
+
+    def forward(self, x):
+        # Now it only takes a call to the layer to make predictions
+        return self.linear(x)
+```
+
+
+### Sequential Models
+
+For straightforward models, that use run-of-the-mill layers, where the output of a layer is sequentially fed as an input to the next, we can use a, er… [Sequential](https://pytorch.org/docs/stable/nn.html#torch.nn.Sequential) model :-)
+
+```python
+    # Alternatively, you can use a Sequential model
+    model = nn.Sequential(nn.Linear(1, 1)).to(device)
+```
+
+
+
 
