@@ -449,7 +449,7 @@ if __name__ == '__main__':
         loss.backward()    
         optimizer.step()
         optimizer.zero_grad()
-    
+
     print(model.state_dict())
 ```
 
@@ -482,6 +482,74 @@ For straightforward models, that use run-of-the-mill layers, where the output of
     # Alternatively, you can use a Sequential model
     model = nn.Sequential(nn.Linear(1, 1)).to(device)
 ```
+
+
+### Training Step
+
+So far, we’ve defined an optimizer, a loss function and a model.
+
+Would the code inside for-loop change if we were using a different optimizer, or loss, or even model? If not, how can we make it more generic?
+
+So, how about writing a function that takes those three elements and returns another function that performs a training step, taking a set of features and labels as arguments and returning the corresponding loss?
+
+```python
+def make_train_step(model, loss_fn, optimizer):
+    # Builds function that performs a step in the train loop
+    def train_step(x, y):
+        # mostly a copy from code inside for-loop
+        # Sets model to TRAIN mode
+        model.train()
+        # Makes predictions
+        yhat = model(x)
+        # Computes loss
+        loss = loss_fn(y, yhat)
+        # Computes gradients
+        loss.backward()
+        # Updates parameters and zeroes gradients
+        optimizer.step()
+        optimizer.zero_grad()
+        # Returns the loss
+        return loss.item()
+    
+    # Returns the function that will be called inside the train loop
+    return train_step
+
+# Creates the train_step function for our model, loss function and optimizer
+train_step = make_train_step(model, loss_fn, optimizer)
+losses = []
+
+# For each epoch...
+for epoch in range(n_epochs):
+    # Performs one train step and returns the corresponding loss
+    loss = train_step(x_train_tensor, y_train_tensor)
+    losses.append(loss)
+    
+# Checks model's parameters
+print(model.state_dict())
+```
+
+
+### Random Split
+
+PyTorch’s random_split() method is an easy and familiar way of performing a training-validation split.
+
+```python
+from torch.utils.data.dataset import random_split
+
+x_tensor = torch.from_numpy(x).float()
+y_tensor = torch.from_numpy(y).float()
+
+dataset = TensorDataset(x_tensor, y_tensor)
+
+train_dataset, val_dataset = random_split(dataset, [80, 20])
+
+train_loader = DataLoader(dataset=train_dataset, batch_size=16)
+val_loader = DataLoader(dataset=val_dataset, batch_size=20)
+```
+
+### Evaluation
+
+This is the last part of our journey , we need to change the training loop to include the evaluation of our model, that is, computing the **validation loss**. 
 
 
 
