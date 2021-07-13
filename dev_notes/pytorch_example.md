@@ -552,5 +552,45 @@ val_loader = DataLoader(dataset=val_dataset, batch_size=20)
 This is the last part of our journey , we need to change the training loop to include the evaluation of our model, that is, computing the **validation loss**. 
 
 
+```python
+
+losses = []
+val_losses = []
+train_step = make_train_step(model, loss_fn, optimizer)
+
+for epoch in range(n_epochs):
+    for x_batch, y_batch in train_loader:
+        x_batch = x_batch.to(device)
+        y_batch = y_batch.to(device)
+
+        loss = train_step(x_batch, y_batch)
+        losses.append(loss)
+
+    with torch.no_grad():  # 1
+        for x_val, y_val in val_loader:
+            x_val = x_val.to(device)
+            y_val = y_val.to(device)
+
+            model.eval()
+
+            yhat = model(x_val)
+            val_loss = loss_fn(y_val, yhat)
+            val_losses.append(val_loss.item())
+
+print(model.state_dict())
+```
+
+there are **two small, yet important**, things to consider:
+
+1. `torch.no_grad()`
+    - even though it won’t make a difference in our simple model, it is a good practice to wrap the validation inner loop with this context manager to disable any gradient calculation that you may inadvertently trigger 
+    - gradients belong in training, not in validation steps;
+2. [eval()](https://pytorch.org/docs/stable/nn.html#torch.nn.Module.eval)
+    - the only thing it does is setting the model to evaluation mode (just like its train() counterpart did)
+    - so the model can adjust its behavior regarding some operations, like Dropout.
+
+
+
+
 
 
