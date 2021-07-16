@@ -331,7 +331,7 @@ P is the matrix that multiplies b and produces p:
     p = Pb ,  P = aaᵀ/aᵀa    (7)
 ```
 
-That is a column times a row -a square matrix- divided by the number aᵀa .  (aaᵀ 是一个秩1矩阵)
+That is a column times a row, **a square matrix**,  divided by the number aᵀa .  (aaᵀ 是一个秩1矩阵)
 
 This matrix has two properties that we will see as typical of projections:
 

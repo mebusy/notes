@@ -88,6 +88,44 @@ https://hackernoon.com/applications-of-the-vector-dot-product-for-game-programmi
 [Cross Product Application](https://amirazmi.net/cross-products-in-game-development-and-their-use-cases/)
 
 
+-- compute projection vector
+
+method 1
+
+```python
+>>> import numpy as np
+>>> v = np.array( [4,1]   )
+>>> w = np.array( [2,-1] )
+>>> # v projects onto w
+>>> w_u = w / np.sqrt( w.dot(w) )
+>>> w_u
+array([ 0.89442719, -0.4472136 ])
+>>> # calculate lengh of projection vector
+>>> v.dot(w_u)
+3.1304951684997055
+>>> # projection vector
+>>> v.dot(w_u) * w_u
+array([ 2.8, -1.4])
+```
+
+```python
+>>> v.dot( w ) / np.sqrt( w.dot(w) ) * w /  np.sqrt( w.dot(w) )
+array([ 2.8, -1.4])
+>>> v.dot( w ) /  w.dot(w) * w
+array([ 2.8, -1.4])
+```
+
+```octave
+octave:8> w*w' / (w'*w)  * v
+ans =
+
+   2.8000
+  -1.4000
+```
+
+
+
+
 
 
 
