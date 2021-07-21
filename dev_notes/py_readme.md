@@ -7,6 +7,7 @@
 - [lib for Functional](python_functional_programming.md) 
 - [OOP](python_oop.md)  
 - [python tips](python_tips_1.md) 
+- [python3 tips](python3_tips.md)
 - [python -m](http://pythonwise.blogspot.hk/2015/01/python-m.html) 
 - [python多线程](PY_multiprocessing.md) 
 - [high performance python](highPerformancePython.md) 
