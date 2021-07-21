@@ -74,6 +74,6 @@ def loadconf():
 
     # load conf
     with open("./conf.yaml") as fp:
-        conf = yaml.load(fp.read() )  # , Loader=yaml.SafeLoader
+        conf = yaml.load(fp.read(), Loader=yaml.FullLoader  )  # , Loader=yaml.SafeLoader
 ```
 
