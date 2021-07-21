@@ -50,4 +50,30 @@ class ColorPrint:
 ```
 
 
+## Yaml, References Variables , and Concat Strings
+
+```yaml
+ENV: &env "dev"  # &env to create a node
+
+namespace: !join [ "my-ns-" , *env ]  # use *env to dereference, and 
+                                      # use customized `!join` to concat 2 parts
+```
+
+
+```python
+import yaml
+
+def loadconf():
+    ## define custom tag handler
+    def join(loader, node):
+        seq = loader.construct_sequence(node)
+        return ''.join([str(i) for i in seq])
+
+    ## register the tag handler
+    yaml.add_constructor('!join', join)
+
+    # load conf
+    with open("./conf.yaml") as fp:
+        conf = yaml.load(fp.read() )  # , Loader=yaml.SafeLoader
+```
 
