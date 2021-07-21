@@ -25,7 +25,7 @@
 
 # github 
 
-        
+
 <h2 id="606e5c37337c2f05305ab4a4a0dc2691"></h2>
 
 
@@ -169,26 +169,6 @@ $ git push --delete <remote_name> <branch_name>
 $ git branch -d <branch_name>
 ```
 
-<h2 id="69a87c5b277c131f12dde6841d30e6bc"></h2>
-
-
-## ignore system proxy setting 
-
-```
-git config --global  --add remote.origin.proxy ""
-```
-
-
-<h2 id="1c28f585542f9ac3069d876441feb3ee"></h2>
-
-
-## git set v2ray proxy
-
-```bash
-# http协议，8001端口修改成自己的本地代理端口
-git config --global http.https://github.com.proxy https://127.0.0.1:8001
-git config --global https.https://github.com.proxy https://127.0.0.1:8001
-```
 
 <h2 id="299ba8422f7eafd171b8c712b9319131"></h2>
 
