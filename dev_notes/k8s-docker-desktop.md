@@ -223,6 +223,8 @@ $ curl dot-iap-dev.imac:10080
 ok
 $ curl localhost:10080
 404 Not Found
+# because ingress host is `dot-iap-dev.imac`
+#     so we need specify that host in request headers
 $ curl -H "host: dot-iap-dev.imac" localhost:10080
 ok
 ```
