@@ -329,3 +329,42 @@ test.delegateMethod += Program.OtherClassMethod;
  4. 实现观察者模式的时候。
  5. 处理事件响应的时候。
 
+
+
+# compile & run C# code 
+
+
+```cs
+# example cs
+
+using System;
+
+class cMain {
+    static void Main(String[] args) {
+        if ( args.Length < 1 ) {
+            Console.WriteLine( "usage: resp_verify  <server response string>" );
+            return ;
+        }
+        string data = args[0];
+        Console.WriteLine( DOT_RESP_verify.resp_verify( data  ) ) ;
+    }
+}
+```
+
+```bash
+#!/bin/sh
+
+# compile
+#  -r:xxx.dll   to reference an external dll
+csc  /out:resp_verify.exe  *.cs
+
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo 'error occur'
+    exit 1
+fi
+
+# run
+mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea0cadd9"}'
+```
+
