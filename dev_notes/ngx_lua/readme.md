@@ -7,7 +7,7 @@
  7. [nginx 转发 mysql 链接](../nginx_mysql.md)
  8. [nginx 转发 udp](../nginx_fwd_udp.md)
  9. [nginx regular expression location and proxy-pass, k8s](../nginx_re_location_proxypass.md)
-
+10. [how to handle relative urls in html after URL Rewriting?](../nginx_rewrite_relative_url.md)
 
 ---
 
