@@ -194,6 +194,10 @@
         - To test whether f is 0 or 1, we can check whether L·N is less than 0. 
             - L·N  is less than 0 means angle is greater than 90 degrees. which would mean that the normal vector is on the opposite side of the surface from the light. 
         - When f is zero, there is no diffuse or specular contribution from the light to the color of the vertex.
+        - in practice, we normally use `max` function
+            ```python
+            I * max( 0, L·N ) 
+            ```
     - The diffuse component is given by `ldr*mdr*(L·N)`.  
         - The angle is involved because for a larger angle, the same amount of energy from the light is spread out over a greater area.
         - so the larger the angle, the smaller the value will be.
