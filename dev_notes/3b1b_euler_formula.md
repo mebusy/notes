@@ -43,7 +43,7 @@ Whenever we see the eˣ  we acutally think of it a shortant hand for a certain p
 
 ![](../imgs/3b1b_ex_polynomial.png)
 
-exp(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ... + xⁿ/n!A + ...
+exp(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ... + xⁿ/n! + ...
 
 Because this is a series , in practice, if you're actually computing this the denominator grows so quickly you can chop off the series pretty early to get an approximate value. 
 
