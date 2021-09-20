@@ -6,7 +6,8 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
 
 # Notes
 
-- Unreal(z-up), Unity3D(y-up) use LHS
+- Unreal(z-up), Unity3D(y-up), and Direct3D use LHS
+    - but OpenGL and XNA suddenly turn to LHS in `clip space` ( canonical view volume )
 - moving camera is equivalent to inverse moving the entire world
 - rotation  must take the coordinate system into consideration.
     - LHS , clockwise if looking against axis
@@ -248,5 +249,102 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
 # 4 Orthogonal Projection 
+
+## canonical view volumn
+
+- ![](../imgs/gpu_canonical_view_volumn.png)
+
+- Projection transform your geometry into a **canonical view volumn** in *normalized device coordinates* (clip space)
+- Only X- and Y-coordinates will be mapped onto the screen
+- Z will be almost useless, but used for depth test & advanced postprocessing effects
+
+## Strange "conventions"
+
+- ![](../imgs/gpu_strange_convention_orthognal_proj.png)
+
+## Style of orthographic projection
+
+- ![](../imgs/gpu_style_of_ortho_proj.png)
+
+- Same size in 2D and 3D
+- No sense of distance
+- Parallel lines remain parallel
+- Good for tile-based games where camera is in fixed location (elg. Mahjong or 3D Tetris)
+
+## Orthographic Projection
+
+- Canonical view volume ( D3D & XNA )
+    - ![](../imgs/gpu_ortho_proj_d3d_xna.png)
+- Derive x', y'
+    ```c
+    l ≤ x ≤ r ,   -1 ≤ x' ≤ 1
+    0 ≤ x-l ≤ r-l
+    // divided by r-l
+    0 ≤ (x-l)/(r-l) ≤ 1
+    // double, and then -1
+    -1 ≤ 2* (x-l)/(r-l) -1  ≤ 1
+
+    -1 ≤ (2x-2l -r+l)/(r-l) ≤ 1
+    -1 ≤ (2x-l-r)/(r-l) ≤ 1
+    -1 ≤ 2x/(r-l) - (r+l)/(r-l) ≤ 1
+    ```
+    - ![](../imgs/gpu_ortho_proj_derive_xy.png)
+        - double multiplier on x/y, and minus a constant
+- Derive z' ( slightly different for the range in D3D )
+    ```c
+    n ≤ z ≤ f ,   0 ≤ z' ≤ 1
+    0 ≤ z-n ≤ f-n
+    // divided by f-n
+    0 ≤ (z-n)/(f-n) ≤ 1
+    0 ≤ z/(f-n) - n/(f-n) ≤ 1
+    ```
+    - ![](../imgs/gpu_ortho_proj_derive_z.png)
+        - a multiplier on z , and minus a constant.
+    - OpenGL transform for z looks more like x&y transforms.
+
+
+## Ortho projection matrix (LHS, row-coord)
+
+- ![](../imgs/gpu_ortho_proj_matrix_LHS_row.png)
+- In Direct3D: D3DXMatrixOrthoOffCenterLH( *o, l,r, b,t, n,f )
+- In Unity: Matrix4x4.xxx( l,r, b,t, n,f )
+
+- an interesting thing about the math here,  the matrix works regardless of rather you're using a RHS or LHS for your z-axis. 
+    - that is, you can have `f-n`, and you could put in number , like  n=54, far=104 in a LHS,  or n=-50, f=-100 for RHS, you wouldn't have to change any of this
+    - so that leads to something incredibly confusing that took me ages to figure out which is if you look in the Microsoft manual, you'll see that they actually flip `1/(f-n)` term for the RHS version of this call( see `Ortho projection matrix (RHS)` )
+
+
+## Ortho projection matrix (RHS)
+
+- ![](../imgs/gpu_ortho_proj_matrix_RHS_row.png)
+    - Math the same, but z clipping plane inputs in most API calls are negated , so the API need  z input parameters be positive
+    - what's going on ? It turns out even if you're using a RHS , where the near plane in the view space is negative, say -50, these RH API calls expet your near and far plances to be listed as positive numbers.
+    - so they essentially do that sign flip for you, to prevent people put negative value for n & f.
+- In Direct3D: D3DXMatrixOrthoOffCenterRH( *o, l,r, b,t, n,f )
+    - c based, return matrix to the poiner `*o`
+- In XNA: Matrix.CreateOrthographicOffCenter( l,r, b,t, n,f )
+- In OpenGL, glOrtho( l,r, b,t, n,f) (matrix is different, also use positve n & f)
+    - OpenGL maps z to [-1,1] & uses column vectors
+    - c based.  GL has a strange stack based computational model. a lot of their operations will create a matrix and shove onto the stack that then gets popped off later.
+
+
+## Simpler ortho projection (LHS)
+
+- In most orthographic projection setups
+    - Z-axis passes through the center of your view volume
+    - Field of view (FOV ) extens equally far
+        - r = -l
+        - t = -b
+
+- ![](../imgs/gpu_simple_ortho_proj_matrix_LHS_row.png)
+    - we do need to keep the flexibility of have different near and far planes.
+- In Direct3D: D3DXMatrixOrthoLH( *o, w,h, n,f )
+
+## Simpler ortho projection (RHS)
+
+- ![](../imgs/gpu_simple_ortho_proj_matrix_RHS_row.png)
+- In Direct3D: D3DXMatrixOrthoRH( *o, w,h, n,f )
+- In XNA: Matrix.CreateOrthographic( w,h, n,f )
+
 
 
