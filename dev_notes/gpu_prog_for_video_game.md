@@ -347,4 +347,18 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - In XNA: Matrix.CreateOrthographic( w,h, n,f )
 
 
+# 5 Perspective Projection
+
+## Viewing frustum
+
+- ![](../imgs/gpu_perspect_proj.png)
+    - we're going to do is take this frustum , and project it into a rectangular volume.
+- choosing the near and far plane is important from a practical issue in both orthographic and perspective projection because the z inforamtion is used to determine which objects are closer thant other objects in particular which objects are obscuring other objects.
+    - if set your near and far plane too far apart, you may not have enough resolution in z to resolve that wel, and you can get the strange shimmering effect called **Z fighting**.
+
+- ![](../imgs/gpu_perspect_proj2.png)
+
+
+
+
 
