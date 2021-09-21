@@ -358,6 +358,30 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 - ![](../imgs/gpu_perspect_proj2.png)
 
+- Given a point (x,y,z) within the view frustum, project it onto the near plane z=n , x∈[l,r], y∈[b,t]
+- We will map x from [l,r] to [-1,1], and y from [b,t] to [-1,1]
+
+## Perspective projection math
+
+- ![](../imgs/gpu_persp_proj_math1.png)
+- ![](../imgs/gpu_persp_proj_math2.png)
+- To calculate new coordinates of x" and y"
+    ```math
+    x"/x = n/z ⇒ x" = nx/z
+
+    y"/x" = y/x ⇒ y" = ny/z
+    ```
+    - this transformation is non-linear. we're going to have to do a division operation that you can't do with just a straight matrix multiplication.
+- The next step is to map these x", y" into a [-1,1]  clip space.
+    - ![](../imgs/gpu_persp_xy_clip_spce.png)
+    - the `z` in the first equation is not something we can represent with a matrix.
+    - but if we multiply everything through by z, and just say, ok well we're not going to be dealing with x',y'.
+        - What we're going to have here is `x'·z` and `y'·z`.
+        - We're just going to say everything's going have z in it, and we'll get rid of that z later. 
+    - and I can express this as a matrix computation.
+- **We'll need to think a bit about what we want to do with z'.**
+
+
 
 
 
