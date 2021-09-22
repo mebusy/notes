@@ -7,11 +7,14 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
 # Notes
 
 - Unreal(z-up), Unity3D(y-up), and Direct3D use LHS
-    - but OpenGL and XNA suddenly turn to LHS in `clip space` ( canonical view volume )
+    - but OpenGL and XNA (RHS in eye-space) suddenly turn to LHS in `clip space` ( canonical view volume )
 - moving camera is equivalent to inverse moving the entire world
 - rotation  must take the coordinate system into consideration.
     - LHS , clockwise if looking against axis
     - RHS , counter clockwise if looking against axis
+- Canonical "clip space" view volume
+    - D3D/XNA,   map z to [0,1] 
+    - OpenGL/Unity, map z to [-1,1]
 
 # 1. Introduction
 
@@ -380,9 +383,42 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
         - We're just going to say everything's going have z in it, and we'll get rid of that z later. 
     - and I can express this as a matrix computation.
 - **We'll need to think a bit about what we want to do with z'.**
+    - We know z(depth) transformation has nothing to do with x, and y.
+    - Let's keep things consistent.
+        ```math
+        z"·z = p·z + q , where p and q are constants.
+        ```
+        - and try to figour out something here that make sense.
+    - we know, (D3D) z'=0 when z=n, z'=1 when z=f , ( OpenGL z'=-1 when z-n )
+        ```math
+        0·n = 0 = p·n + q
+        1·f = f = p·f + q
+        ```
+    - solve these equations
+        - ![](../imgs/gpu_persp_derive_z1.png)
+        - ![](../imgs/gpu_persp_derive_z2.png)
+- Combine those equations
+    ```math
+    x'·z = ...
+    y'·z = ...
+    z'·z = ...
+    w'·z = z  
+    ```
+    - ![](../imgs/gpu_persp_derive_xyz.png)
+    - now I've got a question of what do I really want to do with this `w'` ?
+        - the convention is that in any case we will  have to divide by z to obtain `[x',y',z',w']`
+        - implemented by dividing by the fourth (w'z) coordinate
 
 
+## Simple perspective projection 
 
+- if l=-r, t=-b  (D3D)
+    - ![](../imgs/gpu_persp_simple_matrix.png)
+- but even then expressing things terms `w`,`h` is usually how these kind of matrices are expressed.
+    - usually there's a **field of view (FOV)** expressed in either radians or degrees, in order to find the width, defined in vertical direction.
+    - and then a **aspect radio** defined in order to find the width.
+        - aspect radio = Width/Height
+    - ![](../imgs/gpu_persp_fov_ar.png)
 
 
 
