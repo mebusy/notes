@@ -419,6 +419,56 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - and then a **aspect radio** defined in order to find the width.
         - aspect radio = Width/Height
     - ![](../imgs/gpu_persp_fov_ar.png)
+- ![](../imgs/gpu_persp_fov_ar2.png)
+    ```math
+    tan(ɑ/2) = (h/2)/n = h/(2n)
 
+    ⇒ 2n/h = 1/tan(ɑ/2)
+
+    r = w/h
+
+    ⇒ 2n/(w/r) = 1/tan(ɑ/2)
+      2n·r/w = 1/tan(ɑ/2) 
+      2n/w = 1/r · 1/tan(ɑ/2)
+    ```
+
+- LHS
+    - ![](../imgs/gpu_persp_simple_matrix_fov.png)
+    - In Direct3D: D3DXMatrixPerspectiveFovLH(*p, a,r,n,f)
+    - In Unity:Matrix4x4.Perspective(a,r,n,f)
+- RHS
+    - ![](../imgs/gpu_persp_simple_matrix_fov_rhs.png)
+    - In Direct3D: D3DXMatrixPerspectiveFovRH(*p, a,r,n,f)
+    - In XNA:Matrix.CreatePerspectiveFieldOfView( a,r,n,f )
+    - In OpenGL: gluPerspective(a,r,n,f)
+
+## Custom projections in Unity
+
+- https://docs.unity3d.com/ScriptReference/Camera-projectionMatrix.html
+- From Camera.projectionMatrix documentation:
+    > If you change this matrix, the camera no longer updates its rendering based on its fieldOfView. This lasts until you call ResetProjectionMatrix.
+    > Use a custom projection only if you really need a non-standard projection.
+    > This property is used by Unity's water rendering to setup an *oblique projection* matrix.
+    > Using custom projections requires good knowledge of transformation and projection matrices.
+
+## Viewport transformation
+
+- The actuall 2D projection to the viewer
+- Copy to your back buffer (frame buffer)
+- Can be programmed, scaled, ...
+
+
+## Unity's coordinates systems ( conventions )
+
+- Viewport space
+    - (0,0) is bottom-left
+    - (1,1) is top-right
+- Screen space coordinates
+    - z "is in world units from the camera"
+    - (0,0) is bottom-left
+    - (Camera.pixelWidth, Camera.pixelHeight) is top-right
+- GUI space coordinates
+    - (0,0) is upper-left
+    - (Camera.pixelWidth, Camera.pixelHeight) is bottom-right
 
 
