@@ -3,6 +3,11 @@
 - book
     - 3D Game Engine Design --  A practical approach to real-time computer graphics
 
+- Notes
+    - Texture Coordinates Conventions
+        - OpenGL/Unity: (0,0) = lower left corner
+
+
 
 # 6 Backface Culling
 
@@ -85,13 +90,166 @@
     - when normal vector and light source vector are both unit vectors, `cos(θ) = n̂·l̂`.
     - use `max` function to avoid the negative value of dot product
     - C<sub>light</sub>  is the RGB color of the light
-    - M<sub>dif</sub> is an RGB color of this diffuse reflection
+    - M<sub>dif</sub> is an RGB color of this diffuse reflection, basically the material color
     - the circled time ⊗ is a `colorwise product`.
         - red times red, green times green, blue times blue.
 
 ## Illumination: specular lighting
 
+- Create shinning surface ( surface perfectly reflects )
+- Viewpoint dependent
+- Blinn-Phong model
+    - but it is not a physically plausible model
+- A physically-based model : Bidirectional Reflectance Functions
+    - For "punctal" light ( typical point, directional, spotlight... )
+    - **C<sub>final</sub> = C<sub>light</sub> ⊗ π*BRDF( l̂ , ê ) * max(0, n̂·l̂ )**
+        - BRDF: Bidirectional Reflectance Function
+        - ê : the vector torwards the eye ball
+    - classic diffuse lighting model:
+        - BRDF = M<sub>dif</sub> / π
+    - what is the π ?
 
+## BRDF 
+
+- BRDFs should have reciprocity
+    - Reciprocity means we can swap the incoming and outgoing light directions:
+    - BRDF( l̂ , ê ) = BRDF( ê , l̂ )
+- Energy conservation
+    - "Total amount of reflected light cannot be more thant the amount of incoming light" -- Rory Driscoll
+    - For classic diffuse model BRDF = M<sub>dif</sub> / π , turns out you *technically* need `πM<sub>dif</sub> < 1`
+    - Since π is just a constant, "we usually just ignore it and assume that our lights are just π times too bright. " -- Steve McAuley.
+- A common yet confusing convention
+    - For classic diffuse model BRDF = M<sub>dif</sub> / π
+        - we'll pretend you *practically* need `M<sub>dif</sub> < 1`
+    - Convenient for artists: 
+        - hit a diffuse surface with a material color of "1" with a directinal light with an "intensity" of "1" parallel with its normal and you get "1".
+    - We will generally use the same convention.
+    - If you are implementing global illumination, be careful !
+
+
+
+
+
+## Light source properties
+
+- Postion ( point of spot ) , or angle ( directinal )
+- Range
+    - Specifying the visibility
+- Attenuation
+    - The farther the light source, the dimmer the color
+    - Writing it as a multiplier
+        - `Atten = 1/( a₀ + a₁d + a₂d² )`
+
+## Spot light effect 
+
+[cg tutorial: 5.5.2 Adding a Spotlight Effect](https://developer.download.nvidia.com/CgTutorial/cg_tutorial_chapter05.html)
+
+
+# 8 Rasterization
+
+## Shading methods
+
+- flat shading
+- Gouraud shading
+    - supported by (even old) 3D graphics hardward
+- Phong shading
+    - requires generating per-pixel normals to computer light intensity for each pixel , which is computationally expensive...
+    - Can be done on modern GPUs
+
+## Z-Buffer
+
+- so in additon to painting light information to a buffer sitting there somewhere in your video memory, we also going to be filling out something called z-buffer.
+    - this is another image you're writing, but instead of containing color information, it contains depth information.
+- also called *depth buffer*
+- Draw the pixel which is nearest to the viewer
+- Number of the entries corresponding to the screen resolution ( e.g. 1024x768 sould have a 768k-entry Z-buufer )
+- Granularity matters
+    - 8-bit nerver used
+    - 16-bit z value could generate artifacts
+
+
+# 9 Introduction to Textures
+
+## Texture
+
+- Rendering tiny triangles is slow
+- Players won't even look at some certain details
+    - sky, clouds, walls, terrain, wood patterns, etc.
+- Simple way to add details and enhance realism.
+- Use 2D images to map polygons.
+- Images are composed of 2D "texels"
+    - texels are like the pixels of a 2D image that's going to be stretched around and placed on the object.
+
+
+## Texture Coordinates
+
+- Introduce one more component to geometry
+    - position coordinates
+    - normal vector ( used in lighting calculation)
+    - color ( may not need now )
+    - **Texture coordinates** (2D)
+
+## Texture Coordinates Conventions
+
+- Direct3D / XNA texture convention
+    - (u,v) coordinates for each vertex
+    - (0,0) = upper left corner
+    - (1,1) = lower right corner
+- OpenGL/Unity texture convention
+    - (s,t)/(u,v) coordinates for each vertex
+    - (0,0) = lower left corner
+    - (1,1) = upper right corder
+
+
+## Mip-mapping
+
+- Multiple versions are provided for the same texture
+- Different versions have different levels of details
+    - e.g. 7 LOD maps: 256x256, 128x128, 64x64, 32x32, 16x16, 8x8, 4x4
+    - Choose the closest maps to render a surface
+- Maps can be automatically generated by 3D API
+- API or hardware can 
+    - choose the right one for the viewer
+        - good performance for far triangles
+        - good LOD for close-by objects
+    - Trilinearly interpolate
+
+
+# 10 Advanced Texture Techniques
+
+## Normal mapping
+
+- **Per-fragment lighting** using bump map (normal map) to perturb surface normal
+- No geometry tessellation, avoid geometric complexity
+- Store normal vectors rather than RGB color for bump map
+- Apply per-pixel shading (w/light vector, e.g. Phong shading)
+- ![](../imgs/gpu_bump_mapped_sphere.png)
+- ![](../imgs/gpu_bump_mapped_sphere2.png)
+
+---
+
+- Normal map was derived from a height field map
+    - Height field stores the "elevation" for each texel.
+    - Sample texel's height as well as texels to the right and above.
+    - ![](../imgs/gpu_height_field.png)
+        - right side: height map, maybe something that grayscale indicates the height , created by something like photoshop.
+        - left side: 2D conceptual exsample, where the grascale values in this texture indicate height variations. And then you can run a piece of software that would use that information ,  the normal vector along the height field surface.
+        - ![](../imgs/gpu_range_compressed_normal.png)
+        - Game engines like Unity3D provide the ability to create normal map from height map.
+    - [normal map example on web](http://cpetry.github.io/NormalMap-Online/)
+        - ![](../imgs/gpu_normal_map_example.png)
+        - why does the normal map has such weird particular color pattern ?
+
+ 
+## Creating normal map from height field
+
+- To compute the normal vector, you basically want to take the partial derivatives of the height field along the various directions.
+- Height Field H(u,v)
+    - ![](../imgs/gpu_create_normal_map_from_height_map.png)
+    - here we are essentially doing the calculus type trick of using a first difference , and the horizontal and the vertical direction , in order to compute the approximation to those partial derivatives.
+    - and to normalize it to unit length.
+- In flat regions , normal is (0,0,1), i.e. pointing "up".
+- From "The Cg Tutorial", p.203
 
 
 
