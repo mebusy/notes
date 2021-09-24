@@ -72,4 +72,26 @@
 - Bonus: high definition render buffers and tonemapping to handle high dynamic range.
 
 
+## Illumination: diffuse lighting
+
+- Light sources are given
+- Assume light bounces in all directions
+    - **reflected light will reach the camera no matter where the camera is!**
+- Light intensity calculation
+    - Reflectivity ∝ the entry angle
+    - use **Lambert's consine Law**
+- **C<sub>dif</sub> = C<sub>light</sub> ⊗ M<sub>dif</sub> * max( 0, n̂·l̂ )**
+    - diffuse intensity is proportional to cos(θ), where θ is the angle between the normal vector and light source vector.
+    - when normal vector and light source vector are both unit vectors, `cos(θ) = n̂·l̂`.
+    - use `max` function to avoid the negative value of dot product
+    - C<sub>light</sub>  is the RGB color of the light
+    - M<sub>dif</sub> is an RGB color of this diffuse reflection
+    - the circled time ⊗ is a `colorwise product`.
+        - red times red, green times green, blue times blue.
+
+## Illumination: specular lighting
+
+
+
+
 
