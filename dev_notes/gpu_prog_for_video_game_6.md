@@ -239,6 +239,7 @@
     - [normal map example on web](http://cpetry.github.io/NormalMap-Online/)
         - ![](../imgs/gpu_normal_map_example.png)
         - why does the normal map has such weird particular color pattern ?
+            - see next paragraph
 
  
 ## Creating normal map from height field
@@ -249,7 +250,66 @@
     - here we are essentially doing the calculus type trick of using a first difference , and the horizontal and the vertical direction , in order to compute the approximation to those partial derivatives.
     - and to normalize it to unit length.
 - In flat regions , normal is (0,0,1), i.e. pointing "up".
+- And this is why you typically see big blue sections in normal map, because the Blue component always be 1 before normalization
+    - and you see RED along x axis, because that represents the changes in horizontal direction
+    - and you see GREEN along y axis, beause that represents the variations in vertical direction
 - From "The Cg Tutorial", p.203
 
+
+## Storing normals in textures
+
+- Textures don't have to store color; we can store another things as well, like normals
+    - Use r,g,b components to store x,y,z of normal
+- Problem: Texture take [0,1] values; normals need [-1,1] values
+- Easy solution: "Range Compression"
+    ```c
+    colorComponnet = 0.5 * normalComponnet + 0.5;
+    normalcomponent = 2 * ( colorComponent - 0.5);
+    ```
+
+## Environment mapping
+
+- ![](../imgs/gpu_cube_map.png)
+- Here is another technique where the texture values here are indeed RGB colors, but, this is very different kind of texture.
+    - called Cube Map Texutre ( in world coordinate )
+    - Each face encodes 1/6 of the panoramic environment 
+- You can imagine going to the world, and taking the camera, and pointing up,down,left, right, forward, back, and each time you do that, you take a picture.
+    - and then you load them into photoshop, and find the edge to line them up.
+    - and what you built is basically a description of the overall light environment of the scene.
+    - this is something called *image-based lighting*. this gives us the ability to make some really cool looking kind of reflection
+
+- You can create cube map by yourown, and the game engine like Unity3D can create cube map for you,  using "reflection probes"
+
+---
+
+- ![](../imgs/gpu_env_mapping_teapot.png) ,  ![](../imgs/gpu_env_mapping_teapot2.png)
+    - The teapot here is reacting to light an specular fashion. 
+    - Look up the environment map
+        - shader language also have a particular function `texCUBE()` for sampling the texel in cube map.
+    - Add reflection to a fragment's final color
+    - r̂ = 2 * (n̂·l̂)*n̂ - l̂
+- Rendered Image:
+    - ![](../imgs/gpu_cube_map_rendered_image.png)
+
+## Alpha test
+
+- Reject pixels by checking their alpha values
+- Model fences, chicken wires, etc.
+
+```c
+if ( α op val )
+    reject pixel
+else
+    accept pixel
+```
+
+## Multi-texturing example: light mapping
+
+- ![](../imgs/gpu_multi_tex_lighting.png)
+- used for old games
+- it is reasonable for diffuse, not specualr , and can not handle moving light
+
+
+# 11 Color Spaces
 
 
