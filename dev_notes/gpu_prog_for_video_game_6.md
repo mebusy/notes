@@ -312,4 +312,157 @@ else
 
 # 11 Color Spaces
 
+## Gamma Curves 
+
+- ![](../imgs/gpu_gamma_2.2.png)
+- As a historical things, if you think back to your old cathode ray tube display monitors and TVs, they way that those display light isn't in a linear fashion, 
+    - in terms of that numbers that goes in , you could think of them as vlotages or just 8-bit values,  the light that comes out at these  at these lower values is actually less than you would expect.
+    - and one way to think about it is that it's like taking this number 0-1 to the power of 2.2 (later I'm goint to use the number 2). 
+    - 0.5<sup>2.2</sup> ≈ 0.218
+    - If you were to take images that wre taken sort of in a standard way of storing just raw light values and display it on a old CRT, they would basically come out too **dark**.
+- So essentially every consumer camera will pre-apply a correction to it, **val<sup>1/2.2</sup>** ,  pretty close to taking a square root.
+    - that is, the actual value stored in image is bigger than the raw value ( in gamma space )
+    - that way these 2 effects counteract each other, and you get the right light out (the gray straight line)
+- Imagine that the actual light value of a particular pixel should a A, we store the square root of that in the image and then the monitor squares that, so we get A out.
+    - (√A)² = A , ok it's ok.A
+    - but now the issue comes in we want to blend images. This kind of gamma space, called sRGB if you using photoshop. Suppose you have a 3D object, and you light it with just one light. ok fine.  But now what if you're lighting it with 2 lights?  The square root value √A that is the way the texture is stored. So if we try to add lights in our shader code , √A + √B,  and then if we're adding them in the gamma space, then the screen is going to squre them (√A + √B)². And then We have some problems.
+    - People made games for many many years using this gamma space lighting and people enjoy them and such. But pretty much the main issue there is that any given set of lights in the scene only really works for that particular scene. you level desiginers would put a lot of effort into tweaking the particular lights so this weirdness may be going on but everything still looks good. But if somebody comes on later and tries to add a light to the scene, everything gets kind of weird.  
+- If you have a professional cinematographer who does lighting for a living, the lights in your game engine just don't combine in the way that they're used to. 
+    - So the solution to this is basically take that square every time you read a texture and then you do all of your math and your shader you all up all your lights or whatever, and then you do that **square root** at that final pixel value before you write it into the screen. Normally you would acutally take some instructions in your pixel shader to do thos kinds of computations, but fortunately modern GPUs will have hardware in there to do this for you.
+
+
+## Modern approach: Let the GPU magically handle it
+
+- Avoid wasting instructions in pixel shader
+- Direct3D API:
+    - Texture read: D3DSAMP_SRGBTEXTURE
+    - Pixel write: D3DRS_SRGBWRITEENABLE
+- OpenGL API:
+    - Texture read: GL_EXT_texture_sRGB
+    - Pixel write GL_EXT_framebuffer_sRGB
+
+
+## DIY linear space (helpers)
+
+```cg
+inline float3 DeGamma( in float3 c){
+    return pow(c, 2,2);
+}
+inline float3 ReGamma( in float3 c){
+    return pow(c, 1/2.2);
+}
+```
+
+```cg
+#pragma surface surf BlinnPhong finalColor:finalgamma
+
+void finalgamma(Input IN, SurfaceOutput o, inout fixed4 c ) {
+    c = fixed4( ReGamma(c.xyz), c.a );
+}
+```
+
+In your "surface shader" (old Unity Style):
+
+```cg
+float4 tex = tex2D( _MainTex, In.uv_MainTex);
+tex.rgb = DeGamma(tex.rgb);
+```
+
+You'd only need this to do linear lighting in **older, non-pro** versions of Unity(4 and earlier) and on **older GPUs**.
+
+
+- Unity
+    - Unity had a technology that they were using for a bit called surface shaders, and surface shaders were basically a way that you could write a stub of shader code and then unity would come along and make a bunch of variations of that for a whole bunch of different lighting configurations. 
+        - one of the basic ideas of the surfaces was that you could define a special function (e.g. `finalgamma`) that would be applied right before a color value would actually be sent to the framebuffer.
+    - Unity isn't really pushing this anymore, they're now pushing something called shader graph that we'll look at later. 
+    - ![](../imgs/gpu_unity_default_gamma.png)
+    - Oh, even unity 2020.1,  defaults to having gamma color space... No, unity, you should not be doing this nowadays.  I guess if you're doing like a 2D sprite game where you have no lighting effects,  maybe gamma space is a good idea, but SWITCH it to **linear**.
+    - So anytime you are using unity if you're doing 3d graphics, in general just switch it linear.
+    - High Definition RP  ( render pipeline)
+        - this design specifically to target exclusively high-end systems: PS4, Xbox one , gaming PC.
+    - Universal Render Pipeline
+        - it used to go by the name of the lightweight render pipeline.
+        - the idea of this pipeline it is fairly capable but it can also scale down to lower end devices like mobile phones.
+
+
+# 13 GPU Architecture & Assembly Language
+
+## Shader Models 
+
+- Xbox 360 (SM 3.0)
+- Playstation 3 (SM 3.0)
+- Mid-2015 15" MacBook Pro (SM 5.1)
+- Original Playstation 4 (SM 5.1)
+- Original Xbox One & Xbox One S (SM 5.1)
+- Xbox One X (SM 6.0)
+- Playstation 4 Pro (SM 6.0)
+- Nintendo Switch (SM 6.4)
+- Most of "standard" Unity seem to defaults to SM 3.0 ( HDRP needs 5.0 )
+
+Basically the shader model is defined an agreement of certain kinds of registers and certain kinds of instructions that the GPU will execute. But the exact details of how the GPU executes those instructions is up to that GPU and the driver.
+
+## Shader data 
+
+- Mostly floats
+- Integer & bitwise operations available in Shader Model 4.0, but not earlier
+- Fixed-size vectors and matrices
+    - not really necessarily a fixed convention in shader about rather these vector should be thought of as row vectors or column vectors. There are these 4 number things that depending on how you arrange the computation your shader code, you can interpret them as columns or as rows.
+- Tree main types 
+    - Per-instance data, e.g., per-vertex position
+    - Per-pixel interpolated data, e.g., texture coordinates
+    - Per-batch data, e.g., light position ( usually referred to as **uniform** variables)
+
+
+## Specialized instructions ( Assembly,  GeForce 6 )
+
+- Dot products
+- Exponential instructions
+    - EXP, LOG
+- Reciprocal instructions
+    - RCP ( reciprocal )
+    - RSQ ( reciprocal square root )
+        - interestingly, there is no instruction for square root ( GeForce 6 )
+- Trigonometric function
+    - SIN, COS
+- Swizzling (swapping xyzw, e.g. zwxy) , write masking ( only some xyzw get assigned, e.g. xyz), and negation is "free" ( e.g. -z )
+    - xyzw = rgba
+- You can read the entire GPU Gems series for free on NVIDIA's website
+
+
+## Vertex Shader
+
+- Transform to clip space
+    - the main job of the vertex shader , is to do the transformations of transforming 3D coordinate spaces and projections onto the 2D screen.
+- Calculate per-vertex lighting (e.g. Gouraud shading)
+- Input
+    - Common inputs:
+        - Vertex postion (x,y,z,w)
+        - Texture coordinate
+            - most often just passed directly through because the texture lookups won't acutally happen until we get to the pixel shader
+        - Vertex colors
+            - if you weren't using textures for the colors you might have colors associated with the individual vertices.
+            - you will only really see that in some extremely old 3D games
+        - Constant inputs
+            - common to all of the vertices, e.g. your 4x4 transformation matrix for your vertices, often refer to uniform
+    - Output to a pixel (fragment) shader
+- Vertex shader is executed once per vertex, so usually less expensive than pixel shader
+
+- Vertex Compute Unit under shader model 3.0
+    - ![](../imgs/gpu_vertex_shader_flow_3.0.png)
+        - general purpose register ( blue ) are for your computation
+        - constant registers ( yellow ) are for uniform variables
+        - input register ( green ) for vertices
+    - shader languages are very simple, because the vertex compute unit itself is very simple
+        - there is no malloc, no heap to allocate memory, no stack, no recursion
+        - you can't have a function call itself, all function basically inlined because no stack for function invoking.  there is only registers
+
+
+## Pixel ( or fragment ) shader
+
+
+
+
+
+
+
 

@@ -48,6 +48,25 @@ Expectimax Search -> MDP
 
 [Cross Product Application](https://amirazmi.net/cross-products-in-game-development-and-their-use-cases/)
 
+vxw = -wxv 
+行列式 area of the 平行四边形
+how to compute ？ 
+
+    1. numerical formula
+    2. add column [i,j,k]  , det(||)
+
+几何意义
+
+    |a||b|sinθ
+
+行列式 就是 用来衡量 某个线性变化 对空间的拉伸作用。
+
+2D 并不是真正的 cross product。叉乘只在3D和7D空间中有定义，2D空间的叉乘可以简化为两个Z轴为0的3D向量的叉乘。
+
+a·b = det( | b v w | )
+a = vxw
+
+
 
 1. turn left, or turn right
 2. find the normal vector
