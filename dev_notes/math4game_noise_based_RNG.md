@@ -86,7 +86,7 @@ Noise Functions are also really useful for
     - Eliminates chance of "sequence syncing"
 
 
-## RNG vs. Noise
+### RNG vs. Noise
 
 ```c++
 uint32_t SomeRNG::Rand() {
@@ -99,7 +99,7 @@ uint32_t SomeNoiseFunction( int position ) {
 }
 ```
 
-## RNG-based Noise ?
+### RNG-based Noise ?
 
 ```cpp
 unit32_t NoiseFunctionMakeFromRNG( int position ) {
@@ -111,7 +111,7 @@ unit32_t NoiseFunctionMakeFromRNG( int position ) {
 - This totally works, using this generate minecraft worlds.
 - But it's not fast. We pay for construction, initialization, seeding, AND rand.
 
-## Noise-based RNG ?
+### Noise-based RNG ?
 
 ```cpp
 Class RngBasedOnNoise {
@@ -129,7 +129,68 @@ uint32_t RngBasedOnNoise::Rand() {
 - No problem.
 
 
+### 1D noise function
+
+- ![](../imgs/math4game_noise_func_some.png)
+- ![](../imgs/math4game_noise_sonoise.png)
+- ![](../imgs/math4game_noise_libnoise.png)
+    - ...are really just a very special form of Hash function (which hashes an "int" into a pseudorandom "unsigned int").
+
+- ![](../imgs/math4game_noise_perlinnoise.png)
+- squirrel3
+    ```python
+    # The base bit-noise constants were crafted to have distinctive and interesting
+    # bits, and have so far produced excellent experimental test results.
+    NOISE1 = 0xb5297a4d  # 0b0110'1000'1110'0011'0001'1101'1010'0100
+    NOISE2 = 0x68e31da4  # 0b1011'0101'0010'1001'0111'1010'0100'1101
+    NOISE3 = 0x1b56c4e9  # 0b0001'1011'0101'0110'1100'0100'1110'1001
+
+    CAP = 1 << 32
+
+    def squirrel3(n, seed=0):
+        """Returns an unsigned integer containing 32 reasonably-well-scrambled
+        bits, based on a given (signed) integer input parameter `n` and optional
+        `seed`.  Kind of like looking up a value in an infinitely large
+        non-existent table of previously generated random numbers.
+        """
+        n *= NOISE1
+        n += seed
+        n ^= n >> 8
+        n += NOISE2
+        n ^= n << 8
+        n *= NOISE3
+        n ^= n >> 8
+        # Cast into uint32 like the original `Squirrel3`.
+        return n % CAP
+    ```
+    - [squirrel3 on github](https://github.com/sublee/squirrel3-python/blob/master/squirrel3.py)
+
+
+### Multidimensional Noise functions
+
+- Q: how do you generate noise for a 2D, 3D, 4D position ?
+- A:
+    ```go
+    func Get2dNoiseUint(indexX int32, indexY int32, seed uint32) uint32 {
+        const PrimeNumber int32 = 198491317 // Large prime number with non-boring bits
+        return Get1dNoiseUint(indexX+(PrimeNumber*indexY), seed)
+    }
+
+    func Get3dNoiseUint(indexX int32, indexY int32, indexZ int32, seed uint32) uint32 {
+        const Prime1 int32 = 198491317 // Large prime number with non-boring bits
+        const Prime2 int32 = 6542989   // Large prime number with distinct and non-boring bits
+        return Get1dNoiseUint(indexX+(Prime1*indexY)+(Prime2*indexZ), seed)
+    }
+    ```
+    - [go-squirrelnoise](https://github.com/EDKarlsson/go-squirrelnoise/blob/fe9bd5e6d2248fe71acd702e4bb8a015d0e7914f/SquirrelNoise5.go#L85)
+
+
 ## Tidbits  and Takeaways
+
+- Noise is awesome, and can do lots of things RNGs can't !
+- Noise also happens to make better RNG than most RNGs !
+- Forget rand()
+- Keep it small, smiple, fast, and flexible
 
 
 
