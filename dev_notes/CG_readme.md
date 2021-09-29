@@ -26,3 +26,5 @@
 #  GPU Programming for Video Games
 
 1. [3D Coordinate Systems, Projection](gpu_prog_for_video_game.md)
+2. [Backface Culling, Basic Lighting, Rasterization, Textures, Color Spaces, GPU Architecture](gpu_prog_for_video_game_6.md)
+3. 

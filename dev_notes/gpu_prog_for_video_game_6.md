@@ -459,6 +459,50 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 ## Pixel ( or fragment ) shader
 
+- Determine each fragment's color
+    - Custom pixel operations
+    - Texture sampling
+- Input
+    - **Interpolated** output from vertex shader
+    - Typically vertex position, vertex normals, texture coordinates, etc.
+    - There registers could be reused for other purpose
+- Output
+    - Color (including alpha)
+    - Depth value (optional)
+        - most of the time this isn't something you programmer need to deal with explicitly , this is handled automatically by the GPU behind the scenes, but it can use that to do z-buffer depth tests and other things.
+
+---
+
+- Executed once per pixel, hence typically executed many more times than a vertex shader
+- It can be advantageous to compute some stuff on a per-vertex basic to improve performance.
+
+- Pixel shader data flow (3.0)
+    - ![](../imgs/gpu_pixel_shader_data_flow.png)
+    - blue r0,r1... : general purpose registers
+    - red: hardward mechanisms that go out and talk to the parts of your video memory that are storing textures, and these are linked to interpolation hardward.
+    - Output: the depth is usually handled automatically.
+
+
+## Some uses of pixel shaders
+
+- Texturing objects
+- Per-pixel lighting (e.g. Phong Shading)
+- Normal mapping ( each pixel has its own normal)
+- Shadows ( determine whether a pixel is shadowed or not)
+- Environment mapping ( use cube map)
+
+
+## Shader Language
+
+- Historically , HLSL/Cg most common
+    - Both are more-or-less compatible
+- GLSL(for OpenGL)
+    - Not exactly the same as, but similar to HLSL/Cg
+- Newer
+    - Vulkan Shading Language
+    - Metal Shading Language ( Apple )
+
+
 
 
 
