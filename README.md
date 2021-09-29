@@ -33,7 +33,7 @@
  a | b | c | d
 --- | --- | --- | ---
 [youtube: dot product](https://youtu.be/x_sftn4AjSc) | [youtube: random number](https://youtu.be/iDLXp3NHOQI) |
-
+[noise function](dev_notes/math4game_noise_based_RNG.md) |
 
 <h2 id="6967a2c7c19fa61c072a4b0a1072e9c7"></h2>
 
