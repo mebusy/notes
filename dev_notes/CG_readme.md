@@ -1,4 +1,3 @@
-
 <h2 id="5967d3e33c64ff7f2266daa725898281"></h2>
 
 
@@ -21,6 +20,9 @@
  6. [7 3D with WebGL](./computeGraphics7.md)
  7. [8 Beyond Realtime Graphcis](./computeGraphics8.md)
 
+
+
+<h2 id="a4d5cf4464f3bba0f9c36b417944984d"></h2>
 
 
 #  GPU Programming for Video Games

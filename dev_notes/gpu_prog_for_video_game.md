@@ -1,7 +1,49 @@
+...menustart
+
+- [GPU Programming for Video Games](#a4d5cf4464f3bba0f9c36b417944984d)
+- [Notes](#f4c6f851b00d5518bf888815de279aba)
+- [1. Introduction](#71418df45ef46a0f40bd390be0bd5434)
+- [2. 3D Coordinate Systems](#ad3192ebab6bd1c18dbd92623ce4f39a)
+    - [3D Coord](#2a60530e5648d746b919649d662d53e2)
+    - [Geometry format -- vertex coordinates](#f6b4d8fbfbe805f4bad788e4ac45bf1a)
+    - [Geometry format -- vertex color](#08d6add3f89bc1916c779604800482da)
+    - [Specifying a 3D object](#4c6ba5bbf22f99dff6eec285f40a760c)
+    - [Transformation Pipeline](#caf560e397afafbc5a2f66cf9316f5d1)
+- [3D Vertex Transformations](#6a707eec7b1c33a0efd0be3458a3f599)
+    - [homogeneous coordinates](#ab6b29c0ed728a4affdc2082ca0cf8a6)
+    - [Transformation 1:  translation( offset )](#50b83591a5b89e7bcd7b1cd4ebae7093)
+    - [Transformation 2:  scaling](#5244f03eefd30cfa1634ecd3727d5637)
+    - [Transformation 3:  rotation](#7177203eef562264d13cd6117b1aaf6e)
+    - [Specifying the view transformation](#747cfc00edd6fbf9f13ca14b362f24ba)
+- [4 Orthogonal Projection](#85d9631454d48fa7f6750ce622190a4d)
+    - [canonical view volumn](#cad6897b540a7ded6cec17c2e329a8b6)
+    - [Strange "conventions"](#5bd27b5c850e0930a4db65f419ab89bc)
+    - [Style of orthographic projection](#116e2d4351534088bd1e7214e73cf49a)
+    - [Orthographic Projection](#9ef6b37b68a67f02935531a7aa4a1e2d)
+    - [Ortho projection matrix (LHS, row-coord)](#1eb46bbd726b584a89cb53c9a4e7a73d)
+    - [Ortho projection matrix (RHS)](#ef317d05e00327a7e864e16014b486ad)
+    - [Simpler ortho projection (LHS)](#3dc64e759911f87934942dbd1b719bdd)
+    - [Simpler ortho projection (RHS)](#05acbf9e6506f6b3b958f498efd7558c)
+- [5 Perspective Projection](#4bdcf9d8e9a42b9d20e7446f49a7844b)
+    - [Viewing frustum](#da253eb516cf27dd062e171c8b9c9856)
+    - [Perspective projection math](#62d886fbef30eb4b2189a7e443275367)
+    - [Simple perspective projection](#0aded01d21104ab97191049a388bcccc)
+    - [Custom projections in Unity](#9969336c9677abfc719b82bd67e4e09c)
+    - [Viewport transformation](#f6604ad5915f76404baf1b53d4cfa1b9)
+    - [Unity's coordinates systems ( conventions )](#2c48d234ff5065e0c27f346e9c30ad02)
+
+...menuend
+
+
+<h2 id="a4d5cf4464f3bba0f9c36b417944984d"></h2>
+
 
 # GPU Programming for Video Games
 
 https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKknJ8w
+
+
+<h2 id="f4c6f851b00d5518bf888815de279aba"></h2>
 
 
 # Notes
@@ -16,12 +58,18 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
     - D3D/XNA,   map z to [0,1] 
     - OpenGL/Unity, map z to [-1,1]
 
+<h2 id="71418df45ef46a0f40bd390be0bd5434"></h2>
+
+
 # 1. Introduction
 
 - CS4455: Video Game Design
 - CS4731: Game AI
 - CS4496/7496: Computer Animation
 - CS4480: Digital Video Special Effects
+
+<h2 id="ad3192ebab6bd1c18dbd92623ce4f39a"></h2>
+
 
 # 2. 3D Coordinate Systems
 
@@ -38,6 +86,9 @@ Shader | vertex shader(3d vertex) | fragment shader(final color of pixel)
 - There are other kinds of shader called geometry shaders that can create new vertices
     - and there's also computer shaders that are much more general kinds of things that might be thought of as more general-purpose GPU programming.
 - We'll be focusing on vertex shader and fragment shader.
+
+<h2 id="2a60530e5648d746b919649d662d53e2"></h2>
+
 
 ## 3D Coord
 
@@ -81,10 +132,16 @@ Z-up | Unreal  |  Math textbook, Quake/Radiant, Source/Hammer, C4 Engine, 3D Stu
 Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
+<h2 id="f6b4d8fbfbe805f4bad788e4ac45bf1a"></h2>
+
+
 ## Geometry format -- vertex coordinates
 
 - At least at present , the models used in 3D games are formed from triangels.
     - each vertex of the triangle also has an associated unit normal, and this arises from the export process that your 3D artist will make from their 3D modeling software.
+
+<h2 id="08d6add3f89bc1916c779604800482da"></h2>
+
 
 ## Geometry format -- vertex color
 
@@ -92,6 +149,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - But nowadays vertex colors are not actually used very much.
     - because usually that color information is embedded in some sort of 2D texture.
 - Sometimes you will see this color slot being used, but it may be used form some other kind of information used in the rendering process and not typical color information.
+
+
+<h2 id="4c6ba5bbf22f99dff6eec285f40a760c"></h2>
 
 
 ## Specifying a 3D object 
@@ -109,6 +169,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - That could be completely independent about rather your actual 3D coordinate system in your engine is LH or RH.
 
 
+<h2 id="caf560e397afafbc5a2f66cf9316f5d1"></h2>
+
+
 ## Transformation Pipeline
 
 - Model(World) Transformation
@@ -119,6 +182,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - World coordinates -> Camera space
 - Projection Transformation
     - Camera space -> View plane
+
+
+<h2 id="6a707eec7b1c33a0efd0be3458a3f599"></h2>
 
 
 # 3D Vertex Transformations
@@ -138,6 +204,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - Field of View(FoV)
     - There is a rich set of mathematical techniques concerning a concept called 
 
+<h2 id="ab6b29c0ed728a4affdc2082ca0cf8a6"></h2>
+
+
 ## homogeneous coordinates
 
 - Enable all transformations to be done by "multiplication".
@@ -149,6 +218,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - w will be useful for perspective projection
         - where we need to divide by distance, and there is a convention for handling that by sticking the distance into the `w`.
     - w should be 1 in Cartesian coordinate system
+
+<h2 id="50b83591a5b89e7bcd7b1cd4ebae7093"></h2>
+
 
 ## Transformation 1:  translation( offset )
 
@@ -168,6 +240,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     ⎣1 ⎦   ⎣ 0   0   0  1 ⎦  ⎣1⎦
     ```
 
+<h2 id="5244f03eefd30cfa1634ecd3727d5637"></h2>
+
+
 ## Transformation 2:  scaling
 
 - ![](../imgs/gpu_scaling1.png)
@@ -180,6 +255,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
                 ⎢ 0   0   Sz 0 ⎥  
                 ⎣ 0   0   0  1 ⎦  
     ```
+
+
+<h2 id="7177203eef562264d13cd6117b1aaf6e"></h2>
 
 
 ## Transformation 3:  rotation
@@ -237,6 +315,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
         ```
 
 
+<h2 id="747cfc00edd6fbf9f13ca14b362f24ba"></h2>
+
+
 ## Specifying the view transformation
 
 - Most commonly parameterized by
@@ -251,7 +332,13 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - but usually a programmer will only call this if they're doing some specialized weird thing because usually there's a camera class with various built-in scripts associated with it that will call such `LookAt` routine for you.
 
 
+<h2 id="85d9631454d48fa7f6750ce622190a4d"></h2>
+
+
 # 4 Orthogonal Projection 
+
+<h2 id="cad6897b540a7ded6cec17c2e329a8b6"></h2>
+
 
 ## canonical view volumn
 
@@ -261,9 +348,15 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - Only X- and Y-coordinates will be mapped onto the screen
 - Z will be almost useless, but used for depth test & advanced postprocessing effects
 
+<h2 id="5bd27b5c850e0930a4db65f419ab89bc"></h2>
+
+
 ## Strange "conventions"
 
 - ![](../imgs/gpu_strange_convention_orthognal_proj.png)
+
+<h2 id="116e2d4351534088bd1e7214e73cf49a"></h2>
+
 
 ## Style of orthographic projection
 
@@ -273,6 +366,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - No sense of distance
 - Parallel lines remain parallel
 - Good for tile-based games where camera is in fixed location (elg. Mahjong or 3D Tetris)
+
+<h2 id="9ef6b37b68a67f02935531a7aa4a1e2d"></h2>
+
 
 ## Orthographic Projection
 
@@ -306,6 +402,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - OpenGL transform for z looks more like x&y transforms.
 
 
+<h2 id="1eb46bbd726b584a89cb53c9a4e7a73d"></h2>
+
+
 ## Ortho projection matrix (LHS, row-coord)
 
 - ![](../imgs/gpu_ortho_proj_matrix_LHS_row.png)
@@ -315,6 +414,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - an interesting thing about the math here,  the matrix works regardless of rather you're using a RHS or LHS for your z-axis. 
     - that is, you can have `f-n`, and you could put in number , like  n=54, far=104 in a LHS,  or n=-50, f=-100 for RHS, you wouldn't have to change any of this
     - so that leads to something incredibly confusing that took me ages to figure out which is if you look in the Microsoft manual, you'll see that they actually flip `1/(f-n)` term for the RHS version of this call( see `Ortho projection matrix (RHS)` )
+
+
+<h2 id="ef317d05e00327a7e864e16014b486ad"></h2>
 
 
 ## Ortho projection matrix (RHS)
@@ -331,6 +433,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - c based.  GL has a strange stack based computational model. a lot of their operations will create a matrix and shove onto the stack that then gets popped off later.
 
 
+<h2 id="3dc64e759911f87934942dbd1b719bdd"></h2>
+
+
 ## Simpler ortho projection (LHS)
 
 - In most orthographic projection setups
@@ -343,6 +448,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - we do need to keep the flexibility of have different near and far planes.
 - In Direct3D: D3DXMatrixOrthoLH( *o, w,h, n,f )
 
+<h2 id="05acbf9e6506f6b3b958f498efd7558c"></h2>
+
+
 ## Simpler ortho projection (RHS)
 
 - ![](../imgs/gpu_simple_ortho_proj_matrix_RHS_row.png)
@@ -350,7 +458,13 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - In XNA: Matrix.CreateOrthographic( w,h, n,f )
 
 
+<h2 id="4bdcf9d8e9a42b9d20e7446f49a7844b"></h2>
+
+
 # 5 Perspective Projection
+
+<h2 id="da253eb516cf27dd062e171c8b9c9856"></h2>
+
 
 ## Viewing frustum
 
@@ -363,6 +477,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 - Given a point (x,y,z) within the view frustum, project it onto the near plane z=n , x∈[l,r], y∈[b,t]
 - We will map x from [l,r] to [-1,1], and y from [b,t] to [-1,1]
+
+<h2 id="62d886fbef30eb4b2189a7e443275367"></h2>
+
 
 ## Perspective projection math
 
@@ -410,6 +527,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
         - implemented by dividing by the fourth (w'z) coordinate
 
 
+<h2 id="0aded01d21104ab97191049a388bcccc"></h2>
+
+
 ## Simple perspective projection 
 
 - if l=-r, t=-b  (D3D)
@@ -442,6 +562,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - In XNA:Matrix.CreatePerspectiveFieldOfView( a,r,n,f )
     - In OpenGL: gluPerspective(a,r,n,f)
 
+<h2 id="9969336c9677abfc719b82bd67e4e09c"></h2>
+
+
 ## Custom projections in Unity
 
 - https://docs.unity3d.com/ScriptReference/Camera-projectionMatrix.html
@@ -451,11 +574,17 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     > This property is used by Unity's water rendering to setup an *oblique projection* matrix.
     > Using custom projections requires good knowledge of transformation and projection matrices.
 
+<h2 id="f6604ad5915f76404baf1b53d4cfa1b9"></h2>
+
+
 ## Viewport transformation
 
 - The actuall 2D projection to the viewer
 - Copy to your back buffer (frame buffer)
 - Can be programmed, scaled, ...
+
+
+<h2 id="2c48d234ff5065e0c27f346e9c30ad02"></h2>
 
 
 ## Unity's coordinates systems ( conventions )

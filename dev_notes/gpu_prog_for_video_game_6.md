@@ -1,3 +1,51 @@
+...menustart
+
+- [GPU Programming for Video Games, Summer 2020, Georgia Tech](#b369fffc612dbbb4c7a6dfa31d084ab0)
+- [6 Backface Culling](#28334b98449eaca000e409a2961c6c33)
+    - [Backface culling method](#ee1676bbfe64cb66faf7e5ec01593ed5)
+    - [When to perform backface culling ?](#6b740ec394657fb2e3006a3312e29a13)
+- [7 Basic Lighting](#f645278fb1c70a40dd691e06135865fe)
+    - [Local vs. global illumination](#ea06e1cd6dbd257f4c66f45eee3c0e13)
+    - [Elements of PBR(physically-based rendering)](#96382d822120f3c7a9014efb8261fd0e)
+    - [Illumination: diffuse lighting](#d0c6019becee5e1db1b792e7ae3088d7)
+    - [Illumination: specular lighting](#9ae158c2b7218467a0355d44a43195b8)
+    - [BRDF](#4e69f1c58994758054563aa7392ffa4c)
+    - [Light source properties](#cb6bc578172fc9b2d26af7123d455935)
+    - [Spot light effect](#0cc6280c44ed3adaa5935128cae9593f)
+- [8 Rasterization](#f20a96ec50f4fc236a0a161b1ae0fb0c)
+    - [Shading methods](#d7ecfd012daf5f79f8afb273d6e5dd7a)
+    - [Z-Buffer](#8c99afbaad8ede5b27fa1d8b04f51aee)
+- [9 Introduction to Textures](#7e81ac3c516ee9b2786c37d4f8144a9c)
+    - [Texture](#a3e8ae43188ae76d38f414b2bdb0077b)
+    - [Texture Coordinates](#789129d85cbd3e4c28736b7b0888bca1)
+    - [Texture Coordinates Conventions](#b524170705d1cbe7fac8ab5bdb5d7a56)
+    - [Mip-mapping](#76f348c5b4f4033bbe614a1e87530854)
+- [10 Advanced Texture Techniques](#df09531a332e56d9047f13c84a238f26)
+    - [Normal mapping](#4297a12020af73570442a8627bb334a2)
+    - [Creating normal map from height field](#15a3bd330b137231f40e160b2e8c5ef4)
+    - [Storing normals in textures](#6d70a0431d891924f9ec1ae7b7d7e0a8)
+    - [Environment mapping](#45607b8307c211876c7c9c449ec4f856)
+    - [Alpha test](#9a127762ac5984527e7208b2eb34759f)
+    - [Multi-texturing example: light mapping](#893849f0218b9c900db556f560caa601)
+- [11 Color Spaces](#60005419066e6110f986a078554458df)
+    - [Gamma Curves](#775fd5b1afb19aeebc3f333d500bf527)
+    - [Modern approach: Let the GPU magically handle it](#6ce135cfb6960aacec3d01c0cb166f0b)
+    - [DIY linear space (helpers)](#954641d535c15b2374486ec45fc1fd36)
+- [13 GPU Architecture & Assembly Language](#d61c9e146d2d15883b5c8f7d218a05a2)
+    - [Shader Models](#6c51b2a3e1266217e1821d5fb8880283)
+    - [Shader data](#629c46faa285a39d0f65b20b26a6ddde)
+    - [Specialized instructions ( Assembly,  GeForce 6 )](#92ae455ac58c5a02edbefd78c872cd0d)
+    - [Vertex Shader](#ac6784fa422b1d1fef85036ee4decde6)
+    - [Pixel ( or fragment ) shader](#d3d1e02aed1546fbc9d0b0c0dfa1b97d)
+    - [Some uses of pixel shaders](#07b6d393a22ca42fc5df0d0d4b035751)
+    - [Shader Language](#5eb3ef14b8dcdc301af4c983a7136410)
+
+...menuend
+
+
+<h2 id="b369fffc612dbbb4c7a6dfa31d084ab0"></h2>
+
+
 # GPU Programming for Video Games, Summer 2020, Georgia Tech
 
 - book
@@ -7,6 +55,9 @@
     - Texture Coordinates Conventions
         - OpenGL/Unity: (0,0) = lower left corner
 
+
+
+<h2 id="28334b98449eaca000e409a2961c6c33"></h2>
 
 
 # 6 Backface Culling
@@ -19,11 +70,17 @@
     - again, the face normal is not the normals exported by the 3d modeling software.
 
 
+<h2 id="ee1676bbfe64cb66faf7e5ec01593ed5"></h2>
+
+
 ## Backface culling method
 
 - Check if the normal is facing the camera
 - How the determine that ?
     - use **Dot Product**: `n̂·ê`
+
+
+<h2 id="6b740ec394657fb2e3006a3312e29a13"></h2>
 
 
 ## When to perform backface culling ?
@@ -47,7 +104,13 @@
     - after viewport transform, as "officially" done by OpenGL
 
 
+<h2 id="f645278fb1c70a40dd691e06135865fe"></h2>
+
+
 # 7 Basic Lighting
+
+<h2 id="ea06e1cd6dbd257f4c66f45eee3c0e13"></h2>
+
 
 ## Local vs. global illumination
 
@@ -64,6 +127,9 @@
     - We'll look at ways of approximating this effect
 
 
+<h2 id="96382d822120f3c7a9014efb8261fd0e"></h2>
+
+
 ## Elements of PBR(physically-based rendering)
 
 - Linear space lighting
@@ -75,6 +141,9 @@
 - "Everything has Fresnel"
     - wet pavement with sun near horizon
 - Bonus: high definition render buffers and tonemapping to handle high dynamic range.
+
+
+<h2 id="d0c6019becee5e1db1b792e7ae3088d7"></h2>
 
 
 ## Illumination: diffuse lighting
@@ -94,6 +163,9 @@
     - the circled time ⊗ is a `colorwise product`.
         - red times red, green times green, blue times blue.
 
+<h2 id="9ae158c2b7218467a0355d44a43195b8"></h2>
+
+
 ## Illumination: specular lighting
 
 - Create shinning surface ( surface perfectly reflects )
@@ -108,6 +180,9 @@
     - classic diffuse lighting model:
         - BRDF = M<sub>dif</sub> / π
     - what is the π ?
+
+<h2 id="4e69f1c58994758054563aa7392ffa4c"></h2>
+
 
 ## BRDF 
 
@@ -130,6 +205,9 @@
 
 
 
+<h2 id="cb6bc578172fc9b2d26af7123d455935"></h2>
+
+
 ## Light source properties
 
 - Postion ( point of spot ) , or angle ( directinal )
@@ -140,12 +218,21 @@
     - Writing it as a multiplier
         - `Atten = 1/( a₀ + a₁d + a₂d² )`
 
+<h2 id="0cc6280c44ed3adaa5935128cae9593f"></h2>
+
+
 ## Spot light effect 
 
 [cg tutorial: 5.5.2 Adding a Spotlight Effect](https://developer.download.nvidia.com/CgTutorial/cg_tutorial_chapter05.html)
 
 
+<h2 id="f20a96ec50f4fc236a0a161b1ae0fb0c"></h2>
+
+
 # 8 Rasterization
+
+<h2 id="d7ecfd012daf5f79f8afb273d6e5dd7a"></h2>
+
 
 ## Shading methods
 
@@ -155,6 +242,9 @@
 - Phong shading
     - requires generating per-pixel normals to computer light intensity for each pixel , which is computationally expensive...
     - Can be done on modern GPUs
+
+<h2 id="8c99afbaad8ede5b27fa1d8b04f51aee"></h2>
+
 
 ## Z-Buffer
 
@@ -168,7 +258,13 @@
     - 16-bit z value could generate artifacts
 
 
+<h2 id="7e81ac3c516ee9b2786c37d4f8144a9c"></h2>
+
+
 # 9 Introduction to Textures
+
+<h2 id="a3e8ae43188ae76d38f414b2bdb0077b"></h2>
+
 
 ## Texture
 
@@ -181,6 +277,9 @@
     - texels are like the pixels of a 2D image that's going to be stretched around and placed on the object.
 
 
+<h2 id="789129d85cbd3e4c28736b7b0888bca1"></h2>
+
+
 ## Texture Coordinates
 
 - Introduce one more component to geometry
@@ -188,6 +287,9 @@
     - normal vector ( used in lighting calculation)
     - color ( may not need now )
     - **Texture coordinates** (2D)
+
+<h2 id="b524170705d1cbe7fac8ab5bdb5d7a56"></h2>
+
 
 ## Texture Coordinates Conventions
 
@@ -199,6 +301,9 @@
     - (s,t)/(u,v) coordinates for each vertex
     - (0,0) = lower left corner
     - (1,1) = upper right corder
+
+
+<h2 id="76f348c5b4f4033bbe614a1e87530854"></h2>
 
 
 ## Mip-mapping
@@ -215,7 +320,13 @@
     - Trilinearly interpolate
 
 
+<h2 id="df09531a332e56d9047f13c84a238f26"></h2>
+
+
 # 10 Advanced Texture Techniques
+
+<h2 id="4297a12020af73570442a8627bb334a2"></h2>
+
 
 ## Normal mapping
 
@@ -242,6 +353,9 @@
             - see next paragraph
 
  
+<h2 id="15a3bd330b137231f40e160b2e8c5ef4"></h2>
+
+
 ## Creating normal map from height field
 
 - To compute the normal vector, you basically want to take the partial derivatives of the height field along the various directions.
@@ -256,6 +370,9 @@
 - From "The Cg Tutorial", p.203
 
 
+<h2 id="6d70a0431d891924f9ec1ae7b7d7e0a8"></h2>
+
+
 ## Storing normals in textures
 
 - Textures don't have to store color; we can store another things as well, like normals
@@ -266,6 +383,9 @@
     colorComponnet = 0.5 * normalComponnet + 0.5;
     normalcomponent = 2 * ( colorComponent - 0.5);
     ```
+
+<h2 id="45607b8307c211876c7c9c449ec4f856"></h2>
+
 
 ## Environment mapping
 
@@ -291,6 +411,9 @@
 - Rendered Image:
     - ![](../imgs/gpu_cube_map_rendered_image.png)
 
+<h2 id="9a127762ac5984527e7208b2eb34759f"></h2>
+
+
 ## Alpha test
 
 - Reject pixels by checking their alpha values
@@ -303,6 +426,9 @@ else
     accept pixel
 ```
 
+<h2 id="893849f0218b9c900db556f560caa601"></h2>
+
+
 ## Multi-texturing example: light mapping
 
 - ![](../imgs/gpu_multi_tex_lighting.png)
@@ -310,7 +436,13 @@ else
 - it is reasonable for diffuse, not specualr , and can not handle moving light
 
 
+<h2 id="60005419066e6110f986a078554458df"></h2>
+
+
 # 11 Color Spaces
+
+<h2 id="775fd5b1afb19aeebc3f333d500bf527"></h2>
+
 
 ## Gamma Curves 
 
@@ -331,6 +463,9 @@ else
     - So the solution to this is basically take that square every time you read a texture and then you do all of your math and your shader you all up all your lights or whatever, and then you do that **square root** at that final pixel value before you write it into the screen. Normally you would acutally take some instructions in your pixel shader to do thos kinds of computations, but fortunately modern GPUs will have hardware in there to do this for you.
 
 
+<h2 id="6ce135cfb6960aacec3d01c0cb166f0b"></h2>
+
+
 ## Modern approach: Let the GPU magically handle it
 
 - Avoid wasting instructions in pixel shader
@@ -340,6 +475,9 @@ else
 - OpenGL API:
     - Texture read: GL_EXT_texture_sRGB
     - Pixel write GL_EXT_framebuffer_sRGB
+
+
+<h2 id="954641d535c15b2374486ec45fc1fd36"></h2>
 
 
 ## DIY linear space (helpers)
@@ -385,7 +523,13 @@ You'd only need this to do linear lighting in **older, non-pro** versions of Uni
         - the idea of this pipeline it is fairly capable but it can also scale down to lower end devices like mobile phones.
 
 
+<h2 id="d61c9e146d2d15883b5c8f7d218a05a2"></h2>
+
+
 # 13 GPU Architecture & Assembly Language
+
+<h2 id="6c51b2a3e1266217e1821d5fb8880283"></h2>
+
 
 ## Shader Models 
 
@@ -401,6 +545,9 @@ You'd only need this to do linear lighting in **older, non-pro** versions of Uni
 
 Basically the shader model is defined an agreement of certain kinds of registers and certain kinds of instructions that the GPU will execute. But the exact details of how the GPU executes those instructions is up to that GPU and the driver.
 
+<h2 id="629c46faa285a39d0f65b20b26a6ddde"></h2>
+
+
 ## Shader data 
 
 - Mostly floats
@@ -411,6 +558,9 @@ Basically the shader model is defined an agreement of certain kinds of registers
     - Per-instance data, e.g., per-vertex position
     - Per-pixel interpolated data, e.g., texture coordinates
     - Per-batch data, e.g., light position ( usually referred to as **uniform** variables)
+
+
+<h2 id="92ae455ac58c5a02edbefd78c872cd0d"></h2>
 
 
 ## Specialized instructions ( Assembly,  GeForce 6 )
@@ -427,6 +577,9 @@ Basically the shader model is defined an agreement of certain kinds of registers
 - Swizzling (swapping xyzw, e.g. zwxy) , write masking ( only some xyzw get assigned, e.g. xyz), and negation is "free" ( e.g. -z )
     - xyzw = rgba
 - You can read the entire GPU Gems series for free on NVIDIA's website
+
+
+<h2 id="ac6784fa422b1d1fef85036ee4decde6"></h2>
 
 
 ## Vertex Shader
@@ -457,6 +610,9 @@ Basically the shader model is defined an agreement of certain kinds of registers
         - you can't have a function call itself, all function basically inlined because no stack for function invoking.  there is only registers
 
 
+<h2 id="d3d1e02aed1546fbc9d0b0c0dfa1b97d"></h2>
+
+
 ## Pixel ( or fragment ) shader
 
 - Determine each fragment's color
@@ -483,6 +639,9 @@ Basically the shader model is defined an agreement of certain kinds of registers
     - Output: the depth is usually handled automatically.
 
 
+<h2 id="07b6d393a22ca42fc5df0d0d4b035751"></h2>
+
+
 ## Some uses of pixel shaders
 
 - Texturing objects
@@ -490,6 +649,9 @@ Basically the shader model is defined an agreement of certain kinds of registers
 - Normal mapping ( each pixel has its own normal)
 - Shadows ( determine whether a pixel is shadowed or not)
 - Environment mapping ( use cube map)
+
+
+<h2 id="5eb3ef14b8dcdc301af4c983a7136410"></h2>
 
 
 ## Shader Language

@@ -1,4 +1,19 @@
+...menustart
+
+- [Python3 tips](#a1f4779bb48ab8eccef9c7430a8f591e)
+    - [Print Colored Output](#574083d4ce2c240d64205f07595f82c4)
+    - [Yaml, References Variables , and Concat Strings](#37fde4cf4b72158aff18de1784ec0f23)
+
+...menuend
+
+
+<h2 id="a1f4779bb48ab8eccef9c7430a8f591e"></h2>
+
+
 # Python3 tips
+
+
+<h2 id="574083d4ce2c240d64205f07595f82c4"></h2>
 
 
 ## Print Colored Output
@@ -48,6 +63,9 @@ class ColorPrint:
     def print_bold(message, end = '\n'):
         sys.stdout.write('\x1b[1;37m' + message.strip() + '\x1b[0m' + end)
 ```
+
+
+<h2 id="37fde4cf4b72158aff18de1784ec0f23"></h2>
 
 
 ## Yaml, References Variables , and Concat Strings

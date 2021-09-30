@@ -18,6 +18,7 @@
     - [Python NTLM proxyserver](#3f1c0d7e44459f6410faabec903ea4ac)
     - [获取外网ip](#869d7745a2b610e3fcd5afed798f8986)
     - [MacOSX add Printer in Windows LAN](#c792dc1d6bbb6c2565d0dd1a20020b86)
+    - [Bash , exit or ret ?](#0f1b43a16569025f1d077ac18dc4810f)
 
 ...menuend
 
@@ -227,6 +228,9 @@ curl ifconfig.co
 - Advanced
     - Type: Windows printer via spoolss
     - URL: `smb://<printer's IP or domain name>/<printer name>`
+
+
+<h2 id="0f1b43a16569025f1d077ac18dc4810f"></h2>
 
 
 ## Bash , exit or ret ? 

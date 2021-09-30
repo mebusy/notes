@@ -10,6 +10,7 @@
     - [Delegate](#26545d7107c7489959a37bd671181fca)
     - [Delegate 和 Event](#575210159edf066ae8277de1c0671442)
     - [Delegate / Event 小结](#e9a8a0ce14bcd50d20531f380758b55f)
+- [compile & run C# code](#f373d24404837ec338f4a3286f9df48e)
 
 ...menuend
 
@@ -329,6 +330,9 @@ test.delegateMethod += Program.OtherClassMethod;
  4. 实现观察者模式的时候。
  5. 处理事件响应的时候。
 
+
+
+<h2 id="f373d24404837ec338f4a3286f9df48e"></h2>
 
 
 # compile & run C# code 

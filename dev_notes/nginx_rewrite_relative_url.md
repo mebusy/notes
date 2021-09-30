@@ -1,3 +1,12 @@
+...menustart
+
+- [nginx rewrite & relative urls in html](#a671bcd5d7d306a15d250638557aa6c8)
+
+...menuend
+
+
+<h2 id="a671bcd5d7d306a15d250638557aa6c8"></h2>
+
 
 # nginx rewrite & relative urls in html
 

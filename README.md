@@ -28,6 +28,9 @@
 
 
 
+<h2 id="7803c0bc1ec8e3e2c381127c9a430d79"></h2>
+
+
 #### Math in GameDev
 
  a | b | c | d

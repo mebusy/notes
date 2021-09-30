@@ -13,8 +13,6 @@
     - [Calling git clone using password with special character](#60f96f2175fb84d4839e67f2533a4c10)
     - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
     - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
-    - [ignore system proxy setting](#69a87c5b277c131f12dde6841d30e6bc)
-    - [git set v2ray proxy](#1c28f585542f9ac3069d876441feb3ee)
     - [delete all commit history in github](#299ba8422f7eafd171b8c712b9319131)
 
 ...menuend
