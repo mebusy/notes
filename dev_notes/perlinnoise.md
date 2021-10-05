@@ -83,5 +83,10 @@ function draw() {
 ## 6. Coding Challenge #24: Perlin Noise Flow Field
 
 - instead of having a grayscale value for each pixel,  what I want to have is a vector, an arrow pointing in some direction according to Perlin noise.
+- flow field animation
+    ```javascript
+    noise( xoff,yoff,zoff )
+    ```
+
 
 
