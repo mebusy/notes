@@ -212,10 +212,6 @@ a | b | c | d
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
 
- - show html on github
-    - `http://htmlpreview.github.io/?xxx/xxxxx.html`
-
-
 [简要笔记](dev_notes/note_readme.md)
 
 

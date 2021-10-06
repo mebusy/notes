@@ -187,3 +187,21 @@ $ git branch -d <branch_name>
     - `git push -f origin master`
 
 
+## partial commmit 
+
+```bash
+git commit -p <filename>
+```
+
+## handling conflict
+
+### Undo a conflict and start over
+
+- dealing with a merge conflict doesn't necessarily mean you have to resolve it, you can also undo it.
+    ```bash
+    git merge --abort
+    ```
+    ```bash
+    git rebase --abort
+    ```
+
