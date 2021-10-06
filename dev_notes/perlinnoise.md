@@ -1,6 +1,8 @@
 
 # Perlin Noise
 
+[src: p5 noise()](https://github.com/processing/p5.js/blob/v1.4.0/src/math/noise.js)
+
 ## 1. Introduction
 
 - 1D perlin noise
@@ -17,7 +19,6 @@
     - ANd let's just pretend I also had to pick a value a 0, which let's say I picked this 1
         - ![](../imgs/perlin_noise_start_2.png)
         - ![](../imgs/perlin_noise_graph_1_octave.png)
-            - use extra cosine function to interpolate it ???
     - Now I'm going to do that again. This time, however, I'm going to pick those random values every 5 units of time. 
         - and instead of picking between 0 and 100, I'm just going to pick between 0 and 50. 
         - **double freq, halve amplitude**.
