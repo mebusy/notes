@@ -30,4 +30,5 @@
 1. [3D Coordinate Systems, Projection](gpu_prog_for_video_game.md)
 2. [Backface Culling, Basic Lighting, Rasterization, Textures, Color Spaces, GPU Architecture](gpu_prog_for_video_game_6.md)
 3. [HLSL, Unity shader, accessing texture, transform normals](gpu_prog_for_video_game_14.md)
-4. [Light](gpu_prog_for_video_game_23.md)
+4. [Simple Light Shader, Normal Map](gpu_prog_for_video_game_23.md)
+5. [](gpu_prog_for_video_game_25.md)
