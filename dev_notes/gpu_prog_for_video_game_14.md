@@ -14,6 +14,14 @@
 - [19: Unity Pipelines: Built-In vs. Scriptable](#c5e0304c0d974669bad4842d4ae9a22a)
     - [Unity's Render Pipelines](#01b872777f6a90374fc07819bbcb725d)
 - [20: Simple Unlit Shaders](#0b4f9566f02921f54ee5420f78454d66)
+    - [Unity's Projection Matrix](#8275ed10e209ddff1893ccf75682b95f)
+- [21: Accessing Textures in Shader Code](#bbd0bca758543337c8276bfef9328cd5)
+    - [Textured "Shader"](#b116226b410e39ca08a8cf99007d3697)
+    - [Using Structure](#c37e330bcb24bdaf1d5c6fe156c99c87)
+    - [Tiling and Offseting Texture](#16f72d243b711fb98bdc0296a421fb4e)
+- [22: Normal Vector Transformations](#5b1ba11f6ae6576256afc26bbe7b3047)
+    - [Trouble with transforming normals](#256d8ad6a01f5f472dfee1ebc9399dc6)
+    - [Transforming normals](#25c055fba3cd4ed8375e0b4b08b9e25c)
 
 ...menuend
 
@@ -214,7 +222,7 @@ Comeback
 <h2 id="0b4f9566f02921f54ee5420f78454d66"></h2>
 
 
-# 20: Simple Unlit Shaders 
+# 20: Simple Unity Shaders 
 
 Fixed Color Shader
 
@@ -253,13 +261,22 @@ Fixed Color Shader
     - ![](../imgs/gpu_shader_normalcolor.png)
 
 
+<h2 id="8275ed10e209ddff1893ccf75682b95f"></h2>
+
+
 ## Unity's Projection Matrix
 
 - ![](../imgs/unity_projection_matrxi_orhto.png)
 - ![](../imgs/unity_projection_matrxi_persp.png)
 
 
+<h2 id="bbd0bca758543337c8276bfef9328cd5"></h2>
+
+
 # 21: Accessing Textures in Shader Code
+
+<h2 id="b116226b410e39ca08a8cf99007d3697"></h2>
+
 
 ##  Textured "Shader"
 
@@ -277,10 +294,16 @@ Fixed Color Shader
         - it should be declared properly, because you have speificy it's type as `2D`  in Properties.
 
 
+<h2 id="c37e330bcb24bdaf1d5c6fe156c99c87"></h2>
+
+
 ## Using Structure
 
 - ![](../imgs/gpu_shader_textured_structure.png)
 - this code does the exactly same thing except we have introduced the use of structures.
+
+<h2 id="16f72d243b711fb98bdc0296a421fb4e"></h2>
+
 
 ## Tiling and Offseting Texture
 
@@ -295,7 +318,47 @@ Fixed Color Shader
             ```
 
 
+<h2 id="5b1ba11f6ae6576256afc26bbe7b3047"></h2>
+
+
 # 22: Normal Vector Transformations 
+
+<h2 id="256d8ad6a01f5f472dfee1ebc9399dc6"></h2>
+
+
+## Trouble with transforming normals
+
+- transforming normals, just applying the rotation but not the translation to the vertices position, seems almost works.
+    - but what messed up is scaling. if you scales your x,y,z direction the same , then that's fine. 
+    - but if you apply different amount on different direction, you will got problem.
+    - so you have to tweak things make it right.
+    - ![](../imgs/gpu_trouble_of_transform_normals.png)
+
+<h2 id="25c055fba3cd4ed8375e0b4b08b9e25c"></h2>
+
+
+## Transforming normals
+
+Only using upper left 3x3 part of the 4x4 matrix.
+
+- say, a point on a surfapce represents as vector t.  A linear transform M is applied on it. `tM`
+- to keep the normal still perpendicular to t,  we need apply some transform on the normal as well
+    ```
+    (Wn)·(Mt) = 0
+    (Wn)ᵀ(Mt) = 0 // dot product -> matrix mul
+    (nᵀWᵀ)(Mt) = 0 
+    nᵀ(WᵀM)t = 0 
+    sine nᵀt = 0, we can set WᵀM = I
+    MᵀW = Iᵀ
+    W = (Mᵀ)⁻¹
+    ```
+- so to transform a normal,  you take the same matrix that you used to transform the vertices, you grab the upper left 3x3 part, and then you take its inverse transpose.
+- as mentioned before, if M has only rotation, under those condition, the inverse transform of that kind of matrix is just the transpose of the matrix, so W = (Mᵀ)⁻¹ = M. but that is only for that special case.
+
+
+
+
+
 
 
 

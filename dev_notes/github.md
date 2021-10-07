@@ -14,6 +14,9 @@
     - [Copy branch from another repository](#9af7d00519ec3625b399242404c33af2)
     - [delete a branch locally and remotely](#65804564299051849847b74237b908e7)
     - [delete all commit history in github](#299ba8422f7eafd171b8c712b9319131)
+    - [partial commmit](#365a5d68e803e7cd517640176167c02b)
+    - [handling conflict](#bcccf2d6eb0a519d64f1b86b59fe5db3)
+        - [Undo a conflict and start over](#a44d692e0cfa312f2d01e7cc424f3531)
 
 ...menuend
 
@@ -187,13 +190,22 @@ $ git branch -d <branch_name>
     - `git push -f origin master`
 
 
+<h2 id="365a5d68e803e7cd517640176167c02b"></h2>
+
+
 ## partial commmit 
 
 ```bash
 git commit -p <filename>
 ```
 
+<h2 id="bcccf2d6eb0a519d64f1b86b59fe5db3"></h2>
+
+
 ## handling conflict
+
+<h2 id="a44d692e0cfa312f2d01e7cc424f3531"></h2>
+
 
 ### Undo a conflict and start over
 
