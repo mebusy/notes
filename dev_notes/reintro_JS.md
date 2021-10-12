@@ -1115,6 +1115,7 @@ uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
                 var greeting = "Hi ";
                 var sayHi = function() {
                     console.log( greeting + name )
+                }
             } // end custom function
 
             // before the end of function(global) 
