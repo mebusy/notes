@@ -175,7 +175,7 @@
 - A physically-based model : Bidirectional Reflectance Functions
     - For "punctal" light ( typical point, directional, spotlight... )
     - **C<sub>final</sub> = C<sub>light</sub> ⊗ π*BRDF( l̂ , ê ) * max(0, n̂·l̂ )**
-        - BRDF: Bidirectional Reflectance Function
+        - BRDF: Bidirectional Reflectance Distribution Function
         - ê : the vector torwards the eye ball
     - classic diffuse lighting model:
         - BRDF = M<sub>dif</sub> / π

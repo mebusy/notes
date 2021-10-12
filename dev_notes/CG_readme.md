@@ -33,3 +33,5 @@
 4. [Simple Light Shader, Normal Map](gpu_prog_for_video_game_23.md)
 5. [Cube Mapping](gpu_prog_for_video_game_25.md)
 6. [Projective Textures](gpu_prog_for_video_game_27.md)
+7. [Cook-Torrance Specular Models](gpu_prog_for_video_game_29.md)
+8. 
