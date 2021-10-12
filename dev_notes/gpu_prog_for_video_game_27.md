@@ -1,5 +1,26 @@
+...menustart
+
+- [27: Projective Textures](#3037d1aee3dbe87b7c6cfd54b93e9076)
+    - [What is projective texturing ?](#9c98f87935de072fe08a8a44c16fb59a)
+    - [Texture matrix](#39745511f68e78b75ef8d614d1a7cb0f)
+    - [ProjectTexture -- setup](#5a58a9056874e1d2458521976f667a70)
+    - [ProjectTexture -- uniforms](#d5f409ac7d9ee2c916763d5f31290c21)
+    - [ProjectTexture -- structures](#2c0007b7b967ea830273fbe9e9ea38c1)
+    - [ProjectTexture -- vertex program](#5d59a90b289ef216c29995159eb7e874)
+    - [ProjectTexture -- fragment program](#810d334284b3e4ecbaec32b318395082)
+    - [C# script to set up projector matrix](#e2dd661e030d10dae5388ff8097b1df7)
+    - [Watch out for the reverse projection!](#5188162a545a23b057c660be02d12070)
+
+...menuend
+
+
+<h2 id="3037d1aee3dbe87b7c6cfd54b93e9076"></h2>
+
 
 # 27: Projective Textures
+
+<h2 id="9c98f87935de072fe08a8a44c16fb59a"></h2>
+
 
 ## What is projective texturing ?
 
@@ -10,6 +31,9 @@
 
 - Another exmaple:  different locations
     - ![](../imgs/gpu_projective_tex_ex_2.png)
+
+
+<h2 id="39745511f68e78b75ef8d614d1a7cb0f"></h2>
 
 
 ## Texture matrix
@@ -23,10 +47,16 @@ from "The Cg Tutorial", p.252
 - similarly we will go through a projection matrix, again, from the point of view of the light, not the camera.
 - the last matrix is used to shift  everything from [-1,1] to [0,1] because that's what texture lookups expect.
 
+<h2 id="5a58a9056874e1d2458521976f667a70"></h2>
+
+
 ## ProjectTexture -- setup
 
 - ![](../imgs/gpu_project_texture_setup.png)
     - "ForwardAdd" lightmode
+
+
+<h2 id="d5f409ac7d9ee2c916763d5f31290c21"></h2>
 
 
 ## ProjectTexture -- uniforms
@@ -43,6 +73,9 @@ float3 _spotlightDir;
 ```
 
 - `_myProjectorMatrixVP` view projection matrix for the light
+
+
+<h2 id="2c0007b7b967ea830273fbe9e9ea38c1"></h2>
 
 
 ## ProjectTexture -- structures
@@ -63,9 +96,15 @@ struct v2f { // vertex 2 fragment
 };
 ```
 
+<h2 id="5d59a90b289ef216c29995159eb7e874"></h2>
+
+
 ## ProjectTexture -- vertex program
 
 - ![](../imgs/gpu_project_tex_vertex.png)
+
+
+<h2 id="810d334284b3e4ecbaec32b318395082"></h2>
 
 
 ## ProjectTexture -- fragment program
@@ -79,6 +118,9 @@ struct v2f { // vertex 2 fragment
         - new version of `tex2D` : `tex2Dproj`
         - instead of giving a 2D `uv` coordinate, you give it a 4D vector that represents s,t,r,q coordinates space related to the light source.  and this `tex2Dproj` handles that divide by q.
 
+
+
+<h2 id="e2dd661e030d10dae5388ff8097b1df7"></h2>
 
 
 ## C# script to set up projector matrix
@@ -96,6 +138,9 @@ struct v2f { // vertex 2 fragment
     Shader.SetGlobalVector( "_spotlightDir", transform.forward );
     ```
     - the `Shader` class has some static methods, those static methods will go through **EVERY** single material . And each time they find a shader that has the variable with the specific name they set the values. But it does that for **EVERY** single material. So this wouldn't work if you want to have multiple spot light. And looking string in unity is extreamly time comsuming.
+
+
+<h2 id="5188162a545a23b057c660be02d12070"></h2>
 
 
 ## Watch out for the reverse projection!

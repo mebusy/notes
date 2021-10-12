@@ -13,7 +13,7 @@
 - [18: Shaders + Parameters = Materials](#bb68527ba79c48b602ceace5abf2d610)
 - [19: Unity Pipelines: Built-In vs. Scriptable](#c5e0304c0d974669bad4842d4ae9a22a)
     - [Unity's Render Pipelines](#01b872777f6a90374fc07819bbcb725d)
-- [20: Simple Unlit Shaders](#0b4f9566f02921f54ee5420f78454d66)
+- [20: Simple Unity Shaders](#42e4c37e0ed140aeca92fc113f12f40d)
     - [Unity's Projection Matrix](#8275ed10e209ddff1893ccf75682b95f)
 - [21: Accessing Textures in Shader Code](#bbd0bca758543337c8276bfef9328cd5)
     - [Textured "Shader"](#b116226b410e39ca08a8cf99007d3697)
@@ -219,7 +219,7 @@ Comeback
     - Your own custom pipeline !
 
 
-<h2 id="0b4f9566f02921f54ee5420f78454d66"></h2>
+<h2 id="42e4c37e0ed140aeca92fc113f12f40d"></h2>
 
 
 # 20: Simple Unity Shaders 

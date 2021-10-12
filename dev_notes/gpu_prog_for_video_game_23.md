@@ -1,3 +1,24 @@
+...menustart
+
+- [23: Simple Lit Shaders](#c2084b938f5c0d2971f9f94dba225a6c)
+    - [Diffuse Light Only Shader](#2cdfd700b06528d28ef8d892c3f00651)
+    - [VertexLit & PixelLit Uniforms](#fdfd84e9ccc7ed4576a2f61d1047aca2)
+    - [VertexLit Structures](#8b64f1adb7792fcd69026766af09fb51)
+    - [VertexLit ( Vertex Shader )](#9553b17701c2b7d161a1b4f813b10ef0)
+    - [VertexLit ( Pixel Shader)](#a20b822bf05cc5df06ca61cbdc59718d)
+    - [PixelLit Structure](#17f40169fc0fda2a46a76a660bb8f1c2)
+    - [PixelLit (Vertex Shader)](#90370e2dc9eb658baec70bf1f4a022f7)
+    - [PixelLit (Pixel Shader)](#a131ac99e46d94895215a93795832fe9)
+- [24: Normal Mapping](#8abb75bb97b7011e50b6ae080dd00d09)
+    - [NormalMap Structure](#f9bef842891a4adee8f2c393d55b7c0f)
+    - [NormalMap ( Vertex Shader )](#289daec20d989b15cf284fd25c79d41a)
+    - [Normal Map (Pixel Shader)](#f5607ccd9042e1327a7d369b3e5556e5)
+
+...menuend
+
+
+<h2 id="c2084b938f5c0d2971f9f94dba225a6c"></h2>
+
 
 # 23: Simple Lit Shaders
 
@@ -9,6 +30,9 @@
     - trick of transform normal
     - do not forget to re-normalize unit vector after interpolation
     - normal map in card, is compressed in only green and alpha channel
+
+<h2 id="2cdfd700b06528d28ef8d892c3f00651"></h2>
+
 
 ## Diffuse Light Only Shader
 
@@ -25,6 +49,9 @@
         - If I wanted to make this more robust I would actually have two copies of the sahder code here with minor tweaks , one for the "ForwardAdd" and one for the "ForwardBase". But here I'm just going to say, oh since ths is a demo example and I want to make the code as compact as possible, just comment in or out whichever one you want based on whichever light you're using.
 
 
+<h2 id="fdfd84e9ccc7ed4576a2f61d1047aca2"></h2>
+
+
 ## VertexLit & PixelLit Uniforms 
 
 ```c
@@ -38,6 +65,9 @@ float4 _LightColor0;
 ```
 
 - There's something a little strange in the actual HLSL uniform variable declarations: Most of the unity side variables that we use, such as the transformation matrices, are automatically grabbed by Unity in one of the include files, there's  a `_LightColor0` variable that Unity fills in for us , this is not part of those include files. It might be deprecated and removed in a further version ?
+
+
+<h2 id="8b64f1adb7792fcd69026766af09fb51"></h2>
 
 
 ## VertexLit Structures
@@ -58,6 +88,9 @@ struct v2f {
 
 - something interesting here is the vertex shader is going to send some results of a lighting calculation. I call it `diffAmost` because it doesn't include the actual image texture information, but the overall light intensity is computed here.  
 - And we're going to transmit that information through `TEXCOORD1`.  We're using a texture coordinate register to transmit information that's not actually a texture coordinate. We're gonna to a lot of this and you just need to get used to it.
+
+
+<h2 id="9553b17701c2b7d161a1b4f813b10ef0"></h2>
 
 
 ## VertexLit ( Vertex Shader )
@@ -84,9 +117,15 @@ struct v2f {
     - this `diffAlmost` is something I want to pass into the pixel shaders through the interpolation hardware.
 
 
+<h2 id="a20b822bf05cc5df06ca61cbdc59718d"></h2>
+
+
 ## VertexLit ( Pixel Shader)
 
 - ![](../imgs/gpu_lit_diffuse_only_3.png)
+
+
+<h2 id="17f40169fc0fda2a46a76a660bb8f1c2"></h2>
 
 
 ## PixelLit Structure
@@ -112,9 +151,15 @@ struct v2f {
     - Now because I'm doing so much of the lighting in pixel shader, I'm not passing the lighting calculation like the `diffAlmost` I computed in the per-vertex shader. I'm going to pass along the clip space postion `sv`,  positon of the point in world space, and I'm also going to pass along the normal in world space.
 
 
+<h2 id="90370e2dc9eb658baec70bf1f4a022f7"></h2>
+
+
 ## PixelLit (Vertex Shader)
 
 - ![](../imgs/gpu_pixellit_diffuse_only_1.png)
+
+<h2 id="a131ac99e46d94895215a93795832fe9"></h2>
+
 
 ## PixelLit (Pixel Shader)
 
@@ -127,10 +172,16 @@ struct v2f {
     float3 n = normalize( input.normalWS) ;
     ```
 
+<h2 id="8abb75bb97b7011e50b6ae080dd00d09"></h2>
+
+
 # 24: Normal Mapping
 
 - ![](../imgs/gpu_normalmap_shader_1.png)
 - the main addition we're going to have here is this `_NormalMap`
+
+
+<h2 id="f9bef842891a4adee8f2c393d55b7c0f"></h2>
 
 
 ## NormalMap Structure
@@ -159,6 +210,9 @@ struct v2f {
     - just for thoroughness even though a single set of texture coordinates (`uv`) coming in for the vertices, I'm going to go ahead and pass these in separately for the bump map and normal map (`bmap_uv, nmap_uv`) , even though we'll usually keep these the same.
 
 
+<h2 id="289daec20d989b15cf284fd25c79d41a"></h2>
+
+
 ## NormalMap ( Vertex Shader )
 
 - ![](../imgs/gpu_normalmap_shader_2.png)
@@ -183,6 +237,9 @@ struct v2f {
     output.bmap_uv = TRANSFORM_TEX(intput.uv, _BASETex) ;
     output.nmap_uv = TRANSFORM_TEX(intput.uv, _NormalMap) ;
     ```
+
+
+<h2 id="f5607ccd9042e1327a7d369b3e5556e5"></h2>
 
 
 ## Normal Map (Pixel Shader)
