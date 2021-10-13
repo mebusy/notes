@@ -37,7 +37,8 @@
                 - and then most of your other lights were actually computed in separate passes
             - the universal render pipeline does everything in one pass. 
             - But it looks like they kept a similar overall data structure format for the lights and that there's some main light and then other lights we need to add. And the Main Light they setup is a directional light.
-            - Additional PerObject Light:
-                - ![](../imgs/gpu_urp_additional_light.png)
+        - Additional PerObject Light:
+            - ![](../imgs/gpu_urp_additional_light.png)
         - `_LightColor0` -> `_MainLightColor` (not necessary)
+    - TODO...
 
