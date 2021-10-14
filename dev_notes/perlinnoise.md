@@ -112,10 +112,118 @@ function draw() {
 ## 6. Coding Challenge #24: Perlin Noise Flow Field
 
 - instead of having a grayscale value for each pixel,  what I want to have is a vector, an arrow pointing in some direction according to Perlin noise.
-- flow field animation
-    ```javascript
-    noise( xoff,yoff,zoff )
-    ```
 
+
+<details>
+
+
+```javascript
+let inc = 0.1;
+var scl = 10;
+var cols, rows;
+
+var fr;
+
+function setup() {
+  createCanvas(200, 200);
+  pixelDensity(1);
+  cols = floor(width/scl);
+  rows = floor(height/scl);
+  fr = createP("")
+}
+
+function draw() {
+  background(255);
+  let yoff = 0;
+  // loadPixels(); // no pixel for this demo
+  for (let y = 0; y < rows; y++) {
+    let xoff = 0;
+    for (let x = 0; x < cols; x++) {
+      let index = (x + y * width) * 4;
+      // let r = random(255);
+      let angle = noise(xoff, yoff) * TWO_PI ;
+      var v = p5.Vector.fromAngle(angle); // horizontal right 
+      xoff += inc;
+
+      // fill(r);
+      // rect(x*scl, y*scl, scl, scl);
+      stroke(0);
+      push();
+      translate( x*scl, y*scl ) ; // move to grid left-bottom corner
+      rotate( v.heading() ); // rotate 
+      // draw vector line
+      line(0,0, scl, 0); // draw   horizontal line
+      pop();
+
+    }
+    yoff += inc;
+  }
+  // updatePixels();
+  //noLoop();
+  fr.html( floor(frameRate()));
+}
+```
+
+</details>
+
+
+- flow field animation
+    - 3D perlin noise. one dimension is the x axis, another dimension is the y axis. 
+    - imagine a z dimension as slices. we though the z axis is the time, every frame of the animation.
+
+<details>
+
+```javascript
+let inc = 0.1;
+var scl = 10;
+var cols, rows;
+
+var zoff = 0;
+
+var fr;
+
+function setup() {
+  createCanvas(200, 200);
+  pixelDensity(1);
+  cols = floor(width/scl);
+  rows = floor(height/scl);
+  fr = createP("")
+}
+
+function draw() {
+  background(255);
+  let yoff = 0;
+  // loadPixels(); // no pixel for this demo
+  for (let y = 0; y < rows; y++) {
+    let xoff = 0;
+    for (let x = 0; x < cols; x++) {
+      let index = (x + y * width) * 4;
+      // let r = random(255);
+      let angle = noise(xoff, yoff, zoff ) * TWO_PI ;
+      var v = p5.Vector.fromAngle(angle); // horizontal right 
+      xoff += inc;
+
+      // fill(r);
+      // rect(x*scl, y*scl, scl, scl);
+      stroke(0);
+      push();
+      translate( x*scl, y*scl ) ; // move to grid left-bottom corner
+      rotate( v.heading() ); // rotate 
+      // draw vector line
+      line(0,0, scl, 0); // draw   horizontal line
+      pop();
+
+    }
+    yoff += inc;
+
+  }
+  zoff += 0.05;
+  // updatePixels();
+  //noLoop();
+  fr.html( floor(frameRate()));
+}
+```
+
+</details>
 
 
