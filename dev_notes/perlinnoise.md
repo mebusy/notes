@@ -119,3 +119,10 @@ function draw() {
 
 
 
+
+
+- particles
+    - for every particles location look up the vector that's nearest to it and then apply that as a force.
+
+
+
