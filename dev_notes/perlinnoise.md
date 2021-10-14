@@ -227,3 +227,30 @@ function draw() {
 </details>
 
 
+
+
+- particles
+    - for every particles location look up the vector that's nearest to it and then apply that as a force.
+
+
+## 11. Coding Challenge #136: Polar Perlin Noise Loops
+
+- If you draw a circle with noised vertex , normaly the last vertex won't match the first vertex.
+    - ![](../imgs/cc_perlin_loop_1.png)
+- To solve this problem, we use 2d perlin noise instead.
+    - we pick the noise along the circle in 2D perlin plane
+        - ![](../imgs/cc_perlin_loop_2.png)
+    - but now it is weirdly symmetrical, why ?
+        - ![](../imgs/cc_perlin_loop_3.png)
+        - because `cos(a), sin(a)` are [-1,1], but perlin noise space are all positive, it doesn't exists in negative space.
+    - let's simply fix it
+        - ![](../imgs/cc_perlin_loop_4.png)
+        - we can parameterize the maximum noise value 
+            ```javascript
+            let xoff = map(cos(a),-1,1,0,noiseMax);
+            ```
+    - 15:51
+
+
+
+
