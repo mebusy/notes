@@ -249,7 +249,14 @@ function draw() {
             ```javascript
             let xoff = map(cos(a),-1,1,0,noiseMax);
             ```
-    - 15:51
+    - add a phase to make it rotating
+        - ![](../imgs/cc_perlin_loop_5.png)
+- again, you can use z-axis of perlin noise to make animation
+    - ![](../imgs/cc_perlin_loop_6.png)
+- IDEA:
+    - I have perlin noise values in 1D space, but they don't loop.
+    - Why not take those looping values along the path of circle which is in 2D perlin plane, and then unfold them back into the sort of 1D line, and use those to apply to any value in any visualization to make perfect GIF loop.
+    - That's the IDEA!
 
 
 
