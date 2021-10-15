@@ -19,14 +19,27 @@
 ## 2: Steering Behaviors: Seek
 
 - `steering = desired - velocity`
+- Pseudo code
+    ```java
+    PVector desired = PVector.sub( target, location );
+    // normalized first, and multiply `maxSpeed`
+    desired.SetMag( maxSpeed );
+
+    PVector steering = PVector.sub( desired - velocity );
+    steering.limit( maxForce ); // not SetMag !!
+
+    applyForce( steering );
+    ```
+    - class
+    ```java
+    class Vehicle {
+        float maxspeed;
+        // how good is it at turning
+        float maxforce;
+    }
+    ```
+- simple seek, but this implementation has weird behavior, it's always sort of flying past the target and then it has to turn aroud and turn back.
 
 
-```javascript
-class Vehicle {
-    float maxspeed;
-    // how good is it at turning
-    float maxforce;
-}
-```
 
 
