@@ -16,19 +16,19 @@
         - [2.13 Element, Class, and ID Selectors](#c451c31d2248f0e6bb75efe3476200bb)
         - [2.14 Combining Selectors](#fd2c9cc9ff66d61b66cfc89a23377201)
         - [2.15 Pseudo-Class Selectors](#ef5ba5d82dce56bbc09fdcc89e36e982)
-        - [-- CSS Rules Conflict Resulution and Text Styling --](#e96d5f253dc565df6d115639e013e019)
+        - [CSS Rules Conflict Resolution and Text Styling](#1dad1fe6e05884ba521007fc52184598)
         - [2.16 Style Placement](#f3479f331d0432d148042fd4ba034751)
         - [2.17 Conflict Resolution](#c1b8822d870403c4cc5ba08ba1b9b546)
         - [2.18 Styling Text](#1417d1be7a57c828a6af9c2753faae90)
-        - [-- The Box Model and Layout --](#4bd507279265ea26e3ff1179790a80b7)
+        - [The Box Model and Layout](#8f7985f954904ad2877796d31568cc9b)
         - [2.19 The Box Model](#abd7dc5c80c72e29b2eee3cd3c0c7d78)
         - [2.20 The background Property](#55564951a2060cde6320d03887d7cdea)
         - [2.21 Positioning Elements by Floating](#8530d9fda0ebcc0e0d8e9e153931da3a)
         - [2.22 Relative and Absolute Element Positioning](#ad2a919d3751f45696dda50b54c70ded)
-        - [-- Introduction to Responsive Design](#b227c190d97886d7100f1a6412165474)
+        - [Introduction to Responsive Design](#16654235b895849113d53f0702cc5918)
         - [2.23 Media Queries](#23d37412a01263f81cfb0aa9bed66201)
         - [2.24 Responsive Design](#231c665e5cdd84530dcdcce59571f704)
-        - [-- Twitter Bootstrap --](#5d936cee2711b61f0cd5d9e2513e73fa)
+        - [Twitter Bootstrap](#114fc0ceef52e87df3f842a898901414)
         - [2.25 Introduction to Twitter Bootstrap](#91fa20c155a7637398afbe3fa1d70045)
         - [2.26 The Bootstrap Grid System](#da8b77a4befed25e1250a8c43b01654d)
 - [Css Grid](#116e493217e09482fcaf24a39021cad3)
@@ -741,7 +741,7 @@ h1 {
     - **Make sure your select is still readable**.
     - Simple/Readable > Complicated/Tricky.
 
-<h2 id="e96d5f253dc565df6d115639e013e019"></h2>
+<h2 id="1dad1fe6e05884ba521007fc52184598"></h2>
 
 
 ### CSS Rules Conflict Resolution and Text Styling 
@@ -865,10 +865,10 @@ h1 {
         - PS. now the font-size in this div, is 240% large.  Why not `2m` override `120%` ? 
             - That is kind of where the game of the relative sizing.  They don't have an overriding effect, they have a **cumulative** effect instead.
 
-<h2 id="4bd507279265ea26e3ff1179790a80b7"></h2>
+<h2 id="8f7985f954904ad2877796d31568cc9b"></h2>
 
 
-### -- The Box Model and Layout --
+###  The Box Model and Layout 
 
 <h2 id="abd7dc5c80c72e29b2eee3cd3c0c7d78"></h2>
 
@@ -1170,10 +1170,10 @@ Absolute Positioning Element is taken out of normal document flow.
 </details>
 
 
-<h2 id="b227c190d97886d7100f1a6412165474"></h2>
+<h2 id="16654235b895849113d53f0702cc5918"></h2>
 
 
-### -- Introduction to Responsive Design
+###  Introduction to Responsive Design
 
 <h2 id="23d37412a01263f81cfb0aa9bed66201"></h2>
 
@@ -1435,10 +1435,10 @@ p {
 </details>
 
 
-<h2 id="5d936cee2711b61f0cd5d9e2513e73fa"></h2>
+<h2 id="114fc0ceef52e87df3f842a898901414"></h2>
 
 
-### -- Twitter Bootstrap --
+###  Twitter Bootstrap
 
 <h2 id="91fa20c155a7637398afbe3fa1d70045"></h2>
 

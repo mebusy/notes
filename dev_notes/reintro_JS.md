@@ -32,6 +32,7 @@
     - [compress js code](#1102ba00437059603c9604fb050a22f8)
     - [Where to Place Javascript Code](#e59dff2a7bc095a7b28e848acf35037f)
     - [Fake Namespace](#8a1b8ba8dbe3ebda08deb8be54811e88)
+    - [ES Modules In Browsers](#9e595b28e07c8c3eaa78e83db28cb2b2)
 
 ...menuend
 
@@ -1127,6 +1128,9 @@ uglifyjs gd3d.js -c -m --keep-fnames -o xxx.min.js
     )(global);   // for nodejs
     // )(window);  // for browser
     ```
+
+
+<h2 id="9e595b28e07c8c3eaa78e83db28cb2b2"></h2>
 
 
 ## ES Modules In Browsers
