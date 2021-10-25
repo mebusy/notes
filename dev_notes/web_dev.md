@@ -791,7 +791,7 @@ h1 {
         - The selectors with the highest score win. 
         - In other words, the selectors with the higher score would be considered the most specific. 
     - It's easier to calculate the score if you arrange the types of things that affect the score from left to right, with the left being the highest value of specificity.
-        - 1. `style="..."` ,  2. `ID` ,  3. `Class, pseudo-class, attribute` , 4. `# of Elements`
+        - 1: `style="..."` ,  2: `ID` ,  3: `Class, pseudo-class, attribute` , 4: `# of Elements`
         ```css
         /* 1 ,0, 0, 0 */
         <h2 style="color: green;">
