@@ -1020,7 +1020,6 @@ p {
 Float p1
 </summary>
 
-</details>
 
 ```css
 #p1 {
@@ -1028,6 +1027,8 @@ Float p1
   float: right;
 }
 ```
+
+</details>
 
 - ![](../imgs/css_floating_ele_2.png)
 - The box jumped all the way to the right, top edge.
