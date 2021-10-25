@@ -744,7 +744,7 @@ h1 {
 <h2 id="e96d5f253dc565df6d115639e013e019"></h2>
 
 
-### -- CSS Rules Conflict Resulution and Text Styling --
+### CSS Rules Conflict Resolution and Text Styling 
 
 <h2 id="f3479f331d0432d148042fd4ba034751"></h2>
 
@@ -791,7 +791,7 @@ h1 {
         - The selectors with the highest score win. 
         - In other words, the selectors with the higher score would be considered the most specific. 
     - It's easier to calculate the score if you arrange the types of things that affect the score from left to right, with the left being the highest value of specificity.
-        - `style="..."` , `ID` , `Class, pseudo-class, attribute` , `# of Elements`
+        - 1. `style="..."` ,  2. `ID` ,  3. `Class, pseudo-class, attribute` , 4. `# of Elements`
         ```css
         /* 1 ,0, 0, 0 */
         <h2 style="color: green;">
