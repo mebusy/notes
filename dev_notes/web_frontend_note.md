@@ -232,3 +232,12 @@ async function readText(event) {
 </html>
 ```
 
+
+## Html Number Input field, max/min length
+
+```html
+    <input type="number" id="id_starttime" name="starttime" minlength="10" maxlength="10" placeholder="1970010208" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+```
+
+
+
