@@ -258,6 +258,8 @@ eksctl utils associate-iam-oidc-provider \
 
 3 下载 ALB 入口控制器 pod 的 IAM 策略，该策略允许此 pod 代表您调用 AWS API
 
+> NOTE: replace v1.1.8 with your expected version
+
 ```bash
 curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/iam-policy.json
 ```
