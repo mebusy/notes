@@ -2139,7 +2139,8 @@ redis> config get save
 ## docker mysql
 
 ```
-docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test -e MYSQL_USER="root"  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8mb4
+# -e MYSQL_USER="root" 
+docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8mb4
 ```
 
 
