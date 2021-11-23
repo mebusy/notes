@@ -232,3 +232,32 @@ async function readText(event) {
 </html>
 ```
 
+
+## Html Number Input field, max/min length
+
+```html
+    <input type="number" id="id_starttime" name="starttime" minlength="10" maxlength="10" placeholder="1970010208" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+```
+
+## Html Hidden Element
+
+```html
+    <form id="id_form_query">
+        <!-- hideen filed -->
+        <input type="hidden" name="action" value="query" />
+        ...
+        <button type="submit" form="id_form_query">Query</button>
+    </form>
+```
+
+
+## Html Drop List
+
+```html
+    <select name="game" id="id_game" form="id_form_create">
+        {{ range $index, $gamename := .GameList }}
+        <option value="{{$gamename}}">{{$gamename}}</option>
+        {{ end }}
+    </select>
+```
+

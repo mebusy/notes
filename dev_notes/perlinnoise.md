@@ -5,6 +5,7 @@
     - [2. noise() vs random()](#66747406635278dfddbc2246d6051ab3)
     - [4. 2D noise](#67885b41eb7504f4224d7a16fd616cee)
     - [6. Coding Challenge #24: Perlin Noise Flow Field](#81ca8128b860dca3c40b5ed6187db988)
+    - [11. Coding Challenge #136: Polar Perlin Noise Loops](#0545d6997b517b183f5acf3eda5f33c8)
 
 ...menuend
 
@@ -231,6 +232,9 @@ function draw() {
 
 - particles
     - for every particles location look up the vector that's nearest to it and then apply that as a force.
+
+
+<h2 id="0545d6997b517b183f5acf3eda5f33c8"></h2>
 
 
 ## 11. Coding Challenge #136: Polar Perlin Noise Loops
