@@ -52,6 +52,8 @@ BIOS 085
 https://github.com/zearp/Nucintosh
 
 - Devices -> USB -> Port Device Charging Mode: off
+- Devices -> USB -> USB Legacy -> Disabled
+- Devices -> PCI  
     - wifi -> disable
     - readcard -> disable
 - Security -> Thunderbolt Security Level: Legacy Mode
