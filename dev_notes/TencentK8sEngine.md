@@ -285,7 +285,7 @@ $ kubectl get nodes \
 
 ## 策略
 
-- 访问 COS 某个bucket的策略
+### 访问 COS 某个bucket的策略
 
 ```json
 {
@@ -312,7 +312,7 @@ $ kubectl get nodes \
 }
 ```
 
-- 操作 北京 区的cvm， 无支付权限
+### 操作 北京 区的cvm， 无支付权限
 
 ```json
 {
@@ -332,6 +332,25 @@ $ kubectl get nodes \
 }
 ```
 
+如果要禁止 创建/修改 cvm 安全组，加上
+
+```json
+        {
+            "effect": "deny",
+            "action": [
+                "cvm:CreateSecurityGroup",
+                "cvm:CreateSecurityGroupPolicy",
+                "cvm:DeleteSecurityGroup",
+                "cvm:DeleteSecurityGroupPolicy",
+                "cvm:ModifySecurityGroupAttributes",
+                "cvm:ModifySecurityGroupPolicys",
+                "cvm:ModifySingleSecurityGroupPolicy"
+            ],
+            "resource": [
+                "*"
+            ]
+        }
+```
 
 <h2 id="4214290dc4bf8068d16758a84a3496a7"></h2>
 
