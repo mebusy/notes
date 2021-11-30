@@ -287,7 +287,7 @@ $ kubectl get nodes \
 
 - 访问 COS 某个bucket的策略
 
-```
+```json
 {
     "version": "2.0",
     "statement": [
@@ -307,6 +307,26 @@ $ kubectl get nodes \
                 "cam:GetGroup"
             ],
             "resource": "*"
+        }
+    ]
+}
+```
+
+- 操作 北京 区的cvm， 无支付权限
+
+```json
+{
+    "version": "2.0",
+    "statement": [
+        {
+            "effect": "allow",
+            "action": "finance:*",
+            "resource": "qcs::cvm:ap-beijing::*"
+        },
+        {
+            "effect": "allow",
+            "action": "cvm:*",
+            "resource": "qcs::*:ap-beijing::*"
         }
     ]
 }
