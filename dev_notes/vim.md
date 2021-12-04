@@ -96,7 +96,7 @@
 - for common using
     - 
     ```bash
-    python install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
+    ./install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
     ```
     - --clangd-completer 不支持 c/c++/Objc ？
     - 
