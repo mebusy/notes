@@ -385,6 +385,7 @@ private class PolarOrder implements Comparator<Point2D>A {
  1. divide into 2 parts, recursively sort each of them
  2. merge those 2 sorted array 
     - need an extra N length array to **merge**
+    - the merge process take linear time O(n), by using **2 finger** algorithm
 
 <h2 id="f1579c6456d1081d1fb1fab0538c9fd0"></h2>
 
