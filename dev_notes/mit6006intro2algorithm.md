@@ -50,3 +50,39 @@ Dynamic Array | ***1*** | n | ***1***<sub>(a)</sub> | n
             - **amortization**: operation takes T(n) amortized time  if any k operations take ≤ kT(n) time
             - *amortized* means a particular kind of averaging over the sequence of operations
 
+
+## 3. Sets
+
+Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
+--- | :--- | --- | --- | --- | ---
+&nbsp; | Container | Static | Dynamic | Order | &nbsp;
+&nbsp; | build(X) | find(k) | insert(x)<br>delete() | find_min()<br>find_max() | find_prev(k)<br>find_next(k)
+**Array** | n | n | n | n | n
+**Sorted Array** | nlogn | logn | n | ***1*** | logn
+
+
+
+## 4. Hashing
+
+Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
+--- | :--- | --- | --- | --- | ---
+&nbsp; | Container | Static | Dynamic | Order | &nbsp;
+&nbsp; | build(X) | find(k) | insert(x)<br>delete() | find_min()<br>find_max() | find_prev(k)<br>find_next(k)
+Array | n | n | n | n | n
+Sorted Array | nlogn | logn | n | ***1*** | logn
+**Direct Access Array** | u | ***1*** | ***1*** | u | u 
+
+> u: the size of memory that the largest key is allowed to store.
+
+
+- Can I do `find(k)` faster than O(lgn) ?
+    - No. We can't do faster than O(lgn) for `find()`, which is a little weird.
+        - the items that I'm storing in this data structure, for any way I saw these things, any algorithm of this certain type is going to require at least logarithmic time.
+        - comparison model:  means the objects I'm storing, I can kind of think of them as black boxes. I don't get to touch tehse things, except the only way that I can distinguish between them is given a key and an item, or two items I can do a comparison on those keys, same?bigger?or smaller.
+        - an algorithm in the comparison model is decision tree. This is eventually has n+1 leaves, n items and 1 `none`, which may represent the output. And the complexity of that algorithm is O(lgn) because this decision tree is binary tree, 
+    - Yes. If the keys are numbers , we can use Direct Access Array.
+        - i.e., if the key is 10, we store the data in 10th location in the Direct Access Array.
+        - Θ(1) to find(k). 
+        - how about inserting and deleting ? Θ(1) , BUT...
+        - but we don't know how hight the numbers to. We have a problem of memory capacity.
+
