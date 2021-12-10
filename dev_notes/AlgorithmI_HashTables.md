@@ -151,8 +151,8 @@ pylab.show()
     - M too large ⇒ too many empty array entries.
     - M too small ⇒ search time blows up
     - **Typical choice: α = N / M ~ 1⁄2** 
-        - # probes for search hit is about 3/2
-        - # probes for search miss is about 5/2
+        - probes for search hit is about 3/2
+        - probes for search miss is about 5/2
 
 
 
