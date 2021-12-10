@@ -66,7 +66,7 @@
 ### Analysis
 
 - Proposition
-    - Under uniform hashing assumption, the probability that the number of keys in a list is within a constant factor of N / M is extremely close to 1.
+    - Under **uniform hashing assumption**, the probability that the number of keys in a list is within a constant factor of N / M is extremely close to 1.
 - Proof sketch
     - Distribution of list size obeys a binomial distribution.
     - 共有M个list，一个key 落到 list *l* 的概率 p = 1/M
