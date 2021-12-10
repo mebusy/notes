@@ -72,17 +72,25 @@ Array | n | n | n | n | n
 Sorted Array | nlogn | logn | n | ***1*** | logn
 **Direct Access Array** | u | ***1*** | ***1*** | u | u 
 
-> u: the size of memory that the largest key is allowed to store.
+> u: the size of memory that the largest key is allowed to store, u < 2<sup>w</sup>
 
 
 - Can I do `find(k)` faster than O(lgn) ?
-    - No. We can't do faster than O(lgn) for `find()`, which is a little weird.
+    - No. We can't do faster than O(lgn) for `find(k)`, which is a little weird.
         - the items that I'm storing in this data structure, for any way I saw these things, any algorithm of this certain type is going to require at least logarithmic time.
         - comparison model:  means the objects I'm storing, I can kind of think of them as black boxes. I don't get to touch tehse things, except the only way that I can distinguish between them is given a key and an item, or two items I can do a comparison on those keys, same?bigger?or smaller.
         - an algorithm in the comparison model is decision tree. This is eventually has n+1 leaves, n items and 1 `none`, which may represent the output. And the complexity of that algorithm is O(lgn) because this decision tree is binary tree, 
-    - Yes. If the keys are numbers , we can use Direct Access Array.
+
+    - Yes. If the keys are integer key, we can use Direct Access Array.
         - i.e., if the key is 10, we store the data in 10th location in the Direct Access Array.
-        - Θ(1) to find(k). 
+        - Θ(1) to find(k)
         - how about inserting and deleting ? Θ(1) , BUT...
-        - but we don't know how hight the numbers to. We have a problem of memory capacity.
+        - but we don't know how hight the numbers to. so we have problems, we're using way too much sapce when we have a large universe of keys.
+        - solution:  allocate m=Θ(n) space, and map [0,u-1] down to [0,m-1]. we are going to store more than one thing at the same index. And we now can put a dynamic array here instead store the objects, it's called **chaining**.
+            - so the map function we are choosing very important. we really want a hash function that will evenly distribute keys over the [0,n-1] space.
+
+- Universal hash function
+    - *universal* is a descriptor, there exist many universal hash functions
+
+
 
