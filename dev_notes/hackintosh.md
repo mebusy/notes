@@ -303,3 +303,24 @@ DeviceProperties
 https://opencore.slowgeek.com/
 
 
+
+## Install Monterey on unsupported Mac
+
+1. create Monterey Install USB
+2. download [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases/tag/0.3.1)
+    - OpenCore-Patcher-TUI.app.zip
+3. For USB
+    - run OC patcher, apply 1. Build OpenCore  2. Install OpenCore to USB driver
+    - now an EFI folder has been installed on your USB EFI disk partition
+4. Reboot ( hold Option key), entering EFI, and Install new OSX
+5. (Install Finish) In MacOSX,   run OC patcher again
+    - 5 Patcher Setting
+        - 1. Debug Setting -> false
+        - 5. Misc / 1. show picker -> false
+    - apply 1. Build OpenCore  2. Install OpenCore to internal driver
+    - eject USB
+6. hold Option Reboot,   hold ctrl + EFI
+7. run OC patcher again,
+    - apply 5. POST ...
+
+

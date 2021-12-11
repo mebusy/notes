@@ -64,16 +64,6 @@ Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
 
 ## 4. Hashing
 
-Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
---- | :--- | --- | --- | --- | ---
-&nbsp; | Container | Static | Dynamic | Order | &nbsp;
-&nbsp; | build(X) | find(k) | insert(x)<br>delete() | find_min()<br>find_max() | find_prev(k)<br>find_next(k)
-Array | n | n | n | n | n
-Sorted Array | nlogn | logn | n | ***1*** | logn
-**Direct Access Array** | u | ***1*** | ***1*** | u | u 
-
-> u: the size of memory that the largest key is allowed to store, u < 2<sup>w</sup>
-
 
 - Can I do `find(k)` faster than O(lgn) ?
     - No. We can't do faster than O(lgn) for `find(k)`, which is a little weird.
@@ -93,4 +83,20 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
     - *universal* is a descriptor, there exist many universal hash functions
 
 
+Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
+--- | :--- | --- | --- | --- | ---
+&nbsp; | Container | Static | Dynamic | Order | &nbsp;
+&nbsp; | build(X) | find(k) | insert(x)<br>delete() | find_min()<br>find_max() | find_prev(k)<br>find_next(k)
+Array | n | n | n | n | n
+Sorted Array | nlogn | logn | n | ***1*** | logn
+**Direct Access Array** | u | ***1*** | ***1*** | u | u 
+**Hash Table** | n<sub>(e)</sub> | **1**<sub>(e)</sub> | **1**<sub>(e)</sub> | n | n
 
+> u: the size of memory that the largest key is allowed to store, u < 2<sup>w</sup>
+
+> e: expected runtime
+
+- What's the worst case of Hash Table `find(k)` ? Linear search, O(n).
+    - I could store another set's data structure as my chain and do better that way. That's actually how Java does it.
+    - If your range of keys is small, you don't need a hash table, you just need a Direct Access Array.
+    - Python Dictionary/Set implementation: if whenever we are more than a linear factor away from the fill factor  we are trying to be, then we could just completely rebuild the hash table with the new hash fucntion, randomly chosen from our hash table with a new size, and we can get amortized bound.
