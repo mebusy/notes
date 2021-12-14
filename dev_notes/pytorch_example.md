@@ -130,6 +130,7 @@ print(type(x_train), type(x_train_tensor), x_train_tensor.type())
     print(a, b)
     # tensor([-0.5836], requires_grad=True) tensor([-0.7957], requires_grad=True)
     ```
+    - Q(todo): requires_grad is a flag, defaulting to false unless wrapped in a ``nn.Parameter`` ?
 - if we want to run it on a GPU
     ```python
     a = torch.randn(1, dtype=torch.float).to(device)

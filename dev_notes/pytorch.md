@@ -13,6 +13,7 @@
 
 - [official tutorial](https://pytorch.org/tutorials/)
 - [Understanding PyTorch with an example](pytorch_example.md)
+- Justin Johnson has made an excellent [tutorial with examples](https://github.com/jcjohnson/pytorch-examples) for PyTorch on Github
 
 
 <h2 id="c5fd214cdd0d2b3b4272e73b022ba5c2"></h2>
