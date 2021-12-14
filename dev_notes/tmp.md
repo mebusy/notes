@@ -48,6 +48,8 @@ Expectimax Search -> MDP
 
 [Cross Product Application](https://amirazmi.net/cross-products-in-game-development-and-their-use-cases/)
 
+[向量外積與四元數 李白飛](http://episte.math.ntu.edu.tw/articles/mm/mm_15_1_12/index.html)
+
 vxw = -wxv 
 行列式 area of the 平行四边形
 how to compute ？ 
