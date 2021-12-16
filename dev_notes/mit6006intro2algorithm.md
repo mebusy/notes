@@ -100,3 +100,12 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
     - I could store another set's data structure as my chain and do better that way. That's actually how Java does it.
     - If your range of keys is small, you don't need a hash table, you just need a Direct Access Array.
     - Python Dictionary/Set implementation: if whenever we are more than a linear factor away from the fill factor  we are trying to be, then we could just completely rebuild the hash table with the new hash fucntion, randomly chosen from our hash table with a new size, and we can get amortized bound.
+
+
+## 5. Linear Sorting
+
+- Tuple Sort
+    - [ (3,2), (0,3), (4,4), (4,2), (2,2) ]
+    - use a stable sorting,
+        - least significant sort first, then do most significant sort again
+
