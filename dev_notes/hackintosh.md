@@ -310,11 +310,15 @@ https://opencore.slowgeek.com/
 2. download [OpenCore Legacy Patcher](https://github.com/dortania/OpenCore-Legacy-Patcher/releases/tag/0.3.1)
     - OpenCore-Patcher-TUI.app.zip
 3. For USB
+    - Set Minimal or higher spoofing to retain the current Board ID
+        - Available with TUI, Patcher Settings -> SMBIOS Settings -> Set SMBIOS Spoof Level
     - run OC patcher, apply 1. Build OpenCore  2. Install OpenCore to USB driver
     - now an EFI folder has been installed on your USB EFI disk partition
 4. Reboot ( hold Option key), entering EFI, and Install new OSX
 5. (Install Finish) In MacOSX,   run OC patcher again
     - 5 Patcher Setting
+        - Set Minimal or higher spoofing to retain the current Board ID
+            - Available with TUI, Patcher Settings -> SMBIOS Settings -> Set SMBIOS Spoof Level
         - 1. Debug Setting -> false
         - 5. Misc / 1. show picker -> false
     - apply 1. Build OpenCore  2. Install OpenCore to internal driver
