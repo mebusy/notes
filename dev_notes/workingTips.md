@@ -192,7 +192,12 @@ ffmpeg -i xxx.m4a -map_channel 0.0.0 output.mp3
 
 https://trac.ffmpeg.org/wiki/AudioChannelManipulation
 
+change audio volume
 
+```bash
+# low 50% volume of left audio channel
+-af  "pan=stereo|c0=0.5*c0|c1=c1"
+```
 
  
 <h2 id="ac1edf8d7497b1d5b6039ad9656cdeee"></h2>
