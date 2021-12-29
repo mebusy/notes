@@ -164,12 +164,6 @@ format code  extension  resolution note
 $ youtube-dl -f 140  'your-url'
 ```
 
-## select left audio channel and downgrade to mono
-
-```bash
-# ffmpeg -i input -map_channel 0.0.0 output
-ffmpeg -i xxx.m4a -map_channel 0.0.0 output.mp3
-```
 
 
 <h2 id="a8e23293ddbb3302f18d430ee2fdaaf2"></h2>
@@ -186,6 +180,20 @@ ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
 
 -q:a for variable bit rate:
 ```
+
+## use ffmpeg select left audio channel and downgrade to mono
+
+```bash
+# ffmpeg -i input -map_channel 0.0.0 output
+ffmpeg -i xxx.m4a -map_channel 0.0.0 output.mp3
+```
+
+## use ffmpeg manipulate audio channel
+
+https://trac.ffmpeg.org/wiki/AudioChannelManipulation
+
+
+
  
 <h2 id="ac1edf8d7497b1d5b6039ad9656cdeee"></h2>
 
