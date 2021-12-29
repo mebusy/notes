@@ -62,7 +62,6 @@
 
 **Others**
 
- 1. [台大 机器学习技法](TaiwanU_ML.md)
  2. [OpenAI GYM](openAI_gym.md)
  3. [RL David Silver 随笔](RL_DavidSilver.md)
  4. [RL David Silver 随笔](RL_DavidSilver_part2.md)
