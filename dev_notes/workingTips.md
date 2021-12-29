@@ -149,6 +149,29 @@ youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
 youtube-dl -x --audio-format mp3  'your-url'
 ```
 
+Or list all support format, and pick one audio-only format
+
+```bash
+$ youtube-dl -F  'your-url'
+format code  extension  resolution note
+249          webm       audio only tiny   53k , webm_dash container, opus @ 53k (48000Hz), 1.10MiB
+250          webm       audio only tiny   72k , webm_dash container, opus @ 72k (48000Hz), 1.49MiB
+140          m4a        audio only tiny  127k , m4a_dash container, mp4a.40.2@127k (44100Hz), 2.60MiB
+251          webm       audio only tiny  140k , webm_dash container, opus @140k (48000Hz), 2.87MiB
+278          webm       256x144    144p   97k , webm_dash container, vp9@  97k, 13fps, video only, 2.00MiB
+160          mp4        256x144    144p  108k , mp4_dash container, avc1.42c00c@ 108k, 13fps, video only, 2.23Mi
+
+$ youtube-dl -f 140  'your-url'
+```
+
+## select left audio channel and downgrade to mono
+
+```bash
+# ffmpeg -i input -map_channel 0.0.0 output
+ffmpeg -i xxx.m4a -map_channel 0.0.0 output.mp3
+```
+
+
 <h2 id="a8e23293ddbb3302f18d430ee2fdaaf2"></h2>
 
 
