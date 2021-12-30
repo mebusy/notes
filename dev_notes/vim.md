@@ -27,13 +27,11 @@
 
 
 - 安装vundle
-    - 
     ```
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     ```
 
 -  在.vimrc配置文件中添加vundle支持
-    - 
     ```
     filetype off
     set rtp+=~/.vim/bundle/vundle/
@@ -46,7 +44,6 @@
         2. 在Github其他用户下的repos, 需要写出”用户名/repos名” 
         3. 不在Github上的插件，需要写出git全路径
     - 将其他需要 安装的插件 加入到 ~/.vimrc
-        - 
         ```
         " 使用Vundle来管理Vundle
         Bundle 'gmarik/vundle'
@@ -60,15 +57,13 @@
 
 - 安装插件
     - 打开vim，运行 `:BundleInstall` 或在shell中直接运行
-    - 
-    ```
-    vim +BundleInstall +qall
-    ```
-
+        ```
+        vim +BundleInstall +qall
+        ```
     - update :
-    ```
-    vim +PluginUpdate
-    ```
+        ```
+        vim +PluginUpdate
+        ```
 
 <h2 id="95e1e8a5d4d20276318a364f9428f879"></h2>
 
@@ -82,20 +77,17 @@
 - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` 
 - Rust support: install Rust and add `--rust-completer` when calling ./install.py.
     - put `~/.cargo/bin`   in you $PATH ?
-    - 
-    ```bash
-    # rust
-    export PATH=$HOME/.cargo/bin:$PATH
-    ```
+        ```bash
+        # rust
+        export PATH=$HOME/.cargo/bin:$PATH
+        ```
 - Java support: install JDK8 (version 8 required) and add `--java-completer` 
 - for common using
-    - 
     ```bash
     ./install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
     ```
-    - 
     ```bash
-    --clang-completer --system-libclang
+    # --clang-completer --system-libclang
     ```
 
 <h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
@@ -177,7 +169,6 @@ install YouCompleteMe on Centos7
 
 1. yum 安装 clang
 2. build YCME
-    - 
     ```
     CC=`which clang` CXX=`which clang++`  ./install.py ......
     ```
@@ -258,7 +249,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 
 - mark 命令小结
-    - 
     ```txt
     m ——创建标记
     ' ——移动到标记的文本行首
