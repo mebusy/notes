@@ -45,7 +45,7 @@
         1. 在Github vim-scripts 用户下的repos,只需要写出repos名称
         2. 在Github其他用户下的repos, 需要写出”用户名/repos名” 
         3. 不在Github上的插件，需要写出git全路径
-    - 将安装的插件在~/.vimrc配置最后
+    - 将其他需要 安装的插件 加入到 ~/.vimrc
         - 
         ```
         " 使用Vundle来管理Vundle
@@ -77,14 +77,9 @@
 
 - for C family support:  `./install.py --clangd-completer`
     - 加上 `--system-libclang` 则使用mac 自带的libclang，但是一般版本比较旧，会有问题
-- C# support: install Mono and add `--cs-completer` when calling ./install.py.
-- Go support: install Go and add `--go-completer` when calling ./install.py.
-    - go 1.13
-    - 
-    ```
-    export GOPROXY=https://goproxy.io
-    ```
-- JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` when calling install.py.
+- C# support: install Mono and add `--cs-completer` 
+- Go support: install Go and add `--go-completer` 
+- JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` 
 - Rust support: install Rust and add `--rust-completer` when calling ./install.py.
     - put `~/.cargo/bin`   in you $PATH ?
     - 
@@ -92,13 +87,12 @@
     # rust
     export PATH=$HOME/.cargo/bin:$PATH
     ```
-- Java support: install JDK8 (version 8 required) and add `--java-completer` when calling ./install.py.
+- Java support: install JDK8 (version 8 required) and add `--java-completer` 
 - for common using
     - 
     ```bash
     ./install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
     ```
-    - --clangd-completer 不支持 c/c++/Objc ？
     - 
     ```bash
     --clang-completer --system-libclang
@@ -109,44 +103,15 @@
 
 ### YCMD 排错
 
-- `msbuild or xbuild is required to build Omnisharp`
-    - install MonoFrameWork
-- `vim +PluginInstall` YouCompleteMe 有时 helptags 会报错
-    - 修复报错 目录权限 `chmod -R 777 xxx` 
 - Tagbar 需要安装 ctags 
     - `brew install ctags`
-    - use : `TagbarToggle`
+    - for golang, you also need gotags `brew install gotags`
 - python 语法检查
     - `pip install flake8`
 - vim 诊断
     - `:YcmDebugInfo`
 - vim check logs
     - `YcmToggleLogs`
-- uninstall mono framework on OSX 
-    - https://gist.githubusercontent.com/powerumc/e80bb475117582d7e842/raw/ed8a29bed15655492109c91df118f22b147f025c/remove-mono.sh
-- `snipmate <TAB>` YouCompleteMe 冲突
-    - `~/.vim/bundle/snipmate.vim/after/plugin/snipMate.vim`
-    ```
-    change 
-
-    " You can safely adjust these mappings to your preferences (as explained in
-    " :help snipMate-remap).
-    ino <silent> <tab> <c-r>=TriggerSnippet()<cr>
-    snor <silent> <tab> <esc>i<right><c-r>=TriggerSnippet()<cr>
-
-    to 
-
-    ino <silent> <C-\> <c-r>=TriggerSnippet()<cr>
-    snor <silent> <C-\> <esc>i<right><c-r>=TriggerSnippet()<cr>
-    ```
-- YCMD安装中 会下载一些资源， 这个工程中会出现个中 下载慢，下载失败，http代理 等各种问题
-    1. 解决方法1:  使用其他工具把资源下载下来，放到相应的位置
-    2. 最新的 go-complete YCMD会去下载 golang.org/x/ 的资源包,
-        - 只要在 `third_party/ycmd/third_party/go/src/` 目录下 放上 golang.org  的版本库就可，YCMD 插件更新会变更tools的revision，所以不要`ln -s`建 软连接 
-        - update: 是不是不需要了？
-    3. jdt-server 文件路径
-        - `./third_party/ycmd/third_party/eclipse.jdt.ls/target/cache/`
-    4. `export HTTPS_PROXY=$HTTP_PROXY`   if you failed under corporation's proxy
 
 
 
@@ -309,7 +274,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 ## VIM tips
 
 - check vim compile features
-    - 
     ```bash
     vim --version
     ```
@@ -320,7 +284,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     - 使用 :args 命令可以列出当前参数
     - 参数列表在有些情况下被大量使用：批处理 
     - 使用 :argdo！ 一个简单的重构例子：
-        - 
         ```
         :args **/*.[ch]
         :argdo %s/foo/bar/ge | update
@@ -329,24 +292,20 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 - 搜索
     - 反向肯定搜索 lookahead
         - 搜索 exp2， start with exp1 .
-        - 
         ```vim
         \(exp1\)\@<=exp2
         ```
     - 前向肯定搜索 lookahead
         - 搜索 exp1, followed by exp2
-        - 
         ```vim
         exp1\(exp2\)\@=
         ```
     - 搜索 带`/` 的字符串，比如 URL
-        - 
         ```
         :?URL
         ```
 
 - clear a register
-    - 
     ```vim
     # set register `i`  empty
     qiq
@@ -357,7 +316,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 
 - 文件夹搜索
-    - 
     ```vim
     vimgrep /pattern/gj path
     ```
@@ -401,7 +359,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 - Remove unwanted empty lines
     - use `v` to select the range of lines you want to work on 
     - useing either of the following command to delete all empty lines:
-    - 
     ```vim
     :g/^$/d
     :v/./d
