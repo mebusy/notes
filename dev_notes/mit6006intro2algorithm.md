@@ -109,3 +109,51 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
     - use a stable sorting,
         - least significant sort first, then do most significant sort again
 
+## 6. Binary Trees
+
+- deletion a node is tricky
+    - if node has no child, i.e. a leaf
+        - simply detach it 
+    - if node has left child
+        - delete the node directly will destroy the tree structure, DO NOT do that
+        - recursively swap the label of the node and its predecessor
+            - detach it when it's becoming a leaf
+    - if node has no left child, i.e. it has a right child
+        - recursively swap the label of the node and its successor
+
+
+## 7. Binary Trees  AVL
+
+- Tree Property
+    - how go get tree size in O(1) ?
+    - node.size = node.left.size + node.right.size
+        - when inserting , deleting a node,  need update all the nodes along the path up to the root node, O(h)
+    - can also apply to
+        - sum, product, min, max, etc...
+    - but NOT node's index, depth.
+- Rotation
+    - We need a new tool to manipulate a tree. We are going to need something else to let us guarantee logarithmic height.
+    - And it's called the rotation. It's just a tool for re-balancing the tree.
+    - It should not change the data that's represented by the tree, the traversal order
+    - a very powerful tool in all tree data structures. This is the thing we can do in a tree that want to affect any of the stuff We have done so far.
+    - ![](../imgs/binary_tree_rotation.png)
+        - -- right rotate(x) →
+        -   ⃪ left rotate(y) --
+    - After rotation, you must **update the tree property** on x,y and on their ancestors in order.
+    - ![](../imgs/AVL_Tree_Example.gif)
+- How to maintain this hight balance property using rotation ?
+    - height balance:
+        - skew(node) = height(node.right) - height(node.left) ∈ {-1,0,1}
+    - consider lowest unbalanced node x
+        - ⇒ skew(x) ∈ {-2,2} , say 2, the right subtree y is too high
+    - case 1: skew(y) = 1
+    - case 2: skew(y) = 0
+        - left rotate x ?
+    - case 3: skew(y) = -1
+        - right rotate y
+        - left rotate x
+    - ![](../imgs/Tree_Rebalancing.png)
+
+
+
+
