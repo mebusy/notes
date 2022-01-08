@@ -120,6 +120,20 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
             - detach it when it's becoming a leaf
     - if node has no left child, i.e. it has a right child
         - recursively swap the label of the node and its successor
+- pseudo code
+    ```python
+    def subtree_delete(node):
+        if node is leaf:
+            detach from parent
+        else:
+            # sink ?
+            if node.left:
+                swap node.item - predecessor(node).item
+                subtree_delete( predecessor(node) )
+            else : # node.right
+                swap node.item - successor(node).item
+                subtree_delete( successor(node) )
+    ```
 
 
 ## 7. Binary Trees  AVL
@@ -153,6 +167,8 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
         - right rotate y
         - left rotate x
     - ![](../imgs/Tree_Rebalancing.png)
+- binary tree operation O(h)
+- AVL operation O(lgn)
 
 
 
