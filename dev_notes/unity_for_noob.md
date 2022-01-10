@@ -123,7 +123,7 @@
         3. sound listener
             - To hear the sound, you need at least 1 sound listener, by default, it is attached to your main camera.
 
-## Module 2
+## Module 2: Shooting Game
 
 - x,z movement
     ```csharp
@@ -143,6 +143,39 @@
         transform.forward = Quaternion.Euler(0,-90,0) * m_movementInput.normalized;
     }
     ```
+- character rotation to mouse positon
+    1. Detect mouse position in *Screen Space*
+    2. Convert player's **World Postion** to Screen Space
+    3. Subtract player *Screen Space* position from Mouse *Screen Space* Position
+    4. Use Mathematics to get Angle from Vector (Atan)
+    5. Apply Angle Rotation to Player
+    - code
+        ```csharp
+        void RotateCharacterTowardsMouseCursor() {
+            Vector3 mousePosInScreenSpace = Input.mousePosition;
+            Vector3 playerPosInScreenSpace = Camera.main.WorldToScreenPoint( transform.position );
+            Vector3 directionInScreenSpace = mousePosInScreenSpace - playerPosInScreenSpace ;
+
+            float angle = Mathf.Atan2( directionInScreenSpace.y, directionInScreenSpace.x ) * Mathf.Rad2Deg;
+            // assuming the direction the player is facing right
+            transform.rotation = Quaternion.AngleAxis( -angle, Vector3.up );
+        }
+        ```
+- spawning bullets
+    ```csharp
+    // Gun Logic
+    [SerializeField]
+    GameObject m_bulletPrefab;
+    
+    [SerializeField]
+    Transform m_bulletSpawnPoint;
+    ...
+    Instantiate( m_bulletPrefab, m_BulletSpawnPoint.position, 
+        // gun's rotation * bullet's rotation
+        transform.rotation * m_BulletPrefab.transform.rotation )
+    ```
+
+---
 
 # Unity Scripting
 
