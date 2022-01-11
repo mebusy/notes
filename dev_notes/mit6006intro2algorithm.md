@@ -1,6 +1,8 @@
 
 # MIT 6.006 Notes
 
+interface: Sequences, Set, Priority Queue
+
 ## 2. Data Structures and Dynamic Arrays
 
 
@@ -109,9 +111,13 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
     - use a stable sorting,
         - least significant sort first, then do most significant sort again
 
-## 6. Binary Trees
+## 6. Binary Trees: Binary Search Tree
 
-- deletion a node is tricky
+- Search
+    - If less, go left; if greater, go right; if equal, search hit.
+- Insert
+    - If less, go left; if greater, go right; if null, insert.
+- Delete a node is tricky
     - if node has no child, i.e. a leaf
         - simply detach it 
     - if node has left child
@@ -128,10 +134,10 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
         else:
             # sink ?
             if node.left:
-                swap node.item - predecessor(node).item
+                swap node.item <-> predecessor(node).item
                 subtree_delete( predecessor(node) )
             else : # node.right
-                swap node.item - successor(node).item
+                swap node.item <-> successor(node).item
                 subtree_delete( successor(node) )
     ```
 
@@ -170,6 +176,66 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
 - binary tree operation O(h)
 - AVL operation O(lgn)
 
+
+## 8. Binary Heaps
+
+Priority Queue<br>Data Structure | \| | Operation, O(·)  | &nbsp; | Priority Queue Sort |  &nbsp; |  &nbsp;
+--- | :--- | --- | --- | --- | --- | ---
+&nbsp; | build(A) | insert(x) | delete_max() | Time | In Place ? 
+Array | n | 1<sub>(a)</sub> | n | n² | Y | Selection Sort
+Sorted Dynamic Array | nlogn | n | 1<sub>(a)</sub> | n² | Y | Insertion Sort
+Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
+*Heap* | n(tricky) | logn<sub>(a)</sub> | logn<sub>(a)</sub> | nlogn | Y | Heap Sort
+
+
+- Complete Binary Tree <=> array
+    - Implicit data structure
+        - no pointers , just array of n items
+        ```python
+        left(i) = 2i + 1
+        right(i) = 2i + 2
+        parent(i) = ( i-1 ) // 2
+    ```
+- Max-Heap Property:
+    - Q[i] ≥ Q[j] for node j in subtree(i)
+- Inert
+    ```python
+    def Insert(x):
+        # just inserted an arbitrary item in a leaf. and now 
+        #   it may not satisfy the max-heap property anymore
+        Q.insert_last(x)
+        # fix it, but this time we're not going to need rotation!
+        # check its parent see whether it violate things
+        # O(logn)
+        max_heapify_up( |Q|-1 )
+
+    def max_heapify_up(i):
+        if Q[parent(i)].key < Q[i].key:
+            # after swaping, the parent is more larger
+            # so the other side child is also happy
+            swap  Q[parent(i)] <-> Q[i]
+            # but the grandpa may not happy
+            max_heapify_up( parent(i) )
+    ```
+- find max is easy, delete max is annoying.
+    ```python
+    def Delete_Max():
+        # swap is our usual trick
+        swap Q[0] <-> Q[ |Q|-1 ]
+        Q.delete_last()
+        # now the root node may violate things
+        max_heapify_down( 0 )
+
+    def max_heapify_down(i):
+        if i is leaf:
+            done
+        # pick the larger child
+        let j = index of larger child
+        if Q[i] < Q[j]:
+            # swap with the larger child
+            swap Q[i] <-> Q[j]
+            max_heapify_down(j)
+    ```
 
 
 
