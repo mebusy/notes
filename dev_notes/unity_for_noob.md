@@ -123,7 +123,7 @@
         3. sound listener
             - To hear the sound, you need at least 1 sound listener, by default, it is attached to your main camera.
 
-## Module 2: Shooting Game
+## Module 2: A Shooting Game
 
 - x,z movement
     ```csharp
@@ -171,9 +171,112 @@
     Transform m_bulletSpawnPoint;
     ...
     Instantiate( m_bulletPrefab, m_BulletSpawnPoint.position, 
-        // gun's rotation * bullet's rotation
-        transform.rotation * m_BulletPrefab.transform.rotation )
+        // spawn point's rotation * bullet's rotation
+        m_BulletSpawnPoint.rotation * m_BulletPrefab.transform.rotation )
     ```
+- bullet speed
+    - prefab of bullet
+        ```
+        ^
+        |
+        ```
+    - set velocity, we want the bullets move along its y-axis (up)
+        ```csharp
+        m_rigidBody.velocity = transform.up * m_bulletSpeed
+        ```
+- UI text
+    - creating a text will automatically create a Canvas , and an EventSystem.
+    - Canvas has **Canvas Scaler** component, we can set its **UI Scale Mode** to *Scale With Screen Size*, so that the text size will change with the screen size.
+    ```csharp
+    m_ammoText.text = "Ammo: " + m_ammoCount;
+    ```
+- apply texture to materials
+    1. Create Material
+    2. Click on *Albedo*
+        - select texture
+    3. Setup Tiling X and Tiling Y if needed
+    4. drag the material to object
+- check with specific tag
+    ```csharp
+    private void OnTriggerEnter(Collier other) {
+        if (other.tag == "<YourTarget>") {
+            Destroy( other.gameobject );
+            Destroy( gameobject );
+        }
+    }
+    ```
+- access the script attached to the children of a object
+    ```csharp
+    GunLogic gunlogic = other.GetComponentInChildren<GunLogic>();
+    if (gunLogic) {  // if player have a weapon
+        ...
+    }
+    ```
+- Equip and UnEquip the gun
+    - add Rigidbody to gun
+        - when equipping the gun, uncheck its **Use Gravity**, when unequipping, activate **Use Gravity**.
+    - add Box Collider to gun
+        - you may use 2 box collider, one for normal collide, one for trigger( bigger ).
+        - use `GetComponents<T>` instead `GetComponent<T>` to retrieve the type T components all.  `GetComponent<T>` only return the 1st component T in inspector order.
+    - add a equipment point to the player
+
+
+## Module 3:   AI Behaviour & Navigation
+
+- Navmesh Baking
+    - in order for a AI to traverse a navigate map, we have to bake a nevmesh.
+    - in order to bake a nevmesh, simply select object, and mark them as **static** at top-right corner
+        - then we goto Window/AI/Navigation, select *bake*, then you will see a blue surface appear on top of your mesh, and this will be the walkable surface.
+- If you want to use navmesh, then we have to setup a navmesh agent in the components of a character.
+- Navmesh Max Slope
+    - you can also add navmesh to slopes, and in the settings , you can define the max angle of slope for navmesh agent to walk on
+- NavMesh Agent Component
+    - Setup Steering Settings
+        - speed, angular speed, etc...
+    - Set Destination in code
+        ```csharp
+        m_navMeshAgent.SetDestination( m_destination.position) ;
+        ```
+    - Stop/Resume NavMeshAgent
+        - e.g. policy according to distance
+        ```csharp
+        float distance = Vector3.Distance( m_destination.position, transform.position ) ;
+        if (distance < 1.5f) {
+            m_navMeshAgent.isStopped = true;
+            m_navMeshAgent.velocity = Vector3.zero;
+        } else {
+            m_navMeshAgent.isStopped = false ;
+        }
+        ```
+- Use Gizmos to debug
+    ```csharp
+    // draw radius sphere
+    private void OnDrawGizmos() {
+        Gizmos.color = new Color(1,0,0,0.25f) ;
+        Gizmos.DrawSphere(transform.position, m_aggroRadius);
+    }
+    ```
+
+
+## Module 4: Raycasting, Animation timeline & Animator
+
+- Raycast 
+    - Raycast = Shoot Laster from point A to point B, check for any object hit.
+        - if it hits an object, that will be stored in a RayCastHit
+    - We're going to use a Raycast from Camera to Mouse Postion in **World Space**.
+        ```csharp
+        RaycastHit hit;
+        ...
+        Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+        if (Physics.Raycast(ray, out hit, 100.f) ) {  // last param is distance
+            ...
+        }
+        ```
+    - We can use mouse and Raycast to set player's destination
+
+
+
+
 
 ---
 
