@@ -274,8 +274,55 @@
         ```
     - We can use mouse and Raycast to set player's destination
 
-
-
+- Camera Movement
+    - Move Camerea based on Mouse Position in Screen Space
+        ```csharp
+        float m_cameraMovementOffset = 0.15f;
+        ...
+        // Assuming this script is attached to the main camera
+        void UpdateCameraPosition() {
+            if (Input.mousePosition.x >= Screen.width) {
+                // Move camera to the RIGHT
+                transform.position = new Vector3(transform.position.x + m_cameraMovementOffset,
+                       transform.position.y,  transform.position.z );
+            } else if (Input.mousePosition.x <= 0.0f) {
+                // Move camera to the LEFT
+                transform.position = new Vector3(transform.position.x - m_cameraMovementOffset,
+                       transform.position.y,  transform.position.z );
+            }
+            
+            // PS. it's z-axis, not the vertical y-axis
+            if (Input.mousePosition.y >= Screen.height) {
+                // Move camera  UP
+                transform.position = new Vector3(transform.position.x ,
+                       transform.position.y,  transform.position.z + m_cameraMovementOffset);
+            } else if (Input.mousePosition.y <= 0.0f) {
+                // Move camera  DOWN
+                transform.position = new Vector3(transform.position.x ,
+                       transform.position.y,  transform.position.z - m_cameraMovementOffset);
+            }
+        }
+        ```
+    - CenterCamera on Player when you press Spacebar
+        ```csharp
+        if (Input.GetKeyDown(keyCode.Space)) {
+            transform.position = new Vector3( m_player.transform.position.x, 
+                transform.position.y,   // keep camera y
+                m_player.transform.position.z );
+        }
+        ```
+- Import 3D Model
+    - how to import a 3D model
+        1. Download .FBX file
+        2. Import in Unity editor
+        3. Example websites:
+            - https://www.turbosquid.com/Search/3D-Models/free
+            - https://free3d.com
+            - Unity Asset Store
+    - how to rotate the model around its some specify postion
+        1. create an empty object as an anchor
+        2. attach the model to that anchor, adjust its position
+        3. rotate that anchor
 
 
 ---
