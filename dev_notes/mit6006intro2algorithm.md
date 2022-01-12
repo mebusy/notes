@@ -238,4 +238,9 @@ Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
     ```
 
 
+## 15. Dynamic Programming, Part 1: SRTBOT, Fib, DAGs, Bowling
+
+- How do we design recursive algorithm ?
+    - SRTBOT
+        - 
 
