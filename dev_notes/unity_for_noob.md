@@ -324,6 +324,57 @@
         2. attach the model to that anchor, adjust its position
         3. rotate that anchor
 
+- Animation Timeline
+    1. select the object you want to animate
+    2. **Window / Animation / Animation**
+        - create
+    3. **Add Keyframes and change properties such as position, rotation, ...**
+        - click the red record button
+        - repeat
+            - set the timeline
+            - adjust object's positon/rotaton/...
+    4. stop record, and play it
+- After adding a animation, an Animator component will be added to the object.
+    - Controller: link to the animation controller
+    - Avatar
+    - Apply Root Motion
+- Animation Events
+    - Create A Code function to handle the event
+    - On animation timeline editor,  Right-Click -> Add Animation Event
+    - In inspector, Link this AnimationEvent to Code Function we created
+- New Animator state, and Animator parameters
+    - add animator  Parameter `IsAttacking`  in Animator Editor
+    - add new state Idle 
+        - you can set the state as default state 
+        - you can make a transition to other state
+            - at the transition arrow, you can set Condition, and use the animator parameter in the condition.
+            - if you want instantly go to the target state, disable **has exit time**
+    - set animator parameter
+        ```csharp
+        m_animator = GetComponent<Animator>();
+        ...
+        m_animator.SetBool( "IsAttacking", true );
+        ```
+- Shoot Ray forward from Player position to another object
+    ```csharp
+    float MELEE_RANGE = 1.5f;
+    ...
+    void CheckAttackRange() {
+        Debug.DrawRay( transform.position, transform.forward * MELEE_RANGE, Color.Red );
+
+        RaycastHit hit;
+        Ray ray = new Ray( transform.position, transform.forward ) ;
+        if (Physics.Raycast(ray, out hit, MELEE_RANGE)) {
+            if( hit.collider.gameobject.tag == "Enemy") {
+                if (m_swordLogic) {
+                    m_swordLogic.SetAttacking(true);
+                }
+                m_navMeshAgent.isStopped = true;
+            }
+        }
+    }
+    ```
+
 
 ---
 
