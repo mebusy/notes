@@ -242,12 +242,12 @@ Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
 
 - How do we design recursive algorithm ?
     - SRTBOT : recursive alg. paradigm
-        - sub-problems
-        - relations
-        - topological order
-        - base case
-        - original problem
-        - time
+        - **Sub-problems** definition
+        - **Relations** subproblem solutions recursively
+        - **Topological order** on subproblems, to guarantee acycl
+        - **Base case** of relation
+        - **Original problem** solve via subproblems
+        - **Time** analysis
     - DP ≈ recursion + memoization
-        - dynamic programming is going to build on `SRTBOT` template by adding one new idea called memoization, which is just the idea of resuing work
+        - dynamic programming is going to build on `SRTBOT` template by adding one new idea called memoization, which is just the idea of resuing work that you've done before.
 
