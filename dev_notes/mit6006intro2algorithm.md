@@ -241,6 +241,13 @@ Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
 ## 15. Dynamic Programming, Part 1: SRTBOT, Fib, DAGs, Bowling
 
 - How do we design recursive algorithm ?
-    - SRTBOT
-        - 
+    - SRTBOT : recursive alg. paradigm
+        - sub-problems
+        - relations
+        - topological order
+        - base case
+        - original problem
+        - time
+    - DP ≈ recursion + memoization
+        - dynamic programming is going to build on `SRTBOT` template by adding one new idea called memoization, which is just the idea of resuing work
 

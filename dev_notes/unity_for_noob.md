@@ -33,7 +33,7 @@
         private void OnTriggerEnter(Collider other) ...
         private void OnTriggerExit(Collider other) ...
         ```
-- character controller
+- character controller:  handle movement...
     - `Time.deltaTime` = time between updates
     - `Update()` has a variable Time.deltaTime
         - capturing input
@@ -373,6 +373,43 @@
             }
         }
     }
+    ```
+
+## Module 5: 
+
+- Third person camera
+    - Camera is behind player in the Z axis,  a little bit high
+    - Camera can rotate around player on Y axis and X axis
+    - Camera looks at Player
+    - procedurally pricely control, or adjusting camera and attach it onto player
+- Camera Movement (procedurally)
+    - Camera Position = Camera Target(Player) + Camera Offset( y-axis )
+    ```csharp
+    // CameraLogic
+    float m_cameraTargetOffset = 1.0f;  // high in y-axis
+    float m_distanceZ = 5.0f;  // behind the player, in z axis
+    ...
+    void Update() {
+        m_cameraTarget = m_player.transform.positon;
+        m_cameraTarget.y += m_cameraTargetOffset ;
+    }
+    // the reason why we assign new position to the cameras in the LateUpdate
+    //   is it gives better effect for camera's , this happens after the rendering is done.
+    // you will see my we split it up when we add rotations
+    private void LateUpdate() {
+        Vector3 cameraoffset = new Vector3(0,0, -m_distanceZ);
+        transform.position = m_cameraTarget + cameraoffset ;
+    }
+    ```
+- Camera Rotation
+    - Use Mouse Axis to increase Rotation
+    - Clamp Rotation X
+    - Multiply Rotation with Camera Offset
+    - Add up with CameraTarget and assign to Camera Position
+    ```csharp
+
+    // all rotations in unity are done in `Quaternion`
+
     ```
 
 
