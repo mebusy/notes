@@ -397,20 +397,33 @@
     //   is it gives better effect for camera's , this happens after the rendering is done.
     // you will see my we split it up when we add rotations
     private void LateUpdate() {
-        Vector3 cameraoffset = new Vector3(0,0, -m_distanceZ);
-        transform.position = m_cameraTarget + cameraoffset ;
+        Vector3 cameraOffset = new Vector3(0,0, -m_distanceZ);
+        transform.position = m_cameraTarget + cameraOffset ;
     }
     ```
 - Camera Rotation
     - Use Mouse Axis to increase Rotation
     - Clamp Rotation X
+        ```csharp
+        float m_rotateX;
+        float m_rotateY;
+        float m_rotateZ;
+        ...
+        if (Input.GetButton("Fire2")) {
+            m_rotationY += Input.GetAxis("Mouse X"); // mouse move left/right
+            m_rotationX -= Input.GetAxis("Mouse Y"); // mouse move up/down
+            // ensure that camera does not go below the ground
+            m_rotationX  = Mathf.Clamp( m_rotationX, MIN_X, MIN_Y );
+        }
+        ```
     - Multiply Rotation with Camera Offset
     - Add up with CameraTarget and assign to Camera Position
-    ```csharp
-
-    // all rotations in unity are done in `Quaternion`
-
-    ```
+        ```csharp
+        // all rotations in unity are done in `Quaternion`
+        // angles -> rotation
+        Quaternion cameraRotation = Quaternion.Euler(m_rotationX, m_rotationY, 0);
+        transform.position = m_cameraTarget + cameraRotation * cameraOffset;
+        ```
 
 
 ---
