@@ -408,6 +408,8 @@
         float m_rotateX;
         float m_rotateY;
         float m_rotateZ;
+        const float MIN_X = -20.f;
+        const float MAX_X = 20.f;
         ...
         if (Input.GetButton("Fire2")) {
             m_rotationY += Input.GetAxis("Mouse X"); // mouse move left/right
@@ -422,8 +424,33 @@
         // all rotations in unity are done in `Quaternion`
         // angles -> rotation
         Quaternion cameraRotation = Quaternion.Euler(m_rotationX, m_rotationY, 0);
+        Vector3 cameraOffset = new Vector3(0,0, -m_distanceZ);
         transform.position = m_cameraTarget + cameraRotation * cameraOffset;
         ```
+    - next, we will want to make the camera face the player because currently the camera only looks forwards, we want the camera to look at the player.
+- Camera LookAt
+    - lucky for us, LookAt functin will face an object towards it's target.
+        - `transform.LookAt( m_cameraTarget );`
+    - add this code
+        ```csharp
+        // all rotations in unity are done in `Quaternion`
+        // angles -> rotation
+        Quaternion cameraRotation = Quaternion.Euler(m_rotationX, m_rotationY, 0);
+        Vector3 cameraOffset = new Vector3(0,0, -m_distanceZ);
+        transform.position = m_cameraTarget + cameraRotation * cameraOffset;
+        // new
+        transform.LookAt( m_cameraTarget );
+        ```
+- Camera Zooming
+    - Mouse ScrollWheel Axis can be used to Zoom in / Zoom out
+    - Value should be clamped to prevent Camera going too far forward / back
+        ```csharp
+        // in Update()
+        m_distanceZ -= Input.GetAxis("Mouse ScrollWheel");
+        m_distanceZ = Mathf.Clamp( m_distanceZ, MIN_Z, MAX_Z ) ;  //  2.0f/8.0f
+        ```
+- Importing Assets
+
 
 
 ---
