@@ -375,7 +375,7 @@
     }
     ```
 
-## Module 5: 
+## Module 5:  Creating a Third Person Game
 
 - Third person camera
     - Camera is behind player in the Z axis,  a little bit high
@@ -449,7 +449,120 @@
         m_distanceZ -= Input.GetAxis("Mouse ScrollWheel");
         m_distanceZ = Mathf.Clamp( m_distanceZ, MIN_Z, MAX_Z ) ;  //  2.0f/8.0f
         ```
-- Importing Assets
+- DOWNLOADING MODEL & ANIMATION ASSETS USING MIXAMO
+    - [mixamo.com](https://www.mixamo.com/#/)
+    - register Adobe account
+    - Preview & Select Characters(model)
+        - download -> Format FBX for unity
+    - Preview & Select Animations
+        - download -> same format, 60fps, without skin( we've download the model in T-pose separately, not include skin in animation can reduce the file size )
+            - for "walking" animation, click "in place"
+        - ADVANCE: you can edit the clip, set frames , or create multiple clips, each clip could be state, and use them as different purpose.
+    - Download & Import .FBX to Unity
+- IMPORTING & SETTING UP THE CHARACTER
+    - in practice: 
+        - put the model fbx ( e.g. xx.fbx )    in `Models` folder
+        - put the animation fbxs ( e.g. xx@Idel.fbx ) in `Animation` folder
+    - you may not need to adjust the model , for animations, if you want it loop,  in its Animation tab, check the `Loop Time` & `Loop Pose`, and apply
+        - it's also a good practice  for animations to use the same Rig. In its Rig tab, change the Avatar definition from `Create From This Model` to `Copy From Other Avart` and select the model fbx.
+        - in case the texture doesn't show up, goto `Material` tab,  change `Location` field to `Use External Materials(Legacy)` and hit *apply* & fix.
+    - use the model and animations
+        - drag the model to the scene, this object is not playing any animtion yet because it does not has any animator controller yet .
+        - create a empty animator controller, and we can drag animation to animator layer
+        - select this animator controller in object's inspector
+- 0509 ANIMATION BLENDTREE
+    - in order to implement our character's movement animation smoothly, and have the animations transition blend into each other nicely base on the state, we have to use an animation blendtree.
+    - first we only setup an animation blendtree with movement parameters, we will only setup 2 parameters , HorizontalMovementInput, and VerticalMovementInput. Based on these parameters, we have to setup a **2D Freeform Cartesian** blendtree. Based on the X & Y value, we need to play different animation.
+        - in animation base layer, right click-> Create State-> From New Blend Tree,   set the blendtree as default state.
+        - add 2 new parameters: HorizontalMovementInput &  VerticalMovementInput
+        - select blendtree, go inside, set blendType to `2D Freeform Cartesian`,  change the preset parameter to HorizontalMovementInput & VerticalMovementInput. then we can start add motion -> Add motion field
+    - how to set animator parameter
+        ```csharp
+        if (m_animator) {
+            m_animator.SetFloat("HorizontalMovementInput", m_horizontalInput);
+            m_animator.SetFloat("VerticalMovementInput", m_verticalInput);
+        }
+        ```
+- SETTING UP ANIMATION EVENTS IN EDITOR
+    - setup animation events for footsteps ( 0=left, 1=right) , and play sound effect per step
+    - select a running animation, select its Animation tab, drag the model into inspector panel
+    - play the animation, each time when the foot hit the ground, 
+    - click the button left to the timeline within `Events` field
+        - add callback function `PlayFootstepSound`  and give it a parameter value
+        ```csharp
+        [SerializeField]
+        List<AudioClip> m_footstepSounds = new List<AudioClip>();
+        ...
+        public void PlayFootstepSound( int footIndex ) {
+            if (m_footstepSounds.Count > 0 && m_audioSource ) {
+                int rand = Random.Range( 0, m_footstepSounds.Count -1 );
+                m_audioSource.PlayOneShot( m_footstepSounds[rand] );
+            }
+        }
+        ```
+- ADVANCED - CONTEXTUAL SOUND THEORY & SCENE SETUP.mp4
+    - we will raycast from the positon of foots towards the groud, and we check what's the tag of the groud , and we will play sound based on this tag.
+    ```csharp
+    // you need first serialize left/right foot
+    public void PlayFootstepSound( int footIndex ) {
+        if (footIndex == 0) {
+            RayCastTerrain( m_leftFoot.position) ;
+        } else if (footIndex == 1) {
+            RayCastTerrain( m_rightFoot.position) ;
+        }
+    }
+    ```
+    - first we need to change the platform's(ground) `Layer` tag, add a new layer `Terrain`, 
+        - and then add tags `Grass`, `Stone`, `Earth`, ... 
+        - create multiple terrains, and assign different tag to them
+    ```csharp
+    void RayCastTerrain( Vector3 position) {
+        LayerMask layerMask = LayerMask.GetMask("Terrain") ;
+        Ray ray = new Ray(position, Vector3.down);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, layerMask  )) {
+            string hitTag = hit.collider.gameObject.tag ;
+            if (hitTag = "Grass" ) {
+                PlayRandomSound( m_runGrassSounds) ;
+            }
+            else if (hitTag = "Stone" ) {
+                ...
+            }
+            ...
+        }
+    }
+    ```
+- PLAYER TURNING TOWARDS CAMERA DIRECTION & OUTRO
+    ```c#
+    // Camera_logic.cs
+    public vector3 GetForwardVector() {
+        Quaternion rotation = Quaternion.Euler(0, m_rotationY, 0) ;
+        return rotation * Vector3.forward; 
+    }
+
+    // player_logic.cs
+    private void FixedUpdate() {
+        ...
+        // if player move...
+        if (Mathf.Abs(m_horizontalInput)>0.1f || Mathf.Abs( m_verticalInput )>0.1f ) {
+            transform.forward = m_cameraLogic.GetForwardVector();
+        }
+    }
+    ```
+
+## Module 6: Saving & Loading using PlayerPrefs
+
+- animator parameter : trigger
+    ```csharp
+    m_animator.SetTrigger("PlayerNearby");
+    ```
+
+
+## Module 7: Controller Input, Local Multiplayer & VFX
+
+## Module 8: UI, XML, Localization, Scene Load & Build .exe
+
 
 
 
