@@ -461,7 +461,7 @@
     - Download & Import .FBX to Unity
 - IMPORTING & SETTING UP THE CHARACTER
     - in practice: 
-        - put the model fbx ( e.g. xx.fbx )    in `Models` folder
+        - put the model fbx for unity ( e.g. xx.fbx )    in `Models` folder
         - put the animation fbxs ( e.g. xx@Idel.fbx ) in `Animation` folder
     - you may not need to adjust the model , for animations, if you want it loop,  in its Animation tab, check the `Loop Time` & `Loop Pose`, and apply
         - it's also a good practice  for animations to use the same Rig. In its Rig tab, change the Avatar definition from `Create From This Model` to `Copy From Other Avart` and select the model fbx.
@@ -555,14 +555,103 @@
 
 - animator parameter : trigger
     ```csharp
+    m_enemyState = EnemyState.StandingUp;
     m_animator.SetTrigger("PlayerNearby");
     ```
-
+- Behavior State Machine
+    - we want the zombie move after he standing up
+    - within the animator editor,  select the `Zombie Stand up` state, click `Add Behavior`  to add a new script
+        ```csharp
+        public class EnemyBehavior: StateMachineBehavior {
+            ...
+            override public void OnStateExit( Animator animator, AnimatorStateInfo stateinfo, int layerIndex ) {
+                EnemyLogic enemyLogic = animator.GetComponent<EnemyLogic>();
+                if (enemyLogic) {
+                    enemyLogic.SetState( EnemyState.Attack ) ;
+                }
+            }
+        }
+        ```
+- enemy weak point: use a collider trigger as a collision box
+- Saving
+    ```csharp
+    PlayerPrefs.SetFloat( "PlayerPosX", transform.position.x );
+    ...
+    PlayerPrefs.Save();
+    ```
+- Loading
+    ```csharp
+    float playerPosX = PlayerPrefs.GetFloat( "PlayerPosX" ) ;
+    ```
 
 ## Module 7: Controller Input, Local Multiplayer & VFX
 
-## Module 8: UI, XML, Localization, Scene Load & Build .exe
+- Project Setting - Input
+    - Edit > Project Settings ... > Input
+    - You can duplicated the existing setting, and name your own, e.g. "Horizontal_P1", "Horizontal_P2"
+- INPUT
+    - GetButton(), GetButtonDown()
+    - GetAxis()  smoothing on the values
+    - GetAxisRaw()  no smoothing
 
+- SHOOTING A FIREBALL
+    - Instantiate Object based on hand transform
+        - run game, pause game, adjust animation to the frame you want to cast a fireball,  add fireball spawn postion object to the right-hand, copy its transform data
+        - stop the game
+        - re-add fireball spawn postion, paste the transform data we copied
+    - Initialize Fireball movement at correct time using animation event
+        ```csharp
+        Instantiate( m_fireball, m_fireballSpawn.transform.position, transform.rotation );
+        ```
+    - Attach Rigidbody and Trigger to detect collision
+- particle Emitter
+    - right-click > Effects > Particle System
+    - get fireball effects...
+        1. assetstore.unity.com
+        2. search `explosion`,  in Publisher search bar , input `unity` , and then you will find free asset pack
+- procedurally play a particle effect which doesn't PlayOnAwake
+    ```csharp
+    // fileball_logic.cs
+    m_collider.enable = false; // disable the collider
+    m_fireball.Stop(true);  // stop the current particle effect
+    m_explosion.Play(true);  // play a new one, explosion effect should be not play on awake, and disable looping
+    m_rigidBody.velocity = Vector3.zero;  // stop fireball moving
+    ```
+- EVENTS & DELEGATES
+    - so far, when we want to call a function in a class, we need to access to that object. Now we're going to learn event & delegates.
+    - we can ``send events`` with parameters from class X;  **Subscrib/Listen** to events from class Y; Multiple classes can react to events without having access to each other.
+    ```csharp
+    // PlayerLogic.cs
+    // Events
+    public delegate void PlayerDeath(int playerNum) ;
+    public static event  PlayerDeath OnPlayerDeath ; 
+
+    // Increase the score for the opposing player
+    public void Die() {
+        ...
+        if (OnPlayerDeath != null) {
+            // wheneven the player dies, we will call this event 
+            OnPlayerDeath( GetPlayerNum() );
+        }
+    }
+    ```
+    ```csharp
+    // UIManager.cs
+    void OnEnable() {
+        // subscribe to the event
+        PlayerLogic.OnPlayerDeath += OnUpdateScore;
+    }
+
+    void OnDisable() {
+        PlayerLogic.OnPlayerDeath -= OnUpdateScore;
+    }
+    void OnUpdateScore(int playerNum) {
+        ...
+    }
+    ```
+
+
+## Module 8: UI, XML, Localization, Scene Load & Build .exe
 
 
 
