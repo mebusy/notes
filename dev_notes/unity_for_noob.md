@@ -689,8 +689,12 @@
     - Add Canvas
         - automatially added when adding text
     - Add Text, Button (component)
+        - button interact:  set callback function in Button(Script)'s `On Click()` field
+        - set button status `selected`:
+            ```cs
+            m_somebutton.Select();
+            ```
     - Setup Anchor Alignment
-        - interact:  set callback function in Button(Script)'s `On Click()` field
     - Setup Hover & Select Color
 - Localization file
     - English.xml
@@ -796,6 +800,12 @@
     public void OnQuitClicked() {
         Application.Quit();
     }
+    ```
+- activate / de-activate an gameobject
+    ```cs
+    obj.SetActive(true);
+    ...
+    obj.SetActive(false);
     ```
 
 ---
