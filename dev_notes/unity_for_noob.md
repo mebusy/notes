@@ -583,6 +583,34 @@
     ```csharp
     float playerPosX = PlayerPrefs.GetFloat( "PlayerPosX" ) ;
     ```
+- a modern thead-safe singleton in Unity
+    ```csharp
+    public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+    {
+        private static readonly Lazy<T> LazyInstance = new Lazy<T>(CreateSingleton);
+
+        public static T Instance => LazyInstance.Value;
+
+        private static T CreateSingleton()
+        {
+            var ownerObject = new GameObject($"{typeof(T).Name} (singleton)");
+            var instance = ownerObject.AddComponent<T>();
+            DontDestroyOnLoad(ownerObject);
+            return instance;
+        }
+    }
+
+    //usage:
+    public class GameManager : Singleton<GameManager> {
+        …
+    }
+    ```
+    - requires enabling the .NET 4 scripting runtime to access the `Lazy<T>` type.
+        1. Open player settings in the Unity Inspector by selecting Edit > Project Settings > Player.
+        2. Under the Configuration heading, click the Scripting Runtime Version drop-down and select .NET 4.x Equivalent. You will have to restart Unity for the change to take effect.
+    - The advantage of this is that `Lazy<T>` handles the thread-safety out of the box and we don’t have to do any locking ourselves.
+    - Create an empty GameObject, attach our component to it and finally mark it so that it won’t be destroyed when new scene is loaded.
+
 
 ## Module 7: Controller Input, Local Multiplayer & VFX
 
@@ -653,7 +681,122 @@
 
 ## Module 8: UI, XML, Localization, Scene Load & Build .exe
 
+- MainMenu
+    - Create Scene
+    - Add BG
+        - create a plane
+        - add a material, or just drag a picture onto it as a texture
+    - Add Canvas
+        - automatially added when adding text
+    - Add Text, Button (component)
+    - Setup Anchor Alignment
+        - interact:  set callback function in Button(Script)'s `On Click()` field
+    - Setup Hover & Select Color
+- Localization file
+    - English.xml
+        ```xml
+        <Localization>
+            <Entry>
+                <Key>Title</Key>
+                <Value>UI MainMenu</Value>
+            </Entry>
+            <Entry>
+                <Key>Start</Key>
+                <Value>Start</Value>
+            </Entry>
+        </Localization>
+        ```
+    - Chinese.xml
+        ```xml
+        <Localization>
+            <Entry>
+                <Key>Title</Key>
+                <Value>界面主菜单</Value>
+            </Entry>
+            <Entry>
+                <Key>Start</Key>
+                <Value>开始</Value>
+            </Entry>
+        </Localization>
+        ```
+- Load Localization files from Resources Folder
+        ```csharp
+        public enum Languages {
+            English,
+            Chinese
+        }
+        ...
 
+        Dictionary<Languages, TextAsset> m_localizationFiles = new Dictionary<Languages, TextAsset>();
+        Dictionary<string, string> m_localizationData = new Dictionary<string, string>() ;
+
+        void SetupLocalizationFiles() {
+            foreach( Languages language in Languages.GetValues( typeof(Languages) ))  {
+                string textAsetPath = "Localization/" + language;
+                TextAsset textAsset = (TextAsset) Resources.Load(textAssetPath);
+                if (textAsset) {
+                    m_localizationFiles[textAsset.name] = textAsset;
+                } else {
+                    Debug.LogError( "TextAsset not found:" + textAssetPath );
+                }
+            }
+        }
+        ```
+    - Create Dictionary of Key and Value from XML
+    - Create Dictionary of Key and Value from XML
+    - Retrieve Localized string from Data
+- Make an object to exist in multiple scenes
+    ```csharp
+    void Start() {
+        // this object won't be destroyed when loading a new scene
+        DontDestoyOnLoad(gameobject);
+    }
+    ```
+- READING LOCALIZATION DATA
+    ```csharp
+    void SetupLocalizationData() {
+        TextAsset textAsset;
+        if(m_localizationFiles.ContainKey(m_currentLanguage)) {
+            textAsset = m_localizationFiles[m_currentLanguage];
+        } else {
+            Debug.LogError("Couldn't find localization file for: " + m_currentLanguage );
+            // default
+            textAsset = m_localizationFiles[Languages.English];
+        }
+        // +Using System.Xml
+        XmlDocument xmlDocument = new XmlDocument();
+        xmlDocument.LoadXml( textAsset.text ) ;
+
+        XmlNodeList entryList = xmlDocument.GetElementsByTagName("Entry");
+
+        foreach(XmlNode entry in entryList) {
+            if (!m_localizationData.ContainKey( entry.FirstChild.InnerText )) {
+                // add key-value
+                m_localizationData.Add(  entry.FirstChild.InnerText ,  entry.LastChild.InnerText );
+            }
+        } 
+    }
+    ```
+    ```cs
+    public string GetLocalizedString(string key) {
+        string localizedString = "";
+        if(!m_localizationData.TryGetValue(key, out localizedString)) {
+            localizedString = "MISS LOC KEY: "  + key;
+        }
+        return localizedString;
+    }
+    ```
+- Load Scene
+    ```cs
+    using UnityEngine.SceneManagement;
+
+    public void OnStartClicked() {
+        SceneManager.LoadScene( "GameScene" ) ;
+    }
+    public void OnQuitClicked() {
+        Application.Quit();
+    }
+    ```
 
 ---
 
