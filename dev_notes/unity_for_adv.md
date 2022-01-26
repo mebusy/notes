@@ -173,11 +173,72 @@
 
 ## 4 - Source Control & Creating a FPS game
 
+- in order to set unity for source control,  Project Settings/Editor
+    - Version Control ->  `Visible Meta Files`
+    - Asset Serializtion -> `Force Text`
+- unity folders shouble be ignored by SCM
+    - Library/ , obj/ , Temp/
+
 ## 5 - Multiplayer Networking
+
+- UNet [Command] & [ClientRpc]
+    - let's say a player wants to shoot, you would use a [Command] function.
+    - let's say you shoot at other player, and other player dies, and the server want to broadcast the dying to all other players, in that case you uses [ClientRpc]
+- [SyncVar] + [ClientRpc] to sync varialbes
+    - `[SyncVar]` declare that this variable will be sync whenever a new client joins
 
 ## 6 - Advanced Multiplayer Networking
 
 ## 7 - Unity2D, Performance Optimization & ECS Intro
 
+- Sprite Sheet
+    1. import your sprite sheet into unity, in inspector, et `Sprite Mode` to `Multiple`, apply
+    2. launch Sprite Editor, `Slice` it, add Apply.
+    3. you can click each sprite, see its name, position, border , etc...
+    4. in assets windows, drag the sprite you want to use into the scene
+- If you enlarge the sprite ( by scaling ), it will blur.
+    - solve it by setting the sprite sheet `Filter Mode` to `Point (no filter)`
+- 2D Movement using Rigidbody2D
+    - CharacterController is NOT available in Unity2D, use Rigidbody2D instead
+    - Calculating movement using input is similar, now useing Vector2
+    ```cs
+    m_rigidBody.MovePosition( m_rigidBody.position + m_movementVelocity * Time.deltaTime );
+    ```
+- Animating Sprites
+    - name sprites using Spritesheet Editor
+    - Open Animation window adn setup sprites in order
+        - select the charactor ,  Window > Animation > Animation > Create
+        - it will also automatically create an Animator Controller
+    - setup Animator Controller for Player Sprite
+- 2D Triggers & attack collisions
+    - Setup BoxCollider2D around character
+    - Make as Trigger
+    - Activate during Attack using View Direction
+        ```cs
+        m_hitColliders[index].enabled = true;
+        ```
+    - Deactivate after Attack
+        ```cs
+        m_hitColliders[index].enabled = false ;
+        ```
+- Add a sprite as bg
+    1. create 2D Object > Sprite
+    2. draw image to the sprite renderer
+    3. rescale it
+- UI
+    - create UI > ...
+    - Canvas , UI Scale Mode -> Scale with Screen Size
+- Profiler
+    - Window > Analysis
+    - When you open profile windows, be sure to turn on `Deep Profile`
+- performance optimization
+    - use Static Batching when possible
+    - Reduce & Reuse Textures
+    - Use Culling to reduce Rendered Objects
+        - default by camera
+    - Optimize objects using LOD
+    - Optimize Physics calculations using LayerMasks
+        - when using raycast, you won't want to check every collider
+    - Use simple colliders and don't overuse Rigidbodies
 
 
