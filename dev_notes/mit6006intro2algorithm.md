@@ -243,11 +243,27 @@ Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
 - How do we design recursive algorithm ?
     - SRTBOT : recursive alg. paradigm
         - **Sub-problems** definition
+            - if we think of the sub-problems as a graph, the vertices of the graph are sub-problems, 
         - **Relations** subproblem solutions recursively
-        - **Topological order** on subproblems, to guarantee acycl
+            - the edges are the dependencies between those sub-problems.
+        - **Topological order** on subproblems, to guarantee acyclic
+            - what we'd like is the topological ordering, the sub-problems, or the recursive calls between them forms a DAG.
         - **Base case** of relation
         - **Original problem** solve via subproblems
         - **Time** analysis
     - DP ≈ recursion + memoization
         - dynamic programming is going to build on `SRTBOT` template by adding one new idea called memoization, which is just the idea of resuing work that you've done before.
+- Example: Fibonacci numbers
+    - F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub>
+    - Sub-problems: F(i) = F<sub>i</sub> , 1≤i≤n
+    - Relate: F(i) = F(i-1) + F(i-2)
+    - Topo order: increasing i, for i=1,2,...n
+    - Base case: F(1) = F(2) = 1
+    - Original Problem: F(n)
+    - Time : exponential
+- BIG IDEA: Memoization
+    - remember & re-use solutions to sub-problems.
+    - Fib Time: O(n)
+
+
 
