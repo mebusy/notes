@@ -57,6 +57,8 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
 - Canonical "clip space" view volume
     - D3D/XNA,   map z to [0,1] 
     - OpenGL/Unity, map z to [-1,1]
+- World Coordinate System Quick Guide
+    - ![](https://www.techarthub.com/wp-content/uploads/coordinate-comparison-chart-full.jpg)
 
 <h2 id="71418df45ef46a0f40bd390be0bd5434"></h2>
 
