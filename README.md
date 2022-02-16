@@ -36,7 +36,6 @@
  a | b | c | d
 --- | --- | --- | ---
 [youtube: dot product](https://youtu.be/x_sftn4AjSc) | [youtube: random number](https://youtu.be/iDLXp3NHOQI) |
-[noise function](dev_notes/math4game_noise_based_RNG.md) |
 
 <h2 id="6967a2c7c19fa61c072a4b0a1072e9c7"></h2>
 
@@ -191,6 +190,7 @@ a | b | c | d
 --- | --- | --- | ---
 [PCG for every1](dev_notes/pcg_for_every1.md) | [PCG brogue](dev_notes/pcg_brogue.md) | 
 [dwarf fortress](dev_notes/dwarf_fortress_details.md) | [roguelike note](dev_notes/roguelike_note.md) | 
+[perlin noise](dev_notes/perlinnoise.md) | [noise function](dev_notes/math4game_noise_based_RNG.md) |
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 

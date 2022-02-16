@@ -58,6 +58,11 @@
 
 - [Intro2 TensorFlow 2](tensorflow2.md)
 
+**Pytorch**
+
+- [pytorch](pytorch.md)
+- [learning pytorch by example](pytorch_example.md)
+
 
 
 **Others**
