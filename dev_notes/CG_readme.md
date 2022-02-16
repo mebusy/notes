@@ -34,5 +34,6 @@
 5. [Cube Mapping](gpu_prog_for_video_game_25.md)
 6. [Projective Textures](gpu_prog_for_video_game_27.md)
 7. [Cook-Torrance Specular Models](gpu_prog_for_video_game_29.md)
-8. [DIY Postprocessing with the Built-In Pipeline, with a Taste of Deferred Rendering](gpu_prog_for_video_game_32.md)
-9. [Unity's Postprocessing Stack for the Built-In Pipeline](gpu_prog_for_video_game_33.md)
+8. [TODO: Updating Shaders for the Universal Render Pipeline](gpu_prog_for_video_game_30.md)
+9. [DIY Postprocessing with the Built-In Pipeline, with a Taste of Deferred Rendering](gpu_prog_for_video_game_32.md)
+10. [Unity's Postprocessing Stack for the Built-In Pipeline](gpu_prog_for_video_game_33.md)
