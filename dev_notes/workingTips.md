@@ -12,6 +12,8 @@
     - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
     - [youtube-dl download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
     - [using ffmpeg to convert video to mp3 (未验证)](#a8e23293ddbb3302f18d430ee2fdaaf2)
+    - [use ffmpeg select left audio channel and downgrade to mono](#160eb38b6a6c8f90bf98171aa12bb8d8)
+    - [use ffmpeg manipulate audio channel](#a2ccb84c0c3f7f1113c305a7f2499969)
     - [ab testing](#ac1edf8d7497b1d5b6039ad9656cdeee)
     - [check wheter `keep-alive` is  enabled by server](#e06944207d65338bc4b5d43aef44aef4)
     - [change .pem password](#60a277f978363c21b4ced8cb1ea9c06f)
@@ -181,12 +183,18 @@ ffmpeg -i sample.avi -q:a 0 -map a sample.mp3
 -q:a for variable bit rate:
 ```
 
+<h2 id="160eb38b6a6c8f90bf98171aa12bb8d8"></h2>
+
+
 ## use ffmpeg select left audio channel and downgrade to mono
 
 ```bash
 # ffmpeg -i input -map_channel 0.0.0 output
 ffmpeg -i xxx.m4a -map_channel 0.0.0 output.mp3
 ```
+
+<h2 id="a2ccb84c0c3f7f1113c305a7f2499969"></h2>
+
 
 ## use ffmpeg manipulate audio channel
 

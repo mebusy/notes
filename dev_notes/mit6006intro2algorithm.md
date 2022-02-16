@@ -1,7 +1,28 @@
+...menustart
+
+- [MIT 6.006 Notes](#7ba776bce613220d5206d2ccac2dc748)
+    - [2. Data Structures and Dynamic Arrays](#1a46d28a7efcf6f6d3a5ad3f3040ecae)
+        - [Dynamic Arrays ( Python lists )](#c2a6777ee7d6c9c3a2fdb1a57b03154a)
+    - [3. Sets](#de36f076100f55ed119a6d6bb497af5a)
+    - [4. Hashing](#9d4a24e513766f332d682189c849a10c)
+    - [5. Linear Sorting](#cf88d04fef26d8d9d16f85f510201fc0)
+    - [6. Binary Trees: Binary Search Tree](#d561cc5e985e698a302ceeb2af0cbfcf)
+    - [7. Binary Trees  AVL](#0ca49c9a278cb825739fc77e97f43bd8)
+    - [8. Binary Heaps](#559eadcb9167527662cd16aea8846422)
+    - [15. Dynamic Programming, Part 1: SRTBOT, Fib, DAGs, Bowling](#f1e318f860742d17a1970788cc87b50a)
+
+...menuend
+
+
+<h2 id="7ba776bce613220d5206d2ccac2dc748"></h2>
+
 
 # MIT 6.006 Notes
 
 interface: Sequences, Set, Priority Queue
+
+<h2 id="1a46d28a7efcf6f6d3a5ad3f3040ecae"></h2>
+
 
 ## 2. Data Structures and Dynamic Arrays
 
@@ -21,6 +42,9 @@ Dynamic Array | ***1*** | n | ***1***<sub>(a)</sub> | n
 - (static) arrays are great if you're doing random access and nothing dynamic, nothing adding or deleting.
 - dynamic arrays get all of the good running times of linked lists and all of the good running times of static arrays.
     - we won't get quite all of them, but most of them. 
+
+
+<h2 id="c2a6777ee7d6c9c3a2fdb1a57b03154a"></h2>
 
 
 ### Dynamic Arrays ( Python lists )
@@ -53,6 +77,9 @@ Dynamic Array | ***1*** | n | ***1***<sub>(a)</sub> | n
             - *amortized* means a particular kind of averaging over the sequence of operations
 
 
+<h2 id="de36f076100f55ed119a6d6bb497af5a"></h2>
+
+
 ## 3. Sets
 
 Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
@@ -62,6 +89,9 @@ Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
 **Array** | n | n | n | n | n
 **Sorted Array** | nlogn | logn | n | ***1*** | logn
 
+
+
+<h2 id="9d4a24e513766f332d682189c849a10c"></h2>
 
 
 ## 4. Hashing
@@ -104,12 +134,18 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
     - Python Dictionary/Set implementation: if whenever we are more than a linear factor away from the fill factor  we are trying to be, then we could just completely rebuild the hash table with the new hash fucntion, randomly chosen from our hash table with a new size, and we can get amortized bound.
 
 
+<h2 id="cf88d04fef26d8d9d16f85f510201fc0"></h2>
+
+
 ## 5. Linear Sorting
 
 - Tuple Sort
     - [ (3,2), (0,3), (4,4), (4,2), (2,2) ]
     - use a stable sorting,
         - least significant sort first, then do most significant sort again
+
+<h2 id="d561cc5e985e698a302ceeb2af0cbfcf"></h2>
+
 
 ## 6. Binary Trees: Binary Search Tree
 
@@ -140,6 +176,9 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
                 swap node.item <-> successor(node).item
                 subtree_delete( successor(node) )
     ```
+
+
+<h2 id="0ca49c9a278cb825739fc77e97f43bd8"></h2>
 
 
 ## 7. Binary Trees  AVL
@@ -175,6 +214,9 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
     - ![](../imgs/Tree_Rebalancing.png)
 - binary tree operation O(h)
 - AVL operation O(lgn)
+
+
+<h2 id="559eadcb9167527662cd16aea8846422"></h2>
 
 
 ## 8. Binary Heaps
@@ -236,6 +278,9 @@ Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
             swap Q[i] <-> Q[j]
             max_heapify_down(j)
     ```
+
+
+<h2 id="f1e318f860742d17a1970788cc87b50a"></h2>
 
 
 ## 15. Dynamic Programming, Part 1: SRTBOT, Fib, DAGs, Bowling

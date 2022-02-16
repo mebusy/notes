@@ -18,6 +18,8 @@
     - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
 - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
     - [策略](#66914536facf5b30973b236fb814d23f)
+        - [访问 COS 某个bucket的策略](#d255a9679389c247f2735458b48e299f)
+        - [操作 北京 区的cvm， 无支付权限](#e975ebbc1e61fec2da797cf6b13b038c)
 - [腾讯云 Misc](#4214290dc4bf8068d16758a84a3496a7)
     - [ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.](#d42d194dd306f76100f9b591fd878396)
     - [k8s node 磁盘占用过高查找并清理](#e8dfbb86e3e1d39df969144ae4d3f06b)
@@ -285,6 +287,9 @@ $ kubectl get nodes \
 
 ## 策略
 
+<h2 id="d255a9679389c247f2735458b48e299f"></h2>
+
+
 ### 访问 COS 某个bucket的策略
 
 ```json
@@ -311,6 +316,9 @@ $ kubectl get nodes \
     ]
 }
 ```
+
+<h2 id="e975ebbc1e61fec2da797cf6b13b038c"></h2>
+
 
 ### 操作 北京 区的cvm， 无支付权限
 
