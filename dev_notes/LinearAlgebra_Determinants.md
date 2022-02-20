@@ -62,7 +62,7 @@ Here is a light-hearted question about permutations. ***How many exchanges does 
 This will be a pretty long list. Fortunately each rule is easy to understand, and even easier to illustrate, for a 2 by 2 example. Therefore we shall verify that the familiar definition in the 2 by 2 case,
 
 ```
-det ⎡a b⎤ = |a b| = bc - ad 
+det ⎡a b⎤ = |a b| = ad - bc 
     ⎣c d⎦   |c d|
 ```
 
