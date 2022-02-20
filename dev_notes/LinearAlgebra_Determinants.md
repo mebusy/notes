@@ -77,18 +77,17 @@ We emphasize that the rules apply to *square matrices* of any size.
  2. *The determinant changes sign when two rows are exchanged*.
  3. *The determinant depends linearly on one row*. 
      1. Add vectors in row
-
-         ```
-         |a+a' b+b'| =|a b| + |a' b'|
-         |c    d   |  |c d|   |c  d |
-         ```
+        ```
+        |a+a' b+b'| =|a b| + |a' b'|
+        |c    d   |  |c d|   |c  d |
+        ```
      2. Multiply by *t* in row
-
-         ```
+        ```
         |ka kb| = k |a b|
         | c  d|     |c d|
         ```
-         - det2A = 2ⁿ detA
+        - PS. it is not the **false** statement `det(tA) = tdetA`. The matrix to has a factor tin every row (and the determinant is multiplied by t'). 
+            - for example, det2A = 2ⁿ detA  ( suppose A is nxn)
  4. *If two rows of A are equal, then det A = 0.*
     - deduce from rule 2 ,  r = -r => r = 0 
  5. *Subtracting k x row i from row j , leaves the same determinant*.  
