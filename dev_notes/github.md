@@ -190,6 +190,16 @@ $ git branch -d <branch_name>
     - `git push -f origin master`
 
 
+## delete all tags, local & remote
+
+```bash
+# delete remote tags before deleting locals
+git tag | xargs -L 1 | xargs git push origin --delete
+
+# then delete local tags
+git tag | xargs -L 1 | xargs git tag --delete
+```
+
 <h2 id="365a5d68e803e7cd517640176167c02b"></h2>
 
 
