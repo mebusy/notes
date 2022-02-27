@@ -35,7 +35,7 @@
 
  a | b | c | d
 --- | --- | --- | ---
-[youtube: dot product](https://youtu.be/x_sftn4AjSc) | [youtube: random number](https://youtu.be/iDLXp3NHOQI) |
+[youtube: dot product](https://youtu.be/x_sftn4AjSc) | [youtube: cross product](https://youtu.be/LQjNGvfhu74) |  [youtube: random number](https://youtu.be/iDLXp3NHOQI) |
 
 <h2 id="6967a2c7c19fa61c072a4b0a1072e9c7"></h2>
 
