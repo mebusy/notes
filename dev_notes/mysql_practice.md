@@ -166,12 +166,34 @@ where
 
 ## CASE ... WHEN ... ELSE... END
 
-```mysql
+CASE is one of the Control Flow Functions.
+
+name | Description | example
+--- | --- | --- 
+CASE | Case operator | 
+IF() | if/else construct | `if(m.title LIKE '%the%', 'THE MOVIE', NULL ) as msg`
+IFNULL() | if expr is null, return the 2nd parameter |  `IFNULL(expression, alt_value)`, kind of like `expression OR alt_value`
+NULLIF()  | return NULL if expr1 = expr2 | `NULLIF(m.genre,2)`  -- if equals 2, return NULL, or return that m.genre value
+
+- dynamically replace column values
+    ```mysql
+    SELECT m.movie_id, m_movie_title,
+    case m.genra_id
+        WHEN 1 THEN 'Cool Stuff'
+        WHEN 2 THEN 'Futuristic'
+        WHEN 123 THEN 'Something else'
+        ELSE CONCAT('GENRE ID ', m.genre_id )
+    END as genre
+    FROM movies as m
+    ```
+
+- another example
+    ```mysql
     WHERE m.p1 = ? OR m.p2 = ?  ORDER by   CASE 
         when (m.p1=?) and ((withdraw&1)<>0) then match_id - 10000000
         when (m.p2=?) and ((withdraw&2)<>0) then match_id - 10000000
         ELSE  match_id END   DESC LIMIT 20
-```
+    ```
 
 
 
