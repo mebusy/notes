@@ -34,25 +34,14 @@
         - [Feature-Based Representations](#0b5d3ca99a43d01394248c1aa1ef3313)
         - [Linear Value Functions](#57e2e557640ea36670bca3275dc3baef)
         - [Approximate Q-Learning](#668619154180bf7f1109c15ddd7bb574)
-        - [Example : Q-Pacman](#9f255bd21e3c3e685bca408fc92e97d4)
+        - [Approximate Q-Learning Example : Q-Pacman](#f4153220ab72806cc561ade1e2e17a69)
         - [Another example](#1a76030ec4ea873977b1ed0668f5f87a)
         - [总结](#25f9c7fa3b50aebe5125112ac1187777)
     - [Q-Learning and Least Squares](#dfd9c3589510f42d75cc643582c741ee)
-        - [Optimization: Least Squares *](#7c2917ddb383d4aca5702f57b1bf97a6)
-        - [Minimizing Error *](#431c26cfba3b0e63e31187e82c47bdd4)
-        - [Overfitting : Why Limiting Capacity Can Help *](#4d834ce4e64c89be3da78e77c76c4357)
     - [Policy Search](#20e0fd886eda9402c6c8c3dd18b4bb87)
     - [Conclusion](#6f8b794f3246b0c1e1780bb4d4d5dc53)
 - [More About Reinforcement Learning](#96bbd2b31616de4e05850fa5d1d2da71)
-    - [Q-Learning 的问题](#39e455faa2cee078107349ed5a79c485)
-    - [Deep Q Learning](#61f0ce8542a3f21f795b45c4c133c04c)
-    - [Policy Gradient](#d4680878cbefd1ce084325dd933e82f9)
-    - [Deep Deterministic Policy Gradient](#60ca1673615c7ff54bc9af8925335b66)
-- [Policy Gradients](#6c11e2dd65ad60a6dd6cf3a2be08fa0c)
-    - [和以往的强化学习方法不同](#241bce13578cf2fc98c72f432c5bc204)
-    - [更新不同之处](#1a843b1039c85dd724a126708a375915)
-    - [具体更新步骤](#edc520f80b6440121e2920f7f2caf86b)
-- [Q Learning  VS. Policy Gradient](#60e65bfe1069d9e782077a65bdd16a2a)
+    - [Q Learning  VS. Policy Gradient](#60e65bfe1069d9e782077a65bdd16a2a)
 
 ...menuend
 
@@ -959,7 +948,7 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 
 ---
 
-<h2 id="9f255bd21e3c3e685bca408fc92e97d4"></h2>
+<h2 id="f4153220ab72806cc561ade1e2e17a69"></h2>
 
 
 ### Approximate Q-Learning Example : Q-Pacman
