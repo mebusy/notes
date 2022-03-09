@@ -937,7 +937,7 @@ The first part of q-learning algorithm doesn't actually care where the q-value c
         - For an exact q-learner the update looks like this.  This is just an algebraic rewrite of the update that says take α of one and (1-α) of the other. This can delay calculation of α. 
     - `wᵢ ← wᵢ + α[difference]fᵢ(s,a)`    ( Approximate Q’s )
         - wᵢ + α[difference]·xᵢ
-    - 实现上，也可能每个 (state, action) 拥有特定的feature vector
+
 So we basically do is we keep our Q value around but we nudge it in the direction of this difference. So if we appear to be getting something a lot higher than we thought well we should raise our estimate. 
 
 Now if your q-valuse are a big table you simple look up this entry (s,a) you see it's 9.3, you cross out the 9.3 and you replace it with 9.8. It's really easy to increment a table. 
@@ -962,30 +962,28 @@ The intuitive interpretation is adjusting these weights . So if something bad ha
 <h2 id="9f255bd21e3c3e685bca408fc92e97d4"></h2>
 
 
-### Example : Q-Pacman
+### Approximate Q-Learning Example : Q-Pacman
 
-- dot feature
+- **dot feature**
     - how close will I be to the dot if I take action *a* , and I'll take the reciprocal of that distance.
     - so a big number means I'm basically getting close to a dot.
-- ghost feature
+- **ghost feature**
     - similar thing , if I close to a ghost , f<sub>ghost</sub> gets bigger 
 
 ![](../imgs/cs188_rl_qpacman_s.png)
 
 - Q(s,a) = 4.0·f<sub>dot</sub>(s,a) - 1.0·f<sub>ghost</sub>(s,a)
-- f<sub>dot</sub>(s, NORTH) = 0.5 
-    - because the closest dot is 2 away ???   , after having executed action a in state s
-- f<sub>ghost</sub>(s,NORTH) = 1.0 
-    - because the closest ghost is 1 away , after having executed action a in state s
-- Q(s,NORTH) = +1
-    - We compute that approximate Q is +1 for this Q state (s,NORTH).
-
-What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. Well what happens?  You move north you die.  You receive a -500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. 
-
-- a = NORTH , r = -500 => 
-- ![](../imgs/cs188_rl_qpacman_sp.png)   
-- ![](../imgs/cs188_rl_qpacman_3.png)
-- Q(s', . ) = 0
+- We have a world, we have a current experience.
+    - f<sub>dot</sub>(s, NORTH) = 0.5 
+    - f<sub>ghost</sub>(s,NORTH) = 1.0 
+    - Q(s,NORTH) = +1
+        - = 4.0 * 0.5 - 1.0 * 1  = 2 - 1 = 1
+    - What does that mean ? That means that according to our approximate q-value we think our score for the game from this point forward is going to be +1. 
+- Now, you move north, you die.  You receive a -500 reward and you end up in a state where the game is over and therefore the Q values are 0 by definition. 
+    - a = NORTH , r = -500 => 
+    - ![](../imgs/cs188_rl_qpacman_sp.png)
+    - ![](../imgs/cs188_rl_qpacman_3.png)
+    - Q(s', · ) = 0
 
 
 So now we think hard we say well I used to think before I had this experience that this state on the left was worth +1. Apparently that isn't what happened this time. This time it looks like I'm on track for the -500 I received plus a future discounted reward of 0 because the game ended. 
@@ -1089,31 +1087,22 @@ Now we should add the difference to weights:
 
 ## Q-Learning and Least Squares
 
-Now we're going to take a quick look and see why this update make sense. I told you this intuitive explanation which was look at your error and adjust the weight so that error gets smaller. In face we can use that idean to formally justify this approximate q-learning update. And the way we do that is we think back to a more general case of least square. 
+- Linear Approximation: Regression
+    - Prediction:  ŷ = w<sub>0</sub> + w<sub>1</sub>f<sub>1</sub>
+- Optimization: Least Squares
+    - total error = ∑<sub>i</sub> (y<sub>i</sub> - ŷ<sub>i</sub>)<sup>2</sup>
+    - y is the target value
+- Minimizing Error
+    - ![](../imgs/cs188_minimize_err.png)
+    - PS. the grandient goes uphill, so the negative sign disappear when updating `w`
+- Now how does it work in q-learning ? 
+    - The weights are the weights , 
+    - the target that you're trying to reach right is your experience from a one-step look ahead,
+    - and your prediction is your linear function. 
+    - So in fact this approximate q-learning that had an intuitive explanation but came out nowhere. In fact it corresponds to exactly the case of online least square. 
+    - ![](../imgs/cs188_minimize_err_in_QL.png)
+- [More MATH Details](LinearRegressionDerive.md)
 
-So in general we might want do some kind of linear approximation. In particular we have some feature vector maybe we've only got one feature f₁ of our input X. And we can have an prediction function which is linear *y* .  This can happen in multiple dimensions as well. 
-
-
-<h2 id="7c2917ddb383d4aca5702f57b1bf97a6"></h2>
-
-
-### Optimization: Least Squares *
-
-<h2 id="431c26cfba3b0e63e31187e82c47bdd4"></h2>
-
-
-### Minimizing Error * 
-
-Really what that means is for a small step size α you take your weight and you take a step in the direction away from the derivative with us of the error with respect to the weight and that is exactly our online q update which corresponds to fiddling to this line up and down. 
-
-Now how does it work in q-learning ? The weights are the weights , the target that you're trying to reach right is your experience from a one-step look ahead and your prediction is your linear function. So in fact this approximate q-learning that had an intuitive explanation but came out nowhere. In fact it corresponds to exactly the case of online least square. 
-
-[MORE MATH](LinearRegressionDerive.md)
-
-<h2 id="4d834ce4e64c89be3da78e77c76c4357"></h2>
-
-
-### Overfitting : Why Limiting Capacity Can Help *
 
 ---
 
@@ -1133,6 +1122,7 @@ In policy search what you do is you directly try to improve the policy.
 
 
 - Problem: often the feature-based policies that work well (win games, maximize utilities) aren’t the ones that approximate V / Q best
+    - it's related to good performance, but not directly tied to good performance
     - E.g. your value functions from project 2 were probably horrible estimates of future rewards, but they still produced good decisions
         - So in particular project , you wrote down `5 x dist_to_dot - 2 x dist_to_ghost` , that was almost certainly not the actual value of the state but distinguished good states from bad states. 
     - Q-learning’s priority: get Q-values close (modeling)
@@ -1147,9 +1137,9 @@ q-learning tries to get the values close. it does not try explicitly to make the
 
 The solution to this is to learn policies that maximize your rewards and do that directly in some way. And to not try so hard to figure out what the values that predict the rewards are , just learn the policies.
 
-- Solution: learn policies that maximize rewards, not the values that predict them
+- **Solution: learn policies that maximize rewards, not the values that predict them**
 
-- Policy search: start with an ok solution (e.g. Q-learning) then fine-tune by hill climbing on feature weights
+- **Policy search**: start with an ok solution (e.g. Q-learning) then fine-tune by hill climbing on feature weights
 
 So policy search in general start something "ok" solution.
 
@@ -1160,13 +1150,18 @@ For example you might do some Q-learning for a while or if you've got like a hel
 - Simplest policy search:
     - Start with an initial linear value function or Q-function
     - Nudge each feature weight up and down and see if your policy is better than before
+        - just like we did in local search for CSPs.  
+        - If it's bettern, we keep the change. If it's worse, we discard it. and we repeat.
+        - And over time, we might find the process better and better and better.
+    - So what does it mean if a set of weights is better or worse ?
+        - you need to execute the policy and see how well it does.
 - Problems:
     - How do we tell the policy got better?
     - Need to run many sample episodes!
-        - In general, policy search tends to be less sample-efficient, which means you need to collect more experience to learn to do well with policy search than you need with Q-learning.
+        - In general, policy search tends to be **less sample-efficient**, which means you need to collect more experience to learn to do well with policy search than you need with Q-learning.
     - If there are a lot of features, this can be impractical
 - Better methods exploit lookahead structure, sample wisely, change multiple parameters…
-
+    - we're not going to get into here.
 
 ---
 
@@ -1192,147 +1187,48 @@ For example you might do some Q-learning for a while or if you've got like a hel
 
 # More About Reinforcement Learning
 
-<h2 id="39e455faa2cee078107349ed5a79c485"></h2>
+- Q-Learning 的问题
+    - 如果state 很多，我们维护这么大的一个 q-value table
+        - Feature-Based Representations 是一个解决方法
+        - 但是如果输入是一张 raw pic , 不容易从 picture 中提取 feature
+    - Neural Network可以很好对图片提取特征信息，进行抽象，分类等
+- Deep Q Learning
+    - ![](../imgs/rl_deep_ql.png)
+    - Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
+    - 还有一种更加 End to End的方法，叫做Policy Gradient
+- Policy Gradient
+    - Deep Q Learning 用Ｑ网络去估计Q 表然后在规定一种策略去依据Ｑ值采取行动不同
+    - Policy Gradient 的策略网络直接输出的就是策略，比如采取每一种行动的概率（对于离散控制问题），或者每一个动作的值（对于连续控制问题）。
+    - ![](../imgs/rl_pg_network.png)
+    - 优点
+        - 更加的 End to End，不用借用强化学习的理论框架。
+        - 可以通过直接输出动作相应的连续量处理连续的控制量
+            - 比如对于汽车来说，油门的力度，刹车力度，转向角度
+            - 用通过Ｑ值选动作的方法则无法处理连续量
+    - 在Policy Gradient　中我们希望学会一个策略能够达到最大的期望回馈
+        - π<sub>θ</sub>(s) 表示策略 
+        - θ 表示 策略网络的 weight 
+        - 通过学习不断更新。目标函数可以表示为 J(θ) = E<sub>π(θ)</sub>[r] 
+        - ![](../imgs/rl_pg_derivative_J_theta.png)
+            - 由此导数，我们可以把每轮的折扣回馈 v<sub>t</sub> 看作改 state 真实价值 G<sub>t</sub> 的无偏估计
+            - 利用Gradient ascent的方法 ， 不停地更新 θ 训练一个能够达到最大期望回馈的策略网络。
+            - ![](../imgs/rl_pg_update_theta.png)
 
+    - PG 听起来很美好 , 实践中会有很多致命的问题让它很难收敛
+        1. 反馈分配: 反馈在大多时候都是不存在的
+            - 比如赛车游戏，只有游戏结束，例如到达终点或者撞墙而亡的时候才收到反馈
+            - 如何将反馈很好的和之前进行的一系列策略和动作联系到一起去是一个很大的问题
+        2. 算法有一个内在的假设，假设所有的抽样都是独立，并且处于相同分布的(independently and identically distributed, iid )
+            - 但是实际上，在游戏进行的过程中，同一时间段前后的抽样是明显具有相关性的，这个iid假设并不成立，也就会影响到学习的效果
+        3. 反馈噪音 
+            - 在我们通过获取反馈，折扣，然后ＴＤ来更新Ｑ值的方法，或者直接估计策略的方法中，这些反馈信号都有非常多的噪声，这些噪声可能会让整个网络很难收敛，甚至很容易发散。
+    - 直到发现这个更加高级的方法DDPG
 
-## Q-Learning 的问题
-
-- 如果state 很多，我们维护这么大的一个 q-value table
-    - Feature-Based Representations 是一个解决方法
-    - 但是如果输入是一张 raw pic , 不容易从 picture 中提取 feature
-- Neural Network可以很好对图片提取特征信息，进行抽象，分类等
-
-<h2 id="61f0ce8542a3f21f795b45c4c133c04c"></h2>
-
-
-## Deep Q Learning
-
-![](../imgs/rl_deep_ql.png)
-
-- Deep Q Learning 依然是Q Learning , 只是用神经网络去代替了Q Table
-- 还有一种更加 End to End的方法，叫做Policy Gradient
-
-<h2 id="d4680878cbefd1ce084325dd933e82f9"></h2>
-
-
-## Policy Gradient
-
-- Deep Q Learning 用Ｑ网络去估计Q 表然后在规定一种策略去依据Ｑ值采取行动不同
-- Policy Gradient 的策略网络直接输出的就是策略，比如采取每一种行动的概率（对于离散控制问题），或者每一个动作的值（对于连续控制问题）。
-
-![](../imgs/rl_pg_network.png)
-
-- 优点
-    - 更加的 End to End，不用借用强化学习的理论框架。
-    - 可以通过直接输出动作相应的连续量处理连续的控制量
-        - 比如对于汽车来说，油门的力度，刹车力度，转向角度
-        - 用通过Ｑ值选动作的方法则无法处理连续量
-- 在　Policy Gradient　中我们希望学会一个策略能够达到最大的期望回馈
-    - π<sub>θ</sub>(s) 表示策略 
-    - θ 表示 策略网络的 weight 
-    - 通过学习不断更新。目标函数可以表示为 J(θ) = E<sub>π(θ)</sub>[r] 
-    - ![](../imgs/rl_pg_derivative_J_theta.png)
-        - 由此导数，我们可以把每轮的折扣回馈 v<sub>t</sub> 看作改 state 真实价值 G<sub>t</sub> 的无偏估计
-        - 利用Gradient ascent的方法 ， 不停地更新 θ 训练一个能够达到最大期望回馈的策略网络。
-        - ![](../imgs/rl_pg_update_theta.png)
-
-- PG 听起来很美好 , 实践中会有很多致命的问题让它很难收敛
-    1. 反馈分配: 反馈在大多时候都是不存在的
-        - 比如赛车游戏，只有游戏结束，例如到达终点或者撞墙而亡的时候才收到反馈
-        - 如何将反馈很好的和之前进行的一系列策略和动作联系到一起去是一个很大的问题
-    2. 算法有一个内在的假设，假设所有的抽样都是独立，并且处于相同分布的(independently and identically distributed, iid )
-        - 但是实际上，在游戏进行的过程中，同一时间段前后的抽样是明显具有相关性的，这个iid假设并不成立，也就会影响到学习的效果
-    3. 反馈噪音 
-        - 在我们通过获取反馈，折扣，然后ＴＤ来更新Ｑ值的方法，或者直接估计策略的方法中，这些反馈信号都有非常多的噪声，这些噪声可能会让整个网络很难收敛，甚至很容易发散。
-- 直到发现这个更加高级的方法DDPG
-
-<h2 id="60ca1673615c7ff54bc9af8925335b66"></h2>
-
-
-## Deep Deterministic Policy Gradient
-
-- 动作网络 Actor Network 用于直接估计动作
-    - 就像低配版 Policy Gradient中的 Policy Network，输入State，给出动作值 Actions
-    - 从Critic Network 对应 Actions 输入计算出的导数来进行更新。
-- 校正网络 Critic Network 用来估计Q值
-    - 输入 State 的同时还输入由Actor Network 产生的 Actions，给出相应的 Q 值
-    - 并不断的用 bellman equation来进行更新 
-- 动作方程 actor function 表示为: μ(s|θ<sup>μ</sup>)
-- 校正方程 critic function 表示为: Q(s,a | θ<sup>Q</sup> ) 
-- Cost function J 对于\theta的导数为：
-    - ![](../imgs/rl_DDPG_derivative_J_theta.png)
-- 这个算法将对动作的Q值估计和策略估计给分离，让 agent 能够在探索更多的同时保持对一个确定策略的学习，让整个网络学习变得更容易。
-- 其他 更有利于网络的收敛 的小技巧 （小，但是很有用）
-    - Replay Buffer
-        - 近乎于无限大的缓存，每次进行动作以后得到的 状态-动作-反馈- 新状态 (s<sub>t</sub>,a<sub>t</sub>, r<sub>t</sub>,s<sub>t+1</sub> ) 都会被保存到这个缓存中去
-        - 不同于之前直接拿游戏进行过程中得到的 (s<sub>t</sub>,a<sub>t</sub>, r<sub>t</sub>,s<sub>t+1</sub> )  来进行训练
-        - 采用了Replay Buffer 以后，训练采用的 sample 则从这个缓存中随机抽样，通过这样的方法，理论上可以打破抽样直接的相关性，解决iid假设不成立的困扰
-    - Target Network
-        - 在训练过程中，由于环境是相对混沌的，用于更新Q网络的反馈具有很大的噪声
-        - 直接训练一个网络会非常容易让它发散而非收敛。
-        - 目标网络Target Network 用来创建 Actor和Critic网络的副本, μ'(s|θ<sup>μ</sup>)  ,  Q'(s,a | θ<sup>Q</sup> ) 来计算目标值，然后以τ 的比例缓慢的跟随原网络更新
-            - τθ' ← τθ + (1-τ)θ'
-
-
-
----
-
-
-<h2 id="6c11e2dd65ad60a6dd6cf3a2be08fa0c"></h2>
-
-
-# Policy Gradients
-
-<h2 id="241bce13578cf2fc98c72f432c5bc204"></h2>
-
-
-## 和以往的强化学习方法不同
-
-- 强化学习是一个通过奖惩来学习正确行为的机制.
-- 有学习奖惩值, 根据自己认为的高价值选行为 , 比如 Q learning, Deep Q Network,
-    - 无法在 无穷多的动作中计算价值, 从而选择行为
-- 也有不通过分析奖励值, 直接输出行为的方法,   Policy Gradients 
-    - 能在一个连续区间内挑选动作
-
-<h2 id="1a843b1039c85dd724a126708a375915"></h2>
-
-
-## 更新不同之处
-
-- Policy Gradients 的误差又是什么呢?
-    - 没有误差! 
-- 但是他的确是在进行某一种的反向传递. 
-    - 这种反向传递的目的是让这次被选中的行为更有可能在下次发生.
-- 但是我们要怎么确定这个行为是不是应当被增加被选的概率呢?
-    - reward
-
-![](../imgs/rl_pg_error.png)
-
-<h2 id="edc520f80b6440121e2920f7f2caf86b"></h2>
-
-
-## 具体更新步骤
-
-![](../imgs/rl_pg_update_step.png)
-
-- 观测的信息通过神经网络分析, 选出了左边的行为
-- 我们直接进行反向传递, 使之下次被选的可能性增加.
-- 但是奖惩信息却告诉我们, 这次的行为是不好的, 那我们的动作可能性增加的幅度 随之被减低.
-- 这样就能靠奖励来左右我们的神经网络反向传递
-- 再来举个例子, 假如这次的观测信息让神经网络选择了右边的行为, 
-- 右边的行为随之想要进行反向传递, 使右边的行为下次被多选一点,
-- 这时, 奖惩信息也来了, 告诉我们这是好行为, 那我们就在这次反向传递的时候加大力度, 让它下次被多选的幅度更猛烈! 这
-- 这就是 Policy Gradients 的核心思想
-
-
-
-
----
 
 <h2 id="60e65bfe1069d9e782077a65bdd16a2a"></h2>
 
 
-# Q Learning  VS. Policy Gradient
+## Q Learning  VS. Policy Gradient
 
  · |  Q Learning  |  Policy Gradient
 --- | --- | --- 
