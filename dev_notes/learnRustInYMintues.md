@@ -429,7 +429,7 @@ let mut now_its_mine = mine;
     // this would not compile because `var2` is borrowed.
     // var2 = 2; 
     ```
-
+- Rust compiler guarantee `pointer` not be null.
 
 <h2 id="bf17ac149e2e7a530c677e9bd51d3fd2"></h2>
 
