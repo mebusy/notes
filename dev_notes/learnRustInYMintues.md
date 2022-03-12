@@ -200,7 +200,6 @@ let origin: Point = Point { x: 0, y: 0 };
 ### Enum
 
 - Basic C-like enum
-    -
     ```rust
     enum Direction {
         Left,
@@ -212,7 +211,6 @@ let origin: Point = Point { x: 0, y: 0 };
     let up = Direction::Up;
     ```
 - Enum with fields
-    -
     ```rust
     enum OptionalI32 {
         AnI32(i32),
@@ -221,6 +219,7 @@ let origin: Point = Point { x: 0, y: 0 };
     let two: OptionalI32 = OptionalI32::AnI32(2);
     let nothing = OptionalI32::Nothing;
     ```
+    - that is, **Option is an enum** !
 
 <h2 id="0d7bdbf7f4e4f0dc8ed310a01dee3502"></h2>
 
