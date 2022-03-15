@@ -144,7 +144,7 @@ a | b | c | d
  a | b | c | d
 --- | --- | --- | ---
 [redis 基础数据结构](dev_notes/redis.md) | [redis 数据库实现](dev_notes/redis2.md) | [redis 独立功能的实现](dev_notes/redis3.md) | 
-[redis tips](dev_notes/redis_tips.md) | [redis patterns](dev_notes/redis_pattern.md) | 
+[redis tips](dev_notes/redis_tips.md) | [redis patterns](dev_notes/redis_pattern.md) |  [redis pub/sub vs. stream](dev_notes/redis_pubsub_vs_stream.md) | 
 [mysql内部笔记](dev_notes/mysql.md) | [mysql 锁](dev_notes/mysql_lock.md) | [mysql索引正确打开方式](dev_notes/mysql_index.md) | [mysql实践](dev_notes/mysql_practice.md)
 [swagger](dev_notes/swagger.md) |  [backend tips](dev_notes/backend_tips.md) |  [tcpip笔记](dev_notes/tcpip.md) | 
 [React哲学](dev_notes/react_philosophy.md)  |  [web frontend tips](dev_notes/web_frontend_note.md) | [js tips](dev_notes/nodejs_tips.md) 
