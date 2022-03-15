@@ -42,7 +42,8 @@ let ( my_name, my_age ) = ( "Brad", 43 );
 ### Scalar Types
 
 - integers
-    - i8,i32,u64,...
+    - i8,i32,u64,..., 
+    - isize,usize (pointer-sized, how many bytes it takes to reference any location in memory) 
 - floating-point numbers
     - f32,f64
 - Booleanbs
@@ -74,6 +75,8 @@ let ( my_name, my_age ) = ( "Brad", 43 );
     // Get Slice
     let slice: &[i32] = &numbers;
     ```
+    - `:?` mark here is what's called a **debug flag**, and since arrays have a debug **trait** built into them, so we can do it this way.
+    - if we want the print more pretty, we can use `:#?`
 
 
 ## Strings
