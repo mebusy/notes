@@ -115,6 +115,13 @@ for x in numbers.iter_mut() {
         // break;
     }
     ```
+    ```rust
+    // loop label
+    'a: loop {
+        ...
+        break 'a
+    }
+    ```
 - While Loop
     ```rust
     while count < 100 {
@@ -125,6 +132,26 @@ for x in numbers.iter_mut() {
     ```rust
     for x in 0..100 {
         ...
+    }
+    ```
+- Match
+    ```rust
+    let x = 5;
+    match x {
+        1 => println!("one"),
+        2|3|5|7|11 => println!("primer"),
+        13...19 => println!("A tean"),
+        _ => println!("something else"),
+    }
+    ```
+    ```rust
+    let pair = (2,0);
+    match pair {
+        (x,0) => println!("x:{}", x ),
+        (0,y) => println!("y:{}", y ),
+        (x,y) if x+y==0  => println!("x+y=0" ),
+        (x,_) if x%2==0  => println!("x is even" ),
+        _ => println!("no match" ),
     }
     ```
 
@@ -214,11 +241,15 @@ define functions associated with that Person struct:
 
 ```rust
 impl Person {
-    // Constructor
-    fn new(first: &str, last: &str) -> Person {
-        first_name: first.to_string(), 
-        last_name: last.to_string()
+    // Constructor ( without &self )
+    // Self here means the struct itself
+    fn new(first: &str, last: &str) -> Self {
+        Self {
+            first_name: first.to_string(), 
+            last_name: last.to_string()
+        }
     }
+
 
     // Get full name
     fn full_name(&self) -> String {
@@ -237,7 +268,9 @@ to use it:
 ```rust
 let mut p = Person::new("John", "Doe");
 // p.first_name
+// p.full_name()
 ```
+
 
 
 ## Enums
@@ -245,19 +278,35 @@ let mut p = Person::new("John", "Doe");
 ```rust
 enum Movement {
     // Variants
-    Up,
-    Down,
-    Left,
+    Up(u32,u32,String),  // tuple
+    Down {x:u32,y:u32},
+    Left(Point),
     Right
+}
+
+struct Point {
+    x: i32,
+    y: i32
 }
 
 fn move_avatar(m: Movement) {
     // perform action depending on info
     match m {
-        Movement::Up => println!("moving up"),
-        Movement::Down => println!("moving Down"),
+        Movement::Up(_) => println!("moving up"),
+        Movement::RIGHT => println!("moving right"),
+        ...
     }
 }
+
+impl Movement {
+    ...
+}
+```
+
+## Hash
+
+```rust
+use std::collections::HashMap;
 ```
 
 
@@ -270,6 +319,36 @@ pub fn run() {
     // print command-line arguments
     let args: Vec<String> = env::args().collect();
     println!("Args: {:?}", args)
+}
+```
+
+## Trait
+
+### Debug Trait
+
+if you  use `{:?}` format to print a custom struct, rust will throw an error.  In order to print it, you need to add `Debug`  trait to that struct.
+
+```rust
+#[derive(Debug)]
+struct Person {
+    first_name: String,
+    last_name: String
+}
+```
+
+now you can use `{:?}` to print this struct.
+
+### Display Trait
+
+to use `{}` to print a struct,
+
+```rust
+use std::fmt;
+
+impl fmt::Display for Person {
+    fn fmt(*self, f: &mut fmt::Formatter ) -> fmt::Result {
+        write!(f, "({},{})", self.first_name, self,last_name);
+    }
 }
 ```
 
