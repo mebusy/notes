@@ -53,6 +53,9 @@ let ( my_name, my_age ) = ( "Brad", 43 );
     - Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
     - Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive
     - `'z'`,  `'\u{1F600}'`
+    ```rust
+    println!( "{}, {}", 200 as char, 255 as char  ); // È, ÿ
+    ```
 
 <h2 id="9e57b6b46532794638212df8e239adde"></h2>
 
@@ -154,6 +157,24 @@ for x in numbers.iter_mut() {
         _ => println!("no match" ),
     }
     ```
+- if let
+    - consider following code, it's a bit weird
+    ```rust
+    let s = Some('c') ;
+    match s {
+        Some(t) => println!("{}", t),
+        _ => {}
+    }
+    ```
+    - that's why we have the `if let` binding
+    ```rust
+    // we're only really looking for this one case
+    if let Some(i) = s {
+        println!("{}", t),     
+    } 
+    ```
+- while let
+    - alterniative to loop/match
 
 ## Functions
 
@@ -303,10 +324,47 @@ impl Movement {
 }
 ```
 
+### Result & Option
+
+```rust
+enum Result<T,E> {
+    Ok(T),
+    Err(E),
+}
+
+enum Option<T> {
+    Some(T),
+    None
+}
+
+```
+
+- The Result enum is basically usually used for error-checking.
+- You can also use Option enum to error check as well.
+- But Result allow us see why it failed.
+
+
 ## Hash
 
 ```rust
 use std::collections::HashMap;
+```
+
+```rust
+    let mut hm = HashMap::new();
+    hm.insert( "key1", "haha" );
+
+    for (k,v) in &hm {
+        println!( "{}: {}", k,v );
+    }
+    println!( "{:?}", hm );
+
+    match hm.get( "key1" ) {
+        Some(n) => println!("{}", n),
+        _ => println!("no match"),
+    }
+
+    hm.remove("key1");
 ```
 
 
