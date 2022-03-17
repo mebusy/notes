@@ -410,5 +410,65 @@ impl fmt::Display for Person {
 }
 ```
 
+### Clone
+
+```rust
+#[derive(Debug, Clone)]
+...
+let a = A(32);
+let b = a.clone();
+println!( "{}", a );
+```
+
+### Copy
+
+```rust
+#[derive(Debug, Copy)]
+...
+let a = A(32);
+let b = a;
+println!( "{}", a );
+```
+
+## Generic
+
+```rust
+struct A<T> {
+    x: T
+}
+
+impl <T> A<T> {
+    fn item(&self) -> &T {
+        &self.x
+    }
+}
+```
+
+
+```rust
+use std::ops::Mul;
+
+trait Shape<T> {
+    fn area(&self) -> T;
+}
+
+// must be T that implements `Mul` trait
+struct Rectangle<T: Mul> {
+    x: T,
+    y: T,
+}
+
+impl <T: Copy> Shape<T> for Rectangle<T> where T:Mul<Output = T> , 
+// or use this instead
+// impl <T: Mul<Output = T> +  Copy> Shape<T> for Rectangle<T> 
+{
+    fn area<&self> -> T {
+        self.x + self.y
+    }
+}
+```
+
+
+
 
 
