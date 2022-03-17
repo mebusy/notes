@@ -468,7 +468,26 @@ impl <T: Copy> Shape<T> for Rectangle<T> where T:Mul<Output = T> ,
 }
 ```
 
+## Lifetime
+
+the flowing code compile error
+
+```rust
+fn pr(x: &str, y: &str) -> &str {
+    if x.len() == y.len() {
+        x
+    } else {
+        y
+    }
+}
+```
+
+to solve it :
 
 
-
+```rust
+// add 'a to specify lifetime
+fn pr<'a>(x: &'a str, y: &'a str) -> &'a str {
+    ...
+```
 
