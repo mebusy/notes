@@ -290,3 +290,10 @@ $ret 1
 ```
 
 
+## FTP Server
+
+```bash
+pip3 install pyftpdlib
+python3 -m pyftpdlib -w -p 80
+```
+
