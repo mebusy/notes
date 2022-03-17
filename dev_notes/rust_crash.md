@@ -491,3 +491,49 @@ fn pr<'a>(x: &'a str, y: &'a str) -> &'a str {
     ...
 ```
 
+
+## Error Handling
+
+
+```rust
+use std::io::ErrorKind;
+
+use std::io;
+use std::io::Read;
+use std::fs::File;
+
+fn read_file() -> Result<String, io::Error> {
+    let f = File::open("text.txt");
+
+    let mut f = match f {
+        Ok(file) => file,
+        Err(e) => return Err(e),
+    };
+
+    let mut s = String::new();
+    match f.read_to_string( &mut s ) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e),
+    }
+}
+```
+
+A less verbose version of that same function. The way that we cleaned it up is by adding these question mark operators `?`.
+
+```rust
+    let mut f = File::open("text.txt")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
+```
+
+we can actually further decrease the size of this function
+
+```rust
+    let mut s = String::new();
+    // chan together
+    File::open("text.txt")?.read_to_string(&mut s)?;
+    Ok(s)
+
+```
+
