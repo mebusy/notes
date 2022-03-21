@@ -161,6 +161,13 @@ where
     paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
 ```
 
+use sub-query in `select` column
+
+```mysql
+select id, IFNULL( (select avatar_frame from pvp_avatarframe_hsw where pvp_avatarframe_hsw.uuid = pvp_hsw.uuid ) , avatar_frame ) as avatarframe from pvp_hsw where uuid = ?
+```
+
+
 <h2 id="cba58cab71d7e6df49942060252f546d"></h2>
 
 
