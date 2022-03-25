@@ -40,7 +40,8 @@ There may be a problem that the default listening port 80 is gonna easily confli
 
 ```bash
 # 1. dowdload deploy.yaml
-wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/cloud/deploy.yaml
+# you can check https://github.com/kubernetes/ingress-nginx to see version list of controller
+wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
 # 2. modify 1:  replace 2 http 80 port to the number you want to listening, e.g. we can use 10080
 # 3. modify 2:  Deployment / containers / args , add  `- --http-port=10080` , 
 #        so as to make the traffic works: ingress listening 10080 -> 80 ingress
@@ -145,6 +146,8 @@ spec:
 ingress.yaml
 </summary>
 
+PS. extensions/v1beta1 my deprecated, use k8s.io/v1 instead
+
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -164,6 +167,34 @@ spec:
           backend:
             serviceName: banana-service
             servicePort: 5678
+```
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: dot-iap-dev.imac
+      http:
+        paths:
+          - path: /apple_test
+            pathType: Prefix
+            backend:
+              service:
+                name: apple-service
+                port:
+                  number: 5678
+          - path: /banana_test
+            pathType: Prefix
+            backend:
+              service:
+                name: banana-service
+                port:
+                  number: 5678
 ```
 
 </details>
@@ -229,6 +260,19 @@ $ curl -H "host: dot-iap-dev.imac" localhost:10080
 ok
 ```
 
+## Install Dashboard
 
+- install dash board
 
+```bash
+# https://github.com/kubernetes/dashboard
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+```
 
+- get token
+
+```bash
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')
+```
+
+- [dashboard url](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login)

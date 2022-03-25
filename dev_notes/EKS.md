@@ -192,6 +192,7 @@ kubectl get deployment metrics-server -n kube-system
 
 ```bash
 # 2 部署 K8s control panel list
+# check https://github.com/kubernetes/dashboard 
 curl -o recommended.yaml https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
 
 cat recommended.yaml | grep image
