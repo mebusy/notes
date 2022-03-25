@@ -159,11 +159,11 @@ spec:
   rules:
   - http:
       paths:
-        - path: /apple_test
+        - path: /apple
           backend:
             serviceName: apple-service
             servicePort: 5678
-        - path: /banana_test
+        - path: /banana
           backend:
             serviceName: banana-service
             servicePort: 5678
@@ -181,14 +181,14 @@ spec:
     - host: dot-iap-dev.imac
       http:
         paths:
-          - path: /apple_test
+          - path: /apple
             pathType: Prefix
             backend:
               service:
                 name: apple-service
                 port:
                   number: 5678
-          - path: /banana_test
+          - path: /banana
             pathType: Prefix
             backend:
               service:
