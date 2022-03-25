@@ -146,9 +146,9 @@ spec:
 ingress.yaml
 </summary>
 
-PS. extensions/v1beta1 my deprecated, use k8s.io/v1 instead
 
 ```yaml
+# deprecated !!!
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -169,6 +169,8 @@ spec:
             servicePort: 5678
 ```
 
+PS. extensions/v1beta1 may deprecated, use k8s.io/v1 instead , and ingress.class may be needed!
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -176,6 +178,7 @@ metadata:
   name: example-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
     - host: 
