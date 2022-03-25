@@ -178,7 +178,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: dot-iap-dev.imac
+    - host: 
       http:
         paths:
           - path: /apple
@@ -210,7 +210,38 @@ $ curl localhost:10080/apple  # because we have changed the listening port to 10
 apple
 ```
 
+if your ingress's ADDRESS column is empty, you can use following command to debug
+
+```bash
+$ kubectl describe ingress example-ingress
+Name:             example-ingress
+Namespace:        default
+Address:          localhost
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host        Path  Backends
+  ----        ----  --------
+  *
+              /apple    apple-service:5678 (10.1.0.17:5678)
+              /banana   banana-service:5678 (10.1.0.18:5678)
+Annotations:  ingress.kubernetes.io/rewrite-target: /
+              kubernetes.io/ingress.class: nginx
+Events:
+  Type    Reason  Age               From                      Message
+  ----    ------  ----              ----                      -------
+  Normal  Sync    91s (x2 over 2m)  nginx-ingress-controller  Scheduled for sync
+```
+
+```bash
+$ kubectl -n ingress-nginx logs ingress-nginx-controller-xxxxx
+...
+I0325 07:01:02.452984       8 status.go:299] "updating Ingress status" namespace="default" ingress="example-ingress" currentValue=[] newValue=[{IP: Hostname:localhost Ports:[]}]
+I0325 07:01:02.461367       8 event.go:282] Event(v1.ObjectReference{Kind:"Ingress", Namespace:"default", Name:"example-ingress", UID:"e1b49b5e-c5a0-49a0-8e2a-64dd36820261", APIVersion:"networking.k8s.io/v1", ResourceVersion:"296455", FieldPath:""}): type: 'Normal' reason: 'Sync' Scheduled for sync
+```
+
+
 **PS. Do NOT add ANNOTATIONS that are not recognized by ingress nginx !! e.g. aws alb annotations**
+
 
 ---
 
