@@ -223,7 +223,7 @@ ingress with specified host
 </summary>
 
 ```yaml
-- apiVersion: networking.k8s.io/v1
+  apiVersion: networking.k8s.io/v1
   kind: Ingress
   metadata:
     name: {name}-ingress-443
