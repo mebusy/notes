@@ -210,21 +210,25 @@ openssl  x.509 public key, which looks like this:
 `RSA PUBLIC KEY` is closer to the content of a `PUBLIC KEY`, but you need to offset the start of your ASN.1 structure to reflect the fact that PUBLIC KEY also has an indicator saying which type of key it is.
 
 
---- 
+## Convert between different formats...
 
-read the public key in openssl format from pub1key.pub and output it in OpenSSH format.
+**The ssh-keygen utility is used to covert SSH keys between the different formats required by MessageWay or any other secure file transfer application.**
 
-```bash
-# -mPKCS8  to specify the input format
-ssh-keygen -f pub1key.pub -i -mPKCS8
-```
+- convert to OpenSSH format.
+    - `-i` : this option will read an unencrypted private (or public) key file in the format specified by the -m option and print an OpenSSH compatible private (or public) key to stdout.
+        - The default **import** format is “RFC4716”(SSH2).
+    ```bash
+    # -mPKCS8  to specify the input format
+    ssh-keygen -f pub1key.pub -i -mPKCS8
+    ```
 
 > -m key_format Specify a key format for the -i (import) or -e (export) conversion options. The supported key formats are: “RFC4716” (RFC 4716/SSH2 public or private key), “PKCS8” (PEM PKCS8 public key) or “PEM” (PEM public key). The default conversion format is “RFC4716”.
 
-to convert openssh format(ssh-rsa) to SSH2 format
-
-```bash
-ssh-keygen -e -f ./openssh.pub
-```
+- to convert OpenSSH format(ssh-rsa) to SSH2 format
+    - `-e`: read a private or public OpenSSH key file and print to stdout a public key in one of the formats specified by the -m option
+        - The default **export** format is “RFC4716”(SSH2).
+    ```bash
+    ssh-keygen -e -f ./openssh.pub
+    ```
 
 
