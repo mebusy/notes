@@ -160,3 +160,63 @@ qibinyi@Qis-Mac-mini mitmproxy_test $ openssl rand -base64 8
 IzOi8Mqq8tU=
 ```
 
+
+# RSA Public Key format
+
+An RSA public key formatted by OpenSSH
+
+```text
+ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L
+```
+
+The same public key formatted for use in Secure Shell
+
+```text
+---- BEGIN SSH2 PUBLIC KEY ----
+AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYs
+c8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS
+0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7r
+NzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaX
+fgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQ
+LGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L
+---- END SSH2 PUBLIC KEY ----
+```
+
+The same public key formatted as an RSA public key (note the five -, and no space):
+
+```text
+-----BEGIN RSA PUBLIC KEY-----
+MIIBCgKCAQEA+xGZ/wcz9ugFpP07Nspo6U17l0YhFiFpxxU4pTk3Lifz9R3zsIsu
+ERwta7+fWIfxOo208ett/jhskiVodSEt3QBGh4XBipyWopKwZ93HHaDVZAALi/2A
++xTBtWdEo7XGUujKDvC2/aZKukfjpOiUI8AhLAfjmlcD/UZ1QPh0mHsglRNCmpCw
+mwSXA9VNmhz+PiB+Dml4WWnKW/VHo2ujTXxq7+efMU4H2fny3Se3KYOsFPFGZ1TN
+QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P
++0uj1CNlNN4JRZlC7xFfqiMbFRU9Z4N6YwIDAQAB
+-----END RSA PUBLIC KEY-----
+```
+
+
+
+openssl  x.509 public key, which looks like this:
+
+```text
+-----BEGIN PUBLIC KEY-----
+...
+-----END PUBLIC KEY-----
+```
+
+---
+
+`RSA PUBLIC KEY` is closer to the content of a `PUBLIC KEY`, but you need to offset the start of your ASN.1 structure to reflect the fact that PUBLIC KEY also has an indicator saying which type of key it is.
+
+read the public key in openssl format from pub1key.pub and output it in OpenSSH format.
+
+```bash
+# -mPKCS8  to specify the input format
+ssh-keygen -f pub1key.pub -i -mPKCS8
+```
+
+> -m key_format Specify a key format for the -i (import) or -e (export) conversion options. The supported key formats are: “RFC4716” (RFC 4716/SSH2 public or private key), “PKCS8” (PEM PKCS8 public key) or “PEM” (PEM public key). The default conversion format is “RFC4716”.
+
+
+

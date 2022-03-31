@@ -102,7 +102,7 @@
     - Any Boolean function can be represented using an expression containing AND, OR and NOT operations.
     - Any Boolean function can be represented using an expression containing AND, NOT operations.
     - 还能更少吗？
-- There is yet another operation that by itself does suffice to actually compute everything -- the NADN function
+- There is yet another operation that by itself does suffice to actually compute everything -- the NAND function
 
 x | y | NAND 
 --- | --- | --- 
