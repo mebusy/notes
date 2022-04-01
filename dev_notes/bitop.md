@@ -78,12 +78,15 @@ func Flipbyte(b uint8) uint8 {
 
 ## XOR
 
-- x ^ 0 = x
+- Identity element : x ^ 0 = x
     - 不变
+- Self-inverse: x ^ A = 0
 - x ^ -1 = ~x
     - 等效 各位求反
 - 把 x 第n位 求反
     - `x ^ (1<<n)`
+- xor is **addition mod 2**
+    - so xor is commutative and associative.
 
 
 
