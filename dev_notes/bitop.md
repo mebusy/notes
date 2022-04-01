@@ -85,12 +85,44 @@ XOR is analogous to set difference.
 - Identity element : x ^ 0 = x
     - 不变
 - Self-inverse: x ^ A = 0
+    - when we consider it in the context of assembly language. In fact XOR’ing a register with itself is the fastest way for the compiler to zero the register.
 - x ^ -1 = ~x
     - 等效 各位求反
 - 把 x 第n位 求反
     - `x ^ (1<<n)`
 - xor is **addition mod 2**
     - so xor is commutative and associative.
+
+### XOR application
+
+1. Toggling 
+    - toggle between two values x and y
+    ```cpp
+    for (int n=x; true; n ^= (x ^ y)) 
+        printf("%d ", n);
+    ```
+    - Toggling in this way is very similar to the concept of a flip-flop in electronics: a ‘circuit that has two stable states and can be used to store state information’
+    - it’s probably not that useful in practice. 
+2. Save yourself a register
+    ```cpp
+    void s(int& a, int& b) {
+        a = a ^ b;
+        b = a ^ b;
+        a = a ^ b;
+    }
+    ```
+    -  the below equivalent function is even more esoteric:
+    ```cpp
+    void s(int& a, int& b) {
+        a ^= b ^= a ^= b;
+    }
+    ```
+- cipher attack
+    ```
+    m     -> enc( ^ k ) ->  m ^ k 
+                             ^ p
+    m ^ p <- dec( ^ k ) <- (m ^ k ^ p)     
+    ```
 
 
 
