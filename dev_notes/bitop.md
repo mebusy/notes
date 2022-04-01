@@ -78,6 +78,8 @@ func Flipbyte(b uint8) uint8 {
 
 ## XOR
 
+AND is analogous to intersection, OR is analogous to union,
+
 XOR is analogous to set difference.
 
 - Identity element : x ^ 0 = x
