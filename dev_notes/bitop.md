@@ -78,6 +78,8 @@ func Flipbyte(b uint8) uint8 {
 
 ## XOR
 
+XOR is analogous to set difference.
+
 - Identity element : x ^ 0 = x
     - 不变
 - Self-inverse: x ^ A = 0
