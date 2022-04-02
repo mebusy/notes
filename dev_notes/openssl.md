@@ -337,5 +337,17 @@ openssl x509 -in cert.cer -inform der -out cert.crt -outform pem
 openssl x509 -in cert.crt -inform pem -out cert.cer -outform der
 ```
 
+---
+
+[SSH协议中的非对称加密](https://blog.csdn.net/m0_46573836/article/details/108900752)
+
+[彻底搞懂HTTPS的加密原理](https://zhuanlan.zhihu.com/p/43789231)
+
+[HTTPS用的是对称加密还是非对称加密](https://zhuanlan.zhihu.com/p/96494976)
+
+[HTTPS用的是对称加密还是非对称加密](https://www.cnblogs.com/lfri/p/12593232.html)
+
+**利用私钥加密的过程，其实就是在对数据进行签名，所以也叫数字签名**
+
 
 
