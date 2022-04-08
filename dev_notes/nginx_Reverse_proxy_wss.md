@@ -37,9 +37,10 @@ server {
     listen 443 ssl;
     server_name  LB ;
 
-    ssl on;
-    ssl_certificate     /usr/local/openresty/nginx/ssl/10.192.81.132.crt;
-    ssl_certificate_key /usr/local/openresty/nginx/ssl/10.192.81.132.key;
+    # ssl on;
+    # Dockerfile:  COPY ssl /etc/nginx/ssl    
+    ssl_certificate     /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
 
     #charset koi8-r;
     #access_log  /var/log/nginx/host.access.log  main;
