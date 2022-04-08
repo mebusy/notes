@@ -11,12 +11,14 @@
 
 # gitlib CI notes
 
-1. install & register a gitlab-runner ( shell executor )
+1. install gitlab-runner
+    - https://docs.gitlab.com/runner/install/
+2. register a gitlab-runner ( shell executor )
     - https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-the-shell-executor
-2. on the host machine ( where gitlab-runner lives ),  keep git/docker update-to-date
-3. create `.gitlab-ci.yml`  under your repo root 
+3. on the host machine ( where gitlab-runner lives ),  keep git/docker update-to-date
+4. create `.gitlab-ci.yml`  under your repo root 
     - https://docs.gitlab.com/ee/ci/yaml/
-4. gitlab-runner execute script as user `gitlab-runner`
+5. gitlab-runner execute script as user `gitlab-runner`
     - test your CI script as linux user -- gitlab-runner , on host machine to save life
     - `su gitlab-runner`
 
