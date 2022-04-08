@@ -72,8 +72,8 @@
 
 ```bash
 $ aws configure
-AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
-AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+AWS Access Key ID [None]: xxxx
+AWS Secret Access Key [None]: xxxxxxx
 Default region name [None]: region-code
 Default output format [None]: json
 ```
