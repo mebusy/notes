@@ -16,12 +16,6 @@
 2. register a gitlab-runner ( shell executor )
     - https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-the-shell-executor
 3. on the host machine ( where gitlab-runner lives ),  keep git/docker update-to-date
-4. create `.gitlab-ci.yml`  under your repo root 
-    - https://docs.gitlab.com/ee/ci/yaml/
-5. gitlab-runner execute script as user `gitlab-runner`
-    - test your CI script as linux user -- gitlab-runner , on host machine to save life
-    - `su gitlab-runner`
-
 
 
 <h2 id="5495f7a485fc8be5f547ce40842b4d60"></h2>
