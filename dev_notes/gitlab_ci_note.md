@@ -57,8 +57,7 @@ workflow:
 
 
 stages:
-  - build  # build image
-  - upload  # upload image && update k8s pod
+  - build  # build image && upload image && update k8s pod
 
 build-docker-image:
   stage: build
@@ -66,11 +65,6 @@ build-docker-image:
     - echo building... "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
     - cd "$DOCKERFILE_DIR"
     - docker build -t "$CI_REGISTRY_IMAGE:$IMAGE_TAG"  .
-
-
-upload-image:
-  stage: upload
-  script:
     - echo pushing... "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
     - docker login --password $CI_REGISTRY_PASSWORD --username $CI_REGISTRY_USER $CI_REGISTRY
     - docker push "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
@@ -78,4 +72,5 @@ upload-image:
     # - whoami  # user is `gitlab-runner
     - NO_PROXY=amazonaws.com.cn KUBECONFIG="/home/gitlab-runner/gitlab-ci/k8s/k8s.conf" kubectl -n $K8S_NAMESPACE rollout restart deployment $K8S_SERVICE
 ```
+
 
