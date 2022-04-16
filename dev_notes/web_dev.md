@@ -128,7 +128,7 @@ Roughly Flow Content (HTML5 category) |Roughly Phrasing Content (HTML5 category)
 
 <details>
 <summary>
-<b>example with dev and span</b>
+<b>example with div and span</b>
 </summary>
 
 ```html
@@ -1441,6 +1441,8 @@ p {
 
 ###  Twitter Bootstrap
 
+<details>
+
 <h2 id="91fa20c155a7637398afbe3fa1d70045"></h2>
 
 
@@ -1532,6 +1534,8 @@ p {
       </div>``
     ```
 
+</details>
+
 <h2 id="116e493217e09482fcaf24a39021cad3"></h2>
 
 
@@ -1584,62 +1588,60 @@ p {
 
 ## CSS Grid in nutshell
 
-```css
-{
-    grid-template-columns: 2fr 1fr 1fr;
-}
-```
 
-- Draws grid lines. Takes list of length values (em, px, %, fr, ect.) denoting the distance between each line.
-    - ![](../imgs/grid-template-columns.png)
+- Draws grid lines. Takes list of length values (em, px, %, fr, ect.) 
+    - denoting the distance between each line.
+        ```css
+        {
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+        ```
+        - ![](../imgs/grid-template-columns.png)
 
-```css
-{
-    grid-template-rows: auto 1fr 3fr;
-}
-```
-
-- denoting distance between each line.
-    - ![](../imgs/grid-template-rows.png)
+    - denoting distance between each line.
+        ```css
+        {
+            grid-template-rows: auto 1fr 3fr;
+        }
+        ```
+        - ![](../imgs/grid-template-rows.png)
 
 - Grid items automatically populate grid from top left to bottom right based on HTML source order.
     - ![](../imgs/css_grid_item_populate.png)
 
-```css
-{
-    grid-column: 2/4;
-    grid-row: 2/3;
-}
-```
-
 - Applied to grid items. Defines the start and end grid lines for columns and rows.
+    ```css
+    {
+        grid-column: 2/4;
+        grid-row: 2/3;
+    }
+    ```
     - ![](../imgs/grid-items-grid-column.png)
 
-```css
-.site {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto 1fr 1fr;
-    grid-template-areas:
-        "title title title"
-        "main header header"
-        "main siderbar sidebar"
-}
-
-.masthead {
-    grid-area: header;
-}
-.page-title {
-    grid-area: title;
-}
-.main-content {
-    grid-area: main;
-}
-/* etc etc */
-```
 
 - `grid-template-areas` applied to grid container. Uses a text-based grid map to apply **grid area names** to individual cells.
     - `grid-area` specifies what grid area the element is placed within.
+    ```css
+    .site {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: auto 1fr 1fr;
+        grid-template-areas:
+            "title title title"
+            "main header header"
+            "main siderbar sidebar"
+    }
+    .masthead {
+        grid-area: header;
+    }
+    .page-title {
+        grid-area: title;
+    }
+    .main-content {
+        grid-area: main;
+    }
+    /* etc etc */
+    ```
     - ![](../imgs/grid-template-areas.png)
     - **This allows us to do crazy responsive web design.** Because this means instead of doing a bunch of crazy stuff, all you have to do is change the `grid-template-areas` and then the grid items will just move around. And you media-queries become very very simple.
 
