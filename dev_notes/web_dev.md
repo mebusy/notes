@@ -47,6 +47,7 @@
 - cool sites
     - [codepen](https://codepen.io/)
     - [css tricks](https://css-tricks.com/)
+    - [generate css code to center text](http://howtocenterincss.com/)
 - [course repo](https://github.com/jhu-ep-coursera/fullstack-course4)
 
 
