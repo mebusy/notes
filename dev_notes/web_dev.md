@@ -48,6 +48,9 @@
     - [codepen](https://codepen.io/)
     - [css tricks](https://css-tricks.com/)
     - [generate css code to center text](http://howtocenterincss.com/)
+    - [icons, font awesome](https://fontawesome.com/v4/icons/)
+        - include: `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
+        - to use, for example `<a href="#"><i class="fa fa-unlock"></i></a> `
 - [course repo](https://github.com/jhu-ep-coursera/fullstack-course4)
 
 
