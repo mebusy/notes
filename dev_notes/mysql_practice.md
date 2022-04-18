@@ -215,6 +215,14 @@ NULLIF()  | return NULL if expr1 = expr2 | `NULLIF(m.genre,2)`  -- if equals 2, 
 SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQL> );
 ```
 
+
+## Convert any timestamp to +08:00 
+
+```mysql
+select CONVERT_TZ( <timestamp column> ,  time_format(timediff( NOW(), UTC_TIMESTAMP) ,'+%H:%i') , '+08:00') from ...
+```
+
+
 <h2 id="6ada22780ed552c34465864a2648f7e9"></h2>
 
 
