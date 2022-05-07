@@ -87,11 +87,34 @@
 
 ## 语法技巧
 
+### Print with new line 
+
+```python
+for i in range(5):
+    # return only, no new line
+    print( i, end="\r" )
+```
+
+```
+4
+```
+
+```python
+for i in range(5):
+    # no return, no new line
+    print( i, end="" )
+```
+
+```
+01234
+```
+
+
 <h2 id="49bdb1b4a214a6bc00824eb4f7b2c5f1"></h2>
 
 
-### eval 环境
-   
+### eval 字符串表达式求值 
+
 eval() 默认使用当前环境的名字空间，也可以带入自定义字典
 
 ```
@@ -99,7 +122,7 @@ ns=dict(x=10,y=20)
 eval("x+y" , ns )
 ```
 
-还可以使用 exec 来执行一个代码段
+eval只能用来处理表达式, 对于 代码段, 可以使用 `exec()`
 
 
 <h2 id="f372cdc8f82db5bb3a311edc6743e412"></h2>
@@ -138,13 +161,15 @@ mport operator
 
 ### 数组排序
 
-```
+```python
+# .sort(), in-place sort, return None
 autodances.sort( key = lambda x  :  x["time"] , reverse = False )
 ```
 
-use `cmp` method
+use `cmp` method . (PS. **deprecated in python3** )
 
-```
+```python
+# python2 only
 l.sort(cmp=lambda x,y:cmp( x.lower(), y.lower()  ))
 ```
 
@@ -350,23 +375,26 @@ or
 
 ### convert a list to dict 
 
-```
-dict(zip(*[iter( ls )]*2))  
+```python
+>>> a = [3,1,2,4]
+>>> dict(  zip(  *[iter( a )] *2  )  )
+{3: 1, 2: 4}
 ```
 
 or more simple
 
-```
-i = iter(ls)
+```python
+i = iter(a)
 dict(zip(i, i))   # you must use a single iterator 
 ```
 
 <h2 id="ab8027b580ee885ee2c146add9957e1c"></h2>
 
 
-### 类型判断
+### python2 unicode 判断
 
-```
+```python
+# python2
 isinstance(u'a', unicode)
 ```
 
@@ -376,6 +404,16 @@ isinstance(u'a', unicode)
 ### 方法内全部局部变量
 
 Python has a locals() function which gives you back a dictionary of local variables within the function
+
+
+
+### 输出一个对象各个成员的名称和值
+
+```
+>>> g = lambda m: '\n'.join([ '%s=%s'%(k, repr(v)) for k, v in m.__dict__.iteritems() ])
+>>> g(obj)
+```
+
 
 <h2 id="379e1d911a58f6e847ad68e52703c7eb"></h2>
 
@@ -455,10 +493,13 @@ np.random.choice(np.flatnonzero(b == b.max()))
 
 ### 10进制数字 => 2,8,16进制字符串
 
-```
-bin(123)  # 2
-oct(18)   # 8
-hex(10)   # 16
+```python
+>>> bin(123) # 2
+'0b1111011'
+>>> oct(18) # 8
+'0o22'
+>>> hex(10) # 16
+'0xa'
 ```
 
 <h2 id="819934946947aa7e3778247b469c1e4c"></h2>
@@ -466,8 +507,9 @@ hex(10)   # 16
 
 ### 2,8,16进制字符串 ==> 10进制数字 
 
-```
-int('022',8)
+```python
+>>> int('022',8) 
+18
 ```
 
 <h2 id="44ecb2e9ff829c50b0b0f9f4e9f7b918"></h2>
@@ -519,19 +561,13 @@ def f7(list):
 
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
 
-
-### 编码
-
-<h2 id="0aaa38f82a7ef026cb4f1021bc6c2e78"></h2>
+### 字符串编码相关
 
 
-####  string -> decode -> unicode 
+#### python2 unicode/str convert
 
-<h2 id="40619c71d05ce7768e3ff72d8b7da13f"></h2>
-
-
-####  unicode -> encode -> string 
-
+- string -> decode -> unicode 
+- unicode -> encode -> string 
 
 <h2 id="a8f764cb43760ccd122114ec8679789b"></h2>
 
@@ -550,7 +586,7 @@ a
 <h2 id="d2c99ad38af1c01230e25f642fe1b412"></h2>
 
 
-#### unichr / unicode string 互转
+#### python2 unichr / unicode string 互转
 
 ```
 >>> print ord(u"我")
@@ -562,7 +598,7 @@ a
 <h2 id="97293b0a09ebeed137930a0ca33f6e3a"></h2>
 
 
-#### unicode -> special encoded string
+#### python2 unicode -> special encoded string
 
 ```
 unicodestring = u"Hello world"
@@ -575,7 +611,7 @@ utf16string = unicodestring.encode("utf-16")
 <h2 id="f9b40cb363b4e4cd89aa132855dd8d41"></h2>
 
 
-#### special encoded string -> unicode
+#### python2 special encoded string -> unicode
 
 ```
 plainstring1 = unicode(utf8string, "utf-8")
@@ -624,7 +660,7 @@ sys.setdefaultencoding('utf8')
 <h2 id="771f3b745b95ab3097fd1242137e2912"></h2>
 
 
-### 写 带中文字符的文件
+### python 2.7 写 带中文字符的文件
 
 ```
 fp = codecs.open( target_sheet_name + '.txt'  , "w", "utf-8")
@@ -632,10 +668,17 @@ fp.write(jsonObj )
 fp.close()
 ```
 
+
+### Json dump, indent + sort keys
+
+```python
+json.dump( obj, fp, ensure_ascii=False , separators=(',',':') , indent=4, sort_keys=True  )  
+```
+
 <h2 id="438a955e91aa6603d24feaf53226f03c"></h2>
 
 
-### 获取中文字符长度
+### python2 获取中文字符长度
 
 - 需要转成unicode字符
 
@@ -724,27 +767,18 @@ decoded := base58.Decode(b58_str)
 
 ### try - except 打印错误
 
-```
+```python
 import traceback
 traceback.print_exc()
 ```
 
 或者
 
-```
+```python
 s=sys.exc_info()
 print "Error '%s' happened on line %d" % (s[1],s[2].tb_lineno)
-
 ```
 
-<h2 id="61ca7c49201549fda5414272579e0413"></h2>
-
-
-### run in 32bit mode
-
-```
-arch -i386 python2.7
-```
 
 <h2 id="eadbf8dd738ffd6eb430b8630c92d74c"></h2>
 
@@ -754,13 +788,13 @@ arch -i386 python2.7
 - 使用带有并发功能的map
 - Dummy是一个多进程包的完整拷贝
 - 唯一不同的是，多进程包使用进程，而dummy使用线程
-- 简言之，IO 密集型任务选择multiprocessing.dummy，CPU 密集型任务选择multiprocessing
+- 简言之，IO 密集型任务选择multiprocessing.dummy(多线程) ， CPU 密集型任务选择multiprocessing(多进程)
 
-```
+```python
 from multiprocessing import Pool
 from multiprocessing.dummy import Pool as ThreadPool
 
-pool = ThreadPool( [#Pool] )
+pool = ThreadPool( poolsize )
 results = pool.map( func ,  param_set_list  )
 pool.close()
 pool.join()
@@ -787,7 +821,7 @@ profile.run ( 'func_name')
 
 ### 强制浮点数运算
 
-```
+```python
 >>> from __future__ import division
 >>> 1/2
 0.5
@@ -799,12 +833,6 @@ profile.run ( 'func_name')
 
 ### float -> IEEE 754
 
-```python
-import struct
-def float2IEEE754_64bit( num ):
-    buf = struct.pack(">d", num )  # double , 8 bytes
-    print ''.join("%02x" % ord(c) for c in buf )
-```
 
 [online convert](https://www.binaryconvert.com/result_double.html?decimal=049)
 
@@ -812,20 +840,27 @@ def float2IEEE754_64bit( num ):
 ```python
 # use numpy
 >>> b = bin( np.float32( 0.15625 ).view(np.int32) )
->>> b[ -23-8:-23 ] , b[ -23: ]
+>>> b
+'0b111110001000000000000000000000'
+>>> expo, mantissa =  b[ -23-8:-23 ] , b[ -23: ]
+>>> print(expo, mantissa)
 ('b1111100', '01000000000000000000000')
 ```
 
 
-<h2 id="dd6b35cfcf7bc2919f28aaba9e65fa92"></h2>
+### int -> Binary
 
 
-### 输出一个对象各个成员的名称和值
-
+```python
+>>> np.binary_repr( 200, width=8)
+'11001000'
+>>> np.binary_repr( -1, width=8)
+'11111111'
 ```
->>> g = lambda m: '\n'.join([ '%s=%s'%(k, repr(v)) for k, v in m.__dict__.iteritems() ])
->>> g(obj)
-```
+
+
+
+
 <h2 id="210dd2176d44f2bd7f0c112101e62490"></h2>
 
 
@@ -1014,19 +1049,16 @@ config_path = os.path.join(application_path, config_name)
     - TODO :  subprocess  Popen 指定 shell 执行路径
         - `print Popen(cmd , stdout=subprocess.PIPE  ,  shell=True, cwd=  arg)`  ?
     - 注： 如果没有 pipe 通讯的需求，推荐的用法如下
-
-```python
-subprocess.call( cmd.split() +  sys.argv[1:]  , stderr=subprocess.STDOUT ,shell=True )
-```
-
-- `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
-- 如果需要获取 exit code
-
-```
-child = subprocess.Popen( cmd , stdout=subprocess.PIPE , stdin=subprocess.PIPE, stderr=subprocess.STDOUT , shell=True )
-streamdata = child.communicate()[0]
-rc = child.returncode
-```
+        ```python
+        subprocess.call( cmd.split() +  sys.argv[1:]  , stderr=subprocess.STDOUT ,shell=True )
+        ```
+    - `shell=True` 是在 shell中执行，以便获取环境变量之类的设置
+    - 如果需要获取 exit code
+        ```python
+        child = subprocess.Popen( cmd , stdout=subprocess.PIPE , stdin=subprocess.PIPE, stderr=subprocess.STDOUT , shell=True )
+        streamdata = child.communicate()[0]
+        rc = child.returncode
+        ```
 
 - Python3 subprocess.run
     ```python
