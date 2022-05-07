@@ -4,6 +4,7 @@
     - [二进制](#6168fb08fe64663a502a132c5589b73d)
         - [flip bits](#bf94eee92531fcf0a63c55eddb6a558c)
     - [XOR](#97675eb3f268048604dc5155511a2a4d)
+        - [XOR application](#cc352fea6e400fa736030527056c3fc2)
 
 ...menuend
 
@@ -92,6 +93,9 @@ XOR is analogous to set difference.
     - `x ^ (1<<n)`
 - xor is **addition mod 2**
     - so xor is commutative and associative.
+
+<h2 id="cc352fea6e400fa736030527056c3fc2"></h2>
+
 
 ### XOR application
 

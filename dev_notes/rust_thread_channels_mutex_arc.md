@@ -1,5 +1,20 @@
+...menustart
+
+- [Rust : Concurrency, Threads, Channels, Mutex and Arc](#2c2688e0d50a970680b4859bdf0ffd55)
+    - [Thread](#d97477d6d8a838ead9348185bb5b6742)
+    - [Mutex & Arc](#a0906de08e5feb45ecff441584f70573)
+    - [Channel](#781dc97dc62331eec3ea9ec4373a3ca8)
+
+...menuend
+
+
+<h2 id="2c2688e0d50a970680b4859bdf0ffd55"></h2>
+
 
 # Rust : Concurrency, Threads, Channels, Mutex and Arc
+
+<h2 id="d97477d6d8a838ead9348185bb5b6742"></h2>
+
 
 ## Thread
 
@@ -59,6 +74,9 @@ pub fn join_thread() {
 }
 ```
 
+<h2 id="a0906de08e5feb45ecff441584f70573"></h2>
+
+
 ## Mutex & Arc
 
 ```rust
@@ -93,6 +111,9 @@ pub fn arc_mutex() {
     println!( "Result: {}", *c.lock().unwrap() );
 }
 ```
+
+<h2 id="781dc97dc62331eec3ea9ec4373a3ca8"></h2>
+
 
 ## Channel
 

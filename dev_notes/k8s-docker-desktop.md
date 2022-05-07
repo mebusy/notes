@@ -3,6 +3,7 @@
 - [Docker k8s desktop](#b63b5716d67330c388528bca20bf0165)
     - [Enable Kuberneters on Docker Desktop](#834aecdedbdc4ab95c71a729214c47ab)
     - [Install ingress controller](#588da1e7cecfc3f40fa3e015ff722499)
+    - [Install Dashboard](#5633d2848d737c44ec1d89bc54ccdfa9)
 
 ...menuend
 
@@ -293,6 +294,9 @@ $ curl localhost:10080
 $ curl -H "host: dot-iap-dev.imac" localhost:10080
 ok
 ```
+
+<h2 id="5633d2848d737c44ec1d89bc54ccdfa9"></h2>
+
 
 ## Install Dashboard
 

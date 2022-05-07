@@ -1,5 +1,41 @@
+...menustart
+
+- [Rust Crash Course](#c5822cd18f83072f8602e5235e1b7ed5)
+    - [mod](#ad148a3ca8bd0ef3b48c52454c493ec5)
+    - [Variable](#47c14840d8e15331fa420b9b2f757cd9)
+    - [Primitive Data Types](#6c1067528b82c9144a62fb1dd2cd925e)
+        - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
+        - [Compound Types](#9e57b6b46532794638212df8e239adde)
+    - [Strings](#89be9433646f5939040a78971a5d103a)
+    - [Vectors](#b3f69e461542074d9696ee29ded180a0)
+    - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
+    - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
+    - [Reference Pointers](#0752ca655d1e188fa66c5383455d199d)
+    - [Structs](#6293f87533836e1d190c7b144ee25975)
+        - [Struct which has functions](#9a6a7f4d3eff618bae767bf2afefc00e)
+    - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
+        - [Result & Option](#aaee770340310065a9498e2788783098)
+    - [Hash](#fae8a9257e154175da4193dbf6552ef6)
+    - [CLI](#91af5705f16502125e8b2187e64202c0)
+    - [Trait](#9118ea0f76d0a8f21a42591caeee043e)
+        - [Debug Trait](#8c24bd362f72757a4105edc427912b83)
+        - [Display Trait](#ea5b3400b3db3c5423190c549a3139c0)
+        - [Clone](#ff24590464659ee8cdec688128c35f89)
+        - [Copy](#5fb63579fc981698f97d55bfecb213ea)
+    - [Generic](#8045a0a6c688b0635e3caccc408a1446)
+    - [Lifetime](#1a10be3692cec335c74387f33221a6fa)
+    - [Error Handling](#ef43236673ca0bb606b14091061ac271)
+
+...menuend
+
+
+<h2 id="c5822cd18f83072f8602e5235e1b7ed5"></h2>
+
 
 # Rust Crash Course
+
+<h2 id="ad148a3ca8bd0ef3b48c52454c493ec5"></h2>
+
 
 ## mod
 
@@ -20,6 +56,9 @@ fn main() {
 ```
 
 
+<h2 id="47c14840d8e15331fa420b9b2f757cd9"></h2>
+
+
 ## Variable
 
 - Variables hold primitive data or references to data
@@ -37,7 +76,13 @@ const ID: i32 = 380;
 let ( my_name, my_age ) = ( "Brad", 43 );
 ```
 
+<h2 id="6c1067528b82c9144a62fb1dd2cd925e"></h2>
+
+
 ## Primitive Data Types
+
+<h2 id="09d9982852d86c2479924a4e3b723b1e"></h2>
+
 
 ### Scalar Types
 
@@ -82,6 +127,9 @@ let ( my_name, my_age ) = ( "Brad", 43 );
     - if we want the print more pretty, we can use `:#?`
 
 
+<h2 id="89be9433646f5939040a78971a5d103a"></h2>
+
+
 ## Strings
 
 - Primitive str 
@@ -95,6 +143,9 @@ let ( my_name, my_age ) = ( "Brad", 43 );
     let mut hello = String::from( "Hello" );
     ```
 
+<h2 id="b3f69e461542074d9696ee29ded180a0"></h2>
+
+
 ## Vectors
 
 ```rust
@@ -105,6 +156,9 @@ for x in numbers.iter_mut() {
 }
 // [2, 4, 6, 8, 10]
 ```
+
+<h2 id="c647c38e64bd84c0fe9fe165f3fff0eb"></h2>
+
 
 ## Flows
 
@@ -176,6 +230,9 @@ for x in numbers.iter_mut() {
 - while let
     - alterniative to loop/match
 
+<h2 id="e93acb146e114b5dfa6ce2d12dcb96e4"></h2>
+
+
 ## Functions
 
 ```rust
@@ -195,6 +252,9 @@ pub fn run() {
     println!( "{}", add_nums(3,3) );
 }
 ```
+
+<h2 id="0752ca655d1e188fa66c5383455d199d"></h2>
+
 
 ## Reference Pointers
 
@@ -220,6 +280,9 @@ pub fn run() {
     let vec2 = &vec1;  
     println!( "{:?}", (&vec1, vec2) );  
     ```
+
+<h2 id="6293f87533836e1d190c7b144ee25975"></h2>
+
 
 ## Structs
 
@@ -247,6 +310,9 @@ pub fn run() {
     let c = Color( 255,0,0 );
     // c.0
     ```
+
+<h2 id="9a6a7f4d3eff618bae767bf2afefc00e"></h2>
+
 
 ### Struct which has functions
 
@@ -294,6 +360,9 @@ let mut p = Person::new("John", "Doe");
 
 
 
+<h2 id="1b22e7dc709b52f1767fe1eb5dc56625"></h2>
+
+
 ## Enums
 
 ```rust
@@ -324,6 +393,9 @@ impl Movement {
 }
 ```
 
+<h2 id="aaee770340310065a9498e2788783098"></h2>
+
+
 ### Result & Option
 
 ```rust
@@ -342,6 +414,9 @@ enum Option<T> {
 - The Result enum is basically usually used for error-checking.
 - You can also use Option enum to error check as well.
 - But Result allow us see why it failed.
+
+
+<h2 id="fae8a9257e154175da4193dbf6552ef6"></h2>
 
 
 ## Hash
@@ -368,6 +443,9 @@ use std::collections::HashMap;
 ```
 
 
+<h2 id="91af5705f16502125e8b2187e64202c0"></h2>
+
+
 ## CLI
 
 ```rust
@@ -380,7 +458,13 @@ pub fn run() {
 }
 ```
 
+<h2 id="9118ea0f76d0a8f21a42591caeee043e"></h2>
+
+
 ## Trait
+
+<h2 id="8c24bd362f72757a4105edc427912b83"></h2>
+
 
 ### Debug Trait
 
@@ -396,6 +480,9 @@ struct Person {
 
 now you can use `{:?}` to print this struct.
 
+<h2 id="ea5b3400b3db3c5423190c549a3139c0"></h2>
+
+
 ### Display Trait
 
 to use `{}` to print a struct,
@@ -410,6 +497,9 @@ impl fmt::Display for Person {
 }
 ```
 
+<h2 id="ff24590464659ee8cdec688128c35f89"></h2>
+
+
 ### Clone
 
 ```rust
@@ -420,6 +510,9 @@ let b = a.clone();
 println!( "{}", a );
 ```
 
+<h2 id="5fb63579fc981698f97d55bfecb213ea"></h2>
+
+
 ### Copy
 
 ```rust
@@ -429,6 +522,9 @@ let a = A(32);
 let b = a;
 println!( "{}", a );
 ```
+
+<h2 id="8045a0a6c688b0635e3caccc408a1446"></h2>
+
 
 ## Generic
 
@@ -468,6 +564,9 @@ impl <T: Copy> Shape<T> for Rectangle<T> where T:Mul<Output = T> ,
 }
 ```
 
+<h2 id="1a10be3692cec335c74387f33221a6fa"></h2>
+
+
 ## Lifetime
 
 the flowing code compile error
@@ -490,6 +589,9 @@ to solve it :
 fn pr<'a>(x: &'a str, y: &'a str) -> &'a str {
     ...
 ```
+
+
+<h2 id="ef43236673ca0bb606b14091061ac271"></h2>
 
 
 ## Error Handling

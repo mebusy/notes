@@ -15,6 +15,7 @@
     - [Sub Query example](#a21afd692dc65c7ff60c8f549b7f1f5a)
     - [CASE ... WHEN ... ELSE... END](#cba58cab71d7e6df49942060252f546d)
     - [Convert a timestamp to seconds(GMT)](#551a3f8ce4409963ec6de228ccc44ae0)
+    - [Convert any timestamp to +08:00](#07ef5ad460d1f2e1c8f91459700b8f2e)
     - [三元表达式](#6ada22780ed552c34465864a2648f7e9)
     - [Update RANK while doing query](#9b22da090fcab767f2930f6e0b9b3251)
     - [Bulk Update](#b18d852fa0d2465fe38b05b96dd5b736)
@@ -214,6 +215,9 @@ NULLIF()  | return NULL if expr1 = expr2 | `NULLIF(m.genre,2)`  -- if equals 2, 
 ```mysql
 SELECT TIMESTAMPDIFF( SECOND, "1970-01-01 00:00:00" , <TIMESTAMP created by MYSQL> );
 ```
+
+
+<h2 id="07ef5ad460d1f2e1c8f91459700b8f2e"></h2>
 
 
 ## Convert any timestamp to +08:00 

@@ -2,6 +2,15 @@
 
 - [OpenSSL](#ee302fd5fd2a7a5a3c19fc5be21f979c)
     - [使用OpenSSL工具生成密钥](#e35855d8b0178ee80e1543aad6d1a5ce)
+    - [Generate Key Pair](#b849b180cf9c062b2ba3154b86a027fc)
+    - [Extract Public Key from Private Key](#2f0b9301923419f5fddf5f25a7762602)
+    - [CSR: Certificate Signing Request](#5001afbd80b25e4b6c597fb68880c032)
+    - [Self Signed Certificate](#5268c2edcf0f7ae7ce41e905564de177)
+    - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+- [RSA Public Key format](#967cf47a9ccbc9f0477ffe8ac2df05dd)
+    - [Convert between different formats...](#b877b734093e9001b4572816c5ed60bd)
+- [PEM Headers](#8767d9b0a0775bd3ce785aba5e9d78ce)
+    - [Other convertion](#34590c775b79aa0219feabb60a77c6c8)
 
 ...menuend
 
@@ -38,6 +47,9 @@ tr -d '\n' < public.txt
 ```
 
 
+<h2 id="b849b180cf9c062b2ba3154b86a027fc"></h2>
+
+
 ## Generate Key Pair
 
 ```bash
@@ -55,6 +67,9 @@ MIIEowIBAAKCAQEAx9smn4lu+xTyjoi8O
 ```
 
 This key is in PKCS1 ( Public Key Cryptography Standards ) format.
+
+<h2 id="2f0b9301923419f5fddf5f25a7762602"></h2>
+
 
 ## Extract Public Key from Private Key
 
@@ -84,6 +99,9 @@ $ cat serv1_pub_rsa.key
 MIIBCgKCAQEAx9smn4lu+xTyjoi8Ob
 ...
 ```
+
+
+<h2 id="5001afbd80b25e4b6c597fb68880c032"></h2>
 
 
 ## CSR: Certificate Signing Request
@@ -129,6 +147,9 @@ Certificate Request:
 
 Everything that you provided is showing here. If you find that anything is wrong, you can still regenerate your CSR.
 
+<h2 id="5268c2edcf0f7ae7ce41e905564de177"></h2>
+
+
 ## Self Signed Certificate
 
 > X.509是密码学里公钥证书的格式标准。X.509证书已应用在包括TLS/SSL在内的众多网络协议里，同时它也用在很多非在线应用场景里，比如电子签名服务。X.509证书里含有公钥、身份信息（比如网络主机名，组织的名称或个体名称等）和签名信息（可以是证书签发机构CA的签名，也可以是自签名）
@@ -173,6 +194,9 @@ Certificate:
 
 </details>
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+
 ## Misc
 
 random
@@ -183,6 +207,9 @@ $ openssl rand -base64 16
 qibinyi@Qis-Mac-mini mitmproxy_test $ openssl rand -base64 8
 IzOi8Mqq8tU=
 ```
+
+
+<h2 id="967cf47a9ccbc9f0477ffe8ac2df05dd"></h2>
 
 
 # RSA Public Key format
@@ -252,6 +279,9 @@ openssl  x.509 public key, which looks like this:
 
 
 
+<h2 id="b877b734093e9001b4572816c5ed60bd"></h2>
+
+
 ## Convert between different formats...
 
 **The ssh-keygen utility is used to covert SSH keys between the different formats.**
@@ -272,6 +302,9 @@ openssl  x.509 public key, which looks like this:
     ```bash
     ssh-keygen -e -f ./openssh.pub
     ```
+
+<h2 id="8767d9b0a0775bd3ce785aba5e9d78ce"></h2>
+
 
 # PEM Headers 
 
@@ -301,6 +334,9 @@ X.509 | format for any public key
     # #8 -> #1
     openssl rsa -in private-pkcs8.pem -out private-pkcs1.pem
     ```
+
+<h2 id="34590c775b79aa0219feabb60a77c6c8"></h2>
+
 
 ## Other convertion
 

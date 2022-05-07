@@ -2,7 +2,8 @@
 
 - [python tips (most 2.7)](#149b164aabd9e2da3e4ff789cbfefe85)
     - [语法技巧](#cd82da5cf3ee760792e950b087be3d29)
-        - [eval 环境](#49bdb1b4a214a6bc00824eb4f7b2c5f1)
+        - [Print with new line](#922f71899036f4bdea86d1a42322327b)
+        - [eval 字符串表达式求值](#5a80441c284c199eaf6f839c5210a986)
         - [获取变量x的内存地址](#f372cdc8f82db5bb3a311edc6743e412)
         - [for i, v  枚举](#5bd260e9c2d18f7f2ff4c30f274ebc6b)
         - [min return both value and index](#898381b273cf9617a8b33660e4e27953)
@@ -20,8 +21,9 @@
         - [dict insection](#2292cf7bac8199cfa91cb22160b26f76)
         - [dict key/value 反转](#734d33eb4b09a4486fff62a4f1498c3c)
         - [convert a list to dict](#51e210523bb6691db8601ee6c34f89d9)
-        - [类型判断](#ab8027b580ee885ee2c146add9957e1c)
+        - [python2 unicode 判断](#2eef1e426b799acf96d762b3dc95a051)
         - [方法内全部局部变量](#76a7e51a79a55462350aaed109577894)
+        - [输出一个对象各个成员的名称和值](#dd6b35cfcf7bc2919f28aaba9e65fa92)
         - [python 下划线变量](#379e1d911a58f6e847ad68e52703c7eb)
         - [re.sub group: number after \number](#8160fc3170b680fdd05d32a93937bcb9)
         - [call super class constructor](#7bb8886dc369a3137b7dd907c9ff7993)
@@ -32,18 +34,18 @@
         - [格式化数字为16进制字符串](#44ecb2e9ff829c50b0b0f9f4e9f7b918)
     - [字符处理](#fa931b43907b0ba8b8616487e1a14097)
         - [ascii列表 -> 字符串](#47785be60ccbe583a8c3f8a1c3b80d00)
-        - [编码](#cc6c35a3e0f97fb9747905dc13e9b625)
-            - [string -> decode -> unicode](#0aaa38f82a7ef026cb4f1021bc6c2e78)
-            - [unicode -> encode -> string](#40619c71d05ce7768e3ff72d8b7da13f)
+        - [字符串编码相关](#5eee76378b49e64c0a5f5d768463fca6)
+            - [python2 unicode/str convert](#f107f4274b339136846a24463f2ff9c4)
             - [char / ascii 互转](#a8f764cb43760ccd122114ec8679789b)
-            - [unichr / unicode string 互转](#d2c99ad38af1c01230e25f642fe1b412)
-            - [unicode -> special encoded string](#97293b0a09ebeed137930a0ca33f6e3a)
-            - [special encoded string -> unicode](#f9b40cb363b4e4cd89aa132855dd8d41)
+            - [python2 unichr / unicode string 互转](#3818367ee9105c0ed47b92186ebd3f00)
+            - [python2 unicode -> special encoded string](#e7358efa47ced51b6ce16b4f866186af)
+            - [python2 special encoded string -> unicode](#676299737b912fa0f3b8125df27a4b42)
             - [convert '\\n' to '\n'](#56932c830dacb8440022cdb350ae3bca)
     - [中文处理](#c4e5abc4816842dea936c9f1f20b431e)
         - [改变脚本本地编码](#7ab8dd9eb1e1a86afb68efff05a2e355)
-        - [写 带中文字符的文件](#771f3b745b95ab3097fd1242137e2912)
-        - [获取中文字符长度](#438a955e91aa6603d24feaf53226f03c)
+        - [python 2.7 写 带中文字符的文件](#0bb0682eeb96c4d4d73977c7efd15c17)
+        - [Json dump, indent + sort keys](#355832ef6c55cf7c4768f66e8996697d)
+        - [python2 获取中文字符长度](#a2922e028e26838bcbaa6cb5d9cb57dd)
     - [encrypt](#53c82eba31f6d416f331de9162ebe997)
         - [base64](#95a1446a7120e4af5c0c8878abb7e6d2)
         - [md5](#1bc29b36f623ba82aaf6724fd3b16718)
@@ -51,12 +53,11 @@
         - [Base58](#0f3fed443cef1a400f3ac44edebf896b)
     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
         - [try - except 打印错误](#636a8076c1d8da426394e0c3e15c3ec2)
-        - [run in 32bit mode](#61ca7c49201549fda5414272579e0413)
         - [python 并行任务技巧](#eadbf8dd738ffd6eb430b8630c92d74c)
         - [profile](#7d97481b1fe66f4b51db90da7e794d9f)
         - [强制浮点数运算](#74343fa59d92ff47cbb14750228abd8f)
         - [float -> IEEE 754](#05226bcb71c2e5f63900d9f304161387)
-        - [输出一个对象各个成员的名称和值](#dd6b35cfcf7bc2919f28aaba9e65fa92)
+        - [int -> Binary](#43cf8bc0b68f7fc42c32645065656365)
         - [读取文件特定行](#210dd2176d44f2bd7f0c112101e62490)
         - [文件修改／创建时间](#4b373365b500e18ab7c0b8f5a83dc802)
         - [python 写 只读文件](#3fbb096fc383c2a61ad0a6685b17c0de)
@@ -87,6 +88,9 @@
 
 ## 语法技巧
 
+<h2 id="922f71899036f4bdea86d1a42322327b"></h2>
+
+
 ### Print with new line 
 
 ```python
@@ -110,7 +114,7 @@ for i in range(5):
 ```
 
 
-<h2 id="49bdb1b4a214a6bc00824eb4f7b2c5f1"></h2>
+<h2 id="5a80441c284c199eaf6f839c5210a986"></h2>
 
 
 ### eval 字符串表达式求值 
@@ -388,7 +392,7 @@ i = iter(a)
 dict(zip(i, i))   # you must use a single iterator 
 ```
 
-<h2 id="ab8027b580ee885ee2c146add9957e1c"></h2>
+<h2 id="2eef1e426b799acf96d762b3dc95a051"></h2>
 
 
 ### python2 unicode 判断
@@ -405,6 +409,9 @@ isinstance(u'a', unicode)
 
 Python has a locals() function which gives you back a dictionary of local variables within the function
 
+
+
+<h2 id="dd6b35cfcf7bc2919f28aaba9e65fa92"></h2>
 
 
 ### 输出一个对象各个成员的名称和值
@@ -559,9 +566,13 @@ def f7(list):
     return array.array('B', list).tostring()
 ```
 
-<h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
+<h2 id="5eee76378b49e64c0a5f5d768463fca6"></h2>
+
 
 ### 字符串编码相关
+
+
+<h2 id="f107f4274b339136846a24463f2ff9c4"></h2>
 
 
 #### python2 unicode/str convert
@@ -583,7 +594,7 @@ a
 
 `'2' == '\x32' == '\062'`
 
-<h2 id="d2c99ad38af1c01230e25f642fe1b412"></h2>
+<h2 id="3818367ee9105c0ed47b92186ebd3f00"></h2>
 
 
 #### python2 unichr / unicode string 互转
@@ -595,7 +606,7 @@ a
 我
 ```
 
-<h2 id="97293b0a09ebeed137930a0ca33f6e3a"></h2>
+<h2 id="e7358efa47ced51b6ce16b4f866186af"></h2>
 
 
 #### python2 unicode -> special encoded string
@@ -608,7 +619,7 @@ isostring = unicodestring.encode("ISO-8859-1")
 utf16string = unicodestring.encode("utf-16")
 ```
 
-<h2 id="f9b40cb363b4e4cd89aa132855dd8d41"></h2>
+<h2 id="676299737b912fa0f3b8125df27a4b42"></h2>
 
 
 #### python2 special encoded string -> unicode
@@ -657,7 +668,7 @@ reload(sys)
 sys.setdefaultencoding('utf8') 
 ```
 
-<h2 id="771f3b745b95ab3097fd1242137e2912"></h2>
+<h2 id="0bb0682eeb96c4d4d73977c7efd15c17"></h2>
 
 
 ### python 2.7 写 带中文字符的文件
@@ -669,13 +680,16 @@ fp.close()
 ```
 
 
+<h2 id="355832ef6c55cf7c4768f66e8996697d"></h2>
+
+
 ### Json dump, indent + sort keys
 
 ```python
 json.dump( obj, fp, ensure_ascii=False , separators=(',',':') , indent=4, sort_keys=True  )  
 ```
 
-<h2 id="438a955e91aa6603d24feaf53226f03c"></h2>
+<h2 id="a2922e028e26838bcbaa6cb5d9cb57dd"></h2>
 
 
 ### python2 获取中文字符长度
@@ -846,6 +860,9 @@ profile.run ( 'func_name')
 >>> print(expo, mantissa)
 ('b1111100', '01000000000000000000000')
 ```
+
+
+<h2 id="43cf8bc0b68f7fc42c32645065656365"></h2>
 
 
 ### int -> Binary
