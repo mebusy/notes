@@ -273,3 +273,13 @@ async function readText(event) {
     </select>
 ```
 
+## Html dynamic show hide element
+
+```javascript
+    if ( bShow ) {
+        elem.style.display = "block" ;
+        // elem.style.display = "table-row" ; # for table row
+    } else {
+        elem.style.display = "none" ;
+    }
+```
