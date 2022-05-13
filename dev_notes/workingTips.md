@@ -301,3 +301,40 @@ pip3 install pyftpdlib
 python3 -m pyftpdlib -w -p 80
 ```
 
+
+## check port using
+
+Linux: 
+
+```bash
+netstat -tunlp | grep 8080
+```
+
+The closest equivalent you can get on macOS is:
+
+```bash
+netstat -p tcp -van | grep '^Proto\|LISTEN' | grep 8080
+```
+
+Or use lsof  (list opened files)
+
+```bash
+sudo lsof -i:8080
+```
+
+NOTE: lsof just list files opened by current users,  you need add `sudo` if you want to see all opened files.
+
+## Check process
+
+```bash
+ps -ef | grep tomcat
+```
+
+- `-e` : all processes
+- `-f` : full
+
+
+
+
+
+
