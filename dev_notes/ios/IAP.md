@@ -50,10 +50,12 @@
 ...menuend
 
 
+# Deprecated:  StoreKit 2 is MORE recommended !!
+
 <h2 id="0390e809a5857323f39ee1814afca57d"></h2>
 
 
-# IAP
+# IAP (StoreKit 1)
 [in-app-purchase](https://developer.apple.com/in-app-purchase/)
 
 [Offering, Completing, and Restoring In-App Purchases](https://developer.apple.com/documentation/storekit/in-app_purchase/offering_completing_and_restoring_in-app_purchases)
