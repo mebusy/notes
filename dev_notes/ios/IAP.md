@@ -740,6 +740,7 @@ To use the local Xcode certificate, you must first retrieve and store it in your
 To get the certificate:
 
 1. open a StoreKit configuration file
+    - you created configuration file, then you can run app in xcode with this configuration file so as to test IAP before you creating IAP products in AppStore.
 2. select **Editor ▸ Save Public Certificate** from the menu
 3. Save the certificate in the provided **Certificates** folder.
 
