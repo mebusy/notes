@@ -22,6 +22,8 @@
     - [MacOSX add Printer in Windows LAN](#c792dc1d6bbb6c2565d0dd1a20020b86)
     - [Bash , exit or ret ?](#0f1b43a16569025f1d077ac18dc4810f)
     - [FTP Server](#98cc3814df5e703cb40d72247999d91a)
+    - [check port using](#ab1922f2cde102e230acb305eb9338f2)
+    - [Check process](#620a23e22d25f0b53a694b9daf289219)
 
 ...menuend
 
@@ -302,6 +304,9 @@ python3 -m pyftpdlib -w -p 80
 ```
 
 
+<h2 id="ab1922f2cde102e230acb305eb9338f2"></h2>
+
+
 ## check port using
 
 Linux: 
@@ -323,6 +328,9 @@ sudo lsof -i:8080
 ```
 
 NOTE: lsof just list files opened by current users,  you need add `sudo` if you want to see all opened files.
+
+<h2 id="620a23e22d25f0b53a694b9daf289219"></h2>
+
 
 ## Check process
 

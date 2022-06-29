@@ -10,6 +10,7 @@
     - [Html Number Input field, max/min length](#d2b729a11d72c4041af51d779b41cd05)
     - [Html Hidden Element](#e9475a1dc92ef25ff6490381ce108171)
     - [Html Drop List](#343ad9cb4bc1d4a4684f231e3a380be7)
+    - [Html dynamic show hide element](#eb0c9f570624cc1822ff0bb95269f21e)
 
 ...menuend
 
@@ -272,6 +273,9 @@ async function readText(event) {
         {{ end }}
     </select>
 ```
+
+<h2 id="eb0c9f570624cc1822ff0bb95269f21e"></h2>
+
 
 ## Html dynamic show hide element
 

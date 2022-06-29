@@ -1,6 +1,7 @@
 ...menustart
 
-- [IAP](#0390e809a5857323f39ee1814afca57d)
+- [Deprecated:  StoreKit 2 is MORE recommended !!](#9b5c27967e51e039f3e532ccd629da63)
+- [IAP (StoreKit 1)](#91e7d7af9b27b33b0eccfdabb1a17e07)
     - [IAP Process Flow](#58915c1729b0554fba11908a387eecc6)
         - [Load In-App identifiers](#0581a394c7c5b9dbd1f282ec2281c044)
         - [Fetch Product Info](#0cd9982c3996eda6c09deadde434e851)
@@ -50,9 +51,12 @@
 ...menuend
 
 
+<h2 id="9b5c27967e51e039f3e532ccd629da63"></h2>
+
+
 # Deprecated:  StoreKit 2 is MORE recommended !!
 
-<h2 id="0390e809a5857323f39ee1814afca57d"></h2>
+<h2 id="91e7d7af9b27b33b0eccfdabb1a17e07"></h2>
 
 
 # IAP (StoreKit 1)
