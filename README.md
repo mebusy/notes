@@ -68,7 +68,7 @@
 --- | --- | --- | ---
 [swift in Y minutes](dev_notes/learnSwiftInYMinutes.md) | [swift from python](dev_notes/swift_from_python.md) |
 [swift Optional](dev_notes/swift_optional.md) | 
-
+[SwiftUI](dev_notes/swiftUI.md) |
 
 
 <h2 id="aac4d78ee7d18636803896f8b8c16aa6"></h2>
