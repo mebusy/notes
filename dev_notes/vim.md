@@ -89,6 +89,7 @@
     ```bash
     # --clang-completer --system-libclang
     ```
+    - for Ubuntu, `sudo apt install build-essential` is needed
 
 <h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
 
@@ -114,65 +115,6 @@
 
 - chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
 - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
-
-<h2 id="a43a706fb4d224cd0a1a793434080a10"></h2>
-
-
-## VIM on Centos7
-
-<details>
-<summary>
-install VIM8 on Centos7
-</summary>
-
-```bash
-1. install the necessary package.
-yum install gcc-c++ ncurses-devel python-devel lua-devel -y
-
-2. Get the source code of Vim.
-git clone https://github.com/vim/vim.git
-
-# Use the version like my MacVim.
-cd vim/src && git checkout v8.0.1350
-
-3. Configure it !
-./configure --with-features=huge --enable-pythoninterp=dynamic  --enable-luainterp=dynamic
-
-
-4. compile
-make
-make install
-```
-
-```bash
-./configure 后面的配置选项
--–with-features=huge：支持最大特性
--–enable-rubyinterp：打开对ruby编写的插件的支持
--–enable-pythoninterp：打开对python编写的插件的支持
--–enable-python3interp：打开对python3编写的插件的支持
--–enable-luainterp：打开对lua编写的插件的支持
--–enable-perlinterp：打开对perl编写的插件的支持
--–enable-multibyte：打开多字节支持，可以在Vim中输入中文
--–enable-cscope：打开对cscope的支持
--–with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ 指定python 路径
--–with-python-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu/ 指定python3路径
--–prefix=/usr/local/vim：指定将要安装到的路径(自行创建)
-```
-</details>
-
-
-
-<details>
-<summary>
-install YouCompleteMe on Centos7
-</summary>
-
-1. yum 安装 clang
-2. build YCME
-    ```
-    CC=`which clang` CXX=`which clang++`  ./install.py ......
-    ```
-</details>
 
 
 
