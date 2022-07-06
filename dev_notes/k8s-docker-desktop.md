@@ -339,14 +339,10 @@ ok
 
 
 - to allow access from remote machine
-    1. listen on 0.0.0.0
+    - on your workstation, create a tunnel to k8s server
         ```bash
-        $ kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'
+        ssh -L 9999:127.0.0.1:8001 -N -f -l <ssh user name> <k8s master host name or ip>
         ```
-    2. open 8001 port if necessarily
-    3. using https instead
-
-
-
-
+    - repalce 8001 to 9999
+        - http://localhost:9999/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
 
