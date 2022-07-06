@@ -72,6 +72,8 @@
     Port 2222
     #AddressFamily any
     ListenAddress 0.0.0.0
+    ...
+    PasswordAuthentication yes
     ```
 - restart sshd
     - on Ubuntu
