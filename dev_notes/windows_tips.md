@@ -11,6 +11,56 @@
 
 # Windows tis
 
+
+## Use WSL2 
+
+- install WSL2 on Win10
+    ```bash
+    wsl.exe --install
+    ```
+    - reboot, and wait to finish Ubuntu setup
+    - update apt
+        ```bash
+        sudo apt update && apt upgrade -y 
+        ```
+- install docker
+    - https://docs.docker.com/engine/install/ubuntu/
+    ```bash
+    $ curl -fsSL https://test.docker.com -o test-docker.sh
+    $ sudo sh test-docker.sh
+    ...
+    # IMPORTANT: systemctl not work on WLS !!!
+    #   use service instead
+    $ sudo service docker start
+    ```
+    - now make docker rootless... it's painful under WSL2... 
+        - so I decide to add a group user...
+        ```bash
+        $ sudo groupadd docker
+        $ sudo usermod -aG docker $USER 
+        ```
+- install k8s
+    - install kubectl...
+    - https://github.com/kubernetes-sigs/kind/releases
+    ```bash
+    $ curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.14.0/kind-$(uname)-amd64
+    $ chmod +x ./kind
+    $ sudo mv ./kind /usr/local/bin/
+    # create k8s cluster
+    $ kind create cluster --name wslk8s
+    Set kubectl context to "kind-wslk8s"
+    You can now use your cluster with:
+    kubectl cluster-info --context kind-wslk8s
+    ```
+    - test whether it works...
+        ```bash
+        $ kubectl cluster-info
+        Kubernetes control plane is running at https://127.0.0.1:35537
+        CoreDNS is running at https://127.0.0.1:35537/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+        To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+        ```
+
 <h2 id="e623b8257a43fa5e9f6166407a2e3914"></h2>
 
 
