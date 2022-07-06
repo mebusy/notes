@@ -344,5 +344,9 @@ ok
         $ kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'
         ```
     2. open 8001 port if necessarily
+    3. using https instead
+
+
+
 
 
