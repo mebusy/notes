@@ -335,5 +335,14 @@ ok
     ```
 
 
-
 - [dashboard url](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login)
+
+
+- to allow access from remote machine
+    1. listen on 0.0.0.0
+        ```bash
+        $ kubectl proxy --address='0.0.0.0' --accept-hosts='^*$'
+        ```
+    2. open 8001 port if necessarily
+
+
