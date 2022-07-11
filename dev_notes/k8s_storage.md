@@ -147,7 +147,7 @@ kind: Pod
 metadata:
   name: task-pv-pod
 spec:
-  volumes:
+  volumes: # same level as containers
     - name: task-pv-storage
       persistentVolumeClaim:
         claimName: task-pv-claim
@@ -157,7 +157,7 @@ spec:
       ports:
         - containerPort: 80
           name: "http-server"
-      volumeMounts:
+      volumeMounts: # sub level under containers
         - mountPath: "/usr/share/nginx/html"
           name: task-pv-storage
 ```
@@ -175,7 +175,7 @@ spec:
   containers:
     - name: test
       image: nginx
-      volumeMounts:
+      volumeMounts: # sub level under containers
         # a mount for site-data
         - name: config
           mountPath: /usr/share/nginx/html
@@ -184,7 +184,7 @@ spec:
         - name: config
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
-  volumes:
+  volumes: # same level as containers
     - name: config
       persistentVolumeClaim:
         claimName: test-nfs-claim
