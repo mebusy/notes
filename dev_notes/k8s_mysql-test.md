@@ -8,7 +8,7 @@
 <h2 id="595140279525e99ad195e33954e2f6cf"></h2>
 
 
-# create a test mysql in k8s with root/root
+# create a test mysql in k8s with root/rootpwd
 
 
 ```yaml
@@ -18,29 +18,27 @@ items:
   kind: Deployment
   metadata:
     labels:
-      k8s-app: mysql-test
-    name: mysql-test
+      k8s-app: mysql-57
+    name: mysql-57
   spec:
     replicas: 1
     selector:
       matchLabels:
-        k8s-app: mysql-test
+        k8s-app: mysql-57
     strategy:
       type: RollingUpdate
     template:
       metadata:
         labels:
-          k8s-app: mysql-test
+          k8s-app: mysql-57
       spec:
         containers:
         - env:
-          - name: MYSQL_USER
-            value: root
           - name: MYSQL_ROOT_PASSWORD
-            value: root
-          image: mysql:5.6
+            value: rootpwd
+          image: mysql:5.7
           imagePullPolicy: IfNotPresent
-          name: mysql-test
+          name: mysql-57
           resources:
             limits:
               cpu: "1"
@@ -48,13 +46,20 @@ items:
             requests:
               cpu: 100m
               memory: 128Mi
+          volumeMounts: # sub level under containers [optional]
+            - mountPath: "/var/lib/mysql"
+              name: pvc-mysql-57-storage
         dnsPolicy: ClusterFirst
         restartPolicy: Always
+        volumes: # same level as containers [optional]
+          - name: pvc-mysql-57-storage
+            persistentVolumeClaim:
+              claimName: pvc-mysql-57
 
 - apiVersion: v1
   kind: Service
   metadata:
-    name: mysql-test
+    name: mysql-57
   spec:
     ports:
     - name: 3306-3306-tcp
@@ -62,10 +67,11 @@ items:
       protocol: TCP
       targetPort: 3306
     selector:
-      k8s-app: mysql-test
+      k8s-app: mysql-57
     sessionAffinity: None
     type: ClusterIP
 
 kind: List
+
 ```
 
