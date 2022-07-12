@@ -1,5 +1,5 @@
 
-# Expose k8s mysql with PhpMyAdmin
+# k8s PhpMyAdmin
 
 ```yaml
 apiVersion: apps/v1
