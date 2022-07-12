@@ -39,19 +39,38 @@
         $ sudo groupadd docker
         $ sudo usermod -aG docker $USER 
         ```
-- install k8s
+- install kind k8s
     - install kubectl...
     - https://github.com/kubernetes-sigs/kind/releases
     ```bash
     $ curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.14.0/kind-$(uname)-amd64
     $ chmod +x ./kind
     $ sudo mv ./kind /usr/local/bin/
-    # create k8s cluster
-    $ kind create cluster --name wslk8s
-    Set kubectl context to "kind-wslk8s"
-    You can now use your cluster with:
-    kubectl cluster-info --context kind-wslk8s
     ```
+    - Create a kind cluster with extraPortMappings and node-labels.
+        - extraPortMappings allow the local host to make requests to the Ingress controller over ports 80/443
+        - node-labels only allow the ingress controller to run on a specific node(s) matching the label selector
+        ```bash
+        cat <<EOF | kind create cluster --name wslk8s  --config=-
+        kind: Cluster
+        apiVersion: kind.x-k8s.io/v1alpha4
+        nodes:
+        - role: control-plane
+          kubeadmConfigPatches:
+          - |
+            kind: InitConfiguration
+            nodeRegistration:
+              kubeletExtraArgs:
+                node-labels: "ingress-ready=true"
+          extraPortMappings:
+          - containerPort: 80
+            hostPort: 80
+            protocol: TCP
+          - containerPort: 443
+            hostPort: 443
+            protocol: TCP
+        EOF
+        ```
     - test whether it works...
         ```bash
         $ kubectl cluster-info
@@ -60,6 +79,8 @@
 
         To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
         ```
+
+
 
 <h2 id="e623b8257a43fa5e9f6166407a2e3914"></h2>
 

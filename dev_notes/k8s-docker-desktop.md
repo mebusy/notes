@@ -40,14 +40,12 @@ Preferences / Kuberneters / Enable Kuberneters
 There may be a problem that the default listening port 80 is gonna easily conflict with other service you already have, so sometimes you may need to alter ingress' default http listening port to another one.
 
 ```bash
-# 1. dowdload deploy.yaml
-# you can check https://github.com/kubernetes/ingress-nginx to see version list of controller
-wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
-# 2. modify 1:  replace 2 http 80 port to the number you want to listening, e.g. we can use 10080
-# 3. modify 2:  Deployment / containers / args , add  `- --http-port=10080` , 
-#        so as to make the traffic works: ingress listening 10080 -> 80 ingress
-# 4. apply
-kubectl apply -f deploy.yaml
+# specific version
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.2/deploy/static/provider/cloud/deploy.yaml
+
+# latest version
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
 ```
 
 You will notice that ingress-nginx-controller listening port has been changed
@@ -55,7 +53,7 @@ You will notice that ingress-nginx-controller listening port has been changed
 ```bash
 $ kubectl get svc -A
 NAMESPACE       NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                           AGE
-ingress-nginx   ingress-nginx-controller             LoadBalancer   10.108.84.93    localhost     10080:31402/TCP,443:32053/TCP   20s
+ingress-nginx   ingress-nginx-controller             LoadBalancer   10.108.84.93    localhost     80:31402/TCP,443:32053/TCP   20s
 ```
 
 wait ingress-nginx-controller to be running.
@@ -210,7 +208,7 @@ $ kubectl get ingress -A
 NAMESPACE     NAME                  CLASS    HOSTS              ADDRESS     PORTS   AGE
 default       example-ingress       <none>   *                  localhost   80      4m17s
 
-$ curl localhost:10080/apple  # because we have changed the listening port to 10080
+$ curl localhost/apple  
 apple
 ```
 
@@ -284,14 +282,14 @@ $ kubectl get ingress -A
 NAMESPACE     NAME                  CLASS    HOSTS              ADDRESS     PORTS   AGE
 umc-dot-dev   dot-iap-ingress-443   <none>   dot-iap-dev.imac   localhost   80      28m
 
-$ curl localhost:10080
-$ curl dot-iap-dev.imac:10080
+$ curl localhost
+$ curl dot-iap-dev.imac
 ok
-$ curl localhost:10080
+$ curl localhost
 404 Not Found
 # because ingress host is `dot-iap-dev.imac`
 #     so we need specify that host in request headers
-$ curl -H "host: dot-iap-dev.imac" localhost:10080
+$ curl -H "host: dot-iap-dev.imac" localhost
 ok
 ```
 
@@ -303,36 +301,37 @@ ok
 - install dash board
     ```bash
     # check https://github.com/kubernetes/dashboard
-    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
     ```
-- Creating a Service Account
-    ```yaml
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: admin-user
-      namespace: kubernetes-dashboard
-    ```
-- Creating a ClusterRoleBinding
-    ```yaml
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: ClusterRoleBinding
-    metadata:
-      name: admin-user
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: cluster-admin
-    subjects:
-    - kind: ServiceAccount
-      name: admin-user
-      namespace: kubernetes-dashboard
-    ```
-- Getting a Bearer Token
-    ```bash
-    $ kubectl -n kubernetes-dashboard create token admin-user
-    eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLXY1N253Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiIwMzAzMjQzYy00MDQwLTRhNTgtOGE0Ny04NDllZTliYTc5YzEiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.Z2JrQlitASVwWbc-s6deLRFVk5DWD3P_vjUFXsqVSY10pbjFLG4njoZwh8p3tLxnX_VBsr7_6bwxhWSYChp9hwxznemD5x5HLtjb16kI9Z7yFWLtohzkTwuFbqmQaMoget_nYcQBUC5fDmBHRfFvNKePh_vSSb2h_aYXa8GV5AcfPQpY7r461itme1EXHQJqv-SN-zUnguDguCTjD80pFZ_CmnSE1z9QdMHPB8hoB4V68gtswR1VLa6mSYdgPwCHauuOobojALSaMc3RH7MmFUumAgguhqAkX3Omqd3rJbYOMRuMjhANqd08piDC3aIabINX6gP5-Tuuw2svnV6NYQ
-    ```
+- create a simple user
+    - Creating a Service Account
+        ```yaml
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+          name: admin-user
+          namespace: kubernetes-dashboard
+        ```
+    - Creating a ClusterRoleBinding
+        ```yaml
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: ClusterRoleBinding
+        metadata:
+          name: admin-user
+        roleRef:
+          apiGroup: rbac.authorization.k8s.io
+          kind: ClusterRole
+          name: cluster-admin
+        subjects:
+        - kind: ServiceAccount
+          name: admin-user
+          namespace: kubernetes-dashboard
+        ```
+    - Getting a Bearer Token
+        ```bash
+        $ kubectl -n kubernetes-dashboard create token admin-user --duration=10000h
+        eyJhbGciOiJSUzI1NiIsImtpZCI...
+        ```
 
 
 - [dashboard url](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#!/login)
