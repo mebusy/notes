@@ -108,22 +108,35 @@
 - you wsl2 ip address is something like 172.x.x.x, mine is 172.23.129.80
 - FORWARD PORTS INTO WSL2
     - from an win10 **Administrator Windows prompt**, add a portproxy rule
-    ```bash
-    netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=2222 connectaddress=172.23.129.80 connectport=2222
-    ```
+        ```bash
+        netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=2222 connectaddress=172.23.129.80 connectport=2222
+        ```
     - You can list all your portproxy rules like this if you're concerned:
-    ```bash
-    netsh interface portproxy show v4tov4 
-    ```
+        ```bash
+        netsh interface portproxy show v4tov4 
+        ```
     - You can remove them all if you want with
-    ```bash
-    netsh int portproxy reset all
-    ```
+        ```bash
+        netsh int portproxy reset all
+        ```
+    - or remove specific one
+        ```bash
+        > netsh interface portproxy delete v4tov4 listenport=33057 listenaddress=0.0.0.0
+        ```
 - OPEN THE FIREWALL
     - from the same Administrator Windows prompt, open an incoming Firewall Port. 
     - You can do it from the Advanced Firewall Settings, but even easier you can use netsh again!
     ```bash
     netsh advfirewall firewall add rule name=”Open Port 2222 for WSL2” dir=in action=allow protocol=TCP localport=2222
     ```
-
+- delete firewall rule
+    ```bash
+    > netsh advfirewall firewall show rule status=enabled name=all | FIND /I "WSL"
+    Rule Name:                            Open Port 33056 for WSL2
+    Rule Name:                            Open Port 33057 for WSL2
+    Rule Name:                            Open Port 8001 for WSL2
+    Rule Name:                            Open Port 2222 for WSL2
+    > netsh advfirewall firewall delete rule name="Open Port 33056 for WSL2"
+    Deleted 1 rule(s).
+    ```
 
