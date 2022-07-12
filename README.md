@@ -151,7 +151,7 @@ a | b | c | d
 [TypeScript](dev_notes/typescript.md) |
 [facebook gamebot](dev_notes/createFBapp.md) | 
 [k8s Tutorial,Installation](dev_notes/kuberneters.md) | [腾讯TKE](dev_notes/TencentK8sEngine.md) | [edx intro2K8s](dev_notes/intro2K8s.md) | 
-[Amazon EKS](dev_notes/EKS.md) | [docker desktop k8s](dev_notes/k8s-docker-desktop.md) | [k8s storage](dev_notes/k8s_storage.md) | 
+[Amazon EKS](dev_notes/EKS.md) | [docker desktop k8s](dev_notes/k8s-docker-desktop.md) | [k8s storage](dev_notes/k8s_storage.md) |  [expose k8s mysql with phpmyadmin](dev_notes/k8s-phpmyadmin.md)
 [redis-cache in k8s](dev_notes/k8s_redis-cache.md)  | [mysql-test in k8s](dev_notes/k8s_mysql-test.md) | [service yaml](dev_notes/k8s-service-type.md)
 [帧同步笔记](dev_notes/framelock.md) | 
 
