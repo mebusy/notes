@@ -1,5 +1,19 @@
 
-# k8s PhpMyAdmin
+#  Mysql in k8s, PhpMyAdmin
+
+
+## Expose Mysql service in k8s
+
+use [portforward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) ,   say you have mysql service  under namespace mysql-57,  you listen on port 33057 on all address, and forward to 3306 in a pod select by the deployment.
+
+
+```bash
+kubectl -n mysql-57  --address 0.0.0.0   port-forward deployment/mysql-57 33057:3306
+```
+
+
+## PhpMyAdmin
+
 
 ```yaml
 apiVersion: apps/v1
