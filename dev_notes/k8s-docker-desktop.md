@@ -322,3 +322,24 @@ ok
     - repalce 8001 to 9999
         - http://localhost:9999/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
 
+- more remote tunnels maybe use...
+    ```bash
+    # tunnel 1, access k8s dashboard , 9999 -> 8001, dashboard port
+    loc_port=9999
+    ret=`lsof -i:$loc_port`
+    if [ -z "$ret" ]
+    then
+        nohup ssh -p 2222 -L $loc_port:127.0.0.1:8001 -N -f -l <ssh user> <ssh host> &> /dev/null
+    fi
+
+    sleep 1
+
+    # tunnel 2, access kubectl,  9998 -> api server port
+    loc_port=9998
+    ret=`lsof -i:$loc_port`
+    if [ -z "$ret" ]
+    then
+        nohup ssh -p 2222 -L $loc_port:127.0.0.1:45933 -N -f -l <ssh user> <ssh host> &> /dev/null
+    fi
+    ```
+
