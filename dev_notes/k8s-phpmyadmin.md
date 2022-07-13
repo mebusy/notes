@@ -11,9 +11,16 @@ use [portforward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl
 kubectl -n mysql-57  --address 0.0.0.0   port-forward deployment/mysql-57 33057:3306
 ```
 
+Now you can connect to mysql  from outside
+
+```bash
+mysql -h <host-name> -P 33057 -u<user> -p<passwd>
+```
+
 
 ## PhpMyAdmin
 
+You can also deploy a web client to do normal dev-ops on mysql
 
 ```yaml
 apiVersion: apps/v1
