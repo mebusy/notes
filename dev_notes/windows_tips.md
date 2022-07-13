@@ -48,6 +48,8 @@
     $ sudo mv ./kind /usr/local/bin/
     ```
     - Create a kind cluster with extraPortMappings and node-labels.
+        - TODO: change api server address ...
+        - TODO: enable local registry
         - extraPortMappings allow the local host to make requests to the Ingress controller over ports 80/443
         - node-labels only allow the ingress controller to run on a specific node(s) matching the label selector
         ```bash
