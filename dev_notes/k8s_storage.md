@@ -1,11 +1,34 @@
+...menustart
+
+- [K8s Storage](#4a33fe904326d6f56ec74b22f13145a1)
+    - [Volumns](#4ce59818ee682136129b1f122cee6573)
+        - [emptyDir](#77ea5ef86c2c650eb37fa7374f084bbc)
+        - [configMap](#5eeadeea1e2bd82727f9a220408a5f2a)
+        - [hostPath](#f1e81401ee0afe2275193298ef588120)
+    - [Persistent Volume](#dc1691844d1fa3602f797857ca2f638b)
+        - [Create a PersistentVolume](#7a25b4411e122cd14b3d7150ddd960da)
+        - [Create a PersistentVolumeClaim](#f720852f4291583f90ac6c9ca381d279)
+        - [Create a Pod](#0adc8bf342f1769161c24a88adfe4ff3)
+
+...menuend
+
+
+<h2 id="4a33fe904326d6f56ec74b22f13145a1"></h2>
+
 
 # K8s Storage
+
+<h2 id="4ce59818ee682136129b1f122cee6573"></h2>
+
 
 ## Volumns
 
 - A Container's file system lives only as long as the Container does. 
     - So when a Container terminates and restarts, filesystem changes are lost. 
     - For more consistent storage that is independent of the Container, you can use a [Volume](https://kubernetes.io/docs/concepts/storage/volumes/).
+
+
+<h2 id="77ea5ef86c2c650eb37fa7374f084bbc"></h2>
 
 
 ### emptyDir
@@ -32,6 +55,9 @@ spec:
   - name: redis-storage
     emptyDir: {}
 ```
+
+<h2 id="5eeadeea1e2bd82727f9a220408a5f2a"></h2>
+
 
 ### configMap
 
@@ -62,9 +88,15 @@ spec:
 ```
 
 
+<h2 id="f1e81401ee0afe2275193298ef588120"></h2>
+
+
 ### hostPath
 
 Warning: [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volumes present many security risks,  and it is a best practice to avoid the use of HostPaths when possible.
+
+
+<h2 id="dc1691844d1fa3602f797857ca2f638b"></h2>
 
 
 ## Persistent Volume
@@ -76,6 +108,9 @@ Warning: [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpat
 
 
 - **PV should be in cluster scope**,  PVC could be in namespace scope , along with Pods
+
+<h2 id="7a25b4411e122cd14b3d7150ddd960da"></h2>
+
 
 ### Create a PersistentVolume
 
@@ -115,6 +150,9 @@ kubectl get pv task-pv-volume
 ```
 
 
+<h2 id="f720852f4291583f90ac6c9ca381d279"></h2>
+
+
 ### Create a PersistentVolumeClaim
 
 - Pods use PersistentVolumeClaims to request physical storage.
@@ -137,6 +175,9 @@ spec:
 ```bash
 kubectl get pvc task-pv-claim
 ```
+
+
+<h2 id="0adc8bf342f1769161c24a88adfe4ff3"></h2>
 
 
 ### Create a Pod

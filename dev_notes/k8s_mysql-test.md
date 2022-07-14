@@ -1,8 +1,13 @@
 ...menustart
 
-- [create a test mysql in k8s with root/root](#595140279525e99ad195e33954e2f6cf)
+- [Create A Persistent Volume](#5f8275d909a1c3cade324a55d89e0337)
+- [Create a mysql in k8s with root/rootpwd](#e6c4fa270e7ad3daf363af62c5a08163)
+- [Expose Mysql service in k8s](#73daabeddc65e8243ffa9143bbc6d239)
 
 ...menuend
+
+
+<h2 id="5f8275d909a1c3cade324a55d89e0337"></h2>
 
 
 ## Create A Persistent Volume
@@ -24,7 +29,7 @@ spec:
     path: "/opt/data/mysql"
 ```
 
-<h2 id="595140279525e99ad195e33954e2f6cf"></h2>
+<h2 id="e6c4fa270e7ad3daf363af62c5a08163"></h2>
 
 
 ## Create a mysql in k8s with root/rootpwd
@@ -106,6 +111,9 @@ items:
 kind: List
 
 ```
+
+
+<h2 id="73daabeddc65e8243ffa9143bbc6d239"></h2>
 
 
 ## Expose Mysql service in k8s

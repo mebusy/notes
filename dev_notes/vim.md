@@ -5,7 +5,6 @@
     - [YouCompleteMe 配置](#95e1e8a5d4d20276318a364f9428f879)
         - [YCMD 排错](#f7abfec0b5984a0314616bd13f7ae8c3)
     - [Markdown](#2182a74bab7188d959e795d9301e87ff)
-    - [VIM on Centos7](#a43a706fb4d224cd0a1a793434080a10)
     - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
     - [vim Mark](#ac4aee7e186902860d64dcf2a6065905)
     - [VIM tips](#a1c1a23da31214c88d29928e14c64ef0)

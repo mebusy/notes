@@ -2,20 +2,8 @@
 
 - [TKE](#12510f8273f9a47f538779a3afd71f53)
 - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
-    - [install](#19ad89bc3e3c9d7ef68b89523eff1987)
-    - [use kubectl](#773c2c719c95cc40967b0e945ada8898)
-        - [#list only pod name,  and no column name](#7ec1be1882d584532184cc1609283eb3)
-        - [find pod by ip](#083e4e9d5085b330f59f1e5032b9e408)
-        - [get yaml](#27b7cb2760c21e097eef0e0c787ff402)
-        - [full service name across namespaces](#f105d78fa5298a8e02f51a22ac6da980)
-        - [Specify a Context](#bd251ed977799cf91b83164dbb4e6bab)
-        - [restart deployment](#cdd368345c1399226f29c445f2d344f7)
-        - [search log in all pods](#7740cb2915e67ffc07500ca7d0dc086f)
-        - [other usage](#4b091e7bf24f9e193323877b35ece5fb)
-    - [kubectl cheatsheet](#d4b1fc7497d32f6554e52b3a22b5685f)
+    - [other usage](#4b091e7bf24f9e193323877b35ece5fb)
     - [role , rolebinding](#a65165eaad917e08dbaab4ca345c9140)
-    - [postStart / preStop event handle](#3cfc0b587c5bea5919d967aa0c0f7629)
-    - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
 - [腾讯云 用户管理](#7616e9353ba2c3c55eb7063e51fc65fb)
     - [策略](#66914536facf5b30973b236fb814d23f)
         - [访问 COS 某个bucket的策略](#d255a9679389c247f2735458b48e299f)
@@ -24,15 +12,14 @@
     - [ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.](#d42d194dd306f76100f9b591fd878396)
     - [k8s node 磁盘占用过高查找并清理](#e8dfbb86e3e1d39df969144ae4d3f06b)
     - [清除不再使用的 image](#77563c3ed75c144a6617a7077a1b4771)
-    - [查找不是 running 状态的 pod](#145f750dc8c7bde1231227e5d027eafd)
     - [Pod Stuck in Terminating](#f33345d63406b6b6402c63cb4275d5b7)
     - [Duplicate service , deployment one namespece to another namespace](#12847d0d05565b4f2c885fa89ab4049b)
-- [cntlm 设置代理 (Centos7)](#c36aef5f4c92632a2362a83ed0523565)
-- [cntlm (Macosx)](#48cd1b6a59fb119e19d9f83e6cf43668)
 
 ...menuend
 
+
 <h2 id="12510f8273f9a47f538779a3afd71f53"></h2>
+
 
 # TKE
 
@@ -41,7 +28,7 @@
 
 # kubectl
 
-<h2 id="7740cb2915e67ffc07500ca7d0dc086f"></h2>
+<h2 id="4b091e7bf24f9e193323877b35ece5fb"></h2>
 
 
 ## other usage
@@ -216,6 +203,9 @@ docker images | grep "<none>" | grep co-app-images | awk "{print \$3}" | xargs d
 # more aggressive 
 docker images | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 ```
+
+
+<h2 id="f33345d63406b6b6402c63cb4275d5b7"></h2>
 
 
 ## Pod Stuck in Terminating

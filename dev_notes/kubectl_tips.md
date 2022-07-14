@@ -1,5 +1,28 @@
+...menustart
+
+- [Kubectl Tips](#7bf06c7b338720d61ab435438d2fdaea)
+    - [Install](#349838fb1d851d3e2014b9fe39203275)
+    - [kubectl cheatsheet](#d4b1fc7497d32f6554e52b3a22b5685f)
+    - [list pod names](#b94a99fa444999e85f6d0bb1bc651e55)
+    - [List Detailed Info `-o wide`](#9ae6956ba1eb023104bf24d0bc5df58c)
+    - [print yaml file](#4c6e4c26d748e3ff10dd5ab1c3f1f6ca)
+    - [full service name across namespaces](#f105d78fa5298a8e02f51a22ac6da980)
+    - [Specify a Context](#bd251ed977799cf91b83164dbb4e6bab)
+    - [rollout/restart deployment](#c87467d96636d76fdfa6a0a2785b7eb8)
+    - [查找不是 running 状态的 pod](#145f750dc8c7bde1231227e5d027eafd)
+    - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
+    - [Advanced Skill](#10e2e86d43aa4ce9a791d75c478a23dc)
+
+...menuend
+
+
+<h2 id="7bf06c7b338720d61ab435438d2fdaea"></h2>
+
 
 # Kubectl Tips
+
+<h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
+
 
 ## Install
 
@@ -17,9 +40,15 @@ chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 ```
 
+<h2 id="d4b1fc7497d32f6554e52b3a22b5685f"></h2>
+
+
 ## kubectl cheatsheet
 
 [cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+
+<h2 id="b94a99fa444999e85f6d0bb1bc651e55"></h2>
 
 
 ## list pod names
@@ -42,6 +71,9 @@ ingress-nginx-controller-86b6d5756c-mgp5v
 ```
 
 
+<h2 id="9ae6956ba1eb023104bf24d0bc5df58c"></h2>
+
+
 ## List Detailed Info `-o wide` 
 
 ```bash
@@ -50,6 +82,9 @@ NAMESPACE       NAME            READY   STATUS      RESTARTS   AGE  IP          
 ingress-nginx   ingress-....    0/1     Completed   0          8h   10.244.0.6  node1   <none>           <none>
 ```
 
+<h2 id="4c6e4c26d748e3ff10dd5ab1c3f1f6ca"></h2>
+
+
 ## print yaml file
 
 ```bash
@@ -57,12 +92,18 @@ ingress-nginx   ingress-....    0/1     Completed   0          8h   10.244.0.6  
 kubectl ... get ...  -o yaml --export 
 ```
 
+<h2 id="f105d78fa5298a8e02f51a22ac6da980"></h2>
+
+
 ## full service name across namespaces
 
 ```bash
 # full service name across namespaces
 <service-name>.<namespace-name>.svc.cluster.local
 ```
+
+<h2 id="bd251ed977799cf91b83164dbb4e6bab"></h2>
+
 
 ## Specify a Context 
 
@@ -74,11 +115,17 @@ kubectl config get-contexts
 kubectl_tke --context=<ContextName>  get nodes
 ```
 
+<h2 id="c87467d96636d76fdfa6a0a2785b7eb8"></h2>
+
+
 ## rollout/restart deployment
 
 ```bash
 kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```
+
+<h2 id="145f750dc8c7bde1231227e5d027eafd"></h2>
+
 
 ## 查找不是 running 状态的 pod
 
@@ -87,6 +134,9 @@ $ kubectl get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
 NAMESPACE            NAME                                           READY   STATUS      RESTARTS   AGE
 ingress-nginx        ingress-nginx-admission-create-gfm2j           0/1     Completed   0          9h
 ```
+
+<h2 id="f0cfc2eb04f3c904ba876b4ff5e36744"></h2>
+
 
 ## JSONPath 表达式
 
@@ -123,6 +173,9 @@ $ kubectl get nodes -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.f
 - 每个节点的可用区都可以通过标签`failure-domain.beta.kubernetes.io/zone`来获得
 - 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
 
+
+
+<h2 id="10e2e86d43aa4ce9a791d75c478a23dc"></h2>
 
 
 ## Advanced Skill
