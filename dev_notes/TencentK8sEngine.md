@@ -32,9 +32,7 @@
 
 ...menuend
 
-
 <h2 id="12510f8273f9a47f538779a3afd71f53"></h2>
-
 
 # TKE
 
@@ -43,132 +41,10 @@
 
 # kubectl
 
-- 客户端小版本最多比服务器大1， 比如服务器版本是1.7.8 , 客户端版本可以用 1.8.x 
-
-<h2 id="19ad89bc3e3c9d7ef68b89523eff1987"></h2>
-
-
-## install
-
-- linux
-    - latest version
-        - `curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"`
-    - specific version, say, 1.23.0
-        - `curl -LO https://dl.k8s.io/release/v1.23.0/bin/linux/amd64/kubectl` 
-- macos:
-    - replace `linux` with `darwin` 
-
-```
-chmod +x ./kubectl
-mv ./kubectl /usr/local/bin/kubectl
-```
-
-
-
-<h2 id="773c2c719c95cc40967b0e945ada8898"></h2>
-
-
-## use kubectl
-
-<h2 id="7ec1be1882d584532184cc1609283eb3"></h2>
-
-
-### #list only pod name,  and no column name
-
-```bash
-#list only pod name,  and no column name
-kubectl get po --no-headers -o custom-columns=:.metadata.name
-```
-
-<h2 id="083e4e9d5085b330f59f1e5032b9e408"></h2>
-
-
-### find pod by ip
-
-```bash
-# find pod by ip
-kubectl get po --all-namespaces -o wide | grep 10.0.0.39
-```
-
-<h2 id="27b7cb2760c21e097eef0e0c787ff402"></h2>
-
-
-### get yaml 
-
-```bash
-# get yaml 
-kubectl ... get ...  -o yaml --export 
-```
-
-<h2 id="f105d78fa5298a8e02f51a22ac6da980"></h2>
-
-
-### full service name across namespaces
-
-```bash
-# full service name across namespaces
-<service-name>.<namespace-name>.svc.cluster.local
-```
-
-<h2 id="bd251ed977799cf91b83164dbb4e6bab"></h2>
-
-
-### Specify a Context 
-
-```bash
-# list all context
-kubectl config get-contexts
-
-# specify context
-kubectl_tke --context=<ContextName>  get nodes
-```
-
-<h2 id="cdd368345c1399226f29c445f2d344f7"></h2>
-
-
-### restart deployment
-
-```bash
-kubectl -n <namespace> rollout restart deployment <deployment-name>
-```
-
 <h2 id="7740cb2915e67ffc07500ca7d0dc086f"></h2>
 
 
-### search log in all pods
-
-```bash
-NAMESPACE="your-namespace"
-SELECTOR="k8s-app=xxxxxxx"
-TEXT="GET /callback"
-
-yesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24*0 ).strftime("%Y%m%d")'`
-tdbyesterday=`python -c 'import datetime;import time; print datetime.datetime.utcfromtimestamp( time.time() - 3600*24*1 ).strftime("%Y%m%d")'`
-
-
-if [ "$1" != ""  ]
-then
-    TEXT=$1
-fi
-
-for pod in `kubectl -n $NAMESPACE get po --no-headers --selector=$SELECTOR  -o custom-columns='NAME:metadata.name'`
-do
-    echo -------------- seaching $pod
-    # archived gz file by logrotate
-    echo "\t" , app.log-$yesterday.gz
-    kubectl -n $NAMESPACE exec -it $pod -- gunzip -k -c logs/app.log-$yesterday.gz   | grep "$TEXT"
-    echo "\t" , app.log-$tdbyesterday.gz
-    kubectl -n $NAMESPACE exec -it $pod -- gunzip -k -c logs/app.log-$tdbyesterday.gz   | grep "$TEXT"
-    echo "\t" , app.log
-    kubectl -n $NAMESPACE exec -it $pod -- cat logs/app.log   | grep "$TEXT"
-done
-```
-
-
-<h2 id="4b091e7bf24f9e193323877b35ece5fb"></h2>
-
-
-### other usage
+## other usage
 
 ```bash
 7. ImagePullSecret ( 如果需要从外部pull 镜像的话需要设置, in deployment)
@@ -182,15 +58,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
    kubectl get secret <secret-name> --namespace=A --export -o yaml | kubectl apply --namespace=B -f -
 
 ```
-
-
-<h2 id="d4b1fc7497d32f6554e52b3a22b5685f"></h2>
-
-
-## kubectl cheatsheet
-
-[cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
-
 
 <h2 id="a65165eaad917e08dbaab4ca345c9140"></h2>
 
@@ -221,64 +88,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
     # To bind the "default" serviceaccount and "role_scale"
     kubectl -n $_NS create rolebinding default_scale_binding --serviceaccount="$_NS:default" --role=role_scale --dry-run -o yaml
     ```
-
-<h2 id="3cfc0b587c5bea5919d967aa0c0f7629"></h2>
-
-
-## postStart / preStop event handle
-
-[Define postStart and preStop handlers](https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/#define-poststart-and-prestop-handlers)
-
-on TKE, add it on deployment yaml, following the `image` property.
-
-example: when this pod restart , before it really ready,  make 1 another service/pod relanuch.
-
-```yaml
-        lifecycle:
-          postStart:
-            exec:
-              command: ["/bin/sh", "-c", "_NS=co-hse-dev && _APP=co-hse-app  && replinum=`kubectl -n $_NS get deploy $_APP -o=jsonpath='{.status.replicas}'` && kubectl -n $_NS  scale  deployments/$_APP --replicas=$(($replinum-1)) && kubectl -n $_NS  scale  deployments/$_APP --replicas=$replinum"]
-```
-
-
-<h2 id="f0cfc2eb04f3c904ba876b4ff5e36744"></h2>
-
-
-## JSONPath 表达式
-
-```bash
-# 选择一个列表的指定元素
-$ kubectl get pods -o custom-columns='DATA:spec.containers[0].image'
-
-# 选择和一个过滤表达式匹配的列表元素
-$ kubectl get pods -o custom-columns='DATA:spec.containers[?(@.image!="nginx")].image'
-
-# 选择特定位置下的所有字段（无论名称是什么）
-$ kubectl get pods -o custom-columns='DATA:metadata.*'
-
-# 选择具有特定名称的所有字段（无论其位置如何）
-$ kubectl get pods -o custom-columns='DATA:..image'
-```
-
-显示 Pod 的所有容器镜像:
-
-```bash
-$ kubectl get pods \
-  -o custom-columns='NAME:metadata.name,IMAGES:spec.containers[*].image'
-```
-
-显示节点的可用区域:
-
-```bash
-$ kubectl get nodes \
-  -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.failure-domain\.beta\.kubernetes\.io/zone'
-```
-
-- 每个节点的可用区都可以通过标签`failure-domain.beta.kubernetes.io/zone`来获得
-- 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
-
-
-
 
 <h2 id="7616e9353ba2c3c55eb7063e51fc65fb"></h2>
 
@@ -407,17 +216,6 @@ docker images | grep "<none>" | grep co-app-images | awk "{print \$3}" | xargs d
 # more aggressive 
 docker images | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 ```
-
-<h2 id="145f750dc8c7bde1231227e5d027eafd"></h2>
-
-
-## 查找不是 running 状态的 pod
-
-```
-kubectl_co get pods --all-namespaces | awk '{ if ($4!="Running")  print $0_ }'
-```
-
-<h2 id="f33345d63406b6b6402c63cb4275d5b7"></h2>
 
 
 ## Pod Stuck in Terminating
