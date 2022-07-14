@@ -5,13 +5,45 @@
 ...menuend
 
 
+## Create A Persistent Volume
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mysql-data
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/opt/data/mysql"
+```
+
 <h2 id="595140279525e99ad195e33954e2f6cf"></h2>
 
 
-# create a test mysql in k8s with root/rootpwd
+## Create a mysql in k8s with root/rootpwd
 
 
 ```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-mysql-57
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
 apiVersion: v1
 items:
 - apiVersion: apps/v1

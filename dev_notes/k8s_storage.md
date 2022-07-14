@@ -75,7 +75,7 @@ Warning: [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpat
     3. You create a Pod that uses the above PersistentVolumeClaim for storage.
 
 
-- PV should be in cluster scope,  PVC could be in namespace scope , along with Pods
+- **PV should be in cluster scope**,  PVC could be in namespace scope , along with Pods
 
 ### Create a PersistentVolume
 
