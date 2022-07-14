@@ -61,11 +61,12 @@
 </summary>
 
 ```bash
+
 #!/bin/sh
 set -o errexit
 
 # with cluster name:
-#   --name wslk8s 
+#   --name wslk8s
 # with register name:
 #   kind-registry
 # with register port:
@@ -75,8 +76,8 @@ set -o errexit
 
 # create registry container unless it already exists
 reg_name='kind-registry'
+reg_host="<TODO: your reg host>"
 reg_port='5050'
-reg_host=<TODO: your registry host>
 if [ "$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)" != 'true' ]; then
   docker run \
     -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" \
@@ -90,7 +91,7 @@ apiVersion: kind.x-k8s.io/v1alpha4
 containerdConfigPatches:
 - |-
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."${reg_host}:${reg_port}"]
-    endpoint = ["http://${reg_name}:5000"]
+    endpoint = ["http://${reg_host}:${reg_port}"]
 
 nodes:
 - role: control-plane
@@ -107,7 +108,7 @@ nodes:
   - containerPort: 443
     hostPort: 443
     protocol: TCP
-     
+
 EOF
 
 # connect the registry to the cluster network if not already connected
@@ -129,7 +130,6 @@ data:
     help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
 EOF
 ```
-
 
 </details>
 
