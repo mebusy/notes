@@ -143,70 +143,6 @@ clusters:
 ```
 
 
-<h2 id="6bbde18895b093a1a0fc79b5c02e4462"></h2>
-
-
-## Kubernetes dashboard 
-
-<h2 id="ae1fd03692378014b99c5c70b6c121af"></h2>
-
-
-### Deploying the Dashboard UI
-
-```
-kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
-```
-
-<h2 id="f32d0f539f9fbaff4c670cd2e5d7b14d"></h2>
-
-
-### Accessing the Dashboard UI
-
-```
-kubectl proxy
-```
-
-- Kubectl will make Dashboard available at
-    - `http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
-
-- to access the proxy from external browse , try 
-
-```
-# kubectl proxy --port=8001 --address='<master.ip.addr>' --accept-hosts="^*$"
-Starting to serve on 10.192.83.78:8001
-```
-
-- now access `http://10.192.83.78:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
-    - PS. it will lead to authoriation problem.
-
-- for test purpose only , you can Granting admin privileges to Dashboard's Service Account 
-    - Afterwards you can use Skip option on login page to access Dashboard.
-
-```
-$ cat <<EOF | kubectl create -f -
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
-metadata:
-  name: kubernetes-dashboard
-  labels:
-    k8s-app: kubernetes-dashboard
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: kubernetes-dashboard
-  namespace: kube-system
-EOF
-```
-
-
-[more solutions on stackoverflow](https://stackoverflow.com/questions/46664104/how-to-sign-in-kubernetes-dashboard)
-
-
-
-
 <h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
 
 
@@ -1311,15 +1247,7 @@ spec:
     - For the LoadBalancer ServiceType, we need to have the support from the underlying infrastructure. 
     - Even after having the support, we may not want to use it for every Service, as LoadBalancer resources are limited and they can increase costs significantly. 
     - Managing the NodePort ServiceType can also be tricky at times, as we need to keep updating our proxy settings and keep track of the assigned ports. 
-- In this chapter, we will explore the **Ingress**, which is another method we can use to access our applications from the external world.
-
-
-<h2 id="70b2b5b8a36e937c6fddf510da3968c3"></h2>
-
-
-## Ingress I
-
-- An Ingress is a collection of rules that allow inbound connections to reach the cluster Services
+- An Ingress is a collection of rules that allow inbound connections to reach the cluster Services, which is another method we can use to access our applications from the external world.
 - Ingress configures a Layer 7 HTTP load balancer for Services and provides the following:
     - TLS (Transport Layer Security)
     - Name-based virtual hosting 
@@ -1327,82 +1255,7 @@ spec:
     - Custom rules.
 - ![](../imgs/k8s-ingress.png)
 
-<h2 id="dd374142ee0d3696af5151d9e9ded05f"></h2>
 
-
-## Ingress II
-
-- With Ingress, users don't connect directly to a Service. Users reach the Ingress endpoint, and, from there, the request is forwarded to the respective Service. 
-
-```
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: web-ingress
-  namespace: default
-spec:
-  rules:
-  - host: blue.example.com
-    http:
-      paths:
-      - backend:
-          serviceName: webserver-blue-svc
-          servicePort: 80
-  - host: green.example.com
-    http:
-      paths:
-      - backend:
-          serviceName: webserver-green-svc
-          servicePort: 80
-```
-
-- According to the example we provided above, users requests to both blue.example.com and green.example.com would go to the same Ingress endpoint, and, from there, they would be forwarded to webserver-blue-svc, and webserver-green-svc, respectively. 
-- Here, we have seen an example of a Name-Based Virtual Hosting Ingress rule. 
-- We can also have Fan Out Ingress rules, in which we send requests like example.com/blue and example.com/green, which would be forwarded to webserver-blue-svc and webserver-green-svc, respectively.
-
-![](../imgs/k8s-ingress-url-map.png)
-
-
-- The Ingress resource does not do any request forwarding by itself. 
-- All of the magic is done using the Ingress Controller.
-
-
-<h2 id="a5765900d255fcb42e5ea092fe489331"></h2>
-
-
-## Ingress Controller
- 
-- An Ingress Controller is an application which 
-    - watches the Master Node's API server for changes in the Ingress resources and 
-    - updates the Layer 7 Load Balancer accordingly. 
-- The Ingress Controller creates a Load Balancer.
-
-
-<h2 id="65c0a46ef98d210656055f61588ff4ed"></h2>
-
-
-### Deploy an Ingress Resource
-
-- For example, if we create a webserver-ingress.yaml file with the content that we saw on the Ingress II page,
-
-```
-$ kubectl create -f webserver-ingress.yaml
-```
-
-```
-$ cat /etc/hosts
-127.0.0.1        localhost
-::1              localhost
-192.168.99.100   blue.example.com green.example.com
-```
-
-
-<h2 id="8fd6748f0750d9c913b9e2dfcbb7946b"></h2>
-
-
-## kubernetes/ingress-nginx user-guide TLS
-
-- https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/tls.md
 
 
 <h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
@@ -1417,42 +1270,38 @@ $ cat /etc/hosts
 
 - With Annotations, we can attach arbitrary non-identifying metadata to any objects, in a key-value format:
     - 以key-value格式 将任意 非标示元数据 附加到 任何对象
-
-```
-"annotations": {
-  "key1" : "value1",
-  "key2" : "value2"
-}
-```
-
+    ```yaml
+    "annotations": {
+      "key1" : "value1",
+      "key2" : "value2"
+    }
+    ```
 - In contrast to Labels, annotations are not used to identify and select objects. Annotations can be used to:
     - Store build/release IDs, PR numbers, git branch, etc.
     - Phone/pager numbers of people responsible, or directory entries specifying where such information can be found
     - Pointers to logging, monitoring, analytics, audit repositories, debugging tools, etc.
     - Etc
 - For example, while creating a Deployment, we can add a description like the one below:
-
-```
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: webserver
-  annotations:
-    description: Deployment based PoC dates 2nd June'2017
-```
+    ```yaml
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    metadata:
+      name: webserver
+      annotations:
+        description: Deployment based PoC dates 2nd June'2017
+    ```
 
 
 - We can look at annotations while describing an object:
-
-```
-$ kubectl describe deployment webserver
-Name:                webserver
-Namespace:           default
-CreationTimestamp:   Sat, 03 Jun 2017 05:10:38 +0530
-Labels:              app=webserver
-Annotations:         deployment.kubernetes.io/revision=1
-                     description=Deployment based PoC dates 2nd June'2017
-```
+    ```bash
+    $ kubectl describe deployment webserver
+    Name:                webserver
+    Namespace:           default
+    CreationTimestamp:   Sat, 03 Jun 2017 05:10:38 +0530
+    Labels:              app=webserver
+    Annotations:         deployment.kubernetes.io/revision=1
+                         description=Deployment based PoC dates 2nd June'2017
+    ```
 
 <h2 id="e4c677a2cc444dd3ce2cea9f020921aa"></h2>
 
@@ -1536,22 +1385,6 @@ Annotations:         deployment.kubernetes.io/revision=1
     - API Aggregation
         - For more fine-grained control, we can write API Aggregators. They are subordinate API servers which sit behind the primary API server and act as proxy.
 
-
-<h2 id="152090ff5e9a05ea7e1cf0c248449638"></h2>
-
-
-## Helm
-
-- To deploy an application, we use different Kubernetes manifests, such as Deployments, Services, Volume Claims, Ingress, etc. 
-- Sometimes, it can be tiresome to deploy them one by one.
-- We can bundle all those manifests after templatizing them into a well-defined format, along with other metadata. 
-- Such a bundle is referred to as *Chart*.
-    - These Charts can then be served via repositories, such as those that we have for rpm and deb packages. 
-- Helm is a package manager (analogous to yum and apt) for Kubernetes, which can install/update/delete those Charts in the Kubernetes cluster.
-- Helm has two components:
-    - A client called helm, which runs on your user's workstation
-    - A server called tiller, which runs inside your Kubernetes cluster.
-- The client helm connects to the server tiller to manage Charts. Charts submitted for Kubernetes are available [here](https://github.com/kubernetes/charts).
 
 
 <h2 id="9ad24640fe10d78bada6b5e68dd0f68f"></h2>

@@ -433,6 +433,11 @@ ok
         ```
     - repalce 8001 to 9999
         - http://localhost:9999/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
+    - *you may change the bind address rather than `localhost`,  but non-local access is forced the use of https, so it not work*
+        ```bash
+        # no more work, need https 
+        kubectl proxy --port=8001 --address=0.0.0.0 --accept-hosts="^*$"
+        ```
 
 - more remote tunnels maybe use...
     ```bash
