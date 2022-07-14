@@ -1,17 +1,144 @@
-...menustart
 
-- [Docker k8s desktop](#b63b5716d67330c388528bca20bf0165)
-    - [Enable Kuberneters on Docker Desktop](#834aecdedbdc4ab95c71a729214c47ab)
-    - [Install ingress controller](#588da1e7cecfc3f40fa3e015ff722499)
-    - [Install Dashboard](#5633d2848d737c44ec1d89bc54ccdfa9)
-
-...menuend
+# Work With Local k8s
 
 
-<h2 id="b63b5716d67330c388528bca20bf0165"></h2>
+## install kind k8s
+
+- install kubectl...
+    - https://github.com/kubernetes-sigs/kind/releases
+    ```bash
+    $ curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.14.0/kind-$(uname)-amd64
+    $ chmod +x ./kind
+    $ sudo mv ./kind /usr/local/bin/
 
 
-# Docker k8s desktop
+    ```
+
+<details>
+<summary>
+<b>QuickStart: Create a simple kind cluster with extraPortMappings and node-labels.</b>
+</summary>
+
+- create cluster
+    - extraPortMappings allow the local host to make requests to the Ingress controller over ports 80/443
+    - node-labels only allow the ingress controller to run on a specific node(s) matching the label selector
+    ```bash
+    cat <<EOF | kind create cluster --name wslk8s  --config=-
+    kind: Cluster
+    apiVersion: kind.x-k8s.io/v1alpha4
+    nodes:
+    - role: control-plane
+      kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+      extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        protocol: TCP
+      - containerPort: 443
+        hostPort: 443
+        protocol: TCP
+    EOF
+    ```
+- test whether it works...
+    ```bash
+    $ kubectl cluster-info
+    Kubernetes control plane is running at https://127.0.0.1:35537
+    CoreDNS is running at https://127.0.0.1:35537/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+    ```
+
+</details>
+
+
+<details>
+<summary>
+<b>Advanced: create a kind cluster with ingress & local registry enabled</b>
+</summary>
+
+```bash
+#!/bin/sh
+set -o errexit
+
+# with cluster name:
+#   --name wslk8s 
+# with register name:
+#   kind-registry
+# with register port:
+#   5050
+# with ingress enable
+
+
+# create registry container unless it already exists
+reg_name='kind-registry'
+reg_port='5050'
+if [ "$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)" != 'true' ]; then
+  docker run \
+    -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" \
+    registry:2
+fi
+
+# create a cluster with the local registry enabled in containerd
+cat <<EOF | kind create cluster --name wslk8s  --config=-
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+containerdConfigPatches:
+- |-
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."sha-wks-ab978:${reg_port}"]
+    endpoint = ["http://${reg_name}:5000"]
+
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+     
+EOF
+
+# connect the registry to the cluster network if not already connected
+if [ "$(docker inspect -f='{{json .NetworkSettings.Networks.kind}}' "${reg_name}")" = 'null' ]; then
+  docker network connect "kind" "${reg_name}"
+fi
+
+# Document the local registry
+# https://github.com/kubernetes/enhancements/tree/master/keps/sig-cluster-lifecycle/generic/1755-communicating-a-local-registry
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: local-registry-hosting
+  namespace: kube-public
+data:
+  localRegistryHosting.v1: |
+    host: "sha-wks-ab978:${reg_port}"
+    help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
+EOF
+```
+
+
+</details>
+
+
+
+
+<h2 id="588da1e7cecfc3f40fa3e015ff722499"></h2>
+
+
+## Install ingress controller 
 
 Ingress controller is a service which type is `LoadBalancer`. It is also another set of pods that run on your nodes in your k8s cluster, and thus evaluation and processing of ingress routes.
 
@@ -22,22 +149,6 @@ Ingress controller is a service which type is `LoadBalancer`. It is also another
     - there is one from kubernetes itself which is `K8s nginx ingress controller`
     - if you are using a cloud service, you would have a cloud load balancer that is specifically implemented by that cloud provider.
 
-<h2 id="834aecdedbdc4ab95c71a729214c47ab"></h2>
-
-
-## Enable Kuberneters on Docker Desktop
-
-Preferences / Kuberneters / Enable Kuberneters
-
-
-<h2 id="588da1e7cecfc3f40fa3e015ff722499"></h2>
-
-
-## Install ingress controller 
-
-[ingress for desktop](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac)
-
-There may be a problem that the default listening port 80 is gonna easily conflict with other service you already have, so sometimes you may need to alter ingress' default http listening port to another one.
 
 ```bash
 # specific version
@@ -342,4 +453,5 @@ ok
         nohup ssh -p 2222 -L $loc_port:127.0.0.1:45933 -N -f -l <ssh user> <ssh host> &> /dev/null
     fi
     ```
+
 
