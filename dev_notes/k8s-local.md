@@ -76,6 +76,7 @@ set -o errexit
 # create registry container unless it already exists
 reg_name='kind-registry'
 reg_port='5050'
+reg_host=<TODO: your registry host>
 if [ "$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)" != 'true' ]; then
   docker run \
     -d --restart=always -p "${reg_port}:5000" --name "${reg_name}" \
@@ -88,7 +89,7 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 containerdConfigPatches:
 - |-
-  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."sha-wks-ab978:${reg_port}"]
+  [plugins."io.containerd.grpc.v1.cri".registry.mirrors."${reg_host}:${reg_port}"]
     endpoint = ["http://${reg_name}:5000"]
 
 nodes:
@@ -124,7 +125,7 @@ metadata:
   namespace: kube-public
 data:
   localRegistryHosting.v1: |
-    host: "sha-wks-ab978:${reg_port}"
+    host: "${reg_host}:${reg_port}"
     help: "https://kind.sigs.k8s.io/docs/user/local-registry/"
 EOF
 ```
