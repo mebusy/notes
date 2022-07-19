@@ -885,13 +885,15 @@ The solution is to take a state , and rather than thinking about it as its own b
         - Is Pacman in a tunnel? (0/1)
         - …… etc.
         - Is it the exact state on this slide?
-    - Can also describe a q-state (s, a) with features (e.g. action moves closer to food)
+    - Can also **describe a q-state (s, a) with features**
+        - this is , encode action within features 
+        - e.g. action moves closer to food, or, manhanttan distance to nearest dot after executing action a in s
 
 So we describe the state using a vector of features.  Just like we did for evaluation function . So what features ? They take a state and they return a real number. Sometimes it's 0-1 indicating something and sometimes it's a number indicating something.  For example we might have the distance to the closest ghost , or the number of ghost , or 1 / square distance to a dot , or is pacman in a tunnel that might be a 0/1 thing -- you can learn that being in a tunnel is dangerous. 
 
 In project 2, the thing you described with features was a state value. So you computed value for that state by taking your features and doing some weighted linear combination.  
 
-Of course now we're going to have to describe q-states which gives us features like am I moving towards the ghost with this action. 
+Of course now we're going to have to **describe q-states which gives us features like am I moving towards the ghost with this action**. 
 
 
 <h2 id="57e2e557640ea36670bca3275dc3baef"></h2>
