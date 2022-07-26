@@ -88,6 +88,7 @@
         > netsh interface portproxy delete v4tov4 listenport=33057 listenaddress=0.0.0.0
         ```
     - BUT... the IP of wsl will change after rebooting...
+        - PS: follow script NOT work
         ```bat
         @echo off
 
