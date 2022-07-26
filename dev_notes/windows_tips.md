@@ -87,6 +87,26 @@
         ```bash
         > netsh interface portproxy delete v4tov4 listenport=33057 listenaddress=0.0.0.0
         ```
+    - BUT... the IP of wsl will change after rebooting...
+        ```bat
+        @echo off
+
+        REM netproxy.bat
+        REM    Run this script on start up on Windows 10
+        REM    create a shortcut, right-click on the shortcut > Properties > Advanced > Run as administrator. 
+        REM    press Windows+R, then type shell:startup
+        REM    put  netproxy.bat there.
+
+        REM fake unix $() command by BAT FOR /F
+        for /f %%i in ('wsl hostname -I') do set WSLIP=%%i
+        echo WSLIP is %WSLIP%
+
+        for %%p in ( 2222 8001 80 33056 33057 5050 ) do (
+          netsh interface portproxy set v4tov4 listenaddress=0.0.0.0 listenport=%%p connectaddress=%WSLIP% connectport=%%p
+        )
+
+        netsh interface portproxy show v4tov4 
+        ```
 - OPEN THE FIREWALL
     - from the same Administrator Windows prompt, open an incoming Firewall Port. 
     - You can do it from the Advanced Firewall Settings, but even easier you can use netsh again!
