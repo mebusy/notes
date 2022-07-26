@@ -100,6 +100,7 @@
         REM netproxy.bat
         REM    Run this script on start up on Windows 10
         REM    taskschd.msc , add this script to task manager
+        REM    remember to check `Run with Highest Privileges`
 
         REM start ssh / docker service
         wsl.exe -u root service ssh start
