@@ -92,11 +92,18 @@
         ```bat
         @echo off
 
+        For /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set mydate=%%c-%%a-%%b)
+        For /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set mytime=%%a%%b)
+        echo %mydate%_%mytime% > D:/netproxy_time.txt
+
+
         REM netproxy.bat
         REM    Run this script on start up on Windows 10
-        REM    create a shortcut, right-click on the shortcut > Properties > Advanced > Run as administrator. 
-        REM    press Windows+R, then type shell:startup
-        REM    put  netproxy.bat there.
+        REM    taskschd.msc , add this script to task manager
+
+        REM start ssh / docker service
+        wsl.exe -u root service ssh start
+        wsl.exe -u root service docker start
 
         REM fake unix $() command by BAT FOR /F
         for /f %%i in ('wsl hostname -I') do set WSLIP=%%i
@@ -106,7 +113,7 @@
           netsh interface portproxy set v4tov4 listenaddress=0.0.0.0 listenport=%%p connectaddress=%WSLIP% connectport=%%p
         )
 
-        netsh interface portproxy show v4tov4 
+        netsh interface portproxy show v4tov4
         ```
 - OPEN THE FIREWALL
     - from the same Administrator Windows prompt, open an incoming Firewall Port. 
