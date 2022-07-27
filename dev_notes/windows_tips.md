@@ -63,7 +63,7 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     ```
     - Troubleshooting
         ```bash
-        docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
+        docker run --gpus all --rm nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
         ```
 3. Test
     - https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch
