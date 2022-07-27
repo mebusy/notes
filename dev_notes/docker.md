@@ -2027,15 +2027,54 @@ Explanation:
 <h2 id="e64a823c0142aaac197cc68839f54da9"></h2>
 
 
-## pass proxy to docker container 
+## pass proxy to docker container  ( not necessary if have set proxy for docker correctly)
 
 - set https_proxy and http_proxy in you host machine
 - `docker run -e https_proxy -e http_proxy ... ` 
+
+
+<h2 id="68175df37efb964151e614c93d3e62ae"></h2>
+
+
+## proxy when docker build  ( not necessary if have set proxy for docker correctly)
+
+```bash
+docker build ... --build-arg http_proxy=http://host:port --build-arg https_proxy=http://host:port
+```
+
+
+## Configure Docker to use a proxy server
+
+https://docs.docker.com/network/proxy/
+
+On the Docker client, create or edit the file `~/.docker/config.json`
+
+```json
+{
+ "proxies":
+ {
+   "default":
+   {
+     "httpProxy": "http://192.168.1.12:3128",
+     "httpsProxy": "http://192.168.1.12:3128",
+     "noProxy": "*.test.example.com,.example2.com,127.0.0.0/8"
+   }
+ }
+}
+```
+
+works for daemon and containers.
+
 
 <h2 id="ed931520f4337c85396faa61455d56ec"></h2>
 
 
 ## docker daemon proxy for Centos7
+
+Many Linux distributions use systemd to start the Docker daemon.
+
+The Docker daemon uses the HTTP_PROXY, HTTPS_PROXY, and NO_PROXY environmental variables in its start-up environment to configure HTTP or HTTPS proxy behavior. You cannot configure these environment variables using the daemon.json file.
+
 
 - you need set proxy info in 
      - `/etc/systemd/system/docker.service.d/http-proxy.conf`
@@ -2052,14 +2091,6 @@ Environment="HTTP_PROXY=http://host:port/"
 Environment="HTTPS_PROXY=https://host:port/"  
 ```
 
-<h2 id="68175df37efb964151e614c93d3e62ae"></h2>
-
-
-## proxy when docker build 
-
-```bash
-docker build ... --build-arg http_proxy=http://host:port --build-arg http_proxys=https://host:port
-```
 
 <h2 id="5ef5bd47a5282fb1ad1694bbb5f46954"></h2>
 
