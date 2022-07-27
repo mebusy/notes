@@ -16,7 +16,7 @@
 <h2 id="c869ce86f93962ab5ce5ed38b89a408c"></h2>
 
 
-## Use WSL2 
+## Use WSL2 & Docker
 
 - install WSL2 on Win10
     ```bash
@@ -44,6 +44,39 @@
         $ sudo groupadd docker
         $ sudo usermod -aG docker $USER 
         ```
+
+## Run ML container accelerated by NVidia CPU On WSL2
+
+https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
+
+1. Install NVIDIA GeForce Game Ready or NVIDIA RTX Quadro Windows 11 display driver 
+    - https://www.nvidia.com/Download/index.aspx?lang=en-us
+2. Install NVIDIA Container Toolkit
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+    sudo apt-get update
+    sudo apt-get install -y nvidia-docker2
+
+    sudo service docker restart
+    ```
+    - Troubleshooting
+        ```bash
+        docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
+        ```
+3. Test
+    - https://catalog.ngc.nvidia.com/orgs/nvidia/containers/pytorch
+    ```bash
+    docker run --gpus all -it --rm nvcr.io/nvidia/pytorch:22.06-py3
+    ```
+    ```bash
+    $ python
+    >>> import torch
+    >>> print(torch.cuda.is_available())
+    True
+    ```
+
 
 
 <h2 id="e623b8257a43fa5e9f6166407a2e3914"></h2>
