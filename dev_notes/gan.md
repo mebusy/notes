@@ -24,4 +24,32 @@
     - They learn from the competition with each other
     - At the end, *fakes* look *real*
 
+---
+
+- Generator
+    - Learning
+        - noise ξ → **Generator** → X̂ (that can compose an image) → **Discriminator** → Ŷ<sub>d</sub> → Cost<sub>output Ŷ</sub>
+        - use Cost to update the parameters θ<sub>g</sub> of the Generator.
+    - It learns the probability of features X
+        - P(X<sub>features</sub> | Y<sub>class</sub>)
+        - if you're generating lots of  different classes, you can pass into a class of generator
+    - The generator takes as input *noise* (random features)
+- loss function: BCE
+    - Binary Cross Entropy function, or BCE for short, is used for training GANs. 
+    - It's useful for these models, because it's especially designed for classification tasks, where there are 2 categories like, real and fake. 
+    - Logistic Regression
+- Training GANs: 
+    - Distriminator
+        - noise ξ → **Generator** → X̂ (that can compose an image) **+ X (both real and fake examples)** → **Discriminator** → Ŷ<sub>d</sub> → Cost<sub>output Ŷ</sub>
+        - use Cost to update the parameters θ<sub>d</sub> of the Discriminator.
+    - Generator
+        - noise ξ → **Generator** → X̂ (that can compose an image) → **Discriminator** → Ŷ<sub>d</sub> → Cost<sub>output Ŷ</sub>
+        - use Cost to update the parameters θ<sub>g</sub> of the Generator.
+- GANs train in an alternating fashion, it's important to keep in mind that **both models should improve together** and should be kept at similar skill levels from the beginning of training. 
+    - if you had a discriminator that is superior than the generator, like super, super good, you'll get predictions from it telling you that all the fake examples are 100% fake. Well, that's not useful for the generator, the generator doesn't know how to improve. Everything just looks super fake, there isn't anything telling it to know which direction to go in.
+    - Meanwhile, if you had a superior generator that completely outskills the discriminator, you'll get predictions telling you that all the generated images are 100% real. 
+
+
+- [Inputs to a Pre-trained GAN](https://colab.research.google.com/github/https-deeplearning-ai/GANs-Public/blob/master/C1W1_(Colab)_Inputs_to_a_pre_trained_GAN.ipynb)
+
 
