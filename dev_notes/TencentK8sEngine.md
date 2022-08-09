@@ -258,4 +258,14 @@ kbctl -n $cur_ns get deploy --export -o yaml | sed -e "s/namespace: $cur_ns/name
 </details>
 
 
+## TKE node 常用 安全组
+
+source | port | policy | comments 
+--- | --- | --- | ---
+0.0.0.0/0 | TCP:30000-32767 | 允许 | alb
+0.0.0.0/0 | ICMP | 允许 | allow ping
+10.0.0.0/16 | ALL | 允许 | db
+172.16.0.0/12 | ALL | 允许 | k8s container network
+192.168.0.0/16 | ALL | 允许 | 
+
 
