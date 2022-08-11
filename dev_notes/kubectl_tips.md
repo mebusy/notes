@@ -82,6 +82,22 @@ NAMESPACE       NAME            READY   STATUS      RESTARTS   AGE  IP          
 ingress-nginx   ingress-....    0/1     Completed   0          8h   10.244.0.6  node1   <none>           <none>
 ```
 
+## print annotations information
+
+```bash
+$ kubectl get ingress payquick-ingress-443  -o jsonpath='{.metadata.annotations.qcloud_cert_id}'
+yIhaisHO
+```
+
+what if the key of annotation has special character like "/" , "." ?
+
+```bash
+$ kubectl get ingress payquick-ingress-443  -o go-template='{{index .metadata.annotations "kubernetes.io/ingress.qcloud-loadbalance-id"}}'
+lb-9l23xjd5
+
+```
+
+
 <h2 id="4c6e4c26d748e3ff10dd5ab1c3f1f6ca"></h2>
 
 
