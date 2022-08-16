@@ -441,19 +441,17 @@ ok
 
 
 - to allow access from remote machine
-    - on your workstation, create a tunnel to k8s server
-        ```bash
-        ssh -L 9999:127.0.0.1:8001 -N -f -l <ssh user name> <k8s master host name or ip>
-        ```
-    - repalce 8001 to 9999
-        - http://localhost:9999/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
-    - *you may change the bind address rather than `localhost`,  but non-local access is forced the use of https, so it not work*
-        ```bash
-        # no more work, need https 
-        kubectl proxy --port=8001 --address=0.0.0.0 --accept-hosts="^*$"
-        ```
+    1. if you can successfully access cluster via kubectl
+        - `kubectl proxy`
+    2. otherwise, you can use ssh tunnel
+        - on your workstation, create a tunnel to k8s server
+            ```bash
+            ssh -L 9999:127.0.0.1:8001 -N -f -l <ssh user name> <k8s master host name or ip>
+            ```
+        - repalce 8001 to 9999
+            - http://localhost:9999/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
 
-- more remote tunnels maybe use...
+- remote tunnels you maybe use...
     ```bash
     # tunnel 1, access k8s dashboard , 9999 -> 8001, dashboard port
     loc_port=9999
