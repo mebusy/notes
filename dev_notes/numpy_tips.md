@@ -40,7 +40,7 @@
 <h2 id="84df0f6a0e96bb96e66fdba51a103ad5"></h2>
 
 
-## Combining Arrays
+## Combining Arrays -- vstack / hstack
 
 ```python
 >>> p = np.ones([2, 3], int)
@@ -116,9 +116,13 @@ for i, j in zip(test, test2):
 ## samply from non-zero entries in an array
 
 ```python
+    # np.flatnonzero  Return indices that are non-zero in the flattened version of a.
     idxs = np.flatnonzero(y_train == y)
+    # 2nd param: output size , how many samples are drawn
+    # replace: True means a value of `a` cal be selected multiple times
     idxs = np.random.choice(idxs, samples_per_class, replace=False)
 ```
+
 
 <h2 id="72d3788db3f58a0a81b981182c17b7d6"></h2>
 
@@ -126,9 +130,21 @@ for i, j in zip(test, test2):
 ## n-largest / n-smallest elements
 
 ```python
+# argsort  sort array and return indices
 >>> arr.argsort()[:n]   # n-smallest
 >>> arr.argsort()[-n:][::-1]  # n-largest
 ```
+
+
+## calculate a covariance matrix
+
+
+```python
+# np.cov can only accept 1d, or 2d array
+#    by default it deal with row as variable
+np.cov( examples.reshape( ( -1, examples.shape[-1] ) ) , rowvar=False )
+```
+
 
 --------
 
