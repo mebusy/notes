@@ -190,6 +190,14 @@ $ kubectl get nodes -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.f
 - 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
 
 
+##  Deleting Namespace "stuck" as Terminating,  how to solve it ?
+
+```bash
+kubectl get namespace "stucked-namespace" -o json \
+  | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/" \
+  | kubectl replace --raw /api/v1/namespaces/stucked-namespace/finalize -f -
+```
+
 
 <h2 id="10e2e86d43aa4ce9a791d75c478a23dc"></h2>
 

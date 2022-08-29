@@ -387,11 +387,36 @@ spec:
 
 ## Misc
 
+###  find cluster security group
+
 ```go
-# find cluster security group
 aws eks describe-cluster --name cluster_name --query cluster.resourcesVpcConfig.clusterSecurityGroupId
 ```
 
+
+### create another use and access cluster
+
+- install `kubectl`, the version must be matched with cluster server
+    0. create IAM user, add user to `configmap/aws-auth`
+        - https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html
+        ```bash
+        $ kubectl edit -n kube-system configmap/aws-auth 
+        ```
+    1. https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html  下载 aws cli v2
+    2. aws configure
+        ```bash
+        $ aws configure
+        AWS Access Key ID [None]: xxxxx
+        AWS Secret Access Key [None]: yyyyyy
+        Default region name [None]: cn-northwest-1
+        Default output format [None]: json
+        ```
+    3. create kubeconfig
+        ```bash
+        $ aws eks update-kubeconfig --region cn-northwest-1 --name  UMC-HDA-CN 
+        Added new context xxxxx  /home/<user>/.kube/config
+
+        ```
 
 
 
