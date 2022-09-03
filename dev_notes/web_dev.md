@@ -50,7 +50,14 @@
     - [generate css code to center text](http://howtocenterincss.com/)
     - [icons, font awesome](https://fontawesome.com/v4/icons/)
         - include: `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">`
-        - to use, for example `<a href="#"><i class="fa fa-unlock"></i></a> `
+        - usage:
+            1. i tag  `<a href="#"><i class="fa fa-unlock"></i></a> `
+            2. unicode in css
+                ```css
+                label[for*='1']:before {
+                  content: '\f212'; /* awesome font unicode */
+                }
+                ```
 - [course repo](https://github.com/jhu-ep-coursera/fullstack-course4)
 
 
