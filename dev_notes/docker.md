@@ -2174,6 +2174,15 @@ redis> config get save
 docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8mb4
 ```
 
+## docker mongodb
+
+```bash
+docker run -d --restart unless-stopped -p 27017:27017 --name mongo-test \
+	-e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
+	-e MONGO_INITDB_ROOT_PASSWORD=mongopwd \
+	mongo
+```
+
 
 <h2 id="ada28088d8540a0471c00fb0673b9882"></h2>
 
