@@ -325,7 +325,7 @@ MAKE_DEPEND := $(CC) -M
     - 下面 MAKE_DEPEND 的值 会根据 CC 的定义，动态变化
 
 ```
-MAKE_DEPEND := $(CC) -M
+MAKE_DEPEND = $(CC) -M
 ```
 
 ---
