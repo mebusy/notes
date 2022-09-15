@@ -149,24 +149,7 @@ GRANT ALL PRIVILEGES  ON db_test.* TO 'new_user'@'%' WITH GRANT OPTION;
     ```
     - replace the value `''` in right-hand select with your expected value.
 
-<h2 id="a21afd692dc65c7ff60c8f549b7f1f5a"></h2>
 
-
-## Sub Query example
-
-```mysql
-select COALESCE( sum(orderAmount), 0 )  from payment_vivosdk   
-where 
-    uuid="test-User-0" and 
-    paidtime >= ( select COALESCE( AVG(startTime), -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) and 
-    paidtime <= ( select COALESCE( AVG(deadline),  -1) from tbl_rechargeAcc where activity_kind = 2 and endTime > 969393337  ) 
-```
-
-use sub-query in `select` column
-
-```mysql
-select id, IFNULL( (select avatar_frame from pvp_avatarframe_hsw where pvp_avatarframe_hsw.uuid = pvp_hsw.uuid ) , avatar_frame ) as avatarframe from pvp_hsw where uuid = ?
-```
 
 
 <h2 id="cba58cab71d7e6df49942060252f546d"></h2>
