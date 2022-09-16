@@ -46,7 +46,7 @@
 
 ### 8.2.2 目标,条件和命令
 
-```
+```make
 # 目标 : 条件
 #    命令
 all: TinyEdit   
@@ -81,7 +81,7 @@ main.o : main.c line.h buffer.h tedef.h
 
 - Makefile的基本语法是:
 
-```
+```make
 目标1 目标2 目标3 ... : 条件1 条件2 条件3 ...
     命令 1
     命令 2
@@ -92,12 +92,12 @@ main.o : main.c line.h buffer.h tedef.h
 
 - 至少一个目标
 - 0个或 多个条件
-    - 如果 没有给定条件， 只有 目标文件不存在时， 才会执行相应的命令去生成目标
+    - 如果 没有给定条件， 只有 目标**文件**不存在时， 才会执行相应的命令去生成目标
 - 每个命令 必须以 制表符 `Tab` 开头
-    - 如果在非命令行上不慎输入了 Tab的话，它之后的内容多数情况下会被当作命令来解释
+    - 如果在非命令行上不慎输入了Tab的话，它之后的内容多数情况下会被当作命令来解释
 - 注释
     - `#` 开始的部分为注释
-    - 不过切记 Tab的问题，  只要在 Tab后， 就会被作为命令解释， 包括 `#` 后面的内容
+    - 不过切记 Tab的问题，  **只要在 Tab后， 就会被作为命令解释， 包括 `#` 后面的内容**
 - Makefile 支持 折行 
     - 在行尾 使用 `\` 
 
@@ -115,11 +115,9 @@ main.o : main.c line.h buffer.h tedef.h
 - 现在需要给 生成的程序加入调试信息， 以便在发现bug的时候可以调试
     - 可以在每个 命令中加入 `-g` 选项。 只是这是一个馊主意
     - 有什么办法 是的只修改一个地方就能搞定一切呢，就是变量
-
-```
-CC := gcc -g
-```
-
+        ```bash
+        CC := gcc -g
+        ```
 - make 在解析 `${CC} 或 $(CC)` 时，就会展开为 `gcc -g`
 
 <h2 id="ddd6f066f49236d2d17892373783ee8c"></h2>
@@ -143,14 +141,13 @@ CC := gcc -g
 
 
 - 自动变量只能用于 命令中
-
-```
-buffer.o : buffer.c buffer.h tools.h
-    $(CC) $(CFLAGS) -o $@  $<   
-main.o : main.c line.h buffer.h tedef.h
-    # cc -c -o main.o main.c    
-    $(CC) $(CFLAGS) -o $@  $<
-```
+    ```make
+    buffer.o : buffer.c buffer.h tools.h
+        $(CC) $(CFLAGS) -o $@  $<   
+    main.o : main.c line.h buffer.h tedef.h
+        # cc -c -o main.o main.c    
+        $(CC) $(CFLAGS) -o $@  $<
+    ```
 
 <h2 id="595d9b4dd1f915c7739946b264de73eb"></h2>
 
@@ -158,20 +155,19 @@ main.o : main.c line.h buffer.h tedef.h
 ### 8.3.5 模式规则
 
 - 我们发现，上面的 buffer.o , main.o 的命令完全一样
-    - 很自然的，我们就会想用同一的规则来处理它们 , 这就是 模式规则
+    - 很自然的，我们就会想用同一的规则来处理它们 , 这就是 模式规则 (实践中有限制,需配合其它手段)
+    ```make
+    all: TinyEdit
 
-```
-all: TinyEdit
+    TinyEdit: main.o line.o buffer.o ...
+        $(LD) $(LDFLAGS) $^ -o $@
 
-TinyEdit: main.o line.o buffer.o ...
-    $(LD) $(LDFLAGS) $^ -o $@
+    myless : myless.o line.o buffer.o ...
+        $(LD) $(LDFLAGS) $^ -o $@
 
-myless : myless.o line.o buffer.o ...
-    $(LD) $(LDFLAGS) $^ -o $@
-
-%.o : %.c 
-    $(CC) $(CFLAGS) -o $@  $<
-```
+    %.o : %.c 
+        $(CC) $(CFLAGS) -o $@  $<
+    ```
 
 - 模式中的 `%` 类似通配符， 它可以放在 模式中的任意位置，但是**它只能出现一次**
 - 限制：
@@ -181,47 +177,41 @@ myless : myless.o line.o buffer.o ...
 
 ---
 
-- 虽然前面使用了 模式规则的Makefile 很精简，但是并不推荐，因为作为C语言的头文件 无法成为条件, 毕竟头文件修改了也需要重新编译.
-- 后面会介绍一种 既使用模式规则， 又能照顾好依赖关系的方法...
+- 虽然前面使用了 模式规则的Makefile 很精简，但是并不推荐，因为**作为C语言的头文件 无法成为条件, 毕竟头文件修改了也需要重新编译**.
+    - 后面会介绍一种 既使用模式规则， 又能照顾好依赖关系的方法...
 
 <h2 id="76d2cd2a5eb29facccd351abf19ed9c8"></h2>
 
 
-### 8.3.6
+### 8.3.6 PHONY Target
 
-- 假目标可以给 Makefile 提供十分强大的功能。比如
-    - 对源代码进行经历
-    - 将生成的最终目标 安装到 合适的地方
-    - 进行反安装
-    - 对生成的目标进行测试
-    - 给使用者提供帮助信息，等等
 - 条件一定会是文件，但是目标就未必。
 - 我们把 不生成目标文件的规则中的目标，就称为 假目标。
     - 因为没有文件生成， 所以假目标的命令就一定会执行
-    - 不过有的时候 虽然定义了一个不会生成目标文件的规则， 但很难保证项目中不会有 与这个目标重名的文件存在
-        - 一旦有这种情况发生，我们的假目标就不会工作了。 需要进行一下特殊的处理
+    - 不过有的时候 虽然定义了一个不会生成目标文件的目标， 但很难保证项目中不会有 与这个目标重同名的文件存在, e.g. 一个 `clean` 的文件
+        - 一旦有同名文件存在，我们的假目标就不会工作了。 需要进行一下特殊的处理
     - 这个特殊的处理方式， 就是让 这个假目标 成为一个特殊目标 .PHONY 的条件。
         - 这样无论项目中是否有重名的文件，这个目标对对应的命令都会被执行。
+        ```make
+        .PHONY: clean
+        clean:
+            rm -f foo
+        ```
 
-```
-all: TinyEdit
-    .PHONY all install uninstall clean
+- 另一个例子
+    ```make
+    .PHONY: build clean tool lint help
 
-install: TinyEdit myless
-    cp ...
-    cp ...
+    all: build
 
-uninstall: 
-    rm -f ...
-    rm -f ...
+    build:
+        go build -v .
 
-clean:
-    rm -f *.o 
-    rm -f TinyEdit myless
+    tool:
+        go tool vet . |& grep -v vendor; true
+        gofmt -w .
+    ```
 
-...
-```
-    
 <h2 id="a3e7b516db12b7c28683b3fc203886a9"></h2>
 
 
@@ -231,12 +221,11 @@ clean:
     - 这样就需要 修改 Makefile 规则中的条件，添加子目录。 但是这样很麻烦，还很容易出错
     - 于是 Makefile 引入了 VPATH 和 vpath
 - VPATH  的值 是需要 make 搜索的 子目录， 以空格分割
-
-```
-LDFLAGS := -lcurses
-VPATH := src include
-...
-```
+    ```make
+    LDFLAGS := -lcurses
+    VPATH := src include
+    ...
+    ```
 
 
 - 虽然VPATH 可以解决路径的问题，但是有一个限制:
@@ -244,11 +233,10 @@ VPATH := src include
     - 为此 就需要 vpath
     
 - vpath 使用 模式来指定 在某个具体的路径中，搜索哪些类型的文件
-
-```
-vpath %.c src
-vpath %.h include
-```
+    ```make
+    vpath %.c src
+    vpath %.h include
+    ```
 
 <h2 id="7de7f543f7a0c66294d52d50a98b3ae0"></h2>
 
@@ -285,17 +273,16 @@ vpath %.h include
 ### 8.4.2 命令
 
 - Makefile 的命令有一个限制， 就是只能 单行处理bash 脚本
+    ```make
+    for d in a b c
+    do 
+        echo $d/*
+    done > list.txt
 
-```
-for d in a b c
-do 
-    echo $d/*
-done > list.txt
+    在Makefile中用,需要改写成合法的bash格式
 
-在Makefile中用,需要改写成合法的bash格式
-
-for d in a b d ;  do echo $$d/* ; done > list.txt
-```
+    for d in a b d ;  do echo $$d/* ; done > list.txt
+    ```
 
 - 注意对变量d的引用上， 采用的是 `$$d` , 这样写是为了区别于 Makefile 的变量.
 
@@ -315,18 +302,16 @@ for d in a b d ;  do echo $$d/* ; done > list.txt
     -  `:=` 复制运算符来定义的变量
     - 下面 MAKE_DEPEND 的值可能是 `gcc -M` , 如果 CC 没定义，则是 ` -M`
         - 一经定义，就有固定的值
-
-```
-MAKE_DEPEND := $(CC) -M
-```
+        ```make
+        MAKE_DEPEND := $(CC) -M
+        ```
 
 - 2. 经递归扩展的变量
     - `=`  delayed expand
     - 下面 MAKE_DEPEND 的值 会根据 CC 的定义，动态变化
-
-```
-MAKE_DEPEND = $(CC) -M
-```
+        ```make
+        MAKE_DEPEND = $(CC) -M
+        ```
 
 ---
 
@@ -343,20 +328,19 @@ MAKE_DEPEND = $(CC) -M
 ---
 
 - 直接我们所说的变量都是 全局变量
-    - Makefile  也有它的 局部变量 -- 并不是我们印象中的局部变量 -- ， 叫 目标专属变量
+    - Makefile  也有它的 局部变量 ( 并不是我们印象中的局部变量 ) ， 叫 目标专属变量
+    ```make
+    # myless 需要链接 curses 库
+    # TinyEdit 不需要 curses 库
 
-```
-# myless 需要链接 curses 库
-# TinyEdit 不需要 curses 库
+    LDFLAGS  :=
 
-LDFLAGS  :=
-
-TinyEdit: ...
-    $(LD) $(LDFLAGS) $^ -o $@
-myless : LDFLAGS := -lcurses
-myless : ... 
-    $(LD) $(LDFLAGS) $^ -o $@
-```
+    TinyEdit: ...
+        $(LD) $(LDFLAGS) $^ -o $@
+    myless : LDFLAGS := -lcurses
+    myless : ... 
+        $(LD) $(LDFLAGS) $^ -o $@
+    ```
 
 - 目标专属变量的值， 在处理对应目标的规则时 会进行改动， 当离开这个规则之后，变量值会被恢复。
 - 除了 我们这些自定义的变量和make内建的一些变量之外，make还提供了几个非常有用的专有变量
@@ -380,12 +364,11 @@ VARIABLES | 所有已定义的变量名列表， 不包含目标专有变量。 
 - 宏的概念与经递归扩展的变量基本上是一致的。 只是写法不同
 - 宏定义的语法:
     - 只要将你的命令，写在 `...` 那里就行了 , 不过要注意命令的写法
-
-```
-define MACRO_NAME
-    ...
-endef
-```
+    ```make
+    define MACRO_NAME
+        ...
+    endef
+    ```
 
 - 使用定义好的宏:
     - `$(MACRO_NAME)`  or `${MACRO_NAME}`
@@ -409,7 +392,7 @@ endef
 
 ### 8.4.5 条件指令
 
-```
+```make
 ifdef, ifndef, ifeq, ifneq
 else
 endif
@@ -439,30 +422,28 @@ endif
     - 后者则排除掉了 系统提供的头文件，只保留 用户自定义的头文件。
 - 它的输出差不多是这样:
     - 很熟悉吧，这不就是 Makefilede 目标和条件吗？ 可见gcc  与make 的关系不一般了.
-
-```
-# gcc -MM Stack.cpp
-Stack.o: Stack.cpp Stack.h UMCMacros.h HTTPRequest.h
-```
+        ```bash
+        # gcc -MM Stack.cpp
+        Stack.o: Stack.cpp Stack.h UMCMacros.h HTTPRequest.h
+        ```
 
 - 一个例子
+    ```make
+    SOURCES := $(wildcard *.cpp)
 
-```
-SOURCES := $(wildcard *.cpp)
+    all: Stack.o
+        @echo $(SOURCES) , $$$$
 
-all: Stack.o
->---@echo $(SOURCES) , $$$$
-
--include $(subst .cpp,.d,$(SOURCES))
-%.d:%.cpp
->---gcc -MM $< > $@.$$$$; \
->---sed 's,\($*\)\.o[:]*,\1.o $@:,g' < $@.$$$$ > $@; \
->---rm -rf $@.$$$$
-```
+    -include $(subst .cpp,.d,$(SOURCES))
+    %.d:%.cpp
+        gcc -MM $< > $@.$$$$; \
+        sed 's,\($*\)\.o[:]*,\1.o $@:,g' < $@.$$$$ > $@; \
+        rm -rf $@.$$$$
+    ```
 
 ---
 
-- \*  说明
+- **说明**
 - `SOURCES := $(wildcard *.cpp)`
     - 列出当前目录下所有的 cpp 文件
     - i.e. `RobotMgr.cpp RobotLogin.cpp Stack.cpp RobotGetUserData.cpp RobotChallenge.cpp HTTPRequest.cpp RobotBattle.cpp`
@@ -482,18 +463,16 @@ all: Stack.o
     - 为了保证当有文件被修改的时候， 不会遗漏依赖关系变化。 
     - 比如 你在 一个.cpp 的头文件中 又引入了新的头文件. 这时依赖关系 需要更新， 但是我们确没有 .h -> .d 的模式规则。 加入.d 就可以解决这个问题。
 - 新版本的 gcc 又配合这个设计，提供了一个新的 `-MT` 选项。 可以直接在 依赖关系中 加入 .d 文件
+    ```make
+    SOURCES := $(wildcard *.cpp)
 
+    all: Stack.o
+        @echo $(SOURCES) , $$$$
 
-```
-SOURCES := $(wildcard *.cpp)
-
-all: Stack.o
->---@echo $(SOURCES) , $$$$
-
--include $(subst .cpp,.d,$(SOURCES))
-%.d:%.cpp
->---gcc -MM -MT "$@ $(@:.d=.o)" $<   > $@
-```
+    -include $(subst .cpp,.d,$(SOURCES))
+    %.d:%.cpp
+        gcc -MM -MT "$@ $(@:.d=.o)" $<   > $@
+    ```
 
 <h2 id="8a18c8cddb6ee0f3b48312efbf4c5e72"></h2>
 
@@ -504,14 +483,13 @@ all: Stack.o
 - 为什么要递归呢？ 动机很简单： 
     - 处理单一目录的Makefile 可以非常简单， 目录越多越复杂。
     - 给每个目录准备一个 Makefile, 可以很好的降低复杂度。
+    ```make
+    语法:
 
-```
-语法:
-
-cd subdir && $(MAKE)
-或
-$(MAKE) -C subdir
-```
+    cd subdir && $(MAKE)
+    或
+    $(MAKE) -C subdir
+    ```
 
 - 这两条命令是等价的。 需要注意的两个地方
     1. 一个被执行的 Makefile 在执行完毕后， 不需要类似 `cd ..` 这样的命令， 因为每个命令都有一个独立的 shell 环境
