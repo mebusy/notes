@@ -90,6 +90,15 @@
     ```
     - for Ubuntu, `sudo apt install build-essential` is needed
 
+
+## C-Family 补全配置文件
+
+YCM 会一层一层目录往上查找 .ycm_extra_conf.py 配置文件
+
+example: https://github.com/ycm-core/ycmd/blob/master/.ycm_extra_conf.py
+
+
+
 <h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
 
 
