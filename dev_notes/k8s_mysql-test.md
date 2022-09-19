@@ -124,7 +124,8 @@ use [portforward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl
 
 
 ```bash
-kubectl -n mysql-57  --address 0.0.0.0   port-forward deployment/mysql-57 33057:3306
+// START /B   to run in background
+START /B  -n mysql-57  --address 0.0.0.0   port-forward deployment/mysql-57 33057:3306
 ```
 
 Now you can connect to mysql  from outside
