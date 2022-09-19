@@ -1,6 +1,14 @@
 
 # MongoDB Cheatsheet
 
+[db.collection.find()](https://docs.mongodb.com/manual/reference/method/db.collection.find/?_ga=2.77243475.790102026.1663232700-1298892323.1663232700)
+
+[Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/?_ga=2.77243475.790102026.1663232700-1298892323.1663232700)
+
+[BSON types](https://www.mongodb.com/docs/manual/reference/operator/query/type/?&_ga=2.77243475.790102026.1663232700-1298892323.1663232700#available-types)
+
+[Read Concern](https://www.mongodb.com/docs/manual/reference/read-concern/?_ga=2.6016245.790102026.1663232700-1298892323.1663232700)
+
 ## Helpers 
 
 ### Show Databases
@@ -89,8 +97,25 @@ db.coll.find({name: "Max", age: 32}).explain("executionStats")
 [ 'Alex', 'Max', 'dddd', 'only this obj will be inserted' ]
 ```
 
+count
+
+```
+// estimation based on collection metadata
+db.coll.count({age: 32}) 
+db.coll.estimatedDocumentCount() 
+db.coll.countDocuments({age: 32}) // alias for an aggregation pipeline - accurate count
+```
+
+Comparison
+
+```
+db.coll.find({"year": {$gt: 1970}})
+db.coll.find({"year": {$ne: 1970}})
+db.coll.find({"year": {$nin: [1958, 1959]}})
+```
 
 
+Logical
 
 ```
 > db.coll.find({name:{$not: {$eq: "Max"}}})
@@ -98,6 +123,59 @@ db.coll.find({name: "Max", age: 32}).explain("executionStats")
 { _id: ObjectId("63230579b06cf9f6dfcac223"), name: 'Alex' }
 ...
 ```
+
+```
+db.coll.find({$or: [{"year" : 1958}, {"year" : 1959}]})
+db.coll.find({$nor: [{price: 1.99}, {sale: true}]})
+db.coll.find({
+  $and: [
+    {$or: [{qty: {$lt :10}}, {qty :{$gt: 50}}]},
+    {$or: [{sale: true}, {price: {$lt: 5 }}]}
+  ]
+})
+```
+
+Element
+
+```
+db.coll.find({name: {$exists: true}})
+db.coll.find({"zipCode": {$type: 2 }})
+db.coll.find({"zipCode": {$type: "string"}})
+```
+
+Aggregation Pipeline
+
+```
+db.coll.aggregate([
+  {$match: {status: "A"}},
+  {$group: {_id: "$cust_id", total: {$sum: "$amount"}}},
+  {$sort: {total: -1}}
+])
+```
+
+
+Text search with a "text" index
+
+- MongoDB provides text indexes to support text search queries on string content.
+- A collection can only have one text search index, but that index can cover multiple fields.
+- text search queries will compute a relevance score for each document
+    - To sort the results in order of relevance score, you must explicitly project the $meta textScore field and sort on it:
+
+```
+db.coll.find({$text: {$search: "cake"}}, {score: {$meta: "textScore"}})
+       .sort({score: {$meta: "textScore"}})
+```
+
+Regex  `Perl compatible`
+
+```
+db.coll.find({name: /^Max/})   // regex: starts by letter "M"
+db.coll.find({name: /^Max$/i}) // regex case insensitive
+```
+
+
+
+
 
 
 
