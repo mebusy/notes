@@ -118,6 +118,8 @@ kind: List
 
 ## Expose Mysql service in k8s
 
+so far you can not access mysql exterannly because its type is `ClusterIP`.
+
 use [portforward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) ,   say you have mysql service  under namespace mysql-57,  you listen on port 33057 on all address, and forward to 3306 in a pod select by the deployment.
 
 
