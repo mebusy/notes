@@ -243,7 +243,8 @@
         },
         {
             '$project': {
-                'title': 1,  # include this field by 1, or explicitly exclude by 0
+                'title': 1,  # include this field by, see more details 
+                             # at chapter `Filtering on Array Fields`
                 'year': 1,
                 'directors': {'$split': ["$director", ", "]},
                 'actors': {'$split': ["$cast", ", "]},
@@ -443,8 +444,88 @@ client.mflix.movies.bulk_write( updates )
 ```
 
 
+### Data Types in MongoDB
+
+- Data types in MongoDB
+    - [BSON Types](https://www.mongodb.com/docs/manual/reference/bson-types/)
+    - By default MongoDB stores all numbers as doubles.
+    - ObjectId
+        - unique id
+        - composed of the current time in unix, the ID of the machine, the process ID, as well as a count that starts with a random value
+    - Decimal128
+        - e.g. to represent money
+- Querying by data type
+    ```python
+    movies.find_one( { 'year': { "$type" : "int" } } )
+    ```
 
 
+### Filtering on Array Fields
+
+- filter
+    ```python
+    {"languages": "Korean"}  # `languages` contains `Korean
+    {"languages": {'$all':["Korean", "English" ] } } # contains both 
+    {"languages": ["Korean", "English" ] } # exact match
+    {"languages.0": "Korean"}  # element at index 0 is `Korean`
+    ```
+- work with project
+    ```python
+    filter = {
+        'languages.0': "Korean"
+    }
+
+    projection = {
+        'title': 1,
+        'language': 1
+    }
+
+    pprint.pprint( list(client.mflix.movies_scratch.find( filter, projection  )) )
+    ```
+
+<details>
+<summary>
+Output:
+</summary>
+
+```bash
+[{ '_id': .... ,
+   'languages': ["Korean"],
+    "title": "Wishing Stairs" },
+...
+```
+
+</details>
+
+
+- projections rules of include/exclude
+    1. The `_id` field is, by default, included in the output documents.
+    2. use 1 for all fields you want to explicitly include 
+    3. use 0 for any fields you want to explicitly exclude
+    4. If we only explicitly include fields as we've done here, MongoDB assumes we want to exclude all others.
+
+- To remove `_id` field from our outputs
+    ```python
+    projection = {
+        '_id': 0,
+        'title': 1,
+        'language': 1
+    }
+    ```
+    ```bash
+    # output
+    [{ 'languages': ["Korean"], "title": "Wishing Stairs" },
+    ...
+    ```
+
+
+### Sort, Skip, and Limit
+
+- those are cursor methods
+    ```python
+    movies = db.movies.find( {} ).sort( "tomatoes.viewer.numReviews", DESCENDING )
+    movies.skip( 20 ).limit(20)
+    ```
 
 
 
