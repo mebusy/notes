@@ -518,15 +518,38 @@ Output:
     ...
     ```
 
+### Query using operators
 
-### Sort, Skip, and Limit
+[Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/)
 
-- those are cursor methods
+
+### The $elemMatch Operator
+
+- A common pitfall when querying subdocuments embedded in arrays
     ```python
-    movies = db.movies.find( {} ).sort( "tomatoes.viewer.numReviews", DESCENDING )
-    movies.skip( 20 ).limit(20)
+    # this filters is array-wise
+    filters = {
+        "comments.name": "Samwell Tarly", 
+        "comments.data": {
+            "$lt": dateparser.parse("1995-01-01")
+        }
+    }
     ```
-
-
+    - the pitfall here is that what this query is not saying let's find comments from Samwell  also made before 1995. But what we're actually saying is let's find documents where one of the element's comments is from Sam, and also one of the elements comments is from before 1995. 
+    - it actually selects those documents whose array contains any combination of elements that satisfies the conditions.
+    - And the way that we get around that is by using the $elemMatch operator
+    ```python
+    # element-wise
+    betterFilters = {
+        "comments": {
+            "$elemMatch": {
+                "name": "Samwell Tarly",
+                "date": {
+                    "$lt": dateparser.parse("1995-01-01")
+                }
+            }
+        }
+    }
+    ```
 
 
