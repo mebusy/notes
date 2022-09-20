@@ -231,6 +231,8 @@
 
 ### Projecting Query
 
+[Aggregation Stages](https://www.mongodb.com/docs/manual/meta/aggregation-quick-reference/)
+
 - projections: 
     - `$project` allows to specify a projection on all documents that pass through this stage. 
     - we may went to do some processing ont the data,  e.g. an integer 'runtime' field, an array of 'languages', and so on...
@@ -402,5 +404,48 @@
 
 
 ### Update Documents
+
+[Update Operators](https://www.mongodb.com/docs/manual/reference/operator/update/)
+
+
+- let's start with `update_one`
+    ```python
+    # limit is a cursor method
+    # use find() to return a cursor
+    for movie in client.mflix.movies.find({}).limit(100):
+        ...
+        # update one 
+        db.movies.update_one( {'_id': movie[ '_id' ] } , update_doc )
+    ```
+    - the frist argument `{'_id': movie[ '_id' ] }` is a filter that selects the document we wish to update.
+        - here this filter says, I'm interested in updating the document with the `_id` value equals `movie['_id']`
+    - the 2nd argument `update_doc` is the change that I make
+        - some examples
+        ```python
+        {"year": 2016}  # WARNING! Replaces the entire document
+        {$set: {"year": 2016, name: "Max"}}  # insert / update  `year` and `name` fields
+        {$unset: {"year": 1}}  # remore `year` field
+        ```
+
+
+### Bulk Updates
+
+```python
+...
+from pymongo import MongoClient, UpdateOne
+
+updates = []
+
+updates.append( UpdateOne( {'_id': movie[ '_id' ] } , update_doc ) )
+
+...
+client.mflix.movies.bulk_write( updates )
+```
+
+
+
+
+
+
 
 
