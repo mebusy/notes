@@ -553,3 +553,244 @@ Output:
     ```
 
 
+### Querying on subdocument -- The magic of the dot notation
+
+```python
+# rating = <Titanic's rating>
+
+# find all movies with the same viewer rating as `Titanic`
+cursor = mflix.movies.find( {'tomatoes.viewer.rating': rating} )
+# sort by lastUpdated review
+cursor.sort( 'tomatoes.lastUpdated', pymongo.ASCENDING )
+for movie in cursor:
+    pprint.pprint( movie['title'] )
+```
+
+
+### Inserting Comments in MFlix
+
+```python
+insert_result = mflix.comments.insert_one( comment, bypass_validation )
+pprint.pprint( insert_result.acknowledged )
+pprint.pprint( insert_result.inserted_id )
+```
+
+- insert duplicated documents( with same `_id` ) will raise error 
+
+### Updating comments
+
+- Array Operators
+    ```bash
+    $addToSet
+    $push  # update a document array without replacing it
+    $pop
+    $pull
+    $pullAll
+    $
+    ```
+- Field Update Operators:
+    ```bash
+    $set
+    $unset
+    $inc
+    $currentDate
+    $min
+    $max
+    $mul
+    $rename
+    $setOnInsert
+    ```
+
+
+```python
+comment_doc = {
+    "name": user.name,
+    "email": user.email,
+    "movie_id": movieid,
+    "text": comment,
+    "date": date,
+    "last_update": last_update
+}
+
+update_doc = {
+    "$inc": {
+        "num_mflix_comments": 1
+    },
+    "$push": {  # array operator, push the comment to the comments array field
+        "$each": [comment_doc], # only 1 comment doc
+        "$sort": {"data": -1},
+        "$slice": 20  # bound array, only the latest comments
+    }
+}
+
+db.movies.update_one( { "_id": ObjectId(movieid) }, update_doc )
+
+```
+
+
+### Deleting Data
+
+```python
+comments.delete_one( filter )
+```
+
+
+## Week3 Additional MongoDB Concepts & Basic Charting
+
+### Index
+
+- Index Type
+    - Single Field Indices
+    - Compound Indices
+    - Multikey Indices
+    - Text Indices
+        - text indices do not just follow the exact match of a value against the index structure, they will take in consideration, relevance.
+        - How relevant is a key compared to the different entries that are present in that index? 
+            - In this particular example, the title, cast, and directors are all fields which are going to be indexed
+    - Geospatial Indices
+        - 2d
+        - 2dsphere
+        - geoHaystack
+    - Hashed Indices
+
+
+```python
+# get list of indices
+pprint.pprint( mflix.movies.index_information() )
+```
+
+- Text Search vs Exact Match
+    ```python
+    filters = { "title": "titanic" }
+    mflix.movies.find(filters)   # exact match
+    ```
+    ```python
+    filters = { "$text" : {  # text search
+        "$search": "titanic"
+    } }
+    ```
+
+
+- Create Index
+    ```python
+    mflix.movies.create_index( [ {"countries": pymongo.ASCENDING } ] )
+    ```
+
+### Geospatial Queries
+
+```python
+pprint.pprint( theater['location']['geo'] )
+# {'coordinates': [-93,24565, 44.85466], 'type': 'Point' }  # it's called GeoJSON
+# [纬度,经度] while coordinates are generally put latitude followed by longitude, 
+#             GeoJSON specifies coordinates in the reverse order.
+```
+
+
+- How to find geospatial documents within a circle on the Earth
+    - [Geospatial Query Operators](https://www.mongodb.com/docs/manual/reference/operator/query-geospatial/)
+    ```python
+    {
+        "location.geo": {
+            "$geoWithin": {
+                "$centerSphere": [ 
+                    [-109.035, 36.163],
+                    0.1085
+                ]
+            }
+        }
+    }
+    ```
+- How to find geospatial documents near a point
+    ```python
+    # similar to '$geoWithin', but sorted by distance
+    # need a 2dsphere  GeoJSON index
+    {
+        "location.geo": {
+            "$nearSphere": {
+                "geometry": {
+                    "type": "Point", 
+                    "coordinates": [-93,24565, 44.85466] 
+                }
+                "$minDistance": 0,
+                "$maxDIstance": 1000
+            }
+        }
+    }
+    ```
+- 2dsphere indices
+    - '$nearSphere' need a 2dsphere  GeoJSON index
+
+
+---
+
+# MongDB notes
+
+## Aggregation Framework
+
+- MongoDB document pipeline
+    - e.g.  $match | $group | $sort
+- example: 
+    - let's assume we have a colletion of all sorts of movies released in the last 20 years.
+    - and we want to see which studios had the best rated films.
+    ```
+    db.movies.aggregate([
+        { '$match': { 'year':2017 } },   # all the movies in 2017
+        { '$group': { '_id': '$studio' } },  # group by the studio
+        { '$sort': { 'imdbRating': -1 } },  # sort in descending order by their imdbRating
+        { '$limit': 10  }  # limit top 10
+    ])
+    ```
+
+- with the aggregation framework you can add your own javascript functions to aggregate the data however you want.
+    ```
+    db.movies.aggregate([
+        {
+            '$addFields': {
+                'adoScore': {
+                    '$function': {
+                        'body': 'function(imdb, awards){...}'
+                        'args': [
+                            '$imdb.rating': '$awards'
+                        ] ,
+                        'lang': 'js'
+                    }
+                }
+            }
+        }
+    ])
+    ```
+
+
+
+## Change Streams
+
+watch the changes
+
+```
+const collection = db.collection('comments');
+const changeStream = collection.watch();
+changeStream.on('change', next=> {
+    // do something when there is a change in the comments collection
+});
+```
+
+you do not want to watch the entire collection, maybe you need a only a very specifc changes.
+
+
+```
+const pipeline = [
+    { $match: { 'fullDocument.username': 'alice' } },
+    { addFields: { newField: 'this is an added field;' } }
+];
+
+const collection = db.collection('inventory');
+const changeStream = collection.watch(pipeline);
+changeStream.on('change', next=> {
+    // process next document
+});
+```
+
+
+
+
+
