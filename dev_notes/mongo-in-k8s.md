@@ -1,5 +1,19 @@
+...menustart
+
+- [Deploy MongoDB in k8s](#76623500c7c129f55af57521e8f2450f)
+    - [Persistent Volume](#dc1691844d1fa3602f797857ca2f638b)
+    - [MongoDB](#206e3718af092fd1d12f80cae771ccac)
+
+...menuend
+
+
+<h2 id="76623500c7c129f55af57521e8f2450f"></h2>
+
 
 # Deploy MongoDB in k8s
+
+<h2 id="dc1691844d1fa3602f797857ca2f638b"></h2>
+
 
 ## Persistent Volume
 
@@ -17,6 +31,9 @@ spec:
   hostPath:
     path: "/opt/data/mongo"
 ```
+
+
+<h2 id="206e3718af092fd1d12f80cae771ccac"></h2>
 
 
 ## MongoDB

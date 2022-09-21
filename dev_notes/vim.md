@@ -3,6 +3,7 @@
 - [VIM](#d53cfc4bdeb96eaee47dd710b3c2ed21)
     - [插件安装](#78d0b83eb54eb1aa949d4600958cb397)
     - [YouCompleteMe 配置](#95e1e8a5d4d20276318a364f9428f879)
+    - [C-Family 补全配置文件](#6c21b0240dca1c94dbf59f8b1ab1f1af)
         - [YCMD 排错](#f7abfec0b5984a0314616bd13f7ae8c3)
     - [Markdown](#2182a74bab7188d959e795d9301e87ff)
     - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
@@ -89,6 +90,9 @@
     # --clang-completer --system-libclang
     ```
     - for Ubuntu, `sudo apt install build-essential` is needed
+
+
+<h2 id="6c21b0240dca1c94dbf59f8b1ab1f1af"></h2>
 
 
 ## C-Family 补全配置文件

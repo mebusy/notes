@@ -135,6 +135,18 @@ a | b | c | d
 [HTML,CSS](dev_notes/web_dev.md) | [reintro JS](dev_notes/reintro_JS.md) | [DOM Manipulation](dev_notes/web_dev_5.md) |  [Coding A Static Restaurant Site](dev_notes/web_dev_3.md)
 
 
+#### Database
+
+
+ a | b | c | d
+--- | --- | --- | ---
+[redis 基础数据结构](dev_notes/redis.md) | [redis 数据库实现](dev_notes/redis2.md) | [redis 独立功能的实现](dev_notes/redis3.md) | 
+[redis tips](dev_notes/redis_tips.md) | [redis patterns](dev_notes/redis_pattern.md) |  [redis pub/sub vs. stream](dev_notes/redis_pubsub_vs_stream.md) | 
+[mysql subquery](dev_notes/mysql_subquery.md) | [mysql 锁](dev_notes/mysql_lock.md) | [mysql索引正确打开方式](dev_notes/mysql_index.md) | [mysql实践](dev_notes/mysql_practice.md)
+[mysql技术内幕?](dev_notes/mysql.md) | 
+[intro to mongoDB](dev_notes/intro-2-mongodb.md) | 
+
+
 
 <h2 id="55f37d1fd483f6a85379640fe51aafa8"></h2>
 
@@ -143,10 +155,6 @@ a | b | c | d
 
  a | b | c | d
 --- | --- | --- | ---
-[redis 基础数据结构](dev_notes/redis.md) | [redis 数据库实现](dev_notes/redis2.md) | [redis 独立功能的实现](dev_notes/redis3.md) | 
-[redis tips](dev_notes/redis_tips.md) | [redis patterns](dev_notes/redis_pattern.md) |  [redis pub/sub vs. stream](dev_notes/redis_pubsub_vs_stream.md) | 
-[mysql subquery](dev_notes/mysql_subquery.md) | [mysql 锁](dev_notes/mysql_lock.md) | [mysql索引正确打开方式](dev_notes/mysql_index.md) | [mysql实践](dev_notes/mysql_practice.md)
-[mysql技术内幕?](dev_notes/mysql.md) | 
 [swagger](dev_notes/swagger.md) |  [backend tips](dev_notes/backend_tips.md) |  [tcpip笔记](dev_notes/tcpip.md) | 
 [React哲学](dev_notes/react_philosophy.md)  |  [web frontend tips](dev_notes/web_frontend_note.md) | [js tips](dev_notes/nodejs_tips.md) 
 [TypeScript](dev_notes/typescript.md) |

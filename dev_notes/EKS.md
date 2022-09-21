@@ -9,6 +9,8 @@
     - [Deploy k8s control panel](#0fb3db388cb28547e6b0d17ca0c608b5)
     - [部署 ALB 入口控制器](#64e08a2de07bf4869794d3b8c5666add)
     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
+        - [find cluster security group](#642c6b8ce5bd1d32905ac11c2e62ca6e)
+        - [create another use and access cluster](#8b29fa74a83a54a6d4851685a28eab40)
 
 ...menuend
 
@@ -387,11 +389,17 @@ spec:
 
 ## Misc
 
+<h2 id="642c6b8ce5bd1d32905ac11c2e62ca6e"></h2>
+
+
 ###  find cluster security group
 
 ```go
 aws eks describe-cluster --name cluster_name --query cluster.resourcesVpcConfig.clusterSecurityGroupId
 ```
+
+
+<h2 id="8b29fa74a83a54a6d4851685a28eab40"></h2>
 
 
 ### create another use and access cluster

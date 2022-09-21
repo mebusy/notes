@@ -5,12 +5,14 @@
     - [kubectl cheatsheet](#d4b1fc7497d32f6554e52b3a22b5685f)
     - [list pod names](#b94a99fa444999e85f6d0bb1bc651e55)
     - [List Detailed Info `-o wide`](#9ae6956ba1eb023104bf24d0bc5df58c)
+    - [print annotations information](#babf3225d1f0b068634f7cead1b9e5c7)
     - [print yaml file](#4c6e4c26d748e3ff10dd5ab1c3f1f6ca)
     - [full service name across namespaces](#f105d78fa5298a8e02f51a22ac6da980)
     - [Specify a Context](#bd251ed977799cf91b83164dbb4e6bab)
     - [rollout/restart deployment](#c87467d96636d76fdfa6a0a2785b7eb8)
     - [查找不是 running 状态的 pod](#145f750dc8c7bde1231227e5d027eafd)
     - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
+    - [Deleting Namespace "stuck" as Terminating,  how to solve it ?](#cba1fee733817c7d24cf75e1c715d127)
     - [Advanced Skill](#10e2e86d43aa4ce9a791d75c478a23dc)
 
 ...menuend
@@ -81,6 +83,9 @@ $ kubectl get po -A -o wide
 NAMESPACE       NAME            READY   STATUS      RESTARTS   AGE  IP          NODE    NOMINATED NODE   READINESS GATES
 ingress-nginx   ingress-....    0/1     Completed   0          8h   10.244.0.6  node1   <none>           <none>
 ```
+
+<h2 id="babf3225d1f0b068634f7cead1b9e5c7"></h2>
+
 
 ## print annotations information
 
@@ -188,6 +193,9 @@ $ kubectl get nodes -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.f
 
 - 每个节点的可用区都可以通过标签`failure-domain.beta.kubernetes.io/zone`来获得
 - 如果你的 Kubernetes 集群部署在公有云上面（比如 AWS、Azure 或 GCP），那么上面的命令就非常有用了
+
+
+<h2 id="cba1fee733817c7d24cf75e1c715d127"></h2>
 
 
 ##  Deleting Namespace "stuck" as Terminating,  how to solve it ?

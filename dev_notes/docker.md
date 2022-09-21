@@ -86,14 +86,16 @@
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [stop / rm all container](#106810e843fbd66af6ee48cb3ee7e07f)
     - [继续一个刚刚结束的container](#5e7908d41ed1f3e6e1906d575e2dfea0)
-    - [pass proxy to docker container](#e64a823c0142aaac197cc68839f54da9)
+    - [pass proxy to docker container  ( not necessary if have set proxy for docker correctly)](#7505ce8849f25ae527019ac6a637535a)
+    - [proxy when docker build  ( not necessary if have set proxy for docker correctly)](#48d4b214fbddf86eecf9ba549ba5aae1)
+    - [Configure Docker to use a proxy server](#9ae6e60d70ba5ec8ec4be8649b5d4d2a)
     - [docker daemon proxy for Centos7](#ed931520f4337c85396faa61455d56ec)
-    - [proxy when docker build](#68175df37efb964151e614c93d3e62ae)
     - [run bash of existing containter](#5ef5bd47a5282fb1ad1694bbb5f46954)
     - [get DockerFile from Image](#47a7dbe444a0af8498cf01950ad552ef)
     - [add a restart policy to a container](#9b68cd8277b36a785a1a8784426e3095)
     - [docker redis](#e03d31b41fc936f76920bb647520ef01)
     - [docker mysql](#5b1064e3e54b4f22a3419f9d198df904)
+    - [docker mongodb](#f3ae289f1fc693ed1145272cb7bfa4b7)
     - [docker cleanup](#ada28088d8540a0471c00fb0673b9882)
     - [docker pandoc](#b64e99ff98a5173b25e6d0d91bc330f3)
 
@@ -2024,7 +2026,7 @@ Explanation:
     -l list only last created container
 
 
-<h2 id="e64a823c0142aaac197cc68839f54da9"></h2>
+<h2 id="7505ce8849f25ae527019ac6a637535a"></h2>
 
 
 ## pass proxy to docker container  ( not necessary if have set proxy for docker correctly)
@@ -2033,7 +2035,7 @@ Explanation:
 - `docker run -e https_proxy -e http_proxy ... ` 
 
 
-<h2 id="68175df37efb964151e614c93d3e62ae"></h2>
+<h2 id="48d4b214fbddf86eecf9ba549ba5aae1"></h2>
 
 
 ## proxy when docker build  ( not necessary if have set proxy for docker correctly)
@@ -2041,6 +2043,9 @@ Explanation:
 ```bash
 docker build ... --build-arg http_proxy=http://host:port --build-arg https_proxy=http://host:port
 ```
+
+
+<h2 id="9ae6e60d70ba5ec8ec4be8649b5d4d2a"></h2>
 
 
 ## Configure Docker to use a proxy server
@@ -2173,6 +2178,9 @@ redis> config get save
 # -e MYSQL_USER="root" 
 docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test  -e MYSQL_ROOT_PASSWORD="root" mysql:5.7 --character-set-server=utf8mb4
 ```
+
+<h2 id="f3ae289f1fc693ed1145272cb7bfa4b7"></h2>
+
 
 ## docker mongodb
 

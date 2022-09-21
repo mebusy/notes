@@ -1,7 +1,8 @@
 ...menustart
 
 - [Windows tis](#1e4f5759f3716323d239131f31dfac6d)
-    - [Use WSL2](#c869ce86f93962ab5ce5ed38b89a408c)
+    - [Use WSL2 & Docker](#01eecc176d31e7097d965d39e191b2f3)
+    - [Run ML container accelerated by NVidia CPU On WSL2](#8f5b01b3ae0423d2602655c621faefea)
     - [SSH to Win10 WSL2](#e623b8257a43fa5e9f6166407a2e3914)
 
 ...menuend
@@ -13,7 +14,7 @@
 # Windows tis
 
 
-<h2 id="c869ce86f93962ab5ce5ed38b89a408c"></h2>
+<h2 id="01eecc176d31e7097d965d39e191b2f3"></h2>
 
 
 ## Use WSL2 & Docker
@@ -44,6 +45,9 @@
         $ sudo groupadd docker
         $ sudo usermod -aG docker $USER 
         ```
+
+<h2 id="8f5b01b3ae0423d2602655c621faefea"></h2>
+
 
 ## Run ML container accelerated by NVidia CPU On WSL2
 

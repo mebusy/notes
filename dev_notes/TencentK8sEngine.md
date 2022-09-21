@@ -14,6 +14,7 @@
     - [清除不再使用的 image](#77563c3ed75c144a6617a7077a1b4771)
     - [Pod Stuck in Terminating](#f33345d63406b6b6402c63cb4275d5b7)
     - [Duplicate service , deployment one namespece to another namespace](#12847d0d05565b4f2c885fa89ab4049b)
+    - [TKE node 常用 安全组](#5c990c1691165d355ad21cc1f7c5801e)
 
 ...menuend
 
@@ -256,6 +257,9 @@ kbctl -n $cur_ns get deploy --export -o yaml | sed -e "s/namespace: $cur_ns/name
 ```
 
 </details>
+
+
+<h2 id="5c990c1691165d355ad21cc1f7c5801e"></h2>
 
 
 ## TKE node 常用 安全组

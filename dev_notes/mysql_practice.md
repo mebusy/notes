@@ -12,7 +12,6 @@
     - [`select count(*)` is very slow on large table](#c4935fa15c0a1305da238eec81cc54b3)
     - [`select ... limit offset , n ` is slow when offset  is higher](#5c7924ade1a946ba9a0af0cc562c127b)
     - [return a default value if select get no result](#7ddf721cdb15b5dfbfdae520c698160d)
-    - [Sub Query example](#a21afd692dc65c7ff60c8f549b7f1f5a)
     - [CASE ... WHEN ... ELSE... END](#cba58cab71d7e6df49942060252f546d)
     - [Convert a timestamp to seconds(GMT)](#551a3f8ce4409963ec6de228ccc44ae0)
     - [Convert any timestamp to +08:00](#07ef5ad460d1f2e1c8f91459700b8f2e)
