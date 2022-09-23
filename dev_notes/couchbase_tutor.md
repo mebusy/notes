@@ -105,4 +105,70 @@ web UI: `localhost:8091/ui`
 
 ## Lesson 4 - Creating indexes and filtering queries
 
+- filter a specific value
+    ```sql
+    SELECT ...
+    FROM ...
+    WHERE <field> = xxxx
+    ```
+    - couchbase neither enforces nor validates a particular schema
+    - so fiters with misspelled fields succeed... with 0 results
+
+- Create a full index
+    ```sql
+    CREATE INDEX indexName
+    ON bucket( field, field(s)) ;
+    ```
+- Index less than all documents ?
+    ```sql
+    CREATE INDEX indexName
+    ON bucket( field, field(s))
+    WHERE field = value
+        AND field = value ;
+    ```
+    - example
+        ```sql
+        CREATE INDEX idx_state_where_active
+        ON couchmusic2 (address.state)
+        WHERE status = "active"
+
+        -- Fails to include filter, so index is not used
+        SELECT * FROM couchmusic2
+        WHERE address.state = "oregon";
+
+        -- includes filter, so index is used
+        SELECT * FROM couchmusic2 
+        WHERE address.state = "oregon"
+            AND status = "active";
+
+        SELECT * FROM couchmusic2 
+        WHERE status = "active"
+            AND address.state = "oregon";
+        ```
+- Optimize very large index 
+    ```sql
+    CREATE INDEX indexName ON bucket( field, field(s)) 
+    PARTITION BY HASH(field)
+    WHERE type = value
+    ```
+    - example
+        ```sql
+        CREATE INDEX idx_partitioned
+        ON couchmusic2(postalCode)
+        PARTITION BY HASH(countryCode);
+
+        -- only index part including "US" is used
+        SELECT favoriteGenres
+        FROM couchmusic2
+        WHERE postalCode = 97203
+            AND countryCode = "US"
+        -- full index used
+        SELECT favoriteGenres
+        FROM couchmusic2
+        WHERE postalCode = 97203
+        ```
+
+
+## Lesson 5 - Querying ranges, ordering results, getting system and document metadata
+
 
