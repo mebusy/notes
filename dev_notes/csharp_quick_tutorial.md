@@ -28,3 +28,19 @@
     - physically it's a file on the disk. It can either be an executable or a DLL.
 
 
+# Fundamental
+
+## ref vs out
+
+Both ref and out parameter treated same at compile-time but different at run-time.
+
+scenario |  ref | out
+--- |--- | ---
+before entering method |  must initialize | 
+before returning  |  |  must initialize inside the mothod
+when to use | when the callee also want to change the value of passed parameter | when a method return multiple values
+
+
+
+
+
