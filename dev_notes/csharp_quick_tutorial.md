@@ -42,5 +42,32 @@ when to use | when the callee also want to change the value of passed parameter 
 
 
 
+## yield
+
+- Usage of the "yield" keyword indicates that the method it appears in is an Iterator
+    - this means you can use it in a foreach loop
+        ```cs
+        public static IEnumerable<int> YieldCounter(int limit = 10)
+        {
+            for (var i = 0; i < limit; i++)
+                yield return i;
+        }
+        ```
+    - which you would call like this :
+        ```cs
+        public static void PrintYieldCounterToConsole()
+        {
+            foreach (var counter in YieldCounter())
+                Console.WriteLine(counter);
+        }
+        ```
+
+## EXTENSION METHODS
+
+```cs
+int i = 3;
+i.Print(); // Defined below
+```
+
 
 
