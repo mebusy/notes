@@ -62,12 +62,28 @@ when to use | when the callee also want to change the value of passed parameter 
         }
         ```
 
-## EXTENSION METHODS
 
-```cs
-int i = 3;
-i.Print(); // Defined below
-```
+## extension method
+
+- allows you to add new methods in the existing class or in the structure without modifying the source code of the original type
+    ```cs
+    // static class
+    public static class Extensions
+    {
+        // EXTENSION METHODS
+        public static void Print(this object obj)
+        {
+            Console.WriteLine(obj.ToString());
+        }
+    }
+    ```
+    - this method extend to all `object` type
+    - the first paramter `this object obj` is called **Binding parameter**
+- how 2 use
+    ```cs
+    int i = 3;
+    i.Print(); // Defined below
+    ```
 
 ## nullable types
 
@@ -154,22 +170,6 @@ student.Introduce = new Func<string, string>(
     var sum = bikes.Sum(b => b.Wheels); // Reduce - sums all the wheels in the collection
     ```
 
-## extension method
-
-- allows you to add new methods in the existing class or in the structure without modifying the source code of the original type
-    ```cs
-    // static class
-    public static class Extensions
-    {
-        // EXTENSION METHODS
-        public static void Print(this object obj)
-        {
-            Console.WriteLine(obj.ToString());
-        }
-    }
-    ```
-    - this method extend to all `object` type
-    - the first paramter `this object obj` is called **Binding parameter**
 
 
 ## DELEGATES AND EVENTS
