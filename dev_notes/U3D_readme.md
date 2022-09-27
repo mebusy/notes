@@ -9,6 +9,7 @@
  3. [Coroutine](Unity_coroutine.md) 
  4. [Plugin](Unity_Plugin.md)
  5. [CSharp](Unity3D_CSharp.md) 
+ 5. [C# quick tutorial](csharp_quick_tutorial.md)
  6. [learning hard c#](learningHardCSharp.md)
  7. [prefab 研究](U3D_prefab_tips.md) 
  8. [timeScale](U3D_timescale.md)  
@@ -29,13 +30,12 @@
 ## Best Practices
 
 - [unity UI 基础](FundamentalsofUnityUI.md)
-  
 
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
 
-## Misc
+## Unity Lesson
 
 - [note: unity for noob](unity_for_noob.md)
 - [note: unity advanced](unity_for_adv.md)

@@ -5,6 +5,8 @@
 - [Narrowing Search Results](#7ec8df286ac371d3900dc523ef9e9daa)
 - [Filtering mdfind's output](#bbc752d74b076db37c447790cb425249)
 - [Listing Metadata with mdls](#2f632d202624dbb9c7814dabbd14c77c)
+- [Misc](#74248c725e00bf9fe04df4e35b249a19)
+    - [find files with specific extension](#d9e21c4547cc76da5ac8d583d3d40772)
 
 ...menuend
 
@@ -143,7 +145,13 @@ $ mdfind "invoice apress"
     $ mdfind 'kMDItemAudioBitRate < 128000'
     ```
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
+
 # Misc
+
+<h2 id="d9e21c4547cc76da5ac8d583d3d40772"></h2>
+
 
 ##  find files with specific extension
 

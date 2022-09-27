@@ -1,3 +1,29 @@
+...menustart
+
+- [C# vs .NET](#7d2f32a907cb8c81e03051e552fda79f)
+- [CLR (Common Language Runtime)](#26d5d2a99978a512ae628508ff90707c)
+- [Architecture of .NET Applications](#6b473f5c2ae970ef3688f04230eaadc0)
+- [Fundamental](#2863bc264d070388a94111bc05f77f0f)
+    - [ref vs out](#5bbfbc817b46dbc2cdf592d2f99e667d)
+    - [yield](#16f10dfd541c23362492b4e513adf0a1)
+    - [extension method](#9c40ef75c97e104ba6e7667e707a06d0)
+    - [nullable types](#ce9d2b94fe950440377f494899eee6d3)
+    - [LAMBDA EXPRESSIONS](#3a56db55bb121991bc71882db47b33be)
+    - [disposable resources management](#cee2b21a163b0a5e2dc84b6b7535fddb)
+    - [PARALLEL FRAMEWORK](#003ab30ce0724b20087fce47981771a6)
+    - [DYNAMIC OBJECTS (great for working with other languages)](#a29a6cadf5b3ccac1b22cd60f2ce7116)
+    - [IQUERYABLE < T >](#020f01fe3081f38e8b862747ef932d6d)
+    - [DELEGATES AND EVENTS](#8ffa8b54c41af0dddd96ba147e823d77)
+        - [delegate](#7f662005788ab434b371fbb0efc6d45f)
+        - [event](#4119639092e62c55ea8be348e4d9260d)
+        - [Why do we need events when we have delegates?](#7a62c57ff2352c127ab2ca8d092a08cc)
+    - [oop](#403a96cff2a323f74bfb1c16992895be)
+
+...menuend
+
+
+<h2 id="7d2f32a907cb8c81e03051e552fda79f"></h2>
+
 
 # C# vs .NET
 
@@ -8,12 +34,18 @@
         1. CLR(Common Language Runtime)
         2. Class Library
 
+<h2 id="26d5d2a99978a512ae628508ff90707c"></h2>
+
+
 # CLR (Common Language Runtime)
 
 - When you compile your C# code, the result is what we called IL(intermediate language) code. It is independent of the computer on which it's running.
     - Now we need something that would translate the IL code into the native code on the machine that running the application. And that is the job of CLR.
 - So CLR is essentially an application that is sitting in the memory whose job is to translate the IL code into the machine code,
     - and this process is called just-in-time compilation or JIT.
+
+<h2 id="6b473f5c2ae970ef3688f04230eaadc0"></h2>
+
 
 # Architecture of .NET Applications
 
@@ -28,7 +60,13 @@
     - physically it's a file on the disk. It can either be an executable or a DLL.
 
 
+<h2 id="2863bc264d070388a94111bc05f77f0f"></h2>
+
+
 # Fundamental
+
+<h2 id="5bbfbc817b46dbc2cdf592d2f99e667d"></h2>
+
 
 ## ref vs out
 
@@ -40,6 +78,9 @@ before entering method |  must initialize |
 before returning  |  |  must initialize inside the mothod
 when to use | when the callee also want to change the value of passed parameter | when a method return multiple values
 
+
+
+<h2 id="16f10dfd541c23362492b4e513adf0a1"></h2>
 
 
 ## yield
@@ -61,6 +102,9 @@ when to use | when the callee also want to change the value of passed parameter 
                 Console.WriteLine(counter);
         }
         ```
+
+
+<h2 id="9c40ef75c97e104ba6e7667e707a06d0"></h2>
 
 
 ## extension method
@@ -85,6 +129,9 @@ when to use | when the callee also want to change the value of passed parameter 
     i.Print(); // Defined below
     ```
 
+<h2 id="ce9d2b94fe950440377f494899eee6d3"></h2>
+
+
 ## nullable types
 
 - great for database interaction / return values 
@@ -105,12 +152,18 @@ when to use | when the callee also want to change the value of passed parameter 
     nullable?.Print();
     ```
 
+<h2 id="3a56db55bb121991bc71882db47b33be"></h2>
+
+
 ## LAMBDA EXPRESSIONS
 
 - allow you to write code in line
     ```cs
     Func<int, int> square = (x) => x * x; // Last T item is the return 
     ```
+
+
+<h2 id="cee2b21a163b0a5e2dc84b6b7535fddb"></h2>
 
 
 ## disposable resources management
@@ -126,6 +179,9 @@ when to use | when the callee also want to change the value of passed parameter 
         // Even if an exception is thrown.
     }
     ```
+
+
+<h2 id="003ab30ce0724b20087fce47981771a6"></h2>
 
 
 ## PARALLEL FRAMEWORK
@@ -144,6 +200,9 @@ Parallel.ForEach(words,
 );
 ```
 
+<h2 id="a29a6cadf5b3ccac1b22cd60f2ce7116"></h2>
+
+
 ## DYNAMIC OBJECTS (great for working with other languages)
 
 ```cs
@@ -155,7 +214,10 @@ student.Introduce = new Func<string, string>(
     (introduceTo) => string.Format("Hey {0}, this is {1}", student.FirstName, introduceTo));
 ```
 
-## IQUERYABLE<T>
+<h2 id="020f01fe3081f38e8b862747ef932d6d"></h2>
+
+
+## IQUERYABLE < T >
 
 - almost all collections implement this, which gives you a lot of very useful Map / Filter / Reduce style methods
     ```cs
@@ -172,7 +234,13 @@ student.Introduce = new Func<string, string>(
 
 
 
+<h2 id="8ffa8b54c41af0dddd96ba147e823d77"></h2>
+
+
 ## DELEGATES AND EVENTS
+
+<h2 id="7f662005788ab434b371fbb0efc6d45f"></h2>
+
 
 ### delegate
 
@@ -208,6 +276,9 @@ student.Introduce = new Func<string, string>(
         composedInc(); // => 4
         ```
 
+<h2 id="4119639092e62c55ea8be348e4d9260d"></h2>
+
+
 ### event
 
 - An event can **also** be used to trigger delegates 
@@ -227,6 +298,9 @@ student.Introduce = new Func<string, string>(
         MyEvent(); 
         ```
 
+<h2 id="7a62c57ff2352c127ab2ca8d092a08cc"></h2>
+
+
 ### Why do we need events when we have delegates?
 
 1. To provide encapsulation and not exposing business logic.
@@ -238,6 +312,9 @@ student.Introduce = new Func<string, string>(
         ```cs
         MyEvent = null;
         ```
+
+<h2 id="403a96cff2a323f74bfb1c16992895be"></h2>
+
 
 ## oop
 
