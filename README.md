@@ -214,7 +214,7 @@ a | b | c | d
 [Learn to Learning](dev_notes/Learn2Learning.md) | [RaspBerryPi I](dev_notes/RaspberryPi_I.md) | [RaspPi 2](dev_notes/RASPI_2.md) | [Software Debug](dev_notes/SoftwareDebugging.md) 
 [github](dev_notes/github.md) | [gitlab CI note](dev_notes/gitlab_ci_note.md) | 
 [sublime](dev_notes/sublime.md)   | [深入浅出nodeJS](dev_notes/深入浅出nodeJS.md)	| [Html5 Game Program](dev_notes/Html5GameProgramming.md)
-[MacOSX Tips](dev_notes/MacOSX_Tips.md) | [workingTips](dev_notes/workingTips.md)	| [cntlm proxy](dev_notes/cntlm.md) |
+[MacOSX Tips](dev_notes/MacOSX_Tips.md) | [workingTips](dev_notes/workingTips.md)	| [cntlm proxy](dev_notes/cntlm.md) | [manage multiple java version on OSX](dev_notes/java_version_manage_osx.md)
 [VIM](dev_notes/vim.md) | [brew](dev_notes/homebrew.md) |  [comparing regex in Perl, Python](dev_notes/re-perl-python-emacs.md) |
 [run GUI app in docker on MacOSX](dev_notes/docker_mac_gui_app.md) |
 [blender api](dev_notes/blender.md) |  [blender lowpoly model](dev_notes/blender_low_poly.md) | 

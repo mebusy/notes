@@ -10,7 +10,6 @@
     - [Using Gson](#27936d606faa31b6312be4d40984af57)
     - [AsyncTask](#97f8fab067a9df19dd2e8b75c5989fff)
     - [Update Eclipse project to ant](#64556a6168b58f000bc4bd5146c16844)
-    - [MacOSX multiple Java version](#1346a911b293f1e15ae203e43f3af6b1)
     - [How to determine ABI of Android .so file](#bd8841fe31193f151e81534a3c94b0d7)
     - [Find dependency of android shared library](#965580fe8a8a7a0a7ce16fce7262e029)
     - [TODO ...](#dde7b2c0e90a2ea977a549fa578014f4)
@@ -276,29 +275,6 @@ ant debug
 ```
 
 
-<h2 id="1346a911b293f1e15ae203e43f3af6b1"></h2>
-
-
-## MacOSX multiple Java version
-
-```bash
-# 1 install java7
-brew tap homebrew/cask-versions
-brew cask install homebrew/cask-versions/zulu7
-```
-
-```bash
-export JAVA_7_HOME=$(/usr/libexec/java_home -v1.7)
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_9_HOME=$(/usr/libexec/java_home -v9)
-
-alias java7='export JAVA_HOME=$JAVA_7_HOME'
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java9='export JAVA_HOME=$JAVA_9_HOME'
-
-#default java8
-export JAVA_HOME=$JAVA_8_HOME
-```
 
 
 <h2 id="bd8841fe31193f151e81534a3c94b0d7"></h2>
