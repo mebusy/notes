@@ -393,3 +393,38 @@ assignment | copy value | copy reference
 
 
 
+
+# compile & run C# code 
+
+
+```cs
+# example cs
+
+using System;
+
+class cMain {
+    static void Main(String[] args) {
+        if ( args.Length < 1 ) {
+            Console.WriteLine( "usage: resp_verify  <server response string>" );
+            return ;
+        }
+        string data = args[0];
+        Console.WriteLine( DOT_RESP_verify.resp_verify( data  ) ) ;
+    }
+}
+```
+
+
+```bash
+#!/bin/sh
+set -e
+
+# compile
+#  -r:xxx.dll   to reference an external dll
+csc  /out:resp_verify.exe  *.cs
+
+# run
+mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea0cadd9"}'
+```
+
+
