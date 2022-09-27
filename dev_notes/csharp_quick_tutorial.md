@@ -316,7 +316,7 @@ student.Introduce = new Func<string, string>(
 <h2 id="403a96cff2a323f74bfb1c16992895be"></h2>
 
 
-## oop
+## OOP
 
 - constructor
     ```cs
@@ -348,5 +348,48 @@ student.Introduce = new Func<string, string>(
         return result;
     }
     ```
+
+
+## struct
+
+ &nbsp; | struct | class 
+--- | -- | ---
+type  | value type | reference type
+alloc  | in stack, or inline in containing types, auto-deallocated | in heap, GC
+assignment | copy value | copy reference
+
+
+- when to use structure ?
+    - CONSIDER defining a struct instead of a class if instances of the type are small and commonly short-lived or are commonly embedded in other objects.
+    - ❌ AVOID defining a struct unless the type has all of the following characteristics:
+        - It logically represents a single value, similar to primitive types (int, double, etc.).
+        - It has an instance size under 16 bytes.
+        - It is immutable.
+        - It will not have to be boxed frequently.
+
+
+## boxing
+
+```cs
+{
+    ...
+    int someNumber = 420;
+    object someNumberObject = someNumber;  // boxing , 20x slower
+    int unboxed = (int)someNumberObject ; // unboxing , 4x slower
+    ...
+}
+```
+
+- why is it called boxing ?
+    - since object is a reference type allocated on the heap, you have to put that `someNumber` variable in a box and allocate on the heap.
+
+- another example
+    ```cs
+    var arrayOfInts = Enumerable.Range(69,420).ToArray();
+
+    var arrayList = new ArrayList(arrayOfInts) ; // boxing, since underlying data structure is object[]
+    var list = new List<int>(arrayOfInts); // will not boxing, generic solve that problem
+    ```
+
 
 
