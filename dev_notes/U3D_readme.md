@@ -8,7 +8,6 @@
  2. [U3D官方视频笔记](U3D%E5%AE%98%E6%96%B9%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0.md) 
  3. [Coroutine](Unity_coroutine.md) 
  4. [Plugin](Unity_Plugin.md)
- 5. [CSharp](Unity3D_CSharp.md) 
  5. [C# quick tutorial](csharp_quick_tutorial.md)
  6. [learning hard c#](learningHardCSharp.md)
  7. [prefab 研究](U3D_prefab_tips.md) 
@@ -32,7 +31,7 @@
 - [unity UI 基础](FundamentalsofUnityUI.md)
 
 
-<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+<h2 id="7de9e589dbe3bb733b7916189d0f8a94"></h2>
 
 
 ## Unity Lesson

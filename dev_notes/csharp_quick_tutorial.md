@@ -17,7 +17,10 @@
         - [delegate](#7f662005788ab434b371fbb0efc6d45f)
         - [event](#4119639092e62c55ea8be348e4d9260d)
         - [Why do we need events when we have delegates?](#7a62c57ff2352c127ab2ca8d092a08cc)
-    - [oop](#403a96cff2a323f74bfb1c16992895be)
+    - [OOP](#ce4195da808656beae0c97fed9194192)
+    - [struct](#0f8d6fb56fe6cdf55ad0114ec5b51dbb)
+    - [boxing](#4684c60ddc71bc393a1bf007f5452372)
+- [compile & run C# code](#f373d24404837ec338f4a3286f9df48e)
 
 ...menuend
 
@@ -275,12 +278,21 @@ student.Introduce = new Func<string, string>(
         // composedInc will run Increment 3 times
         composedInc(); // => 4
         ```
+    - word as a function parameter
+        ```cs
+        void someMethod( Mydelegate mydelegate ) {
+            mydelegate( arg1, arg2 );
+        }
+        ...
+        someMethond( new Mydelegate( somefunc ) );
+        ```
 
 <h2 id="4119639092e62c55ea8be348e4d9260d"></h2>
 
 
 ### event
 
+- event allows only `+=`, `-=` operators
 - An event can **also** be used to trigger delegates 
     ```cs
     // Create an event with the delegate type
@@ -313,7 +325,7 @@ student.Introduce = new Func<string, string>(
         MyEvent = null;
         ```
 
-<h2 id="403a96cff2a323f74bfb1c16992895be"></h2>
+<h2 id="ce4195da808656beae0c97fed9194192"></h2>
 
 
 ## OOP
@@ -350,6 +362,9 @@ student.Introduce = new Func<string, string>(
     ```
 
 
+<h2 id="0f8d6fb56fe6cdf55ad0114ec5b51dbb"></h2>
+
+
 ## struct
 
  &nbsp; | struct | class 
@@ -366,6 +381,9 @@ assignment | copy value | copy reference
         - It has an instance size under 16 bytes.
         - It is immutable.
         - It will not have to be boxed frequently.
+
+
+<h2 id="4684c60ddc71bc393a1bf007f5452372"></h2>
 
 
 ## boxing
@@ -392,6 +410,9 @@ assignment | copy value | copy reference
     ```
 
 
+
+
+<h2 id="f373d24404837ec338f4a3286f9df48e"></h2>
 
 
 # compile & run C# code 
