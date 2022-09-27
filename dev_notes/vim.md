@@ -130,7 +130,12 @@
     - `:YcmDebugInfo`
 - vim check logs
     - `YcmToggleLogs`
-
+- output log to file
+    - running vim with the -V[N] option will do a pretty hefty runtime log, here N is the debug level.
+        ```bash
+        vim -V9myVim.log
+        ```
+    - would create a log of debug level 9 in the current directory with the filename myVim.log
 
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
