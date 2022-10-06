@@ -23,6 +23,9 @@ kind: PersistentVolume
 metadata:
   name: mongodb-pv
 spec:
+  # default reclaim poliy is "Retain", the data persists even if you delete pv.
+  #   use Recycle is case you set you local testing environment.
+  # persistentVolumeReclaimPolicy: "Recycle"
   storageClassName: mongodb-storageclass
   capacity:
     storage: 10Gi
