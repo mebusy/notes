@@ -21,6 +21,9 @@ metadata:
     type: local
 spec:
   storageClassName: manual
+  # default reclaim poliy is "Retain", the data persists even if you delete pv.
+  #   use Recycle is case you set you local testing environment.
+  # persistentVolumeReclaimPolicy: "Recycle"
   capacity:
     storage: 100Gi
   accessModes:
