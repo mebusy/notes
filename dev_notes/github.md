@@ -231,3 +231,19 @@ git commit -p <filename>
     git rebase --abort
     ```
 
+
+
+## Reset Submodule
+
+```bash
+# reset a specified sub module
+$ git submodule update -f <module name>
+
+# reset all sub modules
+$ git submodule foreach git reset --hard
+# reset all sub modules recursively
+$ git submodule foreach --recursive git reset --hard
+```
+
+
+
