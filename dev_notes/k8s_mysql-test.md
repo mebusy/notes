@@ -134,5 +134,8 @@ Now you can connect to mysql  from outside
 mysql -h <host-name> -P 33057 -u<user> -p<passwd>
 ```
 
+NOTE: port-forward will fail after service restarting.
+
+
 
 

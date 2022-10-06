@@ -159,7 +159,7 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
 
         netsh interface portproxy show v4tov4
 
-        REM expose some local k8s service
+        REM expose some local k8s service ( note: port-forward will fail if service restart )
         START /B wsl.exe  kubectl -n ns-redis  --address 0.0.0.0   port-forward statefulset.apps/redisdb-test 6379:6379
         ```
 - OPEN THE FIREWALL
