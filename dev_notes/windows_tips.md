@@ -148,10 +148,19 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
         echo WSLIP is %WSLIP%
 
         for %%p in ( 2222 8001 80 33056 33057 5050 ) do (
-          netsh interface portproxy set v4tov4 listenaddress=0.0.0.0 listenport=%%p connectaddress=%WSLIP% connectport=%%p
+            echo try open filewaill %%p
+
+            :: (if command errors) || (exec this command)
+            netsh advfirewall firewall show rule name="Open Port %%p for WSL2" >nul || netsh advfirewall firewall add rule name="Open Port %%p for WSL2" dir=in action=allow protocol=TCP localport=%%p
+
+            echo netproxy %%p
+            netsh interface portproxy set v4tov4 listenaddress=0.0.0.0 listenport=%%p connectaddress=%WSLIP% connectport=%%p
         )
 
         netsh interface portproxy show v4tov4
+
+        REM expose some local k8s service
+        START /B wsl.exe  kubectl -n ns-redis  --address 0.0.0.0   port-forward statefulset.apps/redisdb-test 6379:6379
         ```
 - OPEN THE FIREWALL
     - from the same Administrator Windows prompt, open an incoming Firewall Port. 
