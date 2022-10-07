@@ -1,5 +1,18 @@
+...menustart
+
+- [Nodejs Note](#d18aea94aa0f4438e2caa8b2f97d600e)
+    - [npm scripts](#77fcf03f0aa3a848efe253c0c5a3c24b)
+
+...menuend
+
+
+<h2 id="d18aea94aa0f4438e2caa8b2f97d600e"></h2>
+
 
 # Nodejs Note
+
+<h2 id="77fcf03f0aa3a848efe253c0c5a3c24b"></h2>
+
 
 ## npm scripts
 

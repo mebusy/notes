@@ -18,6 +18,7 @@
     - [partial commmit](#365a5d68e803e7cd517640176167c02b)
     - [handling conflict](#bcccf2d6eb0a519d64f1b86b59fe5db3)
         - [Undo a conflict and start over](#a44d692e0cfa312f2d01e7cc424f3531)
+    - [Reset Submodule](#740e34f3f2acfa61cdf6a6d376b3510d)
 
 ...menuend
 
@@ -231,6 +232,9 @@ git commit -p <filename>
     git rebase --abort
     ```
 
+
+
+<h2 id="740e34f3f2acfa61cdf6a6d376b3510d"></h2>
 
 
 ## Reset Submodule

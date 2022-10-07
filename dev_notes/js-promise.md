@@ -1,5 +1,20 @@
+...menustart
+
+- [Promise](#a5a3f0f287a448982aac520cffe4779a)
+    - [What is Promise](#42c13d91edca77a10e5e59f6936ee2c9)
+    - [What problem can Promises solve ?](#7b9bcee29941c7e84649a74394a12b7a)
+    - [What else can Promises do ?](#2e533b31a6610c21756a5aac95c9d7f0)
+
+...menuend
+
+
+<h2 id="a5a3f0f287a448982aac520cffe4779a"></h2>
+
 
 # Promise
+
+<h2 id="42c13d91edca77a10e5e59f6936ee2c9"></h2>
+
 
 ## What is Promise
 
@@ -39,6 +54,9 @@
         # result
         This is in the then Success
         ```
+
+<h2 id="7b9bcee29941c7e84649a74394a12b7a"></h2>
+
 
 ## What problem can Promises solve ?
 
@@ -197,6 +215,7 @@ watchTutorialPromise().then(  // <- watchTutorialCallback(
     .then( 
         (message) => {
             console.log('Success: ' + message);
+            return message
         }) 
     .then( 
         (message) => {
@@ -208,6 +227,9 @@ watchTutorialPromise().then(  // <- watchTutorialCallback(
         }
     );
     ```
+
+<h2 id="2e533b31a6610c21756a5aac95c9d7f0"></h2>
+
 
 ## What else can Promises do ?
 
