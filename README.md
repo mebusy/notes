@@ -134,7 +134,7 @@ a | b | c | d
 --- | --- | --- | ---
 [HTML,CSS](dev_notes/web_dev.md) | [reintro JS](dev_notes/reintro_JS.md) | [DOM Manipulation](dev_notes/web_dev_5.md) |  [Coding A Static Restaurant Site](dev_notes/web_dev_3.md)
 [js Promise](dev_notes/js-promise.md) | [async/await](dev_notes/js-async-await.md) | [8 Must Know Array Method](dev_notes/js-array-8-must-know.md) | [5 js features must know](dev_notes/js-5-must-features.md)
-[express quick tutorial](dev_notes/js-express-tutor.md) |
+[express crash](dev_notes/js-express-tutor.md) | [mongoose crash](dev_notes/js-mongoose-tutor.md) |
 
 <h2 id="e307db07b3975fef922a80d07455ee5e"></h2>
 
