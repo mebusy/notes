@@ -147,6 +147,50 @@
 - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
 
+## viminspect
+
+### debug nodejs
+
+- launch app in inspect mode
+    ```bash
+    node --inspect app.js
+    
+    # if you're using nodemon
+    nodemon --config nodemon.json --async-stack-traces --exec 'node --inspect app.js'
+    ```
+
+- .vimspector.json 
+    <details>
+    <summary>
+    for nodejs app
+    </summary>
+
+    ```json
+    {
+      "configurations": {
+        "run": {
+          "adapter": "vscode-node",
+          "default": true,
+          "breakpoints": {
+            "exception": {
+              "all": "N",
+              "uncaught": "N"
+            }
+          },
+          "configuration": {
+            "name": "Attaching to a process ID",
+            "type": "node",
+            "request": "attach",
+            "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
+            "processId": "${processId}"
+          }
+        }
+      }
+    }
+    ```
+
+    </details>
+
 
 <h2 id="072db16a2fab851f315188d28a992133"></h2>
 
