@@ -89,3 +89,9 @@ a = vxw
 
 
 
+The way the default code editor support works, is specific for each platform. On OSX the arguments works by using
+NSRunningApplication.
+The result you should see is similar to the one that you would get from writing open -n Path/to/Macvim.app --args $(File) +$(Line). I can see that this is not supported by macvim, so you would have to ask them to support this for you.
+Another approach is to create a small package, implement https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Unity.CodeEditor.IExternalCodeEditor.html and register it using CodeEditor.Register. This will override the default support, and you can implement your own way of opening files etc.
+
+
