@@ -6,9 +6,20 @@
     - [C-Family 补全配置文件](#6c21b0240dca1c94dbf59f8b1ab1f1af)
         - [YCMD 排错](#f7abfec0b5984a0314616bd13f7ae8c3)
     - [Markdown](#2182a74bab7188d959e795d9301e87ff)
+    - [viminspect](#05792acc8846850d5650256c2f89d097)
+        - [debug nodejs](#a76b761a3f63c8a3aca6fa66777741fa)
     - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
     - [vim Mark](#ac4aee7e186902860d64dcf2a6065905)
     - [VIM tips](#a1c1a23da31214c88d29928e14c64ef0)
+        - [文件夹内容替换 args/argdo](#d97b62cc38ac0f48ee2ef1675eceb014)
+        - [搜索 (lookahead, lookbehind, contains `/`)](#0b4ec6e4487065d67922bc151a3fe175)
+        - [文件夹搜索 vimgrep](#54afc9723e7bdaa4cf548df28b7e9541)
+        - [多行 行首插入字符](#4b0c82f3072a7a2d205d934ca7413367)
+        - [多行 行尾插入字符](#facc78c7266b3fe0364882da91e214b8)
+        - [duplicated column, paste next to it](#11cc6cd769420b9372c1b33a98a38d5e)
+        - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
+        - [make multiple line word into java string](#fe7fb0107de52ad2a0bca9917a32301a)
+        - [复制/移动 行](#87b0406cc2b93c7df74c3cfc9b2e690b)
 - [grok VIM](#fc1f1e8c6d70d860957c66f735e60e2b)
     - [A sampling of more advanced tricks:](#a5787082a16f14e8db2acbf78497ee99)
 
@@ -147,7 +158,13 @@
 - 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
 
 
+<h2 id="05792acc8846850d5650256c2f89d097"></h2>
+
+
 ## viminspect
+
+<h2 id="a76b761a3f63c8a3aca6fa66777741fa"></h2>
+
 
 ### debug nodejs
 
@@ -293,6 +310,9 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :exec setreg('i', [])
     ```
 
+<h2 id="d97b62cc38ac0f48ee2ef1675eceb014"></h2>
+
+
 ### 文件夹内容替换 args/argdo
 
 - 每一个通过 shell 命令传递给 Vim 的文件名都被记录在一个参数列表中。
@@ -306,6 +326,9 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :argdo /word   # 查找
     :argdo %s/foo/NEW/ge | update  # 查找“foo”，并用“bar”代替
     ```
+
+<h2 id="0b4ec6e4487065d67922bc151a3fe175"></h2>
+
 
 ### 搜索 (lookahead, lookbehind, contains `/`)
 
@@ -324,6 +347,9 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :?URL
     ```
 
+<h2 id="54afc9723e7bdaa4cf548df28b7e9541"></h2>
+
+
 ### 文件夹搜索 vimgrep
 
 ```vim
@@ -340,6 +366,9 @@ vimgrep /pattern/gj path
 
 
 
+<h2 id="4b0c82f3072a7a2d205d934ca7413367"></h2>
+
+
 ###  多行 行首插入字符
 
 1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
@@ -349,12 +378,18 @@ vimgrep /pattern/gj path
 - note: v 以字元为单位，V 以行为单位，ctrl-v 以列为单位
 
 
+<h2 id="facc78c7266b3fe0364882da91e214b8"></h2>
+
+
 ###  多行 行尾插入字符
 
 - 和上边的 多行行首插入 类似，只是 第三步进行修改
 1. Press $ to extend the visual block to the end of each line.
 2. Press A ，进入行尾编辑
 3. 编辑 , esc
+
+
+<h2 id="11cc6cd769420b9372c1b33a98a38d5e"></h2>
 
 
 ### duplicated column, paste next to it
@@ -368,6 +403,9 @@ vimgrep /pattern/gj path
 
 
 
+<h2 id="67c5f9b419ed15a16a0cb4786a4a6552"></h2>
+
+
 ###  Remove unwanted empty lines
 
 - use `v` to select the range of lines you want to work on 
@@ -377,6 +415,9 @@ vimgrep /pattern/gj path
     :v/./d
     ```
 
+<h2 id="fe7fb0107de52ad2a0bca9917a32301a"></h2>
+
+
 ###  make multiple line word into java string
 
 ```vim
@@ -385,6 +426,9 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 @q
 8@@
 ```
+
+<h2 id="87b0406cc2b93c7df74c3cfc9b2e690b"></h2>
+
 
 ###  复制/移动 行
 
