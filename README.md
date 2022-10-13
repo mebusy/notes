@@ -165,7 +165,7 @@ a | b | c | d
 [facebook gamebot](dev_notes/createFBapp.md) | 
 [k8s key ideas](dev_notes/kuberneters.md) | [腾讯TKE](dev_notes/TencentK8sEngine.md) | [kubectl tips](dev_notes/kubectl_tips.md)  | [edx intro2K8s](dev_notes/intro2K8s.md) 
 [Amazon EKS](dev_notes/EKS.md) | [work with local k8s](dev_notes/k8s-local.md) | [k8s storage](dev_notes/k8s_storage.md) | 
-[redis-cache in k8s](dev_notes/k8s_redis-cache.md)  | [create, expose mysql in k8s](dev_notes/k8s_mysql-test.md) | [mongoDB in k8s](dev_notes/mongo-in-k8s.md) |  [phpmyadmin](dev_notes/k8s-phpmyadmin.md)
+[create, expose mysql in k8s](dev_notes/k8s_mysql-test.md) | [mongoDB in k8s](dev_notes/mongo-in-k8s.md) |  [redis in k8s](dev_notes/redis-in-k8s.md)  | [phpmyadmin](dev_notes/k8s-phpmyadmin.md)
 [帧同步笔记](dev_notes/framelock.md) | 
 
 

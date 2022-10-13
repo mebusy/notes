@@ -5,16 +5,110 @@
 ...menuend
 
 
+# Deploy a stateful set
+
+PV
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: redisdb-pv
+spec:
+  storageClassName: redisdb-storageclass
+  persistentVolumeReclaimPolicy: "Recycle"
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/opt/data/redis"
+```
+
+
+STATEFUL SET
+
+```yaml
+# PVC
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redisdb-pvc
+spec:
+  storageClassName: redisdb-storageclass
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+# StatefulSet
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redisdb-test
+spec:
+  serviceName: redisdb-test
+  replicas: 1
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      labels:
+        app: database
+        selector: redisdb-test
+    spec:
+      containers:
+      - name: redisdb-test
+        args:
+          - --appendonly yes
+        image: redis:6.2.6
+        volumeMounts:
+        - mountPath: /data
+          name: redisdb-data
+      volumes:
+      - name: redisdb-data
+        persistentVolumeClaim:
+          claimName: redisdb-pvc
+
+---
+
+# Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisdb-test
+  labels:
+    app: database
+spec:
+  ports:
+  - name: 6379-6379-tcp
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: database
+  type: ClusterIP
+
+
+
+```
+
+
+
+
 <h2 id="ec3e4afb789f2148ebf5986909183d13"></h2>
 
 
-# Deploy a Redis cache to k8s
+# If you just want redis as memory cache...
 
-```bash
-vi redis-cache.yaml
-
-kubectl -n <name-space> replace -f redis-cache.yaml --force
-```
 
 ```yaml
 apiVersion: v1
@@ -73,4 +167,5 @@ items:
 
 kind: List
 ```
+
 
