@@ -126,42 +126,51 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
         ```
     - BUT... the IP of wsl will change after rebooting...
         - PS: follow script NOT work
-        ```bat
-        @echo off
+            ```bat
+            @echo off
 
-        For /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set mydate=%%c-%%a-%%b)
-        For /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set mytime=%%a%%b)
-        echo %mydate%_%mytime% > D:/netproxy_time.txt
+            For /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set mydate=%%c-%%a-%%b)
+            For /f "tokens=1-2 delims=/:" %%a in ('time /t') do (set mytime=%%a%%b)
+            echo %mydate%_%mytime% > D:/netproxy_time.txt
 
 
-        REM netproxy.bat
-        REM    Run this script on start up on Windows 10
-        REM    taskschd.msc , add this script to task manager
-        REM    remember to check `Run with Highest Privileges`
+            REM netproxy.bat
+            REM    Run this script on start up on Windows 10
+            REM    taskschd.msc , add this script to task manager
+            REM    remember to check `Run with Highest Privileges`
 
-        REM start ssh / docker service
-        wsl.exe -u root service ssh start
-        wsl.exe -u root service docker start
+            REM start ssh / docker service
+            wsl.exe -u root service ssh start
+            wsl.exe -u root service docker start
 
-        REM fake unix $() command by BAT FOR /F
-        for /f %%i in ('wsl hostname -I') do set WSLIP=%%i
-        echo WSLIP is %WSLIP%
+            REM fake unix $() command by BAT FOR /F
+            for /f %%i in ('wsl hostname -I') do set WSLIP=%%i
+            echo WSLIP is %WSLIP%
 
-        for %%p in ( 2222 8001 80 33056 33057 5050 ) do (
-            echo try open filewaill %%p
+            for %%p in ( 2222 8001 80 33056 33057 5050 ) do (
+                echo try open filewaill %%p
 
-            :: (if command errors) || (exec this command)
-            netsh advfirewall firewall show rule name="Open Port %%p for WSL2" >nul || netsh advfirewall firewall add rule name="Open Port %%p for WSL2" dir=in action=allow protocol=TCP localport=%%p
+                :: (if command errors) || (exec this command)
+                netsh advfirewall firewall show rule name="Open Port %%p for WSL2" >nul || netsh advfirewall firewall add rule name="Open Port %%p for WSL2" dir=in action=allow protocol=TCP localport=%%p
 
-            echo netproxy %%p
-            netsh interface portproxy set v4tov4 listenaddress=0.0.0.0 listenport=%%p connectaddress=%WSLIP% connectport=%%p
-        )
+                echo netproxy %%p
+                netsh interface portproxy set v4tov4 listenaddress=0.0.0.0 listenport=%%p connectaddress=%WSLIP% connectport=%%p
+            )
 
-        netsh interface portproxy show v4tov4
+            netsh interface portproxy show v4tov4
 
-        REM expose some local k8s service ( note: port-forward will fail if service restart )
-        START /B wsl.exe  kubectl -n ns-redis  --address 0.0.0.0   port-forward statefulset.apps/redisdb-test 6379:6379
-        ```
+            REM expose some local k8s service
+            REM  %~dp0 is pwd
+            START /B  call %~dp0\exposeRedis.cmd
+            ```
+        - exposeMysql.cmd
+            ```batch
+            @echo off
+
+            :1
+            wsl.exe  kubectl -n ns-redis  --address 0.0.0.0   port-forward statefulset.apps/redisdb-test 6379:6379
+            goto 1
+            ```
 - OPEN THE FIREWALL
     - from the same Administrator Windows prompt, open an incoming Firewall Port. 
     - You can do it from the Advanced Firewall Settings, but even easier you can use netsh again!
