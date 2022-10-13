@@ -283,33 +283,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     ```bash
     vim --version
     ```
-- 参数列表
-    - 每一个通过 shell 命令传递给 Vim 的文件名都被记录在一个参数列表中。
-    - 可以有多个参数列表：
-        - 默认情况下所有参数都被放在全局参数列表下，但是你可以使用 :arglocal 命令去创建一个新的本地窗口的参数列表。
-    - 使用 :args 命令可以列出当前参数
-    - 参数列表在有些情况下被大量使用：批处理 
-    - 使用 :argdo！ 一个简单的重构例子：
-        ```
-        :args **/*.[ch]
-        :argdo %s/foo/bar/ge | update
-        ```
-    - 这条命令将替换掉当前目录下以及当前目录的子目录中所有的 C 源文件和头文件中的“foo”，并用“bar”代替。
-- 搜索
-    - 反向肯定搜索 lookahead
-        - 搜索 exp2， start with exp1 .
-        ```vim
-        \(exp1\)\@<=exp2
-        ```
-    - 前向肯定搜索 lookahead
-        - 搜索 exp1, followed by exp2
-        ```vim
-        exp1\(exp2\)\@=
-        ```
-    - 搜索 带`/` 的字符串，比如 URL
-        ```
-        :?URL
-        ```
 
 - clear a register
     ```vim
@@ -320,69 +293,107 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     :exec setreg('i', [])
     ```
 
+### 文件夹内容替换 args/argdo
 
-- 文件夹搜索
+- 每一个通过 shell 命令传递给 Vim 的文件名都被记录在一个参数列表中。
+- 可以有多个参数列表：
+    - 默认情况下所有参数都被放在全局参数列表下，但是你可以使用 :arglocal 命令去创建一个新的本地窗口的参数列表。
+- 使用 :args 命令可以列出当前参数
+- 参数列表在有些情况下被大量使用：批处理 
+- 使用 :argdo！ 一个简单的重构例子：
     ```vim
-    vimgrep /pattern/gj path
-    ```
-    - 参数:
-        - g: 一行中出现多次，只显示一次
-        - j: 只列出匹配的行
-    - path
-        - `./*.c`  当前文件夹下 c 文件中查找
-        - `**/*.*`  包括子文件夹下 所有文件
-    - 搜索完毕 copen 或 cw 查看搜索列表
-
-
-- 文件夹 替换
-    - 查找
-    ```vim
-    :args *.cpp
-    :argdo /word
+    :args **/*.[ch]
+    :argdo /word   # 查找
+    :argdo %s/foo/NEW/ge | update  # 查找“foo”，并用“bar”代替
     ```
 
-    - 替换
+### 搜索 (lookahead, lookbehind, contains `/`)
+
+- 反向肯定搜索 lookbehind
+    - 搜索 exp2， start with exp1 .
     ```vim
-    :args *.cpp
-    :argdo %s/word/NEW/eg | update
+    \(exp1\)\@<=exp2
+    ```
+- 前向肯定搜索 lookahead
+    - 搜索 exp1, followed by exp2
+    ```vim
+    exp1\(exp2\)\@=
+    ```
+- 搜索 带`/` 的字符串，比如 URL
+    ```
+    :?URL
     ```
 
+### 文件夹搜索 vimgrep
 
-- 多行 行首插入字符
-    1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
-    2. 向下移动光标 选中所有行
-    3. shift i 进入多行插入模式， 编辑 , esc 
-    4. 等 1秒钟， 修改完成
-    - note: v 以字元为单位，V 以行为单位，ctrl-v 以列为单位
+```vim
+vimgrep /pattern/gj path
+```
 
-- 多行 行尾插入字符
-    - 和上边的 多行行首插入 类似，只是 第三步进行修改
-    1. Press $ to extend the visual block to the end of each line.
-    2. Press A ，进入行尾编辑
-    3. 编辑 , esc
+- 参数:
+    - g: 一行中出现多次，只显示一次
+    - j: 只列出匹配的行
+- path
+    - `./*.c`  当前文件夹下 c 文件中查找
+    - `**/*.*`  包括子文件夹下 所有文件
+- 搜索完毕 copen 或 cw 查看搜索列表
 
 
-- Remove unwanted empty lines
-    - use `v` to select the range of lines you want to work on 
-    - useing either of the following command to delete all empty lines:
+
+###  多行 行首插入字符
+
+1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
+2. 向下移动光标 选中所有行
+3. shift i 进入多行插入模式， 编辑 , esc 
+4. 等 1秒钟， 修改完成
+- note: v 以字元为单位，V 以行为单位，ctrl-v 以列为单位
+
+
+###  多行 行尾插入字符
+
+- 和上边的 多行行首插入 类似，只是 第三步进行修改
+1. Press $ to extend the visual block to the end of each line.
+2. Press A ，进入行尾编辑
+3. 编辑 , esc
+
+
+### duplicated column, paste next to it
+
+```vim
+:%s/.*/& &/
+```
+
+- `.*` means everything
+- & copies everything that was matched  `& &` means whole line twice, separate by a space
+
+
+
+###  Remove unwanted empty lines
+
+- use `v` to select the range of lines you want to work on 
+- useing either of the following command to delete all empty lines:
     ```vim
     :g/^$/d
     :v/./d
     ```
-- make multiple line word into java string
-    ```bash
-    # record
-    qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
-    @q
-    8@@
-    ```
-- 复制/移动 行
-    ```bash
-    :6t.  // 复制第6行到当前位置
-    :6,8t. // 复制6-8行到当前位置
-    :6m.   // 移动 第6行
-    ;6,8m. // 移动 6-8行
-    ```
+
+###  make multiple line word into java string
+
+```vim
+# record
+qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
+@q
+8@@
+```
+
+###  复制/移动 行
+
+```vim
+:6t.  // 复制第6行到当前位置
+:6,8t. // 复制6-8行到当前位置
+:6m.   // 移动 第6行
+;6,8m. // 移动 6-8行
+```
 
 
 <h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
