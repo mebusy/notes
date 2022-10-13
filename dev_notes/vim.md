@@ -179,13 +179,13 @@
 - .vimspector.json 
     <details>
     <summary>
-    for nodejs app
+    for nodejs app, both attach processID and run
     </summary>
 
     ```json
     {
       "configurations": {
-        "run": {
+        "attach": {
           "adapter": "vscode-node",
           "default": true,
           "breakpoints": {
@@ -200,6 +200,24 @@
             "request": "attach",
             "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
             "processId": "${processId}"
+          }
+        },
+        "run": {
+          "adapter": "vscode-node",
+          "default": true,
+          "breakpoints": {
+            "exception": {
+              "all": "N",
+              "uncaught": "N"
+            }
+          },
+          "configuration": {
+            "name": "Launch Program",
+            "type": "node",
+            "request": "launch",
+            "stopOnEntry": true,
+            "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
+            "program": "${workspaceRoot}/app.js"
           }
         }
       }
