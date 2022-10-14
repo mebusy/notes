@@ -86,6 +86,15 @@
 - C# support: install Mono and add `--cs-completer` 
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` 
+    - NOTE: TSServer relies on the  [jsconfig.json](https://code.visualstudio.com/docs/languages/jsconfig) for javascript and  [tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for typescript  to analyze your project. Ensure the file exists at the root of your project.
+    - To get diagnostics in JavaScript, set the checkJs option to true in your jsconfig.json file:
+        ```json
+        {
+            "compilerOptions": {
+                "checkJs": true
+            }
+        }
+        ```
 - Rust support: install Rust and add `--rust-completer` when calling ./install.py.
     - put `~/.cargo/bin`   in you $PATH ?
         ```bash
