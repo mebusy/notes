@@ -235,6 +235,21 @@
 
     </details>
 
+- you can also customize debugging port
+    ```bash
+    node --inspect=5678 app.js 
+    ```
+    ```json
+          "configuration": {
+            "name": "Attaching to a process ID",
+            "type": "node",
+            "port": "5678",
+            "request": "attach",
+            "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
+            "processId": "${processId}"
+          }
+    ```
+
 
 <h2 id="072db16a2fab851f315188d28a992133"></h2>
 
