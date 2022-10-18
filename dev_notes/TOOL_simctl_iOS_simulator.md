@@ -114,7 +114,7 @@ pcregrep -o1 表示，只输出捕获的 group(1)
 
 ```bash
 BOOTED_DEVICE=`xcrun simctl list  | pcregrep -o1  '\(([-a-zA-Z0-9]+)\)\s+\(Booted\)'`
-APP_PATH=`find /Users/qibinyi/Library/Developer/CoreSimulator/Devices/$BOOTED_DEVICE/data/Containers/Bundle/Application -name "Info.plist" | grep nba_heroes | pcregrep -o1 '(.*?)/Info.plist'`
+APP_PATH=`find /Users/user/Library/Developer/CoreSimulator/Devices/$BOOTED_DEVICE/data/Containers/Bundle/Application -name "Info.plist" | grep nba_heroes | pcregrep -o1 '(.*?)/Info.plist'`
 ```
 
 <h2 id="461860f98245977eac3a2994e72b05be"></h2>

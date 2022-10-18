@@ -133,7 +133,7 @@ struct v2f { // vertex 2 fragment
 - And now I'm goging to engage in some bad programming practice.
     ```c
     // Quick & dirty; it would generally be better to set properties in specific materials.
-    // qibinyi:  use component.material.Setxxxx ?
+    // :  use component.material.Setxxxx ?
     Shader.SetGlobalMatrix( "_myProjectorMatrixVP", projectionMatrix );
     Shader.SetGlobalVector( "_spotlightDir", transform.forward );
     ```

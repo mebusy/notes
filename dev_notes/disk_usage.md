@@ -26,13 +26,13 @@ map auto_home           0          0         0   100%       0          0  100%  
 ```bash
 $ ls -Sl  # -S means Sort by size
 
-drwx------@  3 qibinyi  staff    96 Aug 13  2020 Applications
-drwx------@ 11 qibinyi  staff   352 Oct 14 12:02 Desktop
-drwx------@  5 qibinyi  staff   160 Oct  7 14:01 Documents
-drwx------@ 24 qibinyi  staff   768 Oct 18 11:27 Downloads
-drwx------@ 91 qibinyi  staff  2912 Oct 18 10:35 Library
-drwx------+  5 qibinyi  staff   160 Aug  1 15:19 Movies
-drwx------+  4 qibinyi  staff   128 Aug 13  2020 Music
+drwx------@  3 user  staff    96 Aug 13  2020 Applications
+drwx------@ 11 user  staff   352 Oct 14 12:02 Desktop
+drwx------@  5 user  staff   160 Oct  7 14:01 Documents
+drwx------@ 24 user  staff   768 Oct 18 11:27 Downloads
+drwx------@ 91 user  staff  2912 Oct 18 10:35 Library
+drwx------+  5 user  staff   160 Aug  1 15:19 Movies
+drwx------+  4 user  staff   128 Aug 13  2020 Music
 ```
 
 ## dive in deep

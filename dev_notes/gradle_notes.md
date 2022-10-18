@@ -611,7 +611,7 @@ android {
 
 
 ext._proguardedFilePath = "${project.buildDir}/intermediates/classes-proguard/release/classes.jar"
-ext._cpDestPath = "/Users/qibinyi/WORK/WORK/TestVideo/Assets/Plugin/Android/API_MediaDecode.jar"
+ext._cpDestPath = "/Users/user/WORK/WORK/TestVideo/Assets/Plugin/Android/API_MediaDecode.jar"
 
 task buildAPI(type:Exec)  {
     commandLine "mv" , "-f" , _proguardedFilePath  , _cpDestPath

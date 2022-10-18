@@ -1312,7 +1312,7 @@ end // func
     - we store the info of parent node (parentState,action) , and use it to rebuild the whole shortest path.
 
 ```python
-# author: qibinyi
+# author: mebusy
 def graphSearch( problem, fringe):
     
     closed = {}

@@ -204,7 +204,7 @@ random
 ```bash
 $ openssl rand -base64 16
 0qY8lqxWI/SQ1qGllLW+WA==
-qibinyi@Qis-Mac-mini mitmproxy_test $ openssl rand -base64 8
+$ openssl rand -base64 8
 IzOi8Mqq8tU=
 ```
 
