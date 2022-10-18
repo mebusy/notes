@@ -192,6 +192,7 @@ a | b | c | d
 [Centos 7](dev_notes/Centos7.md) | [docker](dev_notes/docker.md)  | [logrotate](dev_notes/linux_logrotate.md) | [Centos Netatalk 4 TimeMachine](dev_notes/centos7_nettalk_timemachine.md)
 [大型网站技术架构](dev_notes/WebArchitecture.md) | 
 [Linux performace tool](imgs/linux_performance.jpg) |
+[check disk usage](dev_notes/disk_usage.md) |
 
 
 <h2 id="3c4fa4393bee44ea7fbc83268824b3ed"></h2>

@@ -182,16 +182,7 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 - kubectl 查看node 状态 `kubectl describe nodes` .
 
 - 登陆节点，查看硬盘占用
-    - 查看总体占用 `df | less`
-    - 查看某个path下的占用
-        - `ls -Sl`
-        - `du -m <path> | sort -nr | head -n 10`
-            - `du -shxm * | sort -nr | head -n 10`
-    - 查看某个 目录占用的磁盘空间
-        - 
-        ```bash
-        du -sh <your dictory>
-        ```
+    - [check disk usage](./disk_usage.md)
 
 <h2 id="77563c3ed75c144a6617a7077a1b4771"></h2>
 
