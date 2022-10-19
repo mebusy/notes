@@ -248,14 +248,25 @@ mv config/private.pem config/private_old.pem
 openssl rsa -in config/private_old.pem -out config/private.pem -des3
 ```
 
-<h2 id="3f1c0d7e44459f6410faabec903ea4ac"></h2>
 
+## tcpdump on OSX
 
-## Python NTLM proxyserver
+Choose the Correct Interface
 
-[ntlm download](http://ntlmaps.sourceforge.net/)
+```bash
+$ networksetup -listallhardwareports
 
-[share-a-proxied-network on MacOSX](https://www.jeffgeerling.com/articles/computing/2010/share-a-proxied-network)
+Hardware Port: Ethernet
+Device: en0
+Ethernet Address: 54:45:5b:01:ca:89
+```
+
+listen on all src/dst net with address 192.30.0.0/16, and port 443
+
+```bash
+$ sudo tcpdump -i en0 net 192.30.0.0/16  and  port 443 -n
+```
+
 
 
 <h2 id="869d7745a2b610e3fcd5afed798f8986"></h2>
