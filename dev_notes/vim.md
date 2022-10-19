@@ -87,6 +87,7 @@
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` 
     - NOTE: TSServer relies on the  [jsconfig.json](https://code.visualstudio.com/docs/languages/jsconfig) for javascript and  [tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for typescript  to analyze your project. Ensure the file exists at the root of your project.
+        - **PS**: ycm will look up `jsconfig.json` up to the top parent directory, and think the final directory as `root` and parse all .js files under it, it may break ycm ... So do **NOT** put a `jsconfig.json` file outside of your project.
     - To get diagnostics in JavaScript, set the checkJs option to true in your jsconfig.json file:
         ```json
         {
