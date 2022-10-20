@@ -300,6 +300,11 @@ Scope Chain
     - NOT `~`
     - `<< >> >>>`
 
+- TIPS:  you can use following regular expression to find all `!=`, `==` in your source code, and see if they are error-prone.
+    ```re
+    [^!=][!=]=[^=]
+    ```
+
 <h2 id="c48b7d4c81fcf51917066528ff5693ed"></h2>
 
 
