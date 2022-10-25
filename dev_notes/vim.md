@@ -190,60 +190,6 @@
     ```
 
 
-<h2 id="072db16a2fab851f315188d28a992133"></h2>
-
-
-## VIM 正则表达式
-
-
-<details>
-<summary>
-关于Magic
-</summary>
-
-- 常见的编辑器，一般都可以指定是 普通搜索还是使用正则表达式搜索
-- 但vim模式的是混合搜索，既 magic (\m)模式
-    - 比如 `/foo(1)` 命令， 大多数人都是用它来查找foo(1)这个字符串.
-    - 于是，vim就规定，正则表达式的元字符必须用反斜杠进行转义才行， 如上面的例子，如果确实要用正则表达式，就应当写成 `/foo\(1\)`
-    - 但是，像 `.` `*` 这种极其常用的元字符，都加上反斜杠就太麻烦了。 而且，众口难调，有些人喜欢用正则表达式，有些人不喜欢用……
-- 为了解决这个问题，vim设置了 magic 这个东西。简单地说， magic就是设置哪些元字符要加反斜杠哪些不用加的。 简单来说：
-    - magic (\m): 除了 `$ . * ^` 之外其他元字符都要加反斜杠
-    - nomagic (\M): 除了 `$ ^` 之外其他元字符都要加反斜杠。
-    - `/\m.*` # 查找任意字符串
-    -  `/\M.*` # 查找字符串 `.*` 
-- 另外还有更强大的 \v 和 \V。
-    - \v （即 very magic 之意）: 任何元字符都不用加反斜杠 
-    - \V （即 very nomagic 之意）: 任何元字符都必须加反斜杠
-
-</details>
-
-
-<details>
-<summary>
-捕获组
-</summary>
-
-- 捕获组符号和perl 略有不同，使用 `@` 而不是 `(?`
-- TODO: 确认 是否真的不支持 perl 模式？ (比如 非贪婪匹配 就同时支持)
-
-Perl | vim
---- | ---
-(?= | @=
-(?! | @!
-(?<= | @<=
-`(?<!` | `@<!`
-(?> | @> 
-(?: |  `%(atom\)`
-
-- vim中的捕获组的模式的位置与perl不同
-    - 例如，查找紧跟在 foo 之后的 bar，perl将模式(这里是foo)写在环视(`?<=`)的括号内, 而vim将模式写在环视的元字符之前。
-    - Perl的写法 `(?<=foo)bar`
-    - vim的写法 `(foo)@<=bar` 
-
-</details>
-
-- vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
-
 
 
 <h2 id="ac4aee7e186902860d64dcf2a6065905"></h2>
@@ -531,6 +477,57 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 
 ---
 
+# Regular Expressions
+
+## Magic and Very Magic Modes
+
+
+## Why magic mode ?
+
+- Common editors can generally specify whether to use a normal search or a regular expression search. 
+- But the vim use a mixed search, magic (\m) mode
+    - For example, the `/foo(1)` command, which most people use to find the string `foo(1)`.
+    - Therefore, vim stipulates that the metacharacters of regular expressions must be escaped with backslashes. As in the above example, if you really want to use regular expressions, you should write `/foo\(1\)`
+    - However, it is inconvenient to add backslashes to extremely common metacharacters like `.` `*`. 
+- To solve this problem, vim sets the magic:
+    - magic (\m): all metacharacters except `$ . * ^` need backslashing
+- But if you are strongly prefer normal regular expression, you can use very magic mode (\v), it is **Perl-regex-compatible**
+    - but you can NOT set it as default, it will lead to compatibility problems
+- There are 2 more modes you can use
+    mode | metacharacters need backslashing | activated by  | comments
+    --- | --- | ---  | ---
+    Magic | all except `$ . * ^` | `\m` | **default** modifier
+    Very Magic | N/A, Perl-regex-compatible | `\v`  | 
+    No Magic | all except `$ ^` | `\M` |
+    Very No Maigc | all |  `\V` |  normal text search
+
+
+
+<details>
+<summary>
+捕获组
+</summary>
+
+- 捕获组符号和perl 略有不同，使用 `@` 而不是 `(?`
+- TODO: 确认 是否真的不支持 perl 模式？ (比如 非贪婪匹配 就同时支持)
+
+Perl | vim
+--- | ---
+(?= | @=
+(?! | @!
+(?<= | @<=
+`(?<!` | `@<!`
+(?> | @> 
+(?: |  `%(atom\)`
+
+- vim中的捕获组的模式的位置与perl不同
+    - 例如，查找紧跟在 foo 之后的 bar，perl将模式(这里是foo)写在环视(`?<=`)的括号内, 而vim将模式写在环视的元字符之前。
+    - Perl的写法 `(?<=foo)bar`
+    - vim的写法 `(foo)@<=bar` 
+
+</details>
+
+- vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
 
 
 
