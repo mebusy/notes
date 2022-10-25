@@ -34,29 +34,29 @@
 <h2 id="78d0b83eb54eb1aa949d4600958cb397"></h2>
 
 
-## 插件安装
+## Plugin Installation
 
 
-- 安装vundle
-    ```
+- Install `vundle` first
+    ```bash
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
     ```
 
--  在.vimrc配置文件中添加vundle支持
-    ```
+- Configure your .vimrc to add support for vundle
+    ```vim
     filetype off
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
     ```
 
-- 配置插件
-    - bundle分为三类，比较常用就是第二种：
-        1. 在Github vim-scripts 用户下的repos,只需要写出repos名称
-        2. 在Github其他用户下的repos, 需要写出”用户名/repos名” 
-        3. 不在Github上的插件，需要写出git全路径
-    - 将其他需要 安装的插件 加入到 ~/.vimrc
-        ```
-        " 使用Vundle来管理Vundle
+- Configure plugins
+    - Bundles are in three categories, the more commonly used is the 2nd one
+        1. For repos under the Github user vim-scripts , just write the repo name
+        2. For repos under other users on Github, you need to write "username/repo-name"
+        3. For plugins not on Github, you need to write out the full path of git
+    - Add the plugins that need to be installed to ~/.vimrc
+        ```vim
+        " user Vundle to manage Bundles
         Bundle 'gmarik/vundle'
          
         " Define bundles via Github repos
@@ -66,29 +66,29 @@
         ...
         ```
 
-- 安装插件
-    - 打开vim，运行 `:BundleInstall` 或在shell中直接运行
-        ```
+- Install the plugins
+    - Open vim, run `:BundleInstall` or directly run in the shell
+        ```bash
         vim +BundleInstall +qall
         ```
-    - update :
-        ```
+    - To update plugins :
+        ```bash
         vim +PluginUpdate
         ```
 
 <h2 id="95e1e8a5d4d20276318a364f9428f879"></h2>
 
 
-## YouCompleteMe 配置
+## YouCompleteMe Configuaration Tips
 
 - for C family support:  `./install.py --clangd-completer`
-    - 加上 `--system-libclang` 则使用mac 自带的libclang，但是一般版本比较旧，会有问题
+    - optional `--system-libclang` Use the libclang that comes with mac, but generally the version is relatively old and there will be problems
 - C# support: install Mono and add `--cs-completer` 
 - Go support: install Go and add `--go-completer` 
-- JavaScript and TypeScript support: install Node.js and npm and add `--ts-completer` 
+- JavaScript and TypeScript support: install nodejs and add `--ts-completer` 
     - NOTE: TSServer relies on the  [jsconfig.json](https://code.visualstudio.com/docs/languages/jsconfig) for javascript and  [tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) for typescript  to analyze your project. Ensure the file exists at the root of your project.
         - **PS**: ycm will look up `jsconfig.json` up to the top parent directory, and think the final directory as `root` and parse all .js files under it, it may break ycm ... So do **NOT** put a `jsconfig.json` file outside of your project.
-    - To get diagnostics in JavaScript, set the checkJs option to true in your jsconfig.json file:
+    - Example: To get diagnostics in JavaScript, set the checkJs option to true in your jsconfig.json file:
         ```json
         {
             "compilerOptions": {
@@ -96,7 +96,7 @@
             }
         }
         ```
-- Rust support: install Rust and add `--rust-completer` when calling ./install.py.
+- Rust support: install Rust and add `--rust-completer`
     - put `~/.cargo/bin`   in you $PATH ?
         ```bash
         # rust
@@ -105,10 +105,8 @@
 - Java support: install JDK8 (version 8 required) and add `--java-completer` 
 - for common using
     ```bash
-    ./install.py --clangd-completer --cs-completer  --go-completer --ts-completer --java-completer
-    ```
-    ```bash
-    # --clang-completer --system-libclang
+    ./install.py --clangd-completer --cs-completer  --go-completer \
+                    --ts-completer --java-completer --rust-completer
     ```
     - for Ubuntu, `sudo apt install build-essential` is needed
 
@@ -116,10 +114,10 @@
 <h2 id="6c21b0240dca1c94dbf59f8b1ab1f1af"></h2>
 
 
-## C-Family 补全配置文件
+## C-Family [ycm_extra_conf.py]
 
-- YCM 会一层一层目录往上查找 .ycm_extra_conf.py 配置文件
-- example: https://github.com/ycm-core/ycmd/blob/master/.ycm_extra_conf.py
+- YCM will look up the .ycm_extra_conf.py configuration file layer by layer
+- official example: https://github.com/ycm-core/ycmd/blob/master/.ycm_extra_conf.py
 - and you normally need do some modification for c-project
 	```python
 		# THIS IS IMPORTANT! Without the '-x' flag, Clang won't know which language to
@@ -140,14 +138,14 @@
 <h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
 
 
-### YCMD 排错
+### YCMD Troubleshoot
 
-- Tagbar 需要安装 ctags 
+- Tagbar requires ctags to be installed
     - `brew install ctags`
     - for golang, you also need gotags `brew install gotags`
-- python 语法检查
+- python syntax check
     - `pip install flake8`
-- vim 诊断
+- vim diagnosis
     - `:YcmDebugInfo`
 - vim check logs
     - `YcmToggleLogs`
@@ -164,14 +162,19 @@
 
 ## Markdown 
 
-- chrome 安装插件 :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
-- 打开 `chrome://extensions/` ， 在设置页中勾选 “Allow access to file URLs”
+- chrome plugin  :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
+- visit `chrome://extensions/` ， Check  “Allow access to file URLs” in the settings page
 
 
 <h2 id="05792acc8846850d5650256c2f89d097"></h2>
 
 
 ## viminspect
+
+- see `.vimspector.json` examples 
+    - in ` ~/.vim/bundle/vimspector/support/test/`
+    - or [official page](https://puremourning.github.io/vimspector/configuration.html#predefined-variables)
+
 
 <h2 id="a76b761a3f63c8a3aca6fa66777741fa"></h2>
 
@@ -184,71 +187,6 @@
     
     # if you're using nodemon
     nodemon --config nodemon.json --async-stack-traces --exec 'node --inspect app.js'
-    ```
-
-- .vimspector.json 
-    <details>
-    <summary>
-    for nodejs app, both attach processID and run
-    </summary>
-
-    ```json
-    {
-      "configurations": {
-        "attach": {
-          "adapter": "vscode-node",
-          "default": true,
-          "breakpoints": {
-            "exception": {
-              "all": "N",
-              "uncaught": "N"
-            }
-          },
-          "configuration": {
-            "name": "Attaching to a process ID",
-            "type": "node",
-            "request": "attach",
-            "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
-            "processId": "${processId}"
-          }
-        },
-        "run": {
-          "adapter": "vscode-node",
-          "default": true,
-          "breakpoints": {
-            "exception": {
-              "all": "N",
-              "uncaught": "N"
-            }
-          },
-          "configuration": {
-            "name": "Launch Program",
-            "type": "node",
-            "request": "launch",
-            "stopOnEntry": true,
-            "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
-            "program": "${workspaceRoot}/app.js"
-          }
-        }
-      }
-    }
-    ```
-
-    </details>
-
-- you can also customize debugging port
-    ```bash
-    node --inspect=5678 app.js 
-    ```
-    ```json
-          "configuration": {
-            "name": "Attaching to a process ID",
-            "type": "node",
-            "port": "5678",
-            "request": "attach",
-            "skipFiles": ["node_modules/**/*.js", "<node_internals>/**/*.js"],
-            "processId": "${processId}"
-          }
     ```
 
 
