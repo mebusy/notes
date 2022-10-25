@@ -479,9 +479,6 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 
 # Regular Expressions
 
-## Magic and Very Magic Modes
-
-
 ## Why magic mode ?
 
 - Common editors can generally specify whether to use a normal search or a regular expression search. 
@@ -502,6 +499,7 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
     Very No Maigc | all |  `\V` |  normal text search
 
 
+--- 
 
 <details>
 <summary>
