@@ -483,6 +483,23 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 ```
 
 
+### Advance g
+
+- gj/gk/... g$,g0 
+    - move on a visual line, not vim line
+- gq  (useful when you work with markdown )
+    - format whole line in sperate lines
+- gu, gU, g~
+    - cap, uncap 
+- gf
+    - open file (filename where your cursor on )
+- gv
+    - go back to you last visual selection
+- gJ
+    - conjoin lines, but without leaving space between them ( unlike J )
+
+
+
 <h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
 
 
