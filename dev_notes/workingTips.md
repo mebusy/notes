@@ -353,6 +353,14 @@ ps -ef | grep tomcat
 - `-f` : full
 
 
+## [MacOSX] move large files out of system volumn
+
+```bash
+DockerRaw  ->  ~/Library/Containers/com.docker.docker/Data/vms/0/data
+UnityLogs  ->  ~/Library/Logs/Unity
+```
+
+
 
 
 
