@@ -1,5 +1,20 @@
+...menustart
+
+- [Check OSX/Linux Disk Usage](#16309df300bdf0d160ce0d2c3ba81760)
+    - [show disk statistics](#43966914cb91fad4e91935063f885044)
+    - [Quick find largest files](#738abd9a763d86132b17a478f1a858d4)
+    - [dive in deep](#9e34b361cb37f29a1853787b7b35032b)
+
+...menuend
+
+
+<h2 id="16309df300bdf0d160ce0d2c3ba81760"></h2>
+
 
 # Check OSX/Linux Disk Usage
+
+
+<h2 id="43966914cb91fad4e91935063f885044"></h2>
 
 
 ## show disk statistics
@@ -21,6 +36,9 @@ map auto_home           0          0         0   100%       0          0  100%  
 ```
 
 
+<h2 id="738abd9a763d86132b17a478f1a858d4"></h2>
+
+
 ## Quick find largest files
 
 ```bash
@@ -34,6 +52,9 @@ drwx------@ 91 user  staff  2912 Oct 18 10:35 Library
 drwx------+  5 user  staff   160 Aug  1 15:19 Movies
 drwx------+  4 user  staff   128 Aug 13  2020 Music
 ```
+
+<h2 id="9e34b361cb37f29a1853787b7b35032b"></h2>
+
 
 ## dive in deep
 

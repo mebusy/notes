@@ -1,14 +1,13 @@
 ...menustart
 
 - [VIM](#d53cfc4bdeb96eaee47dd710b3c2ed21)
-    - [插件安装](#78d0b83eb54eb1aa949d4600958cb397)
-    - [YouCompleteMe 配置](#95e1e8a5d4d20276318a364f9428f879)
-    - [C-Family 补全配置文件](#6c21b0240dca1c94dbf59f8b1ab1f1af)
-        - [YCMD 排错](#f7abfec0b5984a0314616bd13f7ae8c3)
+    - [Plugin Installation](#431e27fdb6a4c378a592fb761c7e5519)
+    - [YouCompleteMe Configuaration Tips](#72aef9272e534c2840a7b9f5e4899694)
+    - [C-Family \[ycm_extra_conf.py\]](#e70cbc3e7d4a60990580571997e5e3a5)
+        - [YCMD Troubleshoot](#fab255294e7b3b58a06c83405029a7c0)
     - [Markdown](#2182a74bab7188d959e795d9301e87ff)
     - [viminspect](#05792acc8846850d5650256c2f89d097)
         - [debug nodejs](#a76b761a3f63c8a3aca6fa66777741fa)
-    - [VIM 正则表达式](#072db16a2fab851f315188d28a992133)
     - [vim Mark](#ac4aee7e186902860d64dcf2a6065905)
     - [VIM tips](#a1c1a23da31214c88d29928e14c64ef0)
         - [文件夹内容替换 args/argdo](#d97b62cc38ac0f48ee2ef1675eceb014)
@@ -20,8 +19,12 @@
         - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
         - [make multiple line word into java string](#fe7fb0107de52ad2a0bca9917a32301a)
         - [复制/移动 行](#87b0406cc2b93c7df74c3cfc9b2e690b)
+        - [Advance g](#b492b625b61dc9e4718c98561d7b0296)
 - [grok VIM](#fc1f1e8c6d70d860957c66f735e60e2b)
     - [A sampling of more advanced tricks:](#a5787082a16f14e8db2acbf78497ee99)
+- [VIM Regular Expressions](#97786adcbde368256fe1cb51b6339c7e)
+    - [Why magic mode ?](#63c1835cfbf1719dd2ddb81b3f922a29)
+    - [Compare with Perl patterns](#20cccd93ecd64a6cdd4d70b646c9803c)
 
 ...menuend
 
@@ -31,7 +34,7 @@
 
 # VIM 
 
-<h2 id="78d0b83eb54eb1aa949d4600958cb397"></h2>
+<h2 id="431e27fdb6a4c378a592fb761c7e5519"></h2>
 
 
 ## Plugin Installation
@@ -76,7 +79,7 @@
         vim +PluginUpdate
         ```
 
-<h2 id="95e1e8a5d4d20276318a364f9428f879"></h2>
+<h2 id="72aef9272e534c2840a7b9f5e4899694"></h2>
 
 
 ## YouCompleteMe Configuaration Tips
@@ -111,7 +114,7 @@
     - for Ubuntu, `sudo apt install build-essential` is needed
 
 
-<h2 id="6c21b0240dca1c94dbf59f8b1ab1f1af"></h2>
+<h2 id="e70cbc3e7d4a60990580571997e5e3a5"></h2>
 
 
 ## C-Family [ycm_extra_conf.py]
@@ -135,7 +138,7 @@
 	```
 
 
-<h2 id="f7abfec0b5984a0314616bd13f7ae8c3"></h2>
+<h2 id="fab255294e7b3b58a06c83405029a7c0"></h2>
 
 
 ### YCMD Troubleshoot
@@ -367,6 +370,9 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 ```
 
 
+<h2 id="b492b625b61dc9e4718c98561d7b0296"></h2>
+
+
 ### Advance g
 
 - gj/gk/... g$,g0 
@@ -477,7 +483,13 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 
 ---
 
+<h2 id="97786adcbde368256fe1cb51b6339c7e"></h2>
+
+
 # VIM Regular Expressions
+
+<h2 id="63c1835cfbf1719dd2ddb81b3f922a29"></h2>
+
 
 ## Why magic mode ?
 
@@ -497,6 +509,9 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
     Very Magic | N/A, Perl-regex-compatible | `\v`  | 
     No Magic | all except `^ $` | `\M` |
     Very No Maigc | all |  `\V` |  normal text search
+
+
+<h2 id="20cccd93ecd64a6cdd4d70b646c9803c"></h2>
 
 
 ## Compare with Perl patterns
