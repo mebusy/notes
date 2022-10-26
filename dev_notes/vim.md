@@ -477,7 +477,7 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 
 ---
 
-# Regular Expressions
+# VIM Regular Expressions
 
 ## Why magic mode ?
 
@@ -487,45 +487,42 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
     - Therefore, vim stipulates that the metacharacters of regular expressions must be escaped with backslashes. As in the above example, if you really want to use regular expressions, you should write `/foo\(1\)`
     - However, it is inconvenient to add backslashes to extremely common metacharacters like `.` `*`. 
 - To solve this problem, vim sets the magic:
-    - magic (\m): all metacharacters except `$ . * ^` need backslashing
+    - magic (\m): all metacharacters except `* . ^ $ []` need backslashing
 - But if you are strongly prefer normal regular expression, you can use very magic mode (\v), it is **Perl-regex-compatible**
-    - but you can NOT set it as default, it will lead to compatibility problems
+    - but you can NOT set it as default, it will lead to plugin's compatibility problems
 - There are 2 more modes you can use
     mode | metacharacters need backslashing | activated by  | comments
     --- | --- | ---  | ---
-    Magic | all except `$ . * ^` | `\m` | **default** modifier
+    Magic | all except `* . ^ $ []` | `\m` | **default** modifier
     Very Magic | N/A, Perl-regex-compatible | `\v`  | 
-    No Magic | all except `$ ^` | `\M` |
+    No Magic | all except `^ $` | `\M` |
     Very No Maigc | all |  `\V` |  normal text search
 
 
---- 
+## Compare with Perl patterns
 
-<details>
-<summary>
-捕获组
-</summary>
+Capability                     |  in Vimspeak    |  in Perlspeak
+------------------------------ | --------------- | ------------------
+force case insensitivity       |  `\c`             |  `(?i)`
+force case sensitivity         |  `\C`             |  `(?-i)`
+backref-less grouping          |  `\%(atom\)`      |  `(?:atom)`
+conservative quantifiers       |  `\{-n,m}`        |  `*?, +?, ??, {}?`
+0-width match                  |  `atom\@=`        |  `(?=atom)`
+0-width non-match              |  `atom\@!`        |  `(?!atom)`
+0-width preceding match        |  `atom\@<=`       |  `(?<=atom)`
+0-width preceding non-match    |  `atom\@<!`       |  `(?<!atom)`
+match without retry            |  `atom\@>`        |  `(?>atom)`
 
-- 捕获组符号和perl 略有不同，使用 `@` 而不是 `(?`
-- TODO: 确认 是否真的不支持 perl 模式？ (比如 非贪婪匹配 就同时支持)
 
-Perl | vim
---- | ---
-(?= | @=
-(?! | @!
-(?<= | @<=
-`(?<!` | `@<!`
-(?> | @> 
-(?: |  `%(atom\)`
 
-- vim中的捕获组的模式的位置与perl不同
-    - 例如，查找紧跟在 foo 之后的 bar，perl将模式(这里是foo)写在环视(`?<=`)的括号内, 而vim将模式写在环视的元字符之前。
-    - Perl的写法 `(?<=foo)bar`
-    - vim的写法 `(foo)@<=bar` 
+- Capture group notation is slightly different from perl, use **`@`** instead of `(?`
+- The location of the pattern for capturing groups in vim differs from perl
+    - For example, to find *bar* immediately after *foo*, 
+        - perl writes the pattern *foo* inside the lookaround (`?<=`) brackets, `(?<=foo)bar`
+    - while vim writes the pattern before the lookaround metacharacter , `(foo)@<=bar` 
+- vim matches the beginning and end of words using `<` , `>` , 
+    - `\b` is used to match `<BS>`
 
-</details>
-
-- vim 没有 \b, 匹配单词词首词尾使用 `<` , `>`
 
 
 
