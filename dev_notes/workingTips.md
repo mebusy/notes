@@ -373,6 +373,9 @@ UnityLogs  ->  ~/Library/Logs/Unity
 brew install watch
 
 watch -n 1 -d find .
+
+# to skie .git folder
+watch -n 1 -d find . -path ./.git  -prune -o -print
 ```
 
 
