@@ -305,6 +305,8 @@ vimgrep /pattern/gj path
 2. 向下移动光标 选中所有行
 3. shift i 进入多行插入模式， 编辑 , esc 
 4. 等 1秒钟， 修改完成
+
+
 - note: v 以字元为单位，V 以行为单位，ctrl-v 以列为单位
 
 
@@ -322,7 +324,7 @@ vimgrep /pattern/gj path
 <h2 id="11cc6cd769420b9372c1b33a98a38d5e"></h2>
 
 
-### duplicated column, paste next to it
+### duplicate column, then paste it next to it
 
 ```vim
 :%s/.*/& &/
@@ -352,8 +354,8 @@ vimgrep /pattern/gj path
 
 ```vim
 # record
-qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
-@q
+qa0I"escA",esc0jq   // ( 0I 0j to correct position )
+@a
 8@@
 ```
 
@@ -363,10 +365,10 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
 ###  复制/移动 行
 
 ```vim
-:6t.  // 复制第6行到当前位置
-:6,8t. // 复制6-8行到当前位置
-:6m.   // 移动 第6行
-;6,8m. // 移动 6-8行
+:6t.  // 复制第6行 到当前位置
+:6,8t. // 复制6-8行 到当前位置
+:6m.   // 移动 第6行 到当前位置
+;6,8m. // 移动 6-8行 到当前位置
 ```
 
 
@@ -404,10 +406,10 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
     - `ma` sets the 'a' mark to the current location
     - use `'a`  (single quote) to jump the beginning of the **LINE** has 'a' mark
     - use `` `a`` (backquote)  to jump the precise location of the 'a' mark.
-        - > markdown tips:  use a space infront and surrounded by doulbe backquote to display single backquote.
-        - > similarly, use space infront and surrounded by single backquote to display double backquote.
+        - > **markdown tips**:  use a space infront and surrounded by doulbe backquote to display single backquote.
+        - > similarly, use space infront and surrounded by single backquote to display double backquote.  ` ``a`
     - more special mark jumping
-        - ` `` ` , `''` , to jump back to where jumped from
+        - ` `` ` , `''` , to **jump back to where jumped from**
         - `` `0`` , jump to position in last file edited (when exited Vim)
         - `` `1`` , like `` `0`` ,  but the previous file (also `` `2`` etc)
     - Because these are "movements" they can also be used as subjects for other "statements."
@@ -416,7 +418,7 @@ qq0I"escA",esc0jq   // ( 0I 0j 校正位置 )
     - this is one way to cut or copy text. However, it is only one of many.
     - Frequently we can more succinctly describe the range of text without moving our cursor around and dropping a mark.
     - For example if I'm in a paragraph of text I can use { and } movements to the beginning or end of the paragraph respectively.
-    - So, to move a paragraph of text I cut it using `{ d}` (3 keystrokes).
+    - So, to move a paragraph of text I cut it using `{ d}` (4 keystrokes).
 - Searching forwards or backwards are movements in vi. Thus they can also be used as "subjects" in our "statements." 
     - `d/abc` , delete the content from current location to the next matched `abc`
     - `y?abc` , yark the content from current locationthe most recent (previous) matched `abd`

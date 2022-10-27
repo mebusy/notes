@@ -367,6 +367,13 @@ DockerRaw  ->  ~/Library/Containers/com.docker.docker/Data/vms/0/data
 UnityLogs  ->  ~/Library/Logs/Unity
 ```
 
+## [MacOSX] monitor files changes under current folder
+
+```bash
+brew install watch
+
+watch -n 1 -d find .
+```
 
 
 
