@@ -50,9 +50,17 @@ reboot Mac
     display_number=`ps -ef | grep "Xquartz :\d" | grep -v xinit | awk '{ print $9; }'`
     echo $display_number
     ```
-5. test an GUI app, e.g. firefox
+5. or you may want to integrate it in your .profile
     ```bash
-    docker run --rm  --name firefox -e DISPLAY=$ip:0 -v /tmp/.X11-unix:/tmp/.X11-unix jess/firefox 
+    # x11
+    _ip=`ifconfig en0 | grep inet | awk '$1=="inet" {print $2}'`
+    xhost + $_ip
+    export DISPLAY=$_ip:0
+    ```
+6. test an GUI app, e.g. firefox
+    ```bash
+    # -v /tmp/.X11-unix:/tmp/.X11-unix 
+    docker run --rm  --name firefox -e DISPLAY=$DISPLAY jess/firefox 
     ```
 
 
