@@ -54,7 +54,7 @@ reboot Mac
     ```bash
     # x11
     _ip=`ifconfig en0 | grep inet | awk '$1=="inet" {print $2}'`
-    xhost + $_ip
+    xhost + $_ip > /dev/null 
     export DISPLAY=$_ip:0
     ```
 6. test an GUI app, e.g. firefox
