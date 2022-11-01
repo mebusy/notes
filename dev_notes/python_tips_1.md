@@ -91,7 +91,7 @@
 <h2 id="922f71899036f4bdea86d1a42322327b"></h2>
 
 
-### Print with new line 
+### Print without new line 
 
 ```python
 for i in range(5):
