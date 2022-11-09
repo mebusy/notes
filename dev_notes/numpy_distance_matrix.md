@@ -15,11 +15,11 @@ a = np.arange(6).reshape(3,2)
 #        [2, 3],
 #        [4, 5]])
 
-b = np.arange(8).reshape([4,2])
-# array([[0, 1],
-#       [2, 3],
-#       [4, 5],
-#       [6, 7]])
+b = np.linspace(7, 14, num=8).reshape(4,-1)
+# array([[ 7.,  8.],
+#        [ 9., 10.],
+#        [11., 12.],
+#        [13., 14.]])
 ```
 
 using scipy *distance_matrix*
@@ -27,9 +27,9 @@ using scipy *distance_matrix*
 ```python
 from scipy.spatial import distance_matrix
 distance_matrix(a,b)
-# array([[0.        , 2.82842712, 5.65685425, 8.48528137],
-#       [2.82842712, 0.        , 2.82842712, 5.65685425],
-#       [5.65685425, 2.82842712, 0.        , 2.82842712]])
+# array([[ 9.89949494, 12.72792206, 15.55634919, 18.38477631],
+#        [ 7.07106781,  9.89949494, 12.72792206, 15.55634919],
+#        [ 4.24264069,  7.07106781,  9.89949494, 12.72792206]])
 ```
 
 
@@ -37,9 +37,9 @@ using numpy's broadcasting rules
 
 ```python
 np.linalg.norm(a[:, None, :] - b[None, :, :], axis=-1)
-# array([[0.        , 2.82842712, 5.65685425, 8.48528137],
-#       [2.82842712, 0.        , 2.82842712, 5.65685425],
-#       [5.65685425, 2.82842712, 0.
+# array([[ 9.89949494, 12.72792206, 15.55634919, 18.38477631],
+#        [ 7.07106781,  9.89949494, 12.72792206, 15.55634919],
+#        [ 4.24264069,  7.07106781,  9.89949494, 12.72792206]])
 ```
 
 Why does this work ?
@@ -58,9 +58,9 @@ numpy can also make it works with any operation that can do reductions. e.g. Man
 
 ```python
 np.sum(np.abs(a[:, None, :] - b[None, :, :]), axis=-1)
-# array([[ 0,  4,  8, 12],
-#       [ 4,  0,  4,  8],
-#       [ 8,  4,  0,  4]])
+# array([[14., 18., 22., 26.],
+#        [10., 14., 18., 22.],
+#        [ 6., 10., 14., 18.]])
 ```
 
 Becoming comfortable with this type of vectorized operation is an important way to get better at scientific computing!
@@ -69,19 +69,20 @@ Becoming comfortable with this type of vectorized operation is an important way 
 From the distance matrix, we can get the **closest pair**
 
 ```python
+dist_m = np.linalg.norm(a[:, None, :] - b[None, :, :], axis=-1)
 np.unravel_index( dist_m.argmin(), dist_m.shape  )
-# (0, 0)
-# that is, 1st point from set a, and 1st point from set b
+# (2, 0)
+# that is, 3rd point from set a, and 1st point from set b
 ```
 
 ## points in 1 set
 
 ```python
 np.linalg.norm(a[:, None, :] - a[None, :, :], axis=-1)
+# array([[0.        , 2.82842712, 5.65685425],
+#        [2.82842712, 0.        , 2.82842712],
+#        [5.65685425, 2.82842712, 0.        ]])
 ```
-
-
-
 
 
 
