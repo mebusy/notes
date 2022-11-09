@@ -17,6 +17,10 @@
 ...menuend
 
 
+
+[using numpy](https://people.duke.edu/~ccc14/sta-663-2016/03A_Numbers.html)
+
+
 <h2 id="c2bfb8f194cb52abbd9cc9397dafc5d4"></h2>
 
 
