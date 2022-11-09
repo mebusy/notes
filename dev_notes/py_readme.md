@@ -43,6 +43,7 @@
 # Data Science
 
 - [Numpy](numpy_tips.md) 
+    - [distance matrix](numpy_distance_matrix.md)
 - [Pandas](Pandas.md) 
 - [Advanced Pandas](Pandas_advanced.md) 
 - [Statistic in Python](Pands_StatisticalAnalysisInPython.md)
