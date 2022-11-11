@@ -95,3 +95,45 @@ def loadconf():
         conf = yaml.load(fp.read(), Loader=yaml.FullLoader  )  # , Loader=yaml.SafeLoader
 ```
 
+
+## remove single-line / multiple-line comments
+
+```python
+import re
+
+RE_COMMENTS = re.compile(
+    r"""
+    (^)?            # match comment starts at the beginning of a line, as long as the MULTILINE-flag is used.
+    [^\S\n]*        # match any whitespace character except newline.
+                    # We don't want to match line breaks if the comment starts on it's own line.
+    /               # comments start /
+        (?:             # Non-capturing start
+            \*(.*?)\*/[^\S\n]*          # match multiline comments
+            |/[^\n]*                    # single line comment
+        )               # Non-capturing end
+    ($)?        # match if the comment stops at the end of a line, as long as the MULTILINE-flag is used.
+    """,
+    re.DOTALL | re.MULTILINE | re.VERBOSE,
+)
+
+
+def comment_replacer(match):
+    start, mid, end = match.group(1, 2, 3)
+    if mid is None:
+        # single line comment
+        return ""
+    elif start is not None or end is not None:
+        # multi line comment at start or end of a line
+        return ""
+    elif "\n" in mid:
+        # multi line comment with line break
+        return "\n"
+    else:
+        # multi line comment without line break
+        return " "
+
+
+# usage: data = remove_comments(data)
+def remove_comments(text):
+    return RE_COMMENTS.sub(comment_replacer, text)
+```
