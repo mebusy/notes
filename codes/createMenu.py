@@ -8,7 +8,13 @@ import urllib
 
 import md5
 
-RE_PATTERN_MENU_BODY = re.compile( r"\.\.\.menustart.*?\.\.\.menuend\s*" , re.DOTALL  )
+RE_PATTERN_MENU_BODY = re.compile( r"""
+    (\[\]\()?       # match new/old menu start
+    \.\.\.menustart
+    .*?
+    \.\.\.menuend
+    \)?           # match new/old menu end
+    \s*""" , re.DOTALL | re.VERBOSE )
 RE_PATTERN_MENU_SYNTAX = re.compile( r"^(\#+)(.*?)$" )
 RE_PATTERN_MENU_JUMP_ID = re.compile( r"^<h\d*\s+id=" )
 RE_PATTERN_TABLE = re.compile( r"^\s*---(\s*\|\s*---)+" )
@@ -36,7 +42,7 @@ def createMenu4MD( path ):
 
     content = re.sub(RE_PATTERN_MENU_BODY,'',content)
 
-    menu = "...menustart\n\n"
+    menu = "[](...menustart)\n\n"
     body = ''
 
     lines = content.split("\n")
@@ -85,7 +91,7 @@ def createMenu4MD( path ):
             nIndent = sorted(all_title_level).index( curTitleActualLevel ) 
             menu +=   ( '%s- [%s](#%s)' % ( '    ' * nIndent  , escaped_title ,  id  ) )  +  '\n'
 
-            body += '<h2 id="{}"></h2>\n\n\n'.format(  id )
+            body += '<h2 id="{}"></h2>\n\n'.format(  id )
             #print sharps, title
 
         isJumpIDLine = re.search( RE_PATTERN_MENU_JUMP_ID , line  ) is not None 
@@ -126,7 +132,7 @@ def createMenu4MD( path ):
 
 
     global bForceCreateMenu
-    menu += '\n...menuend\n\n\n'  
+    menu += '\n[](...menuend)\n\n\n'  
     if path.lower().endswith( "readme.md" ) and not bForceCreateMenu:
         menu = ""
     
