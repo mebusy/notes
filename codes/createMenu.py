@@ -1,16 +1,12 @@
 #!python2
 #coding:utf8
 
+import os
 import re
-
+import sys
+import urllib
 
 import md5
-import os
-
-import urllib
-import sys
-
-
 
 RE_PATTERN_MENU_BODY = re.compile( r"\.\.\.menustart.*?\.\.\.menuend\s*" , re.DOTALL  )
 RE_PATTERN_MENU_SYNTAX = re.compile( r"^(\#+)(.*?)$" )
@@ -129,8 +125,9 @@ def createMenu4MD( path ):
         
 
 
+    global bForceCreateMenu
     menu += '\n...menuend\n\n\n'  
-    if path.lower().endswith( "readme.md" ):
+    if path.lower().endswith( "readme.md" ) and not bForceCreateMenu:
         menu = ""
     
     if bCodeStart :
@@ -166,8 +163,11 @@ if '__main__' == __name__ :
 
     all_md_filenames = {}
     if len( sys.argv ) >=2 :
-        # debug single file
+        bForceCreateMenu = 'forcemenu' in sys.argv[2:]
+
+        # for files outside this repo
         if os.path.isfile(  sys.argv[1] ):
+            # single file
             createMenu4MD( sys.argv[1] )
         else:
             # parse other directory
@@ -175,9 +175,8 @@ if '__main__' == __name__ :
 
         sys.exit(1)
 
-    # normally for this repository
+    # for this repository only
     os.path.walk( "../" , visit , None )
-
     print '-----'
     
     RE_PATTERN_LINK_FILE = re.compile( r"\[.*?\]\s*\(.*?(?=[^/]+\.md)([^/()]+\.md)\s*\)" )
@@ -204,4 +203,3 @@ if '__main__' == __name__ :
 
     for key in all_md_filenames:
         print key
-
