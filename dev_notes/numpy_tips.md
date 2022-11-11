@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [numpy tips](#c2bfb8f194cb52abbd9cc9397dafc5d4)
     - [Combining Arrays -- vstack / hstack](#b07975097e561968d8f39538bba9450d)
@@ -14,15 +14,13 @@
     - [Memory](#4789f23283b3a61f858b641a1bef19a3)
     - [Flattening Arrays](#cadf8b38e0efdb666556ad014aec3e01)
 
-...menuend
-
+[](...menuend)
 
 
 [using numpy](https://people.duke.edu/~ccc14/sta-663-2016/03A_Numbers.html)
 
 
 <h2 id="c2bfb8f194cb52abbd9cc9397dafc5d4"></h2>
-
 
 # numpy tips
 
@@ -43,7 +41,6 @@
 
 
 <h2 id="b07975097e561968d8f39538bba9450d"></h2>
-
 
 ## Combining Arrays -- vstack / hstack
 
@@ -83,7 +80,6 @@
 
 <h2 id="f32b904edd83a21e8b374913f5631504"></h2>
 
-
 ## Iterating Over Arrays
 
 - Let's create a new 4 by 3 array of random numbers 0-9.
@@ -117,7 +113,6 @@ for i, j in zip(test, test2):
 
 <h2 id="bf91cb5aab8fb7ca430a74e12051e4a8"></h2>
 
-
 ## samply from non-zero entries in an array
 
 ```python
@@ -131,7 +126,6 @@ for i, j in zip(test, test2):
 
 <h2 id="72d3788db3f58a0a81b981182c17b7d6"></h2>
 
-
 ## n-largest / n-smallest elements
 
 ```python
@@ -142,7 +136,6 @@ for i, j in zip(test, test2):
 
 
 <h2 id="96ce18c56beb30e0b41e4f00e03e8085"></h2>
-
 
 ## calculate a covariance matrix
 
@@ -158,11 +151,9 @@ np.cov( examples.reshape( ( -1, examples.shape[-1] ) ) , rowvar=False )
 
 <h2 id="e7bb3b7194c96eb93fb9a2777411aca8"></h2>
 
-
 # SciPy 2019
 
 <h2 id="458a3cb8ba7cd1c7a812c577db825242"></h2>
-
 
 ## Array Slicing
 
@@ -176,7 +167,6 @@ numpy 可以把多个维度的slicing 放在一个方括号内...
         - `r_copy = r.copy()`
 
 <h2 id="d5dddb265184f7c2f2d357bcefb39a2c"></h2>
-
 
 ## Fancy Indexing 
 
@@ -196,7 +186,6 @@ Fancy Indexing in 2-D
 
 <h2 id="0bb4ab4184972d9ff27e7631e4f7ed1f"></h2>
 
-
 ## Creating Array
 
 1. arange
@@ -215,7 +204,6 @@ Fancy Indexing in 2-D
 
 
 <h2 id="91e2425ec5af8da6651503b23010be25"></h2>
-
 
 ## Computations with Arrays
 
@@ -264,7 +252,6 @@ Fancy Indexing in 2-D
 
 <h2 id="4789f23283b3a61f858b641a1bef19a3"></h2>
 
-
 ## Memory
 
 ```bash
@@ -294,7 +281,6 @@ Fancy Indexing in 2-D
 
 
 <h2 id="cadf8b38e0efdb666556ad014aec3e01"></h2>
-
 
 ## Flattening Arrays
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Calculus One](#37c5cffe5f40cb8a09855f57171e9646)
     - [limit of  sinx / x](#0da07c5934b4b53cf509da017f8ad52a)
@@ -85,21 +85,18 @@
         - [Why does f'(x) > 0 imply that f is increasing?](#09c813a02b34fc758422afcc21b1fd8f)
         - [Should I bother to find the point c in the mean value theorem?](#f6711d50b4e944e25e93746abfaaa570)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="37c5cffe5f40cb8a09855f57171e9646"></h2>
-
 
 # Calculus One
 
 <h2 id="0da07c5934b4b53cf509da017f8ad52a"></h2>
 
-
 ## limit of  sinx / x
 
 <h2 id="ad4e9bc62cea4aecede40005fb701b5a"></h2>
-
 
 ###  f(x) = sinx / x , 求 lim x→0
 
@@ -134,7 +131,6 @@ then lim f(x) = L
 
 <h2 id="4483c04fa3ccf44c111cde358f218561"></h2>
 
-
 ### limit of product
 
 if lim<sub>x→a</sub>f(x) = L , 
@@ -145,7 +141,6 @@ if lim<sub>x→a</sub>f(x) = L ,
 
 
 <h2 id="2b2077c392ecb1166a2447a64365cf3e"></h2>
-
 
 ### lim<sub>x→3</sub> x/(x-3) 
 
@@ -160,11 +155,9 @@ PS. `(x+1)(x-1)/(x-1)`  and `(x+1)` not the same function, 一个在 x=1 处 没
 
 <h2 id="f73d2c55dc3628b7071e45104874c485"></h2>
 
-
 ### Continuity
 
 <h2 id="5573e33b0dfdea6caa96ddf3f7165cfd"></h2>
-
 
 #### One-Sided Limit:
 
@@ -176,7 +169,6 @@ PS. `(x+1)(x-1)/(x-1)`  and `(x+1)` not the same function, 一个在 x=1 处 没
 ---
 
 <h2 id="fb5871c79f8440fc2a2836470cdba81f"></h2>
-
 
 ####  Continuous:
 
@@ -193,7 +185,6 @@ more precise :
 
 <h2 id="1a8e4c42735dd5a29342c3b0badaa173"></h2>
 
-
 #### Intermediate Value Theorem
 
 - Suppose f(x) is continuous on [a,b] , and y is between f(a) and f(b).
@@ -206,7 +197,6 @@ more precise :
 
 <h2 id="6a73f242eea2fe23cbe69f07c9597926"></h2>
 
-
 #### How to approximate √2 ?
 
 - use intermediate value theorem , to try and find x, so that f(x) = x² - 2 = 0
@@ -215,13 +205,11 @@ more precise :
 
 <h2 id="eb2ac5b04180d8d6011a016aeb8f75b3"></h2>
 
-
 ### Infinity
 
 ---
 
 <h2 id="589b6a791407525e9ab8f6723184c6a5"></h2>
-
 
 #### Why is there an x so that f(x) = x
 
@@ -242,7 +230,6 @@ more precise :
 
 <h2 id="31d71cf51302b193ce93c8b285844bb6"></h2>
 
-
 #### What means lim<sub>x→a</sub>f(x) = ∞ ?
 
 - f(x) is as large as you like , if provide x is close enough to a.
@@ -257,7 +244,6 @@ more precise :
 ---
 
 <h2 id="78a1c1c2fa16d034391c0bdd36f154fe"></h2>
-
 
 #### What means lim<sub>x→∞</sub>f(x) = L ?
     
@@ -274,16 +260,13 @@ more precise :
 
 <h2 id="70ae6e285cc14c8486e3cf5bec39d1fd"></h2>
 
-
 ## Derivative
 
 <h2 id="de47fb5a83cb8dd572de532fa514a58f"></h2>
 
-
 ### What are derivatives
 
 <h2 id="30618b3b44fa316257d07e387759fae5"></h2>
-
 
 #### definition 
 
@@ -304,7 +287,6 @@ The ***derivative*** of f at the point x is defined to be :
 
 <h2 id="f4d55e88765552127f1f67cba00e367f"></h2>
 
-
 #### Why is f(x) = |x| not differentiable at x =0 ? 
 
 When I say a function is differentiable , what I really mean is that when I zoom in, the function looks like a straight line, but not  `f(x) = |x|` .
@@ -319,7 +301,6 @@ f'(0) = lim<sub>x→0</sub> |h|/h , DNE.
 
 <h2 id="96bad87f34b364bbd46c6a9956c56a84"></h2>
 
-
 #### How does wiggling x affect f(x) ?
 
 ![](../imgs/caculus1_slope_f201.png)
@@ -333,11 +314,9 @@ f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
 
 <h2 id="7b4dd7708b6861a409a55f8ae5f03d2f"></h2>
 
-
 ### Why would I care to find derivatives ?
 
 <h2 id="233cda2b0da7e06ce36ab30e5002482a"></h2>
-
 
 #### Why is sqrt(9999) so close to 99.995? 
 
@@ -345,7 +324,6 @@ f(2.01) = f(2) + 0.01·f'(2) = 4 + 0.01·6 = 4.06.
 
 
 <h2 id="e89d54795bc4804fe364603cdb6baed4"></h2>
-
 
 #### What information is recorded in the sign of the derivative ?
 
@@ -359,11 +337,9 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 <h2 id="164411132b76dd8051c2291ff508048b"></h2>
 
-
 ### How do differentiability and continuity relate ? 
 
 <h2 id="399fa607fbcbfea19b9078d5cac8c8e7"></h2>
-
 
 #### Why is a differentiable function necessarily continuous ?
 
@@ -374,7 +350,6 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
     - that means  f(x) = f(a) , while lim<sub>x→a</sub> , it is the definition of continuity. 
 
 <h2 id="d20283b049281436b4b7c193d945d561"></h2>
-
 
 #### 可微分、连续与可导的关系？
 
@@ -393,7 +368,6 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 
 <h2 id="03435db2c86b05d2ec72446257663903"></h2>
 
-
 ### How do I find the derivative ?
 
 - `d/dx xⁿ = n·xⁿ⁻¹`
@@ -401,7 +375,6 @@ It means that if the sign of f'(x) is negative , f(x+h) is decreasing , otherwis
 ---
 
 <h2 id="f196de79cd46bd81851a3f8fed50f480"></h2>
-
 
 ### How do I differentiate a product ?
 
@@ -424,7 +397,6 @@ Why is it true ?
 
 <h2 id="1fd4d879c6db3b22c521e30c2fb08385"></h2>
 
-
 ### How do I differentiate a quotient ?
 
 ```
@@ -443,7 +415,6 @@ If g(a) ≠ 0 , and
 
 <h2 id="1288f1095d59ece946013bc62c26a401"></h2>
 
-
 ### d/dx is just a function
 
 ![](../imgs/calculusOne_ddx_is_func.png)
@@ -453,11 +424,9 @@ If g(a) ≠ 0 , and
 
 <h2 id="93e451770dec5a687c7f5e9d86cfd9f5"></h2>
 
-
 ## Extreme values 
 
 <h2 id="e6d5a5e9b5cdbf14227d36c1605a0ff2"></h2>
-
 
 ### How can I find extreme values ?
 
@@ -468,7 +437,6 @@ If g(a) ≠ 0 , and
 
 <h2 id="b2286c3f62faeddddcc3845afcb3deec"></h2>
 
-
 ### How do I differentiate eˣ ?
 
 f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
@@ -477,11 +445,9 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 <h2 id="d5db07312793e93df00d060926688e40"></h2>
 
-
 ## Chain Rule
 
 <h2 id="ac719cc56a1f9d666b2ce221292d434d"></h2>
-
 
 ### What is the Chain Rule
 
@@ -494,7 +460,6 @@ f(x) = 1 + x + x²/2 + x³/6 + x⁴/24 + ...  = eˣ
 
 
 <h2 id="6a7b8b5beb5c33160b2c36e47bf112d4"></h2>
-
 
 ### How do I find the tangent line to a curve ?
 
@@ -511,7 +476,6 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
 ```
 
 <h2 id="dc089fc1ed5dcef804ace2ddbfe24ad8"></h2>
-
 
 ### How do I find the derivative of an inverse function ?
 
@@ -534,7 +498,6 @@ dy/dx = (- 3x² + 9y) / ( 3y² - 9x )
 ```
 
 <h2 id="5f69ff9556a2b55dc9deea310f7a2b92"></h2>
-
 
 #### What is the derivative of log ?
 
@@ -582,7 +545,6 @@ f'(x) = d/dx( eˡºᵍ² )ˣ
 
 <h2 id="a137981fdca4787996280122b275b240"></h2>
 
-
 #### What is logarithmic differentiation ?
 
 ![](../imgs/calculusone_derivative_of_complex_function.png)
@@ -605,7 +567,6 @@ logy = 5log(1+x²) + 8log(1+x³) - 7log(1+x⁴)
 ---
 
 <h2 id="1979351d84291a1f76471b33e82e5008"></h2>
-
 
 ### How can I multiply numbers quickly ?
 
@@ -638,11 +599,9 @@ n | n²/4
 
 <h2 id="a6ad02e7652dc79317faed3380472275"></h2>
 
-
 ### How do I justify the derivative rules ?
 
 <h2 id="5d408cb9530da400a9ec060fe6e1f797"></h2>
-
 
 #### justify the power fule 
 
@@ -652,7 +611,6 @@ n | n²/4
     - works as well
 
 <h2 id="895df12d6a8dc1d4687bc0497d6850f6"></h2>
-
 
 #### logarithms help to prove the product rule 
 
@@ -669,7 +627,6 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 
 <h2 id="2ea8bc6939fe6ab30be67d6c95f8e567"></h2>
 
-
 #### How do we prove the quotient rule 
 
 - use chain rule
@@ -681,11 +638,9 @@ d/dx( f(x)g(x) ) = g(x)·f'(x) + f(x)·g'(x)
 
 <h2 id="9cc60abb55698d40b2aa1a013a4eec54"></h2>
 
-
 ## Derivatives of Transcendental (Trigonometric) Functions
 
 <h2 id="ce955fea5abcd20f2dda80db56b60ae6"></h2>
-
 
 ### What is Trigonometric ?
 
@@ -702,12 +657,10 @@ cotθ = 1/tanθ
 
 <h2 id="573dc971f8331989a1a87d6974f24dfb"></h2>
 
-
 ### How can I differentiate trig functions ?
 
 
 <h2 id="b37e55706290135b7a2ee3d866b5858c"></h2>
-
 
 #### What is the derivative of sin and cos?
 
@@ -728,7 +681,6 @@ cotθ = 1/tanθ
 
 <h2 id="15e9049322f847921aec14fca99d40e3"></h2>
 
-
 #### What is the derivative of tan x ?
 
 - use quotient rule
@@ -739,7 +691,6 @@ d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
 
 <h2 id="5b3f3e4bd81e2f7e6e71c5ea9fc8a024"></h2>
 
-
 #### What is the derivative of sin(x²) ?
 
 - chain rule
@@ -748,7 +699,6 @@ d/dθ tanθ = ( cosθcosθ - sinθ (-sinθ) )/cos²θ = 1/cos²θ = sec²θ
 - cos(x²)·2x can be as large as you like !
 
 <h2 id="31210310e2f1c1dbdf248f691b4948c9"></h2>
-
 
 #### What is the derivative of other trig functions ?
 
@@ -765,7 +715,6 @@ cscx | -cscx·cotx
 ---
 
 <h2 id="a68df1494f4e099023d94f99349d0301"></h2>
-
 
 ### How can I differentiate inverse trig function ?
 
@@ -785,7 +734,6 @@ arctan | [-π/2, π/2]
     - ![](../imgs/calculusone_trig_draw_helper_func.png)
 
 <h2 id="4d4582f7a62b4c18562eab93a499b2ab"></h2>
-
 
 #### What are the derivatives of inverse trig functions ?
 
@@ -819,11 +767,9 @@ f'(x) = 1/√(1-x²)
 
 <h2 id="f9420b5502811eeea138001bb4496a24"></h2>
 
-
 ### What can we learn from the derivatives of trig functions ?
 
 <h2 id="f9181928210c3638f92544080ceb3b1b"></h2>
-
 
 #### Why do sin / cos  oscillate ?
 
@@ -834,7 +780,6 @@ f'(x) = 1/√(1-x²)
     - when the function is negative , the 2nd derivative is positive , pushing it back
 
 <h2 id="fd0de0c8b5c3c847859b65d934f01290"></h2>
-
 
 #### How can I approximate sin1 ?
 
@@ -865,11 +810,9 @@ sin 1 ≈  0.84147...
 
 <h2 id="9814200793e2e62431db91f043a50988"></h2>
 
-
 ### Multiplying Trigonometric Functions with Slide Rules
 
 <h2 id="1681d181d0942ae213a729e0afe58639"></h2>
-
 
 #### How can we multiply numbers with trigonometry?
 
@@ -881,16 +824,13 @@ sin 1 ≈  0.84147...
 
 <h2 id="6017672191fb466ac0814c86917c7b1e"></h2>
 
-
 ## Derivatives in the Real World
 
 <h2 id="5cbd76d7f8288df3e2c8192097f8ec9f"></h2>
 
-
 ### How can derivatives help with limites ?
 
 <h2 id="b16a480bfeec6fa7754f653505d9f8ac"></h2>
-
 
 #### L'Hopital's rule 
 
@@ -901,7 +841,6 @@ lim<sub>x→a</sub> g(x) = 0
 lim<sub>x→a</sub> f(x)/g(x) =  lim<sub>x→a</sub> ( f(a) + f'(a)·(x-a) ) / ( g(a) + g'(a)·(x-a)  ) = f'(a) / g'(a)
 
 <h2 id="36700a734b03a7b3619e8f3cabb4e78d"></h2>
-
 
 #### How can L'Hopital Rule help with limits not of the form 0/0 ?
 
@@ -950,7 +889,6 @@ form | solution
 
 <h2 id="cf470f9f20ec6df6b6df8d3122b1c479"></h2>
 
-
 #### Why shouldn't I fall in love with L'Hopital
 
 - lim<sub>x→∞</sub> (x+sinx)/x 
@@ -967,11 +905,9 @@ lim<sub>x→∞</sub> (x+sinx)/x  = lim<sub>x→∞</sub> (x/x + sinx/x) = 1 + l
 
 <h2 id="e6c54ed15c1ecbc7f940c079d0c5ad69"></h2>
 
-
 ### How can derivatives help me to understande rates of change in the real world ?
 
 <h2 id="7e8f27e204a2079f56d6e37ba52543a6"></h2>
-
 
 #### 影子长度的变化速率
 
@@ -1000,7 +936,6 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
  
 <h2 id="b1c52412625c6bd4e56994958e55ef8b"></h2>
 
-
 #### How long until the gray goo destroys Earth ?
 
 - gray goo can converts anything it touches into more of itself
@@ -1026,7 +961,6 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 <h2 id="15970c4fdbca1fc48c5b412d94e798c0"></h2>
 
-
 ## Optimization
 
 - What is the extreme value theorem ? 
@@ -1036,11 +970,9 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
 
 <h2 id="3211cc3a86e257a4a79efb0878b13a14"></h2>
 
-
 ### If optimization is possible,  How do I do ?
 
 <h2 id="cb3644423a8baea81ea998b724f49791"></h2>
-
 
 #### How do I find the maximum and minimum values of f on a given domain?
 
@@ -1053,7 +985,6 @@ amazing? 影子长度变化的速率 是人行走速度的两倍, 与当前灯�
  3. check limiting behavior 
 
 <h2 id="aae0a52c73297e66e1548cae172bae0a"></h2>
-
 
 #### Why bother considering points where the function is not differentiable?
 
@@ -1089,11 +1020,9 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 <h2 id="0bd34b62bad9def7815743afad14b4d9"></h2>
 
-
 ### Why would I want to opimize a function ?
 
 <h2 id="50b74b87ca2a56d287a7b8b904d46c19"></h2>
-
 
 #### How large can xy be if x + y = 24?
 
@@ -1111,11 +1040,9 @@ f'(x) =⎧ 1 - (2x-2) , if x² - 2x > 0 , // no '=' here, because x=2 not differ
 
 <h2 id="9f4cacf06f1b57dda6be7f4448d1c76b"></h2>
 
-
 ### Optimization in Action
 
 <h2 id="820df180c483345562cc37739bd847f9"></h2>
-
 
 #### How large of an object can you carry around a corner?
 
@@ -1149,7 +1076,6 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 <h2 id="df8000ef4c8d5212dcc2b135f05a69d9"></h2>
 
-
 #### How short of a ladder will clear a fence?
 
 ![](../imgs/calculusone_optimizatiio_action_ladder_clear_a_fence.png)
@@ -1161,11 +1087,9 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 
 <h2 id="d6472838033d2216fae9717c5838a102"></h2>
 
-
 ## Linear Approximation
 
 <h2 id="028c5cc5c4e744cfe8d55ab3c491d143"></h2>
-
 
 ### What is linear approximation?
 
@@ -1176,7 +1100,6 @@ l(θ) = (a<sup>2/3</sup> + b<sup>2/3</sup> )<sup>3/2</sup>
 - That's the idea of linear approximation , also the key idea of Calculus.
 
 <h2 id="7c6a8204a5f714d468fe8081285355a5"></h2>
-
 
 ### What happens if I repeat linear approximation?
 
@@ -1228,7 +1151,6 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 <h2 id="5c28262562d0ec37b09318dd836d49cc"></h2>
 
-
 ### What does dx mean by itself?
 
 - **dx** means differential 
@@ -1250,7 +1172,6 @@ f(1) ≈ f(0.5) + 0.5·f'(0.5)
 
 
 <h2 id="29eb2cfc0d83cf930b4725a033faa957"></h2>
-
 
 ### What is Newton's method?
 
@@ -1306,7 +1227,6 @@ assuming f'(x₀) != 0
 
 <h2 id="879ea81194965f98ad54f853de07cfcc"></h2>
 
-
 #### What is a root of the polynomial x^5 + x^2 - 1?
 
 - here's the function where I want to find a root
@@ -1332,7 +1252,6 @@ assuming f'(x₀) != 0
 
 <h2 id="845c1341a5fd23cff388a26b42d30ec5"></h2>
 
-
 #### How can Newton's method help me to divide quickly?
 
 - What if I wanted to calculate 1/b ?
@@ -1354,7 +1273,6 @@ assuming f'(x₀) != 0
 
 
 <h2 id="026a3eab15b6e17796de6766b2dd65a7"></h2>
-
 
 ### What is the mean value theorem?
 
@@ -1380,7 +1298,6 @@ assuming f'(x₀) != 0
 
 <h2 id="09c813a02b34fc758422afcc21b1fd8f"></h2>
 
-
 ### Why does f'(x) > 0 imply that f is increasing?
 
 - Theorem:
@@ -1391,7 +1308,6 @@ assuming f'(x₀) != 0
 
 
 <h2 id="f6711d50b4e944e25e93746abfaaa570"></h2>
-
 
 ### Should I bother to find the point c in the mean value theorem?
 

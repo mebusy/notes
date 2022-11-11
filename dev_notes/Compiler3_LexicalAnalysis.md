@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Lexical Analysis](#c9137c1c04dbfe3f1e2cd3a2c6f56ddf)
     - [3.1 The Role of the Lexical Analyzer](#503dc2cfa99223a98a1fa20ddd7aa67a)
@@ -51,11 +51,10 @@
         - [3.9.7  State Minimization in Lexical Analyzers](#6968fda06e8f79559037d7f27f3360f9)
         - [3.9.8  Trading Time for Space in DFA Simulation](#af4e82fbb4a2e52c6d19d63130637e95)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c9137c1c04dbfe3f1e2cd3a2c6f56ddf"></h2>
-
 
 # Lexical Analysis
 
@@ -69,7 +68,6 @@
 ---
 
 <h2 id="503dc2cfa99223a98a1fa20ddd7aa67a"></h2>
-
 
 ## 3.1 The Role of the Lexical Analyzer
 
@@ -92,7 +90,6 @@ Sometimes, lexical analyzers are divided into a cascade of two processes:
 
 <h2 id="cb56a27f159fc337bddaa026a491cfa6"></h2>
 
-
 ### 3.1.1 Lexical Analysis Versus Parsing
 
 There are a number of reasons why the analysis portion of a compiler is normally separated into lexical analysis and parsing (syntax analysis) phases.
@@ -107,7 +104,6 @@ There are a number of reasons why the analysis portion of a compiler is normally
 ---
 
 <h2 id="4f54dc373bb9d6a8db7b4534ebcae01f"></h2>
-
 
 ### 3.1.2 Tokens, Patterns, and Lexemes
 
@@ -153,7 +149,6 @@ In many programming languages, the following classes cover most or all of the to
 
 <h2 id="b8c4a7ce665bbd5521e7531b5f56049d"></h2>
 
-
 ### 3.1.3 Attributes for Tokens
 
 When more than one lexeme can match a pattern, the lexical analyzer must provide additional information about the par­ticular lexeme that matched, for the subsequent compiler phases. 
@@ -196,7 +191,6 @@ are written below as a sequence of pairs.
 
 <h2 id="d401b0f8d4a56f8357ac6c0e053efe83"></h2>
 
-
 ### 3.1.4 Lexical Errors
 
 It is hard for a lexical analyzer to tell, without the aid of other components, that there is a source-code error. 
@@ -230,7 +224,6 @@ Transformations like these may be tried in an attempt to repair the input. The s
 
 <h2 id="48d05be5115ab5c35d376d2eae488b78"></h2>
 
-
 ## 3.2 Input Buffering
 
 We often have to look one or more characters beyond the next lexeme before we can be sure we have the right lexeme.
@@ -240,7 +233,6 @@ We shall introduce a two-buffer scheme that handles large lookaheads safely. We 
 ---
 
 <h2 id="b05d3f12b9ea3730efff70e2ca88648a"></h2>
-
 
 ### 3.2.1 Buffer Pairs
 
@@ -268,7 +260,6 @@ Advancing **forward** requires that we first test whether we have reached the en
 ---
 
 <h2 id="fff01af6a53288aa02eb09337c31967f"></h2>
-
 
 ### 3.2.2 Sentinels
 
@@ -308,7 +299,6 @@ Figure 3.5: Loo head code with sentinels
 
 <h2 id="200e4745c8f29de556808e708a402ac2"></h2>
 
-
 ## 3.3 Specification of Tokens
 
 Regular expressions are an important notation for specifying lexeme patterns. 
@@ -320,7 +310,6 @@ While they cannot express all possible patterns, regular expressions are very ef
 ---
 
 <h2 id="74e49ac16ef34367b51793af0f048840"></h2>
-
 
 ### 3.3.1 Strings and Languages
 
@@ -348,7 +337,6 @@ Since εs = s, it follows that s¹=s. Then s²=ss, s³=sss, and so on.
 
 <h2 id="4cbd840ba5cb383f70147e16ae7a05de"></h2>
 
-
 ### 3.3.2 Operations on Languages
 
 In lexical analysis, the most important operations on languages are union, con­catenation, and closure, which are defined formally in Fig. 3.6. 
@@ -364,7 +352,6 @@ Positive closure of L | L⁺  = ∪<sup>∞</sup>`ᵢ₌₁ Lⁱ`
 ---
 
 <h2 id="fb4a5b3852381b6aadac0887d6ff4ae2"></h2>
-
 
 ### 3.3.3 Regular Expressions
 
@@ -425,7 +412,6 @@ Figure 3.7: Algebraic laws for regular expressions
 
 <h2 id="9a75776dfb73fcfebabbb99bf3422851"></h2>
 
-
 ### 3.3.4 Regular Definitions
 
 For notational convenience, we may wish to give names to certain regular ex­pressions and use those names in subsequent expressions, as if the names were themselves symbols.
@@ -472,7 +458,6 @@ Example 3.6 : Unsigned numbers (integer or floating point) are strings such as 5
 
 <h2 id="7cedf7c26570a4666ecad1a2eb8730a0"></h2>
 
-
 ### 3.3.5 Extensions of Regular Expressions
 
  1. *One or more instances*. `+`
@@ -508,7 +493,6 @@ yacc 中 , `.` 代表的是除换行外 任意字符。
 ---
 
 <h2 id="ebea52fcade7fe28010bd99d30398b5d"></h2>
-
 
 ## 3.4 Recognition of Tokens
 
@@ -584,7 +568,6 @@ Figure 3.12: Tokens, their patterns, and attribute values
 
 <h2 id="0503745a655577520a59327358161a9f"></h2>
 
-
 ### 3.4.1 Transition Diagrams
 
 As an intermediate step in the construction of a lexical analyzer, we first convert patterns into stylized flowcharts, called "*transition diagrams*". 
@@ -624,7 +607,6 @@ Example 3.9 : Figure 3.13 is a transition diagram that recognizes the lexemes ma
 
 <h2 id="ac3ab235083c381748fdce42a4c1bb54"></h2>
 
-
 ### 3.4.2 Recognition of Reserved Words and Identifiers
 
 Recognizing keywords and identifiers presents a problem. Usually, keywords like **if** or **then** are reserved, so they are not identifiers even though they look like identifiers. Thus, although we typically use a transition diagram like that of Fig. 3.14 to search for identifier lexemes, this diagram will also recognize the keywords **if** , **then**, and **else** of our running example.
@@ -645,7 +627,6 @@ There are two ways that we can handle reserved words that look like iden­tifier
 ---
 
 <h2 id="97611c49db1511feaedefc22ac6ada49"></h2>
-
 
 ### 3.4.3 Completion of the Running Example
 
@@ -673,7 +654,6 @@ Note that in state 24, we have found a block of consecutive whitespace character
 ---
 
 <h2 id="d0fb312e375ee37b45a48c9c487d131a"></h2>
-
 
 ### 3.4.4 Architecture of a Transition-Diagram-Based Lexical Analyzer
 
@@ -745,7 +725,6 @@ To place the simulation of one transition diagram in perspective, let us conside
 
 <h2 id="921b7eb0390c2aa2b73abf6edb74ab44"></h2>
 
-
 ## 3.5 The Lexical-Analyzer Generator Lex
 
 In this section, we introduce a tool called **Lex**, or in a more recent implemen­tation **Flex**, that allows one to specify a lexical analyzer by specifying regular expressions to describe patterns for tokens. 
@@ -757,7 +736,6 @@ In this section, we introduce a tool called **Lex**, or in a more recent impleme
 ---
 
 <h2 id="d96ef03e4ef48fad67844a05f42082c8"></h2>
-
 
 ### 3.5.1 Use of Lex
 
@@ -772,7 +750,6 @@ Figure 3.22 suggests how Lex is used.
 ---
 
 <h2 id="657b471d853e0944613b1fc41f7988bd"></h2>
-
 
 ### 3.5.2 Structure of Lex Programs
 
@@ -890,7 +867,6 @@ The action taken when **id** is matched is threefold:
 
 <h2 id="cab9b67a202a7627adfcf2587ce702df"></h2>
 
-
 ### 3.5.3 Conflict Resolution in Lex
 
 We have alluded to the two rules that Lex uses to decide on the proper lexeme to select, when several prefixes of the input match one or more patterns:
@@ -902,7 +878,6 @@ We have alluded to the two rules that Lex uses to decide on the proper lexeme to
 ---
 
 <h2 id="f57723412a7038cb7392678e61a02b76"></h2>
-
 
 ### 3.5.4 The Lookahead Operator
 
@@ -944,7 +919,6 @@ We conclude that the letters IF constitute the lexeme, and they are an instance 
 
 <h2 id="adab9833ab2dcc6edab8a39432584e49"></h2>
 
-
 ## 3.6 Finite Automata
 
 We shall now discover how **Lex** turns its input program into a lexical analyzer. 
@@ -979,7 +953,6 @@ Both deterministic and nondeterministic finite automata are capable of rec­ogni
 
 <h2 id="a46bbbffe97f741d7522f9d7eba5483b"></h2>
 
-
 ### 3.6.1 Nondeterministic Finite Automata
 
 A ***nondeterministic finite automaton*** (NFA) consists of:
@@ -1007,7 +980,6 @@ Example 3.14 : The transition graph for an NFA recognizing the language of regul
 
 <h2 id="2ebef3028849a4dc0909d534069b2316"></h2>
 
-
 ### 3.6.2 Transition Tables
 
 We can also represent an NFA by a **transition table**, whose rows correspond to states, and whose columns correspond to the input symbols and ε. 
@@ -1021,7 +993,6 @@ The transition table has the advantage that we can easily find the transitions o
 ---
 
 <h2 id="7de19e880b9825779ec50e33458727d7"></h2>
-
 
 ### 3.6.3 Acceptance of Input Strings by Automata
 
@@ -1038,7 +1009,6 @@ Example 3.17: Figure 3.26 is an NFA accepting L(aa\*|bb\*). String *aaa* is acce
 ---
 
 <h2 id="4870f1974b0dd964c769b59b181d7226"></h2>
-
 
 ### 3.6.4 Deterministic Finite Automata
 
@@ -1071,7 +1041,6 @@ Example 3.19 : In Fig. 3.28 we see the transition graph of a DFA accepting the l
 
 <h2 id="6fb5154a96390d272c49cb3c414c0fb4"></h2>
 
-
 ## 3.7 From Regular Expressions to Automata
 
 Often it is important to convert an NFA to a DFA that accepts the same language.
@@ -1087,7 +1056,6 @@ We conclude with a discussion of the time-space tradeoffs inherent in the variou
 ---
 
 <h2 id="178a1d8d1d4772d490da973fd009261e"></h2>
-
 
 ### 3.7.1 Conversion of an NFA to a DFA
 
@@ -1210,7 +1178,6 @@ Note that D has one more state than the DFA of Fig. 3.28 for the same lan­guage
 
 <h2 id="d72575cbdcfb9adb060d4493ead39c36"></h2>
 
-
 ### 3.7.2 Simulation of an NFA
 
 A strategy that has been used in a number of text-editing programs is to con­struct an NFA from a regular expression and then simulate the NFA using something like an on-the-fly subset construction. The simulation is outlined below.
@@ -1239,7 +1206,6 @@ else return "no" ;
 ---
 
 <h2 id="8906dbe3b6522fc4916054cac3ea1bf6"></h2>
-
 
 ### 3.7.3 Effciency of NFA Simulation
 
@@ -1298,7 +1264,6 @@ for ( s on newStates ) {  // 22
 ---
 
 <h2 id="63ba62bd1272233558990dfb81e26ee2"></h2>
-
 
 ### 3.7.4 Construction of an NFA from a Regular Expression
 
@@ -1388,7 +1353,6 @@ We merge states 7 and 7'. Continuing in this fashion with new NFA's for the two 
 
 <h2 id="d3b6cfc6bff4c4985298cd4b6ccd8806"></h2>
 
-
 ### 3.7.5 Efficiency of String-Processing Algorithms
 
 We observed that Algorithm 3.18 processes a string x in time *O(|x|)*, while in Section 3.7.3 we concluded that we could simulate an NFA in time proportional to the product of *|x|* and the size of the NFA's transition graph. Obviously, it is faster to have a DFA to simulate than an NFA, so we might wonder whether it ever makes sense to simulate an NFA.
@@ -1405,7 +1369,6 @@ DFA worst case | O(\|r\|²2<sup>\|r\|</sup>)  | O(\|x\|)
 
 <h2 id="9be0f70930b6a8eaced083f8e54612e4"></h2>
 
-
 ## 3.8 Design of a Lexical-Analyzer Generator
 
 In this section we shall apply the techniques presented in Section 3.7 to see how a lexical-analyzer generator such as **Lex** is architected. We discuss two approaches, based on NFA's and DFA's; the latter is essentially the implementation of **Lex**.
@@ -1413,7 +1376,6 @@ In this section we shall apply the techniques presented in Section 3.7 to see ho
 ---
 
 <h2 id="bc1a201f9c5d4a767a356a8f7c8e2539"></h2>
-
 
 ### 3.8.1 The Structure of the Generated Analyzer
 
@@ -1463,7 +1425,6 @@ Fig. 3.52 shows these three NFA's combined into a single NFA by the addition of 
 
 <h2 id="591c0cef90e7cc631724a82526181aa7"></h2>
 
-
 ### 3.8.2 Pattern Matching Based on NFA's
 
 If the lexical analyzer simulates an NFA such as that of Fig. 3.52, then it must read input beginning at the point on its input which we have referred to as *lexemeBegin*. As it moves the pointer called *forward* ahead in the input, it calculates the set of states it is in at each point, following Algorithm 3.22 (Simulating an NFA).
@@ -1496,7 +1457,6 @@ prefix *aab* is the longest prefix that gets us to an accepting state. We theref
 
 <h2 id="560deab5107ca190345913cc30cdd379"></h2>
 
-
 ### 3.8.3 DFA's for Lexical Analyzers
 
 Another architecture, resembling the output of **Lex**, is to convert the NFA for all the patterns into an equivalent DFA, using the subset construction of Algorithm 3.20. 
@@ -1518,7 +1478,6 @@ Example 3.29 : Suppose the DFA of Fig. 3.54 is given input *abba*. The se­quenc
 ---
 
 <h2 id="842ebc90f1674282757f47268758cd3a"></h2>
-
 
 ### 3.8.4 Implementing the Lookahead Operator
 
@@ -1556,7 +1515,6 @@ In fact, the problem is harder than it appears, since an NFA-to-DFA construction
 
 <h2 id="fd5afa6bcd74b9b2aa4ece82a8f4e8c2"></h2>
 
-
 ## 3.9 Optimization of DFA-Based Pattern Matchers
 
 In this section we present three algorithms that have been used to implement and optimize pattern matchers constructed from regular expressions.
@@ -1570,7 +1528,6 @@ In this section we present three algorithms that have been used to implement and
 ---
 
 <h2 id="cfa97bca3bad7182d66db81969204ef9"></h2>
-
 
 ### 3.9.1 Important States of an NFA
 
@@ -1611,7 +1568,6 @@ The numbered states in the NFA and the positions in the syntax tree correspond i
 
 <h2 id="ccaa63c1798e41e31f9f8e8a2091aac9"></h2>
 
-
 ### 3.9.2 Functions Computed From the Syntax Tree
 
 To construct a DFA directly from a regular expression, we construct its syntax tree and then compute four functions: **nullable**, **firstpos**, **lastpos**, and **followpos**, defined as follows.
@@ -1649,7 +1605,6 @@ We claim nullable(n) is false, since this node generates all strings of a's and 
 
 <h2 id="9d510c7a831f62018cae56836a266769"></h2>
 
-
 ### 3.9.3 Computing *nullable*, *firstpos*, and *lastpos*
 
 We can compute *nullable*, *firstpos*, and *lastpos* by a straightforward recursion on the height of the tree. The basis and inductive rules for *nullable* and *firstpos* are summarized in Fig. 3.58. The rules for *lastpos* are essentially the same as for firstpos, but the roles of children c₁ and c₂ must be swapped in the rule for a cat-node.
@@ -1685,7 +1640,6 @@ The computation of *firstpos* and *lastpos* for each of the nodes is shown in Fi
 ---
 
 <h2 id="cb99b99a4bf8d9971dafc9579d962576"></h2>
-
 
 ### 3.9.4 Computing followpos
 
@@ -1724,7 +1678,6 @@ It should come as no surprise that the graph for *followpos* is almost an NFA wi
 --- 
 
 <h2 id="fd0a77b3813cb5692d1689d95568daf7"></h2>
-
 
 ### 3.9.5 Converting a Regular Expression Directly to a DFA
 
@@ -1782,7 +1735,6 @@ We observed that for this tree, *nullable* is true only for the star-node, and w
 ---
 
 <h2 id="5f8d48865d5cddabffbed51ce176bcbb"></h2>
-
 
 ### 3.9.6 Minimizing the Number of States of a DFA
 
@@ -1876,7 +1828,6 @@ This state is technically needed, because a DFA must have a transition from ever
 
 <h2 id="6968fda06e8f79559037d7f27f3360f9"></h2>
 
-
 ### 3.9.7  State Minimization in Lexical Analyzers
 
 To apply the state minimization procedure to the DFA's generated in Sec­tion 3.8.3, we must begin Algorithm 3.39 with the partition that groups to­gether all states that recognize a particular token, and also places in one group all those states that do not indicate any token. An example should make the extension clear.
@@ -1899,7 +1850,6 @@ Recall that a DFA serving as a lexical analyzer will normally drop the dead stat
 ---
 
 <h2 id="af4e82fbb4a2e52c6d19d63130637e95"></h2>
-
 
 ### 3.9.8  Trading Time for Space in DFA Simulation
 

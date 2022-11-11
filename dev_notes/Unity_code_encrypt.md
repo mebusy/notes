@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [unity C# 加密](#59079838bd54368031bb73b3999b5964)
     - [准备工作](#88210852e6553d4dd59f3c922ba608d0)
@@ -7,18 +7,16 @@
     - [解密](#1872008289c5e25292fe34cb024b7d9e)
     - [编译Windows平台mono.dll](#a54996b33b6ee1054017744535d1612e)
 
-...menuend
+[](...menuend)
 
 
 [TOC]
 
 <h2 id="59079838bd54368031bb73b3999b5964"></h2>
 
-
 # unity C# 加密
 
 <h2 id="88210852e6553d4dd59f3c922ba608d0"></h2>
-
 
 ## 准备工作
 
@@ -40,7 +38,6 @@ export NDK_ROOT NDK ANDROID_NDK_ROOT
 ```
 
 <h2 id="984612f0e7ba26ecc8da6bd7c8759d28"></h2>
-
 
 ## 编译
 
@@ -74,13 +71,11 @@ export NDK_ROOT NDK ANDROID_NDK_ROOT
 
 <h2 id="56563edf23b9d717dc63981b8836fc60"></h2>
 
-
 ## 加密
 
 - 加密 `assets/bin/Data/Managed/Assembly-CSharp.dll`
 
 <h2 id="1872008289c5e25292fe34cb024b7d9e"></h2>
-
 
 ## 解密
 
@@ -111,7 +106,6 @@ if (!data || !data_len) {
    
 
 <h2 id="a54996b33b6ee1054017744535d1612e"></h2>
-
 
 ## 编译Windows平台mono.dll
 

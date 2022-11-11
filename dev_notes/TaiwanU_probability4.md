@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week 4 离散机率分布](#07e1b9e336ae6e129168b900f3158d5d)
     - [4.1 随机变数 (RANDOM VARIABLE)](#a4c3bd594c5ea4f3fc9fcce3586fbf18)
@@ -23,16 +23,14 @@
         - [Poisson 机率分布](#66e278878307932e688a55d600961fdf)
             - [和Binomial 的关系](#583ba9bfcbd2e04c6f0f65a92061f123)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="07e1b9e336ae6e129168b900f3158d5d"></h2>
 
-
 # Week 4 离散机率分布
 
 <h2 id="a4c3bd594c5ea4f3fc9fcce3586fbf18"></h2>
-
 
 ## 4.1 随机变数 (RANDOM VARIABLE)
 
@@ -61,7 +59,6 @@
 
 <h2 id="a33ac1d92bc31a31da5665a97aadb111"></h2>
 
-
 ### 探究它的本质!
 
 - 随机变量的本质是什么?
@@ -71,7 +68,6 @@
     - X: S → ℝ
 
 <h2 id="e644c0d51064d3032fe3d27919ffe3da"></h2>
-
 
 ### 随机变数的种类
 
@@ -86,7 +82,6 @@
 
 <h2 id="5bf91f651f94a7d5ba4a11ac547d51d6"></h2>
 
-
 ### 神马叫可数?神马叫不可数?
 
 - 重要性质:0 到 1 之间的所有数字的集合是不可数的!
@@ -95,7 +90,6 @@
 - 因为都可以找到一对一对应的方法。
 
 <h2 id="1665de2424d65db6d533386753911167"></h2>
-
 
 ### 随机变量的函数?
 
@@ -109,7 +103,6 @@
 
 <h2 id="d6fd0c71fd9be392edd5a91921b0eaf3"></h2>
 
-
 ## 4.2 累积分布函数 CDF (CUMULATIVE DISTRIBUTION FUNCTION)
 
 - 对任一个随机变数 X ，我们定义 其 CDF 为函数:
@@ -120,7 +113,6 @@
  
  
 <h2 id="c3d3b89aedf13c4a6de6f558a6a0cfa9"></h2>
-
 
 ### CDF 有什么用?
  
@@ -133,7 +125,6 @@
 
 <h2 id="917493f1d72a878df54e59714b677430"></h2>
 
-
 ### 离散随机变数的 CDF 长怎样?
 
 - Ex:X为骰子的点数，故P(X=1) =P(X=2) =P(X=3) =P(X=4) =P(X=5) =P(X=6) =1/6
@@ -143,7 +134,6 @@
 - P( 3< X< 5 ) = P( 3< X≤ 5⁻ ) = F<sub>X</sub>(5⁻) - F<sub>X</sub>(3)  = F<sub>X</sub>(5) - P(X=5) - F<sub>X</sub>(3) = 1/6
 
 <h2 id="7f7cd8bcf7af60bb124933e0f7db3150"></h2>
-
 
 ### 连续随机变数的 CDF 长怎样?
 
@@ -155,7 +145,6 @@
 
 
 <h2 id="d3f28a5c19885b5e4ef1cb86d56b356b"></h2>
-
 
 ### CDF 的性质
 
@@ -173,7 +162,6 @@
 
 <h2 id="df629b43f1e17bdd8b59ff70feb570a8"></h2>
 
-
 ## 4.3 机率质量函数 PMF (PROBABILITY MASS FUNCTION)
 
 - 只有 离散随机变数 有 PMF
@@ -183,7 +171,6 @@
     - p<sub>X</sub>(3) = P(X=3) = 1/6
 
 <h2 id="a8699842209b391b17b7623a4c1b85d8"></h2>
-
 
 ### PMF 跟 CDF 的关系?
 
@@ -195,7 +182,6 @@
 
 <h2 id="5a70965e6e318af45220c5484c2b8dc4"></h2>
 
-
 ### 机率分布 (Probability Distribution)
 
 - 任何一个 PMF(或是之后介绍的 PDF)都称作是一种 ***机率分布*** (将总和为 1 的机率分布在点上之故)
@@ -204,7 +190,6 @@
 ---
 
 <h2 id="68e8045f19a785d2e1b77ac7870d2076"></h2>
-
 
 ## 4.4 离散机率分布 I (DISCRETE PROBABILITY DISTRIBUTIONS)
  
@@ -216,7 +201,6 @@
 
 <h2 id="ed43ca1c9bb0671f81bb3bdeaf8c6095"></h2>
 
-
 ### Bernoulli 机率分布
 
 - PMF: 若实验成功机率为 p , 作 1 次实验， X 表成功次数
@@ -227,7 +211,6 @@
 ---
 
 <h2 id="e0dc24e9ac7e53085bd7bc2a2775917e"></h2>
-
 
 ### Binomial 机率分布
 
@@ -273,7 +256,6 @@ pylab.show()
 
 <h2 id="f7bf1cb803a0ab0539a6dc3ed526dd4f"></h2>
 
-
 ### Uniform 机率分布
 
 - 观察一下        
@@ -288,7 +270,6 @@ pylab.show()
 
 
 <h2 id="7903bb94dad83aeea3bf8559e6cdd143"></h2>
-
 
 ### Geometric 机率分布
 
@@ -334,7 +315,6 @@ pylab.show()
 
 <h2 id="f7b44a579af87c25b4b1cf0b98602a56"></h2>
 
-
 ### Pascal 机率分布
 
 - 观察一下   
@@ -376,7 +356,6 @@ pylab.show()
 ![](../imgs/TU_probability_Pascal_k5_p01_graph2.png)
 
 <h2 id="66e278878307932e688a55d600961fdf"></h2>
-
 
 ### Poisson 机率分布
  
@@ -429,7 +408,6 @@ pylab.show()
 
 
 <h2 id="583ba9bfcbd2e04c6f0f65a92061f123"></h2>
-
 
 #### 和Binomial 的关系
 

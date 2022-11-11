@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Bayes' Nets](#c2f3bc4be79d4a49c84b7ffb0644eff9)
     - [Probabilisitc Models](#f1f32e6fc4b6fcc5409cb5b84da30756)
@@ -19,11 +19,10 @@
     - [Causality?](#54f20fcd3def5febfad5b1407c902d3f)
     - [Bayes’ Nets](#cb30f9b4fbe788aecc363dfbb9d8a620)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c2f3bc4be79d4a49c84b7ffb0644eff9"></h2>
-
 
 # Bayes' Nets
 
@@ -35,7 +34,6 @@ Bayes' Nets wil give us a way to deal with distributions of our large sets of ra
 
 
 <h2 id="f1f32e6fc4b6fcc5409cb5b84da30756"></h2>
-
 
 ## Probabilisitc Models 
 
@@ -54,14 +52,12 @@ Bayes' Nets wil give us a way to deal with distributions of our large sets of ra
 
 <h2 id="6dbb065be0f855ef230490aedd47103a"></h2>
 
-
 ## Conditional Independence and the Chain Rule
 
 - Bayes’nets / graphical models help us express conditional independence assumptions
 
 
 <h2 id="9660c002f8b9677254dd06f6473fe388"></h2>
-
 
 ## Ghostbusters Chain Rule
 
@@ -91,7 +87,6 @@ So you could have a measurement on each of these squares so each of them could g
 
 <h2 id="8755cf27c012dd862b7fafd818ebe47c"></h2>
 
-
 ## Bayes’Nets: Big Picture
 
 It's a new way of representing joint distributions. It's very closely related to the chain rule. 
@@ -109,7 +104,6 @@ We've always talked about discrete random variables , and then a distribution ca
 
 <h2 id="48af1ae6f8bdf0820233428d9154139d"></h2>
 
-
 ### Example Bayes’ Net: Insurance
 
 ![](../imgs/cs188_BNsR_example_insurance.png)
@@ -122,7 +116,6 @@ We've always talked about discrete random variables , and then a distribution ca
 ---
 
 <h2 id="28fa8f61771681fb87012ffe5cebe489"></h2>
-
 
 ## Graphical Model Notation
 
@@ -142,7 +135,6 @@ We've always talked about discrete random variables , and then a distribution ca
 
 <h2 id="b21fb046e03cde12d963e952806fb6e5"></h2>
 
-
 ### Example: Coin Flips
 
 - N independent coin flips
@@ -151,7 +143,6 @@ We've always talked about discrete random variables , and then a distribution ca
 ![](../imgs/cs188_BNsR_example_coin_flip.png)
 
 <h2 id="fb89b5b88a6b8a1c7631833b7faa03c8"></h2>
-
 
 ### Example: Traffic
 
@@ -162,7 +153,6 @@ We've always talked about discrete random variables , and then a distribution ca
     - R → T
 
 <h2 id="1b596ac7e393d4800237a4fd706e8812"></h2>
-
 
 ### Example: Traffic II
 
@@ -190,7 +180,6 @@ We've always talked about discrete random variables , and then a distribution ca
     
 <h2 id="f768385fe8f12ac5b5067eeb09ca1399"></h2>
 
-
 ### Example: Alarm Network
 
 - Variables
@@ -208,7 +197,6 @@ We've always talked about discrete random variables , and then a distribution ca
 ---
 
 <h2 id="4dbc391a5b44f9e161311a3fba175cc0"></h2>
-
 
 ## Bayes’ Net Semantics
 
@@ -230,7 +218,6 @@ For a given Bayes' Net, what does it mean ? What joint probability distribution 
 ---
 
 <h2 id="ce8acee5cb0da810e5f01ddfa604658c"></h2>
-
 
 ## Probabilities in BNs
 
@@ -258,13 +245,11 @@ So you are making these assumptions , limiting the size of parent set, to have m
 
 <h2 id="f768385fe8f12ac5b5067eeb09ca1399"></h2>
 
-
 ### Example: Alarm Network
 
 ![](../imgs/cs188_BNsR_example_alarm_joint_distribution.png)
 
 <h2 id="fb89b5b88a6b8a1c7631833b7faa03c8"></h2>
-
 
 ### Example: Traffic
 
@@ -275,7 +260,6 @@ So here is the joint distribution over T and R, that is implied by the Bayes' Ne
 
 <h2 id="f4b6db064e3259a2c85401269f24a90d"></h2>
 
-
 ### Example: Reverse Traffic
 
 ![](../imgs/cs188_BNsR_example_traffic_joint_dist_reverse.png)
@@ -285,7 +269,6 @@ This network here, which does not match the causal process, encodes the exact sa
 ---
 
 <h2 id="54f20fcd3def5febfad5b1407c902d3f"></h2>
-
 
 ## Causality?
 
@@ -308,7 +291,6 @@ This network here, which does not match the causal process, encodes the exact sa
  
 
 <h2 id="cb30f9b4fbe788aecc363dfbb9d8a620"></h2>
-
 
 ## Bayes’ Nets
 

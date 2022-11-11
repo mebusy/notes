@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Chapter 5 : Syntax-Directed Translation](#540b35b48067336ac81ed72b19b2d25d)
     - [5.1 Syntax-Directed Definitions](#c17f9eaa10ce812de9972d19e5f8c9d6)
@@ -7,11 +7,10 @@
     - [5.3 Applications of Syntax-Directed Translation](#b0f40c652517be0bfddc1eec315f7fc6)
         - [5.3.1 Construction of Syntax Trees  (TODO)](#e3e96ea672ac084ac9f816eef5a05639)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="540b35b48067336ac81ed72b19b2d25d"></h2>
-
 
 # Chapter 5 : Syntax-Directed Translation
 
@@ -47,7 +46,6 @@ The most general approach to syntax-directed translation is to construct a parse
 
 <h2 id="c17f9eaa10ce812de9972d19e5f8c9d6"></h2>
 
-
 ## 5.1 Syntax-Directed Definitions
 
 A *syntax-directed definition* (SDD) is a context-free grammar together with attributes and rules. Attributes are associated with grammar symbols and rules are associated with productions. If X is a symbol and a is one of its attributes, then we write X.a to denote the value of a at a particular parse-tree node labeled X. If we implement the nodes of the parse tree by records or objects, then the attributes of X can be implemented by data fields in the records that represent the nodes for X. Attributes may be of any kind: numbers, types, table references, or strings, for instance. The strings may even be long sequences of code, say code in the intermediate language used by a compiler.
@@ -55,7 +53,6 @@ A *syntax-directed definition* (SDD) is a context-free grammar together with att
 ---
 
 <h2 id="04ebabaa61165c801fcaf1d9edb7eb0e"></h2>
-
 
 ### 5.1.1 Inherited and Synthesized Attributes
 
@@ -87,13 +84,11 @@ An SDD without side effects is sometimes called an attribute grammar. The rules 
 
 <h2 id="6a8f31023d1957d6a63144698dc91303"></h2>
 
-
 ### 5.1.2 Evaluating an SDD at the Nodes of a Parse Tree  (TODO)
 
 ---
 
 <h2 id="b0f40c652517be0bfddc1eec315f7fc6"></h2>
-
 
 ## 5.3 Applications of Syntax-Directed Translation
 
@@ -109,7 +104,6 @@ The final example of this section is an L-attributed definition that deals with 
 ---
 
 <h2 id="e3e96ea672ac084ac9f816eef5a05639"></h2>
-
 
 ### 5.3.1 Construction of Syntax Trees  (TODO)
 

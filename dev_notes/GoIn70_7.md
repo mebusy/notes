@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [7 Serving and receiving assets and forms](#4c4f94964de9b380c09ef02655cd111c)
     - [7.1 Serving static content](#3a682f610038c898479871d57c7b1805)
@@ -13,16 +13,14 @@
         - [7.2.3 Working with raw multipart data](#226c031cb6a7636b20c3491377c5d1eb)
             - [TECHNIQUE 48 Incrementally saving a file](#2aa8a6363809849fc0475ef29b6405c4)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="4c4f94964de9b380c09ef02655cd111c"></h2>
 
-
 # 7 Serving and receiving assets and forms
 
 <h2 id="3a682f610038c898479871d57c7b1805"></h2>
-
 
 ## 7.1 Serving static content
 
@@ -70,7 +68,6 @@ func readme(res http.ResponseWriter, req *http.Request) {
 
 <h2 id="3c5523c5e1abe28dfc6de26a395bb6bf"></h2>
 
-
 ####  TECHNIQUE 39 Serving subdirectories
 
 ```
@@ -95,11 +92,9 @@ func main() {
 
 <h2 id="35df994f14b36fba0672e7b4cff94f9f"></h2>
 
-
 ## 7.2 Handling form posts
 
 <h2 id="cc10622fdbb0431fa2f773bfd734aaed"></h2>
-
 
 ### 7.2.1 Introduction to form requests
 
@@ -153,7 +148,6 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="d899152b3a89a982e960535b41d046e8"></h2>
 
-
 #### TECHNIQUE 44 Accessing multiple values for a form field
 
 - PROBLEM: FormValue and PostFormValue each return the first value for a form field. 
@@ -181,11 +175,9 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="8ce582ef69928a1ebfc5d6ba03a524b0"></h2>
 
-
 ### 7.2.2 Working with files and multipart submissions
 
 <h2 id="8c979490bd1b37dcea666c8f9b4467a9"></h2>
-
 
 #### TECHNIQUE 45 Uploading a single file
 
@@ -267,7 +259,6 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="a0208958d6a483dda58216795b0b4afe"></h2>
 
-
 #### TECHNIQUE 46 Uploading multiple files
 
 - PROBLEM: How do you process the files when multiple files are uploaded to a single file-input field on a form?
@@ -335,7 +326,6 @@ func fileForm(w http.ResponseWriter, r *http.Request) {
 
 <h2 id="d2fb3ec944fda34debbc612113660bd6"></h2>
 
-
 #### TECHNIQUE 47 Verify uploaded file is allowed type
 
 - When a file is uploaded, it could be any type of file. 
@@ -379,7 +369,6 @@ filetype := http.DetectContentType(buffer)
 
 <h2 id="226c031cb6a7636b20c3491377c5d1eb"></h2>
 
-
 ### 7.2.3 Working with raw multipart data
 
 - The previous file-handling techniques work well when you’re dealing with small files or files as a whole, but limit your ability to work with files while they’re being uploaded.
@@ -390,7 +379,6 @@ filetype := http.DetectContentType(buffer)
  
 
 <h2 id="2aa8a6363809849fc0475ef29b6405c4"></h2>
-
 
 #### TECHNIQUE 48 Incrementally saving a file
 

@@ -1,13 +1,12 @@
-...menustart
+[](...menustart)
 
 - [gitlib CI notes](#285b8e93864bfda7ad33e643619bc862)
     - [Example .gitlab-ci.yml , build docker image & push 2 AWS ECR](#5495f7a485fc8be5f547ce40842b4d60)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="285b8e93864bfda7ad33e643619bc862"></h2>
-
 
 # gitlib CI notes
 
@@ -19,7 +18,6 @@
 
 
 <h2 id="5495f7a485fc8be5f547ce40842b4d60"></h2>
-
 
 ## Example .gitlab-ci.yml , build docker image & push 2 AWS ECR
 

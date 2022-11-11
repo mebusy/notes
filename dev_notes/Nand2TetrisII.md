@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [N2T II](#bac29c18ee57f5e44301707955d4a100)
 - [Week 1  Virtual Machine I:  Stack Arithmetic](#893dc2867381fa94bcc302a5a2d0a801)
@@ -46,21 +46,18 @@
         - [Special symbols in VM programs.](#94483dac5a4cf1b1daebb28da6ba8051)
     - [2.9 Project 8](#eb4eb0e9c105fa3e9a4c637379cbfe82)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="bac29c18ee57f5e44301707955d4a100"></h2>
-
 
 # N2T II
 
 <h2 id="893dc2867381fa94bcc302a5a2d0a801"></h2>
 
-
 # Week 1  Virtual Machine I:  Stack Arithmetic
 
 <h2 id="fd054c95652579b1b9fc9935eb80dbf5"></h2>
-
 
 ## 1.0 The Road Ahead
 
@@ -80,7 +77,6 @@
 
 <h2 id="5439281e252a735d7c2c7f4eeec963af"></h2>
 
-
 ## 1.1 Program Compilation Preview
 
 - Jack compilation 
@@ -90,7 +86,6 @@
         - b) use a **VM translator** to translate the VM code into machine language.
 
 <h2 id="ef580f60327a361e1d548da59cbc2b35"></h2>
-
 
 ## 1.2 VM Abstraction: the Stack
 
@@ -102,7 +97,6 @@
     - Commands : a set of operations that can be applied to this architecture
 
 <h2 id="2187e1021a911b3807cc1bea2eb1a9ca"></h2>
-
 
 ### Stack
 
@@ -122,7 +116,6 @@
     - ![](../imgs/n2t_stack_boolean_operation.png)
 
 <h2 id="ce74f8cad75b6370e8c76ee00dcb3777"></h2>
-
 
 ### Stack arithmetic , the big picture
 
@@ -145,7 +138,6 @@ pop x
 
 <h2 id="a422da0dca7445b51baae3e56b481ec6"></h2>
 
-
 ### The stack machine model 
 
 - Stack machine , manipulated by 4 categories of commands:
@@ -156,7 +148,6 @@ pop x
 
 
 <h2 id="34721e42e306875fc467c65ae98cc5c0"></h2>
-
 
 ### Arithmetic/Logical commands
 
@@ -195,11 +186,9 @@ or
 
 <h2 id="8f3594e14399fa4e216e20e0d2f29607"></h2>
 
-
 ## 1.3 VM Abstraction : Memory Segments
 
 <h2 id="0815d0e5b0d3f2868d04684571389afa"></h2>
-
 
 ### The big picture 
 
@@ -266,7 +255,6 @@ pop local 2
 
 <h2 id="5bf26647274cf1d0abd6aa14fe11ee04"></h2>
 
-
 ## 1.4: VM Implementation: the Stack
 
 - if we want to acutally execute the VM code in some concrete way, we have to realize it on some Von Neumann machine.
@@ -276,7 +264,6 @@ pop local 2
     - we have to translate them into a sequences machine labeling instructions that will operate on this world -- that we just built on the RAM.
 
 <h2 id="41e5e1bb12d244f32b5aa66340010cd4"></h2>
-
 
 ### Stack machine
 
@@ -311,11 +298,9 @@ M=M+1
 
 <h2 id="64e8857fd9605e8fa53358d07022f839"></h2>
 
-
 ## 1.5 VM Implementation: Memory Segments
 
 <h2 id="32db95696aadced184b3f6bd0b6c8297"></h2>
-
 
 ### Implementing local
 
@@ -344,7 +329,6 @@ You write it !
 
 <h2 id="4f42e18745e69276fd474fa9cca7b1ce"></h2>
 
-
 ### Implementing local, argument, this, that 
 
 - The big picture:  
@@ -357,7 +341,6 @@ You write it !
 
 
 <h2 id="b8dcb3b490d221a9976720a7119a0db6"></h2>
-
 
 ### Memory segment: constant
 
@@ -378,7 +361,6 @@ push constant i
 ```
 
 <h2 id="3157dff7882be0f2760a9a66f3e8aa3c"></h2>
-
 
 ### Memory segment: static 
 
@@ -410,7 +392,6 @@ M=D
 
 <h2 id="1247a68afcaf24b007e0f6983e4d8068"></h2>
 
-
 ### Memory segment: temp
 
 - The big picture:  The compile
@@ -425,7 +406,6 @@ M=D
 ![](../imgs/n2t_impl_temp.png)
 
 <h2 id="7d1afed0c366e2841c1a2a0fe1ddf8ed"></h2>
-
 
 ### Memory segment: pointer
 
@@ -450,7 +430,6 @@ push pointer 0/1
 
 <h2 id="438feb7d5df4383c668d654e6b06c9b8"></h2>
 
-
 ### VM Language Summary
 
 - Arithmetic / Logical commands
@@ -470,7 +449,6 @@ push pointer 0/1
 
 <h2 id="08ebaec9ba3c4a06e961ad39c3ed4d90"></h2>
 
-
 ## 1.7 VM Implementation on the Hack Platform
 
 - Standard VM mapping on the Hack platform
@@ -478,7 +456,6 @@ push pointer 0/1
 ![](../imgs/n2t_stardard_vm_mapping.png)
 
 <h2 id="3d462674294fc4eaf8ff5814273c7910"></h2>
-
 
 ## 1.A Perspective
 
@@ -493,11 +470,9 @@ push pointer 0/1
 
 <h2 id="af0e25aeb9eae90e58b3e8b5ff014ab4"></h2>
 
-
 # Week2:  Virutal Machine : Program Control
 
 <h2 id="a8dc973caf37c0f538c3155e06cc57bd"></h2>
-
 
 ## 2.1 Program Contorl
 
@@ -510,7 +485,6 @@ push pointer 0/1
 - Completing the VM implementation
 
 <h2 id="4e0051bf323aac8e7d110e99cc29e329"></h2>
-
 
 ## 2.2 Branching
 
@@ -531,7 +505,6 @@ push pointer 0/1
 
 <h2 id="82a19ea128b46ad2cc65aa93eb4c8bc3"></h2>
 
-
 ## 2.3 Functions Abstraction
 
 - Functions in the VM language
@@ -543,7 +516,6 @@ push pointer 0/1
 - 注意，图右侧是 伪代码
 
 <h2 id="72a1ff5a098950516d22c2afe18d365a"></h2>
-
 
 ### function defining 
 
@@ -558,7 +530,6 @@ push pointer 0/1
 - compile 翻译的时候，确定 函数 mult 需要用到几个 local 变量
 
 <h2 id="b1c3207ee679f6c197d493f9d4df7b36"></h2>
-
 
 ### function executing
 
@@ -581,7 +552,6 @@ push pointer 0/1
 
 <h2 id="ce3e69cd7d023ea4fe609ff2a5c49cfe"></h2>
 
-
 ### Making the abstraction work: implementation
 
 - For each function **call** during run-time, the implementation has to ...
@@ -599,7 +569,6 @@ push pointer 0/1
 
 <h2 id="586f372e18946c033ec0ca031a58046d"></h2>
 
-
 ### Function call and return :  units plan
 
 - 2.4 Implementation preview
@@ -609,7 +578,6 @@ push pointer 0/1
 
 
 <h2 id="b180acf8e32352cc37d77ba0c9a5b898"></h2>
-
 
 ## 2.4 Function Call and Return: Implementation Preview
 
@@ -634,7 +602,6 @@ push pointer 0/1
 
 <h2 id="2376d3570a0a96432c3fea347f900e5a"></h2>
 
-
 ### the big picture 
 
 - Example: computing mult(17,212)
@@ -645,7 +612,6 @@ push pointer 0/1
     - The function's arguments (17,212) were replaced by the function's value (3604)
 
 <h2 id="464cea080754ea13ae81fd5914f5ef36"></h2>
-
 
 ### Function call and return: the detail
 
@@ -709,7 +675,6 @@ push pointer 0/1
 
 <h2 id="f96b213d57e6b391baa08b65a47f7a52"></h2>
 
-
 ### The global stack 
 
 - block
@@ -726,7 +691,6 @@ push pointer 0/1
 
 <h2 id="053c88fa1043f8f8e84691ee98d1077a"></h2>
 
-
 ## 2.5 Function Call and Return: Run-time Simulation
 
 - Example: factorial         
@@ -734,7 +698,6 @@ push pointer 0/1
 ![](../imgs/n2t_example_factorial.png)
 
 <h2 id="bc366f2d0ba3d681e7a3899917c5d3de"></h2>
-
 
 ### Runtime 
 
@@ -744,7 +707,6 @@ push pointer 0/1
          
 
 <h2 id="44dc5651d1d6eeee92e44c1adf0a7fc5"></h2>
-
 
 ## 2.6: Function Call and Return Implementation
 
@@ -784,7 +746,6 @@ push pointer 0/1
 
 <h2 id="ca857297def9d4e2b5ec7224b1098dfc"></h2>
 
-
 ### Handling call
 
 - the caller is running ,doing some work .   and then all of a sudden , we encounter a call .
@@ -806,7 +767,6 @@ push pointer 0/1
 - ![](../imgs/n2t_vm_function_handel_call4.png)
 
 <h2 id="9a6ac99285250a3da217d99cc0c32c6b"></h2>
-
 
 ### Handling function
 
@@ -847,7 +807,6 @@ push pointer 0/1
       
 <h2 id="a980b1ca368f6fd5ee3ef70efecf227c"></h2>
 
-
 ## 2.7 VM Implementation on the Hack Platform
 
 - The big picture: program compilation and translation 
@@ -862,7 +821,6 @@ push pointer 0/1
 - In order to implement it on the Hack platform, I have to comply to certain conventions and the first convention is booting. 
 
 <h2 id="d31181c15b9b2bfe52e84052376b0c04"></h2>
-
 
 ### Booting 
 
@@ -888,20 +846,17 @@ Call Sys.init
 
 <h2 id="a567e084852bf1e713595b62208cb916"></h2>
 
-
 ### Standard mapping of the VM on the Hack platform 
 
 ![](../imgs/n2t_standard_mapping_2.png)
 
 <h2 id="94483dac5a4cf1b1daebb28da6ba8051"></h2>
 
-
 ### Special symbols in VM programs. 
 
 ![](../imgs/n2t_vm_special_symbol.png)
 
 <h2 id="eb4eb0e9c105fa3e9a4c637379cbfe82"></h2>
-
 
 ## 2.9 Project 8
 

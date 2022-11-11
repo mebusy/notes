@@ -1,13 +1,12 @@
-...menustart
+[](...menustart)
 
 - [k8s PhpMyAdmin](#64493d0248d5db97e2d3214dd59bd9ab)
     - [PhpMyAdmin](#0c7e3f8767783c04b98b70f2bba3d57a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="64493d0248d5db97e2d3214dd59bd9ab"></h2>
-
 
 #  k8s PhpMyAdmin 
 
@@ -15,7 +14,6 @@
 
 
 <h2 id="0c7e3f8767783c04b98b70f2bba3d57a"></h2>
-
 
 ## PhpMyAdmin
 

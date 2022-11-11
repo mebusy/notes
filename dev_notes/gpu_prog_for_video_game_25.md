@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [25: Environment Mapping](#19ffde22bc6feb61e5d45a4a82a2e5c0)
     - [Vector Notation](#902405de406cdbad4b017ad8413eee37)
@@ -15,18 +15,16 @@
     - [EnvMap ( per Pixel ) -- Vertex Program](#be232993bbebdcb5c0f45b4ca6059311)
     - [EnvMap ( per Pixel ) -- Fragment Program](#7c43ebcad7b9462cfe2d235796672691)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="19ffde22bc6feb61e5d45a4a82a2e5c0"></h2>
-
 
 # 25: Environment Mapping
 
 - If you want an accurate simulation of those kind of effects ( e.g. reflection ) you need to go to something like ray tracing.
 
 <h2 id="902405de406cdbad4b017ad8413eee37"></h2>
-
 
 ## Vector Notation
 
@@ -37,7 +35,6 @@
 
 
 <h2 id="aea1e492943ccbad7ee270ec1e064758"></h2>
-
 
 ## Reflection
 
@@ -50,7 +47,6 @@
 
 <h2 id="ea850b88c9ce09cfa7b387d36fc78ae6"></h2>
 
-
 ## Cube Maps
 
 - The way we're going to fake reflection effects is using a cube map.
@@ -60,7 +56,6 @@
     - the 2nd parameter `vec` doesn't need to be normalized.
 
 <h2 id="fb2aa8b231ad4c797a5c90db33ab8c31"></h2>
-
 
 ## Refraction
 
@@ -72,7 +67,6 @@
 
 
 <h2 id="09d1424d7efc049cd01af1c62c53abc0"></h2>
-
 
 ## Different indices of refraction
 
@@ -87,7 +81,6 @@
 
 <h2 id="4a3f2ae28dfb34e06e7277eeeef33318"></h2>
 
-
 ## EnvMap ( per vertex ) -- setup
 
 - ![](../imgs/gpu_envmap_per_vert_1.png)
@@ -96,7 +89,6 @@
 
 
 <h2 id="10151d62f4134fd920294f01e38dd4cc"></h2>
-
 
 ## EnvMap ( per vertex ) -- structures
 
@@ -119,7 +111,6 @@ struct v2f { // vertex 2 fragment
 
 <h2 id="69f80be069e649041614a547a54bc7a2"></h2>
 
-
 ## EnvMap ( per vertex ) -- Vertex Program
 
 - ![](../imgs/gpu_envmap_per_vert_2.png)
@@ -138,7 +129,6 @@ struct v2f { // vertex 2 fragment
 
 <h2 id="18a4618e54cea64f8bb11b09ff0bdd30"></h2>
 
-
 ## EnvMap ( per vertex ) -- Fragment Program
 
 - ![](../imgs/gpu_envmap_per_vert_3.png)
@@ -149,7 +139,6 @@ struct v2f { // vertex 2 fragment
     - ![](../imgs/gpu_envmap_per_vert_4.png)
 
 <h2 id="a6977b0b6db1f017d37ea6684915d2e0"></h2>
-
 
 ## Fresnel effect 
 
@@ -187,7 +176,6 @@ before we look at the per pixel code, I want to talk about an effect that I adde
 
 <h2 id="ebe635d89f50c22c0d296cf85a87d802"></h2>
 
-
 ## EnvMap ( per Pixel ) -- structures
 
 
@@ -213,14 +201,12 @@ struct v2f { // vertex 2 fragment
 
 <h2 id="be232993bbebdcb5c0f45b4ca6059311"></h2>
 
-
 ## EnvMap ( per Pixel ) -- Vertex Program
 
 - ![](../imgs/gpu_envmap_per_pixel_fresnel_2.png)
 
 
 <h2 id="7c43ebcad7b9462cfe2d235796672691"></h2>
-
 
 ## EnvMap ( per Pixel ) -- Fragment Program
 

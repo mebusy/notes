@@ -1,6 +1,5 @@
 <h2 id="5967d3e33c64ff7f2266daa725898281"></h2>
 
-
 # Compute Graphics
 
 [website](http://math.hws.edu/graphicsbook/)
@@ -23,7 +22,6 @@
 
 
 <h2 id="a4d5cf4464f3bba0f9c36b417944984d"></h2>
-
 
 #  GPU Programming for Video Games
 

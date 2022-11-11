@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Rust](#f5e265d607cb720058fc166e00083fe8)
     - [所有权](#ed840a18e255779553359d5e0ec6f8a8)
@@ -38,16 +38,14 @@
         - [Lifetime Annotations in Method Definitions](#f3d510a4e30d6a89ebee0474abaa57a9)
         - [The Static Lifetime](#2bb98037fd2da57e912de143f6c29347)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f5e265d607cb720058fc166e00083fe8"></h2>
 
-
 # Rust
 
 <h2 id="ed840a18e255779553359d5e0ec6f8a8"></h2>
-
 
 ## 所有权
 
@@ -70,11 +68,9 @@
 
 <h2 id="637881603c973c4967d77ec4ba147e0c"></h2>
 
-
 ## Data Types 
 
 <h2 id="09d9982852d86c2479924a4e3b723b1e"></h2>
-
 
 ### Scalar Types
 
@@ -91,7 +87,6 @@
 
 <h2 id="9e57b6b46532794638212df8e239adde"></h2>
 
-
 ### Compound Types
 
 - Tuple
@@ -100,11 +95,9 @@
 
 <h2 id="d305bbe79fb9dd87a3fda339c8b601b6"></h2>
 
-
 ## Grammar
 
 <h2 id="27118326006d3829667a400ad23d5d98"></h2>
-
 
 ### String 
 
@@ -129,7 +122,6 @@
 
 <h2 id="a9ed91a0564c396f668757003053c533"></h2>
 
-
 ### Vectors/arrays
 
 - A fixed-size array
@@ -153,7 +145,6 @@
 
 <h2 id="e7e26a0ac2e1758814e4999a9242ba71"></h2>
 
-
 ### Tuples 
 
 - A fixed-size set of values of possibly different types
@@ -175,7 +166,6 @@
 
 <h2 id="886ef5dbd655a6c97726d7091c6b173e"></h2>
 
-
 ### Struct
 
 ```rust
@@ -195,7 +185,6 @@ let origin: Point = Point { x: 0, y: 0 };
     ```
 
 <h2 id="cf20423ed48998082c20099488a0917c"></h2>
-
 
 ### Enum
 
@@ -223,7 +212,6 @@ let origin: Point = Point { x: 0, y: 0 };
 
 <h2 id="0d7bdbf7f4e4f0dc8ed310a01dee3502"></h2>
 
-
 ### Generics
 
 ```rust
@@ -237,7 +225,6 @@ enum Optional<T> {
 ```
 
 <h2 id="20c51b5f4e9aeb5334c90ff072e6f928"></h2>
-
 
 ### Methods
 
@@ -254,7 +241,6 @@ println!("{}", a_foo.get_bar()); // 1
 ```
 
 <h2 id="fb0066fcef08c6094e2f12e05e3b347f"></h2>
-
 
 ### Traits (Interface)
 
@@ -281,7 +267,6 @@ trait Frobnicate<T> {
 See more details at *Traits* section.
 
 <h2 id="b72e68f7732ac254f401f88ed4911ada"></h2>
-
 
 ### Pattern matching
 
@@ -318,7 +303,6 @@ match bar {
 
 
 <h2 id="af68915e510fea51b880a5e4e7577708"></h2>
-
 
 ### Control flow
 
@@ -389,7 +373,6 @@ match bar {
 
 <h2 id="24356b0edc0a65ad0b52ef7b6ee12dae"></h2>
 
-
 ## Memory safety & pointers
 
 - 
@@ -433,7 +416,6 @@ let mut now_its_mine = mine;
 
 <h2 id="bf17ac149e2e7a530c677e9bd51d3fd2"></h2>
 
-
 ## Modules
 
 - Modules to Control Scope and Privacy
@@ -449,11 +431,9 @@ let mut now_its_mine = mine;
 
 <h2 id="ef43236673ca0bb606b14091061ac271"></h2>
 
-
 ## Error Handling
 
 <h2 id="689fed929813adeb0bf87f95904bb0ed"></h2>
-
 
 ### Unrecoverable Errors with panic!
 
@@ -465,7 +445,6 @@ panic = 'abort'
 ```
 
 <h2 id="05da5d7fbff37a203b05610205bcc83e"></h2>
-
 
 ### Recoverable Errors with Result
 
@@ -534,7 +513,6 @@ fn main() {
 
 <h2 id="d0dd9c6057e4b7304e97d4b63a862cdc"></h2>
 
-
 ### unwrap and expect
 
 If the Result value is the Ok variant, unwrap will return the value inside the Ok.
@@ -552,7 +530,6 @@ fn main() {
 Another method, expect, which is similar to unwrap, lets us also choose the panic! error message. 
 
 <h2 id="fb49d19dc99200030dd86a0b9521e776"></h2>
-
 
 ### Propagating Errors
 
@@ -588,7 +565,6 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 <h2 id="38427ebf412a041dbb876847293e30ae"></h2>
 
-
 ### ? Operator
 
 <details>
@@ -618,7 +594,6 @@ If the value is an Err, the Err will be returned from the whole function as if w
 
 <h2 id="42dff6d9ccc56c155188778aff284f7c"></h2>
 
-
 ## Traits
 
 ```rust
@@ -628,7 +603,6 @@ pub trait Summary {
 ```
 
 <h2 id="f78cdd8ee64bc0232a9d010a9ab3502a"></h2>
-
 
 ### Default Implementations
 
@@ -641,7 +615,6 @@ pub trait Summary {
 ```
 
 <h2 id="3d591b9a37ce5be1a66a4106f0f326be"></h2>
-
 
 ### Traits as Parameters `impl Trait` syntax
 
@@ -661,7 +634,6 @@ pub fn notify<T: Summary>(item: T) {
 
 <h2 id="7ae84d1dbd2b9229bdcfbf5c7894d4ce"></h2>
 
-
 ### Specifying Multiple Trait Bounds with the `+` Syntax
 
 ```rust
@@ -675,7 +647,6 @@ pub fn notify<T: Summary + Display>(item: T) {
 ```
 
 <h2 id="a7dbea5d964307601e9192a4c3574b31"></h2>
-
 
 ### Clearer Trait Bounds with where Clauses
 
@@ -696,7 +667,6 @@ fn some_function<T, U>(t: T, u: U) -> i32
 
 <h2 id="8bc762cd737affa437bd5226f1a3f07a"></h2>
 
-
 ### Returning Types that Implement Traits
 
 you can only use `impl Trait` if you’re returning a single type. 
@@ -709,7 +679,6 @@ See *Using Trait Objects That Allow for Values of Different Types* in chapter 17
 
 
 <h2 id="bce419857a72cd38b5c75c2ed17433c0"></h2>
-
 
 ### Fixing the largest Function with Trait Bounds
 
@@ -733,7 +702,6 @@ fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
 When we made the largest function generic, it became possible for the list parameter to have types in it that don’t implement the Copy trait. Consequently, we wouldn’t be able to move the value out of list[0] and into the largest variable, resulting in this error. To call this code with only those types that implement the Copy trait, we can add Copy to the trait bounds of T! 
 
 <h2 id="8d14778e381116681aa5fcf8e7fad595"></h2>
-
 
 ### Using Trait Bounds to Conditionally Implement Methods
 
@@ -778,7 +746,6 @@ impl<T: Display> ToString for T {
 
 <h2 id="64ddc28a0ac7f69186ee86b1f8bc8786"></h2>
 
-
 ## Validating References with Lifetimes
 
 Every reference in Rust has a lifetime, which is the scope for which that reference is valid.
@@ -804,7 +771,6 @@ fn longest(x: &str, y: &str) -> &str {
 ```
 
 <h2 id="f3d4e3f175edde17a6397d2dbb331920"></h2>
-
 
 ### Lifetime Annotations in Function Signatures
 
@@ -857,7 +823,6 @@ fn main() {
 
 <h2 id="7a84101a7a68dae9cd05990ef3ccfa86"></h2>
 
-
 ### Lifetime Annotations in Struct Definitions
 
 ```rust
@@ -867,7 +832,6 @@ struct ImportantExcerpt<'a> {
 ```
 
 <h2 id="f3d510a4e30d6a89ebee0474abaa57a9"></h2>
-
 
 ### Lifetime Annotations in Method Definitions
 
@@ -880,7 +844,6 @@ impl<'a> ImportantExcerpt<'a> {
 ```
 
 <h2 id="2bb98037fd2da57e912de143f6c29347"></h2>
-
 
 ### The Static Lifetime
 

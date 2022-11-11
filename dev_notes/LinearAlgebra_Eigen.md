@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Elgenvalues and Elgenvectors](#8358d3063f9f8db669067bc62cf5ea5e)
     - [5.1 INTRODUCTION](#103445c268b50fae9bd814331a04faa4)
@@ -12,17 +12,15 @@
         - [Fibonacci Numbers](#fdd5b4c8c15384ed3cceda4fe4cc38d6)
         - [Markov Matrices](#bdfe38b6c05d238d6cb0df431aea8cb7)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8358d3063f9f8db669067bc62cf5ea5e"></h2>
-
 
 # Elgenvalues and Elgenvectors
 
 
 <h2 id="103445c268b50fae9bd814331a04faa4"></h2>
-
 
 ## 5.1 INTRODUCTION
 
@@ -118,7 +116,6 @@ Our goal is to find the eigenvalues and eigenvectors, λ's and x's, and to use t
 ---
 
 <h2 id="0f40f2bb723a56c249c537e19bcb50be"></h2>
-
 
 #### The Solutions of Ax = λx
 
@@ -249,7 +246,6 @@ Probably the homeliest example is that of soldiers going over a bridge.  Traditi
 
 <h2 id="4a02cbc2e5675aec36acf46112aff90f"></h2>
 
-
 #### Summary and Examples
 
 To summarize, this introduction has shown how λ and x appear naturally and automatically when solving du/dt = Au. Such an equation has pure exponential solutions u = e<sup>λ</sup>ᵗx ; the eigenvalue gives the rate of growth or decay, and the eigenvector x develops at this rate. The other solutions will be mixtures of these pure solutions, and the mixture is adjusted to fit the initial conditions.
@@ -340,7 +336,6 @@ det(A-λI) = det |a-λ   b | = λ² - (trace)λ + determinat
 
 <h2 id="61bdaeeae3a64dec6a9964c59d00d884"></h2>
 
-
 #### Eigshow
 
 There is a MATLAB demo (just type eigshow), displaying the eigenvalue problem for a 2 by 2 matrix. 
@@ -373,7 +368,6 @@ A = ⎡2 0⎤ ⎡2  0⎤ ⎡0 1⎤ ⎡ 0 1⎤ ⎡1 1⎤ ⎡1 1⎤
 ---
 
 <h2 id="a208ce5ccf9b8c57cd42ced0c19eca2e"></h2>
-
 
 ## 5.2 DIAGONALIZATION OF A MATRIX
 
@@ -493,7 +487,6 @@ A matrix with n distinct eigenvalues can be diagonalized. This is the typical ca
 
 <h2 id="d0162a0c38d3c80dbec8780a18ba2398"></h2>
 
-
 #### Examples of Diagoinalization
 
 The main point of this section is S⁻¹AS = Λ. The egenvector matrix S converts A into its eigenvalue matrix Λ (diagonal). We see this for projections and rotations.
@@ -536,7 +529,6 @@ S = ⎡ 1 1⎤  and   S⁻¹KS = ⎡i  0⎤.
 We are faced with an inescapable fact, that ***complex numbers are needed even for real matrices***. If there are too few real eigenvalues, there are always n complex eigenvalues. (Complex includes real, when the imaginary part is zero.) If there are too few eigenvectors in the real world R³, or in Rⁿ, we look in C³ or Cⁿ. The space Cⁿ contains all column vectors with complex components, and it has new definitions of length and inner product and orthogonality. But it is not more difficult than Rⁿ , and in Section 5.5 we make an easy conversion to the complex case.
 
 <h2 id="eab177e5ee96fafdc79e679017e018a2"></h2>
-
 
 #### Powers and Products: Aᵏ and AB
 
@@ -635,7 +627,6 @@ At the end we come back to A = SΛS⁻¹. ***That factorization is particularly 
 
 <h2 id="b7b97b347a818a45c3aa318285ba99b7"></h2>
 
-
 ## 5.3 DIFFERENCE EQUATIONS AND POWERS Aᵏ
 
 Difference equations u<sub>k</sub>₊₁ = Au<sub>k</sub> move forward in a finite number of finite steps. 
@@ -680,7 +671,6 @@ Or the bank can switch to a differential equation - the limit of the difference 
 
 
 <h2 id="fdd5b4c8c15384ed3cceda4fe4cc38d6"></h2>
-
 
 ### Fibonacci Numbers
 
@@ -780,7 +770,6 @@ When the initial u₀ is an eigenvector x, this is the solution: u<sub>k</sub> =
 
 
 <h2 id="bdfe38b6c05d238d6cb0df431aea8cb7"></h2>
-
 
 ### Markov Matrices
 

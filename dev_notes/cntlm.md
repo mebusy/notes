@@ -1,13 +1,12 @@
-...menustart
+[](...menustart)
 
 - [cntlm 设置代理 (Centos7)](#c36aef5f4c92632a2362a83ed0523565)
 - [cntlm (Macosx)](#48cd1b6a59fb119e19d9f83e6cf43668)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c36aef5f4c92632a2362a83ed0523565"></h2>
-
 
 # cntlm 设置代理 (Centos7)
 
@@ -60,7 +59,6 @@ Auth NTLM
 ---
 
 <h2 id="48cd1b6a59fb119e19d9f83e6cf43668"></h2>
-
 
 # cntlm (Macosx)
 

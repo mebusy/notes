@@ -1,6 +1,5 @@
 <h2 id="1b30dae33d16eab9bde306ab4b758372"></h2>
 
-
 # 英语发音笔记
 
 - [Phonics Rules](english_phonics_rules.md)

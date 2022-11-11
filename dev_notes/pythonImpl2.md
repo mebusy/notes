@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [2. 内置类型](#b33f167abcf8b4fea4e2ba5443e349b2)
     - [2.1 数字](#cf71bcea952f7eaa06fcd87a3e27aac0)
@@ -21,11 +21,10 @@
         - [判重公式](#2e4bd807b1c6821e16305c1f609403e2)
         - [复合类型里, 只有 tuple、frozenset 是可哈希对象](#b4d60a66fb439c819abc400cad6f2afd)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b33f167abcf8b4fea4e2ba5443e349b2"></h2>
-
 
 # 2. 内置类型
 
@@ -37,11 +36,9 @@
 
 <h2 id="cf71bcea952f7eaa06fcd87a3e27aac0"></h2>
 
-
 ## 2.1 数字
 
 <h2 id="fa7153f7ed1cb6c0fcf2ffb2fac21748"></h2>
-
 
 ### int 
 
@@ -82,7 +79,6 @@ False
 
 <h2 id="0f5264038205edfb1ac05fbb0e8c5e94"></h2>
 
-
 ### long 
 
 - 当超出 int 限制时， 会自动转换成 long
@@ -95,7 +91,6 @@ False
 ```
 
 <h2 id="546ade640b6edfbc8a086ef31347e768"></h2>
-
 
 ### float
 
@@ -132,7 +127,6 @@ Decimal('2.67')
 
 <h2 id="e126f963213e63b926b5e449aa7d8f47"></h2>
 
-
 ## 2.2 字符串
 
 - 不可变类型，保存字符序列或二进制数据
@@ -144,7 +138,6 @@ Decimal('2.67')
 - 当池化的字符串不再有引用时，将被回收
 
 <h2 id="cc6c35a3e0f97fb9747905dc13e9b625"></h2>
-
 
 ### 编码
 
@@ -217,7 +210,6 @@ u'\u4e2d\u56fd\u4eba'
 
 <h2 id="e7c52d9da17cbf60fcd6d3a0e94d75bb"></h2>
 
-
 ### 池化  intern
 
 - 用 intern() 函数可以把运行期动态生成的字符串池化。
@@ -245,13 +237,11 @@ True
 
 <h2 id="4ce061f35d90a97aaad3728502eff07a"></h2>
 
-
 ### join vs '+' 
 
 - join 计算总长度后，⼀次性分配存储内存
 
 <h2 id="007ed57d03ecfc2092e2457f0ca04afe"></h2>
-
 
 ## 2.3 列表
 
@@ -282,16 +272,13 @@ True
 
 <h2 id="7a80a08704eb791c461bba64aaf4acdc"></h2>
 
-
 ### bisect
 
 <h2 id="f1f713c9e000f5d3f280adbd124df4f5"></h2>
 
-
 ### array
 
 <h2 id="235a8cc07f29ed0921fdcc62ff45c56e"></h2>
-
 
 ## 2.4 元组
 
@@ -299,7 +286,6 @@ True
 - 虚拟机缓存 n 个元素数量 < 20 的元组复用对象。
 
 <h2 id="bf25b61d72e7938907598910a7bb49f7"></h2>
-
 
 ## 2.5 字典
 
@@ -312,7 +298,6 @@ True
 
 
 <h2 id="b59d513731b6dcc69eebe7f54469b82f"></h2>
-
 
 ### 视图 : 判断两个字典间的差异
 
@@ -355,7 +340,6 @@ dict_items([('a', 1), ('b', 2)])
 
 <h2 id="867581d324fac535bee50910683df843"></h2>
 
-
 ### defaultdict
 
 ```python
@@ -364,7 +348,6 @@ dict_items([('a', 1), ('b', 2)])
 ```
 
 <h2 id="2e84a3dcf01a447292d53bb47859c62f"></h2>
-
 
 ### OrderedDict: 元素添加顺序 迭代，操作
 
@@ -375,7 +358,6 @@ dict_items([('a', 1), ('b', 2)])
 
 <h2 id="64a98daa5e9ac47f4663e9fdefcb9169"></h2>
 
-
 ## 2.6 集合
 
 - 不重复对象: 除了不是同一对象外，还包括 "值" 不能相同
@@ -385,7 +367,6 @@ dict_items([('a', 1), ('b', 2)])
 
 <h2 id="2e4bd807b1c6821e16305c1f609403e2"></h2>
 
-
 ### 判重公式
 
 ```python
@@ -393,7 +374,6 @@ dict_items([('a', 1), ('b', 2)])
 ```
 
 <h2 id="b4d60a66fb439c819abc400cad6f2afd"></h2>
-
 
 ### 复合类型里, 只有 tuple、frozenset 是可哈希对象
 

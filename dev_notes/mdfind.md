@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Basic Search](#c5c1098a067d3e19b900a3fdd6c6ad4d)
 - [Boolean Operators](#99447b31568f35c690284a7990af044b)
@@ -8,11 +8,10 @@
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [find files with specific extension](#d9e21c4547cc76da5ac8d583d3d40772)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c5c1098a067d3e19b900a3fdd6c6ad4d"></h2>
-
 
 # Basic Search
 
@@ -27,7 +26,6 @@ $ mdfind "invoice apress"
 ```
 
 <h2 id="99447b31568f35c690284a7990af044b"></h2>
-
 
 # Boolean Operators
 
@@ -77,7 +75,6 @@ $ mdfind "invoice apress"
 
 <h2 id="7ec8df286ac371d3900dc523ef9e9daa"></h2>
 
-
 # Narrowing Search Results
 
 - `-onlyin` option
@@ -93,7 +90,6 @@ $ mdfind "invoice apress"
 
 <h2 id="bbc752d74b076db37c447790cb425249"></h2>
 
-
 # Filtering mdfind's output
 
 - grep
@@ -105,7 +101,6 @@ $ mdfind "invoice apress"
     ```
 
 <h2 id="2f632d202624dbb9c7814dabbd14c77c"></h2>
-
 
 # Listing Metadata with mdls
 
@@ -147,11 +142,9 @@ $ mdfind "invoice apress"
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
-
 # Misc
 
 <h2 id="d9e21c4547cc76da5ac8d583d3d40772"></h2>
-
 
 ##  find files with specific extension
 

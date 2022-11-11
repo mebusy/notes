@@ -1,15 +1,14 @@
-...menustart
+[](...menustart)
 
 - [But what is the Fourier Transform? A visual introduction.](#cca32b346dc008638fca79b78f457504)
 - [什么是傅立叶变换](#b46cd00ce66cf213faa8731568d09839)
     - [傅立叶级数](#f638045f1760eebb183feb59937fd197)
     - [连续傅立叶变换](#87f152e061070fbeb8bf2d97f37a75e6)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="cca32b346dc008638fca79b78f457504"></h2>
-
 
 # But what is the Fourier Transform? A visual introduction.
 
@@ -173,13 +172,11 @@ Btw, one quick small note before we can call this wrapped up. Even though in pra
 
 <h2 id="b46cd00ce66cf213faa8731568d09839"></h2>
 
-
 # 什么是傅立叶变换
 
 其实分为两部分:  1. Fourier 级数  2. 连续 Fourier 变换
 
 <h2 id="f638045f1760eebb183feb59937fd197"></h2>
-
 
 ## 傅立叶级数
 
@@ -199,7 +196,6 @@ Btw, one quick small note before we can call this wrapped up. Even though in pra
 标准正交积  1,sin(ωt),cos(ωt) ？ 在傅立叶变换中，内积的定义是一种积分，比较复杂。
 
 <h2 id="87f152e061070fbeb8bf2d97f37a75e6"></h2>
-
 
 ## 连续傅立叶变换
 

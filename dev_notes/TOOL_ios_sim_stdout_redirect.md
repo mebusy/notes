@@ -1,12 +1,11 @@
-...menustart
+[](...menustart)
 
 - [ios simulator stdout stderr redirect](#808223f71402e744750e77a2865d1277)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="808223f71402e744750e77a2865d1277"></h2>
-
 
 # ios simulator stdout stderr redirect
 

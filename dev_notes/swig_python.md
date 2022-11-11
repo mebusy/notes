@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [SWIG PYTHON](#2f5f97b74dad99089e4d7ba36620e26e)
     - [36.3 A tour of basic C/C++ wrapping](#28253a47df2d59cca6fb97610aa2399c)
@@ -41,21 +41,18 @@
         - [36.9.6 Pointer handling](#6568ccb24614cc5e9c0d0730be8a3837)
 - [常见问题](#50d52dd929a75bb9b0f4afb0b7d879e1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="2f5f97b74dad99089e4d7ba36620e26e"></h2>
-
 
 # SWIG PYTHON
 
 <h2 id="28253a47df2d59cca6fb97610aa2399c"></h2>
 
-
 ## 36.3 A tour of basic C/C++ wrapping
 
 <h2 id="864317df539bc6cd7a48701b91191c24"></h2>
-
 
 ### 36.3.3 Global variables
 
@@ -87,7 +84,6 @@ extern char *path;      // Read-only (due to %immutable)
 
 <h2 id="3ed1580636bb56cb368078416522781c"></h2>
 
-
 ### 36.3.4 Constants and enums
 
 - C/C++ constants are installed as Python objects containing the appropriate value.
@@ -109,14 +105,12 @@ enum Beverage { ALE, LAGER, STOUT, PILSNER };
 
 <h2 id="6c5d46b4c027b854d6f3b7b4a039ee27"></h2>
 
-
 ### 36.3.5 Pointers
 
 - the '0' or NULL pointer is always represented by None, no matter what type swig is addressing. In the previous example, you can call:
     - `example.fclose(None)`
  
 <h2 id="9e239ae42956495be216233b838ca77d"></h2>
-
 
 ### 36.3.6 Structures
 
@@ -163,7 +157,6 @@ struct Bar {
 
 <h2 id="289abb576803b40537aaf88cd30ea1b7"></h2>
 
-
 ### 36.3.7 C++ classes
 
 Static class members present a special problem for Python
@@ -193,7 +186,6 @@ Static member variables are currently accessed as global variables. This means, 
 ```
 
 <h2 id="20b5f7f6dfaff2c338c4b49bd2b53f52"></h2>
-
 
 ### 36.3.10 C++ overloaded functions
 
@@ -235,7 +227,6 @@ void spam(short);   // Ignored
 
 <h2 id="7fbad72828bffaf316f22c67e8b5b849"></h2>
 
-
 ### 36.3.11 C++ operators
 
 - Certain C++ overloaded operators can be handled automatically by SWIG
@@ -271,7 +262,6 @@ class Complex {
     - For instance, overloaded assignment operators don't map to Python semantics and will be ignored.
 
 <h2 id="2329b407fe1d5482f5e412a6502ecebe"></h2>
-
 
 ### 36.3.12 C++ namespaces
 
@@ -314,7 +304,6 @@ namespace Bar {
 
 <h2 id="3ae5ee54a6d57c34cf29f39e935f13d2"></h2>
 
-
 ### 36.3.13 C++ templates
 
 - C++ templates don't present a huge problem for SWIG.
@@ -349,16 +338,13 @@ struct pair {
 
 <h2 id="375e31e2cbdc8887003fa50adfa38d67"></h2>
 
-
 ### 36.3.14 C++ Smart Pointers
 
 <h2 id="0fd3d38db929aa36de6a011c60d87de1"></h2>
 
-
 #### 36.3.14.1 The shared_ptr Smart Pointer
 
 <h2 id="584698ebaec253169b5dbc351c353e00"></h2>
-
 
 #### 36.3.14.2 Generic Smart Pointers
 
@@ -415,11 +401,9 @@ Now, in Python, everything should just "work":
 
 <h2 id="8edc31645b1d72709e2a78ce42b80295"></h2>
 
-
 ## 36.5 Cross language polymorphism
 
 <h2 id="299f5530bbe369a25a8a9399abd64a44"></h2>
-
 
 ### 36.5.1 Enabling directors
 
@@ -475,13 +459,11 @@ class Bar: public Foo {
 
 <h2 id="37b33f14f7ff3d5724be48045de26423"></h2>
 
-
 ## 36.6 Common customization features
 
 This section describes some common SWIG features that are used to improve your the interface to an extension module.
 
 <h2 id="8ed34b4d93e1ce67e4c5cdf57ac714f3"></h2>
-
 
 ### 36.6.1 C/C++ helper functions
 
@@ -543,7 +525,6 @@ Admittedly, this is not the most elegant looking approach. However, it works and
 It is possible to clean this up using Python code, typemaps, and other customization features as covered in later sections.
 
 <h2 id="73f0c0b516a9a6466ff6f66d16f7aea1"></h2>
-
 
 ### 36.6.2 Adding additional Python code
 
@@ -693,7 +674,6 @@ public:
 
 <h2 id="d4f88a6538a37f876d6944cfddd37993"></h2>
 
-
 ### 36.6.3 Class extension with %extend
 
 One of the more interesting features of SWIG is that it can extend structures and classes with new methods--at least in the Python interface. 
@@ -757,7 +737,6 @@ Vector(12, 14, 16)
 ```
 
 <h2 id="6a994f76d514c7ea64b0080007f925bc"></h2>
-
 
 ### 36.6.4 Exception handling with %exception
 
@@ -859,7 +838,6 @@ The language-independent exception.i library file can also be used to raise exce
 
 <h2 id="15f329eb7bd57310ae05525a7560cb18"></h2>
 
-
 ## 36.7 Tips and techniques
 
 Although SWIG is largely automatic, there are certain types of wrapping problems that require additional user input. 
@@ -869,7 +847,6 @@ Examples include dealing with output parameters, strings, binary data, and array
 This chapter discusses the common techniques for solving these problems.
 
 <h2 id="53e526b93ef9246ff51cd84f5debb919"></h2>
-
 
 ### 25.8.1 Input and output parameters using primitive pointers and references
 
@@ -982,7 +959,6 @@ MAY NOT  have the intended effect since typemaps.i does not define an OUTPUT rul
 
 <h2 id="515f4e8a06c359c5238034b0a0855efc"></h2>
 
-
 ### 36.7.2 Simple pointers
 
 If you must work with simple pointers such as int \* or double \* and you don't want to use typemaps.i, consider using the cpointer.i library file. For example:
@@ -1030,7 +1006,6 @@ If you replace %pointer_functions() by %pointer_class(type, name), the interface
 
 <h2 id="ea9fec0c4e11762f471b1cffa262b7a4"></h2>
 
-
 ### 36.7.3 Unbounded C Arrays
 
 Sometimes a C function expects an array to be passed as a pointer. For example,
@@ -1070,7 +1045,6 @@ For instance, you will be able to do this in Python:
 
 <h2 id="c5928dddfc2c9487ddc042e45caa4576"></h2>
 
-
 ### 36.7.4 String handling
 
 If a C function has an argument of `char *`, then a Python string can be passed as input. For example:
@@ -1098,7 +1072,6 @@ int parity(char *data, int size, int initial);
 ```
 
 <h2 id="63b4f48acae0ba35e6576fce9fa8fdad"></h2>
-
 
 ### 36.7.5 Default arguments
 
@@ -1164,7 +1137,6 @@ struct CDA {
 
 <h2 id="2b130f8e243eb10cbc270985854ccbc7"></h2>
 
-
 ## 36.8 Typemaps
 
 This section describes how you can modify SWIG's default wrapping behavior for various C/C++ datatypes using the %typemap directive. 
@@ -1174,7 +1146,6 @@ Before proceeding, it should be stressed that typemaps are not a required part o
 Typemaps are only used if you want to change some aspect of the primitive C-Python interface or if you want to elevate your guru status.
 
 <h2 id="90a5be3942738a92f3991cb7d19710be"></h2>
-
 
 ### 36.8.1 What is a typemap?
 
@@ -1263,7 +1234,6 @@ int count(char c, char *str, int len);
 
 <h2 id="e4f724210edaab8c16c023cca34e2473"></h2>
 
-
 ### 36.8.2 Python typemaps
 
 The previous section illustrated an "in" typemap for converting Python objects to C.
@@ -1287,7 +1257,6 @@ In fact, all of SWIG's default type handling is defined by typemaps. You can vie
 
 <h2 id="e729302bd9b4ccdceabc3c5587c9c140"></h2>
 
-
 ### 36.8.3 Typemap variables
 
 Within typemap code, a number of special variables prefaced with a $ may appear.
@@ -1306,7 +1275,6 @@ $symname | The Python name of the wrapper function being created.
 
 
 <h2 id="427eb1b71112c2157f5763050c06240b"></h2>
-
 
 ### 36.8.4 Useful Python Functions
 
@@ -1398,7 +1366,6 @@ int       PyFile_Check(PyObject *);
 
 <h2 id="c6ea35fbba443421bec5662d98c4a56d"></h2>
 
-
 ## 36.9 Typemap Examples
 
 This section includes a few examples of typemaps.
@@ -1406,7 +1373,6 @@ This section includes a few examples of typemaps.
 For more examples, you might look at the files "python.swg" and "typemaps.i " in the SWIG library.
 
 <h2 id="a0b62f2001104e30cea14cc3d978eb00"></h2>
-
 
 ### 36.9.1 Converting Python list to a char \*\*
 
@@ -1417,7 +1383,6 @@ The following SWIG interface file allows a Python list object to be used as a ch
 TODO
 
 <h2 id="e1aba4dac0c081ca9e1c9689b39f0b9d"></h2>
-
 
 ### 36.9.2 Expanding a Python object into multiple arguments
 
@@ -1463,7 +1428,6 @@ don't forget to also provide a suitable [typecheck typemap for overloading](http
 
 <h2 id="b0b0ba8683c797f778cbd3d40d7ecd4b"></h2>
 
-
 ### 36.9.3 Using typemaps to return arguments
 
 A common problem in some C programs is that values may be returned in arguments rather than in the return value of a function. For example:
@@ -1481,7 +1445,6 @@ int spam(double a, double b, double *out1, double *out2) {
 TODO
 
 <h2 id="9e2e54e3b2717314d68b1cf84e329a8e"></h2>
-
 
 ### 36.9.4 Mapping Python tuples into small arrays
 
@@ -1522,7 +1485,6 @@ Since our mapping copies the contents of a Python tuple into a C array, such an 
 
 <h2 id="7933ae9020049f067c537253e1610be8"></h2>
 
-
 ### 36.9.5 Mapping sequences to C arrays
 
 Suppose that you wanted to generalize the previous example to handle C arrays of different sizes. To do this, you might write a typemap as follows:
@@ -1530,7 +1492,6 @@ Suppose that you wanted to generalize the previous example to handle C arrays of
 TODO
 
 <h2 id="6568ccb24614cc5e9c0d0730be8a3837"></h2>
-
 
 ### 36.9.6 Pointer handling
 
@@ -1550,7 +1511,6 @@ TODO
 ----
 
 <h2 id="50d52dd929a75bb9b0f4afb0b7d879e1"></h2>
-
 
 # 常见问题
 

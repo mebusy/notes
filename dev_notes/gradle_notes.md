@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Gradle ==========](#e65d7c02720a16a39d157f31d85e1a59)
     - [Setup Gradle](#027160dccd9bf12e7e9a8b443969242b)
@@ -37,16 +37,14 @@
     - [Could not find method runProguard() for arguments](#769f6f1c57e8b9182a031ed34dbd00e0)
     - [android logcat filter](#a00bb7ae615e786ed0e6d98d43e7248a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="e65d7c02720a16a39d157f31d85e1a59"></h2>
 
-
 ## Gradle ==========
 
 <h2 id="027160dccd9bf12e7e9a8b443969242b"></h2>
-
 
 ### Setup Gradle
 
@@ -58,7 +56,6 @@
     - `export PATH=${PATH}:$GRADLE_HOME/bin`
 
 <h2 id="9a0e6d829f84ab3d85718633cd60d22b"></h2>
-
 
 ### Gradle Proxy Setting
 
@@ -80,7 +77,6 @@ systemProp.https.proxyPort=端口
 
 <h2 id="d07c3afc41aa50868acc5daea24be425"></h2>
 
-
 ### Gradle create Java project
 
 ```
@@ -89,7 +85,6 @@ gradle init --type java-library
 
     
 <h2 id="ee44ae63c19c5c6e494f4c65e75171b5"></h2>
-
 
 ### Define a custom project property
 
@@ -101,7 +96,6 @@ ext.property_name = ...
 
 <h2 id="b6c9a7859d3ce329dd999102d004758e"></h2>
 
-
 ### Define a custom task to run shell command
 
 ```
@@ -112,7 +106,6 @@ task buildAPI(type:Exec)  {
 
 <h2 id="824c20e070522edf25afd49840b2415e"></h2>
 
-
 ### Task Dependency
 
 ```
@@ -122,7 +115,6 @@ buildAPI.dependsOn jarFiles
 
 <h2 id="224943e19ad0f37257982e3641b30c7b"></h2>
 
-
 ### reference existing property
 
 ```
@@ -130,7 +122,6 @@ buildAPI.dependsOn jarFiles
 ```
 
 <h2 id="e15919e9f3dda8070015df3a70e233ea"></h2>
-
 
 ### speed up
 
@@ -153,11 +144,9 @@ org.gradle.daemon=true
 
 <h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
 
-
 ## Examples 
 
 <h2 id="10a661ffd4df8982dd9dbd53e9f9ae72"></h2>
-
 
 ### Add a task to mv files
 
@@ -183,7 +172,6 @@ buildAPI.dependsOn jarFiles
 
 <h2 id="3543535ab5cfcb8be02766dee55fa568"></h2>
 
-
 ### add local jar 
 
 ```
@@ -202,11 +190,9 @@ android {
 
 <h2 id="99e91f3394da6444ff8b456668a550d7"></h2>
 
-
 ## gradle java 插件
 
 <h2 id="c623c7746ee0b9c37dd52277de59e0d8"></h2>
-
 
 ### 1. 使用Java插件
 
@@ -224,7 +210,6 @@ apply plugin: 'java'
 
 <h2 id="8a26c5518717adc00e89670b449413b7"></h2>
 
-
 ### 2. 构建项目
 
 - gradle tasks命令查看任务。
@@ -235,7 +220,6 @@ apply plugin: 'java'
 
 
 <h2 id="3ce11b7291ca0e81c61b7ac1487baedc"></h2>
-
 
 ### 3. 外部依赖
 
@@ -261,7 +245,6 @@ dependencies {
 
 <h2 id="992b5f30aa610a63842983eba0867abc"></h2>
 
-
 ### 4. 自定义项目
 
 前面提到，Java插件为项目定义了许多默认配置，如果我们需要，这些配置都是可以由我们自己来定义的。如下面例子，指定项目版本号和JDK版本号，并且添加一些属性到JAR包的manifest文件中：
@@ -286,7 +269,6 @@ test {
 
 <h2 id="93ef76c0b29821dd343e30ec3205a084"></h2>
 
-
 ### 5. 发布JAR包
 
 以下代码是发布JAR包到本地中。发布到maven仓库或jcenter仓库以后再讨论。
@@ -310,7 +292,6 @@ uploadArchives 需要指定 project.version , 如果没有，最后的 jar 会�
 
 <h2 id="9d902f6daebc41bb35220496478b24e7"></h2>
 
-
 ### 6. 创建Eclipse项目
 
 ```
@@ -326,7 +307,6 @@ apply plugin: 'eclipse'
 
 <h2 id="73f40ab93e7cb43c5f82139114d9b298"></h2>
 
-
 ## Gardle android plugin =======
 
 [Android Tools Project Site](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard)
@@ -338,7 +318,6 @@ apply plugin: 'eclipse'
 
 <h2 id="ff1e2724b57fa7703668d76dae901cdb"></h2>
 
-
 ### Command line create a android project with Gradle
 
 ```
@@ -346,7 +325,6 @@ android create project -a MainActivity -k package_path_com.example.app -t androi
 ```
 
 <h2 id="a6eec98d694e6bf6b3e7b2d2a8dec973"></h2>
-
 
 ### Set Source / Target Compatibility 
 
@@ -362,7 +340,6 @@ android {
 ```
 
 <h2 id="6e3087c3ae908b9a7aefea0a2970b30a"></h2>
-
 
 ### Product flavors
 
@@ -386,7 +363,6 @@ android {
 
 
 <h2 id="eeb10f0eeabc8c7de151028795fea392"></h2>
-
 
 ### Using proguard
 
@@ -417,7 +393,6 @@ android {
 - You can use own proguard rules, or use more 1 proguard rules through **productFlavors**
 
 <h2 id="089a24d84135c1eb537e96621be085d5"></h2>
-
 
 ### Gradle 指定 manifest 文件路径
 
@@ -455,7 +430,6 @@ sourceSets {
  
 <h2 id="4927795f5413b00c41eb275236b2c3c5"></h2>
 
-
 ### proguard in android plugin
 
 ```
@@ -469,7 +443,6 @@ sourceSets {
 ```
     
 <h2 id="997304d5400f082feabc402ac46aba97"></h2>
-
 
 ### gradle for unity3d android example
 
@@ -627,11 +600,9 @@ buildAPI.dependsOn build
 
 <h2 id="124d869fe2f048f9f54668347d680079"></h2>
 
-
 # Gradle and JNI
 
 <h2 id="b7cd0782fca8810a571477d4e6784736"></h2>
-
 
 ## hello-jni with gradle 
 
@@ -691,7 +662,6 @@ public class Main extends Activity
 
 <h2 id="e4c9479b11955648dad558fe717a4eb2"></h2>
 
-
 ## tips 
     
 - native 方法如果定义在 cpp 文件中， 需要 加上 extern "C"
@@ -719,7 +689,6 @@ extern "C" {
 
 
 <h2 id="50a46251dc9b0613fecae34742c7e655"></h2>
-
 
 ## JNI Example
 
@@ -779,7 +748,6 @@ android {
 ```
 
 <h2 id="897b756c8e40a52eb8834378681d0283"></h2>
-
 
 ## More update-date example
 
@@ -844,11 +812,9 @@ dependencies {
 
 <h2 id="0ab687c6a13802a6674d5327e3d4177e"></h2>
 
-
 # QA
 
 <h2 id="2e072d186473767187aba8236da72d93"></h2>
-
 
 ## Gradle version 2.2 is required. Current version is 2.10
 
@@ -860,14 +826,12 @@ dependencies {
 
 <h2 id="769f6f1c57e8b9182a031ed34dbd00e0"></h2>
 
-
 ## Could not find method runProguard() for arguments
 
 - in `build.gralde` , Instead of "runProguard false" use "minifyEnabled false" 
 
 
 <h2 id="a00bb7ae615e786ed0e6d98d43e7248a"></h2>
-
 
 ## android logcat filter
 

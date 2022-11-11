@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [misc](#bc957e26ff41470c556ee5d09e96880b)
 - [multiprocessing](#7d16d5f74fcafb1de1680fe3e95caee9)
@@ -16,11 +16,10 @@
         - [例7.1：使用进程池](#15ea9a5d5012976d2c28a505a781e443)
         - [例7.3：使用进程池，并关注结果](#acca268bc49ea57fab2c41310811d403)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="bc957e26ff41470c556ee5d09e96880b"></h2>
-
 
 # misc 
 
@@ -36,13 +35,11 @@
 
 <h2 id="7d16d5f74fcafb1de1680fe3e95caee9"></h2>
 
-
 # multiprocessing
 
 multiprocessing支持子进程、通信和共享数据、执行不同形式的同步，提供了Process、Queue、Pipe、Lock等组件。
 
 <h2 id="dc1a9383b903911b01b71c8e0179c6d9"></h2>
-
 
 ## 1. Process 创建进程
 创建进程的类：**Process**([group [, target [, name [, args [, kwargs]]]]])， 
@@ -57,7 +54,6 @@ group实质上不使用。
 
 
 <h2 id="b0ffb6388e2c0e1cb47cc6b296bd5447"></h2>
-
 
 ### 例1.1：创建函数并将其作为单个进程
 
@@ -90,7 +86,6 @@ if __name__ == "__main__":
 
 
 <h2 id="ad53f99d06670e9f003b7021ace3c950"></h2>
-
 
 ### 例1.2：创建函数并将其作为多个进程
 
@@ -138,7 +133,6 @@ if __name__ == "__main__":
 
 <h2 id="34a15aa2e6a52c472f1d7f839e1f755f"></h2>
 
-
 ### 例1.3：将进程定义为类
 
 ```python
@@ -172,7 +166,6 @@ if __name__ == '__main__':
     注：进程p调用start()时，自动调用run()
 
 <h2 id="157b9b8df424cb4ea14f839cb169de42"></h2>
-
 
 ### 例1.4：daemon程序对比结果
 daemon属性设置：
@@ -209,7 +202,6 @@ if __name__ == "__main__":
     end!
 
 <h2 id="f2d8e041449ee7f8215288ffa489e5e7"></h2>
-
 
 ## 2. Lock 锁
 
@@ -265,7 +257,6 @@ if __name__ == "__main__":
 
 <h2 id="84a93a4956101499a69692b1f755c8cc"></h2>
 
-
 ## 3. Semaphore 信号
 Semaphore用来控制对共享资源的访问数量，例如池的最大连接数。
 
@@ -301,7 +292,6 @@ if __name__ == "__main__":
 
 
 <h2 id="81fcc5cb44cff9dd761655e784a65dd6"></h2>
-
 
 ## 4. Event 进程间同步
     
@@ -347,7 +337,6 @@ if __name__ == "__main__":
 
 <h2 id="76a5f0b51a2d4b7fcf20ca7897f9a2bc"></h2>
 
-
 ## 5. Queue 队列,进程间数据传递
 
 Queue是多进程安全的队列，可以使用Queue实现多进程之间的数据传递。  
@@ -375,7 +364,6 @@ if __name__ == "__main__":
 ```
 
 <h2 id="4947895871a9c40853bedd0110bf82db"></h2>
-
 
 ## 6. Pipe 
 
@@ -431,14 +419,12 @@ if __name__ == "__main__":
 
 <h2 id="23dc6941df5635688ee2aa31cd26ddb4"></h2>
 
-
 ## 7. Pool
 
 当被操作对象数目不大时，可以直接利用multiprocessing中的Process动态成生多个进程，十几个还好，但如果是上百个，上千个目标，手动的去限制进程数量却又太过繁琐，此时可以发挥进程池的功效。
 Pool可以提供指定数量的进程，供用户调用，当有新的请求提交到pool中时，如果池还没有满，那么就会创建一个新的进程用来执行该请求；但如果池中的进程数已经达到规定最大值，那么该请求就会等待，直到池中有进程结束，才会创建新的进程来它。
 
 <h2 id="15ea9a5d5012976d2c28a505a781e443"></h2>
-
 
 ### 例7.1：使用进程池
 
@@ -485,7 +471,6 @@ if __name__ == "__main__":
     Sub-process(es) done.
 
 <h2 id="acca268bc49ea57fab2c41310811d403"></h2>
-
 
 ### 例7.3：使用进程池，并关注结果
 

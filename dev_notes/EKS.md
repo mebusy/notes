@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [EKS](#f79368a88745f4dba5e0fc92aa545c61)
     - [EKS getting started](#9c7235108be4bd172807717650dfe1fa)
@@ -12,11 +12,10 @@
         - [find cluster security group](#642c6b8ce5bd1d32905ac11c2e62ca6e)
         - [create another use and access cluster](#8b29fa74a83a54a6d4851685a28eab40)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f79368a88745f4dba5e0fc92aa545c61"></h2>
-
 
 # EKS
 
@@ -30,7 +29,6 @@
 
 
 <h2 id="9c7235108be4bd172807717650dfe1fa"></h2>
-
 
 ## EKS getting started
 
@@ -48,7 +46,6 @@
 
 <h2 id="07e1d66babe77070cc76a4e637c9f26d"></h2>
 
-
 ## How to get started
 
 1. AWS CloudFormation
@@ -64,11 +61,9 @@
 
 <h2 id="015ce80764f67c3fa35ff5b824724d95"></h2>
 
-
 ## Create Cluster
 
 <h2 id="ac68bbf921d953d1cfab916cb6120864"></h2>
-
 
 ### aws
 
@@ -83,7 +78,6 @@ Default output format [None]: json
 - those information are stored in `~/.aws/`
 
 <h2 id="0797d40efd8aa563d7e4fe7a4dd0ca0d"></h2>
-
 
 ### kubectl & eksctl
 
@@ -170,7 +164,6 @@ eksctl create nodegroup --cluster <cluster name> \
 
 <h2 id="0fb3db388cb28547e6b0d17ca0c608b5"></h2>
 
-
 ## Deploy k8s control panel
 
 [部署 Kubernetes 控制面板 (Web UI)](https://docs.amazonaws.cn/eks/latest/userguide/dashboard-tutorial.html)
@@ -236,7 +229,6 @@ kubectl proxy
 
 
 <h2 id="64e08a2de07bf4869794d3b8c5666add"></h2>
-
 
 ## 部署 ALB 入口控制器
 
@@ -386,11 +378,9 @@ spec:
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
-
 ## Misc
 
 <h2 id="642c6b8ce5bd1d32905ac11c2e62ca6e"></h2>
-
 
 ###  find cluster security group
 
@@ -400,7 +390,6 @@ aws eks describe-cluster --name cluster_name --query cluster.resourcesVpcConfig.
 
 
 <h2 id="8b29fa74a83a54a6d4851685a28eab40"></h2>
-
 
 ### create another use and access cluster
 

@@ -1,6 +1,5 @@
 <h2 id="ab0748bdfbd23a354ccb0b1bd5ce56b6"></h2>
 
-
 # NesDev
 
 - [NES架构 和6502指令集](6502.md)
@@ -21,7 +20,6 @@ http://bobrost.com/nes/
 
 
 <h2 id="49f28d4d1b1cda86f3e3372b8bc7ed3b"></h2>
-
 
 # Nes Simulator Project
 

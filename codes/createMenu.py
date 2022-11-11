@@ -168,16 +168,20 @@ def visit( arg, dirname, fnames):
 if '__main__' == __name__ :
 
     all_md_filenames = {}
-    if len( sys.argv ) >=2 :
-        bForceCreateMenu = 'forcemenu' in sys.argv[2:]
+    
+    bSpecifiedDirectory = len( sys.argv ) >=2
+    bForceCreateMenu = bSpecifiedDirectory and 'forcemenu' in sys.argv[2:]
 
+
+    if bSpecifiedDirectory :
+        specifiedDir = sys.argv[1]
         # for files outside this repo
-        if os.path.isfile(  sys.argv[1] ):
+        if os.path.isfile(specifiedDir):
             # single file
-            createMenu4MD( sys.argv[1] )
+            createMenu4MD(specifiedDir)
         else:
             # parse other directory
-            os.path.walk( sys.argv[1] , visit , None )
+            os.path.walk( specifiedDir , visit , None )
 
         sys.exit(1)
 

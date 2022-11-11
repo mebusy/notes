@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Pong From Pixel](#14c8bcab6d8cbd9dd30f671937d1930e)
     - [Policy network](#c8ec2431da786d1805ac35666846a034)
@@ -9,11 +9,10 @@
     - [Policy Gradients](#6c11e2dd65ad60a6dd6cf3a2be08fa0c)
     - [Training protocol](#abc3a1be8d17524478c2cc2d1399fe32)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="14c8bcab6d8cbd9dd30f671937d1930e"></h2>
-
 
 # Pong From Pixel 
 
@@ -36,7 +35,6 @@ Pong is just a fun toy test case, something we play with while we figure out how
 
 <h2 id="c8ec2431da786d1805ac35666846a034"></h2>
 
-
 ## Policy network
 
 - This network will take the state of the game and decide what we should do (move UP or DOWN). 
@@ -51,7 +49,6 @@ Pong is just a fun toy test case, something we play with while we figure out how
 > Our policy network is a 2-layer fully-connected net.
 
 <h2 id="8527e311e4e8e7b217e4eb3df745bacf"></h2>
-
 
 ### implement this policy network in Python/numpy
 
@@ -69,7 +66,6 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 
 <h2 id="4da478b2dea92208e1212e4dfc88e520"></h2>
 
-
 ## preprocessing
 
 - Ideally you’d want to feed at least 2 frames to the policy network so that it can detect motion
@@ -77,7 +73,6 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
     - e.g. we’ll actually feed difference frames to the network (i.e. subtraction of current and last frame).
 
 <h2 id="ba0a2315087f7fb29261db63e3183a76"></h2>
-
 
 ## It sounds kind of impossible.
 
@@ -91,7 +86,6 @@ p = 1.0 / (1.0 + np.exp(-logp)) # sigmoid function (gives probability of going u
 - In other words we’re faced with a very difficult problem and things are looking quite bleak.
 
 <h2 id="43db94d830cd7723a6d7a21a311d9bf4"></h2>
-
 
 ## Supervised Learning. 
 
@@ -109,7 +103,6 @@ I’d like to remind you briefly about supervised learning because, as we’ll s
   
 
 <h2 id="6c11e2dd65ad60a6dd6cf3a2be08fa0c"></h2>
-
 
 ## Policy Gradients
 
@@ -129,7 +122,6 @@ Here is the Policy Gradients solution.
 - So if we fill in -1 for log probability of DOWN and do backprop we will find a gradient that discourages the network to take the DOWN action for that input in the future
 
 <h2 id="abc3a1be8d17524478c2cc2d1399fe32"></h2>
-
 
 ## Training protocol
 

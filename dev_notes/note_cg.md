@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [compute graph 笔记](#674fa9dea02b179c756a79f705d54783)
     - [openGL version](#1811ce44202cb15c45b18d1ef4081860)
@@ -12,16 +12,14 @@
     - [scene graph](#6d756681478ba7bbe5b33b412e7fd283)
     - [shader](#842e3e5fe6c1b834705abd4bcb213342)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="674fa9dea02b179c756a79f705d54783"></h2>
 
-
 # compute graph 笔记
 
 <h2 id="1811ce44202cb15c45b18d1ef4081860"></h2>
-
 
 ## openGL version
 
@@ -36,13 +34,11 @@ WebGL |  based on GL ES 2.0
 
 <h2 id="8de271865f3a858ddf544a94e44468b1"></h2>
 
-
 ## depth test
 
 depth buffer (z-buffer)
 
 <h2 id="9109ef363a06715e7c00921de32df1bd"></h2>
-
 
 ## 坐标系
 
@@ -52,7 +48,6 @@ depth buffer (z-buffer)
 
 
 <h2 id="89b41f9981538b388efe60606a182986"></h2>
-
 
 ## affine transform 
 
@@ -72,13 +67,11 @@ perspective projection 不是 仿射变化。affine transforms preserve parallel
 
 <h2 id="a057710da10201eb39d68a6c747982b5"></h2>
 
-
 ## 矩阵数据存储
 
 column-major order 
 
 <h2 id="dde9a447b2a15bf1818a818f8b3b78fd"></h2>
-
 
 ## 光照
 
@@ -92,14 +85,12 @@ normal vector is at a vertex.  大多数情况下，normal vector 是共享面�
 
 <h2 id="75cfa28027d393dfbc5cb09dbe34b44e"></h2>
 
-
 ## Mipmap
 
 大贴图 贴到一个很小的表面上，linear filtering  非常没效率，解决方案：mipmap。 mipmap会额外消耗 1/3 内存使用量.
 
 
 <h2 id="94097cd1cb4b2162a7f62aab1801143f"></h2>
-
 
 ## 计算法线矩阵
 
@@ -111,14 +102,12 @@ from 4x4 modelView matrix，去掉第4行，第4列，然后求 逆转置。
 
 <h2 id="6d756681478ba7bbe5b33b412e7fd283"></h2>
 
-
 ## scene graph
 
 - camera
     - start from camera node to get view transform at first
 
 <h2 id="842e3e5fe6c1b834705abd4bcb213342"></h2>
-
 
 ## shader
 

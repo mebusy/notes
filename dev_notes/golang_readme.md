@@ -1,6 +1,5 @@
 <h2 id="c75625dccf148721245b46b1e3e6c79f"></h2>
 
-
 ### 文章
 
  1. [语言](GOLANG%20%E5%A4%87%E5%BF%981-%E8%AF%AD%E8%A8%80.md)   
@@ -33,7 +32,6 @@
 
 <h2 id="0a924bf17d1b7242d5600e9b537b969f"></h2>
 
-
 ### 国内获取 golang.org/x 包失败的方法
 
 - 其实 golang 在 github 上建立了一个[镜像库](https://github.com/golang)，如 https://github.com/golang/net 即是 https://golang.org/x/net 的镜像库
@@ -53,7 +51,6 @@ git clone https://github.com/golang/tools.git
 
 <h2 id="592aa5aafd64f18a5b4759ec0820ef33"></h2>
 
-
 ### get get update multiple pacakge 
 
 ```
@@ -69,7 +66,6 @@ go get -u gopkg.in/...
 
 <h2 id="e8db5cfdd7d47c516453db67161e7537"></h2>
 
-
 ### list all package 
 
 ```
@@ -77,7 +73,6 @@ go list ...
 ```
 
 <h2 id="e761880bea8f1f8b4c77ba1e0662b258"></h2>
-
 
 ### list all GOOS/GOARCH
 

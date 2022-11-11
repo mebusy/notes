@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [让物品掉落符合正态分布，以及lua实现](#43f9b53ed2ee3d129d2574d2936f1b3a)
     - [随机数](#5bfedcffafba0b2e774d1ec6d40004c0)
@@ -9,11 +9,10 @@
     - [移植到lua](#c9128e4c3013af1bf48669003ac0efe6)
     - [About python restore random seed ...](#ddd00f83fdb60d92ae0d96b22a3d8fe4)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="43f9b53ed2ee3d129d2574d2936f1b3a"></h2>
-
 
 # 让物品掉落符合正态分布，以及lua实现
 
@@ -24,7 +23,6 @@
     golden_slime@hotmail.com
 
 <h2 id="5bfedcffafba0b2e774d1ec6d40004c0"></h2>
-
 
 ## 随机数
 我们先来生成 50000个 0-100 随机数， 
@@ -49,7 +47,6 @@ plt.show()
 
 <h2 id="8f9d1fad3452cc29769c94d2d285f88d"></h2>
 
-
 ## 平均分布
 
 一只策划狗过来对你说：“我希望5%的概率掉落卡牌A，巴拉巴拉巴拉”。 
@@ -63,7 +60,6 @@ end
 ```
 看上去似乎很完美 
 <h2 id="16f7fa08dbbb1144afc6ef34b1dff2e2"></h2>
-
 
 ### 吗？
 
@@ -131,7 +127,6 @@ interval 的概率密度图，X轴是间隔数，Y 轴 是各间隔的次数 出
 
 <h2 id="90a89776a42d6ee4f8c0dbe54dc941ea"></h2>
 
-
 ## 正态分布
 为了方便，我们直接生成5%掉落率的卡牌A的掉落的间隔，检验下正态分布的效果。 
 
@@ -169,7 +164,6 @@ plt.show()
 
 
 <h2 id="efe278b43718253190742df876de40fc"></h2>
-
 
 ## 根据权重计算掉落
 现在有3种卡牌，掉落的权重分别 20, 30, 50 
@@ -240,7 +234,6 @@ perfect！
 
 <h2 id="c9128e4c3013af1bf48669003ac0efe6"></h2>
 
-
 ## 移植到lua
 
 lua 标准库没有正态分布的实现(np.random.normal)，我们可以很容易就实现一个：
@@ -280,7 +273,6 @@ end
 
 
 <h2 id="ddd00f83fdb60d92ae0d96b22a3d8fe4"></h2>
-
 
 ## About python restore random seed ...
  

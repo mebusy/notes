@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Building](#c39b56d4489fb2507289e7ae19567b80)
 - [Lex](#976472a144efa6a4b849b24ac6b18867)
@@ -13,11 +13,10 @@
     - [Recursion](#12fa464a36f8e5a187f5acfde99b7029)
     - [If-Else Ambiguity](#68c908bd98cb22a4b0150d6b09c01063)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c39b56d4489fb2507289e7ae19567b80"></h2>
-
 
 # Building 
 
@@ -28,7 +27,6 @@ cc lex.yy.c y.tab.c –obas.exe  # compile/link
 ```
 
 <h2 id="976472a144efa6a4b849b24ac6b18867"></h2>
-
 
 # Lex
 
@@ -139,7 +137,6 @@ int main(int argc, char *argv[]) {
 
 
 <h2 id="f4892ae9e5ea764a416fcc3b54a5bad9"></h2>
-
 
 # Yacc
 
@@ -285,7 +282,6 @@ This example still has an ambiguous grammar. Although yacc will issue shift-redu
 
 <h2 id="1864a6324588032cee5adb1f75e62195"></h2>
 
-
 # Practice, Part II
 
 - + arithmetic operators multiply and divide. 
@@ -381,7 +377,6 @@ int main(void) {
 
 
 <h2 id="cc84fa821011b93c1f935268e5560c2e"></h2>
-
 
 # Calculator
 
@@ -1059,11 +1054,9 @@ void graphDrawArrow (int c1, int l1, int c2, int l2) {
 
 <h2 id="786b674166922221e6eab655991c9fe3"></h2>
 
-
 # More Lex 
 
 <h2 id="89be9433646f5939040a78971a5d103a"></h2>
-
 
 ## Strings
 
@@ -1115,7 +1108,6 @@ Exclusive start state **STRING** is defined in the definition section. When the 
 
 <h2 id="f6904aa41f71b6298d0a92fa1d4079e2"></h2>
 
-
 ## Reserved Words
 
 If your program has a large collection of reserved words it is more efficient to let lex simply match a string and determine in your own code whether it is a variable or reserved word. 
@@ -1147,7 +1139,6 @@ where **symLookup** returns an index into the symbol table, it is better to dete
 This technique significantly reduces the number of states required, and results in smaller scanner tables.
 
 <h2 id="acb2b044e25d475996404b6350ab88f5"></h2>
-
 
 ## Debugging Lex
 
@@ -1202,11 +1193,9 @@ When **DEBUG** is defined the debug functions take effect and a trace of tokens 
 
 <h2 id="8e775af853936e583371f2687a64ecd9"></h2>
 
-
 # More Yacc
 
 <h2 id="12fa464a36f8e5a187f5acfde99b7029"></h2>
-
 
 ## Recursion
 
@@ -1233,7 +1222,6 @@ If right recursion is used then all items on the list are pushed on the stack. A
 With left recursion we never have more than three terms on the stack since we reduce as we go along. For this reason it is advantageous to use left recursion.
 
 <h2 id="68c908bd98cb22a4b0150d6b09c01063"></h2>
-
 
 ## If-Else Ambiguity
 

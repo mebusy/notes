@@ -1,7 +1,21 @@
+[](...menustart)
+
+- [git-secret crash](#2e4987eb00acb019d112359ef4ea14fa)
+    - [Install](#349838fb1d851d3e2014b9fe39203275)
+    - [0. create a gpg RSA key-pair](#d1d805fbec2198f87dd365a9cd4f6b95)
+    - [1. Basic](#7d5cbb16e6b7b4abd4e6cb6346e08140)
+    - [2. cooperate with others](#185b0dc72df04605f60858af960736c9)
+
+[](...menuend)
+
+
+<h2 id="2e4987eb00acb019d112359ef4ea14fa"></h2>
 
 # git-secret crash
 
 https://git-secret.io/
+
+<h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
 
 ## Install
 
@@ -9,11 +23,15 @@ https://git-secret.io/
 brew install git-secret
 ```
 
+<h2 id="d1d805fbec2198f87dd365a9cd4f6b95"></h2>
+
 ## 0. create a gpg RSA key-pair
 
 ```bash
 gpg --gen-key
 ```
+
+<h2 id="7d5cbb16e6b7b4abd4e6cb6346e08140"></h2>
 
 ## 1. Basic
 
@@ -80,6 +98,8 @@ $ ls
 hideme.txt        hideme.txt.secret
 ```
 
+
+<h2 id="185b0dc72df04605f60858af960736c9"></h2>
 
 ## 2. cooperate with others
 

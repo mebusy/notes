@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Blender Low Polygon Modeling](#014f19a3d96b43cc1200682c7c2f7a79)
     - [UI](#71ff71526d15db86eb50fcac245d183b)
@@ -14,16 +14,14 @@
     - [Attach a weapon](#11c6b8a0ea0ed031c6acb4536ff0f3ca)
     - [Copy Transformation Properties to other weapons](#c577c7dc58bc18f9008d10465b2d268a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="014f19a3d96b43cc1200682c7c2f7a79"></h2>
 
-
 # Blender Low Polygon Modeling 
 
 <h2 id="71ff71526d15db86eb50fcac245d183b"></h2>
-
 
 ## UI
 
@@ -70,7 +68,6 @@
 
 <h2 id="2403def5083f02105e7802b3b315681e"></h2>
 
-
 ## Mirror
 
 - unselect this 
@@ -85,7 +82,6 @@
 
 
 <h2 id="98921133d10fbdb0fb6dbb7b2648befe"></h2>
-
 
 ## Head 
 
@@ -108,7 +104,6 @@
 
 <h2 id="deaa2adbeb26802ae61609c3f3642d82"></h2>
 
-
 ## UV
 
 1. obj -> edit mode -> shading / UV tab
@@ -117,7 +112,6 @@
 
 <h2 id="152090ff5e9a05ea7e1cf0c248449638"></h2>
 
-
 ## Helm 
 
 1. select faces
@@ -125,7 +119,6 @@
 3. seprate by select ,  to make a separated object
 
 <h2 id="17d2c299e4d02f7b375eec3f057a5b50"></h2>
-
 
 ## Mace
 
@@ -142,7 +135,6 @@
 
 
 <h2 id="03908bf22d3b0082ebc42831dd082b3a"></h2>
-
 
 ## Armature
 
@@ -173,7 +165,6 @@
 
 <h2 id="fef75a1d83f32588ac72f338e0ecd077"></h2>
 
-
 ## Paint Weights
 
 1. pose mode, choose bone
@@ -183,7 +174,6 @@
 
 
 <h2 id="dfcf9dd022ec7d7f4548e411e3667700"></h2>
-
 
 ## Inverse Kinematics
 
@@ -221,7 +211,6 @@
 
 <h2 id="d6b6b668dbca9d4fe774bb654226ebe3"></h2>
 
-
 ## Animation
 
 - In Animation Editor,  select *Action Edtor* Mode
@@ -251,7 +240,6 @@
 
 <h2 id="11c6b8a0ea0ed031c6acb4536ff0f3ca"></h2>
 
-
 ## Attach a weapon
 
 1. select weapon object,  add object constrait *Child Of*
@@ -263,7 +251,6 @@
 
 
 <h2 id="c577c7dc58bc18f9008d10465b2d268a"></h2>
-
 
 ## Copy Transformation Properties to other weapons
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Current Noise Methods](#eb9eedb507134d1e48e6f3f15f139b5e)
     - [Perlin](#2859057909e216c33bd7903d2e5f7976)
@@ -8,7 +8,7 @@
     - [Domain Warping](#96c764ee834cfb4c051951fbcfbb9427)
 - [References](#d95867deadfe690e40f42068d6b59df8)
 
-...menuend
+[](...menuend)
 
 
 - Attempt 1 - Copy Minecraft !
@@ -23,11 +23,9 @@
 
 <h2 id="eb9eedb507134d1e48e6f3f15f139b5e"></h2>
 
-
 ## Current Noise Methods
 
 <h2 id="2859057909e216c33bd7903d2e5f7976"></h2>
-
 
 ### Perlin
 
@@ -53,7 +51,6 @@ return sum;
 
 <h2 id="7aa10035e694a2af0783c9cf74b47979"></h2>
 
-
 ### Billow
 
 - 'billowy' and eroded terrain with sharp creases can be created.
@@ -67,7 +64,6 @@ return sum;
 
 <h2 id="a1a7d607254ad89013d93115af4017f0"></h2>
 
-
 ### Ridged
 
 - Using the complement of the billow creates sharp ridges instead of creases
@@ -79,7 +75,6 @@ return sum;
 ![](../imgs/math4game_ridged_graph.png)
 
 <h2 id="06dfe3fefa645be8dc2c59182ae3f9e2"></h2>
-
 
 ### Analytical Derivative
 
@@ -110,7 +105,6 @@ return sum;
 
 
 <h2 id="96c764ee834cfb4c051951fbcfbb9427"></h2>
-
 
 ### Domain Warping
 
@@ -153,7 +147,6 @@ return sum;
     - shapes likes rivers, something flow into one another
 
 <h2 id="d95867deadfe690e40f42068d6b59df8"></h2>
-
 
 ## References 
 

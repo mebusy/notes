@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [工具集](#d1f4a2ca5ebae356829301a14367e0e6)
     - [1.1 go build](#5cb3fbe2f5c14eaeec65da239fb2278b)
@@ -20,16 +20,14 @@
     - [首先得生成与平台相关的工具和标准库](#6aa488bb375a987c2f85c02db3220422)
     - [设置 GOOS GOARCH 环境变量编译目标平台文件](#0457f03fb15cf964e191b590da30f15e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="d1f4a2ca5ebae356829301a14367e0e6"></h2>
 
-
 ## 工具集
 
 <h2 id="5cb3fbe2f5c14eaeec65da239fb2278b"></h2>
-
 
 ### 1.1 go build
 
@@ -71,7 +69,6 @@ ldflags
 
 <h2 id="dc4c1d9510e06b1f42e03832e216b351"></h2>
 
-
 #### go build injection
 
 ```go
@@ -109,7 +106,6 @@ go build -v -ldflags "-w -X 'main.GitCommit=$GIT_COMMIT' -X 'pvp_server/api.MsgD
 
 <h2 id="39e51e767418357eef4ac9bcb4330f50"></h2>
 
-
 #### 逃逸分析
 
 ```
@@ -120,7 +116,6 @@ go build -gcflags '-m -l'
 
 <h2 id="bfae2838680a32e56e245ff108957b89"></h2>
 
-
 ### 1.2 go install
 
 和 go build 参数相同，将生成文件拷贝到 bin,pkg目录.
@@ -128,7 +123,6 @@ go build -gcflags '-m -l'
 优先使用 GOBIN 环境变量指定目录.
 
 <h2 id="a0d272d3a24a7f1986e0fa7bafb8a59d"></h2>
-
 
 ### 1.3 go clean
 
@@ -141,7 +135,6 @@ go build -gcflags '-m -l'
 
 
 <h2 id="467396f90a34e7517a6fe191507ebab1"></h2>
-
 
 ### 1.4 go get
 
@@ -157,7 +150,6 @@ go build -gcflags '-m -l'
 
 <h2 id="10dff3e07c4de7491ca41d3f3d6a7968"></h2>
 
-
 ### 1.5 go tool objdump
 
 反汇编可执行文件
@@ -170,7 +162,6 @@ $ go tool objdump -s "main\.main" test
 
 <h2 id="97696a7ea989ac7decac2e8be29a04f7"></h2>
 
-
 ### 1.6 go profile: pprof
 
 见 [pprof](golang_pprof.md)
@@ -178,11 +169,9 @@ $ go tool objdump -s "main\.main" test
 
 <h2 id="b19e1a4d4f517ccccc8fd5d402c438f9"></h2>
 
-
 ## 条件编译
 
 <h2 id="7fb897f760321cdc29a25ac77a31a041"></h2>
-
 
 ##### 通过 runtime.GOOS/GOARCH判断，或使用编译约束标记
 
@@ -194,11 +183,9 @@ package main
 
 <h2 id="e4ee5701df42dfb4c09086d79e67d9f6"></h2>
 
-
 ##### "+build"注释, 指示编译器检查相关环境变量
 
 <h2 id="30ef583d7ef62bad4751c8e2e7299f50"></h2>
-
 
 ##### 多个标记合并, 空格表示OR, 逗号AND, 感叹号NOT
 
@@ -211,11 +198,9 @@ package main
 
 <h2 id="ba18359c8922124ddf4b2ffbdad4b1d3"></h2>
 
-
 ##### 如果GOOS,GOARCH条件不符合, 编译器忽略该文件
 
 <h2 id="e6bd662653ba70b565a32d84722fd015"></h2>
-
 
 ##### 还可使用 文件名来表示编译约束
 
@@ -236,7 +221,6 @@ $ ls -l /usr/local/go/src/pkg/runtime
 
 <h2 id="5c0242163713cc576762cc92f3c5e625"></h2>
 
-
 ##### 忽略某个文件，或指定编译器版本号
 
 ```go
@@ -246,11 +230,9 @@ $ ls -l /usr/local/go/src/pkg/runtime
 
 <h2 id="9f4c95c3ac51945acde06a53ffa196bd"></h2>
 
-
 ## 跨平台编译
 
 <h2 id="6aa488bb375a987c2f85c02db3220422"></h2>
-
 
 ##### 首先得生成与平台相关的工具和标准库
 
@@ -261,7 +243,6 @@ $ GOOS=linux GOARCH=amd64 CGO_ENABLED=0 ./make.bash --no-clean
 ```
 
 <h2 id="0457f03fb15cf964e191b590da30f15e"></h2>
-
 
 ##### 设置 GOOS GOARCH 环境变量编译目标平台文件
 

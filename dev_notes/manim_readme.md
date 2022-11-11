@@ -1,6 +1,5 @@
 <h2 id="cbcd3fecff4c0ef0c063f8c41726d34a"></h2>
 
-
 # Manim
 
 There are 2 versions of manim.  One is created by [Grant](https://github.com/3b1b/manim) , and one is forked and maintained by the [Manim Community](https://github.com/ManimCommunity/manim).
@@ -11,7 +10,6 @@ Manim Community's version is updated more frequently and better tested than Gran
 
 
 <h2 id="411eaaaa405899304e54dce3363a2baf"></h2>
-
 
 ## Quick Start
 
@@ -98,13 +96,11 @@ $ manim test_scene.py SquareToCircle -ql | mplay.py | xargs open
 
 <h2 id="f405219bb16c4b13aeb6e5e24f4a7010"></h2>
 
-
 ## Get Start
 
 Most content comes from this tutorial [How to Create Mathematical Animations like 3Blue1Brown Using Python](https://towardsdatascience.com/how-to-create-mathematical-animations-like-3blue1brown-using-python-f571fb9da3d1)
 
 <h2 id="2f172e1e4eb92b175880c8470ccc7df2"></h2>
-
 
 ### Create a Blue Square that Grows from the Center
 
@@ -136,7 +132,6 @@ $ manim -ql start.py PointMovingOnShapes | mplay.py | xargs open
 
 <h2 id="954e511dd24097f81e9ee38cb2097b0e"></h2>
 
-
 ### Mobject Placement
 
 ![](../imgs/manim_mobjplacement.gif)
@@ -164,7 +159,6 @@ class MobjectPlacement(Scene):
 
 <h2 id="5ec9496db75bfffe802581dd4607387c"></h2>
 
-
 ### create a gif
 
 - `-i` to create a Gif instead of video
@@ -175,7 +169,6 @@ media/videos/start/480p15/PointMovingOnShapes_ManimCE_v0.7.0.gif
 ```
 
 <h2 id="425269e4ca751a7e5ad4b09e60d0cd86"></h2>
-
 
 ### Turn a Square into a Circle, with rotate and flip
 
@@ -206,13 +199,11 @@ class PointMovingOnShapes(Scene):
 
 <h2 id="49fed1e26e85507a4447216785a065fd"></h2>
 
-
 ### List of Manim Shapes
 
 [list of manim shapes](https://docs.manim.community/en/stable/reference/manim.mobject.geometry.html#module-manim.mobject.geometry)
 
 <h2 id="adb7de74107c6d52adbb788994586e96"></h2>
-
 
 ### Customize Manim
 
@@ -226,13 +217,11 @@ class PointMovingOnShapes(Scene):
 
 <h2 id="6bb07c1eeea45a16fded0581a3b66e1a"></h2>
 
-
 ### Manim Configurations
 
 - [manim configuration](https://docs.manim.community/en/stable/tutorials/configuration.html)
 
 <h2 id="35928578ba0c3430fd5949f41a51b28c"></h2>
-
 
 ### Mathematical Equations with a Moving Frame
 
@@ -265,7 +254,6 @@ class MovingFrame(Scene):
 ```
 
 <h2 id="cf036c6e41ef22235008175ad4e210c0"></h2>
-
 
 ### write steps by steps on how to solve an equation:
 
@@ -306,7 +294,6 @@ class MathEquation(Scene):
 
 <h2 id="fa650acb65f9725e15d8e741dff2726b"></h2>
 
-
 ### Moving and Zooming Camera
 
 adjust the camera and select which part of the equations to zoom in.
@@ -330,7 +317,6 @@ class MovingAndZoomingCamera(MovingCameraScene):
 
 
 <h2 id="4cdbd2bafa8193091ba09509cedf94fd"></h2>
-
 
 ### Graph
 
@@ -392,7 +378,6 @@ You can also animate the process of setting up the axes by settinganimate=True
 
 <h2 id="29652ca24f7388739ca5d926678b2e28"></h2>
 
-
 ### Move Objects Together
 
 Use `VGroup` to group different Manim’s objects and move them together
@@ -432,7 +417,6 @@ class GroupCircles(Scene):
 
 <h2 id="f65baa5387bd539c63352efb7898ec9d"></h2>
 
-
 ### Trace Path
 
 ![](../imgs/manim_tracedpathex.gif)
@@ -465,7 +449,6 @@ Note: the traced path do really **depends your quality setting**. If we switch t
 
 <h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
 
-
 ## Recap
 
 There are 3 kinds of objects that manim provides:
@@ -488,7 +471,6 @@ There are 3 kinds of objects that manim provides:
 
 <h2 id="9e2c73c41e13b2d02e2809035575fd15"></h2>
 
-
 # More Tutorials
 
 - [Text](manim_text.md)
@@ -500,11 +482,9 @@ There are 3 kinds of objects that manim provides:
 
 <h2 id="a0d4cc0f54602c3f247c72f15a7d2dbf"></h2>
 
-
 # Tips 
 
 <h2 id="49f648acec44e8683777771a9b2f89d4"></h2>
-
 
 ## FadeOut entire scene
 
@@ -517,7 +497,6 @@ There are 3 kinds of objects that manim provides:
 
 <h2 id="6c28c282a5487b66df17cc99350e9a1c"></h2>
 
-
 ## Delay sound play
 
 ```python
@@ -527,7 +506,6 @@ There are 3 kinds of objects that manim provides:
 
 
 <h2 id="a30921ce37365ec87770e99738bf6a42"></h2>
-
 
 # Old NON-recommended Tutorial
 

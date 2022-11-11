@@ -1,7 +1,7 @@
-...menustart
+[](...menustart)
 
 
-...menuend
+[](...menuend)
 
 
 We want to avoid “paired” operations (e.g. malloc/free, or

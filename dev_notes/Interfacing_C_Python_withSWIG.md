@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Interfacing C/C++ and Python with SWIG](#e07cbedb7e9c043d50d55b294075bb5a)
 - [Extending and Embedding Python](#ad282dc3eb4e0a5dc9c397a5e2d16f43)
@@ -83,16 +83,14 @@
     - [Topics Not Covered](#2d633c005a4404fef229c242fce9560b)
 - [Notice](#24efa7ee4511563b16144f39706d594f)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="e07cbedb7e9c043d50d55b294075bb5a"></h2>
 
-
 # Interfacing C/C++ and Python with SWIG
 
 <h2 id="ad282dc3eb4e0a5dc9c397a5e2d16f43"></h2>
-
 
 # Extending and Embedding Python
 
@@ -114,7 +112,6 @@ Extending | | Embedding
 - We are primarily concerned with “extension writing”
 
 <h2 id="544164847a4d2632320870de4991022e"></h2>
-
 
 ## Writing Wrapper Functions
 
@@ -173,7 +170,6 @@ Py_BuildValue(“(ddd)”,a,b,c); // Create a 3-item tuple of doubles
 
 <h2 id="83daad0571159bc1a7838aa89101593e"></h2>
 
-
 ## Module Initialization
 
 - All extension modules need to register wrappers with Python
@@ -198,7 +194,6 @@ void initexample() {
 
 <h2 id="7d9b52ad924fe2b80c28d1de92bd0e5d"></h2>
 
-
 ## A Complete Extension Example
 
 ```cpp
@@ -222,7 +217,6 @@ void initexample() {
 
 <h2 id="7e1ce57d05f4b43c1a1f9ffac143f7fd"></h2>
 
-
 ## Compiling A Python Extension
 
 - There are two methods
@@ -240,7 +234,6 @@ void initexample() {
     - It’s surprisingly powerful if used right.
 
 <h2 id="6b45b85bb488ae4065b2314db9500235"></h2>
-
 
 ### Dynamic Loading
 
@@ -262,7 +255,6 @@ Also ...
 
 <h2 id="cf2cd13954bd2180b03ff8a75f315752"></h2>
 
-
 ### Static Linking
 
 - How it works
@@ -274,7 +266,6 @@ Also ...
     - If you had a commonly used extension that you wanted to add to the Python core
 
 <h2 id="d6d2d44601afd3078a29bcbffe7e470f"></h2>
-
 
 ## Using The Module
 
@@ -293,7 +284,6 @@ Also ...
 
 <h2 id="7ac9508d71ea9500acd35caba32c0ac4"></h2>
 
-
 ## Wrapping a C Application
 
 - The process
@@ -309,7 +299,6 @@ Also ...
     - Aren’t there better things to be working on?
 
 <h2 id="1e7977c8f72fda74a52508a6ab38dea6"></h2>
-
 
 ## Extension Building Tools
 
@@ -331,11 +320,9 @@ Also ...
 
 <h2 id="cd4b1295badb2d463b9b2374a721e715"></h2>
 
-
 # SWIG
 
 <h2 id="e23b24eacaf1b9858f5ecef5ee66cb15"></h2>
-
 
 ## An Introduction to SWIG
 
@@ -346,7 +333,6 @@ Also ...
     - Attempts to eliminate the tedium of writing extension modules.
 
 <h2 id="9ff90bc091bcc05ce4afe259573d0263"></h2>
-
 
 ### SWIG Features
 
@@ -364,7 +350,6 @@ Also ...
     - Allow people to shoot themselves in the foot (if they want to).
 
 <h2 id="ad536dcc283e2c7d86c850bfdc37a798"></h2>
-
 
 ### A Simple SWIG Example
 
@@ -404,7 +389,6 @@ double Foo;
 
 <h2 id="8450fa703f6d9fddcd5719a64c55e517"></h2>
 
-
 ### A Simple SWIG Example (cont...)
 
 - Building a Python Interface
@@ -440,7 +424,6 @@ Generating wrappers for Python
 
 <h2 id="85c023d15ba1b995d3e31c42cd83e4c6"></h2>
 
-
 ## What SWIG Does
 
 - Basic C declarations
@@ -463,7 +446,6 @@ Generating wrappers for Python
 
 <h2 id="04e80c3434e608ceca1fa1a7815d8ecf"></h2>
 
-
 ## More on Global Variables
 
 - Why does SWIG access global variables through ’cvar’?
@@ -483,7 +465,6 @@ Generating wrappers for Python
         - if you use the Python ’from module import *’ directive, you will get a namespace collision on the value of ’cvar’ (unless you explicitly changed its name as described above).
 
 <h2 id="025d5c397dd8fa114a2c5fa76af59fc2"></h2>
-
 
 ## More on Constants
 
@@ -508,7 +489,6 @@ Generating wrappers for Python
 
 <h2 id="7bba5d01d3778f550d69f87dca50fc3f"></h2>
 
-
 ## Pointers
 
 - Pointer management is critical!
@@ -532,7 +512,6 @@ Generating wrappers for Python
 
 <h2 id="37282c2448c8e98c2a574d8c45526b1a"></h2>
 
-
 ## Pointer Encoding and Type Checking
 
 - Pointer representation
@@ -549,7 +528,6 @@ Generating wrappers for Python
 
 <h2 id="ef4c3d6f0432b921f83221e11873e5ee"></h2>
 
-
 ## Array Handling
 
 - Arrays are pointers
@@ -563,7 +541,6 @@ Generating wrappers for Python
     - If you plan to do alot of array manipulation, you may want to check out the Numeric Python extension.
 
 <h2 id="396d62e0e8e19935082c7a0f0d23de64"></h2>
-
 
 ## Complex Objects
 
@@ -583,7 +560,6 @@ Generating wrappers for Python
         - From SWIG’s perspective, it doesn’t really matter what the pointer is actually pointing to--that is, SWIG doesn’t need the definition of Matrix
 
 <h2 id="46004b2ab33510181602a075946befd4"></h2>
-
 
 ## Passing Objects by Value
 
@@ -610,7 +586,6 @@ double wrap_dot_product(Vector *a, Vector *b) {
         - `Real spam(Real a); // Ah. Real is just a ’double’.`
 
 <h2 id="e1e35c4c8f65460c02f706dcbcfc6332"></h2>
-
 
 ## Return by Value
 
@@ -644,7 +619,6 @@ Vector *wrap_cross_product(Vector *a, Vector *b) {
 
 <h2 id="325224223671ce64d436f6ad354773e5"></h2>
 
-
 ## Renaming and Restricting
 
 - Renaming declarations
@@ -665,7 +639,6 @@ double spam; // (read only)
 
 <h2 id="37c42a90729cbb6a8dc5ea1a9b444aae"></h2>
 
-
 ## Code Insertion
 
 - The structure of SWIG’s output
@@ -681,7 +654,6 @@ double spam; // (read only)
 
 
 <h2 id="e15baa97c70d8804abb94c46f21b11f2"></h2>
-
 
 ### Code Insertion Examples
 
@@ -708,7 +680,6 @@ double spam; // (read only)
 ```
      
 <h2 id="d5c202ca829bf0c20ed837974611c6a9"></h2>
-
 
 ## Helper Functions
 
@@ -758,7 +729,6 @@ def printelements(a, first, last):
 
 <h2 id="930afb50b5c4feb501751e43f02452f8"></h2>
 
-
 ## Conditional Compilation
 
 - Use C preprocessor directives to control SWIG compilation
@@ -789,7 +759,6 @@ def printelements(a, first, last):
 
 <h2 id="4bf59d184442739e5849a846dbb8d97f"></h2>
 
-
 ## File Inclusion
 
 - The %include directive
@@ -817,7 +786,6 @@ def printelements(a, first, last):
 
 <h2 id="1de9f582fd04899f0ad32fa57e892c4b"></h2>
 
-
 ## Quick Summary
 
 - You now know almost everything you need to know
@@ -837,11 +805,9 @@ def printelements(a, first, last):
 
 <h2 id="e09485381672236816859ae7c93daaf7"></h2>
 
-
 # A SWIG Example
 
 <h2 id="dbe9deccb5278e176f28084f1e15ab81"></h2>
-
 
 ## Building a Python Interface to OpenGL
  
@@ -863,7 +829,6 @@ def printelements(a, first, last):
 
 
 <h2 id="51f12eece6a7edbf2516418b4fa7ea4e"></h2>
-
 
 ## Preparing the Files
 
@@ -909,11 +874,9 @@ c++ -dynamiclib -lpython -framework OpenGL -framework GLUT opengl_wrap.o   -o _o
 
 <h2 id="c8308b1eba7ba926a61b8fd802194386"></h2>
 
-
 # Objects
 
 <h2 id="15d5f94c44de986c57e4e0c1ba9d32fc"></h2>
-
 
 ## Manipulating Objects
 
@@ -933,7 +896,6 @@ c++ -dynamiclib -lpython -framework OpenGL -framework GLUT opengl_wrap.o   -o _o
     - Keep it minimalistic and simple in nature.
 
 <h2 id="5f2f386cf16ab372865a324830dd4afe"></h2>
-
 
 ## Creating and Destroying Objects
 
@@ -960,7 +922,6 @@ typedef struct {
 
 <h2 id="98183f193fee01754461070f6d562fad"></h2>
 
-
 ## Accessing the Internals of an Object
 
 - This is also accomplished using accessor functions
@@ -978,7 +939,6 @@ typedef struct {
 ```
 
 <h2 id="03ec2affd8124972e7107d4df9c7530c"></h2>
-
 
 ## Accessing C++ Member Functions
 
@@ -1008,14 +968,12 @@ public:
 
 <h2 id="7003c50c3521305b3b5841de0df8a7d8"></h2>
 
-
 ## Automatic Creation of Accessor Functions
 
 - SWIG automatically generates accessor functions if given structure, union or class definitions.
 - Avoids the tedium of writing the accessor functions yourself
 
 <h2 id="574b6edb1250ed1ca084e7c6146b7661"></h2>
-
 
 ## Parsing Support for Objects
 
@@ -1036,7 +994,6 @@ public:
     - SWIG is only concerned with access to objects, not the representation of objects
 
 <h2 id="3e9ac01bc73460b51053b4d324cfc86a"></h2>
-
 
 ## Renaming and Restricting Members
 
@@ -1066,7 +1023,6 @@ public:
 
 <h2 id="f2534b1ea8dc55d635cd463b74b0410f"></h2>
 
-
 ## C++ Inheritance and Pointers
 
 - SWIG encodes C++ inheritance hierarchies
@@ -1075,7 +1031,6 @@ public:
     - C++ pointers are properly cast when necessary.
 
 <h2 id="59dc593b6f1889e6540008976127105d"></h2>
-
 
 ## Shadow Classes
 
@@ -1115,7 +1070,6 @@ class Stack:
 
 <h2 id="0b3f7fa25d11e3d23ef607fa93c65732"></h2>
 
-
 ## Automatic Shadow Class Generation
 
 - moduelname.py
@@ -1126,7 +1080,6 @@ class Stack:
 - `import examplec `   # Load original C interface.
 
 <h2 id="8b5a90cd7a0b49ea97f806c8e0a5a605"></h2>
-
 
 ## The Anatomy of a Shadow Class
 
@@ -1158,7 +1111,6 @@ class Stack(StackPtr):
 
 <h2 id="5ab7021b85cdb75bb9630e03269461a7"></h2>
 
-
 ## Using a Shadow Class
 
 - This is the easy part--they work just like a normal Python class
@@ -1185,7 +1137,6 @@ _1008fe8_Stack_p
     - Changes to the Python wrappers are easy to make---they’re written in Python
 
 <h2 id="ee597dc5a0d595bb897bef588775a27c"></h2>
-
 
 ## Nested Objects
 
@@ -1223,7 +1174,6 @@ struct Particle {
 ```
 
 <h2 id="a97961a8ce5aaac70621b783e6f5ecb7"></h2>
-
 
 ## Managing Object Ownership
 
@@ -1269,7 +1219,6 @@ def listtonode(l):
     - but this destruction only applies to the Python wrapper class--not the underlying C/C++ object.
 
 <h2 id="a598a468e7d5e4ece9ef4b8380d1020c"></h2>
-
 
 ## Extending Structures and Classes
 
@@ -1318,7 +1267,6 @@ class Image:
 
 <h2 id="cf0aa23634e5dfcaa74e715a91747f5a"></h2>
 
-
 ## Class Extension with SWIG
 
 - The %addmethods directive 
@@ -1348,7 +1296,6 @@ struct Image {
 - SWIG will combine the added methods with the original structure or class.
 
 <h2 id="5e5f583ecb3502f58fd792a7c1a5be43"></h2>
-
 
 ## Adding Methods (cont...)
 
@@ -1381,7 +1328,6 @@ void Image_clear(Image *self, int color) {
 - SWIG treats the added method as if it were part of the original structure/class definition (from Python you will not be able to tell).
 
 <h2 id="5b69b1c47e0bf380ea521d00f471bff4"></h2>
-
 
 ## Adding Special Python Methods
 
@@ -1420,7 +1366,6 @@ char *__str__() {
     - A safer approach would also include some bounds checks on the result string.
 
 <h2 id="2aec9f26b5d5111b4edeecee36520ba4"></h2>
-
 
 ## Accessing Arrays of Objects
 
@@ -1463,7 +1408,6 @@ Vector *varray(int nitems);
 
 <h2 id="378b2560380a2e1b170f95e34e0cb08a"></h2>
 
-
 ## Making Sense of Objects (Summary)
 
 - SWIG uses a layered approach
@@ -1481,7 +1425,6 @@ Vector *varray(int nitems);
 ---
 
 <h2 id="1eb16eb6d6abd61ab58c0926dff8a31a"></h2>
-
 
 # The SWIG Library
 
@@ -1508,18 +1451,15 @@ Vector *varray(int nitems);
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
-
 ## TODO
 
 ---
 
 <h2 id="83120aeab6b6ddd3aeffddd4dd4e722f"></h2>
 
-
 # Advanced SWIG Features
 
 <h2 id="32d519541273e152f1e859b4172fd7f3"></h2>
-
 
 ## Exception Handling
 
@@ -1545,7 +1485,6 @@ Vector *varray(int nitems);
 ```
 
 <h2 id="bc548ccae0c1fa1095cc6f91b94223a2"></h2>
-
 
 ### SWIG Exception Library
 
@@ -1586,7 +1525,6 @@ Vector *varray(int nitems);
 
 <h2 id="193ffc88196dfff27a7c4881baf28049"></h2>
 
-
 ## Typemaps
 
 - Typemaps allow you to change the processing of any datatype
@@ -1604,7 +1542,6 @@ Vector *varray(int nitems);
     - Impossible to cover in full detail here.
 
 <h2 id="08179024018d563608544edf1dc2de2a"></h2>
-
 
 ### Typemaps : In a Nutshell
 
@@ -1625,7 +1562,6 @@ Vector *varray(int nitems);
     - SWIG always picks the most specific rule.
 
 <h2 id="e176787bdecd1f8e64002bffda883c8d"></h2>
-
 
 ### The Typemap Library
 
@@ -1672,7 +1608,6 @@ void get_viewport(Image *im, int *width, int *height);
 
 <h2 id="12312140f71cdd9510114dd1720b932b"></h2>
 
-
 ### Typemap Methods
 
 - Typemaps can be defined for a variety of purposes
@@ -1688,7 +1623,6 @@ void get_viewport(Image *im, int *width, int *height);
 - The SWIG Users Manual has all the gory details.
 
 <h2 id="1f391e129e6249db9d09367072969f79"></h2>
-
 
 ### Typemap Applications
 
@@ -1716,7 +1650,6 @@ or simply ...
 
 <h2 id="1d1c5d3cf35d7777056d0f33a6dde9de"></h2>
 
-
 ### Typemaps : The Bottom Line
 
 - Typemaps can be used to customize SWIG
@@ -1736,11 +1669,9 @@ or simply ...
 
 <h2 id="bb854aa2286de3c6f945f87d5029e202"></h2>
 
-
 # Practical Matters
 
 <h2 id="4a764f1a2d9b0e7a0f48bb7398252529"></h2>
-
 
 ## Practical Issues
 
@@ -1754,7 +1685,6 @@ or simply ...
 - Python extension building is only one piece of the puzzle
 
 <h2 id="672391f1fb8dc7e9b10ffe347c1e43a9"></h2>
-
 
 ## Migrating Applications to Python
 
@@ -1771,7 +1701,6 @@ or simply ...
 
 
 <h2 id="7e656a3c844339c06109fbdce21e174a"></h2>
-
 
 ### Namespace Conflicts
 
@@ -1791,7 +1720,6 @@ or simply ...
 
 <h2 id="eaa0d402de11cac343bc92d96c445e99"></h2>
 
-
 ### Linking Problems
 
 - Extensions usually have to be compiled and linked with the same compiler as Python
@@ -1805,7 +1733,6 @@ or simply ...
     - Nor do COM components work (look at the Python-COM extension).
 
 <h2 id="23d4fc2fce15f8d120fdc089dc97ddbf"></h2>
-
 
 ## More on Shared Libraries
 
@@ -1823,7 +1750,6 @@ or simply ...
     - If that still doesn’t work, try recompiling Python’s main program and relinking the Python executable with the C++ compiler
 
 <h2 id="5562023e13b0e93cbadcd055343089fb"></h2>
-
 
 ### Mixing Shared and Static Libraries
 
@@ -1870,7 +1796,6 @@ extern void set_spam(int);
 
 <h2 id="0d3ed846797bf05a60a0cd6a5d703608"></h2>
 
-
 ### The Static Library Problem
 
 - Linking against static libraries results in multiple or incomplete copies of a library
@@ -1898,7 +1823,6 @@ void set_spam(int);
 
 <h2 id="3e73de1c644b3421b6000e3df598210f"></h2>
 
-
 ### Using Shared Libraries
 
 - If using dynamic loading, use shared libraries
@@ -1920,7 +1844,6 @@ void set_spam(int val) {
 ```
 
 <h2 id="8b2a810487c17c087aaf06902b5a7058"></h2>
-
 
 ### More Shared Libraries
 
@@ -1944,7 +1867,6 @@ void set_spam(int val) {
 
 <h2 id="d5e238de3ec209bec453d8aef09d080e"></h2>
 
-
 ## Performance Considerations
 
 - Python introduces a performance penalty
@@ -1963,7 +1885,6 @@ void set_spam(int val) {
     - Your mileage may vary.
 
 <h2 id="60b0acfb3e7dcc393e4f96bda9bcb003"></h2>
-
 
 ## Debugging Dynamic Modules
 
@@ -1984,11 +1905,9 @@ void set_spam(int val) {
 
 <h2 id="dcc352784b5eb86c213c9fb8ddeda329"></h2>
 
-
 # Where to go from here
 
 <h2 id="2d633c005a4404fef229c242fce9560b"></h2>
-
 
 ## Topics Not Covered
 
@@ -2011,7 +1930,6 @@ void set_spam(int val) {
 ----
 
 <h2 id="24efa7ee4511563b16144f39706d594f"></h2>
-
 
 # Notice 
 

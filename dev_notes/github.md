@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [github](#bf215181b5140522137b3d4f6b73544a)
     - [run html on github](#606e5c37337c2f05305ab4a4a0dc2691)
@@ -20,17 +20,15 @@
         - [Undo a conflict and start over](#a44d692e0cfa312f2d01e7cc424f3531)
     - [Reset Submodule](#740e34f3f2acfa61cdf6a6d376b3510d)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="bf215181b5140522137b3d4f6b73544a"></h2>
-
 
 # github 
 
 
 <h2 id="606e5c37337c2f05305ab4a4a0dc2691"></h2>
-
 
 ## run html on github
 
@@ -48,7 +46,6 @@
 
 <h2 id="a6c7b8bc87e837e643f48e27b843d648"></h2>
 
-
 ## merge specific commit 
 
 ```
@@ -59,7 +56,6 @@ git cherry-pick [-n] <commit>
 
 <h2 id="e35fc6dbd7673d56c0824c31ff378241"></h2>
 
-
 ## show file change of a commit 
 
 ```
@@ -67,7 +63,6 @@ git diff-tree <commit>
 ```
 
 <h2 id="6f4311248df3ab2115e904e14c7836c9"></h2>
-
 
 ## get a file with specific revision
 
@@ -77,7 +72,6 @@ git show REVISION:filePath > outFilePath
 
 
 <h2 id="aafd38d2cb2288571bb67fc78e3a18f7"></h2>
-
 
 ## git show/diff 乱码问题
 
@@ -90,7 +84,6 @@ git diff | less -r
 
 <h2 id="a9df5d1d20b4eb063767169d82151fdc"></h2>
 
-
 ## [trick] use git log to display the diffs while searching
 
 ```
@@ -99,7 +92,6 @@ git log -p -- path/to/file
 
 
 <h2 id="384d969c3957ddc0b7be9841ff3549a8"></h2>
-
 
 ## show files changed between 2 commit 
 
@@ -111,7 +103,6 @@ git diff commit1  commit2 --name-only
 
 <h2 id="366ee47209629dccbab3d2399247ea84"></h2>
 
-
 ## provide username when clone private repos
 
 ```
@@ -120,7 +111,6 @@ git clone https://username:password@github.com/username/repository.git
 
 
 <h2 id="8da880caa0ca98d1c46a028c0da79aac"></h2>
-
 
 ## gitlab: git clone leads to "SSL certificate problem: unable to get local issuer certificate"
 
@@ -132,7 +122,6 @@ git config --global http.sslVerify true
 
 
 <h2 id="60f96f2175fb84d4839e67f2533a4c10"></h2>
-
 
 ## Calling git clone using password with special character
 
@@ -149,7 +138,6 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
 
 <h2 id="9af7d00519ec3625b399242404c33af2"></h2>
 
-
 ## Copy branch from another repository
 
  1. git clone your repo , so your repo's repo is named `origin`
@@ -164,7 +152,6 @@ $ git clone https://myuser:password%21@github.com/myuser/repo.git
 
 <h2 id="65804564299051849847b74237b908e7"></h2>
 
-
 ## delete a branch locally and remotely
 
 ```
@@ -174,7 +161,6 @@ $ git branch -d <branch_name>
 
 
 <h2 id="299ba8422f7eafd171b8c712b9319131"></h2>
-
 
 ## delete all commit history in github
 
@@ -194,7 +180,6 @@ $ git branch -d <branch_name>
 
 <h2 id="f2bba2dd74d36e3d71aed69d628f2346"></h2>
 
-
 ## delete all tags, local & remote
 
 ```bash
@@ -207,7 +192,6 @@ git tag | xargs -L 1 | xargs git tag --delete
 
 <h2 id="365a5d68e803e7cd517640176167c02b"></h2>
 
-
 ## partial commmit 
 
 ```bash
@@ -216,11 +200,9 @@ git commit -p <filename>
 
 <h2 id="bcccf2d6eb0a519d64f1b86b59fe5db3"></h2>
 
-
 ## handling conflict
 
 <h2 id="a44d692e0cfa312f2d01e7cc424f3531"></h2>
-
 
 ### Undo a conflict and start over
 
@@ -235,7 +217,6 @@ git commit -p <filename>
 
 
 <h2 id="740e34f3f2acfa61cdf6a6d376b3510d"></h2>
-
 
 ## Reset Submodule
 

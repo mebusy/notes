@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week1  The Learning Problem](#ecde0ae599ab9118d10cbcd51ecbaab0)
 - [Week2 Learning to Answer Yes/No](#5868daf5782375dc2181821611a1a15c)
@@ -84,11 +84,10 @@
         - [Systematic Route](#62efbe469e781542f448dfebe1e436d8)
         - [Weighted Pocket Algorithm](#55d55c54777e3438c85343abfae313ac)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ecde0ae599ab9118d10cbcd51ecbaab0"></h2>
-
 
 # Week1  The Learning Problem
 
@@ -97,16 +96,13 @@
 
 <h2 id="5868daf5782375dc2181821611a1a15c"></h2>
 
-
 # Week2 Learning to Answer Yes/No
 
 <h2 id="85afcca55926ce0a29f0f6cb05850a9d"></h2>
 
-
 ## Perceptron Hypothesis Set
 
 <h2 id="d8d47e427c95153bb9f8bec1d2d1df94"></h2>
-
 
 ### Perceptron
 
@@ -115,7 +111,6 @@
 - h(x) = sign( ∑ᵈᵢ₌₁ wᵢxᵢ - threshold  )
 
 <h2 id="7f75552635f2c71b44d8ec37aefb9df7"></h2>
-
 
 ### Vector Form of Perceptron Hypothesis
     
@@ -130,7 +125,6 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="b07c3735cd2797ec2b778d92a0adf769"></h2>
 
-
 ### Perceptrons in ℝ²
 
 - h(x) = sign( w₀ +w₁x₁ +w₂x₂ )
@@ -142,7 +136,6 @@ h(x) = sigh ( WᵀX )
 
 
 <h2 id="0e7ff491a0fb09097115fb8590ecddb5"></h2>
-
 
 ## Perceptron Learning Algorithm (PLA)
 
@@ -167,7 +160,6 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="03ed0e617baca54a8f30c4314b8395c6"></h2>
 
-
 ### Practical Implementation of PLA 
 
 ![](../imgs/TU_ML_CyclicPLA_pseudo.png)
@@ -178,7 +170,6 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="2c4c57a7143770c331971f4ce207c2e2"></h2>
 
-
 ### Why PLA may work 
 
 - sign(WᵀX) != y<sub>n</sub> ,  W<sub>t+1</sub> <-  W<sub>t</sub> + y<sub>n</sub>X<sub>n</sub>
@@ -187,11 +178,9 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="e3f4c08eab2f66995b163ecf47f53898"></h2>
 
-
 ## Guarantee of PLA
 
 <h2 id="fafcae75a7ed33e57480616db662b7ce"></h2>
-
 
 ### Linear Separability
 
@@ -199,7 +188,6 @@ h(x) = sigh ( WᵀX )
 - call such D **linear separable**
 
 <h2 id="1e0adff1d0ebad51a3e3366ffd90c42a"></h2>
-
 
 ### PLA Fact : W<sub>t</sub> Gets More Aligned with W<sub>f</sub>
 
@@ -210,7 +198,6 @@ h(x) = sigh ( WᵀX )
 - 由上可以，如果 W<sub>t</sub> 的长度没有变长的话，那么可以看到 PLA 使得  W<sub>t</sub> 更加接近W<sub>f</sub> 
 
 <h2 id="4881687a06277027c5043e17bc1b09df"></h2>
-
 
 ### PLA Fact : W<sub>t</sub> Does Not Grow Too Fast 
 
@@ -231,11 +218,9 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="3baec9e63797786ab9197c8328006b4c"></h2>
 
-
 ## Non-Separable Data
 
 <h2 id="b84fec7e58d78ac3562f365b9a0ba808"></h2>
-
 
 ### Pocket Algorithm
 
@@ -251,16 +236,13 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="802179691269a6cfc6518c10b66d4776"></h2>
 
-
 # Week 3 Types of Learning
 
 <h2 id="e4561cdae64f2ab23476660e7fcd3596"></h2>
 
-
 ## Learning with Different Output Space
 
 <h2 id="8aea726ae5a16d695949a7fdb31468f9"></h2>
-
 
 ### Multiclass Classification: Coin Recognition Problem 
 
@@ -270,7 +252,6 @@ h(x) = sigh ( WᵀX )
 - picture => apple, orange , strawberry
 
 <h2 id="a5756f5557e96b4c381b0eff885d54ce"></h2>
-
 
 ### Structured Learning : Sequence Tagging Problem
 
@@ -282,7 +263,6 @@ h(x) = sigh ( WᵀX )
     - (structure ≡ hyperclass) without 'explicit' class definition
 
 <h2 id="684c38a5e13528daec2ab3efa2097be3"></h2>
-
 
 ## Learning with Different Data Label
 
@@ -306,7 +286,6 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="6def4688e7d3b9cfc2f058ed2729c813"></h2>
 
-
 ## Learning with Different Protocol
 
 - Batch Learning
@@ -318,7 +297,6 @@ h(x) = sigh ( WᵀX )
     - 跟上面两个被动学习不同, label成本很高的情况 适合尝试
 
 <h2 id="6ebd75d7ad445321e62d64acb494084a"></h2>
-
 
 ## Learning with Different Input Space
 
@@ -333,11 +311,9 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="cfd8a0e711b39b612b7fd7279a78d83e"></h2>
 
-
 # Week 4 Feasibility of Learning
 
 <h2 id="e2757331874147511e796bb57cd0130f"></h2>
-
 
 ## Probability to the Rescue
 
@@ -365,7 +341,6 @@ h(x) = sigh ( WᵀX )
         - 没有办法说，我抽10颗起来，这10颗的比例就一定是罐子里面的比例。不过呢，大致上有很大的几率是这个样子。
 
 <h2 id="2738a5bd77944b4f0a65a05dcf269384"></h2>
-
 
 ### Hoeffding's Inequality
 
@@ -397,7 +372,6 @@ h(x) = sigh ( WᵀX )
 
 <h2 id="4d3ee8b9af56c703975b205e29f34cfa"></h2>
 
-
 ## Connection to Learning
 
 bin | learning
@@ -415,7 +389,6 @@ size-N sample from bin | check h on ⅅ = { (X<sub>n</sub>, y<sub>n</sub>) } , i
 
 <h2 id="bc490f18155779c237c38b6532ca7b7f"></h2>
 
-
 ### The Formal Guarantee
 
 ![](../imgs/TU_MLb_fg.png)
@@ -432,7 +405,6 @@ same as the 'bin' analogy...
 
 <h2 id="911f375f353e71713d92e0e8d439e40e"></h2>
 
-
 ### Verification of One h
 
 - for any fixed *h*, when data large enough,  E<sub>in</sub>(h)  ≈ E<sub>out</sub>(h) 
@@ -442,11 +414,9 @@ same as the 'bin' analogy...
 
 <h2 id="d9ee0f5ea86476845fea40190ab1462e"></h2>
 
-
 ## Connection to Real Learning
 
 <h2 id="9ba5efcb15754a3919e1c165c9746157"></h2>
-
 
 ### Coin Game
 
@@ -455,7 +425,6 @@ same as the 'bin' analogy...
 - BAD sample:  E<sub>in</sub> and E<sub>out</sub> **far away**
 
 <h2 id="0f6ca2986821d310f080364af49eed46"></h2>
-
 
 ### BAD Sample and BAD Data
 
@@ -468,7 +437,6 @@ same as the 'bin' analogy...
 
 <h2 id="16553486c255ce8a5d8e557b67c3c9a6"></h2>
 
-
 ### BAD Data for Many h
 
 - BAD data for many h
@@ -480,7 +448,6 @@ same as the 'bin' analogy...
 - for M hypotheses , bound of ℙ<sub>D</sub>[BAD D] ?
 
 <h2 id="c82862b9ceccd7efd1ca9d2bab635903"></h2>
-
 
 ### Bound of BAD Data
 
@@ -498,7 +465,6 @@ same as the 'bin' analogy...
 
 <h2 id="d8634320f9db8392b907e680f3fbdeef"></h2>
 
-
 ### The 'Statistical Learning Flow'
 
 - if |H| = M finite , N large enough
@@ -510,11 +476,9 @@ same as the 'bin' analogy...
 
 <h2 id="e25bb439455099bb6fd2a7b680e73f15"></h2>
 
-
 # Week5 Traning versus Testing
 
 <h2 id="8d5764cc1a7dce832f420e7096b07f1b"></h2>
-
 
 ## Trade-off on M
 
@@ -540,7 +504,6 @@ Q2  | No! too few choices  | Yes!, many choices
 
 <h2 id="83bee210aad456619c22ae2c5e2dc963"></h2>
 
-
 ## Effective Number of Lines
 
 - Where did uniform Bound Fail ?
@@ -554,7 +517,6 @@ Q2  | No! too few choices  | Yes!, many choices
     - 第一步，也许是我们能不能把我们的无限多个hypothesis , 分成有限多类
 
 <h2 id="624848f04dceb9194a26b7aa039879f2"></h2>
-
 
 ### How many Kinds of Lines for 1~4 Inputs in 2D  ?
 
@@ -571,7 +533,6 @@ Q2  | No! too few choices  | Yes!, many choices
 
 <h2 id="8c31579792d76e74531e953be4313740"></h2>
 
-
 ### Effective Number Of Lines
 
 - maximum kinds of lines with respect to N inputs X₁,X₂,...X<sub>N</sub>
@@ -586,13 +547,11 @@ Q2  | No! too few choices  | Yes!, many choices
 
 <h2 id="8fc2f515778b49e4ad6450b9cf3d6c49"></h2>
 
-
 ## Effective Number of Hypotheses
 
 - what about 线以外的 hypothesis set ?  e.g. 高维度的hyperplane.
 
 <h2 id="8d22448394722fd85b23c2eb8246dcb2"></h2>
-
 
 ### Dichotomies: Mini-hypothesis
 
@@ -615,7 +574,6 @@ size | possibly infinite | upper bounded by 2ᴺ
 
 <h2 id="dfa7e0a4bb23bbcf4e814b850274fd66"></h2>
 
-
 ### Growth Function 
 
 - 我们能不能用这个dichotomy set 的大小，来取代原来 Hoeffding 里面那个让我们觉得很困扰的，可能是无限大的M呢？
@@ -628,16 +586,13 @@ size | possibly infinite | upper bounded by 2ᴺ
 
 <h2 id="b7b1e314614cf326c6e2b6eba1540682"></h2>
 
-
 ### TODO
 
 <h2 id="5a0ecfb80c0bc36fc6c7b593079594cb"></h2>
 
-
 ## Break Point 
 
 <h2 id="b5ce0fb28ce372d75a041bef143918ef"></h2>
-
 
 ### The 4 Growth Functions 
 
@@ -656,7 +611,6 @@ convex sets |  2ᴺ
 
 
 <h2 id="d5be8e86759a610959b92abd0aa75199"></h2>
-
 
 ### Break Point of H 
 
@@ -696,11 +650,9 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 <h2 id="a191a7c2b6e0987654f6d92503bf1078"></h2>
 
-
 # Week 6 Theory of Generalization  举一反三
 
 <h2 id="7cd79213ae5758377b9aed8accc60591"></h2>
-
 
 ## Restriction of Break Point
 
@@ -721,7 +673,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 <h2 id="3bf7d47fb91c77c8c30afce81e8a67e1"></h2>
 
-
 ## Bounding Function: Basic Cases
 
 - bounding function B(N,k):
@@ -738,7 +689,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 
 <h2 id="e51ebc67414533b0af139f8439d3408e"></h2>
-
 
 ### Table of Bounding Function 
 
@@ -760,7 +710,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 <h2 id="2c65d0169d44316f221fe6051944e78e"></h2>
 
-
 ## Bounding Function: Inductive Cases
 
 - B(N,k) ≤ B(N-1,k) + B(N-1, k-1)
@@ -771,7 +720,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 <h2 id="20885a853d6349f8a2c1b4a13f9fd078"></h2>
 
-
 ### Bounding Function : The Theorem
 
 ![](../imgs/TU_MLb_bounding_func_theorem.png)
@@ -780,7 +728,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
     - ⇒ m<sub>H</sub>(N) is poly(N) **if break point exists**
 
 <h2 id="ac41223f5ec900a59b7a7c730d2db790"></h2>
-
 
 ## A Pictorial Proof
 
@@ -797,7 +744,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 ---
 
 <h2 id="942c21d4344c1e2c04cd9cb2b0635e7f"></h2>
-
 
 ### That's All !
 
@@ -817,7 +763,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 
 <h2 id="15173fa6f984d4d655f1b15b08355016"></h2>
 
-
 # Week7 The VC Dimension
 
 - 上周讲到了舉一反三
@@ -829,7 +774,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
 - 那從這裡出發呢，我們就要開始看看這個一線曙光的意義 是什麼？實際上這就會引到我們待會兒對這個VC dimension.
 
 <h2 id="03b215c6ba1906c71c6856766d5a91dc"></h2>
-
 
 ## Definition of VC Dimension
 
@@ -846,7 +790,6 @@ convex sets | no bp | 2ᴺ | O(2ᴺ)
     
 <h2 id="ef6ecf6a562931f940c6f8fa8f315ec9"></h2>
 
-
 ### The 4 VC Dimensions
 
  · | VC Dimension
@@ -859,7 +802,6 @@ convex sets | ∞
 - VC dimension 是 finite 的 hypothesis set 就是好的 hypothesis set
 
 <h2 id="2ab6a2e714fe88daa38d0ebadbd820b7"></h2>
-
 
 ### VC Dimemsion and Learning
 
@@ -881,7 +823,6 @@ convex sets | ∞
 
 <h2 id="010c451c23e144261c78eed3918be60c"></h2>
 
-
 ## VC Dimension of Perceptrons
 
 - 1D perceptron (pos/neg rays): d<sub>VC</sub> = 2
@@ -894,7 +835,6 @@ convex sets | ∞
     2. prove  d<sub>VC</sub>  ≤ d+1
 
 <h2 id="0bcebb5418877c668b7f8078fd53e2a6"></h2>
-
 
 ### d<sub>VC</sub> ≥ d+1
 
@@ -918,7 +858,6 @@ convex sets | ∞
  
 <h2 id="b23a9ffbf5d00fecd76ee661c5bae97c"></h2>
 
-
 ### d<sub>VC</sub>  ≤ d+1
 
 - how ?
@@ -934,11 +873,9 @@ convex sets | ∞
 
 <h2 id="a7ab380b76ef972f810d737e226f4fe6"></h2>
 
-
 ## Physical Intuition of VC Dimension
 
 <h2 id="364130468e37b396a03b78270e87774b"></h2>
-
 
 ### Degrees of Freedom
  
@@ -958,7 +895,6 @@ convex sets | ∞
 
 <h2 id="c30d7a9f1110a7115386a1a1449444ff"></h2>
 
-
 ### Two Old Friends
 
 - Positive Rays ( d<sub>vc</sub>=1 ) 
@@ -969,7 +905,6 @@ convex sets | ∞
     - 有 2个可调节 按钮
 
 <h2 id="668bae56a418c6c053a975bbc41bef59"></h2>
-
 
 ### M and d<sub>vc</sub>
 
@@ -984,11 +919,9 @@ convex sets | ∞
 
 <h2 id="4fa217a4f25efe58ca38efc2921a9ece"></h2>
 
-
 ## Interpreting VC Dimension 
 
 <h2 id="cf1207c2cd37bca9c19baefe3be5f449"></h2>
-
 
 ### VC Bound Rephrase:  Penalty for Model Complexity
 
@@ -1008,7 +941,6 @@ convex sets | ∞
 
 <h2 id="fd5261ae2542df593b9ab1967d1212b7"></h2>
 
-
 ### THE VC Message
 
 - with **a high probability** ,
@@ -1019,7 +951,6 @@ convex sets | ∞
 - 把 Ein 做得更低，就需要一个强大的 hypothesis set, 但是这要付出 很大的 model complexity 的代价，不见得是最好的选择。
 
 <h2 id="2103d3a1527ad166beedae934932a08e"></h2>
-
 
 ### VC Bound Rephrase : Sample Complexity
 
@@ -1040,7 +971,6 @@ convex sets | ∞
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
-
 ### Summary
 
 - VC Bound 是機器學習裡面最重要的一個理論工具。 
@@ -1052,11 +982,9 @@ convex sets | ∞
 
 <h2 id="6d87d0270ecffd6ed877bf64cf997573"></h2>
 
-
 # Week 8  Noise and Error
 
 <h2 id="a3f810ce646f0936df658a4d30a15b6d"></h2>
-
 
 ## Noise and Probabilistic Target
 
@@ -1083,7 +1011,6 @@ convex sets | ∞
 
 <h2 id="d2d99ba3e6ff66dfef2164352b2c98a1"></h2>
 
-
 ## Error Measure
 
 - naturally considered
@@ -1094,20 +1021,17 @@ convex sets | ∞
 
 <h2 id="9a0ea46a375f6caa83eb7371460f252e"></h2>
 
-
 ### Pointwise Error Measure
 
 ![](../imgs/TU_MLb_pointwiseerr.png)
 
 <h2 id="6c2d0a3129771ec5553a0a7b40c04800"></h2>
 
-
 ### Two Important Pointwise Error Measures
 
 ![](../imgs/TU_MLb_pointwiseerr2.png)
 
 <h2 id="4800505041049669fa7b042ae638b020"></h2>
-
 
 ### Ideal Mini-Target
 
@@ -1121,12 +1045,10 @@ convex sets | ∞
 
 <h2 id="2187b661cffc7f0490d1f364850ab22a"></h2>
 
-
 ## Algorithmic Error Measure
 
 
 <h2 id="46b76063f10f6397dfd67504c091971d"></h2>
-
 
 ### Choice of Error Measure
 
@@ -1164,7 +1086,6 @@ f -1 | *1000*| 0
 
 <h2 id="df794cf0b049355a25a3dc69dacf670b"></h2>
 
-
 ### Take-home Message for Now
 
 - **err is application/user-dependent**
@@ -1180,7 +1101,6 @@ f -1 | *1000*| 0
 
 <h2 id="77f01330c84d591c46ceb54c844f4fbe"></h2>
 
-
 ## Weighted Classification
 
 - CIA Cost (Error, Loss, . . .) Matrix
@@ -1195,7 +1115,6 @@ f -1 | *1000*| 0
 
 <h2 id="aae4803feb7519588dfdfd0080792d30"></h2>
 
-
 ### Minimizing E<sub>in</sub> for Weighted Classification
 
 - Naïve Thoughts
@@ -1206,7 +1125,6 @@ f -1 | *1000*| 0
 
 <h2 id="62efbe469e781542f448dfebe1e436d8"></h2>
 
-
 ### Systematic Route
 
 - 通过复制相关资料，转化W 成等价的 0/1问题
@@ -1214,7 +1132,6 @@ f -1 | *1000*| 0
 ![](../imgs/TU_MLb_weighted_pocket.png)
 
 <h2 id="55d55c54777e3438c85343abfae313ac"></h2>
-
 
 ### Weighted Pocket Algorithm
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Reflect 反射](#139b6cfcf3c9439de790ce9742996f82)
     - [go 反射三定律](#2c1c5d090ea2c7185fa8fd7e9b63d11b)
@@ -30,21 +30,18 @@
         - [可获取方法参数, 返回值类型等信息](#82f01c4522eb5d25e3ab3e6f60bb72bb)
         - [动态调用, 按 in 列表准备所需参数  TODO](#e4e8d5f98a70257af0a0544047a3b167)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="139b6cfcf3c9439de790ce9742996f82"></h2>
-
 
 # Reflect 反射
 
 <h2 id="2c1c5d090ea2c7185fa8fd7e9b63d11b"></h2>
 
-
 ## go 反射三定律
 
 <h2 id="bb0b4f2728204b8b714ea48327b4af7a"></h2>
-
 
 ### 类型和接口
 
@@ -65,7 +62,6 @@ var j MyInt
 
 
 <h2 id="b9d9ccbf8501aa1966a00cafd6e7bfda"></h2>
-
 
 ### 接口变量的表示
  
@@ -90,7 +86,6 @@ r = tty
 
 <h2 id="a57c4f6b579173e2daf603140ac1d6d8"></h2>
 
-
 ### 反射类型： reflect.Type/reflect.Value 
 
 - **从用法上来讲，反射提供了一种机制，允许程序在运行时检查接口变量内部存储的 (value, type) 对.**
@@ -112,7 +107,6 @@ r = tty
 
 
 <h2 id="9a603138c5ea1e949f5c85cd99b4f7f0"></h2>
-
 
 ### 反射第一定律：反射可以将“接口类型变量”转换为 “reflect.Type/reflect.Value 对象”。
 
@@ -169,7 +163,6 @@ value: 3.4
 
 <h2 id="794f9fdf4a0e7420dc5fe20f1e21348f"></h2>
 
-
 ### 反射第二定律：反射可以将“反射类型对象”转换为“接口类型变量”。
 
 - 根据一个 reflect.Value 类型的变量，我们可以使用 Interface 方法恢复其接口类型的值。
@@ -193,7 +186,6 @@ y := v.Interface().(float64)  // y will have type float64.
 
 
 <h2 id="5f5eab2420b563eacfc4e5c01057dfc6"></h2>
-
 
 ### 反射第三定律：如果要修改“反射类型对象”，其值必须是“可写的”（settable）
 
@@ -243,7 +235,6 @@ fmt.Println(x)              // 7.1
 
 <h2 id="d7ddf9e0f9fc507b359df7b80ba9afa0"></h2>
 
-
 ### 结构体（struct）
 
 - 上面的例子中，变量 v 本身并不是指针，它只是从指针衍生而来。
@@ -275,16 +266,13 @@ for i := 0; i < s.NumField(); i++ {
 
 <h2 id="0318e04c3f2eb7a1984ee102d5a2ed1c"></h2>
 
-
 ##### 没有运行期类型对象
 
 <h2 id="8c6859ae778598e709e07536f5173e72"></h2>
 
-
 # 9.4.1 reflect.Type
 
 <h2 id="b4f395a0193ad2063ac51bafe5bde7cb"></h2>
-
 
 ##### 获取struct对象 成员字段信息，包括非导出和匿名字段
 
@@ -311,7 +299,6 @@ title string
 
 <h2 id="68093d5b129ae6d66b666d017e2519a8"></h2>
 
-
 ##### 如果是指针，先使用 Elem方法获取目标类型
 
 ```go
@@ -330,7 +317,6 @@ func main() {
 
 
 <h2 id="b101897a62b1b9a5ce74504373ba727c"></h2>
-
 
 ##### value-inferface 和 point-interface 方法集存在差异
 
@@ -366,7 +352,6 @@ test
 
 <h2 id="b11cc2af540eb66182778242f042879b"></h2>
 
-
 ##### 直接使用名称 或 序号 访问字段
 
 ```go
@@ -396,7 +381,6 @@ func main() {
 
 <h2 id="258b3955c18942a2557b3793fa3877d3"></h2>
 
-
 ##### 字段标签可实现简单元数据编程
 
 ```go
@@ -416,7 +400,6 @@ func main() {
 ```
 
 <h2 id="b499e680690478b9e2d378d15701fdc2"></h2>
-
 
 ##### 可从基本类型获取所对应的复合类型
 
@@ -440,7 +423,6 @@ func main() {
 
 <h2 id="0a7afa5b5f0c6e4ce1a3d2ac5ca84728"></h2>
 
-
 ##### 方法 Elem 可返回复合类型的 基类型
 
 ```go
@@ -451,7 +433,6 @@ func main() {
 ```
 
 <h2 id="0d8ba38963413fb3e0a37355baac5004"></h2>
-
 
 ##### 方法 Implements 判断是否实现了某个接口
 
@@ -471,7 +452,6 @@ func main() {
 
 <h2 id="dfa77f624af44f20d93a02df20657a9f"></h2>
 
-
 ##### 获取对齐信息，对于内存自动分析很有用
 
 ```go
@@ -489,11 +469,9 @@ func main() {
 
 <h2 id="34ca7e92d333aacb70ded67fd6989dd0"></h2>
 
-
 ## 9.4.2 reflect.Value
 
 <h2 id="e9fae0f567c7b19b714a1e0035740e52"></h2>
-
 
 ##### Value 和 Type 使用方法类似,包括 Elem方法
 
@@ -541,7 +519,6 @@ func main() {
 
 <h2 id="bd597938c7e7c92297b5bbf47c1fbedf"></h2>
 
-
 ##### 其他复合类型 array , slice ,map 取值示例
 
 ```go
@@ -587,7 +564,6 @@ func main() {
 
 <h2 id="18917556ea9e2ef4a2d1352ea9490d13"></h2>
 
-
 #####  IsNil方法判断 接口 data值是否为空
 
 ```go
@@ -602,13 +578,11 @@ func main() {
 
 <h2 id="1646349e890242f255aca9e532cedfd6"></h2>
 
-
 ##### 复合类型修改示例  TODO
 
 
 
 <h2 id="34b9abefc452f88bc8eda13d2124a3b5"></h2>
-
 
 ##### 创建一个 和某个interface{} 相同类型的实例
 
@@ -621,11 +595,9 @@ m_ptr := reflect.New( reflect.TypeOf( v ) ).Interface()
 
 <h2 id="61e08fe2cac9cfa9a7ab1048eaa57974"></h2>
 
-
 ## 9.4.3 Method
 
 <h2 id="82f01c4522eb5d25e3ab3e6f60bb72bb"></h2>
-
 
 ##### 可获取方法参数, 返回值类型等信息
 
@@ -681,7 +653,6 @@ Sum
 ```
 
 <h2 id="e4e8d5f98a70257af0a0544047a3b167"></h2>
-
 
 ##### 动态调用, 按 in 列表准备所需参数  TODO
 

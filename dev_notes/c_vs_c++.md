@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [C VS C++](#b6ee6e7c8d3b0b53c02fd3dbd853e441)
     - [c++ was designed to](#a9cea5ea281e3dd272ef5e713a280b36)
@@ -21,16 +21,14 @@
     - [Tuples (C++11 and above)](#f404d0dd5845ca9e678e0453d24356c7)
     - [Containers](#5382aaf8b3d2fdeb6717f9805b0dd511)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b6ee6e7c8d3b0b53c02fd3dbd853e441"></h2>
 
-
 # C VS C++
 
 <h2 id="a9cea5ea281e3dd272ef5e713a280b36"></h2>
-
 
 ## c++ was designed to
  
@@ -41,7 +39,6 @@
 
 <h2 id="77788ad4d3588a447bc8221cfd8ab87e"></h2>
 
-
 ## character literals
 
 - In C++, character literals are chars
@@ -50,7 +47,6 @@
     - `sizeof('c') == sizeof(int)` 
 
 <h2 id="67cc17c836a3c2bde4c392f5bd39faae"></h2>
-
 
 ## function declare
 
@@ -61,7 +57,6 @@
 
 <h2 id="2d4635ad816b740565374b69c6438948"></h2>
 
-
 ## Function overloading
 
 - C++ supports function overloading
@@ -69,7 +64,6 @@
     - 但是可以通过可变参数 来部分实现函数重载
 
 <h2 id="20f03e2b40bc44fa78c4d78d46e616e8"></h2>
-
 
 ## c headers
 
@@ -81,7 +75,6 @@
 ```
 
 <h2 id="13d28e8dfc702e3456e0767dff9a128a"></h2>
-
 
 ## Namespaces
 
@@ -124,7 +117,6 @@ int main()
 
 <h2 id="821a3b3d573c23f497020857e6d21c77"></h2>
 
-
 ## Input/Output
 
 - C++ input and output uses streams
@@ -154,7 +146,6 @@ int main() {
 
 <h2 id="89be9433646f5939040a78971a5d103a"></h2>
 
-
 ## Strings
 
 - Strings in C++ are objects and have many member functions
@@ -172,7 +163,6 @@ myString.append(" Dog");
 ```
 
 <h2 id="d95867deadfe690e40f42068d6b59df8"></h2>
-
 
 ## References
 
@@ -214,7 +204,6 @@ barRef += ". Hi!"; // Error, const references cannot be modified.
 
 <h2 id="1b22e7dc709b52f1767fe1eb5dc56625"></h2>
 
-
 ## Enums
 
 - Enums are a way to assign a value to a constant most commonly used for 
@@ -236,7 +225,6 @@ ECarTypes GetPreferredCarType()
 ```
 
 <h2 id="bd1b19f8961a7930e5925ce823de31f9"></h2>
-
 
 ## Classes and object-oriented programming
 
@@ -306,7 +294,6 @@ void OwnedDog::print() const {
 
 <h2 id="b6ac2bca3a19bc0739ff30aced860b91"></h2>
 
-
 ## Initialization and Operator Overloading
 
 - In C++ you can overload the behavior of operators such as `+, -, *, /, etc`.
@@ -347,7 +334,6 @@ Point& Point::operator+=(const Point& rhs) {
 ```
 
 <h2 id="7df96b18c230f90ada0a9e2307226338"></h2>
-
 
 ## Templates
 
@@ -409,7 +395,6 @@ printMessage<20>();  // Prints "Learn C++ in 20 minutes!"
 
 <h2 id="32d519541273e152f1e859b4172fd7f3"></h2>
 
-
 ## Exception Handling
 
 ```cpp
@@ -432,7 +417,6 @@ catch (...) {
 ```
 
 <h2 id="cc4f050d3506116dff9932e4a4757538"></h2>
-
 
 ## RAII
 
@@ -482,7 +466,6 @@ void doSomethingWithAFile(const std::string& filename) {
 
 <h2 id="f7ddebf384d4d1ccec442ecb840e1563"></h2>
 
-
 ## Lambda Expressions (C++11 and above)
 
 ```cpp
@@ -519,7 +502,6 @@ sort(dog_ids.begin(), dog_ids.end(), [&weight](const int &lhs, const int &rhs) {
 
 <h2 id="07a75ad33f46e443c8e465b2b6bc3c4c"></h2>
 
-
 ## Range For (C++11 and above)
 
 - same as in java
@@ -542,7 +524,6 @@ for(auto elem: arr) {
 ``` 
 
 <h2 id="f404d0dd5845ca9e678e0453d24356c7"></h2>
-
 
 ## Tuples (C++11 and above)
 
@@ -571,7 +552,6 @@ auto concatenated_tuple = tuple_cat(first, second, third);
 ```
 
 <h2 id="5382aaf8b3d2fdeb6717f9805b0dd511"></h2>
-
 
 ## Containers
 

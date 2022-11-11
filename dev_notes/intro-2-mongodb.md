@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Introduction to MongoDB](#31f7aaa17d101eda97a0a8399170b1f2)
     - [Week1 Getting Started with MongoDB & Basic Data Analysis](#b8673389ad3b575cd7daa092662a40b9)
@@ -28,21 +28,18 @@
     - [Aggregation Framework](#b25d0ff2c424837f4151a291a877aaef)
     - [Change Streams](#3e96b3542e5d0c6ed1f53ed2b0e7b985)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="31f7aaa17d101eda97a0a8399170b1f2"></h2>
-
 
 # Introduction to MongoDB
 
 <h2 id="b8673389ad3b575cd7daa092662a40b9"></h2>
 
-
 ## Week1 Getting Started with MongoDB & Basic Data Analysis
 
 <h2 id="1ccfaed6c13bbfd36b33002cd292cee6"></h2>
-
 
 ### import data
     ```bash
@@ -56,7 +53,6 @@
 
 
 <h2 id="b25d0ff2c424837f4151a291a877aaef"></h2>
-
 
 ### Aggregation Framework 
 
@@ -110,7 +106,6 @@
 
 <h2 id="e5f64dd9bbf072f6560b20dbb680d4e2"></h2>
 
-
 ### Incremental Improvements with $sort and $sortByCount
 
 - You can sort your output
@@ -156,7 +151,6 @@
     ```
 
 <h2 id="d47e217e347dff011573b77062b46cfe"></h2>
-
 
 ### Wowza! You can do that? ($facet)
 
@@ -230,7 +224,6 @@
 
 <h2 id="2a15fd2377a151309da38c2f1b3e4c9d"></h2>
 
-
 ### Filtering on Scalar Fields ($match, find(), and Compass)
 
 - $match
@@ -281,12 +274,10 @@
 
 <h2 id="2532b9d46951a507087efeaae65c66e4"></h2>
 
-
 ## Week2 Cleaning Data with MongoDB & Query Essentials
 
 
 <h2 id="6fd592c089a9ebdd0f4dc868233841a8"></h2>
-
 
 ### Projecting Query
 
@@ -392,7 +383,6 @@
 
 <h2 id="2ef87f1714efdb786a3643ce454549c4"></h2>
 
-
 #### Convert String To Date
 
 - now we want to convert `release` field from string to Date.
@@ -426,7 +416,6 @@
 
 
 <h2 id="4400c969580208afeede9cd427de23a7"></h2>
-
 
 #### Pre-Processing Data
 
@@ -471,7 +460,6 @@
 
 <h2 id="63f2f59542b2c39c4d62ed99c306be0c"></h2>
 
-
 ### Update Documents
 
 [Update Operators](https://www.mongodb.com/docs/manual/reference/operator/update/)
@@ -499,7 +487,6 @@
 
 <h2 id="048de021472e6259b3cea9a2f5e12dd1"></h2>
 
-
 ### Bulk Updates
 
 ```python
@@ -516,7 +503,6 @@ client.mflix.movies.bulk_write( updates )
 
 
 <h2 id="b6886db85384bf1d0a8793290605de7e"></h2>
-
 
 ### Data Types in MongoDB
 
@@ -535,7 +521,6 @@ client.mflix.movies.bulk_write( updates )
 
 
 <h2 id="a8530ef2be8b6e4f56b1397ea91c5207"></h2>
-
 
 ### Filtering on Array Fields
 
@@ -597,14 +582,12 @@ Output:
 
 <h2 id="0158f0eaaa9d5e29be0fe574dfd04f56"></h2>
 
-
 ### Query using operators
 
 [Query and Projection Operators](https://www.mongodb.com/docs/manual/reference/operator/query/)
 
 
 <h2 id="60d52f2acbf38546516befc08be9952d"></h2>
-
 
 ### The $elemMatch Operator
 
@@ -638,7 +621,6 @@ Output:
 
 <h2 id="e100018d739f1aba461d76d54eaf42fd"></h2>
 
-
 ### Querying on subdocument -- The magic of the dot notation
 
 ```python
@@ -655,7 +637,6 @@ for movie in cursor:
 
 <h2 id="51bd7836a41688d658119a76352354f2"></h2>
 
-
 ### Inserting Comments in MFlix
 
 ```python
@@ -667,7 +648,6 @@ pprint.pprint( insert_result.inserted_id )
 - insert duplicated documents( with same `_id` ) will raise error 
 
 <h2 id="5ba1db5a535abdd8fcf413ac8530a5ea"></h2>
-
 
 ### Updating comments
 
@@ -722,7 +702,6 @@ db.movies.update_one( { "_id": ObjectId(movieid) }, update_doc )
 
 <h2 id="bc34bfd36c5b9a310e0f65c1b73eaf9a"></h2>
 
-
 ### Deleting Data
 
 ```python
@@ -732,11 +711,9 @@ comments.delete_one( filter )
 
 <h2 id="dff2bf00c62bb0dc02082c72be61700f"></h2>
 
-
 ## Week3 Additional MongoDB Concepts & Basic Charting
 
 <h2 id="88fa71f0a6e0dfedbb46d91cc0b37a50"></h2>
-
 
 ### Index
 
@@ -778,7 +755,6 @@ pprint.pprint( mflix.movies.index_information() )
     ```
 
 <h2 id="ff1ffe9d6e6a18e75bb269c4ecc78bf7"></h2>
-
 
 ### Geospatial Queries
 
@@ -829,11 +805,9 @@ pprint.pprint( theater['location']['geo'] )
 
 <h2 id="0ae192a90a9e69c277a771f51d6ceaa6"></h2>
 
-
 # MongDB notes
 
 <h2 id="b25d0ff2c424837f4151a291a877aaef"></h2>
-
 
 ## Aggregation Framework
 
@@ -873,7 +847,6 @@ pprint.pprint( theater['location']['geo'] )
 
 
 <h2 id="3e96b3542e5d0c6ed1f53ed2b0e7b985"></h2>
-
 
 ## Change Streams
 

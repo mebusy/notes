@@ -1,13 +1,12 @@
-...menustart
+[](...menustart)
 
 - [Plotting data](#5973297b1e05d782b78ef41923b083ad)
     - [tips](#e4c9479b11955648dad558fe717a4eb2)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="5973297b1e05d782b78ef41923b083ad"></h2>
-
 
 # Plotting data
 
@@ -64,7 +63,6 @@
 ```
 
 <h2 id="e4c9479b11955648dad558fe717a4eb2"></h2>
-
 
 ## tips
 ```

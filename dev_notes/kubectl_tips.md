@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Kubectl Tips](#7bf06c7b338720d61ab435438d2fdaea)
     - [Install](#349838fb1d851d3e2014b9fe39203275)
@@ -15,16 +15,14 @@
     - [Deleting Namespace "stuck" as Terminating,  how to solve it ?](#cba1fee733817c7d24cf75e1c715d127)
     - [Advanced Skill](#10e2e86d43aa4ce9a791d75c478a23dc)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="7bf06c7b338720d61ab435438d2fdaea"></h2>
 
-
 # Kubectl Tips
 
 <h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
-
 
 ## Install
 
@@ -44,14 +42,12 @@ mv ./kubectl /usr/local/bin/kubectl
 
 <h2 id="d4b1fc7497d32f6554e52b3a22b5685f"></h2>
 
-
 ## kubectl cheatsheet
 
 [cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
 
 <h2 id="b94a99fa444999e85f6d0bb1bc651e55"></h2>
-
 
 ## list pod names
 
@@ -75,7 +71,6 @@ ingress-nginx-controller-86b6d5756c-mgp5v
 
 <h2 id="9ae6956ba1eb023104bf24d0bc5df58c"></h2>
 
-
 ## List Detailed Info `-o wide` 
 
 ```bash
@@ -85,7 +80,6 @@ ingress-nginx   ingress-....    0/1     Completed   0          8h   10.244.0.6  
 ```
 
 <h2 id="babf3225d1f0b068634f7cead1b9e5c7"></h2>
-
 
 ## print annotations information
 
@@ -105,7 +99,6 @@ lb-9l23xjd5
 
 <h2 id="4c6e4c26d748e3ff10dd5ab1c3f1f6ca"></h2>
 
-
 ## print yaml file
 
 ```bash
@@ -115,7 +108,6 @@ kubectl ... get ...  -o yaml --export
 
 <h2 id="f105d78fa5298a8e02f51a22ac6da980"></h2>
 
-
 ## full service name across namespaces
 
 ```bash
@@ -124,7 +116,6 @@ kubectl ... get ...  -o yaml --export
 ```
 
 <h2 id="bd251ed977799cf91b83164dbb4e6bab"></h2>
-
 
 ## Specify a Context 
 
@@ -138,7 +129,6 @@ kubectl_tke --context=<ContextName>  get nodes
 
 <h2 id="c87467d96636d76fdfa6a0a2785b7eb8"></h2>
 
-
 ## rollout/restart deployment
 
 ```bash
@@ -146,7 +136,6 @@ kubectl -n <namespace> rollout restart deployment <deployment-name>
 ```
 
 <h2 id="145f750dc8c7bde1231227e5d027eafd"></h2>
-
 
 ## 查找不是 running 状态的 pod
 
@@ -157,7 +146,6 @@ ingress-nginx        ingress-nginx-admission-create-gfm2j           0/1     Comp
 ```
 
 <h2 id="f0cfc2eb04f3c904ba876b4ff5e36744"></h2>
-
 
 ## JSONPath 表达式
 
@@ -197,7 +185,6 @@ $ kubectl get nodes -o custom-columns='NAME:metadata.name,ZONE:metadata.labels.f
 
 <h2 id="cba1fee733817c7d24cf75e1c715d127"></h2>
 
-
 ##  Deleting Namespace "stuck" as Terminating,  how to solve it ?
 
 ```bash
@@ -208,7 +195,6 @@ kubectl get namespace "stucked-namespace" -o json \
 
 
 <h2 id="10e2e86d43aa4ce9a791d75c478a23dc"></h2>
-
 
 ## Advanced Skill
 

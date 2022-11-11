@@ -1,15 +1,14 @@
-...menustart
+[](...menustart)
 
 - [Softmax](#31d953b9d49a6b4378f45097047976d0)
     - [Practical issues: Numeric stability](#40eb18ef5b1bf8f66fcdf418e2cef2cd)
     - [Softmax & Sigmoid](#72db2e1699f3b38e8823c7cd58ff5821)
     - [Derivative](#70ae6e285cc14c8486e3cf5bec39d1fd)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="31d953b9d49a6b4378f45097047976d0"></h2>
-
 
 # Softmax
 
@@ -17,7 +16,6 @@
 
 
 <h2 id="40eb18ef5b1bf8f66fcdf418e2cef2cd"></h2>
-
 
 ## Practical issues: Numeric stability
 
@@ -83,7 +81,6 @@ def softmax( f, aggregate_axis = 0 ):
 
 <h2 id="72db2e1699f3b38e8823c7cd58ff5821"></h2>
 
-
 ## Softmax & Sigmoid 
 
 Sigmoid function:
@@ -113,7 +110,6 @@ array([ 0.88079708,  0.11920292])
 
 
 <h2 id="70ae6e285cc14c8486e3cf5bec39d1fd"></h2>
-
 
 ## Derivative
 

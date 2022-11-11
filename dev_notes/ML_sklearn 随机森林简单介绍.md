@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [sklearn 随机森林简单介绍](#d611c199fb56f4cc3ceece27ebc41a8a)
     - [1. 决策树](#ac3f05d5330e044468fd526d476de188)
@@ -7,21 +7,18 @@
         - [使用建议](#1381cce03d257acf549790c944080017)
     - [随机森林](#a60f6c59122509d3df75f4ed6a768b2e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="d611c199fb56f4cc3ceece27ebc41a8a"></h2>
-
 
 #sklearn 随机森林简单介绍
 
 <h2 id="ac3f05d5330e044468fd526d476de188"></h2>
 
-
 ## 1. 决策树
 
 <h2 id="417242c55236c9c531e82c5425894faf"></h2>
-
 
 ### 构造决策树 Sklearn.tree
 
@@ -57,7 +54,6 @@ clf.predict([[2., 2.]])
 
 <h2 id="6b00a3fa8d6c11d615b68019cfea518b"></h2>
 
-
 ### 输出决策树结果
 利用python中的pydot模块可以方便的输出决策树的效果图，不过需要注意的是pyparsing必须是旧版本的，比如1.5，另外需要在电脑商安装Graphviz软件。下面是一个例子：
 ```python
@@ -71,7 +67,6 @@ graph.write_pdf("iris.pdf")
 
 <h2 id="1381cce03d257acf549790c944080017"></h2>
 
-
 ### 使用建议
 > * 当我们数据中的feature较多时，一定要有足够的数据量来支撑我们的算法，不然的话很容易overfitting
 > * 善用max_depth参数，缓慢的增加并测试模型，找出最好的那个depth。
@@ -81,7 +76,6 @@ graph.write_pdf("iris.pdf")
 ---
 
 <h2 id="a60f6c59122509d3df75f4ed6a768b2e"></h2>
-
 
 ## 随机森林
 

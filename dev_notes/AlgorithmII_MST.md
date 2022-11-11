@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [4.3 MINIMUM SPANNING TREES](#cded71731adc3237f9d3c51dd89049c0)
     - [introduction](#8800e1c9b3e22c44ba59a34db3fe4841)
@@ -51,16 +51,14 @@
     - [Questions](#6ce3bdc39e544725038e0e87b771db1e)
     - [Shortest paths summary](#4ccfbaa8088f52afb0f66af1fd3c0489)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="cded71731adc3237f9d3c51dd89049c0"></h2>
 
-
 # 4.3 MINIMUM SPANNING TREES
 
 <h2 id="8800e1c9b3e22c44ba59a34db3fe4841"></h2>
-
 
 ## introduction
 
@@ -78,7 +76,6 @@
 
 <h2 id="fa051064ee16bea712664bb248654763"></h2>
 
-
 ### Example Problem
 
 - 有一块木板，板上钉上了一些钉子，这些钉子可以由一些细绳连接起来。假设每个钉子可以通过一根或者多根细绳连接起来，那么一定存在这样的情况，即用最少的细绳把所有钉子连接起来
@@ -87,7 +84,6 @@
 
 
 <h2 id="a9728ca20b5c52a76d67320f3fe3ec4e"></h2>
-
 
 ## greedy algorithm
 
@@ -98,7 +94,6 @@
     - MST exists and is unique.
 
 <h2 id="f027e6426815659632b54ae818592211"></h2>
-
 
 ### Cut property
 
@@ -125,7 +120,6 @@
 
 <h2 id="5d1da5f08e2888d73349900d4db5c622"></h2>
 
-
 ### Greedy MST algorithm
 
 Easiest algorithm, we can come up with. 
@@ -140,7 +134,6 @@ Easiest algorithm, we can come up with.
     - And the claim is that that's going to compute an MST. 
 
 <h2 id="bdd4ba94c65abf3884971d7a8b7cb542"></h2>
-
 
 ### Greedy MST algorithm: correctness proof
 
@@ -165,7 +158,6 @@ Easiest algorithm, we can come up with.
 
 <h2 id="3d825bc82fff7cd0178bee0eb6d5c38e"></h2>
 
-
 ### Removing two simplifying assumptions
 
 - Q. What if edge weights are not all distinct?
@@ -187,11 +179,9 @@ Easiest algorithm, we can come up with.
 
 <h2 id="5efdc253657f5526080aea52d632d9a9"></h2>
 
-
 ## Kruskal's algorithm
 
 <h2 id="5efdc253657f5526080aea52d632d9a9"></h2>
-
 
 ### Kruskal's algorithm
 
@@ -202,7 +192,6 @@ Easiest algorithm, we can come up with.
 ![](../imgs/algorII_mst_Kruskal.png)
 
 <h2 id="ea2e8ed0f2060e40803d07b642e735dd"></h2>
-
 
 ### Kruskal's algorithm: correctness proof
 
@@ -223,7 +212,6 @@ Easiest algorithm, we can come up with.
 
 
 <h2 id="6769f30cada6dad70abd9ec0e78fab39"></h2>
-
 
 ### Kruskal's algorithm: implementation challenge
 
@@ -275,7 +263,6 @@ public class KruskalMST {
 
 <h2 id="6c146d59dece811375bd56462f359767"></h2>
 
-
 ### Kruskal's algorithm: running time
 
 - Proposition. Kruskal's algorithm computes MST in time proportional to *ElogE* (in the worst case).
@@ -295,11 +282,9 @@ connected | E | log\*V
 
 <h2 id="9f18a401049668114eca679e98d5f2e1"></h2>
 
-
 ## Prim's algorithm
 
 <h2 id="9f18a401049668114eca679e98d5f2e1"></h2>
-
 
 ### Prim's algorithm
 
@@ -318,7 +303,6 @@ connected | E | log\*V
 
 <h2 id="38cd4863a58c575a66fc80ab33a4b1b0"></h2>
 
-
 ### Prim's algorithm: proof of correctness
 
 - Proposition. [Jarník 1930, Dijkstra 1957, Prim 1959] Prim's algorithm computes the MST.
@@ -332,7 +316,6 @@ connected | E | log\*V
 ![](../imgs/algorII_mst_prim_proof.png)
 
 <h2 id="ca5d698ccb98d8b805ad4456d828f20c"></h2>
-
 
 ### Prim's algorithm: implementation challenge
 
@@ -406,7 +389,6 @@ public class LazyPrimMST {
 
 <h2 id="6da63afd831a4613957674b1c0c78ca5"></h2>
 
-
 ### Lazy Prim's algorithm: running time
 
 - Proposition. Lazy Prim's algorithm computes the MST in time proportional to `ElogE` and extra space proportional to *E* (in the worst case).
@@ -420,7 +402,6 @@ insert | E | logE
 ---
 
 <h2 id="ab84d0fc34342968251318250a1bf5d3"></h2>
-
 
 ### Prim's algorithm: eager implementation
 
@@ -444,7 +425,6 @@ insert | E | logE
 
 
 <h2 id="64071a409f7f87287eed62ffd412bc0e"></h2>
-
 
 #### Indexed priority queue
 
@@ -483,7 +463,6 @@ int delMin()
 
 <h2 id="b672f52ade975e864ae6b58722c03689"></h2>
 
-
 #### Implementation
 
 - Start with same code as MinPQ.
@@ -500,7 +479,6 @@ int delMin()
 
 <h2 id="0ab687c6a13802a6674d5327e3d4177e"></h2>
 
-
 ## QA
 
 - Q: Minimum-weight feedback edge set
@@ -513,7 +491,6 @@ int delMin()
 ---
 
 <h2 id="66c555dd7127e24c5dad2b9bbc2b1818"></h2>
-
 
 # 4.4 SHORTEST PATHS
 
@@ -535,11 +512,9 @@ int delMin()
 
 <h2 id="582ea71a838abce9407ad2a894dbea08"></h2>
 
-
 ## shortest-paths properties
 
 <h2 id="68261b4718c4139e54fff81468a562c5"></h2>
-
 
 ### Data structures for single-source shortest paths
  
@@ -568,7 +543,6 @@ public Iterable<DirectedEdge> pathTo(int v) {
 
 <h2 id="f1800f07c216d493e8e9ff2761ccfc33"></h2>
 
-
 ### Edge relaxation
 
 - Relax edge *e = v→w* .
@@ -590,7 +564,6 @@ private void relax(DirectedEdge e) {
 ```
 
 <h2 id="a0dbfd20d8d788e69eee52223da9cc90"></h2>
-
 
 ### Shortest-paths optimality conditions
 
@@ -615,7 +588,6 @@ private void relax(DirectedEdge e) {
 
 
 <h2 id="17660e379f4dc4040c1d93faf73d5f9c"></h2>
-
 
 ### Generic shortest-paths algorithm
 
@@ -643,7 +615,6 @@ Repeat until optimality conditions are satisfied:
 
 <h2 id="2c3fda14bde328549c74fb448ef62d34"></h2>
 
-
 ## Dijkstra's algorithm
 
 - Consider vertices in increasing order of distance from s ( vertex that not on the SP-tree and  with the lowest distTo[] value).
@@ -659,11 +630,9 @@ Repeat until optimality conditions are satisfied:
 
 <h2 id="2880931f98f3fff633812cf6fcf35e45"></h2>
 
-
 ### Dijkstra's algorithm: correctness proof (TODO)
 
 <h2 id="f1d4978722895ce40af6d3ebe0c8c6c0"></h2>
-
 
 ### Dijkstra's algorithm: Java implementation
 
@@ -713,7 +682,6 @@ public class DijkstraSP {
 
 <h2 id="5d21b219a367d8ca1eb434230c3f4be1"></h2>
 
-
 ### Computing spanning trees in graphs
 
 - Dijkstra’s algorithm seem familiar?
@@ -726,11 +694,9 @@ public class DijkstraSP {
 
 <h2 id="d7c7b1975f92a833609b519faa4ed829"></h2>
 
-
 ## edge-weighted DAGs
 
 <h2 id="a2c4d444ac852b90752f7a63ec59e581"></h2>
-
 
 ### Acyclic edge-weighted digraphs
 
@@ -744,7 +710,6 @@ public class DijkstraSP {
     - Relax all edges pointing from that vertex.
 
 <h2 id="fcbd840d9edcaf804b1bd65b6e72badc"></h2>
-
 
 ### Shortest paths in edge-weighted DAGs
 
@@ -787,7 +752,6 @@ public class AcyclicSP {
 
 <h2 id="5ee07047d6bca78383a141e5e8ec77ce"></h2>
 
-
 #### Application: Content-aware resizing
 
 - Seam carving: [Avidan and Shamir] Resize an image without distortion for display on cell phones and web browsers.
@@ -820,7 +784,6 @@ public class AcyclicSP {
 
 <h2 id="3c55cda3adffaa472aa7490b10892ab8"></h2>
 
-
 ### Longest paths in edge-weighted DAGs
 
 since negative weights are allowd ,we can find longest paths in the edge-weighted DAGs, just by negating all the weights. This is because topologic sort algorithm desn't care whether the weights are positve or negative . 
@@ -832,7 +795,6 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 - Key point. Topological sort algorithm works even with negative weights.
 
 <h2 id="2160c4ec3d4551c21c4e80c16718ad43"></h2>
-
 
 #### Longest paths in edge-weighted DAGs: application
 
@@ -846,7 +808,6 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 - And so what we want to do is, find a start time for each job. That minimizes the completion time. 
  
 <h2 id="2f8af766796a78ffe5aa21acf6f9f6b9"></h2>
-
 
 #### Critical path method
 
@@ -872,11 +833,9 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
 <h2 id="00bb6ece1156f92c2370e55696fbc73c"></h2>
 
-
 ## negative weights
 
 <h2 id="e60a7af8652792b3d2649ee453b4c196"></h2>
-
 
 ### Shortest paths with negative weights: failed attempts
 
@@ -890,7 +849,6 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
 
 <h2 id="d05e7fb4b74623a5da219bc192056e4a"></h2>
 
-
 ### Negative cycles
 
 - Def. A **negative cycle** is a directed cycle whose sum of edge weights is negative.
@@ -898,7 +856,6 @@ since negative weights are allowd ,we can find longest paths in the edge-weighte
     - assuming all vertices reachable from s
 
 <h2 id="bc4dcba35afdbb28dfbf17b06b64e8d1"></h2>
-
 
 ### Bellman-Ford algorithm
 
@@ -925,7 +882,6 @@ for (int i = 0; i < G.V(); i++) {
 
 <h2 id="875643e3ddfa7b4322582d5fdb5a16d1"></h2>
 
-
 ### Bellman-Ford algorithm: analysis
 
 - Proposition. Dynamic programming algorithm computes SPT in any edge-weighted digraph with no negative cycles in time proportional to *E × V*.
@@ -933,7 +889,6 @@ for (int i = 0; i < G.V(); i++) {
     - After pass i, found shortest path containing at most i edges.
 
 <h2 id="252d97af220bba63a2b709f462d4d19f"></h2>
-
 
 ### Bellman-Ford algorithm: practical improvement
 
@@ -947,7 +902,6 @@ for (int i = 0; i < G.V(); i++) {
     - But much faster than that in practice
 
 <h2 id="297a63d92dca03fcf471996d66e9b44b"></h2>
-
 
 ### Single source shortest-paths implementation: cost summary
 
@@ -967,7 +921,6 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 <h2 id="9b60ad9b0b7957c904f64920f0bbfa7d"></h2>
 
-
 ### Finding a negative cycle
 
 - Observation. If there is a negative cycle, Bellman-Ford gets stuck in loop, updating distTo[] and edgeTo[] entries of vertices in the cycle.
@@ -981,7 +934,6 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
     - You can check `distTo` entries for negative cycles, more frequently. 
 
 <h2 id="5cf18acbf86bf2c1e691a77579f9c0a4"></h2>
-
 
 ### Negative cycle application: arbitrage detection
 
@@ -1010,7 +962,6 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 <h2 id="6ce3bdc39e544725038e0e87b771db1e"></h2>
 
-
 ## Questions 
 
 - Q: Monotonic shortest path
@@ -1035,7 +986,6 @@ Bellman-Ford (queue-based) | no negative cycles | E+V | EV | V
 
 
 <h2 id="4ccfbaa8088f52afb0f66af1fd3c0489"></h2>
-
 
 ## Shortest paths summary
 

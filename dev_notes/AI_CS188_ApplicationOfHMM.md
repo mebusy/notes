@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Application Of HMM](#707c429b9c8c69d66ffa62008078d67c)
     - [Robot Localization](#cb8f3326ecf05b343100368b1fce61b4)
@@ -10,17 +10,15 @@
         - [State Trellis](#9505b7524724df56002d7434a8ab6d4d)
         - [Forward / Viterbi Algorithms](#d1b64f8404dac1019eb7a414a8e5f21c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="707c429b9c8c69d66ffa62008078d67c"></h2>
-
 
 # Application Of HMM
 
 
 <h2 id="cb8f3326ecf05b343100368b1fce61b4"></h2>
-
 
 ## Robot Localization 
 
@@ -44,7 +42,6 @@ But you got to be really careful, remember that lone particle?
 
 <h2 id="456efe59f69acce2f3949ed5ec0af420"></h2>
 
-
 ## Robot Mapping
 
 - SLAM: Simultaneous Localization And Mapping
@@ -63,7 +60,6 @@ But you got to be really careful, remember that lone particle?
 ---
 
 <h2 id="e2237c4bb83f0a39f439746f01a1814f"></h2>
-
 
 ## Dynamic Bayes Nets (DBNs)
 
@@ -91,7 +87,6 @@ You can think G<sub>t</sub>ª , G<sub>t</sub>ᵇ combined as a big state, and th
 
 <h2 id="8b6016f7e9c11348859d14b1b2968de6"></h2>
 
-
 ### DBN Particle Filters
 
 You can again run particle filtering in these. 
@@ -112,7 +107,6 @@ Why is it important that your particles contain both ghost at once? You can imag
 
 <h2 id="acde5ccfd9d402faf86e320b802cdf2e"></h2>
 
-
 ## Most Likely Explanation
 
 New technique that actually in practice can be quite important. It's a different way of doing inference. 
@@ -124,7 +118,6 @@ So far what we've looked at is something that computes the distribution over pos
 Sometimes what you want to do is you see all the evidence, and based on all the evidence you've seen, you want to reconstruct the most likely sequence of events that explains that whole sequence of evidence.  What is the most likely sequence of states given the evidence I have observed ?
 
 <h2 id="a6f1a19a2e48162ea4decdd5eebe0d71"></h2>
-
 
 ### HMMs: MLE Queries
 
@@ -144,7 +137,6 @@ We're given an HMM still , and the query is what's the most likely explanation o
 
 
 <h2 id="9505b7524724df56002d7434a8ab6d4d"></h2>
-
 
 ### State Trellis
 
@@ -166,7 +158,6 @@ There are many paths 2ᴺ. So we don't want to do this naive enumeration of all 
 
 
 <h2 id="d1b64f8404dac1019eb7a414a8e5f21c"></h2>
-
 
 ### Forward / Viterbi Algorithms
 

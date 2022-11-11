@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week #6](#9a7f65f62bfbd892678d5cf675c8fee4)
     - [Lecture 6.1: Efficient Host-Device Data Transfer - Pinned Host Memory](#d44b0c6ea12b9430bd3cf48d076ec58d)
@@ -26,16 +26,14 @@
         - [Hyper Queues](#68e72eae3146d9dce16fd5fe0b75e830)
         - [Wait until all tasks have completed](#3c2be719fbfcb512887002eac82b7bdb)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="9a7f65f62bfbd892678d5cf675c8fee4"></h2>
 
-
 ## Week #6
 
 <h2 id="d44b0c6ea12b9430bd3cf48d076ec58d"></h2>
-
 
 ### Lecture 6.1: Efficient Host-Device Data Transfer - Pinned Host Memory 
 - important concepts involved in copying (transferring) data between host and device
@@ -44,7 +42,6 @@
     - Pinned memory
 
 <h2 id="e10c1c3c1ea5392c5f1eea7ca0b3873c"></h2>
-
 
 #### CPU-GPU Data Transfer using DMA
 
@@ -58,7 +55,6 @@
 - CPU sends commands to DMA and get it started. then the CPU can go to do other task
 
 <h2 id="2cd02b906eadba617d7c6ac88d30fe53"></h2>
-
 
 #### Virtual Memory Management
 
@@ -77,7 +73,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="b2a9d5a12eab1f941738bd5c801aaedd"></h2>
 
-
 #### Data Transfer and Virtual Memory 
 
 - DMA uses physical addresses
@@ -90,7 +85,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="7df7be93264776b9f5c008a7ef802f50"></h2>
 
-
 #### Pinned Memory and DMA Data Transfer 
 
 固定内存
@@ -102,14 +96,12 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="40e346ff128b7af79670d95f3284ab5e"></h2>
 
-
 #### CUDA data transfer uses pinned memory
 
 - If a source or destination of a cudaMemcpy() in the host memory is not allocated in pinned memory, it needs to be first copied to a pinned memory – extra overhead
 - cudaMemcpy() is faster if the host memory source or destination is allocated in pinned memory since no extra copy is needed
 
 <h2 id="bdef598b63a9326341f68bcbb7016c7b"></h2>
-
 
 #### Allocate/Free Pinned Memory
 
@@ -122,7 +114,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
 
 <h2 id="c3811783084bd13e3f88d10fc162289d"></h2>
 
-
 #### Using Pinned Memory in CUDA
 
 - Use the allocated pinned memory and its pointer the same way as those returned by malloc();
@@ -133,7 +124,6 @@ To understand how DMA works, we'd better know something about Virtual Memory.
     - if we take away too much of memory from the paging pool, the virtual memory system will start to function very poorly.
 
 <h2 id="d3eb5c06fd39e6588b7e91991de747dc"></h2>
-
 
 #### Vector Addition Host Code Example
 
@@ -156,14 +146,12 @@ int main()
     
 <h2 id="1b80c064703cd2aaabbcf87adf1180a2"></h2>
 
-
 ### Lecture 6.2: Efficient Host-Device Data Transfer - Task Parallelism in CUDA
 
 - task parallelism in CUDA 
     - CUDA Streams
 
 <h2 id="1eec9afb0b999eed4e565e0e8d8a0255"></h2>
-
 
 #### Serialized Data Transfer and Computation
 
@@ -172,7 +160,6 @@ int main()
 - ![](../imgs/cuda_serializedDataTransfer.png)
 
 <h2 id="676880c1ebb7d48597077ac5c7061bee"></h2>
-
 
 #### Device Overlap
 
@@ -191,7 +178,6 @@ for (int i = 0; i < dev_count; i++) {
     
 <h2 id="7100c1190c2250c484c7021b91c993bb"></h2>
 
-
 #### Ideal, Pipelined Timing
 
 - Divide large vectors into segments
@@ -206,7 +192,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="8ba448cc3c6d4d958f09a2867e647e0e"></h2>
 
-
 #### CUDA Streams
 
 - CUDA supports parallel execution of kernels and Memcpy with “Streams”
@@ -216,7 +201,6 @@ for (int i = 0; i < dev_count; i++) {
     - “Task parallelism”
 
 <h2 id="21b3cb64e5310225472b9fa9ad3e1ee3"></h2>
-
 
 #### Streams
 
@@ -228,7 +212,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="fe152dac9b832d65ef6285dc9b5cc473"></h2>
 
-
 #### Streams cont.
 
 - To allow concurrent copying and kernel execution, use multiple queues, called “streams”
@@ -238,7 +221,6 @@ for (int i = 0; i < dev_count; i++) {
 
 <h2 id="f8fab47eba7e8b1fb86bb2c911d1b6ef"></h2>
 
-
 ### Lecture 6.3: Efficient Host-Device Data Transfer - Overlapping Data Transfer with Computation 
 
 - overlap data transfer with computation
@@ -246,7 +228,6 @@ for (int i = 0; i < dev_count; i++) {
     - Practical Limitation of CUDA Streams
 
 <h2 id="07016f41ae194ded6bfa2b27f9856ca3"></h2>
-
 
 #### A Simple Multi-Stream Host Code
 
@@ -284,7 +265,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="42dd46ef1f223b467126091b06f1f702"></h2>
 
-
 #### Not quite the overlap we want in some GPUs
 
 - C.0 blocks A.1 and B.1 in the copy engine queue
@@ -292,7 +272,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 ![](../imgs/CUDA_streaming_block.png)
 
 <h2 id="f4f91f8843bf7bbd46f7b3ae80dca782"></h2>
-
 
 #### A Better Multi-Stream Host Code 
 
@@ -322,7 +301,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="a598adc12ac665ba62757284e143180e"></h2>
 
-
 #### Better, not quite the best overlap
 
 - C.1 blocks next iteration A.0 and B.0 in the copy engine queue
@@ -332,7 +310,6 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="7100c1190c2250c484c7021b91c993bb"></h2>
 
-
 #### Ideal, Pipelined Timing
 
 - Will need at least three buffers for each original A, B,and C, code is more complicated (MP description)
@@ -341,14 +318,12 @@ for (int i=0; i<n; i+=SegSize*2) {
 
 <h2 id="68e72eae3146d9dce16fd5fe0b75e830"></h2>
 
-
 #### Hyper Queues
 
 - Provide multiple real queues for each engine
 - Allow much more concurrency by allowing some streams to make progress for an engine while others are blocked 
 
 <h2 id="3c2be719fbfcb512887002eac82b7bdb"></h2>
-
 
 #### Wait until all tasks have completed
 

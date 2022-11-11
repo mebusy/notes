@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [C# 基础知识系列](#fa94b771653cde1bb927b44cc47760b0)
     - [9 扩展方法](#dc48b917570b210718938a1f427c98a0)
@@ -8,17 +8,15 @@
     - [14 浅拷贝 和 深拷贝](#7c920bcef1735cc77408e22a57e3c919)
     - [c# 高级数据结构](#d554ea9229b0d95487b99114d79a0dfe)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="fa94b771653cde1bb927b44cc47760b0"></h2>
-
 
 # C# 基础知识系列
 
 
 <h2 id="dc48b917570b210718938a1f427c98a0"></h2>
-
 
 ## 9 扩展方法
 
@@ -54,13 +52,11 @@ public static class StreamExten {
 
 <h2 id="74b653574acf96f0e265db4a4ef07db3"></h2>
 
-
 ## 12 Async / Await
 
 - C# 5.0 
 
 <h2 id="b43b5bcd822c27a24551fe2faa29f9d8"></h2>
-
 
 ## 13 解析C# 中参数传递
 
@@ -79,7 +75,6 @@ public static class StreamExten {
 
 <h2 id="50d5399284c57a1336886a51b855596d"></h2>
 
-
 ## 14 typeof  和 GetType 区别
 
 - typeof 是 运算符， GetType 是方法
@@ -96,7 +91,6 @@ Console.WriteLine( m1.GetType().IsValueType ) ;      // True
 
 <h2 id="7c920bcef1735cc77408e22a57e3c919"></h2>
 
-
 ## 14 浅拷贝 和 深拷贝
 
 - 浅拷贝实现很简单， System.Object 的 MemberwiseClone 方法 就可以实现 浅拷贝
@@ -105,7 +99,6 @@ Console.WriteLine( m1.GetType().IsValueType ) ;      // True
     - 建议使用 反序列化 方式
 
 <h2 id="d554ea9229b0d95487b99114d79a0dfe"></h2>
-
 
 ## c# 高级数据结构
 

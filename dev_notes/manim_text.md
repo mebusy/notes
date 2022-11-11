@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Manim Text](#8dc4d1cd4d814e35214beeee4edc233e)
     - [Text Without LaTeX](#05271c4842470dffc0b2d9605fbba9d8)
@@ -14,11 +14,10 @@
         - [Substrings and parts](#f5116b6c004358871f753c9306807f75)
         - [Aligning formulae](#408a8fc05271ca23231550608d7e5365)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8dc4d1cd4d814e35214beeee4edc233e"></h2>
-
 
 # Manim Text
 
@@ -32,12 +31,10 @@ There are two different ways by which you can render Text in videos:
 
 <h2 id="05271c4842470dffc0b2d9605fbba9d8"></h2>
 
-
 ## Text Without LaTeX
 
 
 <h2 id="de3f15d9428af472d02534a646a659d8"></h2>
-
 
 ### MarkupText
 
@@ -54,7 +51,6 @@ class SingleLineColor(Scene):
 
 
 <h2 id="6184141f3ad2584cff257e2bfbbb8d0b"></h2>
-
 
 ### Font Weight
 
@@ -76,7 +72,6 @@ class DifferentWeight(Scene):
 
 <h2 id="10c417cf962b73ecbbc3fa28e9e07952"></h2>
 
-
 ### Text To Color t2c
 
 ![](../imgs/manim_text_t2c.png)
@@ -95,7 +90,6 @@ class Textt2cExample(Scene):
 
 <h2 id="e99e133f4481158db879726b7335d967"></h2>
 
-
 ### Gradients
 
 ![](../imgs/manim_text_gradient.png)
@@ -111,7 +105,6 @@ class GradientExample(Scene):
 
 
 <h2 id="15e5445e2b258b42b3b0c12ba43d24bd"></h2>
-
 
 ### Text To Gradient t2g
 
@@ -139,7 +132,6 @@ class t2gExample(Scene):
 
 <h2 id="baadec00e97b4cf4b62939e9e88c5a28"></h2>
 
-
 ### Interating 
 
 Text objects behave like VGroups. Therefore, you can slice and index the text.
@@ -160,11 +152,9 @@ class IterateColor(Scene):
 
 <h2 id="eb9a4c1f0e36c5b4c1fb0cf6217d2cf0"></h2>
 
-
 ## Text With LaTeX
 
 <h2 id="686dc5f1a6e6e3b8ef3da8cd3544b6d9"></h2>
-
 
 ### MathTex
 
@@ -187,7 +177,6 @@ class MathTeXDemo(Scene):
 
 
 <h2 id="f0bc731d5f691bb915cbd2e2fd26508a"></h2>
-
 
 ### LaTeX commands and keyword arguments
 
@@ -213,7 +202,6 @@ class AMSLaTeX(Scene):
 ```
 
 <h2 id="f5116b6c004358871f753c9306807f75"></h2>
-
 
 ### Substrings and parts
 
@@ -256,7 +244,6 @@ Note that Manim also supports a custom syntax that allows splitting a TeX string
 
 
 <h2 id="408a8fc05271ca23231550608d7e5365"></h2>
-
 
 ### Aligning formulae
 

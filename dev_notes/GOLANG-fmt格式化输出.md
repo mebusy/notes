@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [fmt 格式化字符串](#ccb2ec8103248126d4115d0d9203fe6f)
     - [占位符：](#728348c8559bc28c8a5dd20013145e1c)
@@ -10,11 +10,10 @@
         - [\[指针\]](#8be2910837b633c65a7b3d39d666a821)
     - [\[其它标记\]](#86bdb9e5a2b954adf75f442b43c4cb37)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ccb2ec8103248126d4115d0d9203fe6f"></h2>
-
 
 # fmt 格式化字符串
 
@@ -22,11 +21,9 @@ fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式
 
 <h2 id="728348c8559bc28c8a5dd20013145e1c"></h2>
 
-
 ## 占位符：
 
 <h2 id="f0774dd27d27aef1c45f49da6de4336f"></h2>
-
 
 ### [一般]
 
@@ -40,13 +37,11 @@ fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式
 
 <h2 id="d38955d5ced4563ab0bfc52180cba335"></h2>
 
-
 ### [布尔]
 
 　　%t    单词 true 或 false。
 
 <h2 id="58d51d9964ce48653c8d2b0ce7c61ffc"></h2>
-
 
 ### [整数]
 
@@ -68,7 +63,6 @@ fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式
 
 <h2 id="ffe643551f677b25d43615f19790a701"></h2>
 
-
 ### [浮点数及其复合构成]
 
 　　%b    无小数部分的，指数为二的幂的科学计数法，与 strconv.FormatFloat 的 'b' 转换格式一致。例如 -123456p-78
@@ -85,7 +79,6 @@ fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式
 
 <h2 id="dc4f2095726996a30dff6d8e2ceda7f6"></h2>
 
-
 ### [字符串与字节切片]
 
 　　%s    字符串或切片的无解译字节
@@ -98,7 +91,6 @@ fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式
 
 <h2 id="8be2910837b633c65a7b3d39d666a821"></h2>
 
-
 ### [指针]
 
 　　%p    十六进制表示，前缀 0x
@@ -110,7 +102,6 @@ fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式
 
 
 <h2 id="86bdb9e5a2b954adf75f442b43c4cb37"></h2>
-
 
 ## [其它标记]
 

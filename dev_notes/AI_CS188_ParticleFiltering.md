@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
     - [Particle Filtering](#410d3f5a2938bf0efb5fb0b5ef6ca702)
@@ -10,11 +10,10 @@
     - [Implementation](#b672f52ade975e864ae6b58722c03689)
     - [Question:](#41e94aa2ea70937dbbcc787d8d5f1a2a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
-
 
 # Particle Filtering 
 
@@ -50,7 +49,6 @@ We are going to replace the idea of a probability distribution that for each pos
 
 <h2 id="410d3f5a2938bf0efb5fb0b5ef6ca702"></h2>
 
-
 ## Particle Filtering 
 
 - Filtering: approximate solution
@@ -76,7 +74,6 @@ We are going to replace the idea of a probability distribution that for each pos
 
 <h2 id="66e6211dd1d94379d2e996793264b1b9"></h2>
 
-
 ### Prepresentation: Particles
 
 
@@ -95,7 +92,6 @@ We are going to replace the idea of a probability distribution that for each pos
 ---
 
 <h2 id="853995ed6d9bf9986864449b043774f2"></h2>
-
 
 ### Particle Filtering : Elapse Time 
 
@@ -122,7 +118,6 @@ Well I grab my transition model -- which might say counterclockwise motion with 
 
 <h2 id="48c6c2f783c106c655abca3552e166b3"></h2>
 
-
 ### Particle Filtering: Observe
 
 What happens when I get evidence ?  It's a little tricky.
@@ -146,7 +141,6 @@ So we get new samples weighted from the old samples.
 
 <h2 id="988c88ad650c59ea6c4f609059420535"></h2>
 
-
 ### Particle Filtering: Resample
 
 ![](../imgs/cs188_hmm_particle_filtering_resample.png)
@@ -167,7 +161,6 @@ So we get new samples weighted from the old samples.
 ---
 
 <h2 id="5d32a4d32d2126113fcc6cc88fde5a32"></h2>
-
 
 ## Recap: Particle Filtering
 
@@ -190,7 +183,6 @@ So we get new samples weighted from the old samples.
 
 
 <h2 id="b672f52ade975e864ae6b58722c03689"></h2>
-
 
 ## Implementation
 
@@ -216,7 +208,6 @@ So we get new samples weighted from the old samples.
 
 
 <h2 id="41e94aa2ea70937dbbcc787d8d5f1a2a"></h2>
-
 
 ## Question:
 

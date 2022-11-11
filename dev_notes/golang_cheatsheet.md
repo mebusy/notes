@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Golang Cheat Sheet](#8a43cf282b42bb608cfc7b417630c252)
 - [1. ioutil](#0f3fc1e61949b5e304c5e47cddde9aab)
@@ -19,21 +19,18 @@
         - [3.3.2 list 链表](#6f453dc352c6268d59baec4cf55a4c15)
         - [3.3.3 ring](#62237f8c1de14c5db300e1678e4afeec)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8a43cf282b42bb608cfc7b417630c252"></h2>
-
 
 # Golang Cheat Sheet
 
 <h2 id="0f3fc1e61949b5e304c5e47cddde9aab"></h2>
 
-
 # 1. ioutil 
 
 <h2 id="07e928d917a09673de8b88e9df0dda27"></h2>
-
 
 ## NopCloser
 
@@ -48,7 +45,6 @@ if !ok && body != nil {
 
 <h2 id="9dd97e40c8f60288a89643e7bdbec41c"></h2>
 
-
 ## ReadAll
 
 - 一次性读取io.Reader中的数
@@ -59,13 +55,11 @@ func ReadAll(r io.Reader) ([]byte, error)
 
 <h2 id="9d897432b2883ab5520f3e8b4dcb29e6"></h2>
 
-
 ## ReadDir 
 
 - 读取目录并返回排好序的文件和子目录名（[]os.FileInfo)
 
 <h2 id="123f94d76ec25eba686b6bebaa54ff9f"></h2>
-
 
 ## ReadFile / WriteFile
 
@@ -76,7 +70,6 @@ func WriteFile(filename string, data []byte, perm os.FileMode) error
 - WriteFile 当文件不存在时会创建一个（文件权限由perm指定
 
 <h2 id="7645f5ea033085c383ae54528cdec0b5"></h2>
-
 
 ## TempDir / TempFile
 
@@ -103,7 +96,6 @@ defer func() {
 
 <h2 id="e9ae82f4cad73ed0a458c5e2e4018d13"></h2>
 
-
 ## Discard 变量
 
 - Discard 对应的类型（type devNull int）实现了io.Writer接口
@@ -123,11 +115,9 @@ func (devNull) Write(p []byte) (int, error) {
 
 <h2 id="b6b537259c4bc39d52d0e50e90219176"></h2>
 
-
 # 3. 数据结构与算法
 
 <h2 id="86907f07f3b152838a699a5843bb293a"></h2>
-
 
 ## 3.1 sort
 
@@ -147,13 +137,11 @@ type Interface interface {
 
 <h2 id="4cf2ed87db154d9a8850aeeeb5403a54"></h2>
 
-
 ### Reverse()
 
 - Reverse()返回的一个sort.Interface接口类型
 
 <h2 id="eda22ee94ca4659a94510e901fc6b03a"></h2>
-
 
 ### Search()
 
@@ -161,7 +149,6 @@ type Interface interface {
 - 数组必须已经升序排序
 
 <h2 id="98e48d4176430b53d9240ea51e7a71bd"></h2>
-
 
 ### sort包已经支持的内部数据类型排序
 
@@ -184,16 +171,13 @@ func SearchStrings(a []string, x string) int
 
 <h2 id="7c88f2e737c7a8fa9891112b9ff52018"></h2>
 
-
 ## 3.2 index / suffixarray
 
 <h2 id="10531adb8e2afff548686dde7f5d96df"></h2>
 
-
 ## 3.3 container -- heap . list , ring 
 
 <h2 id="4071d55221a7cf2dacd8cb0fd763b139"></h2>
-
 
 ### 3.3.1 heap 
 
@@ -235,7 +219,6 @@ heap.Pop(h)
 
 <h2 id="6f453dc352c6268d59baec4cf55a4c15"></h2>
 
-
 ### 3.3.2 list 链表
 
 - 链表就是一个有prev和next指针的数组了。
@@ -264,7 +247,6 @@ type List struct {
 ```
 
 <h2 id="62237f8c1de14c5db300e1678e4afeec"></h2>
-
 
 ### 3.3.3 ring
 

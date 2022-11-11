@@ -1,27 +1,24 @@
-...menustart
+[](...menustart)
 
 - [Nginx 转发 websocket secure](#7c5ba97417d6a694ecb09b70b7874040)
     - [1 准备好 ca 证书](#a531b2993886b54ffe0570554f93f575)
     - [2 配置 nginx.conf](#d1981f613ae630bff78fe54af74f9c17)
 - [Nginx配置proxy_pass转发的/路径问题](#f000b6463e33ea7670c393ee0b4927bf)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="7c5ba97417d6a694ecb09b70b7874040"></h2>
 
-
 # Nginx 转发 websocket secure
 
 <h2 id="a531b2993886b54ffe0570554f93f575"></h2>
-
 
 ## 1 准备好 ca 证书
 
 https://github.com/mebusy/codeLib/tree/master/selfSignSSL
 
 <h2 id="d1981f613ae630bff78fe54af74f9c17"></h2>
-
 
 ## 2 配置 nginx.conf
 
@@ -68,7 +65,6 @@ server {
 ```
 
 <h2 id="f000b6463e33ea7670c393ee0b4927bf"></h2>
-
 
 # Nginx配置proxy_pass转发的/路径问题
 

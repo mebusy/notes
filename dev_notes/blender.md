@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [API](#db974238714ca8de634a7ce1d083a14f)
     - [2 The bpy Module](#b8836758104839a89ea645e997c6f8cb)
@@ -32,11 +32,10 @@
         - [Removing Unused Textures and Materials](#a502b860b196506a8403c1a490c8ecbe)
         - [Rendering Using Blender Render](#a8b825472bcda46b7a889fa2e79ea33e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="db974238714ca8de634a7ce1d083a14f"></h2>
-
 
 # API
 
@@ -55,7 +54,6 @@
     ```
 
 <h2 id="b8836758104839a89ea645e997c6f8cb"></h2>
-
 
 ## 2 The bpy Module
 
@@ -83,7 +81,6 @@ www.blender.org/api/blender_python_ api_2_78c_release/bpy.ops.mesh.html
 - bpy.path: essentially the same as the os.path submodule that ships natively with Python
     
 <h2 id="f1189fbbb6cb319df8b3a5ad5b3faaef"></h2>
-
 
 ### Selection, Activation, and Specification
 
@@ -174,7 +171,6 @@ def mySpecifier(objName):
 
 <h2 id="aae5d1dbc8e73ac2f63b54ea0689e13a"></h2>
 
-
 ### Pseudo-Circular Referencing and Abstraction
 
 - bpy.data.objects datablocks were built to nest infinitely
@@ -204,7 +200,6 @@ bpy.data.objects['Cube'].data.vertices.data.edges.data.materials.data
 
 <h2 id="8b118df4b9feadc9623a9631a0a28cd9"></h2>
 
-
 ### Transformations with bpy
 
 - bpy.ops.transorm
@@ -214,7 +209,6 @@ Listing 2-9. Minimal Toolkit for Creation and Transformation (ut.py)
 [ut.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut.py)
 
 <h2 id="a19e15baa68da51e5410e5ccbfeab6c8"></h2>
-
 
 ### Visualizing Multivariate Data with the Minimal Toolkit
 
@@ -229,11 +223,9 @@ Visualizing 3/4 Dimensions of Data
 
 <h2 id="2ff9402531c1c81679616dd97d7ffebd"></h2>
 
-
 ## 3 The bmesh Module
 
 <h2 id="23ff99157dafd3dae7a102d9962633d0"></h2>
-
 
 ### Edit Mode
 
@@ -249,7 +241,6 @@ bpy.ops.object.mode_set(mode="OBJECT")
 ```
 
 <h2 id="937ef209bdb65d8a0c0e8115d91d6163"></h2>
-
 
 ### Selecting Vertices, Edges, and Planes
 
@@ -345,7 +336,6 @@ bm.verts[5].select = True
 ```
 
 <h2 id="21663d15cd5189b65dfe739436734241"></h2>
-
 
 ### Edit Mode Transformations
 
@@ -448,14 +438,12 @@ bpy.ops.object.mode_set(mode='OBJECT')
 
 <h2 id="6f2549eaa05b0785e4a601dc699c6713"></h2>
 
-
 ### Note on Indexing and Cross-Compatibility
 
 - 使用硬编码数字下标 访问 vertex, edge , face 会导致 预期外的结果
 - 不同版本的blender 的相同的操作，索引会有差异
 
 <h2 id="7b2e81f38f3bd2a976241c54eba419f6"></h2>
-
 
 ### Global and Local Coordinates
 
@@ -517,7 +505,6 @@ Listing 3-9. Behavior of Global and Local Coordinates and Transform Apply
 ```
 
 <h2 id="b0e5d5ae447a82512beebd3541059216"></h2>
-
 
 ### Selecting Vertices, Edges, and Faces by Location
 
@@ -613,7 +600,6 @@ bpy.ops.object.mode_set(mode='OBJECT')
 
 <h2 id="999a8926e65d99669139ce8008f96928"></h2>
 
-
 ### Checkpoint and Examples 
 
 source code so far: [ut_ch03.py](https://raw.githubusercontent.com/mebusy/notes/master/codes/blender/ut_ch03.py)
@@ -629,11 +615,9 @@ A brief algorithm randomly (and sloppily) selects a chunk of space in which the 
 
 <h2 id="1344c95436d6a0d0776ad7223043de0f"></h2>
 
-
 ## 4 Topics in Modeling and Rendering
 
 <h2 id="c5aef292e11961f2493f084ee2dc220e"></h2>
-
 
 ### Specifying a 3D Model
 
@@ -669,7 +653,6 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
     
 <h2 id="e6a63b58cf42997d218a6fb856cb4a1f"></h2>
 
-
 ### Common File Formats
 
 **Wavefront (.obj and .mtl)**
@@ -700,7 +683,6 @@ For the purpose of this chapter, we consider that a basic mesh is defined by its
  
 
 <h2 id="fa11cb7e3dbec33afd8b0c8194461c6a"></h2>
-
 
 ### Minimal Specification of Basic Objects
 
@@ -780,7 +762,6 @@ f (8 4 2 6)//6
 ---
 
 <h2 id="a1d35d6a2aa25a58ffb4a9380be01bd7"></h2>
-
 
 ### Common Errors in Procedural Generation
 
@@ -909,11 +890,9 @@ Ultimately, there are many methods for dealing with Z-fighting that all amount t
 
 <h2 id="a21021ed4077220d8ee7a7b1af522450"></h2>
 
-
 ## 5 Introduction to Add-On Development
 
 <h2 id="0c04eb9875bdfd13027dc08199c22c17"></h2>
-
 
 ### A Simple Add-On Template
 
@@ -934,7 +913,6 @@ The template presented here is fairly minimal, but we also included a handful of
 We discuss each component before proceeding to more advanced add-ons.
 
 <h2 id="0f5b9e16e0b4087f80a42c079e0a9b0a"></h2>
-
 
 ### Components of Blender Add-Ons
 
@@ -1021,14 +999,12 @@ TODO
 
 <h2 id="f28b2e33b807755dbe782179fdfc963d"></h2>
 
-
 ## 6 The bgl and blf Modules
 
 - The bgl module is a wrapper for OpenGL functions commonly used by Blender in the 3D Viewport and Blender Game Engine. 
 - The blf module is a small set of functions for displaying text and drawing fonts. 
  
 <h2 id="e6878da0a2f708ad2a8ce73b2a4acb33"></h2>
-
 
 ### Instantaneous Drawing
 
@@ -1038,7 +1014,6 @@ TODO
     - Thus, we start with a handler example using non-OpenGL concepts.
 
 <h2 id="629dc07d3baa953d521a2ad76c0b27a7"></h2>
-
 
 ### Handlers Overview
 
@@ -1199,18 +1174,15 @@ TODO
 
 <h2 id="a810cbc3a6b48acd8619759085c02700"></h2>
 
-
 ## 7 Advanced Add-On Development
 
 TODO
 
 <h2 id="c536c9f406f7dcd6d1ea8c650091066f"></h2>
 
-
 ## 8 Textures and Rendering
 
 <h2 id="1e8b0c856db239dd8faf78f4d33f616a"></h2>
-
 
 ### Vocabulary of Textures
 
@@ -1234,7 +1206,6 @@ TODO
 - The remaining textures can be parameterized in Blender to achieve the desired result.
 
 <h2 id="afd66c77848678b6a7739a9cd7b1d0a8"></h2>
-
 
 ### Adding and Configuring Textures
 
@@ -1273,7 +1244,6 @@ Note: after running this script, view the results by selecting rendered view in 
 
 <h2 id="a502b860b196506a8403c1a490c8ecbe"></h2>
 
-
 ### Removing Unused Textures and Materials
 
 - As we continually test scripts, our materials and textures data can quickly become cluttered without our realizing.
@@ -1296,7 +1266,6 @@ for dblock in mats:
 ```
 
 <h2 id="a8b825472bcda46b7a889fa2e79ea33e"></h2>
-
 
 ### Rendering Using Blender Render
 

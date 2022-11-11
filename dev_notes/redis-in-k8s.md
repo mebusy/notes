@@ -1,13 +1,12 @@
-...menustart
+[](...menustart)
 
 - [Deploy a stateful set](#7dca21fd06e067f3857514c73c69c33d)
 - [If you just want redis as memory cache...](#15b6834685dfbd80ef67e02007df091d)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="7dca21fd06e067f3857514c73c69c33d"></h2>
-
 
 # Deploy a stateful set
 
@@ -109,7 +108,6 @@ spec:
 
 
 <h2 id="15b6834685dfbd80ef67e02007df091d"></h2>
-
 
 # If you just want redis as memory cache...
 

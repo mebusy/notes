@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Linear Algebra](#eee5ea614c3474d72c29c96917c356e9)
 - [Vector Spaces](#2f21953656c07a77cad97b71c89a69de)
@@ -22,23 +22,20 @@
     - [2.6 LINEAR TRANSFORMATIONS](#aa8fafd1a0c4fb58a6ba9373adaf258f)
         - [Rotations Q, Projections P, and Reflections H](#72e0a765ceae5f613d42b3da5afdedd9)
 
-...menuend
+[](...menuend)
 
 
 [TOC]
 
 <h2 id="eee5ea614c3474d72c29c96917c356e9"></h2>
 
-
 # Linear Algebra 
 
 <h2 id="2f21953656c07a77cad97b71c89a69de"></h2>
 
-
 # Vector Spaces
 
 <h2 id="972dab9e05beb3d5443db66ec0eabd2e"></h2>
-
 
 ## 2.1 VECTOR SPACES AND SUBSPACES
 
@@ -81,7 +78,6 @@ symmetric. Of course, the zero matrix is in both subspaces.
 
 <h2 id="8181c20bb270d985c5745507fd8a273b"></h2>
 
-
 ### The Column Space of A
 
 We now come to the key examples, the **column space** and the **nullspace** of a matrix A.
@@ -107,7 +103,6 @@ Then C(A) can be somewhere between the zero space and the whole space **Rᵐ**. 
 是指矩阵的列向量组构成的空间，也就是将列向量组的极大线性无关组找出来，然后做线性组合而生成的所有向量构成的空间。
 
 <h2 id="3c94b747c25e8b676e5f7af1a67da8a5"></h2>
-
 
 ### The Nullspace of A
 
@@ -161,7 +156,6 @@ We hope to end up by understanding all four of the subspaces that are intimately
 
 <h2 id="1e0304a592cf2dccbcb3c7e858021d8d"></h2>
 
-
 ## 2.2 SOLVING Ax=0 and Ax=b
 
 Chapter 1 concentrated on square invertible matrices. There was one solution to Ax = b, and it was x = A⁻¹b. That solution was found by elimination (not by computing A⁻¹). 
@@ -191,7 +185,6 @@ For an invertible matrix, the nullspace contains only x = 0 (multiply Ax = 0 by 
 ![](../imgs/LA_completeSolution.png)
 
 <h2 id="fb0727e770a06722aa7b9d64a9b6af91"></h2>
-
 
 ### Echelon Form(梯形) *U* and Row Reduced Form *R*
 
@@ -266,7 +259,6 @@ For a 5 by 8 matrix with four pivots, Figure 2.3 shows the reduced form R. **It 
 
 <h2 id="1e32c695f24ac4d5108ba9cca53ac86a"></h2>
 
-
 ### Pivot Variables and Free Variables
 
 Our goal is to read off all the solutions to Rx = 0. The pivots are crucial:
@@ -308,7 +300,6 @@ There must be infinitely many solutions, since any multiple cx will also satisfy
 This central idea-the ***dimension*** of a subspace-is made precise in the next section. We count the free variables for the nullspace. We count the pivot variables for the column space!
 
 <h2 id="0aa8bb162b1e64c4edd71e634be16382"></h2>
-
 
 ### Solving Ax = b, Ux = c, and Rx = d
 
@@ -383,7 +374,6 @@ good example in page 84.
 
 <h2 id="176eb4a957bc2a4950033ca9e1ec5ede"></h2>
 
-
 ### 满秩
 
 满秩          |  列满秩      |   行满秩    |  一般
@@ -395,7 +385,6 @@ R = I    |  \| I \|      |   R=\|I F\|    |    \| I  F\|
 
 
 <h2 id="42daec4d086da007d1b961361ec0814f"></h2>
-
 
 ## 2.3 LINEAR INDEPENDENCE, BASIS, AND DIMENSION
 
@@ -428,7 +417,6 @@ Because as a disguised from 2C:  Every m by n system Ax = 0 has nonzero solution
 
 <h2 id="bc14e48a52e7371d448ce8db40cccf14"></h2>
 
-
 ### Spanning a Subspace
 
 Now we define what it means for a set of vectors to span a space. The column space of A is spanned by the columns. **Their combinations produce the whole space:**
@@ -438,7 +426,6 @@ Now we define what it means for a set of vectors to span a space. The column spa
 The column space of A is exactly ***the space that is spanned by its columns***. The row space is spanned by the rows. Multiplying A by any x gives a combination of the columns; it is a vector Ax in the column space.
 
 <h2 id="9702e33bd5c5df4fb7ee415a1ab6e26f"></h2>
-
 
 ### Basis for a Vector Space
 
@@ -486,7 +473,6 @@ To summarize:
 
 <h2 id="277acc5b1627dc1a1e613976782c994b"></h2>
 
-
 ### Dimension of a Vector Space
 
 **2J**: Any two bases for a vector space **V** contain the same number of vectors. This number. which is shared by all bases and expresses the number of "degrees of freedom" of the space, is the ***dimension*** of **V**.
@@ -507,7 +493,6 @@ We never use the terms "basis of a matrix" or "rank of a space" or "dimension of
 - 基向量的个数，就是列空间C(A)的维数 (注意维数是空间的属性)
 
 <h2 id="a1e826e3adda502b8e640e95e34a88d8"></h2>
-
 
 ## 2.4 THE FOUR FUNDAMENTAL SUBSPACES
 
@@ -591,7 +576,6 @@ For novelty, we take the four subspaces in a more interesting order.
 
 <h2 id="10fabddaa26f740c259e8adcfd5e32d4"></h2>
 
-
 ### Summarize
 
 Fundamental Theorem of Linear Algebra, Part I
@@ -622,7 +606,6 @@ A = |1 2|  , has m = n = 2, and rank r = 1.
 
 
 <h2 id="f934c3a267dc016627d494171b3c77c7"></h2>
-
 
 ### Existence of Inverses
 
@@ -690,7 +673,6 @@ When a square matrix if **full rank**:
 
 <h2 id="e9da9069b202c4de3612d6edae5b5d07"></h2>
 
-
 ### Matrices of Rank 1
   
 One basic theme of mathematics is, given something complicated, to show how it can be broken into simple pieces. For linear algebra, the simple pieces are matrices of ***rank 1***:
@@ -716,7 +698,6 @@ A = (col)(row) =| 4  2  2 | = | 2|
 The row space and column space are lines-the easiest case.
 
 <h2 id="734ef82f504a5a0b7c94fe20dcc0135c"></h2>
-
 
 ## 2.5 GRAPHICS NETWORKS
 
@@ -760,7 +741,6 @@ The equation Ax = b asks: Given the differences b1.... , b5, find the actual pot
 **TODO**
 
 <h2 id="aa8fafd1a0c4fb58a6ba9373adaf258f"></h2>
-
 
 ## 2.6 LINEAR TRANSFORMATIONS
 
@@ -948,7 +928,6 @@ TODO, Example
 
 
 <h2 id="72e0a765ceae5f613d42b3da5afdedd9"></h2>
-
 
 ### Rotations Q, Projections P, and Reflections H
 

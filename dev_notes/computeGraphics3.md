@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Chapter 3 OpenGL v1.1: Geometry](#43b782093287cbdb4d5741923528cbc0)
     - [3.1 Shapes and Colors in OpenGL 1.1](#bf21e7d6d891525c8b28031c8fd4ce4d)
@@ -29,11 +29,10 @@
         - [3.6.1  Using GLUT](#1fbcde3b7f6c98a4fb0a7592100836b5)
         - [3.6.3  About glsim.js](#5ce1e0a88afa1e1ebaf17f7946d196cc)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="43b782093287cbdb4d5741923528cbc0"></h2>
-
 
 # Chapter 3 OpenGL v1.1: Geometry
 
@@ -63,11 +62,9 @@
 
 <h2 id="bf21e7d6d891525c8b28031c8fd4ce4d"></h2>
 
-
 ## 3.1 Shapes and Colors in OpenGL 1.1
 
 <h2 id="68b7c5a4807b68dc2ecfc6e64c331a44"></h2>
-
 
 ### 3.1.1  OpenGL Primitives
 
@@ -115,7 +112,6 @@ glEnd();
  
 
 <h2 id="8fa8cf348cbe10894e95cdbd18d67569"></h2>
-
 
 ### 3.1.2  OpenGL Color
 
@@ -192,7 +188,6 @@ glEnd();
 
 <h2 id="42956e9556040933ca9b1c558d1cc95f"></h2>
 
-
 ### 3.1.3  glColor and glVertex with Arrays
 
 - There are also versions that let you place all the data for the command in a single array parameter. 
@@ -227,7 +222,6 @@ gl2.glEnd();
 ```
 
 <h2 id="c3964789c01c1a0f9f0ea7da77d5ceae"></h2>
-
 
 ### 3.1.4  The Depth Test
 
@@ -274,11 +268,9 @@ gl2.glEnd();
 
 <h2 id="5975c2bc961ef61cf4840b9dbc325f46"></h2>
 
-
 ## 3.2 3D Coordinates and Transforms
 
 <h2 id="8af4638ee01c1e09f9c685365c276bfc"></h2>
-
 
 ### 3.2.1  3D Coordinates
 
@@ -307,7 +299,6 @@ gl2.glEnd();
 
 <h2 id="0890c9c579e155c44153869f09be0222"></h2>
 
-
 ### 3.2.2  Basic 3D Transforms
 
 - `glTranslate*( dx, dy, dz );`
@@ -328,7 +319,6 @@ gl2.glEnd();
     - For rotation through an angle r about the origin in 2D, use `glRotatef(r, 0, 0, 1)`. 
 
 <h2 id="4420bf2fbaf2c8d3729a0c749d26fa16"></h2>
-
 
 ### 3.2.3  Hierarchical Modeling
 
@@ -366,14 +356,12 @@ glPopMatrix();
 
 <h2 id="46c52ffa486761351207cd8f88831f9a"></h2>
 
-
 ## 3.3 Projection and Viewing
 
 - In the previous section, we looked at the modeling transformation, which transforms from object coordinates to world coordinates.
 - However, when working with OpenGL 1.1, you need to know about several other coordinate systems and the transforms between them. 
 
 <h2 id="a8042d52694c52f0c6bff88f6f019219"></h2>
-
 
 ### 3.3.1  Many Coordinate Systems
 
@@ -422,7 +410,6 @@ glPopMatrix();
 
 <h2 id="bb1dfff0fea73b750d9e7fd08a6cfcc2"></h2>
 
-
 ### 3.3.2  The Viewport Transformation
 
 - The simplest of the transforms is the viewport transform.
@@ -449,7 +436,6 @@ glViewport( x, y, width, height );
     
 
 <h2 id="df5b10466accf17ff29913799be96672"></h2>
-
 
 ### 3.3.3  The Projection Transformation
 
@@ -535,7 +521,6 @@ gluPerspective( fieldOfViewAngle, aspect, near, far );
 
 <h2 id="ba8673c03c50d25dca9dc436e3bfe4d6"></h2>
 
-
 ### 3.3.4  The Modelview Transformation
 
 - "Modeling" and "viewing" might seem like very different things, conceptually, but OpenGL combines them into a single transformation. 
@@ -587,14 +572,12 @@ glPopMatrix();
 
 <h2 id="1fc3e9e3dd17e17d60dc489e75b8606b"></h2>
 
-
 ### 3.3.5  A Camera Abstraction
 
 - Projection and viewing are often discussed using the analogy of a camera.
 - TODO
 
 <h2 id="7815beca17bdc6ba3d2cb928032b8719"></h2>
-
 
 ### 3.3.6 笔记
 
@@ -605,13 +588,11 @@ glPopMatrix();
 
 <h2 id="468ebc8b8f7030d296eb83b3a5afe3e9"></h2>
 
-
 ## 3.4 Polygonal Meshes and glDrawArrays
 
 - Now, our problem is to represent a set of polygons—most often a set of triangles. 
 
 <h2 id="f43fcc7f1d64d133c6e5594e21c9757f"></h2>
-
 
 ### 3.4.1  Indexed Face Sets
 
@@ -757,7 +738,6 @@ glDisable( GL_POLYGON_OFFSET_FILL );
 
 <h2 id="5869e262d8529c4c438e54c49a5043c2"></h2>
 
-
 ### 3.4.2  glDrawArrays and glDrawElements
 
 - All of the OpenGL commands that we have seen so far were part of the original OpenGL 1.0.
@@ -865,7 +845,6 @@ glDrawElements( GL_QUADS, 24, GL_UNSIGNED_INT, elementArray );
 
 <h2 id="df7256da675c160c19a7725685d90320"></h2>
 
-
 ### 3.4.3  Data Buffers in Java
 
 - Ordinary Java arrays are not suitable for use with glDrawElements and glDrawArrays, partly because of the format in which data is stored in them and partly because of inefficiency in transfer of data between Java arrays and the GPU.
@@ -904,7 +883,6 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
 
 
 <h2 id="5c4ae378eebbbd5ee7a2881615bd486a"></h2>
-
 
 ### 3.4.4  Display Lists and VBOs
 
@@ -954,11 +932,9 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
 
 <h2 id="bce3f3035dda5f8e228be992180b0763"></h2>
 
-
 ## 3.5 Some Linear Algebra
 
 <h2 id="bddd30ae2afa887d75b9ee8272bc0fda"></h2>
-
 
 ### 3.5.2  Matrices and Transformations
 
@@ -995,7 +971,6 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
 
 <h2 id="d1a87f1305aec980ce641a28e82a93b5"></h2>
 
-
 ### 3.5.3  Homogeneous Coordinates
 
 - There is one common transformation in computer graphics that is not an affine transformation: 
@@ -1019,7 +994,6 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
 
 <h2 id="3918af2a03c631f9ffdc3cfcb307c657"></h2>
 
-
 ## 3.6 Using GLUT and JOGL
 
 - For simple applications written in C or C++, one possible windowing API is GLUT (OpenGL Utility Toolkit). 
@@ -1035,7 +1009,6 @@ gl2.glDrawElements( GL2.GL_QUADS, 24, GL2.GL_UNSIGNED_INT, elementBuffer );
 
 
 <h2 id="1fbcde3b7f6c98a4fb0a7592100836b5"></h2>
-
 
 ### 3.6.1  Using GLUT
 
@@ -1151,7 +1124,6 @@ void mouseFunc(int button, int buttonState, int x, int y) {
 
 
 <h2 id="5ce1e0a88afa1e1ebaf17f7946d196cc"></h2>
-
 
 ### 3.6.3  About glsim.js
 

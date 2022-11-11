@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [oop for python](#cad1f4790e85f2b08e65e3c6fd4ce14b)
     - [Singleton](#6ff5f73c8b5ebd311406568c8ef50bfd)
@@ -8,16 +8,14 @@
     - [assignment lick c struct](#b6a463819ebef130b1d9e14cc626eba5)
     - [readonly class field](#ff1e065fdd70b15412dc1f6a216d1405)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="cad1f4790e85f2b08e65e3c6fd4ce14b"></h2>
 
-
 # oop for python
 
 <h2 id="6ff5f73c8b5ebd311406568c8ef50bfd"></h2>
-
 
 ## Singleton 
 
@@ -41,7 +39,6 @@ class MyClass(BaseClass, metaclass=Singleton):
 
 <h2 id="0b45bfca581dfd81b42b816b63798e78"></h2>
 
-
 ## disable dynamically define new fields to a class 
 
 Python can we dynamically define new fields to a class during runtime. 
@@ -62,7 +59,6 @@ It's possible to restrict the instance attributes that can be added through the 
 
 <h2 id="d697d7eeb396fa20ed1c5109befb2a67"></h2>
 
-
 ## disable dynamically del a field from a class 
 
 ```python
@@ -72,7 +68,6 @@ class A(object):
 ```
 
 <h2 id="45a042564f32c7d808e10eb2c157142b"></h2>
-
 
 ## access like a dict 
 
@@ -85,13 +80,11 @@ def __getitem__(self,key) :
 
 <h2 id="b6a463819ebef130b1d9e14cc626eba5"></h2>
 
-
 ## assignment lick c struct 
 
 - using a  setter method  to copy content value 
 
 <h2 id="ff1e065fdd70b15412dc1f6a216d1405"></h2>
-
 
 ## readonly class field
 

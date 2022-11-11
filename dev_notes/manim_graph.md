@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Manim Graph](#6566be516fa55bce5bf804d9bb3eed29)
     - [Basic](#972e73b7a882d0802a4e3a16946a2f94)
@@ -6,16 +6,14 @@
     - [Two graphs , and Text](#a10ae75187f9b93cef2446300aca4a64)
     - [Make a thumnail picture](#e4669471c75a87003f3a7b162fdf4470)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="6566be516fa55bce5bf804d9bb3eed29"></h2>
 
-
 # Manim Graph
 
 <h2 id="972e73b7a882d0802a4e3a16946a2f94"></h2>
-
 
 ## Basic
 
@@ -62,7 +60,6 @@ class graphx(GraphScene):
 ![](../imgs/manim_graph1.gif)
 
 <h2 id="8af1f1c0895c6f9654aa578cfd0a3987"></h2>
-
 
 ## Modification
 
@@ -126,7 +123,6 @@ class graphx(GraphScene):
 
 
 <h2 id="a10ae75187f9b93cef2446300aca4a64"></h2>
-
 
 ## Two graphs , and Text
 
@@ -194,7 +190,6 @@ class graphx(GraphScene):
 </details>
 
 <h2 id="e4669471c75a87003f3a7b162fdf4470"></h2>
-
 
 ## Make a thumnail picture
 

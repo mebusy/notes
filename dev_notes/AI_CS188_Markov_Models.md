@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Markov Models](#d656a155bed68a7dec83cd56ff973bbc)
     - [Probability Recap](#e9171aa010f3fa5d166ecf151b1de19c)
@@ -17,11 +17,10 @@
     - [Application of Stationary Distribution: Gibbs Sampling](#a80042cc44b2a1b2b7d6193bb4083c58)
     - [Hidden Markov Models](#94d2b6fed9dd768fe2edec7e6c85546f)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
-
 
 # Markov Models
 
@@ -29,14 +28,12 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
 
 <h2 id="e9171aa010f3fa5d166ecf151b1de19c"></h2>
 
-
 ## Probability Recap
 
 - ![](../imgs/cs188_prob_recap.png)
 
 
 <h2 id="b8edf9c2f97f0adf550e21090016b328"></h2>
-
 
 ## Reasoning over Time or Space
 
@@ -50,7 +47,6 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
 
 
 <h2 id="d656a155bed68a7dec83cd56ff973bbc"></h2>
-
 
 ## Markov Models
 
@@ -72,7 +68,6 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
 
 <h2 id="0f1513d04ac32269de73d0f17465488e"></h2>
 
-
 ### Conditional Independence
 
 - Basic conditional independence:
@@ -89,7 +84,6 @@ Markov Model, a special kind of Bayes net, that sees a particularly large amount
 
 <h2 id="2549029b268b93144235df84effeb97d"></h2>
 
-
 ### Joint Distribution of a Markov Model
 
 This case let's look at just 4 variables. 
@@ -104,7 +98,6 @@ This case let's look at just 4 variables.
 - 简化版 Chain Rule
 
 <h2 id="1584c0069936b81fd7e2d00d4dc7186a"></h2>
-
 
 ### Chain Rule and Markov Models
 
@@ -125,7 +118,6 @@ This case let's look at just 4 variables.
 
 <h2 id="5627b13e1756dc92c82a9b3998e04960"></h2>
 
-
 ### Implied Conditional Independencies 
 
 - We assumed : `X₃ ⫫ X₁|X₂`  , and `X₄ ⫫ X₁,X₂ | X₃` 
@@ -139,7 +131,6 @@ This case let's look at just 4 variables.
 
 
 <h2 id="a3e9d92d013e8bd559c093cbca5a7684"></h2>
-
 
 ## Example Markov Chain : Weather
 
@@ -168,7 +159,6 @@ rain | rain | 0.7
 
 <h2 id="cd0df25e7ecc8f5591d125ef5318fae1"></h2>
 
-
 ## Mini-Forward Algorithm
 
 - Question: What’s P(X) on some day t?
@@ -178,7 +168,6 @@ rain | rain | 0.7
 
 
 <h2 id="ae8a34b505e071da4ab4c6a36da4f594"></h2>
-
 
 ## Exmaple Run of Mini-Forward Algorithm
 
@@ -210,7 +199,6 @@ rain | 1-p | ... | 0.25
 
 <h2 id="cff3dc4ffa629a6c5051471a4665a6c7"></h2>
 
-
 ## Stationary Distributions
 
 - For most chains:
@@ -225,7 +213,6 @@ rain | 1-p | ... | 0.25
     - P<sub>∞</sub>(rain) = 1/4 
 
 <h2 id="9ee0b726bfd7b5e9fbe84c468ace55c1"></h2>
-
 
 ### Still the Weather Example 
 
@@ -264,7 +251,6 @@ Diagonal Matrix
 
 <h2 id="485984b095c6416cdcac20510c1c3a37"></h2>
 
-
 ## Application of Stationary Distribution: Web Link Analysis
 
 - PageRank over a web graph
@@ -283,7 +269,6 @@ Diagonal Matrix
 
 <h2 id="a80042cc44b2a1b2b7d6193bb4083c58"></h2>
 
-
 ## Application of Stationary Distribution: Gibbs Sampling
 
 - Each joint instantiation over all hidden and query varialbes is a state: { X₁, ..., X<sub>n</sub> } = H ∪ Q
@@ -300,7 +285,6 @@ Diagonal Matrix
 ---
 
 <h2 id="94d2b6fed9dd768fe2edec7e6c85546f"></h2>
-
 
 ## Hidden Markov Models
 

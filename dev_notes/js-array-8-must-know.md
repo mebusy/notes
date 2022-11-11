@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [8 Must Know JavaScript Array Methods](#ab7987044420e54c91c08f19820fc741)
     - [1. filter](#b7e9c356372c6190077c0d2644a7886a)
@@ -10,11 +10,10 @@
     - [7. reduce](#f9242b615d9ac48e610d25c12a1b9cf7)
     - [8. include](#571fd09a922e46e5159bf2049e93890b)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ab7987044420e54c91c08f19820fc741"></h2>
-
 
 # 8 Must Know JavaScript Array Methods
 
@@ -31,7 +30,6 @@ const items = [
 ```
 
 <h2 id="b7e9c356372c6190077c0d2644a7886a"></h2>
-
 
 ## 1. filter
 
@@ -54,7 +52,6 @@ console.log(filteredItems)
 
 <h2 id="1ab5fbd0c4ddc51f5d32c40e05099ebc"></h2>
 
-
 ## 2. map
 
 ```javascript
@@ -73,7 +70,6 @@ console.log(filteredItems)
 
 <h2 id="a2e947d461b484e60f8d68660ee60687"></h2>
 
-
 ## 3. find
 
 find a single object in an array
@@ -90,7 +86,6 @@ const foundItem = items.find((item) => {
 
 
 <h2 id="56a6768645be8464bbadc6fb8a682a93"></h2>
-
 
 ## 4. forEach
 
@@ -113,7 +108,6 @@ items.forEach((item) => {
 
 <h2 id="f6a64c8511d26eae9ca74403f1b2caae"></h2>
 
-
 ## 5. some
 
 return true if any items in array satisfy some condition.
@@ -129,7 +123,6 @@ true
 ```
 
 <h2 id="99838ef5da412ee9bc8180dd401e7f8c"></h2>
-
 
 ## 6. every
 
@@ -147,7 +140,6 @@ false
 
 <h2 id="f9242b615d9ac48e610d25c12a1b9cf7"></h2>
 
-
 ## 7. reduce
 
 
@@ -164,7 +156,6 @@ const total = items.reduce((currentTotal, item) => {
 
 
 <h2 id="571fd09a922e46e5159bf2049e93890b"></h2>
-
 
 ## 8. include
 

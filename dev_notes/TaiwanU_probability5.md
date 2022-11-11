@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week5 连续机率分布](#61746ec0f4a80bc5cb5caef1f62afd5b)
     - [5-1: 机率密度函数 PDF (PROBABILITY DENSITY FUNCTION)](#fc548c0411701f3a57c7799ad18245e3)
@@ -20,21 +20,18 @@
     - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
         - [max/min](#cd1c601d65c97e1393f70771cd14e8a1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="61746ec0f4a80bc5cb5caef1f62afd5b"></h2>
-
 
 # Week5 连续机率分布
 
 <h2 id="fc548c0411701f3a57c7799ad18245e3"></h2>
 
-
 ## 5-1: 机率密度函数 PDF (PROBABILITY DENSITY FUNCTION)
 
 <h2 id="bcd1b68617759b1dfcff0403a6b5a8d1"></h2>
-
 
 ### PDF 
 
@@ -68,7 +65,6 @@
 
 <h2 id="0b821c7256491cd7494160a47d4a1023"></h2>
 
-
 ### PDF 跟机率的关系
 
 - 因为我们习惯处理机率，看到 PDF 如何把它跟机率连结呢?
@@ -82,7 +78,6 @@
 
 <h2 id="5bc2e5b291e2fbe5196f9a425ad6a0c9"></h2>
 
-
 ### PDF 有哪些性质呢?
 
 ![](../imgs/TU_probability_pdf_property.png)
@@ -91,11 +86,9 @@
 
 <h2 id="423296d40fd5d59d1f076d73508c42e6"></h2>
 
-
 ## 5-2: 连续机率分布 I (CONTINUOUS PROBABILITY DISTRIBUTION)
 
 <h2 id="f7bf1cb803a0ab0539a6dc3ed526dd4f"></h2>
-
 
 ### Uniform 机率分布
 
@@ -104,7 +97,6 @@
 - Ex: 已知1路公交车每十分钟一班。 小美随意出发到公车站，小美须等候公交 车之时间为 X
 
 <h2 id="894ad572b4888ac89196f741cd003480"></h2>
-
 
 ### Exponential 机率分布
 
@@ -164,7 +156,6 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 <h2 id="a781eb710c59f5f1dffeb4d79e0bf04d"></h2>
 
-
 #### 指数分布和 柏松分布之间的关系
 
 - 定理一：设随机变量 X 服从参数为 λT的柏松分布，则 两次发生之间的“等待时间”Y 服从参数为 λ的指数分布。
@@ -212,7 +203,6 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 <h2 id="ee8d241828945ff9c5d39465a5c65f25"></h2>
 
-
 #### 指数分布和 几何分布之间的关系
 
 - 都是失忆性分布
@@ -223,13 +213,11 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 
 <h2 id="dc45153d24cf787ea2b2917ec03ca044"></h2>
 
-
 #### 指数分布和 uniform 分布的关系
 
 - 定理2: 随机变量Y 服从参数为 λ 的指数分布的充要条件是 随机变量 Y = 1-e<sup>-λx</sup> 服从(0,1) 上的均匀分布。
 
 <h2 id="6d91070e066c0b53115e187e5f194191"></h2>
-
 
 #### 指数分布和 正态分布的关系
 
@@ -240,7 +228,6 @@ G(a) = G(1)ª = e<sup>log(G(1))·a</sup>
 ---
 
 <h2 id="7d09f590df9dfcbd10d1b8cbffce9514"></h2>
-
 
 ### Erlang 机率分布
 
@@ -268,7 +255,6 @@ pylab.show()
 
 <h2 id="a37b5c85c6d082e170925dbe09051a82"></h2>
 
-
 #### Erlang 和 Exponential  关系
 
 - Erlang(n,λ) 常被用来model 一件有多个关卡事情的总时间，而每个关卡所 需时间都是随机的 
@@ -282,13 +268,11 @@ pylab.show()
 
 <h2 id="2f5c9c5eb9da34f36d7092d770b94259"></h2>
 
-
 ## 6-1: 连续机率分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )
 
 From part of Week6
 
 <h2 id="a638878f993f94c84c6c050963d0f635"></h2>
-
 
 ### Normal 机率分布(常态分布)
 
@@ -311,7 +295,6 @@ From part of Week6
         - 若能牵扯上，再利用这表去算出别的常态分布的 CDF 值?
 
 <h2 id="b672e9679aa32ead876e8b9c6c43d78c"></h2>
-
 
 #### Standard Normal Distribution 标准常态分布
 
@@ -369,7 +352,6 @@ plt.show()
 
 <h2 id="e1f7ff5183a361cd3b41e3ab5e647cb5"></h2>
 
-
 ## QUIZ
 
 <details>
@@ -399,7 +381,6 @@ quiz ...
 
 
 <h2 id="cd1c601d65c97e1393f70771cd14e8a1"></h2>
-
 
 ### max/min
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Python3 Feature](#95cf1c5f0ad17ace298a562cab2cc645)
     - [Feature 1: Advanced unpacking](#5e0f49a3b1558b75a741f2bf4c07d934)
@@ -13,16 +13,14 @@
     - [Feature 12: Matrix Multiplication](#cf11c0ff8d4c3fcefe67a49a11e934b1)
     - [Feature 13: Pathlib](#ff0bcfcf9c1a95986e475dc4239c591f)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="95cf1c5f0ad17ace298a562cab2cc645"></h2>
 
-
 # Python3 Feature
 
 <h2 id="5e0f49a3b1558b75a741f2bf4c07d934"></h2>
-
 
 ## Feature 1: Advanced unpacking
 
@@ -65,7 +63,6 @@ def f(*args):
 ```
 
 <h2 id="5b2106affc32d8704adfa53688755516"></h2>
-
 
 ## Feature 2: Keyword only arguments
 
@@ -113,16 +110,13 @@ TypeError: sum() takes 2 positional arguments but 3 were given
 
 <h2 id="5305fcfeefb27109e0064596d336c738"></h2>
 
-
 ## Feature 5: Everything is an iterator
 
 <h2 id="cc1c5df0e93af9c93e7b0ae946db572b"></h2>
 
-
 ## Feature 6: No more comparison of everything to everything
 
 <h2 id="591d0ac5e723e96893cd88c01fb953dd"></h2>
-
 
 ## Feature 7: yield from
 
@@ -171,11 +165,9 @@ def dup(n):
 
 <h2 id="a93b92af2ea8b01917f2773ee72d5d0d"></h2>
 
-
 ## Feature 8: asyncio
 
 <h2 id="34f534cb76010ba480101eb84a40e85e"></h2>
-
 
 ## Feature 9: Standard library additions
 
@@ -216,7 +208,6 @@ CacheInfo(hits=3, misses=8, maxsize=32, currsize=8)
 
 <h2 id="b8bef80b08cb6ee429e103a20e52040d"></h2>
 
-
 ## Feature 10: Fun
 
 Function annotations
@@ -231,7 +222,6 @@ def f(a: stuff, b: stuff = 2) -> result:
 
 <h2 id="698af8e97e5d339b9bc0208c5cd2cde1"></h2>
 
-
 ## Feature 11: Unicode and bytes
 
 - In Python 2, str acts like bytes of data.
@@ -241,7 +231,6 @@ def f(a: stuff, b: stuff = 2) -> result:
 - There is no unicode. str strings are Unicode.
 
 <h2 id="cf11c0ff8d4c3fcefe67a49a11e934b1"></h2>
-
 
 ## Feature 12: Matrix Multiplication
 
@@ -254,7 +243,6 @@ a @ b
 ```
 
 <h2 id="ff0bcfcf9c1a95986e475dc4239c591f"></h2>
-
 
 ## Feature 13: Pathlib
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [7 3D Graphics with WebGL](#357aa0eaaaeef801f1492788310cb7be)
     - [Section 7.1 Transformations in 3D](#dd2ae5afe7a2b9b238ae7ef9ebc002a4)
@@ -8,21 +8,18 @@
         - [7.1.4  Transforming Normals](#51ac8c3a78a5610dfe32a5cbbbd92793)
     - [Section 7.2 Lighting and Material](#ed46036a806368c04e89b1863df8b00e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="357aa0eaaaeef801f1492788310cb7be"></h2>
-
 
 # 7 3D Graphics with WebGL
 
 <h2 id="dd2ae5afe7a2b9b238ae7ef9ebc002a4"></h2>
 
-
 ## Section 7.1 Transformations in 3D
 
 <h2 id="d7e9359f5c67d29398a9a63005ea1d5f"></h2>
-
 
 ### 7.1.1  About Shader Scripts
 
@@ -65,7 +62,6 @@ function getTextContent( elementID ) {
 
 <h2 id="946786c5977adc425dfb64f6ad11dbb0"></h2>
 
-
 ### 7.1.2  Introducing glMatrix (TODO)
 
 - JavaScript library for 3D transformation : [glMatrix](http://glmatrix.net)
@@ -85,7 +81,6 @@ saveTransform = mat4.clone(modelview);
 
 <h2 id="fb11bb92ab03584cb21aff9f56123db8"></h2>
 
-
 ### 7.1.3  Transforming Coordinates
 
 
@@ -100,7 +95,6 @@ void main() {
 
 
 <h2 id="51ac8c3a78a5610dfe32a5cbbbd92793"></h2>
-
 
 ### 7.1.4  Transforming Normals
 
@@ -150,7 +144,6 @@ void main() {
 
 
 <h2 id="ed46036a806368c04e89b1863df8b00e"></h2>
-
 
 ## Section 7.2 Lighting and Material
 

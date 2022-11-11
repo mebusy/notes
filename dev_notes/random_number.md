@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [random number](#54424d73e284242c90ae6c2c711487cf)
     - [Linear Congruential Generator](#3d6ac243e2eed84b3e761431b17bb56b)
@@ -9,11 +9,10 @@
     - [Distribution](#f0bac093bb884df2891d32385d053788)
         - [Python normalvariate implementation](#ee34ac09342e568469b18ca9916547d5)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="54424d73e284242c90ae6c2c711487cf"></h2>
-
 
 # random number
 
@@ -23,7 +22,6 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 
 
 <h2 id="3d6ac243e2eed84b3e761431b17bb56b"></h2>
-
 
 ## Linear Congruential Generator 
 
@@ -47,7 +45,6 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 
 <h2 id="ac4e828dbe54fb1d2feb694108ce5480"></h2>
 
-
 ### Choice of modulus
 
 - We want m to be rather large, since the period can not have more than m elements.
@@ -58,7 +55,6 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
     - Another alternative is to let m be the largest prime number less than *w* .
 
 <h2 id="bdc47eab24c15e7a55f50a5e665743de"></h2>
-
 
 ### Choice of multiplier
 
@@ -75,7 +71,6 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
     - then we can avoid multiplication ; merely shifting and adding will suffice.
 
 <h2 id="29c8b42cc2ff4fc09c6a75a4dfbc1885"></h2>
-
 
 ### An implementation :  No guaranteed of correctness 
 
@@ -139,7 +134,6 @@ if __name__ == "__main__":
 
 <h2 id="31d89b288043a80670b7a9af27dba6b6"></h2>
 
-
 ## Python random implementation
 
 ```python
@@ -182,7 +176,6 @@ def random(self):
 
 <h2 id="f0bac093bb884df2891d32385d053788"></h2>
 
-
 ## Distribution
 
 - It's much more useful to have a sequence of numbers with the uniform distribution on the interval 0 to 1. 
@@ -193,7 +186,6 @@ def random(self):
 
 
 <h2 id="ee34ac09342e568469b18ca9916547d5"></h2>
-
 
 ### Python normalvariate implementation
 

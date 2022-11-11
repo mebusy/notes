@@ -1,18 +1,16 @@
-...menustart
+[](...menustart)
 
 - [Tesseract-ocr notes](#4d573e897b704292dcd2b3aa1e80ec08)
     - [Install On MacOSX](#28cbd7e1d8d672a36eb1df6ecd7badc6)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="4d573e897b704292dcd2b3aa1e80ec08"></h2>
 
-
 # Tesseract-ocr notes
 
 <h2 id="28cbd7e1d8d672a36eb1df6ecd7badc6"></h2>
-
 
 ## Install On MacOSX
 

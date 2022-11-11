@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Backend tips](#6edcb6f97b94edc1579875d8335df797)
     - [CORS](#5a8feff0b4bde3eec9244b76023b791d)
@@ -8,22 +8,19 @@
     - [Redeem](#81ed4dcb851fefbbbc791eeef4cd97a2)
     - [golang forward request](#e165301d2a7fe3a79049eb6aab23632a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="6edcb6f97b94edc1579875d8335df797"></h2>
-
 
 # Backend tips
 
 
 <h2 id="5a8feff0b4bde3eec9244b76023b791d"></h2>
 
-
 ## CORS 
 
 <h2 id="1e545f4bd1d09eb09ed43fabac84aba4"></h2>
-
 
 ### test whether your server supoort CORS
 
@@ -46,7 +43,6 @@ xhr.send();
 
 <h2 id="f779c9d1d9da7473f0eebf90d56dc319"></h2>
 
-
 ## check whether server enable 'keepalive' feature
 
 ```
@@ -62,7 +58,6 @@ curl  -Iv  -k  <url> <url>  2>&1 | grep -i '#0'
 
 
 <h2 id="b09fb18aea2fecd5ff9b30027f00a5aa"></h2>
-
 
 ## self signed cert 
 
@@ -106,14 +101,12 @@ for homebrew go, replace GOROOT is `/usr/local/opt/go/libexec`
 
 <h2 id="81ed4dcb851fefbbbc791eeef4cd97a2"></h2>
 
-
 ## Redeem 
 
 [redeem](redeem.md)
 
 
 <h2 id="e165301d2a7fe3a79049eb6aab23632a"></h2>
-
 
 ## golang forward request
 

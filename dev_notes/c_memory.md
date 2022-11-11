@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Understanding virtual memory](#75f48a9c273a33756e8ae606aa2891d2)
 - [Detour - a process memory layout](#e9abc565ddad947fe9678102d8ed79a1)
@@ -11,13 +11,12 @@
 - [Fun with 'flags' memory mapping](#c741aee852115b810755f9adb3b8dbe4)
     - [Fixed memory mappings TODO...](#ce2d413f96c9e9adbb49e8441f8a4e60)
 
-...menuend
+[](...menuend)
 
 
 http://marek.vavrusa.com/c/memory/2015/02/20/memory/
 
 <h2 id="75f48a9c273a33756e8ae606aa2891d2"></h2>
-
 
 # Understanding virtual memory
 
@@ -55,7 +54,6 @@ if (block == NULL) {
 
 <h2 id="e9abc565ddad947fe9678102d8ed79a1"></h2>
 
-
 # Detour - a process memory layout
 
 - 关于进程的内存布局，这片文章有很好的介绍 [Anatomy of a Program in Memory](http://duartes.org/gustavo/blog/post/anatomy-of-a-program-in-memory)
@@ -76,7 +74,6 @@ if (block == NULL) {
     3. the stack
 
 <h2 id="c251fa342236f44cff491f1ffd0fe6a1"></h2>
-
 
 # Understanding stack allocation
 
@@ -110,7 +107,6 @@ void laugh(void) {
         - 现实中，有兼容性问题 和 性能问题
 
 <h2 id="f0169258f54b63cd198619a926b2314c"></h2>
-
 
 # Understanding heap allocation
 
@@ -160,7 +156,6 @@ anonymous mapping.
 
 <h2 id="4b711b08c39982986516ec24ff983c4e"></h2>
 
-
 # When to bother with a custom allocator
 
 - 大多数时候，我们分配的内存不是连续的
@@ -169,7 +164,6 @@ anonymous mapping.
 - 使用默认的分配器，不能保证随后分配的块的位置。 更糟糕的是分配小单位的内存浪费。
 
 <h2 id="6754f3e939b64d06193d4e34bbecaadf"></h2>
-
 
 ## Slab allocator
 
@@ -220,7 +214,6 @@ if((item = slab->head)) {
 
 <h2 id="e384d5d460238cd7ea1f7bb14a0b095c"></h2>
 
-
 ## Memory pools
 
 - Utility belt:
@@ -252,7 +245,6 @@ obstack_free(&animal_stack, NULL);
 
 <h2 id="e5527fb5c0f5b2d80a8ec07bbc6102a9"></h2>
 
-
 ## Demand paging explained
 
 - Utility belt:
@@ -276,7 +268,6 @@ mlock(block, 1024 * sizeof(char));
 
 <h2 id="c741aee852115b810755f9adb3b8dbe4"></h2>
 
-
 # Fun with 'flags' memory mapping
 
 - Utility belt:
@@ -298,7 +289,6 @@ long page_size = sysconf(_SC_PAGESIZE); /* Slice and dice. */
 - 但是有一个特定于Linux的mmap选项MAP_HUGETLB允许你明确地使用它
 
 <h2 id="ce2d413f96c9e9adbb49e8441f8a4e60"></h2>
-
 
 ## Fixed memory mappings TODO...
 

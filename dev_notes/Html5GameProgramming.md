@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [HTML5 Game Programming](#abd3b2611419856b6b8afe54983197ce)
 - [Canvas](#6ea5359e01a41842884943125518289b)
@@ -26,16 +26,14 @@
     - [Batches](#3c12e620f60815609db42d373319db7e)
     - [Loading javascript](#d7eb458f3d2174ac4300b8f97764067d)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="abd3b2611419856b6b8afe54983197ce"></h2>
 
-
 # HTML5 Game Programming
 
 <h2 id="6ea5359e01a41842884943125518289b"></h2>
-
 
 # Canvas 
 
@@ -60,7 +58,6 @@ setup();
 ```
 
 <h2 id="6f2835b0768bfa13665e350d3949f7d1"></h2>
-
 
 ## Loading an Image
 
@@ -89,7 +86,6 @@ onImageLoad = function() {
 
 <h2 id="69ffc67b42d7974f4d517a83d85b7c23"></h2>
 
-
 ## drawImage
  
 - `var object = object.drawImage( ... )`
@@ -103,7 +99,6 @@ onImageLoad = function() {
 ```
 
 <h2 id="680eb09f41197ed1fb7545f5e3ebf338"></h2>
-
 
 ## 播放动画
 
@@ -147,7 +142,6 @@ The canvas doesn't actually clear itself each frame.  You need call clearRect to
 
 <h2 id="a6567816e007283cf9781c35b95dd56f"></h2>
 
-
 # Atlas
 
 - it's up to about 6 connection for a modern browse.
@@ -189,11 +183,9 @@ parseAtlasDefinition: function( atlasJson ) {
 
 <h2 id="324118a6721dd6b8a9b9f4e327df2bf5"></h2>
 
-
 # Input
 
 <h2 id="ebc7fe1dc5418d7becca2126f4a09cc8"></h2>
-
 
 ## Event listeners
 
@@ -215,14 +207,12 @@ function onKeyDown( event ) {
 
 <h2 id="fa6276d6a6d4059ca694283e0d78347b"></h2>
 
-
 ## an approache
 
 - Input manager handle the event ,  and keep the input temporarily , for "update procedure" to comsume it later.
 
 
 <h2 id="a022a49f29f7b6b5eb70a9139eb9e092"></h2>
-
 
 ## Physics Engine
 
@@ -256,7 +246,6 @@ function update() {
 
 <h2 id="1a434befae3f49ae09347ded52032f6f"></h2>
 
-
 # Entity
 
 ```
@@ -273,7 +262,6 @@ Tiled  工具 可以用来编辑相应的 entity object
 
 <h2 id="24eb006c62219934e00e14e948d09eed"></h2>
 
-
 ## Implementing Z-ordering
 
 
@@ -281,18 +269,15 @@ Tiled  工具 可以用来编辑相应的 entity object
 
 <h2 id="50ae99e9c35446c2580e4b540b0fd104"></h2>
 
-
 # Physics
 
 <h2 id="2aee0be2678ee90fd327cc186826438e"></h2>
-
 
 ## Missing 
 
 可以把 运动物理前后两帧的 collision box 组成一个 大的 collision box ， 做 碰撞检测 ， 以防止 missing.
 
 <h2 id="38b3094c78f7da9578bf56cd3875bbfa"></h2>
-
 
 ## Box2D , JS version
 
@@ -301,7 +286,6 @@ Tiled  工具 可以用来编辑相应的 entity object
 ```
 
 <h2 id="cb4adbc5d0fca498acaa58729f40fff9"></h2>
-
 
 ### The World
 
@@ -337,7 +321,6 @@ upadte:
 
 
 <h2 id="f0539b86e3516c146830052a16b2b8e5"></h2>
-
 
 ### Physics Bodies
 
@@ -384,7 +367,6 @@ addBody : function( entityDef ) {
 
 <h2 id="25fde2f1071a4ad021e815aa78dbb269"></h2>
 
-
 ### Destorying Physics Bodies
 
 ```
@@ -395,13 +377,11 @@ removeBody: function(obj) {
 
 <h2 id="9d43b057af4b72336475549b5f54267c"></h2>
 
-
 ### Entities and Physics  : TODO 
 
 --- 
 
 <h2 id="9d07e0e08af7f96cf45be0112b9ccfbe"></h2>
-
 
 # Sound
 
@@ -540,13 +520,11 @@ playWorldSound: function( soundURL , x , y ) {
 
 <h2 id="839854ad5b0358316e06b1da98683310"></h2>
 
-
 # Asset Loading
 
 - all file I/O function in JavaScript are by definition asynchronous.
 
 <h2 id="d6a16019632124a0439c06f64398fa98"></h2>
-
 
 ## Asset Manager
 
@@ -557,11 +535,9 @@ playWorldSound: function( soundURL , x , y ) {
 
 <h2 id="2dc1bd08d51fab30f5a3b09badc59f30"></h2>
 
-
 ## Caching images
 
 <h2 id="3c12e620f60815609db42d373319db7e"></h2>
-
 
 ## Batches
 
@@ -601,7 +577,6 @@ function onLoadedCallback( asset , batch ) {
 ```
 
 <h2 id="d7eb458f3d2174ac4300b8f97764067d"></h2>
-
 
 ## Loading javascript
 

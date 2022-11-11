@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week 1](#d6f637a63e7895f9421d593d67341644)
     - [1.1: Course Overview](#2cdeeb8374a080a7972a9b075f99dcff)
@@ -26,16 +26,14 @@
         - [Precessing a Picture with a 2D Grid](#a5760ea6ff2d89622a671912f7dccbae)
     - [1.8: Kernel-based Parallel Programming, Basic Matrix-Matrix Multiplication](#a12044933b22603657e15aa252c723b1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="d6f637a63e7895f9421d593d67341644"></h2>
 
-
 ## Week 1
 
 <h2 id="2cdeeb8374a080a7972a9b075f99dcff"></h2>
-
 
 ### 1.1: Course Overview 
 
@@ -47,14 +45,12 @@ Recommended Textook/Notes
 
 <h2 id="cf9294220a0762a8cececdf70c4ea74d"></h2>
 
-
 ### 1.2: Introduction to Heterogeneous Parallel Computing 
 
 - to learn the major difference between latency devices (CPU cores) and throughput devices (GPU cores)
 - to understand why winning applications increasingly use both types of devices
 
 <h2 id="aa7c7d5b4c30ec637fd00228d3ea2c8a"></h2>
-
 
 #### CPU vs GPU
 
@@ -70,7 +66,6 @@ Recommended Textook/Notes
 
 <h2 id="6c88a57a4b326d3113cd17afa653818c"></h2>
 
-
 #### CPU: Latency Oriented Design
 
 - Powerful ALU (Arithmetic Logic Units 算术逻辑单元)
@@ -82,7 +77,6 @@ Recommended Textook/Notes
     -  Data forwarding for reduced data latency
 
 <h2 id="1e9ce0b6e6533573d50acdf2f1218504"></h2>
-
 
 #### GPU : Throughput Oriented Design
 
@@ -98,7 +92,6 @@ Recommended Textook/Notes
 
 <h2 id="b9676d64f54e4404bc56bf2aa97ce266"></h2>
 
-
 #### Winning Applications Use Both CPU and GPU
 
 - CPUs for sequential parts where latency matters
@@ -108,7 +101,6 @@ Recommended Textook/Notes
 
 
 <h2 id="f5a7578445f570db14a004a201c288cc"></h2>
-
 
 ### 1.3: Portability and Scalability in Heterogeneous Parallel Computing
 
@@ -126,7 +118,6 @@ Keys to Software Cost Control:
 
 <h2 id="58169605407651f9f0bc706aaf8f8935"></h2>
 
-
 ### 1.4: Introduction to CUDA, Data Parallelism and Threads
 
 CUDA C , a heterogeneous parallel programming interface that enables exploitation of data parallelism
@@ -142,7 +133,6 @@ The phenomena of data parallelism is that , different parts of the data can actu
 A very simple example is vector addition. When we add 2 vector together, the elements can be added together independently.
  
 <h2 id="f9312ad800b52c07be7869572e85b704"></h2>
-
 
 #### Basic concept of CUDA
 
@@ -208,7 +198,6 @@ Multidimensional index is very convenient for image processing, or solve three-d
 
 <h2 id="c345dcdd0f1480d0615c23660e8ead7f"></h2>
 
-
 ### 1.5 Introduction to CUDA, Memory Allocation and Data Movement API Functions
 
 Vector addition:
@@ -249,7 +238,6 @@ Instead of performing the actual computation, this function is actually going to
 
 <h2 id="647c4e8c47a9d998a27047d5905c78b8"></h2>
 
-
 #### Partial overview of CUDA memories
 
 ![](../imgs/cuda_memory.png)
@@ -267,7 +255,6 @@ All threads will have access to a shared global memory. It's important that the 
 
 <h2 id="bee998a5f82c060231c5da13b586e5da"></h2>
 
-
 #### CUDA Device Memory Management API 
 
 - cudaMalloc()
@@ -284,7 +271,6 @@ All threads will have access to a shared global memory. It's important that the 
             - 注意和cudaMalloc()参数的区别。
 
 <h2 id="d3c85cba12bf184449321d9fcf98e23d"></h2>
-
 
 #### Host-Device Data Transfer API
 
@@ -322,7 +308,6 @@ In general , when we actually try to get performance from this kind of code, we 
 
 <h2 id="249193c955d9a399e5b6d394f125f4ca"></h2>
 
-
 #### Check Error
 
 In practise , I will encourage you to always check for error conditions.
@@ -340,13 +325,11 @@ if (err != cudaSuccess) {
    
 <h2 id="c7516ab5ae95323c88e6ba2f6c5a9e87"></h2>
 
-
 ### 1.6: Introduction to CUDA, Kernel-Based SPMD Parallel Programming
 
 
 
 <h2 id="cc0101d6edf97bca2b29489bd7690fb8"></h2>
-
 
 #### Vector Addition Kernel *Device Code*:
 
@@ -371,7 +354,6 @@ This is the vector addition kernel that we will eventually be launching from the
 
 
 <h2 id="0a3b4fb126a9ddf3c6bad83a6ee3fa2a"></h2>
-
 
 #### Vector Addition Kernel *Host Code*:
 
@@ -399,7 +381,6 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
 
 <h2 id="8703cc93226ad97ddcc6875e0769e4b1"></h2>
 
-
 #### More on kernel launch *Host Code*:
 
 ```cpp
@@ -416,7 +397,6 @@ int vecAdd(float* h_A, float* h_B, float* h_C , int n) {
  
 <h2 id="23b200f11b54fdd1900c87c76b1d1728"></h2>
 
-
 #### Kernel execution in a nutshell
 
 In the host code, you have a host function, the host function can launch a kernel by calling the kernel function just like any other C function, but with additional configuration parameters.
@@ -426,7 +406,6 @@ Once we launched a kernel, we call the kernel function, then the hardware will g
 All the threads have built-in variables: blockIdx, blockDim and threadIdx , there predefined, preinitialized will allow the threads to generate different data indices, so that each thread will be processing a different part of the data.
 
 <h2 id="5fa4b3ab59c14a578c48d78a5822a0e8"></h2>
-
 
 #### More on CUDA Function Declarations
 
@@ -446,7 +425,6 @@ All the threads have built-in variables: blockIdx, blockDim and threadIdx , ther
 
 <h2 id="923b0c37c56ea509b884446ce8f3e4b5"></h2>
 
-
 #### Compile A CUDA Program
 
 In very file, we're going to have both host function and device function, so the NVCC , the Nvidia C Compile, will automatically identify all the host function and kernels functions and separate them out into two complication paths.
@@ -462,7 +440,6 @@ So then both types of executables will be used for this Heterogeneous Computing 
 
 <h2 id="e1042c6b86d63348a1cf26537f0f9c21"></h2>
 
-
 ### 1.7: Kernel-based Parallel Programming, Multidimensional Kernel Configuration
 
 ![Multidimensional][1]
@@ -470,7 +447,6 @@ So then both types of executables will be used for this Heterogeneous Computing 
 This picture was shown earlier , and we assume that user has specified that we're going to generate a 2-D grid which is reflected by the 2-D indices of the blocks. And then we also assume that each block has 3-D threads. So each thread in this picture has tree indices.
 
 <h2 id="a5760ea6ff2d89622a671912f7dccbae"></h2>
-
 
 #### Precessing a Picture with a 2D Grid
 
@@ -509,7 +485,6 @@ PictureKernel <<< DimGrid , DimBlock >>> (d_Pin , d_Pout , m,n) ;
 
 
 <h2 id="a12044933b22603657e15aa252c723b1"></h2>
-
 
 ### 1.8: Kernel-based Parallel Programming, Basic Matrix-Matrix Multiplication
 

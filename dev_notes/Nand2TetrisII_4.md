@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week4  Compiler I : Syntax Analysis](#30cc36d5a2b0e1c1cbad3f796a36e58d)
     - [Unit 4.2: Lexical Analysis](#a6e48139193e1fc0ff363058aa4ce501)
@@ -28,11 +28,10 @@
     - [Jack 文法上的难点](#f76903708c4a55a1d587dfd746ef8f4d)
         - [二义性，有的文法需要 LL(2)](#34d5ac84f4e2fd68c7cb1f3a2ea0569e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="30cc36d5a2b0e1c1cbad3f796a36e58d"></h2>
-
 
 # Week4  Compiler I : Syntax Analysis
 
@@ -41,11 +40,9 @@
 
 <h2 id="a6e48139193e1fc0ff363058aa4ce501"></h2>
 
-
 ## Unit 4.2: Lexical Analysis
 
 <h2 id="5bc49567966c595b4a1fb29fd9ec6c69"></h2>
-
 
 ### Tokenizing (first approximation)
 
@@ -56,7 +53,6 @@
 - A *token* is a string of characters that has a meaning 
 
 <h2 id="f7236a026647622e46d365447d25d104"></h2>
-
 
 ### Jack tokens 
 
@@ -71,7 +67,6 @@
 
 
 <h2 id="af703fb4c8a243566c3896834a1b2860"></h2>
-
 
 ### Jack tokenizer 
 
@@ -88,7 +83,6 @@
 ```
 
 <h2 id="6e417ba0facd9e0860964597560025b5"></h2>
-
 
 ## Unit 4.3: Grammars
 
@@ -107,13 +101,11 @@
 
 <h2 id="82afddbe6b0bdf72c94e81cdc1677109"></h2>
 
-
 ## Unit 4.4: Parse Trees
 
 ![](../imgs/n2t_jack_parse_tree.png)
 
 <h2 id="aa2314b6b2014b9f4b3a24f0ddfeb4b9"></h2>
-
 
 ## Unit 4.5: Parser Logic
 
@@ -152,13 +144,11 @@ Guild lines for compilcation engine :
 
 <h2 id="11d1b10a8e1eefdd441063908053af6f"></h2>
 
-
 ### Parser design 
 
 ![](../imgs/n2t_parser_design.png)
 
 <h2 id="d0310f6535296147836c000e8cc3c48a"></h2>
-
 
 ### Some observations about grammars and parsing 
 
@@ -172,11 +162,9 @@ Guild lines for compilcation engine :
 
 <h2 id="87609c9974b897143d9c161013658dba"></h2>
 
-
 ## Unit 4.6: The Jack Grammar
 
 <h2 id="557c6674ca1ac217ec67ebc48e19911b"></h2>
-
 
 ### Lexical elements
 
@@ -185,7 +173,6 @@ Guild lines for compilcation engine :
 ![](../imgs/n2t_jack_grammar_lexical_elements.png)
 
 <h2 id="a9f46a37894f23e7e493089738ddc394"></h2>
-
 
 ### Program Structure 
 
@@ -196,13 +183,11 @@ Guild lines for compilcation engine :
 
 <h2 id="5187c223ff0fffa9405f54d092d553ab"></h2>
 
-
 ### Statements 
 
 ![](../imgs/n2t_jack_grammar_statement.png)
 
 <h2 id="d3c7279c25a23f98e777a7bebe35d002"></h2>
-
 
 ### Expressions
 
@@ -217,7 +202,6 @@ Guild lines for compilcation engine :
 
 
 <h2 id="895abff10875f03ccb2a4b21724e4722"></h2>
-
 
 ## Unit 4.7: The Jack Analyzer
 
@@ -268,7 +252,6 @@ Guild lines for compilcation engine :
 
 <h2 id="c10d27680d52f2dd231d982814e6a3ca"></h2>
 
-
 ## Unit 4.8: The Jack Analyzer: Proposed Implementation
 
 - Implementation plan:
@@ -277,7 +260,6 @@ Guild lines for compilcation engine :
     - JackAnalyzer  (top-most module)
 
 <h2 id="ef6859024ab3cb26e3af6e5006e1686e"></h2>
-
 
 ### JackAnalyzer : usage
 
@@ -294,7 +276,6 @@ $ JackAnalyzer input
 
 <h2 id="87c80b0b1a884a7951ab56307326587a"></h2>
 
-
 ### JackAnalyzer : In action 
 
 - *JackTokenizer* will handle the *Lexical elements* of Jack grammar
@@ -302,7 +283,6 @@ $ JackAnalyzer input
     - program structure , statements , expressions
 
 <h2 id="20aaf3f62aefee4c503d7b70b2918b04"></h2>
-
 
 ### JackAnalyzer: API
 
@@ -317,7 +297,6 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 ![](../imgs/n2t_jackAnalyzer_5_methods.png)
 
 <h2 id="26bf0761f0300eac7c1fca4c899f8f7d"></h2>
-
 
 ### Compilation Engine 
 
@@ -334,7 +313,6 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 <h2 id="c980d783044431dba4b94386cb76e408"></h2>
 
-
 ## Unit 4.9: Project 10: Building a Syntax Analyzer
 
 - for xml file, start and endwith   `<tokens> ... </tokens>` tags.
@@ -344,11 +322,9 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 <h2 id="5ec325c9726994dcd027d36d7929bf9b"></h2>
 
-
 # Homework 
 
 <h2 id="32c763e8c1ba75932d5e0c41e589935e"></h2>
-
 
 ## Lexical Analyzer
 
@@ -359,7 +335,6 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 - use DFA matching algorihtm  find all tokens 
 
 <h2 id="9568075dac382b9105b467d296a453a9"></h2>
-
 
 ## Syntax Analyzer 
 
@@ -382,11 +357,9 @@ tokenType | - |  KEYWORD, SYMBOL, IDENTIFIER, INI_CONST, STRING_CONST
 
 <h2 id="f76903708c4a55a1d587dfd746ef8f4d"></h2>
 
-
 ## Jack 文法上的难点
 
 <h2 id="34d5ac84f4e2fd68c7cb1f3a2ea0569e"></h2>
-
 
 ### 二义性，有的文法需要 LL(2)
 

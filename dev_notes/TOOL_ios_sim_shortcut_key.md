@@ -1,7 +1,7 @@
-...menustart
+[](...menustart)
 
 
-...menuend
+[](...menuend)
 
 
 把下列代码 加入 View Controller 中

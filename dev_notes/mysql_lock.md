@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [MySQL 锁](#8dc99461a1c4b9110a35ea875b10b70d)
     - [锁的类型](#dfa8b5aa96cb4af6e6c28cf50b2a3c43)
@@ -12,16 +12,14 @@
     - [SELECT显式加锁](#18a31fbbef71484ce0cc52995764a78b)
     - [使用乐观锁](#4e7e4e0d4b9110317f8e672b2aa3af35)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8dc99461a1c4b9110a35ea875b10b70d"></h2>
 
-
 # MySQL 锁
 
 <h2 id="dfa8b5aa96cb4af6e6c28cf50b2a3c43"></h2>
-
 
 ## 锁的类型
 
@@ -44,7 +42,6 @@ S |  不兼容 |  兼容
 
 <h2 id="cbc301535e8455434b2bbd29a183e55d"></h2>
 
-
 ## 锁的粒度
 
 锁级别 | 说明
@@ -65,18 +62,15 @@ S |  不兼容 |  兼容
 
 <h2 id="60461afa5afbcb0457a420056c14a6c9"></h2>
 
-
 ## 死锁
 
 MySQL提供了比较充足的死锁检测策略，当检测到死锁后，Innodb会将持有 「 **最少行级排他锁** 」 的事务进行回滚，来打破死锁.
 
 <h2 id="685a6699c143f3090ecdabcc3618a2c5"></h2>
 
-
 ## 乐观锁/悲观锁
 
 <h2 id="bf97e7abc7c23d4f37d6da39acc011d8"></h2>
-
 
 ### 乐观锁
 
@@ -98,13 +92,11 @@ where id=<id> and version=<version>
 
 <h2 id="891f975efa0ad8ed8582636e0bd98e41"></h2>
 
-
 ### 悲观锁
 
 即上面提过的 共享锁和排他锁。
 
 <h2 id="f631c0a2d27c606f697b1e5987b74732"></h2>
-
 
 ## 锁升级
 
@@ -119,7 +111,6 @@ where id=<id> and version=<version>
 ---
 
 <h2 id="f12a4c82c151d110c6ea3521e6aca5b2"></h2>
-
 
 # Mysql 并发更新数据 加锁处理
 
@@ -146,7 +137,6 @@ UPDATE table1 SET num = a.num + 1 WHERE id=1;
 
 <h2 id="18a31fbbef71484ce0cc52995764a78b"></h2>
 
-
 ## SELECT显式加锁
 
 - 对SELECT进行加锁的方式有两种，如下：
@@ -171,7 +161,6 @@ COMMIT WORK;
 
 
 <h2 id="4e7e4e0d4b9110317f8e672b2aa3af35"></h2>
-
 
 ## 使用乐观锁
 

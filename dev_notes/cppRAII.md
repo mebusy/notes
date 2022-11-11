@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [RAII: Resource Acquisition Is Initialization](#f26eff55207e7d3e75dd433fb3bea50e)
     - [Class that manage resource](#89704b558d620a42da6f3fb287013337)
@@ -28,16 +28,14 @@
     - [True Rule-of-Zero Vector](#0ffb8af72f459c3d1dd7890bd93a2695)
     - [Examples of resource management](#4714fa18ade679a29c7f1014d8c8e18a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f26eff55207e7d3e75dd433fb3bea50e"></h2>
 
-
 # RAII: Resource Acquisition Is Initialization
 
 <h2 id="89704b558d620a42da6f3fb287013337"></h2>
-
 
 ## Class that manage resource 
 
@@ -59,7 +57,6 @@ For our purposes so far, this doesn't really matter.
 RAII can apply on not only heap allocations, but also any kind of resource.
 
 <h2 id="68d0de8134af58f84b26b54cce847329"></h2>
-
 
 ## A naive implementation of vector
 
@@ -87,7 +84,6 @@ public:
 
 <h2 id="3c0181679d945ebbb3b7e09bb65e1f7a"></h2>
 
-
 ## Introducint the destructor
 
 ```cpp
@@ -113,7 +109,6 @@ public:
 
 <h2 id="c8bd322b3370a0cf6065967dada9dd9e"></h2>
 
-
 ## NaiveVector still has bugs, through
 
 ```cpp
@@ -136,7 +131,6 @@ public:
 ```
 
 <h2 id="659fccd5f72eb5a0894644b8a1d6116c"></h2>
-
 
 ## Introducing the copy constructor
 
@@ -171,7 +165,6 @@ public:
 
 <h2 id="9bf86d3ea58605d5d1282b315e293b11"></h2>
 
-
 ## Initialization is not assignment
 
 Don't confuse the `=` for **initialization** with **assignment**!.
@@ -191,7 +184,6 @@ Don't confuse the `=` for **initialization** with **assignment**!.
     - It calls the assignment operator.
 
 <h2 id="093cffc689195cc53c30f62f4cbfa080"></h2>
-
 
 ## Assignment has the same problem
 
@@ -214,7 +206,6 @@ Don't confuse the `=` for **initialization** with **assignment**!.
 
 <h2 id="7d22f4f9692217cf8fe16b77085d5704"></h2>
 
-
 ## Introduce copy assignment 
 
 Whenever you write a destructor, you probably need to write a copy constructor **and a copy assignment operator**.
@@ -233,7 +224,6 @@ Whenever you write a destructor, you probably need to write a copy constructor *
 
 <h2 id="0ad44ce48a18ef8472213cc56b1af701"></h2>
 
-
 ## The Rule of Three
 
 - If your class directly manages some kind of resource(such as a new'ed pointer), then you almost certainly need to hand-write three special number functions:
@@ -244,7 +234,6 @@ Whenever you write a destructor, you probably need to write a copy constructor *
     - the stardard library also provide swap method ?
 
 <h2 id="134e6efbd59956afa739a02a8bbfcf12"></h2>
-
 
 ## Why copy and swap ?
 
@@ -275,7 +264,6 @@ v = v[1] -> m;
 
 <h2 id="bc49b8902d39605644e716a7ad6b25cf"></h2>
 
-
 ## Copy-and-swap to the rescue !
 
 ```cpp
@@ -291,7 +279,6 @@ v = v[1] -> m;
 - So any aliasing relationship between rhs and `*this` cannot trip us up.
 
 <h2 id="99d36ab8ca82649dd45d031ec7b51af7"></h2>
-
 
 ## RAII and exception safety
 
@@ -340,7 +327,6 @@ So, how are we going to fix that? Do I want "RAIIPtr" to be copyable?
 
 <h2 id="7fc345ca021f12885ee1a6584eb355fa"></h2>
 
-
 ## Deleted special member functions
 
 We can improve our RAIIPtr by making it **non-copyable**.
@@ -363,7 +349,6 @@ What else can we do with a member function besides deleting ?
 
 <h2 id="6b8e4e759f7b6317b37053e154ec2cca"></h2>
 
-
 ## Defaulted special member functions
 
 When a special member function has the body `=default;` instead of a curly-braced compound statement, the compiler will create a defaulted version of that function, just as were implicitly generated.
@@ -384,7 +369,6 @@ public:
 
 <h2 id="f9e9f688971ef1d1ba03fcf81bf64ffc"></h2>
 
-
 ## The Rule of Zeor
 
 - If you class does not directly manage any resource, but merely uses library components such as vector and string, then you should strive to write **NO** special member functions. Default them all!
@@ -397,7 +381,6 @@ public:
 
 <h2 id="dbc1ae88fff14526302363b01d66c487"></h2>
 
-
 ## Prefer Rule of Zero when possible
 
 There are 2 kinds of well-designed value-semantic C++ classes:
@@ -409,7 +392,6 @@ There are 2 kinds of well-designed value-semantic C++ classes:
 
 
 <h2 id="e7b7d62d43b6ea858a52373f4788f1a3"></h2>
-
 
 ## Introducing rvalue references
 
@@ -432,7 +414,6 @@ void h(const int&); h(i);   // OK
 
 
 <h2 id="d768889d7e020d0d98995f6a0b767a00"></h2>
-
 
 ## Rvalues won't be missed
 
@@ -475,7 +456,6 @@ class NativeVector {
 
 <h2 id="f011a8e9e70f15150907034b63f4968b"></h2>
 
-
 ## The Rule of Five 
 
 - If your class directly manages some kind of resource(such as a new'ed pointer), then you may need to hand-write **five** special member functions for correctness and performance:
@@ -486,7 +466,6 @@ class NativeVector {
     5. A **move assignment operator** to free the left-hand resource and transfer ownership of the right-hand one.
 
 <h2 id="aa3b8ba4a468ede3379e377b3bfac4bf"></h2>
-
 
 ## Copy-and-swawp leads to duplication(code)
 
@@ -511,7 +490,6 @@ Rather than write these 2 assignment operators, whose code is almost identical .
 
 <h2 id="2ea42900f804221f5c10869163cd9567"></h2>
 
-
 ## By-value assignment operator ?
 
 So we had some duplication here. We had 2 bits of code that looked exactly the same. 
@@ -531,7 +509,6 @@ I'm not aware of any problems with this idiom. However, it is relatively uncommo
 
 <h2 id="057d1268e3059ec7f5d776868d57b2cd"></h2>
 
-
 ## The Rule of Four ( and a half )
 
 - If your class directly manages some kind of resource(such as a new'ed pointer), then you may need to hand-write **four** special member functions for correctness and performance:
@@ -542,7 +519,6 @@ I'm not aware of any problems with this idiom. However, it is relatively uncommo
         - A nonmumber **swap** function, and ideally a mumber version too
 
 <h2 id="d38145fd1cbf6cb4abce34d34dd7b58c"></h2>
-
 
 ## No longer naive vector
 
@@ -591,7 +567,6 @@ public:
 ```
 
 <h2 id="9b5bf33fbaca11d81d47400f567e9ca8"></h2>
-
 
 ## Closer-to-Rule-of-Zero vector
 
@@ -642,7 +617,6 @@ public:
 
 <h2 id="0ffb8af72f459c3d1dd7890bd93a2695"></h2>
 
-
 ## True Rule-of-Zero Vector 
 
 ```cpp
@@ -674,7 +648,6 @@ class Vec {
 You have not your default constructor now, but you can totally have other constructors.
 
 <h2 id="4714fa18ade679a29c7f1014d8c8e18a"></h2>
-
 
 ## Examples of resource management
 

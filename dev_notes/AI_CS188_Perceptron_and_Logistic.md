@@ -1,12 +1,11 @@
-...menustart
+[](...menustart)
 
 - [21. Perceptrons and Logistic Regression](#277ba134a739723dd3ce2fadba0049b6)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="277ba134a739723dd3ce2fadba0049b6"></h2>
-
 
 # 21. Perceptrons and Logistic Regression
 

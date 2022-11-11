@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Mysql](#9edb3c572b56b91542af659480518681)
 - [第1章  MySQL 体系结构和存储引擎](#6a1a36d328d46ab67d6d4af4b7f9191a)
@@ -46,11 +46,10 @@
         - [5.6.1 不同应用中的 B+树索引](#cc473a5ef59e8cf3e28bc6618a4db748)
         - [5.6.2 联合索引](#121f3825a3bc99fa74e52a95c6fcb3fa)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="9edb3c572b56b91542af659480518681"></h2>
-
 
 # Mysql
 
@@ -61,11 +60,9 @@
 
 <h2 id="6a1a36d328d46ab67d6d4af4b7f9191a"></h2>
 
-
 # 第1章  MySQL 体系结构和存储引擎
 
 <h2 id="bdf6b309174103a16017dcf95cfd0efa"></h2>
-
 
 ## 1.1 配置文件
 
@@ -84,11 +81,9 @@
 
 <h2 id="d515f90f3281ec25eef39dd7a232630f"></h2>
 
-
 ## 1.3 MySQL 存储引擎
 
 <h2 id="76926ae879779c10f256fc887a33535f"></h2>
-
 
 ### 1.3.1 InnoDB 存储引擎
  
@@ -99,7 +94,6 @@
 
 <h2 id="10a207a8a92177201fd0def5891f18e9"></h2>
 
-
 ### 1.3.2 MyISAM 引擎
 
 - 不支持事务，表锁设计，支持全文索引
@@ -107,7 +101,6 @@
 
 
 <h2 id="13e3e5ed01041f818331a97deac86214"></h2>
-
 
 ### 1.3.3 NDB 存储引擎
 
@@ -117,14 +110,12 @@
 
 <h2 id="ceecb928aa5951705b07ffc49c0629a0"></h2>
 
-
 ### 1.3.4 Memory 存储引擎
 
 - 只支持表锁，性能较差， 并且不支持 TEXT和BLOB 类型
  
 
 <h2 id="cfaac8a9eeb58e270ad461cce3df9f7c"></h2>
-
 
 ## 1.5 连接MySQL
  
@@ -136,11 +127,9 @@
 
 <h2 id="8e788bda205182e80990dfed0bcff02c"></h2>
 
-
 # 第二章 InnoDB 
 
 <h2 id="1b37f1c1fb3c3bb49c18e5a43cb06b88"></h2>
-
 
 ## 2.3 内存
 
@@ -158,7 +147,6 @@
 
 <h2 id="936e0201b58bac57bbd7cb232e03ac3f"></h2>
 
-
 ## 2.6 InnoDB 关键特性
 
 - insert buffer
@@ -168,7 +156,6 @@
 - Flush Neighbor Page 刷新邻接页
 
 <h2 id="9a97b564b52c773dea3833c68f88e637"></h2>
-
 
 ### 2.6.1 Insert Buffer
 
@@ -186,14 +173,12 @@
 
 <h2 id="c06cff525dbcc52aa3c38fd593f25bea"></h2>
 
-
 ### 2.6.2 double write
  
 - 提高数据页的可靠性
 
 
 <h2 id="3cc3790f5764ac4baf663e97952dca7e"></h2>
-
 
 ### 2.6.3 自适应哈希索引
 
@@ -204,11 +189,9 @@
 
 <h2 id="3fde40ff068923f2387b0495ade6ebc5"></h2>
 
-
 # 第4章 表
 
 <h2 id="59fd6ac7a6b8d7528f201084c941fdad"></h2>
-
 
 ## 4.1 索引组织表
 
@@ -221,7 +204,6 @@
 
 <h2 id="b2dcd46c558626075638ee6046ffbc5c"></h2>
 
-
 ## 4.2 InnoDB 逻辑存储结构
 
 - 从 InnoDB 的逻辑存储结构看， 所有数据都被 逻辑地存放在一个空间中， 称为表空降 tablespace
@@ -233,7 +215,6 @@
 
 <h2 id="01ead1b0328abc6654e3d8392861dd35"></h2>
 
-
 ### 4.2.1 tablespace
 
 - 默认情况下， InnoDB 有一个共享表空间 ibdata1 , 所有数据都存放在 这个表空间内
@@ -241,13 +222,11 @@
 
 <h2 id="17df3eac98b9ebf9202238890b2e299f"></h2>
 
-
 ### 4.2.2 段
 
 - tablespace 是由各个段组成的， 常见的有 数据段， 索引段， 回滚段等
 
 <h2 id="6efb7cc1797fdc081d0764eb9202354d"></h2>
-
 
 ### 4.2.3  区 extent
 
@@ -256,7 +235,6 @@
 - 默认情况下， page 大小为 16k， 即一个区 一共有64个连续的page
  
 <h2 id="723fc535fa63fbc37e7424dc8ddff5e4"></h2>
-
 
 ### 4.2.4 页
 
@@ -273,11 +251,9 @@
 
 <h2 id="e8c588431c34af99054450ed068ea5b6"></h2>
 
-
 ## 4.3 行记录格式
 
 <h2 id="ab615bc108657e6e7a4b50da37748198"></h2>
-
 
 ### 4.3.1 Compact 行记录格式
 
@@ -297,7 +273,6 @@
 
 <h2 id="b32e3a32fb403a3b601076c6c021b8f1"></h2>
 
-
 ### 4.3.3 行溢出数据
 
 - InnoDB 可以将 一条记录中的某些数据 存储在 真正的数据页面之外。 
@@ -307,7 +282,6 @@
 
 <h2 id="2be315f4f2b6d8c07bf84451ce7b8de4"></h2>
 
-
 ### 4.3.5 CHAR 的行结构存储
 
 - 在 多字节字符集的情况下，CHAR 和 VARCHAR的实际存储基本是没有什么区别的
@@ -315,11 +289,9 @@
 
 <h2 id="811b998743c3d56e56df88c10ce5f10c"></h2>
 
-
 ## 4.6 约束
 
 <h2 id="22aea1f7185c635d337b46427a68c9a9"></h2>
-
 
 ### 4.6.1 数据完整性
 
@@ -343,7 +315,6 @@
 
 
 <h2 id="ca4e41470c6372bd027bae84d09a44ac"></h2>
-
 
 ### 4.6.5 ENUM 和 SET 约束
 
@@ -371,7 +342,6 @@ ERROR 1265 (01000): Data truncated for column 'sex' at row 1
 
 <h2 id="81ffa61b53284efa0ff8c04493881144"></h2>
 
-
 ### 4.6.6 触发器与约束
 
 - 触发器的作用是在执行 INSERT, DELETE, UPDATE 命令之前 或之后 自动调用 SQL命令或存储过程。
@@ -391,7 +361,6 @@ ON tbl_name FOR EACH ROW trigger_stmt
 
 
 <h2 id="f6aca2bdb6c4002d9913f98a1d7a8eff"></h2>
-
 
 ### 4.6.7 外键约束
 
@@ -426,13 +395,11 @@ Query OK, 0 rows affected (0.02 sec)
 
 <h2 id="eed7c7688f8494931b0ac89e272809e2"></h2>
 
-
 ## 4.7 视图
 
 - 视图 View 是一个命名的虚表， 它由一个SQL 查询来定义， 可以当作表使用。 视图中的数据 没有实际的物理存储
 
 <h2 id="f243820912ed96f134fe1034566f094e"></h2>
-
 
 ### 4.7.1 视图的作用
 
@@ -492,7 +459,6 @@ mysql> SELECT * from v_t;
 
 <h2 id="0ebf2d0bb89a07bfe061ba4ecc19e6eb"></h2>
 
-
 ### 4.7.2 物化视图 TODO
 
 - Oracle 支持物化视图 -- 不是虚表，而是根据base table 实际存在的实表， 即 物化视图总是存储在非易失的存储设备上
@@ -505,11 +471,9 @@ mysql> SELECT * from v_t;
 
 <h2 id="2f2671e6576b631310c056c69c2e0423"></h2>
 
-
 ## 4.8 分区表  TODO
 
 <h2 id="289a680a7bf25ae091c0dda18609711e"></h2>
-
 
 ### 4.8.1 分区概述
 
@@ -527,13 +491,11 @@ mysql> SELECT * from v_t;
 
 <h2 id="50c3944fafe0b2e03f7470915079140f"></h2>
 
-
 # 第5章  索引与算法
 
 - 若索引太多，应用程序的性能可以会受到影响； 而索引太少，对查询性能又会产生影响。 要找到一个合适的平衡点， 这对应用程序的性能至关重要
 
 <h2 id="983b8b0c99814194a4a7b07618e9f276"></h2>
-
 
 ## 5.1 InnoDB 索引概述
 
@@ -548,7 +510,6 @@ mysql> SELECT * from v_t;
 
 <h2 id="bd45bf972a14cfd7ae0d32a3d3334156"></h2>
 
-
 ## 5.4 B+树索引
 
 - B+树索引 在数据库中 有一个特点是高扇出性，因此在数据库中， B+树的高度一般都在 2-4层。
@@ -557,7 +518,6 @@ mysql> SELECT * from v_t;
 
 <h2 id="5c614374adfe5f122c8a2155d87d4d77"></h2>
 
-
 ### 5.4.1 聚集索引
 
 - clustered index  按照每张表的主键 构造一颗B+树， 同时叶子节点中 存放的即为 整张表的 行记录数据， 也将 clustered index 的叶子节点称为 数据页.
@@ -565,7 +525,6 @@ mysql> SELECT * from v_t;
 - clustered index的一个好处是， 它对主键的 排序查找 和 范围查找速度非常快。
 
 <h2 id="81ab38c3f24b5753bbe756d6dc1ebafd"></h2>
-
 
 ### 5.4.2 辅助索引
 
@@ -581,7 +540,6 @@ mysql> SELECT * from v_t;
 
 
 <h2 id="26cdd6c55db26574560353191beb9640"></h2>
-
 
 ## 5.5 Cardinality 值
 
@@ -599,11 +557,9 @@ mysql> SELECT * from v_t;
 
 <h2 id="a3f3f22ce2ecd49e0899aa0470bb4188"></h2>
 
-
 ## 5.6 B+树索引的使用
 
 <h2 id="cc473a5ef59e8cf3e28bc6618a4db748"></h2>
-
 
 ### 5.6.1 不同应用中的 B+树索引
 
@@ -620,7 +576,6 @@ mysql> SELECT * from v_t;
             - 但是 如果连接操作使用的是 Hash Join， 那么索引可能又变得不是很重要了。
 
 <h2 id="121f3825a3bc99fa74e52a95c6fcb3fa"></h2>
-
 
 ### 5.6.2 联合索引
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [2 Modules and libraries](#9fed92638cc7fdfc20c463f5a324b2d3)
     - [2.1 THE IMPORT SYSTEM](#2b1064e477bfd9f4d5b58f7d2f5aa3aa)
@@ -18,17 +18,15 @@
     - [10.2 Profiling](#1181dcb1d371dd2b727902cd6ec7551c)
     - [10.3 Ordered list and bisect](#c930f8e82525c9ad18cb842512f6ce08)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="9fed92638cc7fdfc20c463f5a324b2d3"></h2>
-
 
 # 2 Modules and libraries
 
 
 <h2 id="2b1064e477bfd9f4d5b58f7d2f5aa3aa"></h2>
-
 
 ## 2.1 THE IMPORT SYSTEM
 
@@ -50,7 +48,6 @@ True
 
 <h2 id="8221435bcce913b5c2dc22eaf6cb6590"></h2>
 
-
 ## 2.5
 
 
@@ -58,7 +55,6 @@ True
 
 
 <h2 id="f9ee102aebd5221f15b2b5e34d2b2866"></h2>
-
 
 # 3 Documentation
 
@@ -79,11 +75,9 @@ True
 
 <h2 id="0315cce60722138404fe5f4dfe367f90"></h2>
 
-
 ## 3.1 Getting started with Sphinx and reST
 
 <h2 id="810127df69a19f8fcc336218c6f2c3e0"></h2>
-
 
 # 7 Methods and decorators
 
@@ -107,7 +101,6 @@ foo = identity(foo)
 ```
 
 <h2 id="01410921554cbd019a05a64598407bae"></h2>
-
 
 ## 7.1 decorator
 
@@ -251,7 +244,6 @@ def get_food(username, type='chocolate'):
 
 <h2 id="caf1fbda831136a01cec78b788e99252"></h2>
 
-
 ## 7.3 Static Method
 
 - Static methods are methods which belong to a class, 
@@ -272,7 +264,6 @@ False
 ```
 
 <h2 id="20bf7616e373803aca38068a96f75620"></h2>
-
 
 ## 7.4 Class method
 
@@ -307,7 +298,6 @@ class Pizza(object):
 
 <h2 id="fd29db4d51ec7f45079d68ebc9ce97ef"></h2>
 
-
 ## 7.5 Abstract methods
 
 - 实现 Abstract methods 最简单的办法是
@@ -337,7 +327,6 @@ TypeError: Can't instantiate abstract class BasePizza with abstract methods get_
 ```
 
 <h2 id="2b9c18b0eaab22d1e2348379296852cf"></h2>
-
 
 ## 7.6 Mixing static, class, and abstract methods
 
@@ -397,7 +386,6 @@ class DietPizza(BasePizza):
 ```
 
 <h2 id="fc3b61a6c99940dd0b3b47dadaeb05fb"></h2>
-
 
 ## 7.7 The truth about super
 
@@ -524,7 +512,6 @@ class B(A):
 
 <h2 id="61e3638e3fcb8f0e306423cd455d1f23"></h2>
 
-
 # 9 The AST
 
 - Parsing Python code to AST
@@ -625,7 +612,6 @@ Module(body=[Assign(targets=[Name(id='x', ctx=Store())], value=BinOp(left=Num(n=
 
 <h2 id="f36a69842636b49443e209a54f4126a3"></h2>
 
-
 ## 9.1 Hy
 
 - Now that you know about the AST, 
@@ -688,11 +674,9 @@ UUID('f823a749-a65a-4a62-b853-2687c69d0e1e') => (str (uuid.uuid4))
 
 <h2 id="79f281b0c9a80584dba28eda35893e98"></h2>
 
-
 # 10 Performances and optimizations
 
 <h2 id="1181dcb1d371dd2b727902cd6ec7551c"></h2>
-
 
 ## 10.2 Profiling
 
@@ -738,7 +722,6 @@ pyprof2calltree -k -i myscript.cprof
 ```
 
 <h2 id="c930f8e82525c9ad18cb842512f6ce08"></h2>
-
 
 ## 10.3 Ordered list and bisect
 

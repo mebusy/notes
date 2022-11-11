@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [6 Positive Definite Matrices](#c4ac5577c068be490d5dc0e124314e32)
     - [6.1 MINIMA , MAXIMA , AND SADDLE POINTS](#b7b91c67e89390f8298af104c60585f7)
@@ -17,16 +17,14 @@
     - [6.4 MINIMUM PRINCIPLES  TODO](#fff4369d5b0d5f3458ca8c052d7c2174)
     - [6.5 THE FINITE ELEMENT METHOD  TODO](#913394de1beecf34e858dc7068c2ee86)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c4ac5577c068be490d5dc0e124314e32"></h2>
 
-
 # 6 Positive Definite Matrices
 
 <h2 id="b7b91c67e89390f8298af104c60585f7"></h2>
-
 
 ## 6.1 MINIMA , MAXIMA , AND SADDLE POINTS
 
@@ -87,13 +85,11 @@ The third derivatives are drawn into the problem when the second derivatives fai
 
 <h2 id="e0e36c552eecb66daf84e448cf5ed7e8"></h2>
 
-
 ### Definite versus Indefinite: Bowl versus Saddle  (TODO)
 
 TODO
 
 <h2 id="e59a80ec6d81dedf197cebeea3a20a00"></h2>
-
 
 ### Higher Dimensions: Linear Algebra
 
@@ -155,7 +151,6 @@ The next section contains the tests to decide whether xᵀAx is positive (the bo
 ---
 
 <h2 id="76c7d53a0682ab1c09ff64d5d3549d0f"></h2>
-
 
 ## 6.2 TESTS FOR POSITIVE DEFINITENESS
 
@@ -275,7 +270,6 @@ Even though it is the hardest to apply to a single matrix, eigenvalues can be th
 
 <h2 id="01201db7b9090769e9708a314cf02459"></h2>
 
-
 ### Positive Definite Matrices and Least Squares
 
 We connected positive definite matrices to pivots (Chapter 1), determinants (Chapter 4), and eigenvalues (Chapter 5). Now we see them in the least-squares problems of Chapter 3, coming from the rectangular matrices of Chapter 2.
@@ -308,7 +302,6 @@ We mention that Ax = λMx arises constantly in engineering analysis. If A and M 
 
 
 <h2 id="3a253363875ecbb15417db17ec79c263"></h2>
-
 
 ### Semidefinite Matrices
 
@@ -365,7 +358,6 @@ Adding , 1/2·xᴴ(A+Aᴴ)x = (Re λ)xᴴx > 0 , so that Re λ > 0 . ?
 
 
 <h2 id="1eaac00e8e99433d989fe0d999f52f5d"></h2>
-
 
 ### Ellipsoids in n Dimensions
 
@@ -439,7 +431,6 @@ This is the equation of an ellipsoid. Its axes have lengths 1 / √λ₁,   ... 
 
 <h2 id="7d343fcdccb1d971e655a18f0ae0cb60"></h2>
 
-
 ### The Law of Inertia
 
 For elimination and eigenvalues, matrices become simpler by elementary operations. The essential thing is to know which properties of the matrix stay unchanged. 
@@ -504,7 +495,6 @@ step by checking the signs of the pivots.
 
 <h2 id="f2b49424030a50bcf8c0ca9cd03ed896"></h2>
 
-
 ### The Generalized Eigenvalue Problem (TODO)
 
 Physics, engineering, and statistics are usually kind enough to produce symmetric matrices in their eigenvalue problems. 
@@ -515,7 +505,6 @@ TODO
 
 
 <h2 id="d8d1378d745dd94a25a4c239c7c6702b"></h2>
-
 
 ## 6.3 SINGULAR VALUE DECOMPOSITION
 
@@ -673,7 +662,6 @@ V =
 
 <h2 id="21c1532cf380b35ae96c0d9ac3e130b0"></h2>
 
-
 ### Applications of the SVD
 
 The SVD is terrific for numerically stable computations, because U and V are orthogonal matrices. 
@@ -684,7 +672,6 @@ Of course ∑ could multiply by a large σ or (more commonly) divide by a small 
 
 --- 
 <h2 id="d16545b4b82233fb918b1cb0cb4c09d1"></h2>
-
 
 #### 1. Image processing
 
@@ -706,7 +693,6 @@ The cost is in computing the SVD -- this has become much more efficient, but it 
 
 
 <h2 id="9cd2bf30f6aa7178d87488ff1960bc07"></h2>
-
 
 #### 4. Least squares  TODO
 
@@ -730,11 +716,9 @@ TODO
 
 <h2 id="fff4369d5b0d5f3458ca8c052d7c2174"></h2>
 
-
 ## 6.4 MINIMUM PRINCIPLES  TODO
 
 <h2 id="913394de1beecf34e858dc7068c2ee86"></h2>
-
 
 ## 6.5 THE FINITE ELEMENT METHOD  TODO
 

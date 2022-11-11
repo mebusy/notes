@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [CS61A sp17](#3547d9a89dde905ec32e290c69fb3c63)
 - [Lecture #22: The Scheme Language](#5597bdee2f8922762420e10885a83ab2)
@@ -32,18 +32,16 @@
         - [And Finally, Reverse](#5a7dba29cc36ba1d802d68d560975854)
     - [Another Example](#bd13b89f1518554c9b570c210eba4081)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="3547d9a89dde905ec32e290c69fb3c63"></h2>
-
 
 # CS61A sp17
 
 https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 <h2 id="5597bdee2f8922762420e10885a83ab2"></h2>
-
 
 # Lecture #22: The Scheme Language
 
@@ -64,7 +62,6 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 <h2 id="637881603c973c4967d77ec4ba147e0c"></h2>
 
-
 ## Data Types
 
 - **atoms**
@@ -83,7 +80,6 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
 
 <h2 id="ff7efcbd2c8fd9b8cba790b8fab435f9"></h2>
 
-
 ## Symbol notion
 
 - Lisp最早是被设计来处理符号数据(如公式)。这些符号通常递归的被定义( an exp = op + subexps ). 
@@ -94,7 +90,6 @@ https://inst.eecs.berkeley.edu/~cs61a/sp17/
     - e.g. `a bumblebee numb3rs * + / wide-ranging !?@*!!`
 
 <h2 id="cb96f9780994826abf6a3408f7583d0f"></h2>
-
 
 ## Pairs and Lists
 
@@ -114,7 +109,6 @@ Abbreviation | Means
 
 <h2 id="975d1c13e7672fe6f144e3439bba958b"></h2>
 
-
 ## Programs
 
 - Scheme expressions and programs are **instances of Lisp data structures**  (“Scheme programs are Scheme data”).
@@ -123,7 +117,6 @@ Abbreviation | Means
     - `(OP E1 · · · En)`
 
 <h2 id="73015b3208cdee70a4497235463b63d7"></h2>
-
 
 ## Quotation
 
@@ -138,7 +131,6 @@ Abbreviation | Means
 
 <h2 id="e6091496efcb3055adfb2de2bdc185aa"></h2>
 
-
 ## Special Forms
  
 - `(quote E)` is a sample of **special form** : an exception to the general rule for evaluting functional forms
@@ -152,7 +144,6 @@ Abbreviation | Means
     - `(set! x 3) ; Assignment ("set bang")`
 
 <h2 id="da916b1bb83811aae5f1f1f82b2f3456"></h2>
-
 
 ## Traditional Conditionals
 
@@ -177,7 +168,6 @@ big
 
 <h2 id="5214a8a633c296d1d9d504fc54556692"></h2>
 
-
 ## Symbols
 
 - When evaluated as a program, a symbol acts like a variable name.
@@ -195,7 +185,6 @@ big
     - pi must be defined (not like Python).
 
 <h2 id="8b17c9cbbb4c6770d9ecfb2a4942ce0b"></h2>
-
 
 ## Function Evaluation
 
@@ -220,7 +209,6 @@ scm> (define (fib n)
 
 <h2 id="cbebfa21dbe8e87e788d94a76f073807"></h2>
 
-
 ## Numbers
 
 ```scheme
@@ -235,7 +223,6 @@ scm> (< 2 4 8)  ; chain compare like python
 ```
 
 <h2 id="f0a6b9c0ea1eb163c4419272979abd5a"></h2>
-
 
 ## Lists and Pair
 
@@ -292,7 +279,6 @@ scm> '(1 . (2 . 3))
 
 <h2 id="0073e9b3cffbe3e83566be73aa67e223"></h2>
 
-
 ### Built-In Procedures for Lists
 
 ```scheme
@@ -313,7 +299,6 @@ scm> (length '(1 2 3 4 5))
 ```
 
 <h2 id="03936ded5131bf9088bd627617a68642"></h2>
-
 
 ## Binding Constructs: Let
 
@@ -339,7 +324,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="e1a227edacf151ee8c1e87954ba4500f"></h2>
 
-
 ## Loops and Tail Recursion
 
 - In Scheme, **tail-recursive functions must work like iterations**
@@ -354,11 +338,9 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="d55c63328ef9a1e4b2e468b3fb6eabf7"></h2>
 
-
 # Lecture #27: More Scheme Programming
 
 <h2 id="de005fb26e0da342a3bb26586fd20f60"></h2>
-
 
 ## Recursion and Iteration
 
@@ -369,7 +351,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 - First, let’s define what that means
 
 <h2 id="74dae5a65b8fd0bab9b522eb1c9c2527"></h2>
-
 
 ## Tail Contexts
 
@@ -384,7 +365,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="770e07c293ee0357cd556a06bc0fc1ec"></h2>
 
-
 ## Tail Contexts in Scheme
 
 - The “bases” are
@@ -394,7 +374,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
     - ![](../imgs/cs61a_scheme_tail_content_in_tail_exp.png)
 
 <h2 id="8bb2b661f426ca5570b35c4b87fc2daf"></h2>
-
 
 ## Prime Numbers
 
@@ -464,7 +443,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="c8f2938a0e5021e59fd21914ce3eac47"></h2>
 
-
 ## Tail-Recursive Length?
 
 - On several occasions, we’ve computed the length of a linked list like this:
@@ -493,7 +471,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="9996150899ad35cd585ca06bfddc23eb"></h2>
 
-
 ## Standard List Searches: assoc, etc.
  
 - The functions `assq`, `assv`, and `assoc` classically serve the purpose of Python dictionaries
@@ -507,7 +484,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="52bd47777f2994f68c1c20bbca2ff51f"></h2>
 
-
 ## Assv Solution
 
 ```scheme
@@ -520,7 +496,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 ```
 
 <h2 id="6e36e4ad90a7e9796c4daa5b2b4409d8"></h2>
-
 
 ## A classic: reduce
 
@@ -541,7 +516,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="c5f8ea94776aee3de6f29a35f216591c"></h2>
 
-
 ### Reduce Solution (1)
 
 ```scheme
@@ -554,7 +528,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 ```
 
 <h2 id="07367a7ed7346ea1917889087012f66f"></h2>
-
 
 ### Reduce Solution (2)
 
@@ -572,7 +545,6 @@ scm> ((lambda (x y) (+ x y)) 5 (+ x 2))
 
 <h2 id="154eda16bcdb2a849972164713956553"></h2>
 
-
 ## A Harder Case: Map
 
 naive solution
@@ -586,7 +558,6 @@ naive solution
 - NOT tail-recursive
 
 <h2 id="fcc0a353dd69f799df1a6e166f3d4989"></h2>
-
 
 ### Making map tail recursive
 
@@ -608,7 +579,6 @@ naive solution
 
 <h2 id="5a7dba29cc36ba1d802d68d560975854"></h2>
 
-
 ### And Finally, Reverse
 
 - Actually, we can use the very problem that `cons` creates to solve it!
@@ -625,7 +595,6 @@ naive solution
 ```
 
 <h2 id="bd13b89f1518554c9b570c210eba4081"></h2>
-
 
 ## Another Example
 

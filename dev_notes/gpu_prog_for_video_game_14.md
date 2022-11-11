@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [GPU Programming for Video Games, Summer 2020, Georgia Tech](#b369fffc612dbbb4c7a6dfa31d084ab0)
 - [14 Introduction to (HLSL) High-Level Shading Language](#640ce87faf3d5bbd816740f99655c884)
@@ -23,22 +23,19 @@
     - [Trouble with transforming normals](#256d8ad6a01f5f472dfee1ebc9399dc6)
     - [Transforming normals](#25c055fba3cd4ed8375e0b4b08b9e25c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b369fffc612dbbb4c7a6dfa31d084ab0"></h2>
-
 
 # GPU Programming for Video Games, Summer 2020, Georgia Tech
 
 
 <h2 id="640ce87faf3d5bbd816740f99655c884"></h2>
 
-
 # 14 Introduction to (HLSL) High-Level Shading Language
 
 <h2 id="4d18d595565b0d2c8e13586eea6120c3"></h2>
-
 
 ## HLSL/Cg
 
@@ -52,7 +49,6 @@
         - functions are often inlined; no practical recursion
 
 <h2 id="f14670e8b29cfcddb95f5dcb68d09c39"></h2>
-
 
 ## Uniform vs. variable input
 
@@ -72,7 +68,6 @@
 
 <h2 id="f5d547a4df5274d80f3da819251d801d"></h2>
 
-
 ## The uniform type qualifier
 
 - A uniform variable value comes from an external source
@@ -84,7 +79,6 @@
 
 
 <h2 id="760627a893b77540e508cd43221cf13d"></h2>
-
 
 ## Semantics
 
@@ -131,7 +125,6 @@ SV_VertexID | vert | 顶点着色器可以接收具有“顶点编号”（为�
 
 <h2 id="d809a16a14bf61bd6d8fb3803627b5a7"></h2>
 
-
 ## Math operations
 
 - Most commonly used C/C++ operations are suported
@@ -144,7 +137,6 @@ SV_VertexID | vert | 顶点着色器可以接收具有“顶点编号”（为�
 
 
 <h2 id="022d7df864dce645df3fefddc9097864"></h2>
-
 
 ## Standard library functions 
 
@@ -162,7 +154,6 @@ SV_VertexID | vert | 顶点着色器可以接收具有“顶点编号”（为�
 
 <h2 id="c1f35329b735fce8051e7058eb4223c6"></h2>
 
-
 # 15 Unity's Built-In Shader Source Code
 
 
@@ -172,7 +163,6 @@ SV_VertexID | vert | 顶点着色器可以接收具有“顶点编号”（为�
 
 
 <h2 id="a4299077a75fc0fe56c046cbdbc5f063"></h2>
-
 
 # 16 Preview of the IntroShaders UnityPackage
 
@@ -187,7 +177,6 @@ Comeback
 
 <h2 id="bb68527ba79c48b602ceace5abf2d610"></h2>
 
-
 # 18: Shaders + Parameters = Materials 
 
 - A materials is a combination of a shader and a set of parameters.
@@ -197,11 +186,9 @@ Comeback
 
 <h2 id="c5e0304c0d974669bad4842d4ae9a22a"></h2>
 
-
 # 19: Unity Pipelines: Built-In vs. Scriptable
 
 <h2 id="01b872777f6a90374fc07819bbcb725d"></h2>
-
 
 ## Unity's Render Pipelines
 
@@ -220,7 +207,6 @@ Comeback
 
 
 <h2 id="42e4c37e0ed140aeca92fc113f12f40d"></h2>
-
 
 # 20: Simple Unity Shaders 
 
@@ -263,7 +249,6 @@ Fixed Color Shader
 
 <h2 id="8275ed10e209ddff1893ccf75682b95f"></h2>
 
-
 ## Unity's Projection Matrix
 
 - ![](../imgs/unity_projection_matrxi_orhto.png)
@@ -272,11 +257,9 @@ Fixed Color Shader
 
 <h2 id="bbd0bca758543337c8276bfef9328cd5"></h2>
 
-
 # 21: Accessing Textures in Shader Code
 
 <h2 id="b116226b410e39ca08a8cf99007d3697"></h2>
-
 
 ##  Textured "Shader"
 
@@ -296,14 +279,12 @@ Fixed Color Shader
 
 <h2 id="c37e330bcb24bdaf1d5c6fe156c99c87"></h2>
 
-
 ## Using Structure
 
 - ![](../imgs/gpu_shader_textured_structure.png)
 - this code does the exactly same thing except we have introduced the use of structures.
 
 <h2 id="16f72d243b711fb98bdc0296a421fb4e"></h2>
-
 
 ## Tiling and Offseting Texture
 
@@ -320,11 +301,9 @@ Fixed Color Shader
 
 <h2 id="5b1ba11f6ae6576256afc26bbe7b3047"></h2>
 
-
 # 22: Normal Vector Transformations 
 
 <h2 id="256d8ad6a01f5f472dfee1ebc9399dc6"></h2>
-
 
 ## Trouble with transforming normals
 
@@ -335,7 +314,6 @@ Fixed Color Shader
     - ![](../imgs/gpu_trouble_of_transform_normals.png)
 
 <h2 id="25c055fba3cd4ed8375e0b4b08b9e25c"></h2>
-
 
 ## Transforming normals
 

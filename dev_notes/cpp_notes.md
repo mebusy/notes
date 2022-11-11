@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Reference](#63d5049791d9d79d86e9a108b0a999ca)
     - [When should we use reference over pointer and vice versa ?](#15fd66c7db63e7108a1fd09bbd1d2cde)
@@ -12,11 +12,10 @@
 - [Why copy constructor take argument as reference ?](#87759128b7fe62b12b7a07d2947f909a)
 - [Function Hiding in C++](#a78a7dd142e4347a3c846d15ef09f39c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="63d5049791d9d79d86e9a108b0a999ca"></h2>
-
 
 # Reference
 
@@ -25,7 +24,6 @@
 3. can NOT make a reference with value NULL
 
 <h2 id="15fd66c7db63e7108a1fd09bbd1d2cde"></h2>
-
 
 ## When should we use reference over pointer and vice versa ?
 
@@ -63,7 +61,6 @@
 
 <h2 id="1444dfb74703eaade9660d234e949cf6"></h2>
 
-
 # friend function
 
 - mainly used for giving rights explicitly 
@@ -72,7 +69,6 @@
     - you invited a friend , he can enter into your room, but not your parents' room.
 
 <h2 id="a0ab3cec5d48671dbfb8ec94af9abce6"></h2>
-
 
 # difference between plain Enum and Enum class in C++ ?
 
@@ -89,7 +85,6 @@ Color2 c2 = Color2::red ;
 ```
 
 <h2 id="b481cf231c83433850a9093fcad42a7b"></h2>
-
 
 # How to prevent someone from taking address of your object?
 
@@ -121,7 +116,6 @@ Color2 c2 = Color2::red ;
 
 <h2 id="bf5f87d9fd968d2a044309009ce2139b"></h2>
 
-
 # How to prevent someone from inheriting from your class ?
 
 - just use `final` keyword 
@@ -134,7 +128,6 @@ class Base final {
 
 <h2 id="5e91e30f56f2071d31406f011e3e7181"></h2>
 
-
 # How to return mulitple values ?
 
 1. use some struct/class and fill the values in that.
@@ -142,7 +135,6 @@ class Base final {
 
 
 <h2 id="74fed14e181e19aa7cda3c0fc0a41b08"></h2>
-
 
 # How to assign object to int ?
 
@@ -157,7 +149,6 @@ public:
 ```
 
 <h2 id="f9e9c42f6b9d3238ad453faa75e19196"></h2>
-
 
 # Why use `override` keyword ?
 
@@ -185,7 +176,6 @@ public:
 
 <h2 id="87759128b7fe62b12b7a07d2947f909a"></h2>
 
-
 # Why copy constructor take argument as reference ?
 
 ```cpp
@@ -198,7 +188,6 @@ A: To avoid infinite recursive.
 
 
 <h2 id="a78a7dd142e4347a3c846d15ef09f39c"></h2>
-
 
 # Function Hiding in C++
 

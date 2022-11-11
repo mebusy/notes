@@ -1,19 +1,17 @@
-...menustart
+[](...menustart)
 
 - [The simpler quadratic formula | Lockdown math ep.1](#07ce9c8defcca1a8cf2f97556ea53127)
     - [Mental Math Tricks](#c236129fe028b8f8a5fafd195a9426c5)
     - [Quadratic Formula](#2e0557fe7fcb444a6bdded79c3f233ed)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="07ce9c8defcca1a8cf2f97556ea53127"></h2>
 
-
 # The simpler quadratic formula | Lockdown math ep.1
 
 <h2 id="c236129fe028b8f8a5fafd195a9426c5"></h2>
-
 
 ## Mental Math Tricks 
 
@@ -51,7 +49,6 @@ I think if you were doing some arithmetic and you has this in the back of your m
 
 
 <h2 id="2e0557fe7fcb444a6bdded79c3f233ed"></h2>
-
 
 ## Quadratic Formula
 

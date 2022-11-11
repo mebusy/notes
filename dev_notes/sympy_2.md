@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Sympy II](#801a16e14d536204d62b1027d930e55b)
     - [Vectors and Geometry](#74b1059efb1bc9a7532a2ce3d5a81ca3)
@@ -19,11 +19,10 @@
     - [Multiple Integrals](#16755d7bea6907481a5e19b6a00a97e6)
     - [Integrals and Vector Fields](#feaf4037dd6168c2b44df65e617ebc7d)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="801a16e14d536204d62b1027d930e55b"></h2>
-
 
 # Sympy II
 
@@ -45,7 +44,6 @@ x,y,z, u1,u2,u3, v1,v2,v3, t = smp.symbols( 'x y z  u1 u2 u3  v1 v2 v3  t' )
 ```
 
 <h2 id="74b1059efb1bc9a7532a2ce3d5a81ca3"></h2>
-
 
 ## Vectors and Geometry
 
@@ -70,7 +68,6 @@ x,y,z, u1,u2,u3, v1,v2,v3, t = smp.symbols( 'x y z  u1 u2 u3  v1 v2 v3  t' )
 
 <h2 id="5bdd3e655ff234af7768b8653b0f60d7"></h2>
 
-
 ## Dot Product
 
 ```python
@@ -82,7 +79,6 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 
 
 <h2 id="9760c5309454db44d51707f32c0060ff"></h2>
-
 
 ## Cross Product
 
@@ -99,7 +95,6 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 
 <h2 id="f9bba2010e97be89ce1fc95f71647f89"></h2>
 
-
 ## Length of vector
 
 ```python
@@ -112,7 +107,6 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 ```
 
 <h2 id="3b70d9f00a42a7046ded4e6bff7584e2"></h2>
-
 
 ## Vector projection
 
@@ -139,7 +133,6 @@ u₁⋅v₁ + u₂⋅v₂ + u₃⋅v₃
 ```
 
 <h2 id="bcf24edbc600408e71f9aa704d3e765d"></h2>
-
 
 ## Plane in Space 
 
@@ -172,11 +165,9 @@ See [Dot Product and Normals to Lines and Planes](dot_norm_lines_planes.md) , or
 
 <h2 id="c8eaf42af0904e677cb2a80b96160a91"></h2>
 
-
 ## Vector Calculus
 
 <h2 id="10a81f2e36fc0ac7aab0584b0ec2b4d6"></h2>
-
 
 ### Vector Derivatives
 
@@ -216,7 +207,6 @@ Example: Find the angle between the velocity and acceleration as a function of t
 ```
 
 <h2 id="eeb3262d99392c5b5ff1fffceb4ab63a"></h2>
-
 
 ### Vector Integrals
 
@@ -279,11 +269,9 @@ Example: Find the angle between the velocity and acceleration as a function of t
 
 <h2 id="c64b5c9a944ab2b58eb473454d41d985"></h2>
 
-
 ## Partial/Directional Derivatives
 
 <h2 id="972e73b7a882d0802a4e3a16946a2f94"></h2>
-
 
 ### Basic
 
@@ -307,7 +295,6 @@ y ⋅cos(x + y) + 2⋅y⋅sin(x + y)
 
 
 <h2 id="62568a512f5b51ee525d33114a235b26"></h2>
-
 
 ### The Chain Rule
 
@@ -337,7 +324,6 @@ Or put in specific functions
 
 <h2 id="e99e133f4481158db879726b7335d967"></h2>
 
-
 ### Gradients
 
 ```python
@@ -360,7 +346,6 @@ x_⋅sin(y_)
 ```
 
 <h2 id="304e4b6f83f27847ed4376143530e7fe"></h2>
-
 
 ### Directional Derivatives
 
@@ -386,7 +371,6 @@ x_⋅sin(y_)
 
 <h2 id="9ead2491dd2b785094f496773bc0b7c8"></h2>
 
-
 ## Extreme Values and Saddle Points
 
 Extreme values of f(x,y) can occur at 
@@ -408,7 +392,6 @@ x  + 3⋅x⋅y + y
 More, use 2nd derivatives to check...
 
 <h2 id="16755d7bea6907481a5e19b6a00a97e6"></h2>
-
 
 ## Multiple Integrals 
 
@@ -450,7 +433,6 @@ Use scipy to evaluate this numerically.
 ```
 
 <h2 id="feaf4037dd6168c2b44df65e617ebc7d"></h2>
-
 
 ## Integrals and Vector Fields 
 

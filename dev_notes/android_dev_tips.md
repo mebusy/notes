@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [android dev tips](#cedbb586db72ab93a1b4a11759bb2790)
     - [open browser](#36f510971eecdc6dcd92048cb126f598)
@@ -19,18 +19,16 @@
     - [View ID](#f35ac60b4a12dc8f045f1b185bf5d959)
     - [Add Listener](#bf2b2baf96389d81762a6f701f2e110d)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="cedbb586db72ab93a1b4a11759bb2790"></h2>
-
 
 # android dev tips
 
 
 
 <h2 id="36f510971eecdc6dcd92048cb126f598"></h2>
-
 
 ## open browser
 
@@ -47,13 +45,11 @@ public  static void openAppStore(  final String url ) {
 
 <h2 id="55322a5875714b1c278ba95d4d7dca27"></h2>
 
-
 ## whole-archieve prebuilt static library
 
 - use LOCAL_WHOLE_STATIC_LIBRARIES  instead of LOCAL_STATIC_LIBRARIES
 
 <h2 id="a8113f0e4f0db0e8f7a49b9697196e90"></h2>
-
 
 ## whether is Main thread ?
 
@@ -66,7 +62,6 @@ public static boolean isMainThread() {
 
 
 <h2 id="0f4a700a11434bbd0f28da36dc2ab2e7"></h2>
-
 
 ## prevent background app auto close
 
@@ -90,7 +85,6 @@ public static boolean isMainThread() {
 
 <h2 id="54caf15a8a382279ea87b2993c32b19d"></h2>
 
-
 ## Run on UI thread
 
 ```java
@@ -103,7 +97,6 @@ public static boolean isMainThread() {
 ```
 
 <h2 id="56b786df876f856f3bdbf37f4eca6a40"></h2>
-
 
 ## run on working thread
 
@@ -138,7 +131,6 @@ public static boolean isMainThread() {
 
 
 <h2 id="27936d606faa31b6312be4d40984af57"></h2>
-
 
 ## Using Gson
 
@@ -198,7 +190,6 @@ import com.google.gson.internal.StringMap;
 ```
 
 <h2 id="97f8fab067a9df19dd2e8b75c5989fff"></h2>
-
 
 ## AsyncTask
 
@@ -266,7 +257,6 @@ TYPE ret = new DownloadFilesTask().execute(url1, url2, url3).get() ;
 
 <h2 id="64556a6168b58f000bc4bd5146c16844"></h2>
 
-
 ## Update Eclipse project to ant
 
 ```bash
@@ -279,7 +269,6 @@ ant debug
 
 <h2 id="bd8841fe31193f151e81534a3c94b0d7"></h2>
 
-
 ## How to determine ABI of Android .so file 
 
 ```bash
@@ -288,7 +277,6 @@ $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf -A
 ```
 
 <h2 id="965580fe8a8a7a0a7ce16fce7262e029"></h2>
-
 
 ## Find dependency of android shared library
 
@@ -300,7 +288,6 @@ $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf  -
 
 <h2 id="dde7b2c0e90a2ea977a549fa578014f4"></h2>
 
-
 ## TODO ...
 
 
@@ -310,11 +297,9 @@ $NDK/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-readelf  -
 
 <h2 id="05e31eeeb64c02a5efbaecf9beae6f7a"></h2>
 
-
 # Android App Quich Start
 
 <h2 id="9a3925495881ed0aa40f9c7d9e186fb9"></h2>
-
 
 ## Layer VS. Activity
 
@@ -340,7 +325,6 @@ class MainActivity : AppCompatActivity() {
 
 <h2 id="ef909efaacfd7878bb54f218d1a5a784"></h2>
 
-
 ## Constraint Layout
 
 When we're putting some views inside of another view, the **Constraint Layout** is called out.
@@ -353,7 +337,6 @@ You can drag the white circle to edge of the screen to make the connection.
 
 
 <h2 id="f35ac60b4a12dc8f045f1b185bf5d959"></h2>
-
 
 ## View ID
 
@@ -374,7 +357,6 @@ import android.widget.Button
 ```
 
 <h2 id="bf2b2baf96389d81762a6f701f2e110d"></h2>
-
 
 ## Add Listener
 

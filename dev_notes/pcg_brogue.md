@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Procedural level design in Brogue and beyond](#d84c11830b3160235dc21b64911b82e4)
     - [Create a Room](#ac071b8105196d57c677805036bc061c)
@@ -11,18 +11,16 @@
     - ["Spatial" Types of Machines: Vestibule Machines](#35ddfddd6e932febaeb3e2796e1fc240)
     - ["Spatial" Types of Machines: Area Machines](#4e18ef36da6a4896a0bab0016c58af09)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="d84c11830b3160235dc21b64911b82e4"></h2>
-
 
 # Procedural level design in Brogue and beyond
 
 https://www.youtube.com/watch?v=Uo9-IcHhq_w
 
 <h2 id="ac071b8105196d57c677805036bc061c"></h2>
-
 
 ## Create a Room
 
@@ -41,7 +39,6 @@ https://www.youtube.com/watch?v=Uo9-IcHhq_w
 
 
 <h2 id="f7f0bb3e2b800697fadbb756e51decc8"></h2>
-
 
 ## Room Accretion
 
@@ -79,7 +76,6 @@ The next step is what I call **machines**.
 
 <h2 id="10ac0270a522e137e8810cb6b782fb66"></h2>
 
-
 ## Machines
 
 - ![](../imgs/pcg_brogue_7.png)
@@ -106,7 +102,6 @@ So how do these machines work ?
 
 <h2 id="6de9c2ee939f763e740cd3cc22569929"></h2>
 
-
 ## Machine components
 
 - Machine depends on specific types of terrain and items
@@ -124,7 +119,6 @@ So how do these machines work ?
 You just describe it kind of qualitatively in terms of how the things interlock. It's not mapped out on a grid. All that you need is the room to be full of grass, the altar is distant and the torches is near. So come up with a bunch of different relationships that define where these items need to be, where the terrain types need to be, how much space each one needs, whether they need to be in line of signt of the doorway, the minimum number that need to be generated for the room to succeed and actually be built. So the idea is you define it with the minimum amount of specification that you need to make the machine work, and that way the level generator can take this pre-existing level that we saw at the beginning where you just build rooms off of one another can take that kind of skeleton and choose a spot and turn it into one of those machines instead of just placing a machine from a predefined grid and that makes them more interesting.
 
 <h2 id="3a3abd3e9cd69f9e783115c2c2d45d6a"></h2>
-
 
 ## Organic pathways between two points
 
@@ -151,7 +145,6 @@ You just build obstructive terrain everywhere in random order, one cell at a tim
 
 <h2 id="6e763c1bb0889f70c737a85b8aeee685"></h2>
 
-
 ## "Functional" Types of Machines
 
 - Reward Machines
@@ -164,7 +157,6 @@ You just build obstructive terrain everywhere in random order, one cell at a tim
 
 <h2 id="60907e356f65afeb4bfeaac7bd2bc250"></h2>
 
-
 ## "Spatial" Types of Machines: Room Machines
 
 - Interior of an area that has a single chokepoint
@@ -175,7 +167,6 @@ You just build obstructive terrain everywhere in random order, one cell at a tim
 
 <h2 id="35ddfddd6e932febaeb3e2796e1fc240"></h2>
 
-
 ## "Spatial" Types of Machines: Vestibule Machines
 
 These are sort of captures the area immediately outside of a room. So find a choke point and then capture the area like a certain number of cells growing outward from the room. So you can have about a bunch of glyphs that will trigger this magic statue outside the door of this room, you have to pick your way carefully to avoid this invulnerable monster attacking you. 
@@ -184,7 +175,6 @@ These are sort of captures the area immediately outside of a room. So find a cho
 
 
 <h2 id="4e18ef36da6a4896a0bab0016c58af09"></h2>
-
 
 ## "Spatial" Types of Machines: Area Machines
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Advice for Applying Machine Learning](#68d3cfbbc89d95b35d0d45b599f6cf74)
     - [Evaluating a Learning Algorithm](#3ec179b6c0e3e96ee6b0629d4c3b92ac)
@@ -12,21 +12,18 @@
         - [Learning Curve](#1d88cab8749545f0c0c6efe16d64c780)
         - [What should you try next ?](#bea09adf1a4b8e8ccb2a6f3cd2d04e84)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="68d3cfbbc89d95b35d0d45b599f6cf74"></h2>
-
 
 # Advice for Applying Machine Learning
 
 <h2 id="3ec179b6c0e3e96ee6b0629d4c3b92ac"></h2>
 
-
 ## Evaluating a Learning Algorithm
 
 <h2 id="b9af6d27e0fe127a70b5f0104eb1aeb2"></h2>
-
 
 #### Evaluating a hypothesis 
 
@@ -37,7 +34,6 @@
 
 
 <h2 id="8a9c44e950f9cc7463bb7b9ac3d17180"></h2>
-
 
 #### training/testing procedure
 
@@ -51,7 +47,6 @@
 
 
 <h2 id="2f0617787b3e1c5f3b6b37a52cbd7ed1"></h2>
-
 
 #### Model Selection and Train/Validation/Test Sets
 
@@ -73,11 +68,9 @@
     
 <h2 id="a52f9a77971bc5c163e9040d5142a50a"></h2>
 
-
 ## Bias vs. Variance
 
 <h2 id="713d2bd98e92803db5e42aa3e39895e1"></h2>
-
 
 #### Diagnosing Bias vs. Variance
 
@@ -98,7 +91,6 @@ BiasVsVariance.png
 
 <h2 id="322ae1bc590fce3811ec460541460d63"></h2>
 
-
 #### regularization in high-order polynomial
 
 λ    |        θ    |    fitting result
@@ -111,7 +103,6 @@ large (eg.100) | heavily penalized → 0 | High Bias(underfit)
 ---
 
 <h2 id="6ec33b8ff0734363f1d6bf897c1709cb"></h2>
-
 
 #### choosing the regularization parameter λ
 
@@ -129,7 +120,6 @@ train / CV set affected by λ:
 ---
 
 <h2 id="1d88cab8749545f0c0c6efe16d64c780"></h2>
-
 
 #### Learning Curve
 
@@ -153,7 +143,6 @@ Plot learning curve give you a better sense of whether there is a bias or varian
 
 
 <h2 id="bea09adf1a4b8e8ccb2a6f3cd2d04e84"></h2>
-
 
 #### What should you try next ?
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [RL David Silver , Part II](#642eadc816039c29a67ef129a6a090f6)
 - [Lecture 6:](#ecbcb5fe84f115baf7815f06a0042e1c)
@@ -36,27 +36,23 @@
 - [Lecture 9 :](#e296e754e887fb190b7ddbc5999e3ab8)
 - [Lecture 10: Classic Games](#9a7a5bf12ece7ccf9d2c7a3d596925ba)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="642eadc816039c29a67ef129a6a090f6"></h2>
-
 
 # RL David Silver , Part II
 
 <h2 id="ecbcb5fe84f115baf7815f06a0042e1c"></h2>
 
-
 # Lecture 6: 
 
 <h2 id="d9bb6b898523b2ea131950f5ec3fc308"></h2>
-
 
 ## Value Function Approximation
 
 
 <h2 id="c6856fb88cde30004a30618776062a49"></h2>
-
 
 ## Types of Value Function Approximation
 
@@ -70,11 +66,9 @@
 
 <h2 id="2a8b356b7c497a4fa82537430889ff7c"></h2>
 
-
 ## Value Function Approx. By Stochastic Gradient Descent
 
 <h2 id="174cd9c9b503392d64f89edef582c758"></h2>
-
 
 ## TD(λ) with Value Function Approximation
 
@@ -83,13 +77,11 @@
 
 <h2 id="ab0c9102c68d79422c93b60ef602d0bf"></h2>
 
-
 ### Linear Action-Value Function Approximation
 
 we might have 1 feature ,x₁, say how far am I far from the wall if I moving forwards. And I have another feature , x₂ , says how far am I far from this wall if I'm moving backwards. 
 
 <h2 id="40a1eb12575cfb9513a55cd7c8c874b5"></h2>
-
 
 ### Stochastic Gradient Descent with Experience Replay
 
@@ -102,7 +94,6 @@ we might have 1 feature ,x₁, say how far am I far from the wall if I moving fo
 
 <h2 id="40a03e04054cc71abac6ad864a8b68e7"></h2>
 
-
 ### Experience Replay in Deep Q-Networks (DQN)
 
 之前说过，Sarsa，TD 这些方法 can not work in your network. However this method is stable in your networks. 
@@ -110,7 +101,6 @@ we might have 1 feature ,x₁, say how far am I far from the wall if I moving fo
 我们实际是在用两套神经网络运行。一般会freeze 老的神经网路。
 
 <h2 id="90ded6467b8ae95c15b518af0d6870af"></h2>
-
 
 # Lecture 7: Policy Gradient
 
@@ -149,7 +139,6 @@ idea : maximum policy objective function J(θ)
 
 <h2 id="8d2142fab6a831f4b2392206488d94a9"></h2>
 
-
 ## 1 Introduction
 
 直接将 policy，而不是 value function, 参数化。
@@ -157,7 +146,6 @@ idea : maximum policy objective function J(θ)
 Wheneven a state aliasing occurs , a staochastic policy can do better than a deterministic policy.
 
 <h2 id="96854aaa67c2cd550cb2242d152a3824"></h2>
-
 
 ### Policy Objective Functions 
 
@@ -177,7 +165,6 @@ Wheneven a state aliasing occurs , a staochastic policy can do better than a det
 
 
 <h2 id="db335bb35a59f97ddf493fcd1f74c079"></h2>
-
 
 ### Softmax Policy
 
@@ -209,7 +196,6 @@ When we start doing this kind of policy gradient algorithm , what are we actuall
 
 <h2 id="c70cfd6d28c91d98dfd6410b3fbbeb44"></h2>
 
-
 ### Gaussian Policy
 
 used in continuous actions space like AIBO.
@@ -220,7 +206,6 @@ score function
 - μ(s) : mean action ?
 
 <h2 id="51f43739235c39cdfa777a62f8648662"></h2>
-
 
 ### One-Step MDPs
 
@@ -234,13 +219,11 @@ So if get a really big reward you want to move in the direction that get more re
 
 <h2 id="a5656501eabca0acff7cb458bf0c1c13"></h2>
 
-
 ### Policy Gradient Theorem
 
 The policy gradient is basically given by this thing , which is  some expectation of score function , multiplied by the action value Q. So it basically tells you again  how to adjust the policy so to get more or less of that particular action , multiplied by , how good that particular action was. 
 
 <h2 id="a1e378fb40906a1956a68710a611c1d6"></h2>
-
 
 ### Monte-Carlo Policy Gradient (REINFORCE)
 
@@ -252,7 +235,6 @@ The policy gradient is basically given by this thing , which is  some expectatio
 
 <h2 id="3794e0fc1b829b0ff26b06e8f9a994d9"></h2>
 
-
 ### Puck World Example
 
 - it's slow. MC policy gradient methods tend to be slow. They're very high varience. 
@@ -261,7 +243,6 @@ The policy gradient is basically given by this thing , which is  some expectatio
 So that's going to bring us to the final family of algorithms -- actor critic methods.
 
 <h2 id="fcb509fd5f5388d2b7ac9755d5ce7f17"></h2>
-
 
 ### Reducing Variance Using a Critic
 
@@ -282,7 +263,6 @@ So how do we estimate the action value function ?
 
 <h2 id="95e4a74a003f412f4a8d513ef0448f11"></h2>
 
-
 ### Estimating the Action-Value Function
 
 - we can think of this is another form of generalized policy iteration
@@ -293,7 +273,6 @@ So how do we estimate the action value function ?
 Now we have the basic idea of actor-critic algorithm. But what we want to do is to make these things better. So we consider now some tricks to make this thing better. 
 
 <h2 id="3acf83ce7914d2b57f2c296114e396dd"></h2>
-
 
 ### Reducing Variance Using a Baseline
 
@@ -309,13 +288,11 @@ So the idea is to subtract some baseline function from the policy gradient. and 
 
 <h2 id="0c31786a0e21f8d28470ba60afa42833"></h2>
 
-
 ### Estimating the Advantage Function (1)
 
 There is an easier way and probably a better way.
 
 <h2 id="882835147fcacb1d7c0593c271657ca1"></h2>
-
 
 ### Estimating the Advantage Function (2)
 
@@ -325,7 +302,6 @@ It uses the following idea which is that the TD error is a sample of the advanta
 
 
 <h2 id="5d215218c32dde80c225cf454d518f0a"></h2>
-
 
 ### Alternative Policy Gradient Directions
 
@@ -346,17 +322,14 @@ One last idea this is a recent idea , and a useful idea to know about -- Natural
 
 <h2 id="c202e82b2a0d6070b8c852c124c7ea2e"></h2>
 
-
 ## 2 Finite Difference Policy Gradient
 
 <h2 id="afbf6d2252accb977e4273ae3f55bcdd"></h2>
-
 
 ## 3 Monte-Carlo Policy Gradient
 
 
 <h2 id="3955f668aa01a331d669152fc2a66888"></h2>
-
 
 ## 4 Actor-Critic Policy Gradient
 
@@ -364,21 +337,17 @@ One last idea this is a recent idea , and a useful idea to know about -- Natural
 
 <h2 id="50d65004325941be417f9541f49a1314"></h2>
 
-
 # Lecture 8: Integrating Learning and Planning
 
 <h2 id="8d2142fab6a831f4b2392206488d94a9"></h2>
-
 
 ## 1 Introduction
 
 <h2 id="8bf761ff4e3ea4776a4789487933add1"></h2>
 
-
 ## 2 Model-Based Reinforcement Learning
 
 <h2 id="12aa7b676bf938dcf88b1be11f69ecd7"></h2>
-
 
 ### Back to the AB Example
 
@@ -399,18 +368,15 @@ One last idea this is a recent idea , and a useful idea to know about -- Natural
 
 <h2 id="e73c5eb2c33fbcafd857983c404349b8"></h2>
 
-
 ## 3 Integrated Architectures
 
 <h2 id="964b6e51181c427e77052ef724ce70e6"></h2>
-
 
 ## 4 Simulation-Based Search
 
 ---
 
 <h2 id="e296e754e887fb190b7ddbc5999e3ab8"></h2>
-
 
 # Lecture 9 : 
 
@@ -421,7 +387,6 @@ One last idea this is a recent idea , and a useful idea to know about -- Natural
 ---
 
 <h2 id="9a7a5bf12ece7ccf9d2c7a3d596925ba"></h2>
-
 
 # Lecture 10: Classic Games
 

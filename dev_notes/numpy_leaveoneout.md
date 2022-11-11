@@ -1,3 +1,12 @@
+[](...menustart)
+
+- [Numpy Leave One Out Array](#a1671d9686bccadf21021559cf428f7d)
+
+[](...menuend)
+
+
+<h2 id="a1671d9686bccadf21021559cf428f7d"></h2>
+
 # Numpy Leave One Out Array
 
 Goal: construct a leave-one-out matrix from a vecotr of length k.

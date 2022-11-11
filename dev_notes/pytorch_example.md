@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Understanding PyTorch with an example](#802ccc3d76acaa8c70e0ddf832c7f417)
     - [A Simple Regression Problem](#e646153cf55cd9f3f3a0357ab4a97082)
@@ -18,18 +18,16 @@
         - [Random Split](#41372aa6ea5dbd4f187cedfd0e4ffa94)
         - [Evaluation](#b74a43dbb36287ea86eb5b0c7b86e8e8)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="802ccc3d76acaa8c70e0ddf832c7f417"></h2>
-
 
 # Understanding PyTorch with an example
 
 [Understanding PyTorch with an example: a step-by-step tutorial](https://towardsdatascience.com/understanding-pytorch-with-an-example-a-step-by-step-tutorial-81fc5f8c4e8e)
 
 <h2 id="e646153cf55cd9f3f3a0357ab4a97082"></h2>
-
 
 ## A Simple Regression Problem
 
@@ -40,7 +38,6 @@ y = a + bx + ε
 ```
 
 <h2 id="52134209c3ea01b6fef38247fc00005c"></h2>
-
 
 ## Data Generation
 
@@ -80,11 +77,9 @@ def data_gen():
 
 <h2 id="95b88f180e9eb5678e0f9ebac2cbe643"></h2>
 
-
 ## PyTorch
 
 <h2 id="e4b758b87cecb45c02f7d3303451fd3d"></h2>
-
 
 ### Loading Data, Devices and CUDA
 
@@ -118,7 +113,6 @@ print(type(x_train), type(x_train_tensor), x_train_tensor.type())
 
 <h2 id="4b0e17454fbc6ce7f10e11b30311ee54"></h2>
 
-
 ### Creating Parameters
 
 
@@ -149,7 +143,6 @@ In PyTorch, every method that ends with an underscore (_) makes changes **in-pla
 
 
 <h2 id="d9c536cbdd6cfc95bfa8524cf6248112"></h2>
-
 
 ### Autograd
 
@@ -221,7 +214,6 @@ In PyTorch, every method that ends with an underscore (_) makes changes **in-pla
 
 <h2 id="ab57e3e2067a9303b5a53232fb178534"></h2>
 
-
 ### Dynamic Computation Graph
 
 [PyTorchViz](https://github.com/szagoruyko/pytorchviz) package and its `make_dot(variable)` method allows us to easily visualize a graph associated with a given Python variable.
@@ -234,7 +226,6 @@ from torchviz import make_dot
 ```
 
 <h2 id="7a865060b1a2be22d8c8a073670b2e0f"></h2>
-
 
 ### Optimizer
 
@@ -287,7 +278,6 @@ Besides, we also don’t need to zero the gradients one by one anymore. We just 
 
 <h2 id="14781ee5e859104d453ad3eb28b441e5"></h2>
 
-
 ### Loss
 
 ```python
@@ -332,7 +322,6 @@ Since ours is a regression, we are using the Mean Square Error (MSE) loss. `nn.M
 At this point, there’s only one piece of code left to change: the **predictions**. It is then time to introduce PyTorch’s way of implementing a…
 
 <h2 id="a559b87068921eec05086ce5485e9784"></h2>
-
 
 ### Model
 
@@ -404,7 +393,6 @@ Moreover, we can get the current values for all parameters using our model’s s
 ```
 
 <h2 id="83231b3411cff7544c9eb91cae405dba"></h2>
-
 
 ### Full Code
 
@@ -515,7 +503,6 @@ if __name__ == '__main__':
 
 <h2 id="a00c07c06a1031d7bad9ed04a970dfd8"></h2>
 
-
 ### Nested Models
 
 In our model, we manually created two parameters to perform a linear regression.
@@ -538,7 +525,6 @@ class LayerLinearRegression(nn.Module):
 
 <h2 id="3f0c39e742d144a53ff8159547182d48"></h2>
 
-
 ### Sequential Models
 
 For straightforward models, that use run-of-the-mill layers, where the output of a layer is sequentially fed as an input to the next, we can use a, er… [Sequential](https://pytorch.org/docs/stable/nn.html#torch.nn.Sequential) model :-)
@@ -550,7 +536,6 @@ For straightforward models, that use run-of-the-mill layers, where the output of
 
 
 <h2 id="9c5ac51124c2b796532afd63addf6866"></h2>
-
 
 ### Training Step
 
@@ -599,7 +584,6 @@ print(model.state_dict())
 
 <h2 id="41372aa6ea5dbd4f187cedfd0e4ffa94"></h2>
 
-
 ### Random Split
 
 PyTorch’s random_split() method is an easy and familiar way of performing a training-validation split.
@@ -619,7 +603,6 @@ val_loader = DataLoader(dataset=val_dataset, batch_size=20)
 ```
 
 <h2 id="b74a43dbb36287ea86eb5b0c7b86e8e8"></h2>
-
 
 ### Evaluation
 

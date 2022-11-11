@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [ML System Design](#0f37957d7f1f5bd5de2a41d8bc2c1d8f)
     - [Spam classification example](#fdd8a248b4498925961eda78672dd490)
@@ -12,21 +12,18 @@
     - [Use Large Data set](#427c5bfcdec0cf350cba5548fb1e4ef1)
         - [Large data rationale](#f0668a5d4294962318ee1112e57e8108)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="0f37957d7f1f5bd5de2a41d8bc2c1d8f"></h2>
-
 
 # ML System Design
 
 <h2 id="fdd8a248b4498925961eda78672dd490"></h2>
 
-
 ## Spam classification example
 
 <h2 id="20f35e630daf44dbfa4c3f68f5399d8c"></h2>
-
 
 #### model
 
@@ -47,7 +44,6 @@ We set the feature to 1 if the feature (word) appears in email , while set to 0 
 
 <h2 id="c568e952b628d68476fe579f33a608ce"></h2>
 
-
 #### how 2 spend your time to make it have low error
 
 - collect lots of data , eg. "honeypot" project
@@ -58,11 +54,9 @@ We set the feature to 1 if the feature (word) appears in email , while set to 0 
 
 <h2 id="7f9ed9579be60a55e194a10a58934676"></h2>
 
-
 #### Error Analysis
 
 <h2 id="0c43ce66674fab970f4745cc51f5a08d"></h2>
-
 
 ##### recommended approach
 
@@ -76,7 +70,6 @@ Error analysis may not be helpful for deciding if this is likely to improve perf
 Need numerial evaluation (eg. CV error) of algorithm's performance with or without somethings.
 
 <h2 id="3b463e85a6fc1768653d6f94ebeec03a"></h2>
-
 
 ## Handling Skewed Data
 
@@ -103,7 +96,6 @@ Recall = ( #True positive )/(#Actual 1 ) =( #True positive )/( True pos + False 
 
 <h2 id="81b1eb7e22f3395b2655f25e9b8af855"></h2>
 
-
 #### Trading off precision and recall
 
 查准率和回归率之间的关系：
@@ -122,7 +114,6 @@ Recall = ( #True positive )/(#Actual 1 ) =( #True positive )/( True pos + False 
 
 <h2 id="442c265b01ce99095ce64d12ca75ebc7"></h2>
 
-
 #### how 2 compare precision/recall numbers
 
 什么样的 precision/recall 组合表现最好, 我们通常 尝试不同的 threshold, 计算 CV data上的F₁Score, 选择F₁Score最大的方案。
@@ -140,7 +131,6 @@ Algorithm3 | 0.02 | 1.0 |0.51|0.0392
  
 <h2 id="427c5bfcdec0cf350cba5548fb1e4ef1"></h2>
 
-
 ## Use Large Data set
 
 一个在某个数据集下表现较差的算法， 在另一个大很多的数据集上，可能会表现的最好。
@@ -149,7 +139,6 @@ It's not who has the best algorithm that wins. It's who has the most data.
 
 
 <h2 id="f0668a5d4294962318ee1112e57e8108"></h2>
-
 
 #### Large data rationale
 

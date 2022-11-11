@@ -1,4 +1,17 @@
+[](...menustart)
+
+- [distance matrix](#85ce9fbdac706be2d7d0c1472b752b44)
+    - [points in two sets](#8402d09645a7552c57b0679478c932ac)
+    - [points in 1 set](#3ef2b1846a58f100a48f947755ef9b67)
+
+[](...menuend)
+
+
+<h2 id="85ce9fbdac706be2d7d0c1472b752b44"></h2>
+
 # distance matrix
+
+<h2 id="8402d09645a7552c57b0679478c932ac"></h2>
 
 ## points in two sets
 
@@ -74,6 +87,8 @@ np.unravel_index( dist_m.argmin(), dist_m.shape  )
 # (2, 0)
 # that is, 3rd point from set a, and 1st point from set b
 ```
+
+<h2 id="3ef2b1846a58f100a48f947755ef9b67"></h2>
 
 ## points in 1 set
 

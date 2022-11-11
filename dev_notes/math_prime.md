@@ -1,19 +1,17 @@
-...menustart
+[](...menustart)
 
 - [Prime number](#cbe1d8b6fdde719e75d8105939b32d5d)
     - [埃拉托色尼筛选法](#c65117875564805726c4ff9d57513a85)
     - [prime number theorem](#c2c3d1fb2a73e2ac9f0a282e7095bd1b)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="cbe1d8b6fdde719e75d8105939b32d5d"></h2>
 
-
 # Prime number 
 
 <h2 id="c65117875564805726c4ff9d57513a85"></h2>
-
 
 ## 埃拉托色尼筛选法
 
@@ -29,7 +27,6 @@
 
 
 <h2 id="c2c3d1fb2a73e2ac9f0a282e7095bd1b"></h2>
-
 
 ## prime number theorem
 

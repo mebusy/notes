@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [cgo](#63e64fb7f6bfcedd6708e1b75126a6fb)
 - [Cgo - Go under the hood](#6f4f121d679c89cf32d0ea88934c99db)
@@ -12,11 +12,10 @@
 - [Examples](#ff7c0fcd6a31e735a61c001f75426961)
     - [macOS/iOS: Writing to NSLog using Golang (using Cgo)](#6895f5e89997716a5baf9162b803b053)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="63e64fb7f6bfcedd6708e1b75126a6fb"></h2>
-
 
 # cgo
 
@@ -71,11 +70,9 @@ import "C"
 
 <h2 id="6f4f121d679c89cf32d0ea88934c99db"></h2>
 
-
 # Cgo - Go under the hood
 
 <h2 id="cec36a9a2bd92e12e683c99d23b3a0fc"></h2>
-
 
 ## go build
 
@@ -89,7 +86,6 @@ import "C"
 
 <h2 id="83fec9a1c38557a5a493e84ac0a99521"></h2>
 
-
 ## for callback
 
 - Go can keep the c function pointer, but can not directly call it.
@@ -97,7 +93,6 @@ import "C"
 
 
 <h2 id="97f750032375877e095f758fc45a1867"></h2>
-
 
 ## Crossing the Chasem
 
@@ -114,7 +109,6 @@ import "C"
 
 <h2 id="eabd481c8a039ec36866de41247519f8"></h2>
 
-
 ## Concurrency considerations
 
 - Go multiplexes goroutines to GOMAXPROCS threads
@@ -123,7 +117,6 @@ import "C"
 - 800k goroutines of GO to C got "pthread_create failed" (pure Go no problem)
 
 <h2 id="5025b13f57d84277bcce817a407505ee"></h2>
-
 
 ## copy between C and Go
 
@@ -173,7 +166,6 @@ func C.GoBytes(unsafe.Pointer, C.int) []byte
 
 <h2 id="16ad6798ad517309b1d4959fd9f2bfa2"></h2>
 
-
 ## Call Go from Interpreter language
 
 Darwin -> .dylib
@@ -186,7 +178,6 @@ c-shared
 
 
 <h2 id="ed562296a9c5bcbe2d40b6a97f745940"></h2>
-
 
 ## 指针 - unsafe 包的灵魂
 
@@ -201,11 +192,9 @@ C  | `void *p = NULL;`  | `uintptr_t q = (unitptr_t)(p);` (c99)
 
 <h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
 
-
 # Examples
 
 <h2 id="6895f5e89997716a5baf9162b803b053"></h2>
-
 
 ## macOS/iOS: Writing to NSLog using Golang (using Cgo)
 

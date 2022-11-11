@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [UDP](#f5ef036b4d8b630721e51fe23489fbc9)
 - [帧同步 Lockstep](#4237cc523ddf51a463a91d770ebafc75)
@@ -12,11 +12,10 @@
 - [Mortal Kombat](#0be50d21cd18f6cf70ec79971504b63b)
 - [Halo](#aa6df57fb6fe377d80b4a257b4a92cba)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f5ef036b4d8b630721e51fe23489fbc9"></h2>
-
 
 # UDP
 
@@ -32,13 +31,11 @@
 
 <h2 id="4237cc523ddf51a463a91d770ebafc75"></h2>
 
-
 # 帧同步 Lockstep
 
 几个难点。是的，都是客户端的。
 
 <h2 id="d5096ffe34c40c04bb3c8ebcda25887b"></h2>
-
 
 ## 1 客户端计算的一致性
 
@@ -59,7 +56,6 @@
 
 <h2 id="71ade8c4ad1d399e5de3d4c3811320ab"></h2>
 
-
 ## 2 逻辑和显示分离
 
 - 游戏逻辑不要依赖于动画,或其他的美术资源
@@ -68,7 +64,6 @@
 
 
 <h2 id="40939848cc300fb489826d839a1243c2"></h2>
-
 
 ## 3 让操作流畅
 
@@ -85,7 +80,6 @@
 
 
 <h2 id="16731c5804652b67d31b9d80f92e9419"></h2>
-
 
 # Lockstep VS Rollback
 
@@ -120,7 +114,6 @@
 
 <h2 id="8fb429f2c732df02beed40b4aee2d98a"></h2>
 
-
 # 实现 #1 传统客户端
 
 1. 服务器定期广播
@@ -131,7 +124,6 @@
 会有延迟
 
 <h2 id="9eafae7566ddfa5de0886c16c02cbd00"></h2>
-
 
 # 实现 #2 预测回滚
 
@@ -155,7 +147,6 @@
 
 <h2 id="fcaeeb6e34b4303e99b91206bd325f2b"></h2>
 
-
 # Overwatch 
 
 - client go head by half RTT + buffer 
@@ -176,7 +167,6 @@
 
 
 <h2 id="0be50d21cd18f6cf70ec79971504b63b"></h2>
-
 
 # Mortal Kombat 
 
@@ -206,7 +196,6 @@ Single Frame Latency | Y |
         - Parametriacally is even better
 
 <h2 id="aa6df57fb6fe377d80b4a257b4a92cba"></h2>
-
 
 # Halo
 

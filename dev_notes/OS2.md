@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [lecture 6 : Synchronization](#0a777e4e25d6bed512e90f4276ed3f3e)
     - [Goals for Today](#134f950c115f6aa46f3605b42a307174)
@@ -83,16 +83,14 @@
         - [Banker’s Algorithm Example](#75405c8059b00a8201d5f81ed5772413)
     - [Summary (Deadlock)](#0db2e0a17394f45dbcc96774160dc99b)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="0a777e4e25d6bed512e90f4276ed3f3e"></h2>
 
-
 # lecture 6 : Synchronization
 
 <h2 id="134f950c115f6aa46f3605b42a307174"></h2>
-
 
 ## Goals for Today
 
@@ -103,7 +101,6 @@
 
 <h2 id="d8a1f8a1fb826b53b7b79e3cb43a59da"></h2>
 
-
 ## Threaded Web Server
 
 - Advantages of threaded version:
@@ -113,7 +110,6 @@
     - you got more overhead than real computation. You got a million threads going simultaneously the only thing you're doing is swithing all the time. 
 
 <h2 id="8c0fe8bd8957434b18beee61bb24d5a1"></h2>
-
 
 ## Thread Pools
 
@@ -151,11 +147,9 @@ slave(queue) {
 
 <h2 id="85fcb2cee656dde02fc06b37654e22d7"></h2>
 
-
 ## ATM Bank Server
 
 <h2 id="c6fae3a91ab01289d5961a6d490f1998"></h2>
-
 
 ### ATM bank server example
 
@@ -166,7 +160,6 @@ slave(queue) {
     - Multiple threads (multi-proc, or overlap comp and I/O)
 
 <h2 id="acf0b627474e80f857dbfa51abf222ac"></h2>
-
 
 ### Event Driven Version of ATM server
 
@@ -196,7 +189,6 @@ BankServer() {
 
 <h2 id="f8799e6f517713b0446f61f6deb8f9e2"></h2>
 
-
 ### Can Threads Make This Easier?
 
 - Threads yield overlapped I/O and computation without “deconstructing” code into non-blocking fragments
@@ -215,7 +207,6 @@ store r1, acct->balance
 ```
 
 <h2 id="d117b2ca76bc3129904333971dffeb66"></h2>
-
 
 ## Problem is at the lowest level
 
@@ -243,7 +234,6 @@ x = 1;     x = 2;
 
 <h2 id="eaa1709ae37b41b0f052cd5eae6a14b4"></h2>
 
-
 ## Atomic Operations
 
 - To understand a concurrent program, we need to know what the underlying indivisible operations are!
@@ -258,7 +248,6 @@ x = 1;     x = 2;
 
 <h2 id="73269bcd3c6c60c9afe0538902c352a2"></h2>
 
-
 ## Correctness Requirements
 
 - Threaded programs must work for all interleavings of thread instruction sequences
@@ -266,7 +255,6 @@ x = 1;     x = 2;
     - Really hard to debug unless carefully designed!
 
 <h2 id="97d8f56bf41502f60ca6fdd5d5da8edc"></h2>
-
 
 ## Definitions
 
@@ -290,7 +278,6 @@ x = 1;     x = 2;
 
 <h2 id="5e7b47e9a6f0988cdfebc1f7e24d146d"></h2>
 
-
 ## Where are we going with synchronization?
 
 ![](../imgs/os_thread_what_going_to_synchronize.png)
@@ -300,7 +287,6 @@ x = 1;     x = 2;
     - Need to provide primitives useful at user-level
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
-
 
 ## Summary 
 
@@ -320,11 +306,9 @@ x = 1;     x = 2;
 
 <h2 id="8570ce6b06af17a6a209f5d3517aa1e1"></h2>
 
-
 # Lecture 7 : Implementing Mutual Exclusion, Semaphores, Monitors, and Condition Variables
 
 <h2 id="134f950c115f6aa46f3605b42a307174"></h2>
-
 
 ## Goals for Today
 
@@ -335,7 +319,6 @@ x = 1;     x = 2;
 
 
 <h2 id="0df086f9bba7795a9b18b6e22bbe83e8"></h2>
-
 
 ## High-Level Picture
 
@@ -350,7 +333,6 @@ x = 1;     x = 2;
     - Explore some common programming paradigms
 
 <h2 id="4b6eee8efda451754a70cf1588f7f9f0"></h2>
-
 
 ## Too Much Milk: Solution #4
 
@@ -373,7 +355,6 @@ milklock.Release();
 
 <h2 id="3d86e0ff4fcefc805340e9ef1efa0675"></h2>
 
-
 ## How to implement Locks?
 
 - **Lock**: prevents someone from doing something
@@ -394,7 +375,6 @@ milklock.Release();
         - Each feature makes hardware more complex and slow
 
 <h2 id="ae475fc8c83f6ca5f9823f95930bdfea"></h2>
-
 
 ## Naïve use of Interrupt Enable/Disable
 
@@ -421,7 +401,6 @@ milklock.Release();
 
 
 <h2 id="0c0efbf1e274251e1b5949d23eba0aab"></h2>
-
 
 ## Better Implementation of Locks by Disabling Interrupts
 
@@ -459,7 +438,6 @@ Release() {
 
 <h2 id="d9057f02e7c606b1524cb5309d285eea"></h2>
 
-
 ## New Lock Implementation: Discussion
 
 - Why do we need to disable interrupts at all?
@@ -467,7 +445,6 @@ Release() {
     - Otherwise two threads could think that they both have lock
  
 <h2 id="ce745553387b15821d65f05b351abcd5"></h2>
-
 
 ## Interrupt re-enable in going to sleep
 
@@ -485,7 +462,6 @@ Release() {
 
 <h2 id="b5e44eaec284226ecb674ec9be6332d9"></h2>
 
-
 ## How to Re-enable After Sleep()?
 
 - In Nachos, since ints are disabled when you call sleep:
@@ -496,7 +472,6 @@ Release() {
 
 
 <h2 id="fd67835f251cf36ce8c281c452376add"></h2>
-
 
 ## Interrupt disable and enable across context switches
 
@@ -518,7 +493,6 @@ mylock.release()
 
 <h2 id="fe609fcadb06bc77aa2ec6e7fa11982c"></h2>
 
-
 ## Atomic Read-Modify-Write instructions
 
 - Problems with previous solution:
@@ -536,7 +510,6 @@ mylock.release()
 - Unlike disabling interrupts, can be used on both uniprocessors and multiprocessors
 
 <h2 id="0cb1f961279712e6387eb806706470ef"></h2>
-
 
 ### Examples of Read-Modify-Write 
  
@@ -578,7 +551,6 @@ load-linked&store conditional(&address) {
 
 <h2 id="8bd032d628d2ee230ece8cdf6d2f207f"></h2>
 
-
 ## Implementing Locks with test&set
 
 - Another flawed, but simple solution:
@@ -603,7 +575,6 @@ Release() {
 
 <h2 id="02e4fa8979f9af340f94ff6415ee68ff"></h2>
 
-
 ## Problem: Busy-Waiting for Lock
 
 - Positives for this solution
@@ -621,7 +592,6 @@ Release() {
 
 
 <h2 id="d039e3f1b9d4688654f7fe17129a4a89"></h2>
-
 
 ## Better Locks using test&set
 
@@ -664,7 +634,6 @@ Release() {
  
 <h2 id="fef1b09d1d69da7e2340c9843f37a438"></h2>
 
-
 ## Higher-level Primitives than Locks
  
 - Goal of last couple of lectures:
@@ -679,7 +648,6 @@ Release() {
 
 
 <h2 id="58d4d2ed940cdd8be6c2061c284358da"></h2>
-
 
 ## Semaphores
 
@@ -698,7 +666,6 @@ Release() {
     
 
 <h2 id="134c7143615a9f821859a7cc9d05acb8"></h2>
-
 
 ### Semaphores Like Integers Except
 
@@ -719,7 +686,6 @@ Release() {
 ![](../imgs/os_thread_semaphores_value_0.png)
 
 <h2 id="df3e6a40766c1b8a18ce0e66e1b5c504"></h2>
-
 
 ### Two Uses of Semaphores
 
@@ -747,7 +713,6 @@ ThreadFinish {
 
 <h2 id="96824e19e02c8a68ae66997ff614b298"></h2>
 
-
 ## Producer-consumer with a bounded buffer
 
 - Problem Definition
@@ -767,7 +732,6 @@ ThreadFinish {
 
 <h2 id="1906399fd7e9b2ca2ae42be8a16f99b6"></h2>
 
-
 ### Correctness constraints for solution
 
 - Correctness Constraints:
@@ -784,7 +748,6 @@ ThreadFinish {
 
 
 <h2 id="cc6b2a3d9ea5e9b3a24e6e884de19d22"></h2>
-
 
 ### Full Solution to Bounded Buffer     
 
@@ -813,7 +776,6 @@ Consumer() {
 
 <h2 id="2376ef53aa4475e775d822d3db211322"></h2>
 
-
 ### Discussion about Solution
 
 - Why asymmetry?
@@ -829,7 +791,6 @@ Consumer() {
 
 <h2 id="69810f85a57f822b996883f32374b3a7"></h2>
 
-
 ## Motivation for Monitors and Condition Variables
 
 - Semaphores are a huge step up; just think of trying to do the bounded buffer with only loads and stores
@@ -843,7 +804,6 @@ Consumer() {
     - Monitor is a programming style or paradigm for building synchronization. It's a pattern. 
 
 <h2 id="277df50d9fa89314547c06e1f17cee40"></h2>
-
 
 ## Monitor with Condition Variables
 
@@ -863,7 +823,6 @@ The lock provides mutual exclusion to get in and deal with the condition variabl
 - lock 保护 sharedata， sharedata 控制访问限制
 
 <h2 id="8b1e0edd9d2a287d52be6dd022c68c7e"></h2>
-
 
 ### Simple Monitor Example
 
@@ -896,7 +855,6 @@ RemoveFromQueue() {
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
-
 ## Summary
 
 - Important concept: Atomic Operations
@@ -914,11 +872,9 @@ RemoveFromQueue() {
 
 <h2 id="d82c7cd8bfc967bc3466ba0df7a07b30"></h2>
 
-
 # Lecture 8: Readers/Writers; Language Support for Synchronization
 
 <h2 id="134f950c115f6aa46f3605b42a307174"></h2>
-
 
 ## Goals for Today
 
@@ -930,7 +886,6 @@ RemoveFromQueue() {
 
 
 <h2 id="12ec8d63b9c0f5207e953008a49fc0a1"></h2>
-
 
 ## Simple Monitor Example (version 1)
 
@@ -958,7 +913,6 @@ RemoveFromQueue() {
 
 <h2 id="bc040239e2bdcdb0fdb5b22a8d93dd78"></h2>
 
-
 ## Condition Variables
 
 - How do we change the RemoveFromQueue() routine to wait until something is on the queue?
@@ -976,7 +930,6 @@ RemoveFromQueue() {
 
 
 <h2 id="0ecd767a2fc3cd8b5537db79cdedbe05"></h2>
-
 
 ## Complete Monitor Example (with condition variable)
 
@@ -1010,7 +963,6 @@ RemoveFromQueue() {
 
 <h2 id="3d8107f1e26613768b14fe6f9d4fd513"></h2>
 
-
 ## Mesa vs. Hoare monitors
 
 - Need to be careful about precise definition of signal and wait. Consider a piece of our dequeue code:
@@ -1033,7 +985,6 @@ item = queue.dequeue(); // Get next item
         - **Practically, need to check condition again after wait**
 
 <h2 id="ebd967650933351963789c0db5c80723"></h2>
-
 
 ## Using of Compare&Swap for queues
 
@@ -1066,7 +1017,6 @@ addToQueue(&object) {
 
 <h2 id="97737c22439d498aa05d01b68a31eee8"></h2>
 
-
 ## Readers/Writers Problem
 
 ![](../imgs/os_thread_reader_writers_problem.png)
@@ -1081,7 +1031,6 @@ addToQueue(&object) {
 
 
 <h2 id="feb308406e76eb783feefde7308d37cb"></h2>
-
 
 ### Basic Readers/Writers Solution
 
@@ -1107,7 +1056,6 @@ addToQueue(&object) {
         - Conditioin okToWrite = NIL
 
 <h2 id="a58c31f9b0dd129c6884508489723376"></h2>
-
 
 ### Code for a Reader
 
@@ -1140,7 +1088,6 @@ Reader() {
 
 
 <h2 id="99edb23378eeb2cf83d5e76cfc717d25"></h2>
-
 
 ### Code for a Writer
 
@@ -1179,7 +1126,6 @@ Writer() {
 
 <h2 id="a97ea56b0e00b2379736ae60869ff66a"></h2>
 
-
 ### Question
 
 - What if we erase the condition check in Reader exit?
@@ -1193,7 +1139,6 @@ Writer() {
     - Must use broadcast() instead of signal()
 
 <h2 id="29a253cba7cb8c07c72fb2173efe6989"></h2>
-
 
 ## Can we construct Monitors from Semaphores?
 
@@ -1221,7 +1166,6 @@ Signal() { semaphore.V(); }
         - Decrement and continue 
 
 <h2 id="ffc68f144cb3aaa48a669503c9453355"></h2>
-
 
 ## Construction of Monitors from Semaphores (con’t)
 
@@ -1253,7 +1197,6 @@ Signal() {
 
 <h2 id="bd20aec7f47d3fdbc7a7829f523fa03f"></h2>
 
-
 ## Monitor Conclusion
 
 - Monitors represent the logic of the program
@@ -1266,11 +1209,9 @@ Signal() {
 
 <h2 id="28f651ed7afea2c50425c709668b676a"></h2>
 
-
 ## Language support for synchronization 
 
 <h2 id="f6f87c9fdcf8b3c3f07f93f1ee8712c9"></h2>
-
 
 ### C++
 
@@ -1322,7 +1263,6 @@ void DoFoo() {
     - Can deallocate/free lock regardless of exit method
 
 <h2 id="d52387880e1ea22817a72d3759213819"></h2>
-
 
 ### Java
 
@@ -1395,7 +1335,6 @@ while (!ATMRequest()) {
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
-
 ## Summary
 
 - Semaphores: Like integers with restricted interface
@@ -1419,11 +1358,9 @@ while (!ATMRequest()) {
 
 <h2 id="7c64ac5cca2f1b61bb6050f0c780662e"></h2>
 
-
 # Lecture 9 : Resource Contention and Deadlock 
 
 <h2 id="134f950c115f6aa46f3605b42a307174"></h2>
-
 
 ## Goals for Today
 
@@ -1435,7 +1372,6 @@ while (!ATMRequest()) {
 
 
 <h2 id="ddcf50c29294d4414f3f7c1bbc892cb5"></h2>
-
 
 ## Resources
 
@@ -1454,7 +1390,6 @@ while (!ATMRequest()) {
 
 <h2 id="e66cc87dc77acc53b59839e4d32c59f6"></h2>
 
-
 ## Starvation vs Deadlock
 
 - Starvation vs. Deadlock
@@ -1470,7 +1405,6 @@ while (!ATMRequest()) {
         - Deadlock can’t end without external intervention
 
 <h2 id="854d217dd7484494ec7fef6f86239ee3"></h2>
-
 
 ## Conditions for Deadlock
 
@@ -1495,7 +1429,6 @@ x.V();      y.V();
 
 <h2 id="4e1e87646856a00a3317d4cf7e38301c"></h2>
 
-
 ### Bridge Crossing Example
 
 ![](../imgs/os_thread_deadlock_example_cars.png)
@@ -1513,7 +1446,6 @@ x.V();      y.V();
 
 <h2 id="4fa3ecace35c7a5d85cd17f794cd753c"></h2>
 
-
 ### Train Example (Wormhole-Routed Network)
 
 ![](../imgs/os_thread_deadlock_example_train.png)
@@ -1528,7 +1460,6 @@ x.V();      y.V();
     - Called “dimension ordering” (X then Y)
 
 <h2 id="443e85f9c2e02a73bcba0e0b90fea5db"></h2>
-
 
 ## Dining Lawyers Problem
 
@@ -1547,7 +1478,6 @@ x.V();      y.V();
 
 <h2 id="b0764a5818c0783470ac25ef6f15fa06"></h2>
 
-
 ## Four requirements for Deadlock
 
 - Mutual exclusion
@@ -1564,7 +1494,6 @@ x.V();      y.V();
         - T<sub>n</sub> is waiting for a resource that is held by T₁
 
 <h2 id="cd4c9a20ae25f28bf89fdceeeb8ff759"></h2>
-
 
 ## Resource-Allocation Graph
 
@@ -1591,7 +1520,6 @@ x.V();      y.V();
 
 <h2 id="4053557fd46fc4a1438c8fa6b1158e66"></h2>
 
-
 ### Resource Allocation Graph Examples
 
 - Recall:
@@ -1603,7 +1531,6 @@ x.V();      y.V();
 
 
 <h2 id="51cbff7f5c9ab16fb72f7f72ee951f5c"></h2>
-
 
 ## Methods for Handling Deadlocks
 
@@ -1617,7 +1544,6 @@ x.V();      y.V();
     - Used by most operating systems, including UNIX
 
 <h2 id="2c61a97575bf39f95051de0065bf4b52"></h2>
-
 
 ## Deadlock Detection Algorithm
 
@@ -1652,7 +1578,6 @@ do {
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
 
-
 ## Summary 
 
 - Starvation vs. Deadlock
@@ -1677,11 +1602,9 @@ do {
 
 <h2 id="bf84fee9d2e0d27ab6eb0a89ccbf2a59"></h2>
 
-
 # Lecture 10 : Deadlock (cont’d) / Thread Scheduling
 
 <h2 id="134f950c115f6aa46f3605b42a307174"></h2>
-
 
 ## Goals for Today
 
@@ -1691,7 +1614,6 @@ do {
 - Implementation Considerations
 
 <h2 id="3be29107b16cdcaa715b0e62eec09933"></h2>
-
 
 ## What to do when detect deadlock?
 
@@ -1711,7 +1633,6 @@ do {
 - Many operating systems use other options
 
 <h2 id="f3a2b84a9e5ac845742510943ccca3ec"></h2>
-
 
 ## Techniques for Preventing Deadlock
 
@@ -1747,7 +1668,6 @@ do {
 
 <h2 id="91245fc5f505d4166a98cabd74f987fe"></h2>
 
-
 ## Banker’s Algorithm for Preventing Deadlock
 
 - Toward right idea: 
@@ -1772,7 +1692,6 @@ do {
 
 <h2 id="75405c8059b00a8201d5f81ed5772413"></h2>
 
-
 ### Banker’s Algorithm Example
 
 - Banker’s algorithm with dining lawyers
@@ -1787,7 +1706,6 @@ do {
 
 
 <h2 id="0db2e0a17394f45dbcc96774160dc99b"></h2>
-
 
 ## Summary (Deadlock)
 

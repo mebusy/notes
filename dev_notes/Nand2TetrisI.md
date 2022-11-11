@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week1](#3c88e16de2066fa3ce3055a55a3e473b)
     - [Introduction](#0b79795d3efc95b9976c7c5b933afce2)
@@ -40,22 +40,19 @@
     - [3.5 Project 3 Overview](#2b71d41a7eec0448db9bd1fba3ff759c)
     - [3.6 Perspectives](#7885bcf08ce9948199998c1d92b48876)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="3c88e16de2066fa3ce3055a55a3e473b"></h2>
-
 
 # Week1 
 
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
 
-
 ## Introduction
 
 <h2 id="6624e60920560019e562d83bb9d2634a"></h2>
-
 
 ### 0.0 Introduction
 
@@ -69,11 +66,9 @@
 
 <h2 id="deb69b5e23e0f74aea56d42c2df9b438"></h2>
 
-
 ## Boolean Functions and Gate Logic
 
 <h2 id="98b0af5f662c251fcef7642894b9ffc9"></h2>
-
 
 ### 1.2 Boolean Function Synthesis
 
@@ -121,7 +116,6 @@ x | y | NAND
 
 <h2 id="4776353de4540e4f66ce8b76d947956a"></h2>
 
-
 ### 1.3 Logic Gates
 
 ![](../imgs/n2t_gate_interface.png)
@@ -134,7 +128,6 @@ x | y | NAND
 
 
 <h2 id="9ce58a559622579ca35bb01b7859eac4"></h2>
-
 
 ### 1.4 Hardware Description Language
 
@@ -160,7 +153,6 @@ x | y | NAND
 
 <h2 id="488a1db79bf52eb4fb7533030e708ef8"></h2>
 
-
 ### 1.5 Hardware Simulation
 
 ```
@@ -173,7 +165,6 @@ x | y | NAND
 - tst 里可以 把结果输出， 还可以把 输出结果 和 事先准备的 .cmp 文件做比较
 
 <h2 id="1c64efba42a324df638142f32dc44cd7"></h2>
-
 
 ### 1.6 Multi-Bit Buses
 
@@ -265,7 +256,6 @@ Add16( ... , out[0..3]=t1, out[4..15]=t2 ) ;
 
 <h2 id="b3e39cb5cfea130c68f209315631defb"></h2>
 
-
 ### 1.7 Project 1 Overview 
 
 - Given: Nand
@@ -336,11 +326,9 @@ else
 
 <h2 id="687c054c8abba26ef7b123d19d29bee7"></h2>
 
-
 # Week2 
 
 <h2 id="131e179ad49dba389fb712edbce83653"></h2>
-
 
 ## ALU (Arithmetic Logic Unit)
 
@@ -348,7 +336,6 @@ else
 - Multiplication and division are complicated, but nicely enough, we can actually postpone them to software.
 
 <h2 id="892d5ac8e8edcf45571fc6dfccf96844"></h2>
-
 
 ### 2.2 Binary Addition
 
@@ -358,7 +345,6 @@ else
     3. Adder -- Adds two numbers
 
 <h2 id="3c768e168bf5f2e5f59527f72e2caf45"></h2>
-
 
 #### Half Adder
 
@@ -375,7 +361,6 @@ a | b | sum | carry
 
 <h2 id="62843c6b864546259210870080899995"></h2>
 
-
 #### Full Adder
 
 ![](../imgs/n2t_fullAdder.png)
@@ -386,14 +371,12 @@ a | b | sum | carry
 
 <h2 id="91b7a456eb59162eaccf2adc70438388"></h2>
 
-
 #### Multi-bit Adder 
 
  1. half adder
  2. full adder , repeart
 
 <h2 id="b80c8c38754b730ad44808a34b8d698d"></h2>
-
 
 ### 2.3 Negative Numbers 
 
@@ -411,7 +394,6 @@ a | b | sum | carry
 
 <h2 id="a47675cad4753ebab07a57b4a9e78e67"></h2>
 
-
 ### 2.4 Arithmetic Logic Unit
 
 - Arithmetic operations:
@@ -420,7 +402,6 @@ a | b | sum | carry
     - And, Or, Xor, ...
 
 <h2 id="3ffc084f37bf42ee151ecd9966a231b2"></h2>
-
 
 #### The Hack ALU 
 
@@ -442,7 +423,6 @@ a | b | sum | carry
 
 <h2 id="a984b69cb0ab211f60d2e97cf876382c"></h2>
 
-
 #### The 6 Control bits
 
 ![](../imgs/n2t_alu_18funcs_truth_table.png)
@@ -458,7 +438,6 @@ a | b | sum | carry
 
 <h2 id="3eec4389f60776ec69d05a0bd6bc95c0"></h2>
 
-
 #### The 2 output control bits
 
 - if out == 0 , then zr = 1 , else zr = 0.
@@ -471,7 +450,6 @@ a | b | sum | carry
 - The Hack ALU is both simple but quite sophisticated.
 
 <h2 id="7557328bfddc5cca7df8351f2ffc9d03"></h2>
-
 
 ### 2.5 Project2 
 
@@ -487,13 +465,11 @@ a | b | sum | carry
 
 <h2 id="58c4997ddbb7c4994b5cad449ca383ea"></h2>
 
-
 # Week3 Memory
 
 - **Key concepts**: combinational vs sequential logic, clocks and cycles, flip-flops, registers, RAM units, counters.
 
 <h2 id="11f9d74828e68a5c48b5117ed4971161"></h2>
-
 
 ## 3.1 Sequential Logic
 
@@ -520,7 +496,6 @@ a | b | sum | carry
 
 <h2 id="dd1838a3a82bef4194744fc19ee6c7e8"></h2>
 
-
 ### The Clock
 
 - convert physical time to discreet time.
@@ -546,14 +521,12 @@ a | b | sum | carry
 
 <h2 id="80761b62ccda39c79029f7ec0a9f0f03"></h2>
 
-
 ### Combinatorial Logic vs. Sequential Logic
 
 - Combinatorial: out[t] = function( in[t] ) 
 - Sequential :   out[t] = function( in[t-1] )
 
 <h2 id="700b1182938e9242255f9bf7360ca646"></h2>
-
 
 ## 3.2 Flip Flops
 
@@ -571,7 +544,6 @@ a | b | sum | carry
 
 <h2 id="87bf13c75d6464dbb9ffffec0073a174"></h2>
 
-
 ### The "Clocked Data Flip Flop"
 
 ![](../imgs/n2t_flip_flop.png)
@@ -581,7 +553,6 @@ a | b | sum | carry
 - The little triangle that we see at the bottom of the D flip-flop diagram , means that we have a sequential chip, a chip that depends on time. 
 
 <h2 id="037dbed7ed98a2dca86efdbcc28b4184"></h2>
-
 
 ### Implementation of the D Flip Flop 
 
@@ -596,7 +567,6 @@ a | b | sum | carry
 
 <h2 id="4cceb9e8f6aa3a2fdfd1b332db946b66"></h2>
 
-
 ### Sequential Logic Imlementation
 
 ![](../imgs/n2t_sequential_logic_impl.png)
@@ -609,7 +579,6 @@ a | b | sum | carry
 
 <h2 id="f4d44576782bb5db7f102699fbc2b7d6"></h2>
 
-
 ### Remembering For Ever: 1-bit register
 
 - Goal: remember an input it "forever": until requested to load a new value
@@ -621,7 +590,6 @@ a | b | sum | carry
 
 <h2 id="054e787feedbcaa8318489cd44a5f424"></h2>
 
-
 #### Working "Bit" Implementation 
 
 ![](../imgs/n2t_working_bit_impl.png)
@@ -629,7 +597,6 @@ a | b | sum | carry
 ---
 
 <h2 id="14bb9bdf431f881432dc8fd6675e2eae"></h2>
-
 
 ## 3.3 Memory Units
 
@@ -645,7 +612,6 @@ a | b | sum | carry
     - Logical 
 
 <h2 id="cf848af4b162bb87c7e68f55474cb601"></h2>
-
 
 ### The most basic memory element: Register
 
@@ -667,7 +633,6 @@ a | b | sum | carry
     - From the next cycle onward, out emits v
 
 <h2 id="f326d01caa8d0e83c2d559ef8f04e42e"></h2>
-
 
 ### RAM unit
 
@@ -710,7 +675,6 @@ else out = M
 
 <h2 id="2bf55e7447acec05c8bc2e45f68bbaa8"></h2>
 
-
 ## 3.4 Counters 
 
 - The computer must keep track of whch instruction should be *fetched and executed* next
@@ -730,7 +694,6 @@ else out = M
 
 <h2 id="702ee0d3aebd7fea4eae6043838f6a7f"></h2>
 
-
 ### Counter abstraction
 
 ![](../imgs/n2t_counter_abstraction.png)
@@ -739,7 +702,6 @@ else out = M
 
 
 <h2 id="2b71d41a7eec0448db9bd1fba3ff759c"></h2>
-
 
 ## 3.5 Project 3 Overview
 
@@ -764,7 +726,6 @@ else out = M
     - PC
 
 <h2 id="7885bcf08ce9948199998c1d92b48876"></h2>
-
 
 ## 3.6 Perspectives
 

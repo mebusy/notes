@@ -1,12 +1,11 @@
-...menustart
+[](...menustart)
 
 - [Fast Distance 2D](#249f1d24d934aa496a04f61d7ec26566)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="249f1d24d934aa496a04f61d7ec26566"></h2>
-
 
 # Fast Distance 2D
 

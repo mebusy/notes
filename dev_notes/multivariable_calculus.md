@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Multivariable Calculus](#8ed36a2358db5f51e14738b08adae1e8)
     - [Vector Fields](#3b7f54591e7f5474a014162323f133b3)
@@ -14,11 +14,10 @@
     - [Vector form of the multivariable chain rule](#3c1eaf19d0cdbb7207ae3fee0af4defd)
     - [Multivariable chain rule and directional derivatives](#4291d8b552cce8e49e10e7162e73e79a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8ed36a2358db5f51e14738b08adae1e8"></h2>
-
 
 # Multivariable Calculus
 
@@ -37,7 +36,6 @@ It would probably be more accurate to call it multidimensional calculus. Because
 
 
 <h2 id="3b7f54591e7f5474a014162323f133b3"></h2>
-
 
 ## Vector Fields
 
@@ -84,7 +82,6 @@ f(x,y,z) = |y|
 
 <h2 id="e4ba47693cf74a797e63f4557d4b88f4"></h2>
 
-
 ## Transformations
 
 ```bash
@@ -114,7 +111,6 @@ And as we get into multi variable calculus and you start thinking a little more 
 
 <h2 id="0528ae3ac84335726cdb869c37f074b5"></h2>
 
-
 ## Partial derivatives
 
 ```
@@ -139,14 +135,12 @@ You're thinking this is because you're just moving in one direction for the inpu
 
 <h2 id="720490b1bfd5d1d881f484a660c17cbe"></h2>
 
-
 ## Formal definition of partial derivatives
 
 ![](../imgs/mc_partical_3.png) ![](../imgs/mc_partical_4.png)
 
 
 <h2 id="a32eb790ef82890d3d0f9fa9b2baa39b"></h2>
-
 
 ## Symmetry of second partial derivatives
 
@@ -158,7 +152,6 @@ That is a pretty cool result.   What's surprising is that  this turns out to be 
 
 
 <h2 id="5e59525cb7d1d1cd93be0b9f36e9d09a"></h2>
-
 
 ## Gradient
 
@@ -184,7 +177,6 @@ The gradient can be thought of as pointing in the "**direction of steepest ascen
 
 <h2 id="5b6aea879e0205053b5c2ead9de77092"></h2>
 
-
 ## Directional derivative
 
 Directional derivatives tell you how a multivariable function changes as you move along some vector in its input space.  That is, what does a nudge in that vector's direction do to the function itself? 
@@ -206,7 +198,6 @@ Formal definition:
 
 <h2 id="b4e20dd468bf9adb89509b770119bd85"></h2>
 
-
 ## Why the gradient is the direction of steepest ascent
 
 ```bash
@@ -226,7 +217,6 @@ When ∇f(a,b) has the same direction as v , dot product has the greatest value.
 
 <h2 id="9201e0fe2c81168aca84873317f7d525"></h2>
 
-
 ## Gradient and contour maps
 
 Question:  of all of the vectors that move from this output of 2 , up to the value of 2.1 , which one dest it the fastest ?
@@ -240,7 +230,6 @@ Keep it in the back of you mind: **Gradient is always perpendicular to contour l
 
 
 <h2 id="c6b56a77a991e01195baa8b3a6c425a1"></h2>
-
 
 ## Multivariable chain rule
 
@@ -270,7 +259,6 @@ Keep it in the back of you mind: **Gradient is always perpendicular to contour l
 
 
 <h2 id="3c1eaf19d0cdbb7207ae3fee0af4defd"></h2>
-
 
 ## Vector form of the multivariable chain rule
 
@@ -311,7 +299,6 @@ And if you were being a little bit more exact you would emphasize that when you 
 
 
 <h2 id="4291d8b552cce8e49e10e7162e73e79a"></h2>
-
 
 ## Multivariable chain rule and directional derivatives
 

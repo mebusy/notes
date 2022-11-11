@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [数据](#0d83078816aa273f2941c9b55ec82bf3)
     - [4.1 Array](#32178c1cda9177ed4e8042ecd5a53311)
@@ -51,11 +51,10 @@
             - [go 没有 class 关键字, 没有继承，没有多态](#260cee088febedcbe0bc084c5a204d25)
             - [go 仅支持封装，尽管匿名字段 的内存布局和行为类似继承](#7a0e8618e6e08b4f73a7883d6879ec49)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="0d83078816aa273f2941c9b55ec82bf3"></h2>
-
 
 # 数据
 
@@ -63,37 +62,29 @@
 
 <h2 id="32178c1cda9177ed4e8042ecd5a53311"></h2>
 
-
 ## 4.1 Array
 
 <h2 id="3ceb784b5b43a112863ed3aa4896cb41"></h2>
 
-
 ##### 数组是值类型,赋值和传参会复制整个数组
 <h2 id="50b847b46a30309a872dad8d4c275de5"></h2>
-
 
 ##### 数组长度必须是常量,且是类型的组成部分
 <h2 id="f9015b05de60900b98ecda6f5d90fc35"></h2>
 
-
 ##### [2]int 和 [3]int 是不同类型
 <h2 id="df299689d1e512bfc747213652cbe873"></h2>
-
 
 ##### 支持 "=="、"!=" 操作符
 <h2 id="0be70e06d6650b4964c4f0aa65271323"></h2>
 
-
 ##### 指针数组 [n]*T,数组指针 *[n]T
 <h2 id="130ebd90a6475381a1b1dff10f76a535"></h2>
-
 
 ##### 内置函数 len 和 cap  返回数组长度度
 
 ---
 <h2 id="2cb472ff9cad0c89a033c53996b52053"></h2>
-
 
 ### 初始化
 
@@ -112,7 +103,6 @@ d := [...]struct {
 ---
 <h2 id="99c53534ceaf36c0b46a74deda53c7cc"></h2>
 
-
 ### 多维数组
 
 ```go
@@ -122,7 +112,6 @@ b := [...][2]int{{1, 1}, {2, 2}, {3, 3}}  //第二维需要确定长度
 
 ---
 <h2 id="62815bce971f6e4a45bb6b38263405d9"></h2>
-
 
 ## 4.2 Slice
 
@@ -137,14 +126,11 @@ struct Slice
 
 <h2 id="ca4e4d1fa15392fa7cf3f2a5d12106bf"></h2>
 
-
 ##### 属性 len 表示可用元素数量,读写操作不能超过该限制。
 <h2 id="2a98da4460bafc883a705eee9583f736"></h2>
 
-
 ##### 属性 cap 表示最大扩张容量,不能超出数组限制
 <h2 id="c1caad754bd5737481e2d529c7c7ac8c"></h2>
-
 
 ##### 如果 slice == nil,那么 len、cap 结果都等于 0
 
@@ -185,7 +171,6 @@ data[:]     | [0123456789]  |10 |10 |   全部省略
 
 <h2 id="deccfdfd6d0ea36e758542fc41337d6d"></h2>
 
-
 ##### [][]T,是指元素类型为 []T 
 
 ```go
@@ -199,31 +184,25 @@ data := [][]int{
 ---
 <h2 id="bdd51f510adf85b7340b8a0731aed377"></h2>
 
-
 ### 4.2.2 append
 
 <h2 id="5a8d311ab43ab0faba05939c11066260"></h2>
-
 
 ##### 向尾部添加数据,返回新的 slice 对象
 
 <h2 id="6980e12abd7d72305dcf05e3e9d4a7f2"></h2>
 
-
 ##### 超出 slice.cap 限制, 重新分配底层数组
 
 <h2 id="97dd95d57b894024eb2c68bdd658bfc6"></h2>
-
 
 ##### 及时释放不再使用的slice对象,避免过期引用
 
 <h2 id="84a5e07c4c7ce7bc78a7b0f1778339e9"></h2>
 
-
 ##### slice = append(slice, 4,5,6 )  
 
 <h2 id="6615ef6c7a414d12ec66d15175fc589a"></h2>
-
 
 ##### slice = append(slice, slice2…) 
 
@@ -232,39 +211,32 @@ data := [][]int{
 ---
 <h2 id="9e740eb7607b6091af5c151d78f169d5"></h2>
 
-
 ### 4.2.3 copy   copy( dst , src )
 
 <h2 id="c65b6e1ddee3382bf3e8a193efd0e6ef"></h2>
-
 
 ##### slice间复制数据，复制长度以 len 小的为准
 
 <h2 id="badd979ff3cf0b17bbf0f018712c2ab8"></h2>
 
-
 ##### 两个 slice 可以指向同一底层数组
 
 <h2 id="2398e3420f5ef0d44fd135500fb83e25"></h2>
-
 
 ##### 允许元素区间重叠
 
 ---
 <h2 id="91cb5cf9c1da4d477408a50b5508b2bc"></h2>
 
-
 ## 4.3 Map
 
 <h2 id="bac6134ee6adeb5579ac6b1db575522f"></h2>
-
 
 ##### 键必须是支持相等运算符(==,!=)类型
 
     比如: number,string,pointer, array, struct,以及对应的 interface
 
 <h2 id="26f4bf354defad22d0a7f9362566fd31"></h2>
-
 
 ##### 预先给 make 函数一个合理cap 参数，有助于提升性能
 
@@ -275,26 +247,21 @@ data := [][]int{
 ---
 <h2 id="ca24c96f43b40118ee6132fbee9b1f38"></h2>
 
-
 ### 常见操作
 
 <h2 id="5bda47962a40f1c96ab2991938d5fde2"></h2>
-
 
 ##### if v, ok := m["a"]; ok {   // 判断key是否存在
 
 <h2 id="6e684da5fd6629336f7187da62b3bb9a"></h2>
 
-
 ##### 读取不存在的key 不会出错，直接返回 \0
 
 <h2 id="7d80d4577f1a4e1b94d8def703b99585"></h2>
 
-
 ##### delete(m, "c")   删除, key如果不存在,不会出错
 
 <h2 id="0898070678c415368721f888cb05d660"></h2>
-
 
 ##### map中取回的value是临时复制品,对array,struct类型value修改其成员是没有意义，且禁止的
 
@@ -319,7 +286,6 @@ m1["a"].name = "b"   // cannot assign to m1["a"].name
 
 <h2 id="ec4c60853957bccf84bfcb5ae754f5fb"></h2>
 
-
 ##### 正确修改array,struct类型value成员的做法是 整个替换 或 使用指针
 
 ```go
@@ -337,22 +303,18 @@ println( m2["a"].name  )  // Jack
 
 <h2 id="4585687eb5ef30736a5c313362641ef3"></h2>
 
-
 ##### range 迭代期间可以安全删除键值, 但是新增键值会造成未知后果
 
 ---
 <h2 id="d013ccfa7a77fde240bbcf2dce401e35"></h2>
 
-
 ## 4.4 Struct
 
 <h2 id="1d51d98eadc62873b6089f89bd75f333"></h2>
 
-
 ##### 可用 _ 定义补位字段
 
 <h2 id="d7a3a369c6f5bf882d6bf8e94470cd33"></h2>
-
 
 ##### 支持指向自身类型的指针成员
 
@@ -366,7 +328,6 @@ type Node struct {
 ```
 
 <h2 id="41bf8c61cc0d88d988e2ce0ca8f5be7b"></h2>
-
 
 ##### 使用字段名 部分初始化， 或提供全部字段值 顺序初始化
 
@@ -385,7 +346,6 @@ u2 := User{"Tom"}   // Error: too few values in struct initializer
 ```
 
 <h2 id="943882584dc31d213d71941acfe3b2b4"></h2>
-
 
 ##### 支持匿名结构，用作 结构成员，或 定义变量
 
@@ -418,11 +378,9 @@ var attr = struct {
 
 <h2 id="6aa1d85873f56a14aff0b34dfaa26605"></h2>
 
-
 ##### 支持"==", "!=" 操作, 可作 map 键类型
 
 <h2 id="6441a3f5ed8fb1b865643ce5361a613e"></h2>
-
 
 ##### 可定义字段标签, 用反射读取。标签是类型的组成部分
 
@@ -433,16 +391,13 @@ var u1 struct { name string "username" }
 ---
 <h2 id="dc612f42f3d6292a4ee31ef440c978e3"></h2>
 
-
 ### 4.4.1 匿名字段
 
 <h2 id="3b6d647478bb5800c3eeecbc22bbfdcc"></h2>
 
-
 ##### 匿名字段是语法糖, 实际就是一个和类型同名(不含包名)的字段
 
 <h2 id="7f21ec01d2e6bd4d575a03b30545ff7d"></h2>
-
 
 ##### 编译器从外向内逐级查找所有层次匿名字段
 
@@ -466,7 +421,6 @@ m.title = "Administrator"
 ```
 
 <h2 id="73d63043a2a70bb001e6fa477bade5ac"></h2>
-
 
 ##### 外层同名字段会遮蔽 嵌入字段成员,此时需要使用显式字段名
 
@@ -499,22 +453,18 @@ println(u.Classify.id)   // 100
 
 <h2 id="1e091ebd2e1d10726cd2fa0f40a1540e"></h2>
 
-
 ##### 不能同时嵌入某一 类型 和其指针类型，因为它们名字相同
 
 ---
 <h2 id="5a29b016818b0bb672014c3c78bae28f"></h2>
 
-
 ### 4.4.2 面向对象
 
 <h2 id="260cee088febedcbe0bc084c5a204d25"></h2>
 
-
 ##### go 没有 class 关键字, 没有继承，没有多态
 
 <h2 id="7a0e8618e6e08b4f73a7883d6879ec49"></h2>
-
 
 ##### go 仅支持封装，尽管匿名字段 的内存布局和行为类似继承
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Octave Tutorial](#7b7506511ca80c5b54b8e2f1784aab67)
     - [一般命令](#45cd59165ed98b8a43499f3529f43da5)
@@ -46,20 +46,17 @@
         - [a=a(:)](#0aabb2e84a3f1c8c85b42b73abb1239d)
     - [cell array](#37a8bc45f9e398cdffe832b507cf789b)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="7b7506511ca80c5b54b8e2f1784aab67"></h2>
-
 
 # Octave Tutorial
 
 <h2 id="45cd59165ed98b8a43499f3529f43da5"></h2>
 
-
 ## 一般命令
 <h2 id="f4e9152fa12ce5bd311f26a2e82e0dd8"></h2>
-
 
 ##### 更改提示符 PS1
 
@@ -70,12 +67,10 @@ octave:11> PS1('>> ')  % 更改提示符
 
 <h2 id="419a19bbfcdf3c127420fa85cb5b3036"></h2>
 
-
 ##### 帮助命令 help
 >> help hist
 
 <h2 id="d701e1c8f6eb5c1ccba886670e6445d0"></h2>
-
 
 ##### 幂
 ```
@@ -84,7 +79,6 @@ ans = 64
 ```
 
 <h2 id="518c00ba7ed99f81aff084a47bc1bc02"></h2>
-
 
 ##### 逻辑运算
 
@@ -101,7 +95,6 @@ ans =  1
 
 <h2 id="3732e6e4befd27d65793a3ee28e9ce20"></h2>
 
-
 ##### 打印 disp
 ```
 >> disp(a)    % 打印
@@ -111,7 +104,6 @@ ans =  1
 ```
 
 <h2 id="1ddcb92ade31c8fbd370001f9b29a7d9"></h2>
-
 
 ##### format
 ```
@@ -124,7 +116,6 @@ a =  3.1416
 ```
 
 <h2 id="f739e5c9038960c20907a5fac564d123"></h2>
-
 
 ##### 矩阵
 ```
@@ -160,7 +151,6 @@ v =
 
 <h2 id="50a1e8d0ea071aca23f99488fd969483"></h2>
 
-
 ###### ones
 ```
 >> ones(2,3)
@@ -178,7 +168,6 @@ c =
 
 <h2 id="077effb59e9d5fcfabca678cf6da604c"></h2>
 
-
 ###### zeros
 ```
 >> w = zeros(1,3)
@@ -188,7 +177,6 @@ w =
 ```
 
 <h2 id="d8119f74b55f0e6f0a9119822ef2b001"></h2>
-
 
 ###### rand 随机矩阵
 ```
@@ -201,7 +189,6 @@ ans =
 ```
 
 <h2 id="bfc03e2c9d8d196bf27575241bda2831"></h2>
-
 
 ###### 正态随机矩阵 randn
 ```
@@ -216,7 +203,6 @@ ans =
 
 
 <h2 id="8d2c44eb72ffbdfecd5a6b7a0d42630f"></h2>
-
 
 ###### 单位矩阵 eye
 ```
@@ -233,7 +219,6 @@ Diagonal Matrix
 ```
 
 <h2 id="7336f8c273a473841532e091046cf59c"></h2>
-
 
 ##### 直方图 hist
 ```
@@ -256,7 +241,6 @@ vim ~/.octaverc
 
 <h2 id="68f9be08cd9ecf22559e6344c3e26112"></h2>
 
-
 ##### size 和 length
 
 ```
@@ -274,12 +258,10 @@ ans =  3
 
 <h2 id="bdefbd70450fa0311d2375e510b2c921"></h2>
 
-
 ##### linux 命令: cd / ls / pwd
 ---
 
 <h2 id="0de0197f8e28460fd27562a1bf797b8d"></h2>
-
 
 ##### who/whos 查看当前工作环境中存储的所有的变量
 ```
@@ -291,7 +273,6 @@ A    a    ans  c    v    w
 
 <h2 id="321c0450a7c9ea0dde8fce6ffd6dad42"></h2>
 
-
 ##### 清除命令 clear [var]
 
 不提供var， 表示全部清除
@@ -299,7 +280,6 @@ A    a    ans  c    v    w
 ---
 
 <h2 id="b7041e9f097d9daaa93af683073f1d7d"></h2>
-
 
 ##### 保存命令 save
 ```
@@ -309,7 +289,6 @@ A    a    ans  c    v    w
 
 
 <h2 id="8354745ee8accd9d217e9405250ef364"></h2>
-
 
 ## 矩阵数据移动
 ```
@@ -377,10 +356,8 @@ ans =
 
 <h2 id="ba5e7829f63ffdcc50f799fa90bbe124"></h2>
 
-
 ## 矩阵运算
 <h2 id="9ee76a86a85ebc392cc58adcd82755ac"></h2>
-
 
 ##### 加法 A + B , 各元素相加
 ```
@@ -393,7 +370,6 @@ ans =
 ```   
 
 <h2 id="0f8c8570065113d98309db042de5dc45"></h2>
-
 
 ##### 数加 A+1  , 所有元素+1
 
@@ -408,11 +384,9 @@ ans =
 
 <h2 id="2f5235a090db9cbf0b62bc8ec01379a6"></h2>
 
-
 ##### 乘法 A*B ,  矩阵乘法
 ---
 <h2 id="85544a6ab193a65265eaaeddd9ac1569"></h2>
-
 
 ##### 矩阵点乘 A.*B  , 各元素相乘:  
 
@@ -421,17 +395,14 @@ ans =
 
 <h2 id="54d294e059bbc06f4ef1d98a54ab763a"></h2>
 
-
 #### 叉积 cross, 至少一个维度大于3
 
 ---
 <h2 id="8cb0042601b89d343ede0618848c0443"></h2>
 
-
 ##### 矩阵数乘法 A *2  , 所有元素 *2
 
 <h2 id="15c3b7e97c9b84449d7318aceba06a80"></h2>
-
 
 ##### A.^2          , 所有元素平方  
 
@@ -446,7 +417,6 @@ ans =
 
 <h2 id="5da2497e58940ef2f391789c62b74213"></h2>
 
-
 ##### 1 ./ A   , 所有元素的倒数
 ```
 >> 1./A
@@ -459,21 +429,17 @@ ans =
 
 <h2 id="a7d68adc4d02bff1cc1a0f7764718b5a"></h2>
 
-
 ##### 对数log(A)，指数exp(A)
 
 <h2 id="0d3c6f75b597405e7a5bd3dca1fe8b9a"></h2>
-
 
 ##### abs 绝对值
 
 <h2 id="e9ffbcb910a3a6ac2979fcfedcbd3d01"></h2>
 
-
 ##### -v  % -1*v
 
 <h2 id="3aba41f7e265ee9a755472697dda5eb0"></h2>
-
 
 ##### max(A)  最大值 
 
@@ -512,11 +478,9 @@ ans =  6
 
 <h2 id="23deac19e3ffb9356677692a6e457f89"></h2>
 
-
 ##### max(A,B) , 返回一个矩阵，元素是 A,B各元素的最大值
 
 <h2 id="b459cf35a08fbbafa132c845e873a684"></h2>
-
 
 ##### Filter A <= 3  , 各元素比较的结果
 ```
@@ -529,7 +493,6 @@ ans =
 ```
 
 <h2 id="a4155f1a9d0b04da44f33812d717c0d5"></h2>
-
 
 ##### find( filter ) : find( A<=3), 注意接受 find返回值的变量个数
 ```
@@ -556,7 +519,6 @@ c =
 ```
 
 <h2 id="ca8891f30cdfd2185e065e8156c3446d"></h2>
-
 
 ##### 求和 sum 
 ```
@@ -592,7 +554,6 @@ ans =  12
 
 <h2 id="258cb2eb8e998fd10888ef8c9dd7628c"></h2>
 
-
 ##### 求积 prod
 ```
 >> prod(A)
@@ -603,13 +564,11 @@ ans =
 
 <h2 id="5eac4647e29237b13fd08b162de55898"></h2>
 
-
 ##### floor, ceil
 
 ---
 
 <h2 id="3b06c53acea624df1786802a6ac1e81f"></h2>
-
 
 ##### Transpose 转置  A'
 ```
@@ -622,7 +581,6 @@ ans =
 
 <h2 id="e483f22bccac27c7aa4bb146a6a95b7b"></h2>
 
-
 ##### magic 好玩但没卵用
 ```
 >> magic(3)
@@ -634,7 +592,6 @@ ans =
 ```
 
 <h2 id="84becd6270e11d304352cfd8cce872b3"></h2>
-
 
 ##### invert 逆矩阵  pinv
 ```
@@ -655,7 +612,6 @@ ans =
 
 <h2 id="0aabb2e84a3f1c8c85b42b73abb1239d"></h2>
 
-
 #### a=a(:)   
 
 确保向量a 转为 列向量
@@ -663,7 +619,6 @@ ans =
 ---
 
 <h2 id="37a8bc45f9e398cdffe832b507cf789b"></h2>
-
 
 ## cell array
 

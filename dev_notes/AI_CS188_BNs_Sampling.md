@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Approximate inference: Sampling](#cc9a4c958f31f481f18fcc2449a18506)
     - [Sampling](#1d07814d12178c958e4233501cb0bdc7)
@@ -16,11 +16,10 @@
         - [Further Reading on Gibbs Sampling](#e71302c1ea74db4751ea7bc9282430c5)
     - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="cc9a4c958f31f481f18fcc2449a18506"></h2>
-
 
 # Approximate inference: Sampling 
 
@@ -33,7 +32,6 @@ Sampling-based methods, which you can run them as quickly as you want. But if yo
 
 
 <h2 id="1d07814d12178c958e4233501cb0bdc7"></h2>
-
 
 ## Sampling
 
@@ -85,7 +83,6 @@ blue | 0.3
 
 <h2 id="7bdab2b4b6b4f6a48cbf1e07f48c7f94"></h2>
 
-
 ## Sampling in Bayes’ Nets
 
 - Prior Sampling
@@ -96,7 +93,6 @@ blue | 0.3
 In the order from simple to complex. Often you want end up using those last 2. 
 
 <h2 id="d9850ac369194d66ab390de368f1cf63"></h2>
-
 
 ## Prior Sampling 
 
@@ -159,7 +155,6 @@ return (x₁,x₂,...,xn)
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
-
 ### Example 
 
 - We’ll get a bunch of samples from the BN: (let's say we ended up with following samples)
@@ -184,7 +179,6 @@ return (x₁,x₂,...,xn)
 ---
 
 <h2 id="da3112458f911630996b5661ccd81e9d"></h2>
-
 
 ## Rejection Sampling 
 
@@ -231,7 +225,6 @@ Return (x1, x2, …, xn)
 
 <h2 id="c6947b6b4431fade42a12cf65b3c9a80"></h2>
 
-
 ### Sampling Example 
 
 - There are 2 cups
@@ -246,7 +239,6 @@ Return (x1, x2, …, xn)
 ---
 
 <h2 id="6e0d79ed12bd0076ebad0fc27629611e"></h2>
-
 
 ## Likelihood Weighting
 
@@ -277,7 +269,6 @@ Again, we know the query ahead of time, and see if we can further improve the pr
         - **No dropping samples, but adding a weight to each sample**. Instead of being rejected, you get a small weight.
 
 <h2 id="3eb57101576ca6e2a3251b14ff38ce8f"></h2>
-
 
 ### Example Likelihood Weighting
 
@@ -311,7 +302,6 @@ Again, we know the query ahead of time, and see if we can further improve the pr
 
 
 <h2 id="6d927b96f874f88bd5461de8ac4b040a"></h2>
-
 
 ## Likelihood Weighting Cont.
 
@@ -355,7 +345,6 @@ Return (x1, x2, …, xn) , w
 
 <h2 id="16169430c0295688db141ebd3163baf5"></h2>
 
-
 ## Gibbs Sampling
 
 In Gibbs Sampling, we don't walk through the network from top to bottom, get a sample, and reset. Instead, we're going to do sort of like iterative improvoment for CSP. We're going to start with a complete assigment, and we're going to tweak it a little bit. The end result is going to be that we take into account evidence upstream and downstream, but there's going to be a price.
@@ -379,7 +368,6 @@ In Gibbs Sampling, we don't walk through the network from top to bottom, get a s
 
 
 <h2 id="a4d4a785b477b26309b7ec181f443a28"></h2>
-
 
 ### Gibbs Sampling Example: P( S | +r)
 
@@ -418,7 +406,6 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 <h2 id="5fb1b8f1b2e4f8b4d7772cae296c4642"></h2>
 
-
 ### Efficient Resampling of One Variable
 
 ![](../imgs/cs188_BNs_Sampling_GS_sample_efficient_resample.png)
@@ -434,7 +421,6 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 <h2 id="e71302c1ea74db4751ea7bc9282430c5"></h2>
 
-
 ### Further Reading on Gibbs Sampling
 
 - Gibbs sampling produces sample from the query distribution P( Q | e ) in limit of re-sampling infinitely often
@@ -444,7 +430,6 @@ This is just giving you the very basic idea of how Gibbs Sampling works. And you
 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
-
 
 ## Example
 

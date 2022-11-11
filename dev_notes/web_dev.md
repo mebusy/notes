@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Web Development](#e9f65fa4000d038efa0cdff8bb824632)
     - [1 Introduction to HTML5](#be5996bed7586523463bbcd76d0bf636)
@@ -36,11 +36,10 @@
     - [CSS Grid in nutshell](#b12841bcc5cd0f679a2eaa70d351023d)
     - [Problem: IE10/IE11 Only Partial Support](#f6d87847ecb564221a76d95c8ff105e4)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="e9f65fa4000d038efa0cdff8bb824632"></h2>
-
 
 # Web Development
 
@@ -63,14 +62,12 @@
 
 <h2 id="be5996bed7586523463bbcd76d0bf636"></h2>
 
-
 ## 1 Introduction to HTML5
 
 - [check wheter a tag can use](https://caniuse.com/)
 - [W3C validator for your page](https://validator.w3.org/)
 
 <h2 id="76b85f6530d019c1c72a47dc5b48bae1"></h2>
-
 
 ### 1.1 Basic HTML Document Structure
 
@@ -118,7 +115,6 @@
 
 
 <h2 id="04c59e93b33f6071a57b9e6938f738b5"></h2>
-
 
 ### 1.2 HTML Content Models
 
@@ -171,11 +167,9 @@ Roughly Flow Content (HTML5 category) |Roughly Phrasing Content (HTML5 category)
 
 <h2 id="b705e94447e9c6428ee553f502ccc743"></h2>
 
-
 ### 1.6 Essential HTML5 Tags
 
 <h2 id="260261c999584b61d137523241da00d0"></h2>
-
 
 #### Heading Elements (and some new HTML5 semantic comments)
 
@@ -262,7 +256,6 @@ Some new HTML5 semantic
 
 <h2 id="a7226cd0574e19a2aeafda5137c921c7"></h2>
 
-
 ### 1.7 Lists
 
 <details>
@@ -340,7 +333,6 @@ Ordered List
 
 <h2 id="e3781d141885ee49010e8cec1a4b8fe7"></h2>
 
-
 ### 1.8 HTML Character
 
 - 3 Characters You Should Always Escape: 
@@ -356,7 +348,6 @@ Ordered List
 
 
 <h2 id="0a832c76dba506c4db480a4430b81453"></h2>
-
 
 ### 1.9 Creating Links
 
@@ -476,7 +467,6 @@ Same Page Links
 
 <h2 id="198371eb55bb0b0e5388b4cabe3fce14"></h2>
 
-
 ### 1.10 Displaying Images
 
 ```html
@@ -497,7 +487,6 @@ Same Page Links
 
 <h2 id="8992b3733c2fabf637100ef09d8a919e"></h2>
 
-
 ### Tag List
 
 tag | stands for | desc
@@ -514,13 +503,11 @@ li | list item
 
 <h2 id="9ed1ec1761d9045458cb0194e97ee375"></h2>
 
-
 ## 2 Introduction to CSS3
 
 - CSS: Cascading style sheets
 
 <h2 id="3ee16177d865441b806b3b4b549be2cc"></h2>
-
 
 ### 2.12 Anatomy of a CSS Rule
 
@@ -551,7 +538,6 @@ h1 {
 
 
 <h2 id="c451c31d2248f0e6bb75efe3476200bb"></h2>
-
 
 ### 2.13 Element, Class, and ID Selectors
 
@@ -599,7 +585,6 @@ h1 {
 
 
 <h2 id="fd2c9cc9ff66d61b66cfc89a23377201"></h2>
-
 
 ### 2.14 Combining Selectors
 
@@ -674,7 +659,6 @@ h1 {
     ```
 
 <h2 id="ef5ba5d82dce56bbc09fdcc89e36e982"></h2>
-
 
 ### 2.15 Pseudo-Class Selectors
 
@@ -754,11 +738,9 @@ h1 {
 
 <h2 id="1dad1fe6e05884ba521007fc52184598"></h2>
 
-
 ### CSS Rules Conflict Resolution and Text Styling 
 
 <h2 id="f3479f331d0432d148042fd4ba034751"></h2>
-
 
 ### 2.16 Style Placement
 
@@ -778,7 +760,6 @@ h1 {
 
 
 <h2 id="c1b8822d870403c4cc5ba08ba1b9b546"></h2>
-
 
 ### 2.17 Conflict Resolution
 
@@ -839,7 +820,6 @@ h1 {
 
 <h2 id="1417d1be7a57c828a6af9c2753faae90"></h2>
 
-
 ### 2.18 Styling Text
 
 - font family
@@ -878,11 +858,9 @@ h1 {
 
 <h2 id="8f7985f954904ad2877796d31568cc9b"></h2>
 
-
 ###  The Box Model and Layout 
 
 <h2 id="abd7dc5c80c72e29b2eee3cd3c0c7d78"></h2>
-
 
 ### 2.19 The Box Model
 
@@ -956,7 +934,6 @@ h1 {
 
 <h2 id="55564951a2060cde6320d03887d7cdea"></h2>
 
-
 ### 2.20 The background Property
 
 ```css
@@ -973,7 +950,6 @@ h1 {
 
 
 <h2 id="8530d9fda0ebcc0e0d8e9e153931da3a"></h2>
-
 
 ### 2.21 Positioning Elements by Floating
 
@@ -1144,7 +1120,6 @@ section {
 
 <h2 id="ad2a919d3751f45696dda50b54c70ded"></h2>
 
-
 ### 2.22 Relative and Absolute Element Positioning
 
 - Static Positioning (default)
@@ -1184,11 +1159,9 @@ Absolute Positioning Element is taken out of normal document flow.
 
 <h2 id="16654235b895849113d53f0702cc5918"></h2>
 
-
 ###  Introduction to Responsive Design
 
 <h2 id="23d37412a01263f81cfb0aa9bed66201"></h2>
-
 
 ### 2.23 Media Queries
 
@@ -1314,7 +1287,6 @@ p {
 
 
 <h2 id="231c665e5cdd84530dcdcce59571f704"></h2>
-
 
 ### 2.24 Responsive Design
 
@@ -1449,13 +1421,11 @@ p {
 
 <h2 id="114fc0ceef52e87df3f842a898901414"></h2>
 
-
 ###  Twitter Bootstrap
 
 <details>
 
 <h2 id="91fa20c155a7637398afbe3fa1d70045"></h2>
-
 
 ### 2.25 Introduction to Twitter Bootstrap
 
@@ -1492,7 +1462,6 @@ p {
     ```
 
 <h2 id="da8b77a4befed25e1250a8c43b01654d"></h2>
-
 
 ### 2.26 The Bootstrap Grid System
 
@@ -1549,7 +1518,6 @@ p {
 
 <h2 id="116e493217e09482fcaf24a39021cad3"></h2>
 
-
 # Css Grid
 
 [youtube video](https://www.youtube.com/watch?v=jV8B24rSN5o)
@@ -1561,7 +1529,6 @@ p {
 [CSS Grid Changes EVERYTHING - Amazing Presentation](https://www.youtube.com/watch?v=7kVeCqQCxlk)
 
 <h2 id="a6dbe45d51621c7d20203ec1d88736bd"></h2>
-
 
 ## CSS Grid Terminology
 
@@ -1595,7 +1562,6 @@ p {
 
 
 <h2 id="b12841bcc5cd0f679a2eaa70d351023d"></h2>
-
 
 ## CSS Grid in nutshell
 
@@ -1658,7 +1624,6 @@ p {
 
 
 <h2 id="f6d87847ecb564221a76d95c8ff105e4"></h2>
-
 
 ## Problem: IE10/IE11 Only Partial Support
 

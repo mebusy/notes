@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [K8s Key Ideas](#9f28f0f9d5bb54ce31695aa4c3a8afbf)
     - [Learn Kubernetes Basics](#d6241ba7176a22c6f5508a221d1716b7)
@@ -6,16 +6,14 @@
     - [Scale Your App](#9ed959ed9324ef3c3af26b8fd76e65c6)
     - [Update Your App](#77246ae2f33852920cb5d43806f8027f)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="9f28f0f9d5bb54ce31695aa4c3a8afbf"></h2>
 
-
 # K8s Key Ideas
 
 <h2 id="d6241ba7176a22c6f5508a221d1716b7"></h2>
-
 
 ## Learn Kubernetes Basics
 
@@ -31,7 +29,6 @@
     - ![](https://d33wubrfki0l68.cloudfront.net/5cb72d407cbe2755e581b6de757e0d81760d5b86/a9df9/docs/tutorials/kubernetes-basics/public/images/module_03_nodes.svg)
 
 <h2 id="6b755767754f0bdf07e6cc0138438cbf"></h2>
-
 
 ## Using a Service to Expose Your App
 
@@ -50,7 +47,6 @@
 
 <h2 id="9ed959ed9324ef3c3af26b8fd76e65c6"></h2>
 
-
 ## Scale Your App 
 
 ```bash
@@ -63,7 +59,6 @@ kubernetes-bootcamp   4         4         4            4           1m
 
 
 <h2 id="77246ae2f33852920cb5d43806f8027f"></h2>
-
 
 ## Update Your App
 

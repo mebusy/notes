@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [27: Projective Textures](#3037d1aee3dbe87b7c6cfd54b93e9076)
     - [What is projective texturing ?](#9c98f87935de072fe08a8a44c16fb59a)
@@ -11,16 +11,14 @@
     - [C# script to set up projector matrix](#e2dd661e030d10dae5388ff8097b1df7)
     - [Watch out for the reverse projection!](#5188162a545a23b057c660be02d12070)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="3037d1aee3dbe87b7c6cfd54b93e9076"></h2>
 
-
 # 27: Projective Textures
 
 <h2 id="9c98f87935de072fe08a8a44c16fb59a"></h2>
-
 
 ## What is projective texturing ?
 
@@ -35,7 +33,6 @@
 
 <h2 id="39745511f68e78b75ef8d614d1a7cb0f"></h2>
 
-
 ## Texture matrix
 
 from "The Cg Tutorial", p.252
@@ -49,7 +46,6 @@ from "The Cg Tutorial", p.252
 
 <h2 id="5a58a9056874e1d2458521976f667a70"></h2>
 
-
 ## ProjectTexture -- setup
 
 - ![](../imgs/gpu_project_texture_setup.png)
@@ -57,7 +53,6 @@ from "The Cg Tutorial", p.252
 
 
 <h2 id="d5f409ac7d9ee2c916763d5f31290c21"></h2>
-
 
 ## ProjectTexture -- uniforms
 
@@ -76,7 +71,6 @@ float3 _spotlightDir;
 
 
 <h2 id="2c0007b7b967ea830273fbe9e9ea38c1"></h2>
-
 
 ## ProjectTexture -- structures
 
@@ -98,14 +92,12 @@ struct v2f { // vertex 2 fragment
 
 <h2 id="5d59a90b289ef216c29995159eb7e874"></h2>
 
-
 ## ProjectTexture -- vertex program
 
 - ![](../imgs/gpu_project_tex_vertex.png)
 
 
 <h2 id="810d334284b3e4ecbaec32b318395082"></h2>
-
 
 ## ProjectTexture -- fragment program
 
@@ -121,7 +113,6 @@ struct v2f { // vertex 2 fragment
 
 
 <h2 id="e2dd661e030d10dae5388ff8097b1df7"></h2>
-
 
 ## C# script to set up projector matrix
 
@@ -141,7 +132,6 @@ struct v2f { // vertex 2 fragment
 
 
 <h2 id="5188162a545a23b057c660be02d12070"></h2>
-
 
 ## Watch out for the reverse projection!
 

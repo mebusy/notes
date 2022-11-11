@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Learn Express JS In 35 Minutes](#66edaff1c4d64b9c1bd9c6db27a727b0)
     - [installation](#ea09bb364ef1bffd889e76b7a59035fc)
@@ -12,16 +12,14 @@
     - [express.json middleware: parse json information from the request body](#3539379b974a36391a77a9d714ed5ea9)
     - [access query parameters](#8d8c39de174e2f1a5bff0348d2fd3cd9)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="66edaff1c4d64b9c1bd9c6db27a727b0"></h2>
 
-
 # Learn Express JS In 35 Minutes
 
 <h2 id="ea09bb364ef1bffd889e76b7a59035fc"></h2>
-
 
 ## installation
 
@@ -72,7 +70,6 @@ $ npm i --save-dev nodemon
 
 <h2 id="9c40d51d0caaee9c636e5a23a45331db"></h2>
 
-
 ## create express server
 
 ```javascript
@@ -118,7 +115,6 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 <h2 id="9889de33d792bd92985ff758c62e37d1"></h2>
 
-
 ## move /users api out to Router()
 
 
@@ -151,7 +147,6 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 <h2 id="364a41face552328b06992d586829a79"></h2>
-
 
 ## chain together all your get/put/delete method
 
@@ -188,7 +183,6 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 <h2 id="2c3fe51424f850c35416ffc0ad829fea"></h2>
 
-
 ## router.param middleware
 
 - `router.param()` function is going to run anytime it finds a param that matches the name you pass in.  for exampe, the parameter `id`  in our `/users/:id` request
@@ -202,7 +196,6 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 <h2 id="d063bf534ee04536889fabc8c3465b66"></h2>
-
 
 ## create a logger middleware
 
@@ -230,7 +223,6 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 <h2 id="eca3132a4df4c85906ea19421af33e3d"></h2>
 
-
 ## express.static middleware: serve static files
 
 ```javascript
@@ -238,7 +230,6 @@ app.use(express.static("<path-to-static-folder>"))
 ```
 
 <h2 id="78dd1f00f2dcaad73644eb3fca95a0a5"></h2>
-
 
 ## express.urlencoded middleware: to access body
 
@@ -254,7 +245,6 @@ app.use(express.static("<path-to-static-folder>"))
 
 <h2 id="3539379b974a36391a77a9d714ed5ea9"></h2>
 
-
 ## express.json middleware: parse json information from the request body
 
 ```javascript
@@ -262,7 +252,6 @@ app.use(express.json())
 ```
 
 <h2 id="8d8c39de174e2f1a5bff0348d2fd3cd9"></h2>
-
 
 ## access query parameters
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [29: Cook-Torrance Specular Models](#b04109b8e15bc84aca836e9bc09b152d)
     - [Elements of PBR](#478492620a2b50ba05eaee643241c6ce)
@@ -26,18 +26,16 @@
     - [Implicit geometric term](#0474a9b3b35d94709f0b805b242660c6)
     - [Kelemen Geometric term](#c7569ccd39eff40dd96ed8a171877ea2)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b04109b8e15bc84aca836e9bc09b152d"></h2>
-
 
 # 29: Cook-Torrance Specular Models
 
 - most popular model for specular reflections and physically based rendering
 
 <h2 id="478492620a2b50ba05eaee643241c6ce"></h2>
-
 
 ## Elements of PBR
 
@@ -60,7 +58,6 @@
 
 <h2 id="f63e79ddbcbdce02ed201f40fb60bffa"></h2>
 
-
 ## Bidirectional Reflectance Functions 
 
 - For "punctal" lights ( typical point, directional , spotlight... )
@@ -82,7 +79,6 @@
 
 <h2 id="8093013fcea1b701df30da4550c07a54"></h2>
 
-
 ## BRDFs should have reciprocity
 
 - Reciprocity means we can swap the incoming and outgoing light directions:
@@ -98,7 +94,6 @@
 
 <h2 id="7d093096f231dc342a8e32f2258d21c5"></h2>
 
-
 ## Modified Blin-Phong
 
 - BRDF = ( M<sub>dif</sub> / π ) (n·H)<sup>s</sup> 
@@ -110,7 +105,6 @@
 
 <h2 id="34dc8a1028bce11fcd745854ad8fe827"></h2>
 
-
 ## Energy conservation
 
 - "Total amount of reflected light cannot be more than the amount of incoming light" -- Rory Driscoll
@@ -120,7 +114,6 @@
 
 
 <h2 id="4746c0d5cdade73482f2ffb14f1ff1da"></h2>
-
 
 ## A common yet confusing convention
 
@@ -132,7 +125,6 @@
 
 <h2 id="626a106a229043c181d5645dff603901"></h2>
 
-
 ## Normalized modified Blinn-Phong
 
 - To achieve energy conservation
@@ -142,7 +134,6 @@
 
 <h2 id="c3ad95f21e252d827f66df4c0ca1c340"></h2>
 
-
 ## Combining specular and diffuse
 
 - Combined BRDF:
@@ -151,14 +142,12 @@
 
 <h2 id="afb61fff0ece9f787102003cd372a359"></h2>
 
-
 ## Normalized specular helps your artists
 
 - ![](../imgs/gpu_brdf_w_wo_norm.png)
 
 
 <h2 id="f8592700891f82e1523af1167b9a9587"></h2>
-
 
 ## Metals vs. dielectrics
 
@@ -170,7 +159,6 @@
     - Still white at large grazing angles.
 
 <h2 id="a6977b0b6db1f017d37ea6684915d2e0"></h2>
-
 
 ## Fresnel effect
 
@@ -189,7 +177,6 @@
 
 <h2 id="10ecaa8a088af69327b428d655fe21f6"></h2>
 
-
 ## F₀ for dielectrics(linear)
 
 - here are some example of F₀ for various dielectrics.
@@ -201,13 +188,11 @@
 
 <h2 id="e8ae1e9d34ec7a6c721b6e82eab2cac2"></h2>
 
-
 ## F₀ for metals (linear)
 
 - ![](../imgs/gpu_f0_metal.png)
 
 <h2 id="ed566e90740a9c5838a9c5ab8fdda9c9"></h2>
-
 
 ## Incorporating Fresnel term
 
@@ -215,7 +200,6 @@
 - we're not really going to use this expression anyway because we'd like to take a few more steps and do something a little more complicated.
 
 <h2 id="80c161aa421f99484c1dc48af5db8bbc"></h2>
-
 
 ## A reflective paradox ?
 
@@ -229,7 +213,6 @@
 
 <h2 id="77f1b426a249ea2531db86d988e423f6"></h2>
 
-
 ## General Cook-Torrance specular
 
 - ![](../imgs/gpu_general_cook_torrance_specular.png)
@@ -242,7 +225,6 @@
 
 <h2 id="ac1ce08fd7d9d47a82c152b77e4e1bf2"></h2>
 
-
 ## Blinn-Phong microfacet distribution
 
 - Microfacet Blinn-Phong
@@ -254,7 +236,6 @@
     - A different *g* called GGX has become much more popular and is pretty much the dominant distribution term that you'll see in cook-torrance specular models and in modern game engines.
 
 <h2 id="e2d12166a63a2ed94946f5ca71450dec"></h2>
-
 
 ## GGX microfacet distribution 
 
@@ -270,7 +251,6 @@
 
 <h2 id="c337a246bd4f9fed5de6d91371f0f1ee"></h2>
 
-
 ## The geometric term 
 
 - The last thing we need to look at is the *g* term.
@@ -281,7 +261,6 @@
 
 <h2 id="2d344b726af21587cc454729ba80d3a1"></h2>
 
-
 ## Original Cook-Torrance geometric term
 
 - From original Cook-Torrance paper:
@@ -289,7 +268,6 @@
     - there is no roughness parameter α here
 
 <h2 id="47fc78796de776d18d85cffe54df6887"></h2>
-
 
 ## GGX-based geometric term 
 
@@ -305,7 +283,6 @@
 
 <h2 id="026a7aa509ad6276afb039a40b54612a"></h2>
 
-
 ## GGX-matched to GGX geometric term
 
 - GGX-form matched to GGX distribution
@@ -314,7 +291,6 @@
 - Disney "hotness remapping": k = [0.5 + (1-g)/2]²/2
 
 <h2 id="0474a9b3b35d94709f0b805b242660c6"></h2>
-
 
 ## Implicit geometric term
 
@@ -326,7 +302,6 @@
 - If you're on a resource limited platform you might want to use this Kelemen geometric term.
 
 <h2 id="c7569ccd39eff40dd96ed8a171877ea2"></h2>
-
 
 ## Kelemen Geometric term
 

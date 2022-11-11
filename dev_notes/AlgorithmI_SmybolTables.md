@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Symbol Table](#8f876a2fd3f1bcd3a16784ddd034f7da)
 - [3.2 BINARY SEARCH TREES](#5737900805643a95038c707f458e0b1f)
@@ -17,11 +17,10 @@
         - [how to Deleting the minimum ?](#79332b5aac6b50d5a6ac7f4f2982e277)
         - [code for deletion](#fdd96da59972ac64d6dacb8a6dcd5bdf)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8f876a2fd3f1bcd3a16784ddd034f7da"></h2>
-
 
 # Symbol Table
 
@@ -41,11 +40,9 @@
 
 <h2 id="5737900805643a95038c707f458e0b1f"></h2>
 
-
 # 3.2 BINARY SEARCH TREES
 
 <h2 id="084ec43276e894a559b0dc53d166f1c9"></h2>
-
 
 ## BSTs
 
@@ -68,7 +65,6 @@
 
 
 <h2 id="9f36e1029ab96d02a2626c3f8a4d4f73"></h2>
-
 
 ## BST representation
 
@@ -94,11 +90,9 @@ private class Node {
 
 <h2 id="b5794bba6843c21acafdd6a4bfd776be"></h2>
 
-
 ## Basic Operations
 
 <h2 id="13348442cc6a27032d2b4aa28b75a5d3"></h2>
-
 
 ### Search
 
@@ -106,18 +100,15 @@ private class Node {
 
 <h2 id="a458be0f08b7e4ff3c0f633c100176c0"></h2>
 
-
 ### Insert
     
 - If less, go left; if greater, go right; if null, insert.
      
 <h2 id="e0c655699c66cbcbde00b1bf5fba638b"></h2>
 
-
 ## ordered operations
 
 <h2 id="88b34cb7ae3f567e9a2b721ca192bda4"></h2>
-
 
 ### Minimum and maximum
 
@@ -127,7 +118,6 @@ private class Node {
 ![](../imgs/algorI_bst_minmax.png)
 
 <h2 id="a5e18d49cade04fcf96644c4d2ccc0fa"></h2>
-
 
 ### Floor and ceiling
 
@@ -169,7 +159,6 @@ private Node floor(Node x, Key key) {
 
 <h2 id="15ca1a1832547a20360b31763addac4b"></h2>
 
-
 ### Subtree counts
 
 - In each node, we store the number of nodes in the subtree rooted at that node;
@@ -210,7 +199,6 @@ private Node put(Node x, Key key, Value val) {
 
 <h2 id="021da1b20f73dc252361a54d80497ef3"></h2>
 
-
 ### Rank
 
 - Rank. 
@@ -230,7 +218,6 @@ private int rank(Key key, Node x) {
 
 <h2 id="d321f84aa81593c5158baaf21e11092b"></h2>
 
-
 ### Inorder traversal
 
  1. Traverse left subtree.
@@ -242,7 +229,6 @@ private int rank(Key key, Node x) {
 - Property. Inorder traversal of a BST yields keys in ascending order.
 
 <h2 id="a1998652b01bdc9e7128734efb804780"></h2>
-
 
 ## Deletion
 
@@ -279,7 +265,6 @@ private int rank(Key key, Node x) {
 
 <h2 id="79332b5aac6b50d5a6ac7f4f2982e277"></h2>
 
-
 ### how to Deleting the minimum ?
 
 - it is either case 0 , or case 1
@@ -306,7 +291,6 @@ private Node deleteMin(Node x) {
 ```
 
 <h2 id="fdd96da59972ac64d6dacb8a6dcd5bdf"></h2>
-
 
 ### code for deletion 
 

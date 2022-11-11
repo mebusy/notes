@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Determinants](#44858f4401928ded6e165da37ea948a5)
     - [4.1 INTRODUCTION](#1cf6e82fd421ceda204af00707567518)
@@ -11,16 +11,14 @@
         - [3. The Volume of a Box.](#fd7c0e5423c4bd8de8470b61d40e01e1)
         - [4. A Formula for the Pivots.](#6427117566de9225a3e174e57ee98198)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="44858f4401928ded6e165da37ea948a5"></h2>
 
-
 # Determinants
 
 <h2 id="1cf6e82fd421ceda204af00707567518"></h2>
-
 
 ## 4.1 INTRODUCTION
 
@@ -55,7 +53,6 @@ Here is a light-hearted question about permutations. ***How many exchanges does 
 ---
 
 <h2 id="14ed27a135e747655e17c482f074d582"></h2>
-
 
 ## 4.2 PROPERTIES OF THE DETERMINANT
 
@@ -138,7 +135,6 @@ We emphasize that the rules apply to *square matrices* of any size.
 ---
 
 <h2 id="f1652258e62063b8ce99a27a30fdb173"></h2>
-
 
 ## 4.3 FORMULAS FOR THE DETERMINANT
 
@@ -247,7 +243,6 @@ detA = a₁₁(a₂₂a₃₃ - a₂₃a₃₂) + a₁₂(a₂₃a₃₁ - a₂�
 
 <h2 id="bc04ae4273a1f4807770b5acb33f990b"></h2>
 
-
 #### Expansion of detA in Cofactors
 
 We want one more formula for the determinant. If this meant starting again from scratch, it would be too much. But the formula is already discovered--it is (8), and the only point is to identify the cofactors C₁ⱼ that multiply a₁ⱼ.
@@ -274,7 +269,6 @@ The cofactor is the determinant of Mᵢⱼ , with the correct sign:
 
 <h2 id="2279c075e64bc81f35bb0751f9b2ea86"></h2>
 
-
 ## 4.4 APPLICATIONS OF DETERMINANTS
 
 This section follows through on four major applications: 
@@ -285,7 +279,6 @@ This section follows through on four major applications:
 
 
 <h2 id="b105d89fa880f05d88cef65dec54a920"></h2>
-
 
 #### 1. Computation of A⁻¹
 
@@ -322,7 +315,6 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 
 <h2 id="ababd14c9c564481b2f47b6d96e29b0a"></h2>
 
-
 #### 2. The Solution of Ax = b.
 
 
@@ -333,7 +325,6 @@ Dividing by the number detA (if it is not zero!) gives `A⁻¹ = Cᵀ / detA`.
 ![](../imgs/LA_det_cramer_rule.png)
 
 <h2 id="fd7c0e5423c4bd8de8470b61d40e01e1"></h2>
-
 
 #### 3. The Volume of a Box.
 
@@ -371,7 +362,6 @@ These determinants give the volumes-or areas, since we are in two dimensions-dra
 
 
 <h2 id="6427117566de9225a3e174e57ee98198"></h2>
-
 
 #### 4. A Formula for the Pivots.
 

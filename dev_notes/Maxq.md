@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Maxq](#ef0aea7fada38d87f635b347acae4117)
 - [3. The MAXQ Value Function Decomposition](#1ca2a53e3aee2426fbe0471c0788f16d)
@@ -23,11 +23,10 @@
 - [6. Non-Hierarchical Execution of the MAXQ Hierarchy](#be3d80bb862c5123b4a97b94416dd9cd)
 - [7. Experimental Evaluation of the MAXQ Method](#624966685e552964b681142cfb943122)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ef0aea7fada38d87f635b347acae4117"></h2>
-
 
 # Maxq 
 
@@ -38,11 +37,9 @@ Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE polic
  
 <h2 id="1ca2a53e3aee2426fbe0471c0788f16d"></h2>
 
-
 # 3. The MAXQ Value Function Decomposition
  
 <h2 id="11b7c68186495355b7770a6777ab2f40"></h2>
-
 
 ## 3.1 Taxi example
 
@@ -74,7 +71,6 @@ All of this information can be summarized by a directed acyclic graph called the
     - In a hierarchical policy, each subroutine executes until it enters a terminal state for its subtask.
 
 <h2 id="28fc65dfb6f48abdf33b71b4b0440cf7"></h2>
-
 
 ## 3.2 Definitions
 
@@ -149,7 +145,6 @@ Because a hierarchical policy maps from states *s* and stack contents K to actio
 The purpose of the MAXQ value function decomposition is to decompose V(0,s) (the projected value function of the root task) in terms of the projected value function V(i,s) of all of the subtasks in the MAXQ decomposition.
 
 <h2 id="753a9eaa2be4ced1fa5875c05dfdff70"></h2>
-
 
 ## 3.3 Decomposition of the Projected Value Function
 
@@ -308,7 +303,6 @@ This theorem captures the representational power of the MAXQ decomposition, but 
 
 <h2 id="d6441f91c197a8e36b0008ba2307889a"></h2>
 
-
 # A Learning Algorithm for the MAXQ Decomposition
 
 - MAXQ-0 learning algorithm
@@ -319,7 +313,6 @@ This theorem captures the representational power of the MAXQ decomposition, but 
     - a of accelerating MAXQ-O learning.
 
 <h2 id="891e7168eccd8d630e8c572615d85781"></h2>
-
 
 ## 4.1 Two Kinds of Optimality
 
@@ -395,7 +388,6 @@ In the worst case, it is possible for the programmer to specify pseudo-rewards s
 
 <h2 id="3b97da78e886b3f8d17c9f4c54540171"></h2>
 
-
 ## 4.2 The MAXQ-O Learning Algorithm
 
 MAXQ-0 is a recursive function that executes the current exploration policy starting at Max node i in state *s*. It performs actions until it reaches a terminal state, at which point it returns a count of the total number of primitive actions that have been executed. 
@@ -462,7 +454,6 @@ The most important aspect of this theorem is that it proves that Q learning can 
 
 <h2 id="23feda6ab3a0c28739ff075e59ed559e"></h2>
 
-
 ## 4.3 Techniques for Speeding Up MAXQ-0
 
 
@@ -500,7 +491,6 @@ Although this considerably reduces the usefulness of all-goals updating, it does
 
 <h2 id="9847a1803bd225e326da8c36497968a6"></h2>
 
-
 ## 4.4 The MAXQ-Q Learning Algorithm 
 
 We could just add the pseudo- reward into MAXQ-0 , but this would have the effect of changing the MDP M to have a different reward function.The pseudo-rewards “contaminate” the values of all of the completion functions computed in the hierarchy. The resulting learned policy will not be recursively optimal for the original MDP.
@@ -534,7 +524,6 @@ The  C̃ function will be learned using an update rule similar to the Q learning
 
 <h2 id="be6b86743fc14285b97d7d0037337a64"></h2>
 
-
 # 5. State Abstraction
 
 let us compute the number of values that must be stored for the taxi problem ***without*** any state abstraction.
@@ -554,7 +543,6 @@ In total, therefore, the MAXQ representation requires 14,000 separate quantities
 A flat Q learning representation need store a separate value for each of the six primitive actions in each of the 500 possible states, for a total of 3,000 values. Hence, we can see that without state abstraction, the MAXQ representation requires more than 4 times the memory of a flat Q table!
 
 <h2 id="287fa4871442358e00cdd22bdccfe7fc"></h2>
-
 
 ## 5.1 Five Conditions that Permit State Abstraction
 
@@ -586,7 +574,6 @@ Now let us describe and analyze the 5 abstraction conditions. We have identified
 ---
 
 <h2 id="0fd7085da1b16936628a34768637ff1c"></h2>
-
 
 ### 5.1.1 CONDITION 1: MAX NODE IRRELEVANCE
 
@@ -652,7 +639,6 @@ In the Taxi task, the primitive navigation actions, North, South, East, and West
 
 <h2 id="87349168dccb260456b23839e9702af4"></h2>
 
-
 ### 5.1.2 CONDITION 2: LEAF IRRELEVANCE
 
 **Definition 13 (Leaf Irrelevance)** A set of state variablesY is irrelevant for a primitive action a of a MAXQ graph if for all states s the expectedvalue of the reward function, 
@@ -690,7 +676,6 @@ Similarly, the expected rewards of the Pickup and Putdown actions each require o
 
 <h2 id="a9f97f89dbb6e80750e445877a4cc214"></h2>
 
-
 ### 5.1.3 CONDITION 3: RESULT DISTRIBUTION IRRELEVANCE
 
 Now we consider a condition that results from “funnel” actions.
@@ -723,7 +708,6 @@ The Result Distribution Irrelevance condition is applicable in all such situatio
 
 <h2 id="fa47406de877edbd1d58fe0b8f4489b6"></h2>
 
-
 ### 5.1.4 CONDITION 4: TERMINATION
 
 The fourth condition is closely related to the “funnel” property. 
@@ -746,7 +730,6 @@ It is easy to detect caseswhere the Termination condition is satisfied. We only 
 
 <h2 id="3bd22ac574778f26097a5d3c815bcee5"></h2>
 
-
 ### 5.1.5 CONDITION 5: SHIELDING
 
 The shielding condition arises from the structure of the MAXQ graph.
@@ -756,7 +739,6 @@ The shielding condition arises from the structure of the MAXQ graph.
 In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where the passenger is not in the taxi. This means that we do not need to represent C(Root,s, Put) in these states. The result is that, when combined with the Termination condition above, we do not need to explicitly represent the completion function for Put at all!
 
 <h2 id="fb8187ec15df35190dbc58aa6d7d4815"></h2>
-
 
 ### 5.1.6 DICUSSION
 
@@ -813,7 +795,6 @@ Hence, applying these 5 conditions to introduce state abstractions is a straight
 
 <h2 id="a905db7d811ede823e2afa218e22b5d8"></h2>
 
-
 ##  5.2 Convergence of MAXQ-Q with State Abstraction
 
 The goal of this section is to prove these two results: 
@@ -822,7 +803,6 @@ The goal of this section is to prove these two results:
 - (b) that MAXQ-Q will converge to this policy when applied to a MAXQ graph with safe state abstractions.
 
 <h2 id="3a77b82cf90e359bca449dc6baea1a13"></h2>
-
 
 ## 5.3 The Hierarchical Credit Assignment Problem
 
@@ -852,7 +832,6 @@ In the modified taxi problem, for example, we can decompose the reward so that t
 Lines 15 and 16 of the MAXQ-Q algorithm are easily modifiedto include R(i, s’|s, a).
 
 <h2 id="be3d80bb862c5123b4a97b94416dd9cd"></h2>
-
 
 # 6. Non-Hierarchical Execution of the MAXQ Hierarchy
 
@@ -912,7 +891,6 @@ In particular, we need to introduce hierarchically- greedy execution early enoug
 
 
 <h2 id="624966685e552964b681142cfb943122"></h2>
-
 
 # 7. Experimental Evaluation of the MAXQ Method
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Algorithm On Graphs](#311ad33f7584ac17012490ce8852f7e8)
 - [Week1 Exploring Undirected Graphs](#edbf6a2cb4c2f45a6c6f05f7981ececd)
@@ -69,27 +69,23 @@
             - [How Node Contraction Work ?](#867892c0bfaddd887d95f2efd5b7482a)
             - [Witness Paths](#6341d14a4b0f707c95f30884ce778d9c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="311ad33f7584ac17012490ce8852f7e8"></h2>
-
 
 # Algorithm On Graphs
 
 
 <h2 id="edbf6a2cb4c2f45a6c6f05f7981ececd"></h2>
 
-
 # Week1 Exploring Undirected Graphs
 
 <h2 id="887b235eb2dfc010821effbf5b9689f7"></h2>
 
-
 ## Graph Basics 
 
 <h2 id="030495a245248ce0deed9c13f9576cd0"></h2>
-
 
 ### Representing Graphs
 
@@ -122,11 +118,9 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 
 <h2 id="fa4ec304233cb938cae388a53fe8dc4e"></h2>
 
-
 ## Exploring Undirected Graphs
 
 <h2 id="6d620d4a966ddb637a736ea4670b6782"></h2>
-
 
 ### Exploring Graphs
 
@@ -141,7 +135,6 @@ Adj. List | Θ(deg) | Θ(&#124;E&#124;) | Θ(deg)
 
 
 <h2 id="1819001b72329e2ef5799fe504238035"></h2>
-
 
 #### Explore
 
@@ -171,7 +164,6 @@ def Explore(v):
 
 <h2 id="c1bb62b63c65be3760b715faad0bdf8d"></h2>
 
-
 #### DFS
 
 - DFS to find all vertices of G, not just those reachable from v.
@@ -189,11 +181,9 @@ def DFS(G):
 
 <h2 id="9bd9d0ebc081bd74f5bef4e136bb1aed"></h2>
 
-
 ### Connectivity
 
 <h2 id="8a4d6dec35ad6f01d54531c509cf7d37"></h2>
-
 
 #### Connected Components
 
@@ -232,7 +222,6 @@ def DFS(G):
 
 <h2 id="cb7d104acd7ef78260476fb96e632beb"></h2>
 
-
 ### Previsit and Postvisit Orderings
 
 - Need to Record Data
@@ -241,7 +230,6 @@ def DFS(G):
     - Adding functions to store additional information, for example, let's look at the `Explore(v)`
 
 <h2 id="c190b4dd3a865a419b7d42ecdded4b14"></h2>
-
 
 #### Previsit and Postvisit Functions
 
@@ -262,7 +250,6 @@ So , what are those funcitons , previsit/postvisit going to be ? They could be m
 
 
 <h2 id="98a892aea3359481ae30e7b66c44d7a8"></h2>
-
 
 ####  Clock
 
@@ -298,17 +285,14 @@ def postvisit(v):
 
 <h2 id="2b39565942c0c8f530d738cf53da9df6"></h2>
 
-
 # Week2 Directed Graphs
 
 <h2 id="2b12ab1371d8f9b1ce9580a395b2e9b2"></h2>
-
 
 ## Directed Graphs
 
 
 <h2 id="7a53b8f5717213d05b5a349b30218b27"></h2>
-
 
 ### Directed Acyclic Graphs
 
@@ -321,7 +305,6 @@ def postvisit(v):
 
 <h2 id="82842893b1046ac7ea43887a7d4c6c97"></h2>
 
-
 #### Directed DFS
 
 - Can still run DFS in directed graphs.
@@ -330,7 +313,6 @@ def postvisit(v):
     - Can still compute pre- and post- orderings.
 
 <h2 id="d3240659659cbfa93d781d1510717a66"></h2>
-
 
 #### Cycles
 
@@ -345,7 +327,6 @@ def postvisit(v):
 
 <h2 id="1f979bae5ccfb6a193fde8d275355540"></h2>
 
-
 #### DAGs
 
 - A directed graph G is a **Directed Acyclic Graph** (or DAG) if it has no cycles.
@@ -356,7 +337,6 @@ def postvisit(v):
 
 
 <h2 id="3f9c4755d1b2c530f17ce3f80a0fb896"></h2>
-
 
 ### Topological Sort
 
@@ -386,7 +366,6 @@ This is all well and good, but it depends on us being able to find a sink.
 
 <h2 id="2f1d4122555c30fa41c0390bd028ef60"></h2>
 
-
 #### Finding Sink
 
 - Question: How do we know that there is a sink?
@@ -395,7 +374,6 @@ This is all well and good, but it depends on us being able to find a sink.
     - Repeat a vertex (have a cycle).
 
 <h2 id="7325cfd5224854fdee2a8cd7f046a1f6"></h2>
-
 
 #### TopologicalSort Algorithm
 
@@ -428,7 +406,6 @@ This is all well and good, but it depends on us being able to find a sink.
 
 <h2 id="670190ac033bf942d8013492dc8f8b0f"></h2>
 
-
 ### Strongly Connected Components
 
 - Connectivity is complex in directed graph.
@@ -438,7 +415,6 @@ This is all well and good, but it depends on us being able to find a sink.
     - ![](../imgs/algorithm_on_graph_SCC.png)
 
 <h2 id="cd4755489eca8e682b00937d8e695b98"></h2>
-
 
 #### Metagraph
 
@@ -453,7 +429,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="b3a7569c9a7d363bd55ee91cf45641f9"></h2>
 
-
 ### Computing Strongly Connected Components
 
 - Problem
@@ -461,7 +436,6 @@ How to compute the strongly connected components of a graph. ?
     - Output: The strongly connected components of G. 
 
 <h2 id="80d29df79dc221a3cd1b8e554a6a3828"></h2>
-
 
 #### Sink Components
 
@@ -476,7 +450,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="57c30fe3a2297ed1dfa107e753e2752e"></h2>
 
-
 #### Finding Sink Components
 
 - Theorem
@@ -489,7 +462,6 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="509d136ac9a437456bbe67dd6b003890"></h2>
 
-
 ##### Reverse Graph Components
 
 - Let Gᴿ be the graph obtained from G by reversing all of the edges.  
@@ -500,7 +472,6 @@ How to compute the strongly connected components of a graph. ?
     - The vertex with largest postorder in Gᴿ is in a sink SCC of G.
 
 <h2 id="4afa80e77a07f7488ce4d1bdd8c4977a"></h2>
-
 
 #### Algorithm
 
@@ -538,18 +509,15 @@ How to compute the strongly connected components of a graph. ?
 
 <h2 id="ebf4c5795e7e039832b0c383127c1af7"></h2>
 
-
 # Week3 Shortest Path
 
 <h2 id="ae5c4b868b5b24149decba70c74165c2"></h2>
-
 
 ## Breadth-First Search
 
 [BFS algorithm](AlgorithmII_Graph.md#9f5783932f655ffe3908ff7d3410497e)
 
 <h2 id="3beb167902a9a7e0fb85607fb6ae23cf"></h2>
-
 
 ## Using BFS to find shortest path 
 
@@ -577,7 +545,6 @@ Normally the application of DFS, BFS visits each node only once.
 
 <h2 id="b677abc0402df239cc73865a664d147a"></h2>
 
-
 ## Constructing shortest-path tree
 
 By BFS, you have found the shortest path , but how you reconstuct the shortest path ? 
@@ -595,13 +562,11 @@ def ReconstructPath(S, u, prev):
 
 <h2 id="f48846cfd1c263bd3b157547c127e20d"></h2>
 
-
 # Week4 Weighted Edge Graph
 
 How to compute shortest path of a weighted edges graph ?
 
 <h2 id="f5465cb36bdbaa6b373c184f42e56778"></h2>
-
 
 ## Dijkstra's Algorithm
 
@@ -612,7 +577,6 @@ Note: normally there are 2 versions of Dijkstra. The key difference is whether a
 
 <h2 id="003f976d33ac8c24e95d86528dd29140"></h2>
 
-
 ## Currency Exchange
 
 - We've know how to find shortest path in the graph with non-negative edge weight. 
@@ -620,7 +584,6 @@ Note: normally there are 2 versions of Dijkstra. The key difference is whether a
 
 
 <h2 id="003f976d33ac8c24e95d86528dd29140"></h2>
-
 
 ### Currency Exchange
 
@@ -639,7 +602,6 @@ But we will soon find out it does.
 
 <h2 id="2aebb509894a3435926b0358757ced2b"></h2>
 
-
 #### Reduction to shortest paths 
 
 - use 2 standard approaches 
@@ -656,7 +618,6 @@ But we will soon find out it does.
 
 <h2 id="9e834f13e35e4edf64863ab414a6217a"></h2>
 
-
 #### Reduction 
 
 - Finally: replace edge weights *r<sub>eᵢ</sub>* by *-log( r<sub>eᵢ</sub> )* , and find the shortest path between USD and RUR in the graph.
@@ -664,7 +625,6 @@ But we will soon find out it does.
     - NOT exactly work. 
 
 <h2 id="4da7ea452fdcf0be458d18f360167fa8"></h2>
-
 
 #### Where Dijkstra's algorithm goes wrong ?
 
@@ -677,7 +637,6 @@ But we will soon find out it does.
 
 <h2 id="f976d1a3a77908d613907e00e02f40fd"></h2>
 
-
 #### Negative weight cycles
 
 - Worst problems in graphs with negative weights come from negative weight cycles. 
@@ -685,7 +644,6 @@ But we will soon find out it does.
 
 
 <h2 id="9297e36e7774bdfc6df3122a1161af31"></h2>
-
 
 ### Bellman-Ford Algorithm
 
@@ -707,7 +665,6 @@ def BellmanFord(G , S ):
 
 <h2 id="60743dca1167fe1657b6ced5259479a0"></h2>
 
-
 #### Running Time
 
 - The running time of Bellman–Ford algorithm is O(|V||E|).
@@ -717,12 +674,10 @@ def BellmanFord(G , S ):
 
 <h2 id="efaca9e70dbf43ff2e6721b566e8c08b"></h2>
 
-
 # Week 5: Minimum Spanning Tree (MST)
 
 
 <h2 id="16c7498bf7b447bf072bee49903d8987"></h2>
-
 
 ## Building a Network
 
@@ -730,7 +685,6 @@ def BellmanFord(G , S ):
 - Output: A subset of edges E′ ⊆ E of **minimum** total weight such that the graph (V , E′) is connected.
 
 <h2 id="4337affdb3b134ce849d1cc6650670a6"></h2>
-
 
 ### Properties of Trees 
 
@@ -741,7 +695,6 @@ def BellmanFord(G , S ):
 
 
 <h2 id="b85c9288c07b7e4e4b4e27ab9591a53e"></h2>
-
 
 ### Greedy Algorithms 
 
@@ -780,7 +733,6 @@ Prim | repeatedly attach a new vertex to the current tree by a lightest edge
 
 <h2 id="e53faf4bce755256bb1dbe463ea9e25c"></h2>
 
-
 ### Cut Property
 
 - Let X ⊆ E be a part of a MST of G(V,E), S ⊆ V be such that no edge of X crosses between S and V − S, and e ∈ E be a lightest edge across this partition. Then X + {e} is a part of some MST.
@@ -807,7 +759,6 @@ Prim | repeatedly attach a new vertex to the current tree by a lightest edge
 
 <h2 id="deffa39808ce0c46dbed0dcdf62d8043"></h2>
 
-
 ### Kruskal's Algorithm
 
 1. repeatedly add to X the next lightest edge *e* that doesn’t produce a cycle
@@ -820,7 +771,6 @@ Prim | repeatedly attach a new vertex to the current tree by a lightest edge
 
 
 <h2 id="c2b2b81b0d6751c1aa98cc1822ba50b1"></h2>
-
 
 #### Implementation Details 
 
@@ -847,7 +797,6 @@ def Kruskal(G ):
 
 <h2 id="60743dca1167fe1657b6ced5259479a0"></h2>
 
-
 #### Running Time 
 
 O(|E|·log|V|)
@@ -856,7 +805,6 @@ O(|E|·log|V|)
 ---
 
 <h2 id="8851972d9d159c78edf10480a6211300"></h2>
-
 
 ### Prim's Algorithm 
 
@@ -886,11 +834,9 @@ def Prim(G ):
 
 <h2 id="1c151f86eba1a21ae18d729675bae1a3"></h2>
 
-
 # Week6 Advanced Shortest Path
 
 <h2 id="8d1e9e528ac79f740265585f372cea34"></h2>
-
 
 ## Advanced Shortest Paths : Bidirectional Dijkstra
 
@@ -908,7 +854,6 @@ def Prim(G ):
 
 <h2 id="f4cd5a835ef4f3349f9721e05565ca1a"></h2>
 
-
 ### Idea: Bidirectional Search 
 
 - Instead of going from S and growing the "search circle" until it touches point, we want to go simultaneously forward from S , and backward from T until we meet. 
@@ -922,7 +867,6 @@ def Prim(G ):
     - Good, but not great
 
 <h2 id="73bf6b749aa20e59d85d7be50e9d7319"></h2>
-
 
 ### Six Handshakes
 
@@ -939,7 +883,6 @@ def Prim(G ):
 
 <h2 id="e764537919e46614077b78e9e0191de1"></h2>
 
-
 ### Bidirectional Dijkstra 
 
 1. Build Gᴿ 
@@ -950,7 +893,6 @@ def Prim(G ):
 5. Compute the shortest path between **s** and **t**
 
 <h2 id="434270d395ff546c2f75b9a2a0b54c34"></h2>
-
 
 ### Finding Shortest Path after Meeting in the Middle
 
@@ -969,7 +911,6 @@ def Prim(G ):
     - ![](../imgs/algor_on_graph_bi_dijk_lemma.png)
 
 <h2 id="95f4770065ff47d2c8645f7997e78839"></h2>
-
 
 ### Computing Distance
 
@@ -1031,7 +972,6 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 <h2 id="6f8b794f3246b0c1e1780bb4d4d5dc53"></h2>
 
-
 ### Conclusion
 
 - Worst-case running time of Bidirectional Dijkstra is the same as for Dijkstra
@@ -1042,11 +982,9 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 <h2 id="d33433d24d9ffb9608d3e6411ec9fa2b"></h2>
 
-
 ## Contraction Hierarchies
 
 <h2 id="233f77692f07da82132a3ae75d33127e"></h2>
-
 
 ### Highway Hierarchies and Node Importance
 
@@ -1066,7 +1004,6 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 <h2 id="0012bd109b088ff2cc888af51d74134f"></h2>
 
-
 #### Highway Hierarchies 
 
 - There are algorithms based on this idea
@@ -1077,7 +1014,6 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 
 <h2 id="f361803b56eb81eaabddadd949ab3ece"></h2>
-
 
 #### Node Ordering
 
@@ -1091,7 +1027,6 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 <h2 id="4520bd6310cb62fcdd381db986302036"></h2>
 
-
 #### Shortest Paths with Preprocessing
 
 - Preprocess the graph
@@ -1102,7 +1037,6 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
 
 
 <h2 id="d397d6750cedf9d79f3600af61a1641e"></h2>
-
 
 ### Preprocessing
 
@@ -1120,7 +1054,6 @@ def ShortestPath(s, dist, prev, proc, t, distᴿ , prevᴿ , procᴿ ):
     - and also we'll output the order of the nodes that we used in this preprocessing.
 
 <h2 id="867892c0bfaddd887d95f2efd5b7482a"></h2>
-
 
 #### How Node Contraction Work ?
 
@@ -1167,7 +1100,6 @@ And the higher the node , the more important it is.  So we first contract or rem
 
 
 <h2 id="6341d14a4b0f707c95f30884ce778d9c"></h2>
-
 
 #### Witness Paths 
 

@@ -1,9 +1,9 @@
-...menustart
+[](...menustart)
 
 - [政治](#ac3b610634edbce515080692bdb61a9a)
 - [数学](#6e65831863dbf272b7a65cd8df1a440d)
 
-...menuend
+[](...menuend)
 
 
 - 考试科目
@@ -27,14 +27,12 @@
 
 <h2 id="ac3b610634edbce515080692bdb61a9a"></h2>
 
-
 ## 政治
 
 [2021考研：高频人物、著作大总结](https://yz.chsi.com.cn/kyzx/politics/202011/20201113/1997879541.html)
 
 
 <h2 id="6e65831863dbf272b7a65cd8df1a440d"></h2>
-
 
 ## 数学
 

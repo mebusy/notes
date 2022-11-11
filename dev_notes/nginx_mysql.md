@@ -1,12 +1,11 @@
-...menustart
+[](...menustart)
 
 - [Nginx 转发 mysql 链接](#72aac95dc2177165b34981486a4bbb97)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="72aac95dc2177165b34981486a4bbb97"></h2>
-
 
 # Nginx 转发 mysql 链接
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [0 你清楚吗？](#c2c09bef45ddf1df36d0a55702903cba)
 - [1 Misc](#8ae7a9d09b91039571924826ab5018b8)
@@ -45,11 +45,10 @@
     - [Restrictions in C++ that are not in C](#a3f3a90203b121a6a75f03bea0e1a2eb)
     - [C中如何调用C++函数?](#d4b84ef9c02abca153e5728b87c7fb16)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c2c09bef45ddf1df36d0a55702903cba"></h2>
-
 
 # 0 你清楚吗？
 
@@ -60,11 +59,9 @@
 
 <h2 id="8ae7a9d09b91039571924826ab5018b8"></h2>
 
-
 # 1 Misc
 
 <h2 id="e540c9df86ffde8f8d8443c5347dab50"></h2>
-
 
 ## register keyword 是个错误
 
@@ -75,7 +72,6 @@
 
 
 <h2 id="f478e0a5be9950a75d566a3de6949efa"></h2>
-
 
 ## `char **argv` 和 `const char **p` 并不匹配
 
@@ -125,7 +121,6 @@ cp = ccp; /* results in a compilation warning */
 
 <h2 id="7441ae385364f96b273420fec579d734"></h2>
 
-
 ## 隐式类型转换的坑
 
 - Operands with different types get converted when you do arithmetic. 
@@ -150,11 +145,9 @@ int main(int argc, char **argv) {
 
 <h2 id="7e14dfcaec2adef0aa128a546178eb6b"></h2>
 
-
 # 2 It's Not a Bug, It's a Language Feature
 
 <h2 id="9b2b1da3319fe706936ecc07f63165b3"></h2>
-
 
 ## 空格连接字符串 
 
@@ -183,7 +176,6 @@ char *available_resources[] = {
  
 <h2 id="57627d14558e5f49e76b214f3cedf6bb"></h2>
 
-
 ## Too Much Default Global Visibility
 
 - C函数，默认是全局可见。
@@ -201,7 +193,6 @@ static function turnip(){ /* not visible outside this file */ }
 
 <h2 id="8c120ee8f50200d57dc2c236a4aea6c2"></h2>
 
-
 ## sizeof is operator
 
 - when sizeof's operand is a type it has to be enclosed in parentheses 
@@ -213,7 +204,6 @@ r = malloc( p );
 ```
 
 <h2 id="892ab9a4c1d171fd57439aa763e50a23"></h2>
-
 
 ## Some of the Operators Have the Wrong Precedence
 
@@ -231,7 +221,6 @@ i=1,2;
 
 <h2 id="646b355af48a02490fb7d836806d222e"></h2>
 
-
 ## Order of Evaluation is always undefined
 
 ```cpp
@@ -245,7 +234,6 @@ x = f() + g() * h();
     - It is left undefined so that compiler-writers can take advantage of any quirks in the architecture, or special knowledge of values that are already in registers.
 
 <h2 id="72b031c516a7abf0388911bba461224a"></h2>
-
 
 # 3. Unscrambling Declarations in C
 
@@ -283,11 +271,9 @@ char* const *(*next)();
 
 <h2 id="b7e9138ae25a9bed094f2fc2baac2ec7"></h2>
 
-
 # 4 C Arrays and Pointers Are NOT the Same!
 
 <h2 id="1eaa14e0cd93829351bf9715d9f5b6b9"></h2>
-
 
 ## Arrays Are NOT Pointers!
 
@@ -302,7 +288,6 @@ extern int y[];
 
 <h2 id="a8d312913a6f076559c8def2be972777"></h2>
 
-
 ## What's a Declaration? What's a Definition?
 
 · | · | ·
@@ -314,7 +299,6 @@ declaration | can occur multiple times | describes the type of an object; is use
 
 
 <h2 id="75a4728af33d339b0fb4e5f6c1c77f62"></h2>
-
 
 ## How Arrays and Pointers Are Accessed
 
@@ -363,7 +347,6 @@ c = a[i] ;
     
 <h2 id="cdf62163f96ec1f81f8371491bb91d37"></h2>
 
-
 ## What Happens When You "Define as Pointer/Reference as Array"
 
 - Consider the case of an external declaration
@@ -380,7 +363,6 @@ c = a[i] ;
 
 <h2 id="e6020bd3340b06367a4f39ac38b701c1"></h2>
 
-
 ## Other Differences Between Arrays and Pointers
 
 ![](../imgs/n2t_diff_array_pointer.png)
@@ -388,7 +370,6 @@ c = a[i] ;
 ---
 
 <h2 id="4517a8b879a5e0c25240ae3929d48981"></h2>
-
 
 # Thinking of Linking
 
@@ -410,7 +391,6 @@ c = a[i] ;
 
 <h2 id="a51694b67188edc8683e477e426a56ef"></h2>
 
-
 ## The Benefits of Dynamic Linking
 
 - Dynamic linking permits easy versioning of libraries. 
@@ -431,7 +411,6 @@ c = a[i] ;
 
 <h2 id="450da0dd9224f10691b980ac70d782d3"></h2>
 
-
 ## Five Special Secrets of Linking with Libraries
  
  1. Dynamic libraries are called lib something.so , and static libraries are called lib something.a
@@ -445,11 +424,9 @@ c = a[i] ;
 
 <h2 id="56db6fe00c1a63b2206da1b3fc9d1dac"></h2>
 
-
 # 6. Poetry in Motion: Runtime Data Structures
 
 <h2 id="fb9a488a6fe2d37f9a17651d744997f6"></h2>
-
 
 ## Segments
 
@@ -501,7 +478,6 @@ text    data     bss     dec     hex filename
 
 <h2 id="cf9c9db19b149da7bf46731588f14a1c"></h2>
 
-
 ## What the OS Does with Your a.out
 
 
@@ -538,7 +514,6 @@ text    data     bss     dec     hex filename
 
 <h2 id="9b556298edbaee22cddaf42efe61cba0"></h2>
 
-
 ## What the C Runtime Does with Your a.out
 
 - how does C organize the data structures of a running program ?
@@ -546,7 +521,6 @@ text    data     bss     dec     hex filename
     - the stack, activation records, data, heap, and so on. 
 
 <h2 id="3cf675eeba8bca26ae8a7b7b3e3f1b35"></h2>
-
 
 ### The Stack Segment
 
@@ -583,7 +557,6 @@ main() {
 - 类似的方法，也可以找到 data and text segment  的地址.
 
 <h2 id="b50aba5b915400027367a056c9c39e9b"></h2>
-
 
 ## What Happens When a Function Gets Called: The Procedure Activation Record
 
@@ -633,7 +606,6 @@ main() {
 
 <h2 id="ff5dffd1a63cfb6268aa15dc53997150"></h2>
 
-
 ## Threads of Control
 
 - It should now be clear how different threads of control can be supported within a process. 
@@ -641,7 +613,6 @@ main() {
 - Each thread gets a stack of 1Mb (grown as needed) and a page of red zone betweeen each thread's stack. 
 
 <h2 id="33d032016b5ee178e526ce98a619238f"></h2>
-
 
 ## setjmp and longjmp
 
@@ -727,7 +698,6 @@ switch(setjmp(jbuf)) {
 
 <h2 id="34973b949955301f78e9a38ca4003f83"></h2>
 
-
 ## Useful tool
 
 - cdecl 
@@ -744,13 +714,11 @@ switch(setjmp(jbuf)) {
 
 <h2 id="07467f535850babca09c42bcce7740b3"></h2>
 
-
 # 7. Thanks for the Memory
 
 - A knowledge of memory architecture helps a programmer to understand some of the C conventions and restrictions.
 
 <h2 id="b5e87cd12de6caadb66a8dddbea8135f"></h2>
-
 
 ## Virtual Memory
 
@@ -799,7 +767,6 @@ $ pagesize
     - If valid, the kernel retrieves the page from the disk.  
  
 <h2 id="1a1efe6a58f7e5cbe9f0f80b3398ae3c"></h2>
-
 
 ## Cache Memory
 
@@ -882,7 +849,6 @@ sys 0m0.002s
 
 <h2 id="a47e4b5f84fb4d03a91154232aeaab75"></h2>
 
-
 ## The Data Segment and Heap
 
 - Heap 是用于动态分配的存储空间，即通过malloc（内存分配）获得并通过指针访问的存储空间。
@@ -910,7 +876,6 @@ sys 0m0.002s
 
 <h2 id="9832805d1fa6d0233d047a31da5ec39d"></h2>
 
-
 ## Bus Error
 
 - 总线错误几乎总是由读取或写入错位导致的。
@@ -935,7 +900,6 @@ int *p= (int*) &(u.a[1]);
 
 <h2 id="96498b0170eccc6027f7f4cea59bedf9"></h2>
 
-
 ## Segmentation Fault
 
 - 导致分段错误的小程序是：
@@ -951,11 +915,9 @@ int *p=0;
 
 <h2 id="8d68ff4961d87e1341081e9b11f35ca9"></h2>
 
-
 # 9 More about Arrays
 
 <h2 id="04c05fff18502967f0b95ac10adb75db"></h2>
-
 
 ## When an Array Is a Pointer
 
@@ -985,7 +947,6 @@ int *p=0;
     - rule 3: An array name **in the declaration of a function parameter** is treated by the compiler as a pointer to the first element of the array 
 
 <h2 id="e2195f06bcab48f9bc6fbb7f1cc693dc"></h2>
-
 
 ## Why C Treats Array Parameters as Pointers
 
@@ -1022,7 +983,6 @@ func(&my_int_array[i] );
 
 <h2 id="24f1b01738a1f67b8bc231debf87a70d"></h2>
 
-
 ## Arrays and Pointers Interchangeability Summary
 
  1. 数组访问`a[i]`总是被编译器“重写”或解释为指针访问`*（a + i）;`
@@ -1034,7 +994,6 @@ func(&my_int_array[i] );
 
 <h2 id="927ac867951fec8e4915977d2999fb9f"></h2>
 
-
 # 11 You Know C, So C++ is Easy!
 
 - 面向对象编程的特点是继承和动态绑定。
@@ -1042,7 +1001,6 @@ func(&my_int_array[i] );
     - 动态绑定由virtual class functions 提供
 
 <h2 id="86ed791708ce65e7edac93b014c46870"></h2>
-
 
 ## Improvements in C++ Over C
 
@@ -1055,7 +1013,6 @@ func(&my_int_array[i] );
 
 <h2 id="a3f3a90203b121a6a75f03bea0e1a2eb"></h2>
 
-
 ## Restrictions in C++ that are not in C
 
 - 函数原型在C ++中是必需的，但在C中是可选的
@@ -1064,7 +1021,6 @@ func(&my_int_array[i] );
 - 字符文字 'x' 在C++中 是char类型，但在C中是int 类型。也就是说，sizeof（'a'）在C++中为1，而在C中为4.
 
 <h2 id="d4b84ef9c02abca153e5728b87c7fb16"></h2>
-
 
 ## C中如何调用C++函数?
 

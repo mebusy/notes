@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [32: DIY Postprocessing with the Built-In Pipeline, with a Taste of Deferred Rendering](#ecf2d2baf3a85614fed652e8202506d5)
     - [Setup for Postprocessing](#0619c5d6918abcf32a904fce06373556)
@@ -11,11 +11,10 @@
     - [Deferred Rendering Camera Script](#a6381a42bc72e226d2bf8e8ddc014747)
     - [Misc](#74248c725e00bf9fe04df4e35b249a19)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ecf2d2baf3a85614fed652e8202506d5"></h2>
-
 
 # 32: DIY Postprocessing with the Built-In Pipeline, with a Taste of Deferred Rendering
 
@@ -28,7 +27,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
 
 <h2 id="0619c5d6918abcf32a904fce06373556"></h2>
 
-
 ## Setup for Postprocessing
 
 - ![](../imgs/gpu_post_process_setup_1.png)
@@ -37,7 +35,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
 
 
 <h2 id="417b745a4173afc57e75ae3d40323f0e"></h2>
-
 
 ## Outline Shader 
 
@@ -52,7 +49,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
     - unity fills in the `_ScreenParams`   vector for us, `_ScreenParams.x` basically gives you the width of the image.
 
 <h2 id="7cb3bdab742ab4ffd7ff17ff5175da4c"></h2>
-
 
 ## Outline Camera Script
 
@@ -71,7 +67,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
 
 
 <h2 id="abab460191bed0a6461073795868dc4b"></h2>
-
 
 ## DepthNormal Shader
 
@@ -93,14 +88,12 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
 
 <h2 id="60f4cbd5a20c45e3f0c99a02becc2679"></h2>
 
-
 ## DecodeDepthNormal 
 
 - Here is the `DecodeDepthNormal` function from the `UnityCG`
 - ![](../imgs/gpu_decodedepthnormal_func.png)
 
 <h2 id="b54ff5be5aa2dbc7357a3b966b22583b"></h2>
-
 
 ## DepthNormal Camera Script
 
@@ -119,7 +112,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
 
 
 <h2 id="4ec4cbc2ce27a23ff2ac10fb1762cfb7"></h2>
-
 
 ## Deferred Rendering Shader
 
@@ -159,7 +151,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
 
 <h2 id="a6381a42bc72e226d2bf8e8ddc014747"></h2>
 
-
 ## Deferred Rendering Camera Script
 
 - ![](../imgs/gpu_postproc_depthnormal_cs.png)
@@ -174,7 +165,6 @@ https://github.com/lantertronics/CS-ECE4795-GPU-Prog-for-Video-Games
     - actually we don't need this line `postMat.SetVector("_CameraData",  cameraData); ` because we already did it in `OnPreRender` routine.
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
-
 
 ## Misc
 

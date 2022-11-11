@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [23: Simple Lit Shaders](#c2084b938f5c0d2971f9f94dba225a6c)
     - [Diffuse Light Only Shader](#2cdfd700b06528d28ef8d892c3f00651)
@@ -14,11 +14,10 @@
     - [NormalMap ( Vertex Shader )](#289daec20d989b15cf284fd25c79d41a)
     - [Normal Map (Pixel Shader)](#f5607ccd9042e1327a7d369b3e5556e5)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c2084b938f5c0d2971f9f94dba225a6c"></h2>
-
 
 # 23: Simple Lit Shaders
 
@@ -32,7 +31,6 @@
     - normal map in card, is compressed in only green and alpha channel
 
 <h2 id="2cdfd700b06528d28ef8d892c3f00651"></h2>
-
 
 ## Diffuse Light Only Shader
 
@@ -51,7 +49,6 @@
 
 <h2 id="fdfd84e9ccc7ed4576a2f61d1047aca2"></h2>
 
-
 ## VertexLit & PixelLit Uniforms 
 
 ```c
@@ -68,7 +65,6 @@ float4 _LightColor0;
 
 
 <h2 id="8b64f1adb7792fcd69026766af09fb51"></h2>
-
 
 ## VertexLit Structures
 
@@ -91,7 +87,6 @@ struct v2f {
 
 
 <h2 id="9553b17701c2b7d161a1b4f813b10ef0"></h2>
-
 
 ## VertexLit ( Vertex Shader )
 
@@ -119,14 +114,12 @@ struct v2f {
 
 <h2 id="a20b822bf05cc5df06ca61cbdc59718d"></h2>
 
-
 ## VertexLit ( Pixel Shader)
 
 - ![](../imgs/gpu_lit_diffuse_only_3.png)
 
 
 <h2 id="17f40169fc0fda2a46a76a660bb8f1c2"></h2>
-
 
 ## PixelLit Structure
 
@@ -153,13 +146,11 @@ struct v2f {
 
 <h2 id="90370e2dc9eb658baec70bf1f4a022f7"></h2>
 
-
 ## PixelLit (Vertex Shader)
 
 - ![](../imgs/gpu_pixellit_diffuse_only_1.png)
 
 <h2 id="a131ac99e46d94895215a93795832fe9"></h2>
-
 
 ## PixelLit (Pixel Shader)
 
@@ -174,7 +165,6 @@ struct v2f {
 
 <h2 id="8abb75bb97b7011e50b6ae080dd00d09"></h2>
 
-
 # 24: Normal Mapping
 
 - ![](../imgs/gpu_normalmap_shader_1.png)
@@ -182,7 +172,6 @@ struct v2f {
 
 
 <h2 id="f9bef842891a4adee8f2c393d55b7c0f"></h2>
-
 
 ## NormalMap Structure
 
@@ -212,7 +201,6 @@ struct v2f {
 
 <h2 id="289daec20d989b15cf284fd25c79d41a"></h2>
 
-
 ## NormalMap ( Vertex Shader )
 
 - ![](../imgs/gpu_normalmap_shader_2.png)
@@ -240,7 +228,6 @@ struct v2f {
 
 
 <h2 id="f5607ccd9042e1327a7d369b3e5556e5"></h2>
-
 
 ## Normal Map (Pixel Shader)
 

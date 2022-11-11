@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Chapter 8 Beyond Realtime Graphics](#4d931c2707aeed1240cfe2677f861771)
     - [Section 8.1 Ray Tracing](#d8bd15b9ba5d01f63a47884d45415d0f)
@@ -8,16 +8,14 @@
     - [Section 8.2 Path Tracing](#5cf05c08f53e2032f2bafb3b6bb6ca10)
         - [8.2.1  BSDF's](#bbeb206121c2e62cad59311752fede84)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="4d931c2707aeed1240cfe2677f861771"></h2>
 
-
 # Chapter 8 Beyond Realtime Graphics
 
 <h2 id="d8bd15b9ba5d01f63a47884d45415d0f"></h2>
-
 
 ## Section 8.1 Ray Tracing
 
@@ -28,7 +26,6 @@
 - The operation of determining what is hit by a ray is called **ray casting**. 
  
 <h2 id="9afc8a38da48fafd3d564bf004ca9fc2"></h2>
-
 
 ### 8.1.1 Ray Casting
 
@@ -58,7 +55,6 @@
     - There are formulas.
 
 <h2 id="e2ffdd6b6bfc5c4b5d49a2166a5abed1"></h2>
-
 
 ### 8.1.2  Recursive Ray Tracing
 
@@ -100,7 +96,6 @@
 
 <h2 id="2b3c4369be7291b0b83fc11b8d512f66"></h2>
 
-
 ### 8.1.3  Limitations of Ray Tracing
 
 - Although ray tracing can produce very realistic images, there are some things that it can't do. 
@@ -114,13 +109,11 @@
 
 <h2 id="5cf05c08f53e2032f2bafb3b6bb6ca10"></h2>
 
-
 ## Section 8.2 Path Tracing
 
 - In path tracing, the idea is to account for **all** possible paths that the light could have followed. 
 
 <h2 id="bbeb206121c2e62cad59311752fede84"></h2>
-
 
 ### 8.2.1  BSDF's
 

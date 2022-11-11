@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Multiple Java Version on Mac OSX](#4fc9e2892b33aea308c94ae8c0aba2f3)
     - [Which java version you have ?](#4be002648b436bac96f90f38babf3f01)
@@ -7,18 +7,16 @@
     - [Manage Your Jave Environment](#a979f66a93de96055f706d8826b62f51)
     - [if only you need java7...](#3e4389c4ca27e9e6951f00cbe9f48594)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="4fc9e2892b33aea308c94ae8c0aba2f3"></h2>
-
 
 # Multiple Java Version on Mac OSX
 
 Since MacOSX 10.5, Apple deliver `/usr/libexec/java_home` to manage JAVA_HOME
 
 <h2 id="4be002648b436bac96f90f38babf3f01"></h2>
-
 
 ## Which java version you have ?
 
@@ -31,7 +29,6 @@ Matching Java Virtual Machines (3):
 ```
 
 <h2 id="bc82ebd5b0ee12cf8a564e3995e76def"></h2>
-
 
 ## Install another JDK@11 via homebrew
 
@@ -55,7 +52,6 @@ Matching Java Virtual Machines (4):
 
 <h2 id="659d2e232157f2266f77cc65608b8953"></h2>
 
-
 ## Get JAVA_HOME via `java_home`
 
 ```bash
@@ -68,7 +64,6 @@ $ /usr/libexec/java_home -v1.7
 ```
 
 <h2 id="a979f66a93de96055f706d8826b62f51"></h2>
-
 
 ## Manage Your Jave Environment
 
@@ -101,7 +96,6 @@ openjdk version "11.0.12" 2021-07-20
 
 
 <h2 id="3e4389c4ca27e9e6951f00cbe9f48594"></h2>
-
 
 ## if only you need java7...
 

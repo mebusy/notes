@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Introduction to TensorFlow 2.0: Easier for beginners, and more powerful for experts](#eb38201f17f85fa8cd88b72593cd9cf2)
     - [Training](#cf270e40d273f9e7fd7c3061729060c3)
@@ -17,11 +17,10 @@
     - [Implementing an Enviroment](#26bebfa63975fd82d0727ceb77db053e)
     - [Loading Gym CartPole](#9c80ab06e0196e3d5832372c733ad601)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="eb38201f17f85fa8cd88b72593cd9cf2"></h2>
-
 
 # Introduction to TensorFlow 2.0: Easier for beginners, and more powerful for experts
 
@@ -32,12 +31,10 @@
 
 <h2 id="cf270e40d273f9e7fd7c3061729060c3"></h2>
 
-
 ## Training
 
 
 <h2 id="379998c229b09fb16b3859eee59409b1"></h2>
-
 
 ### Model design: Keras
 
@@ -84,7 +81,6 @@
 
 <h2 id="aaa24f6c70e138d437c490f97c52c8a3"></h2>
 
-
 ### Helpful references
 
 - Guides
@@ -99,7 +95,6 @@
 
 
 <h2 id="d221a3c13a964a30bc621ee76eeff9cd"></h2>
-
 
 ### Training Models
 
@@ -154,7 +149,6 @@
 
 
 <h2 id="bd6dbd063f5ab7394879e3c08781cd72"></h2>
-
 
 ### DEMO
 
@@ -312,7 +306,6 @@ plt.show()
 
 <h2 id="deb6d7f18b91dc52f2998b02414e2208"></h2>
 
-
 ### DataSets
 
 So in terms of datasets, basically you have 2 options in TensorFlow 2, Keras datasets(you can find in Keras.io) and TensorFlow Datasets.
@@ -347,7 +340,6 @@ image_ds = image_ds.map(
 
 
 <h2 id="f0bac093bb884df2891d32385d053788"></h2>
-
 
 ### Distribution
 
@@ -385,7 +377,6 @@ with strategy.scope(): Distribute-aware
 
 <h2 id="ea355214fd4bc7c57f471bd92918879b"></h2>
 
-
 ## Deployment
 
 TensorFlow 2 is going beyond Python. It's really awesome especially if you're leaning or you have students, 
@@ -408,7 +399,6 @@ print("Model is %d bytes" % basic_model_size)
 ```
 
 <h2 id="b0370f35e9505d9b8de1d25ab4abfdf6"></h2>
-
 
 ##  Keras, tf.keras, NumPy
 
@@ -433,7 +423,6 @@ print("Model is %d bytes" % basic_model_size)
 
 <h2 id="6f1bf85c9ebb3c7fa26251e1e335e032"></h2>
 
-
 ## Terms
 
 - Dense Layer
@@ -446,7 +435,6 @@ print("Model is %d bytes" % basic_model_size)
 
 <h2 id="a42fb8f43b10d96c419920ddd04fafc6"></h2>
 
-
 ## TensorFlow2 ecosystem
 
 - TF Probability , for Bayes modeling
@@ -457,7 +445,6 @@ print("Model is %d bytes" % basic_model_size)
 
 <h2 id="ff7c0fcd6a31e735a61c001f75426961"></h2>
 
-
 ## Examples
 
 [image caption](https://www.tensorflow.org/tutorials/text/image_captioning)
@@ -467,11 +454,9 @@ print("Model is %d bytes" % basic_model_size)
 
 <h2 id="45938e48290149dc7fa28a87ad23cf31"></h2>
 
-
 # TF-Agents
 
 <h2 id="26bebfa63975fd82d0727ceb77db053e"></h2>
-
 
 ## Implementing an Enviroment
 
@@ -489,7 +474,6 @@ class CartPole( tf_agents.py_environment.PyEnvironment ):
 ```
 
 <h2 id="9c80ab06e0196e3d5832372c733ad601"></h2>
-
 
 ## Loading Gym CartPole
 

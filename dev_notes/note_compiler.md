@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Nand2Tetris 笔记](#6cda5e46c1ef1aef8449764e0d9a327f)
 - [Boolean Functions and Gate Logic](#deb69b5e23e0f74aea56d42c2df9b438)
@@ -6,18 +6,16 @@
 - [Virtual Machine](#b19292cad601553e06435e12582db069)
 - [Code Generation](#0138da8da6c96a41001c44e79c105ba8)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="6cda5e46c1ef1aef8449764e0d9a327f"></h2>
-
 
 ## Nand2Tetris 笔记
 
 
 
 <h2 id="deb69b5e23e0f74aea56d42c2df9b438"></h2>
-
 
 ## Boolean Functions and Gate Logic
 
@@ -50,7 +48,6 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 
 <h2 id="17890d645ed41b2a5b1166f427d0e31c"></h2>
 
-
 ## Assembler
 
 - 汇编器
@@ -70,7 +67,6 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
             - 2nd pass , 翻译 code 
 
 <h2 id="b19292cad601553e06435e12582db069"></h2>
-
 
 ## Virtual Machine
 
@@ -110,7 +106,6 @@ NAND: 可以使用仅包含 NAND操作的表达式来表示任何布尔函数。
 
 
 <h2 id="0138da8da6c96a41001c44e79c105ba8"></h2>
-
 
 ## Code Generation
 

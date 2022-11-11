@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [IBM 使用 LLVM 框架创建一个工作编译器](#b666897e006a61952325fc4ce09a90e1)
     - [开始使用 LLVM](#3517e6ec6ef43c16c3fe3f8d02d813e1)
@@ -17,16 +17,14 @@
         - [使用 Helper 和实用工具类实现预处理功能](#8917d0aa85c6f420c6f318f4544ac7a2)
     - [创建一个解析树](#d7355d4c2830894b182ca4fc92ca8aa7)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b666897e006a61952325fc4ce09a90e1"></h2>
 
-
 # IBM 使用 LLVM 框架创建一个工作编译器
 
 <h2 id="3517e6ec6ef43c16c3fe3f8d02d813e1"></h2>
-
 
 ## 开始使用 LLVM
 
@@ -52,7 +50,6 @@
 
 <h2 id="25d77db5980b5942f3d851c8b1cbafdf"></h2>
 
-
 ## 使用 LLVM 编写 Hello World
 
 - 第一个程序
@@ -75,7 +72,6 @@ Hello World!
 ```
 
 <h2 id="3c5a78647c25d722ab8cf911ac977066"></h2>
-
 
 ## 理解 LLVM IR
 
@@ -135,7 +131,6 @@ define i32 @main() {
 
 <h2 id="83cce5d6924f021359b95495b7562605"></h2>
 
-
 ## 创建一个自定义的 LLVM IR 代码生成器
 
 - 了解 LLVM IR 是件好事，但是您需要一个自动化的代码生成系统，用它来转储 LLVM 汇编语言
@@ -145,7 +140,6 @@ define i32 @main() {
 - 现在，让我们创建一个程序，为之前 的 Hello World 程序生成 LLVM IR。 
 
 <h2 id="b641743f3841c4148588d0e72f4ae123"></h2>
-
 
 ### 针对 LLVM 代码的链接
 
@@ -160,7 +154,6 @@ $ llvm-config --cxxflags --ldflags --libs
 ```
 
 <h2 id="bb79068e1b02332c2220d3189bcccc59"></h2>
-
 
 ### LLVM 模块和上下文环境等
 
@@ -323,13 +316,11 @@ declare i32 @puts(i8*)
 
 <h2 id="6cfc5f386e58017e97fb9be705eb0da3"></h2>
 
-
 # 使用 LLVM 框架创建有效的编译器，第 2 部分
 
 - 本文将介绍代码测试，即向生成的最终可执行的代码添加信息。
 
 <h2 id="784abba3fc07b20f4deb3d203bb9affd"></h2>
-
 
 ## LLVM pass
 
@@ -339,7 +330,6 @@ declare i32 @puts(i8*)
     - 例如，如果不希望使用 “hello” 作为函数名称的开头，那么可以使用一个 utility pass  来实现这个目的。
 
 <h2 id="066a588366b625e58eb1a1e9226d1683"></h2>
-
 
 ## 了解 LLVM opt 工具
 
@@ -356,7 +346,6 @@ $ opt –load=mycustom_pass.so –help –S  // untested
 
 
 <h2 id="c0a5892e853163ca07b7b9b487f197ed"></h2>
-
 
 ## 创建定制的 LLVM pass
 
@@ -475,14 +464,12 @@ $ clang -Xclang -load -Xclang pass.so test.c
 
 <h2 id="6124d205a6b4c4319b89f421348a9c95"></h2>
 
-
 ## Clang 简介
 
 - Clang 是一种功能强大的 C/C++/Objective-C 编译器
 - clang 拥有一个可修改的代码基，可以轻松实现定制扩展 
 
 <h2 id="03c49ffee999414feaacf90394855190"></h2>
-
 
 ### 常见的 clang 类
 
@@ -531,7 +518,6 @@ class CompilerInstance : public ModuleLoader {
 
 <h2 id="af74591f45fdefe413d92ff59c7641e8"></h2>
 
-
 ## 预处理 C 文件
 
 - 在 clang 中，至少可以使用两种方法创建一个预处理器对象：
@@ -539,7 +525,6 @@ class CompilerInstance : public ModuleLoader {
     - 使用 CompilerInstance 类创建一个 Preprocessor 对象
 
 <h2 id="8917d0aa85c6f420c6f318f4544ac7a2"></h2>
-
 
 ### 使用 Helper 和实用工具类实现预处理功能
 
@@ -690,7 +675,6 @@ eof ''
 ```
 
 <h2 id="d7355d4c2830894b182ca4fc92ca8aa7"></h2>
-
 
 ## 创建一个解析树
 

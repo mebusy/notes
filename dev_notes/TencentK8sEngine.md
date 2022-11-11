@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [TKE](#12510f8273f9a47f538779a3afd71f53)
 - [kubectl](#0f12ee5c9f1dd90158580f1c292b0d37)
@@ -16,21 +16,18 @@
     - [Duplicate service , deployment one namespece to another namespace](#12847d0d05565b4f2c885fa89ab4049b)
     - [TKE node 常用 安全组](#5c990c1691165d355ad21cc1f7c5801e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="12510f8273f9a47f538779a3afd71f53"></h2>
-
 
 # TKE
 
 <h2 id="0f12ee5c9f1dd90158580f1c292b0d37"></h2>
 
-
 # kubectl
 
 <h2 id="4b091e7bf24f9e193323877b35ece5fb"></h2>
-
 
 ## other usage
 
@@ -48,7 +45,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 ```
 
 <h2 id="a65165eaad917e08dbaab4ca345c9140"></h2>
-
 
 ## role , rolebinding
 
@@ -79,16 +75,13 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
 <h2 id="7616e9353ba2c3c55eb7063e51fc65fb"></h2>
 
-
 # 腾讯云 用户管理
 
 <h2 id="66914536facf5b30973b236fb814d23f"></h2>
 
-
 ## 策略
 
 <h2 id="d255a9679389c247f2735458b48e299f"></h2>
-
 
 ### 访问 COS 某个bucket的策略
 
@@ -118,7 +111,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 ```
 
 <h2 id="e975ebbc1e61fec2da797cf6b13b038c"></h2>
-
 
 ### 操作 北京 区的cvm， 无支付权限
 
@@ -162,11 +154,9 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
 <h2 id="4214290dc4bf8068d16758a84a3496a7"></h2>
 
-
 # 腾讯云 Misc
 
 <h2 id="d42d194dd306f76100f9b591fd878396"></h2>
-
 
 ## ingress 证书 对部分低版本Android设备不兼容，导致 ssl hand shake error.
 
@@ -176,7 +166,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
 
 <h2 id="e8dfbb86e3e1d39df969144ae4d3f06b"></h2>
 
-
 ## k8s node 磁盘占用过高查找并清理
 
 - kubectl 查看node 状态 `kubectl describe nodes` .
@@ -185,7 +174,6 @@ it seems that TKE will automatically use  `tencenthubkey` ?
     - [check disk usage](./disk_usage.md)
 
 <h2 id="77563c3ed75c144a6617a7077a1b4771"></h2>
-
 
 ## 清除不再使用的 image 
 
@@ -199,7 +187,6 @@ docker images | grep co-app-images | awk "{print \$3}" | xargs docker rmi
 
 <h2 id="f33345d63406b6b6402c63cb4275d5b7"></h2>
 
-
 ## Pod Stuck in Terminating
 
 很多原因会导致这个问题，可以先排除，是不是 node 坏了
@@ -210,7 +197,6 @@ k get nodes # Check status of that node... I got it NotReady
 ```
 
 <h2 id="12847d0d05565b4f2c885fa89ab4049b"></h2>
-
 
 ## Duplicate service , deployment one namespece to another namespace
 
@@ -251,7 +237,6 @@ kbctl -n $cur_ns get deploy --export -o yaml | sed -e "s/namespace: $cur_ns/name
 
 
 <h2 id="5c990c1691165d355ad21cc1f7c5801e"></h2>
-
 
 ## TKE node 常用 安全组
 

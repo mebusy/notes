@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [AlphaGo Zero - How and Why it Works](#5d17082ba3158d9e17b986347bd1dce0)
     - [Monte Carlo Tree Search](#d0a68bbde4a8ba76f8761cef0126247c)
@@ -8,18 +8,16 @@
     - [Closing Comments](#f02a63d42734acc8484d26e8a55cb40c)
     - [Summary](#290612199861c31d1036b185b4e69b75)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="5d17082ba3158d9e17b986347bd1dce0"></h2>
-
 
 # AlphaGo Zero - How and Why it Works
 
 http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 <h2 id="d0a68bbde4a8ba76f8761cef0126247c"></h2>
-
 
 ## Monte Carlo Tree Search
 
@@ -88,7 +86,6 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 <h2 id="f83582d3cb7300b10a355aa52addac33"></h2>
 
-
 ## Efficiency Through Expert Policies
 
 - Games like chess and Go have very large branching factors. 
@@ -119,7 +116,6 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 <h2 id="7416d7a47adba4e952a08ac91c59590d"></h2>
 
-
 ## Efficiency Through Value Approximation
 
 - A second form of efficiency can be achieved by  avoiding expensive and potentially inaccurate random rollouts. 
@@ -134,7 +130,6 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 
 <h2 id="0589a0b135b9ba95a92505e046e6b9c6"></h2>
-
 
 ## The Alpha Zero Neural Net
 
@@ -185,7 +180,6 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 <h2 id="f02a63d42734acc8484d26e8a55cb40c"></h2>
 
-
 ## Closing Comments
 
 - The folks at DeepMind contributed a clean and stable learning algorithm that 
@@ -195,7 +189,6 @@ http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
 
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
-
 
 ## Summary
 

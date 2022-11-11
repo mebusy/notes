@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [AI , CS 188](#aea7deb258843dff16f9b84b46ec1461)
 - [Introduction](#0b79795d3efc95b9976c7c5b933afce2)
@@ -67,11 +67,10 @@
         - [ python graph search](#41ac4b4e9e2441a0a74f1372fbca3c52)
         - [other implementation](#65e0ab6e34746c2231d34656e5134d92)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="aea7deb258843dff16f9b84b46ec1461"></h2>
-
 
 # AI , CS 188
 
@@ -97,11 +96,9 @@ https://www.youtube.com/watch?v=16Dir4QqCUg&list=PLsOUugYMBBJENfZ3XAToMsg44W7LeU
 
 <h2 id="0b79795d3efc95b9976c7c5b933afce2"></h2>
 
-
 # Introduction
 
 <h2 id="9fa835a40078a81e452b0cbb4362a6f5"></h2>
-
 
 ## What is AI
 
@@ -120,7 +117,6 @@ A better title for this course would be:
 
 <h2 id="04052b6bc5dad6a9f6a00dfb9cd988da"></h2>
 
-
 ## Designing Rational Agents
 
 - An **agent** is an entity that *perceives* and *acts*.
@@ -133,7 +129,6 @@ A better title for this course would be:
 ![](../imgs/cs188_agent.png)
 
 <h2 id="9ef57e59fc5834eb1f86775a80163590"></h2>
-
 
 ## Reflex Agents
 
@@ -150,7 +145,6 @@ A better title for this course would be:
 
 <h2 id="b35ab1adff6f2f91e25f048a1f1ecfcc"></h2>
 
-
 ## Planning Agents
  
 - Planning agents
@@ -163,7 +157,6 @@ A better title for this course would be:
 - **Planning vs. replanning**
 
 <h2 id="75947eb557ad99ec6bd6f19e5842e7c0"></h2>
-
 
 ## Course Topics \*
 
@@ -182,7 +175,6 @@ A better title for this course would be:
 --------
 
 <h2 id="faccc055dce5dfee94eba9a23ec379bc"></h2>
-
 
 # Uninformed Search
 
@@ -203,7 +195,6 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 <h2 id="fc72ba154e470ee2e177ed8e75ee4de2"></h2>
 
-
 ## Search Problems
 
 - A **search problem** consists of:
@@ -217,11 +208,9 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 <h2 id="0a9e0b58d3ed416bdb73713846200baa"></h2>
 
-
 ## Search Problems Are Models
 
 <h2 id="30f0fbd7fae0ee74806b20a52d15e3ee"></h2>
-
 
 ### Example: Traveling in Romania
 
@@ -240,7 +229,6 @@ Uninformed means that when we are exploring search tree we have no idea if we're
 
 <h2 id="e753d55f3a61b93cba852a33216321e0"></h2>
 
-
 ## What’s in a State Space ?
 
 - The **world state** includes every last detail of the environment
@@ -257,7 +245,6 @@ Goal test | is (x,y) == END | dots all flase
 
 
 <h2 id="05eb0fb2a7cf700d9734545149fc43fb"></h2>
-
 
 ## State Space Sizes ?
 
@@ -283,7 +270,6 @@ Goal test | is (x,y) == END | dots all flase
 
 <h2 id="10f2374e81dfff89cef5eecf517b70ef"></h2>
 
-
 ## Quiz: Safe Passage
 
 - Problem: eat all dots while keeping the ghosts permanent-scared
@@ -294,11 +280,9 @@ Goal test | is (x,y) == END | dots all flase
 
 <h2 id="12227407175834cc50274fb425cf4e2d"></h2>
 
-
 ## State Space Graphs and Search Trees
 
 <h2 id="91fa96e85b0a665a30ab89661d0137c4"></h2>
-
 
 ### State Space Graphs
 
@@ -318,7 +302,6 @@ Goal test | is (x,y) == END | dots all flase
 
 <h2 id="fa3d63f947f57a28158a9af70e100ef3"></h2>
 
-
 ### Search Trees
 
 What we're actually going to build up when an algorithm runs is called a search tree. 
@@ -337,7 +320,6 @@ What we're actually going to build up when an algorithm runs is called a search 
 
 <h2 id="3371ddd82f34162d684dfd1d1f40d8b3"></h2>
 
-
 ### State Space Graphs vs. Search Trees
 
 ![](../imgs/cs188_state_space_graph2.png)  .VS.  ![](../imgs/cs188_search_tree2.png)
@@ -348,7 +330,6 @@ What we're actually going to build up when an algorithm runs is called a search 
 
 
 <h2 id="76acaf4079e010db2a41f612ceae95f4"></h2>
-
 
 ### Quiz: State Space Graphs vs. Search Trees
 
@@ -365,7 +346,6 @@ How big is its search tree (from S)?
 
 <h2 id="643025d557c3b9f6d43cdd62b77f5530"></h2>
 
-
 ### Searching with a Search Tree
 
 ![](../imgs/cs188_search_with_a_search_tree.png)
@@ -379,7 +359,6 @@ How big is its search tree (from S)?
 
 
 <h2 id="a23c40de844ed1e2415dc477845012af"></h2>
-
 
 ### General Tree Search
 
@@ -415,7 +394,6 @@ end function
 
 <h2 id="d292eaede65eb34e66db0db9ebb6b9bc"></h2>
 
-
 ### Depth-First Search
 
 - Strategy: 
@@ -428,7 +406,6 @@ end function
 > leftmost DFS
 
 <h2 id="6dda6174af1ce92b505f3c29643504c3"></h2>
-
 
 #### Search Algorithm Properties
 
@@ -448,7 +425,6 @@ end function
 
 <h2 id="62a9189e6707b0db89f80a7a5bb6c15e"></h2>
 
-
 #### Depth-First Search (DFS) Properties
 
 - What nodes DFS expand?
@@ -467,7 +443,6 @@ end function
 
 <h2 id="ae5c4b868b5b24149decba70c74165c2"></h2>
 
-
 ### Breadth-First Search
 
 - Strategy: 
@@ -479,7 +454,6 @@ end function
 
 
 <h2 id="0d9bfd747ee897d1720abf029faddae4"></h2>
-
 
 #### Breadth-First Search (BFS) Properties
 
@@ -502,7 +476,6 @@ end function
 
 <h2 id="fcbd892c255445e0e3c99ceeb0dbc2e9"></h2>
 
-
 #### Iterative Deepening
 
 - Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantages
@@ -521,7 +494,6 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
 
 <h2 id="ea10a2ff2bc1cbc4cb292e4f88cad9e9"></h2>
 
-
 ### Cost-Sensitive Search
 
 ![](../imgs/cs188_cost_sensitive_search.png)
@@ -532,7 +504,6 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
 
 
 <h2 id="1bd1e9029adb17c5893239e7288210a9"></h2>
-
 
 #### Uniform Cost Search
 
@@ -545,7 +516,6 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
     - Even though the goal is there, we still pick the one with lowest cost, 9. You might say, why don't we call it quits? We see the goal we call it done we found the path. No. Because you don't know, maybe from that one with 9, there is one with cost only 0.5 that leads to the goal, and if we already declared success here(buttom *G*) with goal, we would not found that one.
 
 <h2 id="8fcce2120d7405462b72fce3bf1fcaaa"></h2>
-
 
 #### Uniform Cost Search (UCS) Properties
 
@@ -565,7 +535,6 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
 
 <h2 id="be3a9de1eb8b7a58870eafd5232dc9ce"></h2>
 
-
 #### Uniform Cost Issue
 
 - Remember: UCS explores increasing cost contours
@@ -576,7 +545,6 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
 
 <h2 id="6fa04493ae42918af4621de6aae2ccc2"></h2>
 
-
 ### The One Queue
 
 - All these search algorithms are the same except for fringe strategies
@@ -586,7 +554,6 @@ Now let's switch gears to a different kink of problem formulation. What if we ca
 
 
 <h2 id="46ea5fe25e20e5c9f2466692baeb1848"></h2>
-
 
 ### DFS vs BFS vs UCS
 
@@ -604,7 +571,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 <h2 id="7f1afff8243e3009eb892111dcc4413f"></h2>
 
-
 ## Search and Models
 
 - Search operates over models of the world
@@ -616,7 +582,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 
 <h2 id="f2ef45f33145362c2a215128cc677ccc"></h2>
-
 
 ## Graph Search VS Tree Search
 
@@ -684,7 +649,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 <h2 id="e609c39a6581f06c0e176c5be71abfa3"></h2>
 
-
 ## Uniform cost search vs. Dijkstra's Algorithm 
 
 - Dijkstra's algorithm, which is perhaps better-known, can be regarded as a variant of uniform-cost search,
@@ -694,7 +658,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 
 <h2 id="b04314d7dafd45796af0bf245e3ae8e8"></h2>
-
 
 ## Some Hints for P1
 
@@ -706,7 +669,6 @@ Space |  O(b·m) |  O(bˢ) | O(b<sup>C\*/ε</sup>)
 
 <h2 id="29990be19ae238ca1071a838229e85f3"></h2>
 
-
 # Informed Search 
 
 - Heuristics
@@ -717,7 +679,6 @@ Those 3 informed search do a lot of duplicate work and **graph search** will be 
 
 
 <h2 id="fdb1b92add98d8aa548a1d33445c6a67"></h2>
-
 
 ## Search Heuristics
 
@@ -731,7 +692,6 @@ The way we're going to make UCS more efficient is by infusing information about 
 ![](../imgs/cs188_heruistics_euclidean_distance.png)
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
-
 
 ### Example
 
@@ -753,7 +713,6 @@ For exmaple, the top state, which has 2 pancake still out of place, the number o
 
 <h2 id="6f166f2a80c5f26b9e59a2ed903c09c7"></h2>
 
-
 ## Greedy Search
 
 - Strategy: expand a node that you think is closest to a goal state
@@ -770,11 +729,9 @@ For exmaple, the top state, which has 2 pancake still out of place, the number o
 
 <h2 id="4eb045a9450d6e7de8a9b8cb2e420c89"></h2>
 
-
 ## A* search
 
 <h2 id="07e5a0c69feece254a168e7da5932151"></h2>
-
 
 ### Combining UCS and Greedy
 
@@ -806,7 +763,6 @@ For exmaple, the top state, which has 2 pancake still out of place, the number o
 
 <h2 id="9fa7d37bafbf919eec2833224d5de03c"></h2>
 
-
 ### When should A* terminate?
 
 - Should we stop when we enqueue a goal?
@@ -831,7 +787,6 @@ What would pull from the frige next ? This 1 over here , `S-A : f = 4` . So we p
 Now we pulled this one from the fringe , we pull something from the fringe that achieves the goal at this point we want to declare success and we did indeed find the optimal path to the goal. 
 
 <h2 id="ea311a4ecb13c55b4cd70a212419aeb9"></h2>
-
 
 ### Is A\* Optimal?
 
@@ -858,7 +813,6 @@ We pull `S-G` from fringe , but it is not optimal !
 
 <h2 id="bf8f38651446764fc008980354ad6746"></h2>
 
-
 ### Admissible Heuristics
 
 - Inadmissible (pessimistic) heuristics break optimality by trapping good plans on the fringe
@@ -872,7 +826,6 @@ We pull `S-G` from fringe , but it is not optimal !
 
 
 <h2 id="3073e988edee383f5983f6a7fc2212a2"></h2>
-
 
 ### Optimality of A* Tree Search
 
@@ -914,14 +867,12 @@ We pull `S-G` from fringe , but it is not optimal !
 
 <h2 id="26e3cfa1ee4375a33dca3b380348e972"></h2>
 
-
 ### Properties of A*
 
 ![](../imgs/cs188_Astar_property.png)
 
 
 <h2 id="f6c0e3a1c3cfabd32ae8d3ae741fcf0a"></h2>
-
 
 ## Comparison
 
@@ -950,7 +901,6 @@ A\* :
 
 <h2 id="042138393e72af1a16d8c31facd84ab1"></h2>
 
-
 ## Creating Heuristics
 
 Creating Admissible Heuristics
@@ -962,7 +912,6 @@ Creating Admissible Heuristics
 
 
 <h2 id="f8097ec9827afc9065c89741a344d53f"></h2>
-
 
 ### Example: 8 Puzzle
 
@@ -1027,13 +976,11 @@ Average nodes expanded when the optimal path has…
 
 <h2 id="7e9aa2fe208a956ac44d1ee31a5035d9"></h2>
 
-
 ## Semi-Lattice of Heuristics  半启发式
 
 So earlier we were talking about is one heuristic better than the other one and so forth. For example, for pancake flipping. Well, you can define this as follows. 
 
 <h2 id="30887de01fbff37aef091345781445d5"></h2>
-
 
 ### Trivial Heuristics, Dominance
 
@@ -1057,7 +1004,6 @@ So earlier we were talking about is one heuristic better than the other one and 
 
 <h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
 
-
 ## Graph Search
 
 So far we've done Tree Search. Now we're going to change Tree Search into Graph Search. 
@@ -1066,7 +1012,6 @@ Why ?
 
 <h2 id="cf1432b4daa7e1fe63cecb1365185f0b"></h2>
 
-
 ### Tree Search: Extra Work! 
 
 - Failure to detect repeated states in search-graph can cause exponentially more work.
@@ -1074,7 +1019,6 @@ Why ?
 
 
 <h2 id="00ba899c02fa6651c15e5e948a7a4aac"></h2>
-
 
 ### Graph Search 
 
@@ -1096,7 +1040,6 @@ Why ?
 
 <h2 id="9afaf22785328c0bf6267acf13add5da"></h2>
 
-
 ### A* Graph Search Gone Wrong?
 
 ![](../imgs/cs188_Astar_go_wrong.png)
@@ -1108,7 +1051,6 @@ So we need to be careful in Graph Search, the first time we expand, if it is whe
 The issue here is some kind of poor choice of heuristics guiding us down the wrong path. So what we need is more than Admissible Heuristics.
 
 <h2 id="cb964f845fc822953ddb83ca6d124e6b"></h2>
-
 
 ### Consistency of Heuristics
 
@@ -1137,7 +1079,6 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 <h2 id="ea9a7016fa68c3fd6434c9c0fb4afa3d"></h2>
 
-
 ### Optimality of A* Graph Search
 
 - Sketch: consider what A* does with a consistent heuristic:
@@ -1151,7 +1092,6 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 ---
 
 <h2 id="c1e81f3c2f720c3a2e3a765ba6a11d59"></h2>
-
 
 ### Optimality
 
@@ -1168,7 +1108,6 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 <h2 id="e418daaa73025a84fd16637fbf3b2d0d"></h2>
 
-
 ## A*: Summary
 
 - A* uses both backward costs and (estimates of) forward costs
@@ -1177,7 +1116,6 @@ PS. Admissibility graph search 存在的这个问题, 可以通过 Cost-Sensitiv
 
 
 <h2 id="1388b32869f8288febeb18f8ec802b42"></h2>
-
 
 ### Graph Search Pseudo-Code
 
@@ -1274,7 +1212,6 @@ end // func
 
 <h2 id="53d3b2a00e84590355f57034c84cc1a0"></h2>
 
-
 ### Optimality of A\* Graph Search
 
 - Consider what A\* does:
@@ -1297,11 +1234,9 @@ end // func
 
 <h2 id="c9f86c35957917fe5e25e926f8923c75"></h2>
 
-
 ## demo code in python
 
 <h2 id="41ac4b4e9e2441a0a74f1372fbca3c52"></h2>
-
 
 ###  python graph search
 
@@ -1365,7 +1300,6 @@ def graphSearch( problem, fringe):
 
  
 <h2 id="65e0ab6e34746c2231d34656e5134d92"></h2>
-
 
 ### other implementation 
 

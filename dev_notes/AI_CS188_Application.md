@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Application](#e498749f3c42246d50b15c81c101d988)
     - [So Far: Foundational Methods](#c685cae5eb85421bc5bfe19350022e75)
@@ -10,18 +10,16 @@
         - [Machine Learning for Micro Control](#561c4a6fa7b27afca6a8b0eb8bf58887)
         - [Inference / VPI / Scouting](#85068d975072cc7193a0e53faa6e51ec)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="e498749f3c42246d50b15c81c101d988"></h2>
-
 
 # Application 
 
 [Application pdf](https://github.com/mebusy/cs188_fa18/blob/master/fa18_cs188_lectures_pdf/FA18_cs188_lecture24_advanced_applications_robotics_1pp.pdf)
 
 <h2 id="c685cae5eb85421bc5bfe19350022e75"></h2>
-
 
 ## So Far: Foundational Methods
 
@@ -45,11 +43,9 @@ real world applications
 
 <h2 id="8a6f8fa384efc23dcdcc19e7384bdc45"></h2>
 
-
 ## Starcraft
 
 <h2 id="1fb75cfb7fe7923ca2bab57e2ebead57"></h2>
-
 
 ### Why is Starcraft Hard?
 
@@ -70,7 +66,6 @@ real world applications
 
 <h2 id="8ae5d98a904e4bd489a504ec2b2154da"></h2>
 
-
 ### The Berkeley Overmind
 
 - Search: path planning
@@ -89,7 +84,6 @@ real world applications
 
 <h2 id="b5c737bc93e07f225f5df7fc55d33245"></h2>
 
-
 ### Search for Pathing
 
 ![](../imgs/cs188_application_starcraft_search_for_pathing.png)
@@ -103,7 +97,6 @@ real world applications
  
 <h2 id="6f47e9d670285b5ac6e4db3ff10372d1"></h2>
 
-
 ### Minimax for Targeting
 
 ![](../imgs/cs188_application_starcraft_minimax_for_targeting.jpg)
@@ -113,7 +106,6 @@ In this game there are many things you might want to target.  There are producti
 The question is how I decide what to do ?   This is a minimax problem.  
 
 <h2 id="561c4a6fa7b27afca6a8b0eb8bf58887"></h2>
-
 
 ### Machine Learning for Micro Control
 
@@ -131,7 +123,6 @@ That's a lot like learning a set of ways for a feature vector.  So your policy i
 
 
 <h2 id="85068d975072cc7193a0e53faa6e51ec"></h2>
-
 
 ### Inference / VPI / Scouting
 

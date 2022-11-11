@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Trigonometry fundamentals | Lockdown math ep. 2](#c3747e4cefb7c22e073615c8f0adcf67)
     - [cos²(x) and cos(2x)](#f481852fd11d79b842d8e4b334e679d4)
@@ -10,16 +10,14 @@
     - [Reverse operation](#c08d63b19ebc85a1011a5ef3f5925b47)
     - [relation between cos²(x) and cos(2x)](#9e719b4aef3ac4ce4b37b41a28ffea30)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c3747e4cefb7c22e073615c8f0adcf67"></h2>
 
-
 # Trigonometry fundamentals | Lockdown math ep. 2
 
 <h2 id="f481852fd11d79b842d8e4b334e679d4"></h2>
-
 
 ## cos²(x) and cos(2x)
 
@@ -45,7 +43,6 @@ We will discover the relationship at the end.
 
 <h2 id="526cf70cd498e0861be1d3420a6827c3"></h2>
 
-
 ## Trigonometry is about circles
 
 **Trigonometry Basis**: **You think its about triangles, but really it's about circles.**
@@ -59,7 +56,6 @@ Here, θ is the input, and it's going to be a measure of how far you've walked a
 By contrast consine is defined very similarly but it's giving you the x coordinat. 
 
 <h2 id="d5f7765e3debfe3fa6b7dbf00ffc6f48"></h2>
-
 
 ## Pythagorean theorem
 
@@ -84,7 +80,6 @@ instead what it's supposed to mean for most of math is taking a function and app
 THe idea is that it's very different from the convention in trigonometry. Trigonometry is just flying by its own rules: I understand some students will be confused but I'm trigonometry I don't care. 
 
 <h2 id="73ae02540a4c988c767f6a41ed5a99e5"></h2>
-
 
 ## cos(x/2)
 
@@ -123,7 +118,6 @@ Where is the cos²(x) on the unit circle ?
 
 <h2 id="c3c421e1caa75d1788f81ac64d05fa47"></h2>
 
-
 # Complex number fundamentals | Lockdown math ep. 3
 
 ```
@@ -147,7 +141,6 @@ But the starting point looks very strange
 The *i* does not exist on the real number line, it on the line perpendicular to it. 
 
 <h2 id="85ba6f123827a8e936ea9597617f42f8"></h2>
-
 
 ## Complex number and Rotation
 
@@ -234,7 +227,6 @@ In general everything except 0 has 2 square roots.
 
 <h2 id="c08d63b19ebc85a1011a5ef3f5925b47"></h2>
 
-
 ## Reverse operation
 
 ```
@@ -242,7 +234,6 @@ cis(α) = 1/cis(-α)
 ```
 
 <h2 id="9e719b4aef3ac4ce4b37b41a28ffea30"></h2>
-
 
 ## relation between cos²(x) and cos(2x)
 

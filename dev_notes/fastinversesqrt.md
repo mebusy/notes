@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Fast inverse square root](#fd0c1d9aa5c1114b0d1a121361ec3fcd)
     - [Quick Explanation](#6c3b212bf86a46fbb98a3085f6fdec14)
@@ -12,11 +12,10 @@
     - [Union version](#3c83e77ab96c7ece28fefa6d07cc1848)
     - [Cpp version](#9b2cb47f99e0c720811fd0291ac1a143)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="fd0c1d9aa5c1114b0d1a121361ec3fcd"></h2>
-
 
 # Fast inverse square root
 
@@ -55,7 +54,6 @@ The fast inverse square root is such an approximation with only an error of at m
 
 <h2 id="6c3b212bf86a46fbb98a3085f6fdec14"></h2>
 
-
 ## Quick Explanation
 
 - The algorithm accepts a 32-bit floating-point number as the input and stores a halved value for later use. 
@@ -71,7 +69,6 @@ The algorithm compute 1⁄√x by performing the following steps:
 
 
 <h2 id="faafd474460843cc23aab577dafe2eed"></h2>
-
 
 ## Float Number
 
@@ -110,7 +107,6 @@ The standard they came up with takes the name IEEE 754.
 
 
 <h2 id="776e1df999f0815d67390cb5cae8bde7"></h2>
-
 
 ### IEEE 754
 
@@ -170,7 +166,6 @@ For the rest of this article it will be useful to think of the mantissa and expo
 
 <h2 id="a324623c1acc31a4a79c6a4d1bfb9c74"></h2>
 
-
 ## Take Logarithm
 
 If we are given 2 numbers, one being the mantissa M , and 1 being the exponent E, we can get a bit representation with 
@@ -226,7 +221,6 @@ Armed with this knowledge, we can finally start with the 3 steps of the fast inv
 
 <h2 id="01dc9266d320e77910fce13444702445"></h2>
 
-
 ## Evil Bit Hack
 
 ```cpp
@@ -237,7 +231,6 @@ Floats unfortunately don't come with the tools we need to do bit manipulation.  
 
 
 <h2 id="421fbe1be97360cced700a3845a5d5a3"></h2>
-
 
 ## What The Fuck
 
@@ -264,7 +257,6 @@ The magic number turns out to be the remnants of the error term μ, the scaling 
 
 
 <h2 id="34f2f7625c65991e958b586401593541"></h2>
-
 
 ## Newton's Method
 
@@ -319,11 +311,9 @@ f'(y) = -2/y³
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
-
 # Misc
 
 <h2 id="3c83e77ab96c7ece28fefa6d07cc1848"></h2>
-
 
 ## Union version
 
@@ -350,7 +340,6 @@ float Q_rsqrt( float number )
 
 
 <h2 id="9b2cb47f99e0c720811fd0291ac1a143"></h2>
-
 
 ## Cpp version
 

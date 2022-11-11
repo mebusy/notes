@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [反向传播](#4ae61d8a3733358bcef0f73d62e69a15)
     - [代价函数 和 反向传播 Backpropagation](#b68af9a6b20fafa771e0f2abd6ebe283)
@@ -16,11 +16,10 @@
 - [What is backpropagation really doing?](#3fa803ad477d12baa72d67cc8ab8acb7)
 - [Derivatives in computational graphs](#55fc63612f8fefdee49a1ba4e2d4b86c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="4ae61d8a3733358bcef0f73d62e69a15"></h2>
-
 
 # 反向传播
 
@@ -35,7 +34,6 @@
 
 
 <h2 id="b68af9a6b20fafa771e0f2abd6ebe283"></h2>
-
 
 #### 代价函数 和 反向传播 Backpropagation
 
@@ -107,7 +105,6 @@ logistic regression cost function:
 
 <h2 id="86e1d05271f80ac28ff23624d6d7c00c"></h2>
 
-
 #### 为了计算导数项，我们采用反向传播算法`Backpropagation`
 
 我们使用 ![][1] 来表示 l 层第 j 个节点的误差值。
@@ -119,7 +116,6 @@ logistic regression cost function:
 ---
 
 <h2 id="4713b5e8c545b8a393cba2db968389fa"></h2>
-
 
 #### 只有一个训练样本的例子（不重要）:
 
@@ -143,7 +139,6 @@ logistic regression cost function:
 
 
 <h2 id="770ae2adf9aaa0cbd1da51d0d0c539ff"></h2>
-
 
 #### 大量训练样本情况下，反向传播算法的应用:
 
@@ -176,11 +171,9 @@ D 就是 J(Θ)的偏导数, Δ的均值
 
 <h2 id="a44baf9d73c4a124326ffc5568a06903"></h2>
 
-
 # 反向传播练习
 
 <h2 id="02baf1f861df96f5e3a87d3eef8116e4"></h2>
-
 
 #### unrolling parameters
 
@@ -202,7 +195,6 @@ Theta2 = reshape( thetaVec(111:220), 10,11  )
 ---
 
 <h2 id="2f05f3a13934eed796477b096390d62f"></h2>
-
 
 #### Gradient checking
 
@@ -238,7 +230,6 @@ Dvec 是通过反向传播算法计算出来的 J(Θ)对Θ的偏导数
 
 <h2 id="99527f4c4644eda2340faca80fba7724"></h2>
 
-
 #### 应用 Gradient Checking的步骤
 
  1. 应用 backprop 计算出 Dvec ( unrolled `D⁽ⁱ⁾`)
@@ -248,7 +239,6 @@ Dvec 是通过反向传播算法计算出来的 J(Θ)对Θ的偏导数
 
 
 <h2 id="aec2a101c13136f3cdbe1dca6e8494da"></h2>
-
 
 # 随机初始化
 
@@ -271,11 +261,9 @@ Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON;
 
 <h2 id="d1ce73089ce012666ab305131351d508"></h2>
 
-
 # put all together
 
 <h2 id="801876e7e97044976d75b835fac97ca3"></h2>
-
 
 #### 选择神经网络架构
 
@@ -284,7 +272,6 @@ Theta1 = rand(10,11)*(2*INIT_EPSILON)-INIT_EPSILON;
 隐藏层: 如果>1 隐藏层，每层的单元数最好保持一致，个数稍多余输入单元数
 
 <h2 id="67fd927dbbde24e0a4e33a49821346bd"></h2>
-
 
 #### 训练神经网络
 
@@ -322,7 +309,6 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 -----------
 
 <h2 id="3fa803ad477d12baa72d67cc8ab8acb7"></h2>
-
 
 # What is backpropagation really doing?
 
@@ -376,7 +362,6 @@ grad = [Theta1_grad(:) ; Theta2_grad(:)];
 
 
 <h2 id="55fc63612f8fefdee49a1ba4e2d4b86c"></h2>
-
 
 # Derivatives in computational graphs
 

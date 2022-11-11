@@ -1,21 +1,19 @@
-...menustart
+[](...menustart)
 
 - [Work With Local k8s](#b12bf4d31f18ea1cf240df43682ed0b5)
     - [install kind k8s](#e629a5281ed6903f92a461cc54e08857)
     - [Install ingress controller](#588da1e7cecfc3f40fa3e015ff722499)
     - [Install Dashboard](#5633d2848d737c44ec1d89bc54ccdfa9)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b12bf4d31f18ea1cf240df43682ed0b5"></h2>
-
 
 # Work With Local k8s
 
 
 <h2 id="e629a5281ed6903f92a461cc54e08857"></h2>
-
 
 ## install kind k8s
 
@@ -152,7 +150,6 @@ EOF
 
 
 <h2 id="588da1e7cecfc3f40fa3e015ff722499"></h2>
-
 
 ## Install ingress controller 
 
@@ -397,7 +394,6 @@ ok
 ```
 
 <h2 id="5633d2848d737c44ec1d89bc54ccdfa9"></h2>
-
 
 ## Install Dashboard
 

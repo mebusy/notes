@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [VIM](#d53cfc4bdeb96eaee47dd710b3c2ed21)
     - [Plugin Installation](#431e27fdb6a4c378a592fb761c7e5519)
@@ -15,7 +15,7 @@
         - [文件夹搜索 vimgrep](#54afc9723e7bdaa4cf548df28b7e9541)
         - [多行 行首插入字符](#4b0c82f3072a7a2d205d934ca7413367)
         - [多行 行尾插入字符](#facc78c7266b3fe0364882da91e214b8)
-        - [duplicated column, paste next to it](#11cc6cd769420b9372c1b33a98a38d5e)
+        - [duplicate column, then paste it next to it](#4bfa29dd5fb09c6b1e51c19cadea0e12)
         - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
         - [make multiple line word into java string](#fe7fb0107de52ad2a0bca9917a32301a)
         - [复制/移动 行](#87b0406cc2b93c7df74c3cfc9b2e690b)
@@ -26,16 +26,14 @@
     - [Why magic mode ?](#63c1835cfbf1719dd2ddb81b3f922a29)
     - [Compare with Perl patterns](#20cccd93ecd64a6cdd4d70b646c9803c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="d53cfc4bdeb96eaee47dd710b3c2ed21"></h2>
 
-
 # VIM 
 
 <h2 id="431e27fdb6a4c378a592fb761c7e5519"></h2>
-
 
 ## Plugin Installation
 
@@ -81,7 +79,6 @@
 
 <h2 id="72aef9272e534c2840a7b9f5e4899694"></h2>
 
-
 ## YouCompleteMe Configuaration Tips
 
 - for C family support:  `./install.py --clangd-completer`
@@ -116,7 +113,6 @@
 
 <h2 id="e70cbc3e7d4a60990580571997e5e3a5"></h2>
 
-
 ## C-Family [ycm_extra_conf.py]
 
 - YCM will look up the .ycm_extra_conf.py configuration file layer by layer
@@ -140,7 +136,6 @@
 
 <h2 id="fab255294e7b3b58a06c83405029a7c0"></h2>
 
-
 ### YCMD Troubleshoot
 
 - Tagbar requires ctags to be installed
@@ -162,7 +157,6 @@
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
 
-
 ## Markdown 
 
 - chrome plugin  :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
@@ -170,7 +164,6 @@
 
 
 <h2 id="05792acc8846850d5650256c2f89d097"></h2>
-
 
 ## viminspect
 
@@ -180,7 +173,6 @@
 
 
 <h2 id="a76b761a3f63c8a3aca6fa66777741fa"></h2>
-
 
 ### debug nodejs
 
@@ -196,7 +188,6 @@
 
 
 <h2 id="ac4aee7e186902860d64dcf2a6065905"></h2>
-
 
 ## vim Mark 
 
@@ -223,7 +214,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 <h2 id="a1c1a23da31214c88d29928e14c64ef0"></h2>
 
-
 ## VIM tips
 
 - check vim compile features
@@ -242,7 +232,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 <h2 id="d97b62cc38ac0f48ee2ef1675eceb014"></h2>
 
-
 ### 文件夹内容替换 args/argdo
 
 - 每一个通过 shell 命令传递给 Vim 的文件名都被记录在一个参数列表中。
@@ -258,7 +247,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     ```
 
 <h2 id="0b4ec6e4487065d67922bc151a3fe175"></h2>
-
 
 ### 搜索 (lookahead, lookbehind, contains `/`)
 
@@ -279,7 +267,6 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
 
 <h2 id="54afc9723e7bdaa4cf548df28b7e9541"></h2>
 
-
 ### 文件夹搜索 vimgrep
 
 ```vim
@@ -298,7 +285,6 @@ vimgrep /pattern/gj path
 
 <h2 id="4b0c82f3072a7a2d205d934ca7413367"></h2>
 
-
 ###  多行 行首插入字符
 
 1. 光标置与第一行行首, ctrl-v 进入  VISUAL BLOCK
@@ -312,7 +298,6 @@ vimgrep /pattern/gj path
 
 <h2 id="facc78c7266b3fe0364882da91e214b8"></h2>
 
-
 ###  多行 行尾插入字符
 
 - 和上边的 多行行首插入 类似，只是 第三步进行修改
@@ -321,8 +306,7 @@ vimgrep /pattern/gj path
 3. 编辑 , esc
 
 
-<h2 id="11cc6cd769420b9372c1b33a98a38d5e"></h2>
-
+<h2 id="4bfa29dd5fb09c6b1e51c19cadea0e12"></h2>
 
 ### duplicate column, then paste it next to it
 
@@ -337,7 +321,6 @@ vimgrep /pattern/gj path
 
 <h2 id="67c5f9b419ed15a16a0cb4786a4a6552"></h2>
 
-
 ###  Remove unwanted empty lines
 
 - use `v` to select the range of lines you want to work on 
@@ -348,7 +331,6 @@ vimgrep /pattern/gj path
     ```
 
 <h2 id="fe7fb0107de52ad2a0bca9917a32301a"></h2>
-
 
 ###  make multiple line word into java string
 
@@ -361,7 +343,6 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 
 <h2 id="87b0406cc2b93c7df74c3cfc9b2e690b"></h2>
 
-
 ###  复制/移动 行
 
 ```vim
@@ -373,7 +354,6 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 
 
 <h2 id="b492b625b61dc9e4718c98561d7b0296"></h2>
-
 
 ### Advance g
 
@@ -393,7 +373,6 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 
 
 <h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
-
 
 # grok VIM
 
@@ -439,7 +418,6 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 ---
 
 <h2 id="a5787082a16f14e8db2acbf78497ee99"></h2>
-
 
 ## A sampling of more advanced tricks:
 
@@ -487,11 +465,9 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 
 <h2 id="97786adcbde368256fe1cb51b6339c7e"></h2>
 
-
 # VIM Regular Expressions
 
 <h2 id="63c1835cfbf1719dd2ddb81b3f922a29"></h2>
-
 
 ## Why magic mode ?
 
@@ -514,7 +490,6 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 
 
 <h2 id="20cccd93ecd64a6cdd4d70b646c9803c"></h2>
-
 
 ## Compare with Perl patterns
 

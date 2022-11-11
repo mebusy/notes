@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [NUC8i5BEK Hackintosh](#da39d68f2cf6c3c46123458cd98bd79d)
     - [NUC8i5BEK BISO setting](#90b4244131823d7d8c05f4f1c274183e)
@@ -12,16 +12,14 @@
     - [check your opencore plist](#f9a1aa084270d908f100a833ffc5f42d)
     - [Install Monterey on unsupported Mac](#269dbe135802539e86431697032c3599)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="da39d68f2cf6c3c46123458cd98bd79d"></h2>
 
-
 # NUC8i5BEK Hackintosh
 
 <h2 id="90b4244131823d7d8c05f4f1c274183e"></h2>
-
 
 ## NUC8i5BEK BISO setting
 
@@ -69,7 +67,6 @@ https://github.com/zearp/Nucintosh
 
 <h2 id="3144f57f7c88cbc932e24094440b99d8"></h2>
 
-
 ## Hackintosh USB Creation
 
 - [post on tonymac86](https://www.tonymacx86.com/threads/guide-booting-the-os-x-installer-on-laptops-with-clover.148093/#post-917900)
@@ -116,7 +113,6 @@ https://github.com/zearp/Nucintosh
 
 <h2 id="4aef377d2268514c138fb8df812de501"></h2>
 
-
 # PMSET
 
 https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
@@ -142,7 +138,6 @@ https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
 
 <h2 id="bcbe6e609bff0627e2e3654d1a1123e8"></h2>
 
-
 ## Catalina 10.5.2 Sleep problem
 
 ```bash
@@ -160,7 +155,6 @@ rm -R com.apple.parsecd
 
 <h2 id="8793db1e9550cee531b14bcf6086ff68"></h2>
 
-
 ## Big Sur Sleep problem
 
 ```bash
@@ -173,12 +167,10 @@ rm -R com.apple.proactive.eventtracker
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
-
 # Misc 
 
 
 <h2 id="e529594e6b7af1bbc305ae37bca03507"></h2>
-
 
 ## Centos bootable USB installer on OSX
 
@@ -199,7 +191,6 @@ sudo dd if=./Downloads/CentOS-7-x86_64-DVD-1611.iso of=/dev/rdisk2 bs=1m
 
 
 <h2 id="b629a48f87baa1255d141a0d31957405"></h2>
-
 
 ## Iris Plus 655  Without WhatEverGreen
 
@@ -298,7 +289,6 @@ DeviceProperties
 
 <h2 id="f9a1aa084270d908f100a833ffc5f42d"></h2>
 
-
 ## check your opencore plist
 
 https://opencore.slowgeek.com/
@@ -306,7 +296,6 @@ https://opencore.slowgeek.com/
 
 
 <h2 id="269dbe135802539e86431697032c3599"></h2>
-
 
 ## Install Monterey on unsupported Mac
 

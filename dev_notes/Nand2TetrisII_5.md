@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Compiler II: Code Generation](#4e3d80bb847df80512b978ab205afa7b)
     - [Unit 5.1: Code Generation](#94eb2461a577c6a4ba5ecb1f34c254c8)
@@ -50,16 +50,14 @@
         - [Symbol table](#2afeb4bd815d23bcfb0be6c37868835b)
         - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="4e3d80bb847df80512b978ab205afa7b"></h2>
 
-
 # Compiler II: Code Generation
 
 <h2 id="94eb2461a577c6a4ba5ecb1f34c254c8"></h2>
-
 
 ## Unit 5.1: Code Generation
 
@@ -92,7 +90,6 @@
 - The challenge: expressing the above semantics in the VM language
 
 <h2 id="af37fa1db159e0c88611301daf974619"></h2>
-
 
 ## Unit 5.2: Handling Variables
 
@@ -136,7 +133,6 @@ pop local 3
 
 <h2 id="03df896fc71cd516fdcf44aa699c4933"></h2>
 
-
 ### Variables
 
 - We have to handle:
@@ -157,7 +153,6 @@ pop local 3
 
 
 <h2 id="c2d6782cdc5b56e19beaaca9864ee842"></h2>
-
 
 ### Symbol tables
 
@@ -224,7 +219,6 @@ pop this 1   // y
 
 <h2 id="68293a27f79e370f88514d80226ebd17"></h2>
 
-
 ### Handling nested scoping
 
 - not in Jack, but often in other language like Jave, C ...
@@ -240,11 +234,9 @@ pop this 1   // y
 
 <h2 id="59051b9e08782ffd6d31280501c339eb"></h2>
 
-
 ## Unit 5.3: Handling Expressions
 
 <h2 id="76c9ab57869b25403bfcfdd63b3a8b4a"></h2>
-
 
 ### Parse tree
 
@@ -264,7 +256,6 @@ pop this 1   // y
 
 <h2 id="4f000a95e8fd9c5955d285f4c30e7005"></h2>
 
-
 ### Generating code for expressions: a two-stage approach
 
  1. source code -> parse tree  ( The XML file we output in project 10 is a parse tree )
@@ -276,7 +267,6 @@ pop this 1   // y
 
 <h2 id="9469e0355de5f8a8d9d169f7816ba22b"></h2>
 
-
 ### Generating code for expressions: a one-stage approach
 
 - The following algorithm is  going to generate the VM code on the fly without having to create  the whole parse tree in the process.
@@ -285,7 +275,6 @@ pop this 1   // y
 
 
 <h2 id="f5631092f3eb428ad208da4f664a02b4"></h2>
-
 
 ## Unit 5.4: Handling Flow of Control
 
@@ -296,7 +285,6 @@ pop this 1   // y
     - translating `while` and `if` are far more challenging.
 
 <h2 id="355ae27a43a25b85426f2cb9f597b845"></h2>
-
 
 ### Compiling if statements
 
@@ -319,7 +307,6 @@ else
 
 <h2 id="c3f04ad354468e45e8b2f9f411906bcf"></h2>
 
-
 ### Compiling while statements
 
 ```
@@ -331,7 +318,6 @@ while (expression)
 
 <h2 id="bb523de8a79f81c8c049269679fbf839"></h2>
 
-
 ### Some (minor) complications
 
 - A program typically contains multiple `if` and `while` statements.
@@ -340,11 +326,9 @@ while (expression)
 
 <h2 id="06effbea19f7b103138b1619a48ebd2d"></h2>
 
-
 ## Unit 5.5: Handling Objects: Low-Level Aspects
 
 <h2 id="06feb3971d12b929516619833999f3cc"></h2>
-
 
 ### Handling local and argument variables 
 
@@ -356,7 +340,6 @@ while (expression)
     - Managed by the VM implementation
 
 <h2 id="ad67aa5506e69117865463c4ed0a3c39"></h2>
-
 
 ### Handling object and array data
 
@@ -370,7 +353,6 @@ while (expression)
     - Managed by VM code.
 
 <h2 id="9e5d11d6d75f16160b8bd42ef9174e70"></h2>
-
 
 ### Accessing RAM data
 
@@ -388,7 +370,6 @@ push/pop this i | accessing RAM[8000+i]
 
 <h2 id="8912c5512db9003e5c8ce07b7ff36a88"></h2>
 
-
 ### Recap
 
 - Object data is accessed via the `this` segment
@@ -397,11 +378,9 @@ push/pop this i | accessing RAM[8000+i]
 
 <h2 id="c8ea3a0c16bab7da5fd3f9529c1dd329"></h2>
 
-
 ## Unit 5.6: Handling Objects: Construction
 
 <h2 id="d9e1e92208a6e2a9767df08e9a6b5f34"></h2>
-
 
 ### The caller's side: compiling new
 
@@ -448,7 +427,6 @@ d  | int   | local | 2
 
 <h2 id="bad720c9f754d4aecd8c100f268f43df"></h2>
 
-
 ### Resulting impact
 
 - During compile-time, the compiler maps p1 on local 0 , p2 on local 1, and d on local 2 ?
@@ -457,7 +435,6 @@ d  | int   | local | 2
 
 
 <h2 id="8b5d1806c2892f0de925efda271a5e25"></h2>
-
 
 ### Object construction: the big picture
 
@@ -470,7 +447,6 @@ d  | int   | local | 2
     - But first , the constructor's code must anchor the *this* segment on the object's data , using pointer
 
 <h2 id="b5a62b5ad862bb9e26144324adcf68c8"></h2>
-
 
 ### Compiling constructors
 
@@ -553,7 +529,6 @@ ay | int | arg | 1
 
 <h2 id="a39c2af80faf078ce7853e7634260c19"></h2>
 
-
 ## Unit 5.7: Handling Objects: Manipulation
 
 - Manipulation:
@@ -561,7 +536,6 @@ ay | int | arg | 1
     - Compiling methods
 
 <h2 id="0bf34995a654ca604cf786c68133f751"></h2>
-
 
 ### Compiling method calls 
 
@@ -581,7 +555,6 @@ ay | int | arg | 1
 
 <h2 id="7f98b93563fd91ec7c2d991d262356a0"></h2>
 
-
 ### Compiling method calls: the general technique 
 
 ```
@@ -599,7 +572,6 @@ call foo
 ```
 
 <h2 id="b1ccdfc4e6f647901313153e39a5b3cc"></h2>
-
 
 ### Compiling methods
 
@@ -646,7 +618,6 @@ return
 
 <h2 id="55e9a67b2637a22721d32d2ca744e091"></h2>
 
-
 ### Compiling void methods
 
 ```
@@ -675,11 +646,9 @@ pop temp 0
 
 <h2 id="1f250f80bd24fd913d5b306b23e5b013"></h2>
 
-
 ## Unit 5.8: Handling Arrays
 
 <h2 id="cd64ab1d72053726ca263d240fb599c3"></h2>
-
 
 ### Array construction
 
@@ -691,7 +660,6 @@ pop temp 0
     - from the caller's prespective , handled exactly loke object construction
 
 <h2 id="545aa7c72d8f6c38b02756a6f239d786"></h2>
-
 
 ### this and that ( reminder )
 
@@ -706,7 +674,6 @@ how 2 set: | `pop pointer 0`  |  `pop pointer 1`
 
 <h2 id="1ba79f517d6c46192912d7458e04c2a7"></h2>
 
-
 ### Example : RAM access using that
 
 ```
@@ -718,7 +685,6 @@ pop that 0    // THAT[0] = 17
 ```
 
 <h2 id="a95b07ba412779d5ff4654b911aae1c8"></h2>
-
 
 ### Array access
 
@@ -805,13 +771,11 @@ pop that 0
 
 <h2 id="e8beb7c21a1018408c7f5ac3f7bab5e1"></h2>
 
-
 ## Unit 5.9: Standard Mapping Over the Virtual Machine
 
 - Specifies how to map the constructs of the high-level language on the constructs of the virtual machine.
 
 <h2 id="34cb0217bf2a49087396227957b0b082"></h2>
-
 
 ### Files and subroutine mapping
 
@@ -821,7 +785,6 @@ pop that 0
 - A Jack method with k arguments is compiled into a VM function that operates on k+1 arguments.
 
 <h2 id="c0aae26691e8f3c35ee1b5c4debbd5af"></h2>
-
 
 ### Variables mapping
 
@@ -839,7 +802,6 @@ pop that 0
 
 <h2 id="ffd8db0ee66dfd1809e84e094fd0e063"></h2>
 
-
 ### Array mapping
 
 - Accessing array entries:
@@ -848,7 +810,6 @@ pop that 0
         - access the entry by accessing `this 0`
 
 <h2 id="7399b6270fac208b58de6e641c3f3845"></h2>
-
 
 ### Compiling subroutines
 
@@ -861,7 +822,6 @@ pop that 0
     - The compiled VM code must return the value constant 0
 
 <h2 id="71a1ddf989741040972099277b141189"></h2>
-
 
 ### Compiling subroutine calls
 
@@ -876,7 +836,6 @@ pop that 0
 
 <h2 id="ea1910cfdfdbd85ca2643d4bd8cd028b"></h2>
 
-
 ### Compiling constants
 
 - null is mapped on the constant 0
@@ -886,7 +845,6 @@ pop that 0
 
 <h2 id="ea475c0e9caccb89cc9510f1eb21667e"></h2>
 
-
 ### OS classes and subroutines
 
 - The basic Jack OS is implemented as a set of compiled VM class files:
@@ -895,7 +853,6 @@ pop that 0
 - Any VM function can call any OS VM function for its effect.
 
 <h2 id="7320544ffe6fa06e8dac4abeb73d2c0b"></h2>
-
 
 ### Special OS services
 
@@ -908,11 +865,9 @@ pop that 0
 
 <h2 id="93d9543681348941b2eaf90c6516439c"></h2>
 
-
 ## Unit 5.10: Completing the Compiler: Proposed Implementation
 
 <h2 id="2afeb4bd815d23bcfb0be6c37868835b"></h2>
-
 
 ### Symbol table
 
@@ -940,18 +895,15 @@ this | Point | argument | 0
 
 <h2 id="0cf366dadfdeea1a566f047ee68a9e81"></h2>
 
-
 ### VMWriter
 
 ![](../imgs/n2t_compiler2_vmwriter.png)
 
 <h2 id="ebb5853f19668a28aac3fb43709781c3"></h2>
 
-
 ## Unit 5.11: Project 11
 
 <h2 id="2afeb4bd815d23bcfb0be6c37868835b"></h2>
-
 
 ### Symbol table
 
@@ -962,7 +914,6 @@ this | Point | argument | 0
     - output whether the identifier is being defined, or being used.
 
 <h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
-
 
 ### Quiz 
 

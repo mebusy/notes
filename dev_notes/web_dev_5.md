@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Web Dev](#e038f9e554416040d7422224d511efc8)
     - [5. Using Javascript to Build Web Applications](#971c3edf4a623656caf1415857320a21)
@@ -12,21 +12,18 @@
         - [5.60 Dynamically Loading Home View Content](#e4f31e3ba5bc19547905cf6f376e1257)
         - [5.63 Changing 'active' Button Style Through Javascript](#66281d7e27c790e5a010b5790aa8e0cd)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="e038f9e554416040d7422224d511efc8"></h2>
-
 
 # Web Dev
 
 <h2 id="971c3edf4a623656caf1415857320a21"></h2>
 
-
 ## 5. Using Javascript to Build Web Applications
 
 <h2 id="d6d94075fb5693e67ff2de8dc28db24c"></h2>
-
 
 ### 5.53 DOM Manipulation
 
@@ -97,7 +94,6 @@
 
 <h2 id="6881202a8d5a42748445262c96828cd8"></h2>
 
-
 ### 5.54 Handling Events
 
 - In Lecture 53, we've already seen a simple example of how to bind an event handler to a particular element. 
@@ -161,7 +157,6 @@
 
 <h2 id="d13624125089387d2440648bcb744b0d"></h2>
 
-
 ### 5.55 The 'event' Argument
 
 - When mouse-left clicking the button, the object that *event* is `MouseEvent`.
@@ -170,11 +165,9 @@
 
 <h2 id="e6a17d9f8a09a9d0ef440dc03373f839"></h2>
 
-
 ### -- Introduction to Ajax --
 
 <h2 id="22a138df746af464d4bb0714165920ee"></h2>
-
 
 ### 5.57 Ajax Basics
 
@@ -268,7 +261,6 @@ global.$ajaxUtils = ajaxUtils;
 
 <h2 id="99087eec50334e0324a44b8fca0e8a9c"></h2>
 
-
 ### 5.58 Processing JSON
 
 - converts from json string to object
@@ -360,7 +352,6 @@ global.$ajaxUtils = ajaxUtils;
 
 <h2 id="e0fc39e216d6b8be690711f8c6d5cde3"></h2>
 
-
 ### 5.59 jQuery
 
 - The name of the jQuery function is `$`.
@@ -391,7 +382,6 @@ global.$ajaxUtils = ajaxUtils;
 - 
 
 <h2 id="e4f31e3ba5bc19547905cf6f376e1257"></h2>
-
 
 ### 5.60 Dynamically Loading Home View Content
 
@@ -430,7 +420,6 @@ var showLoading = function (selector) {
 
 
 <h2 id="66281d7e27c790e5a010b5790aa8e0cd"></h2>
-
 
 ### 5.63 Changing 'active' Button Style Through Javascript
 

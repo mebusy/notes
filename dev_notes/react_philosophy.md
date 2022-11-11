@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [REACT philosophy](#67db2bb23bbcd103e2b1448bce31f0b8)
     - [React 设计哲学](#d26b45234dc50602ea7c69c46eb97488)
@@ -24,21 +24,18 @@
     - [相同类型节点的比较](#77c133e682cae447b4af3f747ba01229)
     - [列表节点的比较](#0a7e79842e74b83e5fecc07e9d093643)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="67db2bb23bbcd103e2b1448bce31f0b8"></h2>
-
 
 # REACT philosophy
 
 <h2 id="d26b45234dc50602ea7c69c46eb97488"></h2>
 
-
 ## React 设计哲学
 
 <h2 id="789c3baacb123e2aa9c07d961993f58d"></h2>
-
 
 ## 简化的组件模型
 
@@ -54,7 +51,6 @@
     - React认为属性应该是只读的，一旦赋值过去后就不应该变化。
 
 <h2 id="c77d656b27ac9ad2c3d66e00ff104119"></h2>
-
 
 ## 每一次界面变化都是整体刷新
 
@@ -82,7 +78,6 @@
         - 而对实际DOM进行操作的仅仅是Diff部分，因而能达到提高性能的目的
 
 <h2 id="64a579910d2416b9cc1b2be9ece8b548"></h2>
-
 
 ## 单向数据流动：Flux
 
@@ -114,7 +109,6 @@
 
 <h2 id="30bd7e6c2f9c04a028e11e2b41c36e77"></h2>
 
-
 ## 让数据模型也变简单：Immutability
 
 - React提倡使用只读数据来建立数据模型
@@ -141,11 +135,9 @@ var updated = {
 
 <h2 id="69ca82177490266af8a006d12ee76d11"></h2>
 
-
 # JSX 和 组件
 
 <h2 id="e0733778840614eeeaafcef6abb8c2fa"></h2>
-
 
 ## 什么是 JSX
 
@@ -181,7 +173,6 @@ var root =(
 
 <h2 id="375313758b588253eea15aafd307df29"></h2>
 
-
 ## 为什么使用JSX
 
 - React直接放弃了模板而发明了JSX。
@@ -189,7 +180,6 @@ var root =(
     - 掌握了JavaScript就已经掌握了JSX。
 
 <h2 id="ceaec762ddaa0f4c4786479ed1db6333"></h2>
-
 
 ## JSX的语法
 
@@ -213,7 +203,6 @@ var person = React.createElement(
 ```
 
 <h2 id="d704b2ef48686bfeaf4c6431e7c31e22"></h2>
-
 
 ## 在JSX中使用事件
 
@@ -243,7 +232,6 @@ $('#my-button').on('click', this.checkAndSubmit.bind(this));
     - 这样从触发元素到顶层节点之间的所有节点如果有绑定这个事件，React都会触发对应的事件处理函数。这就是所谓的React模拟事件系统
 
 <h2 id="f2fc376b3fed4715ad9cfcdf05e7e792"></h2>
-
 
 ## 在JSX中使用样式
 
@@ -276,7 +264,6 @@ var node = <div style={style}>HelloWorld.</div>;
 
  
 <h2 id="25f500e0d374330577b51164814a7535"></h2>
-
 
 ## 使用自定义组件
 
@@ -327,7 +314,6 @@ React.render(<sampleNameSpace.MyHelloWorld />, …);
 
 <h2 id="04cd8282a4db14156a55d4a62e1c787a"></h2>
 
-
 ## Functional Components
 
 - React supports a simpler syntax called functional components for component that only consist of a render method. 
@@ -364,7 +350,6 @@ function Square(props) {
 
 
 <h2 id="59f930043e5ce55808006dcd1262e219"></h2>
-
 
 ## 组件的概念和生命周期
 
@@ -442,7 +427,6 @@ shouldComponentUpdate(nextProps, nextState) {
 
 <h2 id="1e6746fd5d3442b62adf875b5f109174"></h2>
 
-
 ## 使用Babel进行JSX编译
 
 - React官方博客发布了一篇文章，声明其自身用于JSX语法解析的编译器JSTransform已经过期，不再维护，
@@ -451,11 +435,9 @@ shouldComponentUpdate(nextProps, nextState) {
 
 <h2 id="3b6ecd38b8f111baf6c8136bb4b7c3f3"></h2>
 
-
 # 虚拟DOM Diff算法解析
 
 <h2 id="a1ce577d4d576b68f5635c12f31b0d76"></h2>
-
 
 ## 什么是DOM Diff算法
 
@@ -470,7 +452,6 @@ shouldComponentUpdate(nextProps, nextState) {
 
 
 <h2 id="6db9696eda33d6675740fa5c55434a93"></h2>
-
 
 ## 不同节点类型的比较
 
@@ -493,7 +474,6 @@ renderB: <span />
 
 <h2 id="756e4863062ce3a5013d4e3e7d0a3843"></h2>
 
-
 ## 逐层进行节点比较
 
 - 在React中，树的算法其实非常简单
@@ -508,7 +488,6 @@ renderB: <span />
     - 简单粗暴，没有其它复杂的操作
  
 <h2 id="d7ac21bd6748a44799e6f5e9c3768f25"></h2>
-
 
 ## 由DOM Diff算法理解组件的生命周期
 
@@ -539,7 +518,6 @@ R is updated.
 
 <h2 id="77c133e682cae447b4af3f747ba01229"></h2>
 
-
 ## 相同类型节点的比较
 
 - 第二种节点的比较是相同类型的节点
@@ -560,7 +538,6 @@ renderB: <div style={{fontWeight: 'bold'}} />
 ```
 
 <h2 id="0a7e79842e74b83e5fecc07e9d093643"></h2>
-
 
 ## 列表节点的比较
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [MacOSX](#5dad7f6f2d7af4cc1196128ec251af8a)
     - [sidebar 丢失](#2921868f08055ef268441139489a6130)
@@ -23,24 +23,21 @@
         - [load and test it](#548797edc19fa3483f6f9a6f36faa5e2)
         - [An important note about root and sudo access](#cfdb23d5d79b7e7d55330583c081e20c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="5dad7f6f2d7af4cc1196128ec251af8a"></h2>
-
 
 # MacOSX 
 
 
 <h2 id="2921868f08055ef268441139489a6130"></h2>
 
-
 ## sidebar 丢失
 
 OPTION/Alt+COMMAND+S
 
 <h2 id="1c305ad1fad7ba14dd448d08a73f3ab8"></h2>
-
 
 ## openofficer error
 
@@ -50,11 +47,9 @@ rm -rf ~/Library/Saved Application State/org.openoffice.script.savedState
 
 <h2 id="ec69fb46be4996fda376dcb4054c528b"></h2>
 
-
 ## Useful Commands
 
 <h2 id="25c04b9b782789c092a38c06cc87632a"></h2>
-
 
 ### xxd 
 
@@ -75,7 +70,6 @@ unsigned int note_txt_len = 61;
 
 <h2 id="0968ea4dc36ecbcdc0810a8ca0f674c8"></h2>
 
-
 ### mdfind
 
 [mdfind](https://raw.githubusercontent.com/mebusy/notes/master/dev_notes/mdfind.md)
@@ -83,7 +77,6 @@ unsigned int note_txt_len = 61;
 
 
 <h2 id="726e07a4bf9abb9ebcdce89b16eb7807"></h2>
-
 
 ### man ascii  字符表
 
@@ -97,7 +90,6 @@ unsigned int note_txt_len = 61;
 
 <h2 id="e1bde9f80b42328020cb6b0a4c7d26ab"></h2>
 
-
 ### cal 日历
 
 - `cal` 当月
@@ -107,7 +99,6 @@ unsigned int note_txt_len = 61;
 
 <h2 id="a21d96fb754b9ce8455858e14ed36571"></h2>
 
-
 ### find files to rm 
 
 ```
@@ -115,7 +106,6 @@ find . -name '.DS_Store' -path '*/.*' | xargs  rm
 ```
 
 <h2 id="394dd2658e932bd638e3017ac1a98c39"></h2>
-
 
 ### in terminal, show git branch in path
 
@@ -128,7 +118,6 @@ export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 ```
 
 <h2 id="75aeaa38d609e022daed8f30150edfa7"></h2>
-
 
 ### find all json file , and remove all `\r` 
 
@@ -144,7 +133,6 @@ ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
  
 
 <h2 id="b5a637298d7d74567762e4ce9127bd5e"></h2>
-
 
 ### find pattern in specific file types 
 
@@ -181,7 +169,6 @@ grep -r --include=*.{h,cpp,as}  ReturnToMap  .
 
 <h2 id="639aab73c8776e2711502bd23e7dd4de"></h2>
 
-
 ### bash  wait previous command to finish 
 
 ```bash
@@ -197,7 +184,6 @@ echo”5”
 
 <h2 id="ccbf87c494cf62aca0164aa04719e15f"></h2>
 
-
 ### sed 使用
 
  1. sed语句中如果要引用变量， 使用 双括号 `" "` ， 不要使用 单括号 `' '` 
@@ -206,7 +192,6 @@ echo”5”
     - 没有 `+` 的用法
 
 <h2 id="c635de9cfd3f586235866c25b1208360"></h2>
-
 
 ## 打开文件数 / 最大链接数
 
@@ -224,7 +209,6 @@ ulimit -n 8192
 
 <h2 id="ddd22119a924356d5fd97057285c0689"></h2>
 
-
 ## 性能测试
 
 ```bash
@@ -236,7 +220,6 @@ dd if=/dev/zero of=/dev/null bs=1m count=32768
 ```
 
 <h2 id="d8f5e5c499ab6b35afcd8cfed2906d9d"></h2>
-
 
 ## 内网传输速度测试
 
@@ -254,7 +237,6 @@ iperf3 -c 192.168.1.8 -R
 
 <h2 id="87c5409b5cb0632cb1d44f17c36c7d83"></h2>
 
-
 ## 传输速度测试方案2: speedtest
 
 ```bash
@@ -266,7 +248,6 @@ http://10.192.89.89:81/
 
 
 <h2 id="f488c026a96a1c56683f3f6afb629010"></h2>
-
 
 ## launchd
 
@@ -283,7 +264,6 @@ There are three main directories you can use with launchd:
     - your job will be run under your username.
 
 <h2 id="00379fb669143aee93f220a535b222a5"></h2>
-
 
 ### Create a Mac plist file to describe your job
 
@@ -320,7 +300,6 @@ There are three main directories you can use with launchd:
 
 <h2 id="548797edc19fa3483f6f9a6f36faa5e2"></h2>
 
-
 ### load and test it
 
 ```bash
@@ -334,7 +313,6 @@ launchctl unload <path>/com.alvin.crontabtest.plist
 ```
 
 <h2 id="cfdb23d5d79b7e7d55330583c081e20c"></h2>
-
 
 ### An important note about root and sudo access
 

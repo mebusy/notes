@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [2.4 PRIORITY QUEUES](#31a8f3f664a49f0116e7d7ceacaff56c)
     - [binary heaps](#01f70acef6efe0e1e07b6c8847ae493a)
@@ -25,21 +25,18 @@
         - [3 因子分解](#85aa4864cc0a1e194558073f4156c589)
         - [4 堆排序](#e23808f74e9e31be5f05858035c5c3a1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="31a8f3f664a49f0116e7d7ceacaff56c"></h2>
-
 
 # 2.4 PRIORITY QUEUES
 
 <h2 id="01f70acef6efe0e1e07b6c8847ae493a"></h2>
 
-
 ## binary heaps
 
 <h2 id="45c2a6499668ae8a669f5f812b56379a"></h2>
-
 
 ### Complete binary tree
 
@@ -47,7 +44,6 @@
 - Complete tree. Perfectly balanced, except for bottom level.
 
 <h2 id="05a360d5d6f9939aabfd6bd00823d80e"></h2>
-
 
 ### Binary heap representations
 
@@ -64,7 +60,6 @@
 
 <h2 id="2e582e415db1ab1e6e72b8278b9385e1"></h2>
 
-
 ### Binary heap properties
 
 - Proposition. Largest key is a[1], which is root of binary tree.
@@ -75,7 +70,6 @@
 
 
 <h2 id="8bff03ac1b55987683317d94044219d1"></h2>
-
 
 ### Promotion in a heap
 
@@ -104,7 +98,6 @@ private void swim(int k) {
 
 <h2 id="cb0565d93960f3556f5f0ca7c24c3134"></h2>
 
-
 ### Insertion in a heap
 
 - Insert. Add node at end, then swim it up.
@@ -123,7 +116,6 @@ public void insert(Key x) {
 ```
 
 <h2 id="32a8207179f9f552bbec38561312becf"></h2>
-
 
 ### Demotion in a heap
 
@@ -152,7 +144,6 @@ private void sink(int k) {
 
 <h2 id="34f42d75083165489f2d1288aa203637"></h2>
 
-
 ### Delete the maximum in a heap
 
 - Delete max.
@@ -177,7 +168,6 @@ public Key delMax() {
 
 <h2 id="dee2139d14dc9b4129086c422806e8a4"></h2>
 
-
 ### Priority queues implementation cost summary
 
 - order-of-growth of running time for priority queue with N items
@@ -191,7 +181,6 @@ d-ary heap | logd N | d logd N | 1
 Fibonacci | 1 | log N⁺ | 1 
 
 <h2 id="08fdfb23883b137987adc5a563f835b0"></h2>
-
 
 ### Binary heap considerations
 
@@ -227,7 +216,6 @@ private void resize(int capacity) {
 
 <h2 id="2b3a9baf85c09205eff605615163f824"></h2>
 
-
 ## event-driven simulation
 
 Example: Particle-particle collision, event-driven simulation
@@ -248,18 +236,15 @@ Example: Particle-particle collision, event-driven simulation
 
 <h2 id="5db9fd7c5a5554033a1f4bb7e6d86e7e"></h2>
 
-
 # 小结
 
 <h2 id="ed2a2da47524e594ad80b8d3a94b8353"></h2>
-
 
 ## 一个中心
 
 **动态求极值**
 
 <h2 id="83e6e32df206c6b61a6fe3d66c6e89d9"></h2>
-
 
 ## 两个实现
 
@@ -318,11 +303,9 @@ Ex: 定一个二叉树，在树的最后一行找到最左边的值。
 
 <h2 id="b51cdf3f3ef0de4345b0b63ec64be908"></h2>
 
-
 ## 三个技巧
 
 <h2 id="d32f136a751ba76a0636ecbb50398dd9"></h2>
-
 
 ### 1 固定堆
 
@@ -340,27 +323,22 @@ Ex: 定一个二叉树，在树的最后一行找到最左边的值。
 
 <h2 id="002ced69d1e2f3a427ea2e66cfb0a508"></h2>
 
-
 ### 2 多路归并 ?
 
 <h2 id="a887f271ce5c9f8af0c13cc45421d2f6"></h2>
-
 
 ### 3 事后小诸葛
 
 
 <h2 id="868b74e8fa2e704564ca9371abe462e1"></h2>
 
-
 ## 四大应用
 
 <h2 id="b3ad9ed4110eace789735fcd1a619652"></h2>
 
-
 ### 1 topK
 
 <h2 id="839ae6a672a3550fda6c7da07759f734"></h2>
-
 
 ### 2 带权最短距离
 
@@ -368,11 +346,9 @@ Ex: 定一个二叉树，在树的最后一行找到最左边的值。
 
 <h2 id="85aa4864cc0a1e194558073f4156c589"></h2>
 
-
 ### 3 因子分解
 
 <h2 id="e23808f74e9e31be5f05858035c5c3a1"></h2>
-
 
 ### 4 堆排序
 

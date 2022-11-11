@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Linux](#edc9f0a5a5d57797bf68e37364743831)
 - [2 用户,文件,文件系统](#dc78ec9cf42a8830958c4a13ea54c976)
@@ -38,26 +38,22 @@
         - [2.9.4 排序和去重](#2d4681c411d1568e6fa16b550226dc0d)
         - [2.9.5 文件对比命令 -- diff](#aa0ee4642be64670b3e4176246a56945)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="edc9f0a5a5d57797bf68e37364743831"></h2>
-
 
 # Linux 
 
 <h2 id="dc78ec9cf42a8830958c4a13ea54c976"></h2>
 
-
 # 2 用户,文件,文件系统
 
 <h2 id="71ab72489e8f3df85e9cb38e6556464b"></h2>
 
-
 ## 2.2 用户的身份
 
 <h2 id="073350885faece2b97481c6df960a166"></h2>
-
 
 ### 2.2.3  /etc/passwd 文件查看用户
 
@@ -79,7 +75,6 @@ byqi:x:16220:100:Qi Bin Yi - Senior Gameplay Programmer - APAC - SHA:/home/byqi:
     - 500~ 2³²-1 分配给普通用户
 
 <h2 id="a660e7205f98c6b4f28ca1afc2a6c3dc"></h2>
-
 
 ### 2.2.4  /etc/group 文件查看组
 
@@ -105,7 +100,6 @@ security:x:31336:atremblay,mloll,lgordon,tmoreggia  ...
 
 <h2 id="e9dcfc4ac5978d4aff38e5522a4ff4be"></h2>
 
-
 ### 2.2.5 管理用户/组
 
 - `useradd` 在任何 Linux发行版 都是一样的 , `adduser` 的实现 各不相同 
@@ -122,7 +116,6 @@ passwd jagen
 ```
 
 <h2 id="6b02a182fc8d8895376aa313622090e7"></h2>
-
 
 ### 2.2.6 夺面双雄 -- 利用 sudo 假借身份
 
@@ -165,7 +158,6 @@ jagen          ALL=(ALL) ALL
 
 <h2 id="2716c4f13756a75f75c6de90fa2e19e7"></h2>
 
-
 ### 2.2.7 我是谁
 
 ```bash
@@ -195,11 +187,9 @@ byqi     pts/0        2018-07-13 03:17 (10.192.81.82)
 
 <h2 id="1f4cded99072ca29937edd309ce6d78b"></h2>
 
-
 ## 2.3 文件和它与权限的关系
 
 <h2 id="1cebd32d3996bebed0549822b7bd7a70"></h2>
-
 
 ### 2.3.2 文件属性和权限
 
@@ -248,7 +238,6 @@ drwxr-xr-x. 10 root root 4096 Jul  2 23:24 lua
 
 <h2 id="c5b963752991dc5394b580dc90a4453d"></h2>
 
-
 ### 2.3.3 文件连接到底是什么
 
 - 文件的 “连接数”到底是什么鬼？
@@ -272,7 +261,6 @@ drwxr-xr-x. 10 root root 4096 Jul  2 23:24 lua
     - 再由于 ".." 的存在，目录中每增加一个子目录，其连接数 +1 
 
 <h2 id="b9d7567bb9b4c20164b259fdc41b5ffa"></h2>
-
 
 ### 2.3.4 修改文件的属性和权限
 
@@ -304,7 +292,6 @@ chown [-R] username:group filename
 ```
 
 <h2 id="fea6f267164ff7e3d11088699fdf33b5"></h2>
-
 
 ### 2.3.5 深入文件权限
 
@@ -365,7 +352,6 @@ chown [-R] username:group filename
 
 <h2 id="dfe4938fa33c82076c22752c25198e9d"></h2>
 
-
 ### 2.3.7 搜索文件
 
 ```
@@ -417,14 +403,12 @@ find / -mtime -1 -exec ls -l {} \;
 
 <h2 id="baad53d4dee6523b870febc691e0d831"></h2>
 
-
 ## 2.4 程序的执行问题
 
 - 如何在命令行下同时执行多个程序？
     - 同时开几个终端的做法 你就别耍这个小聪明了，因为那个不算。
 
 <h2 id="47ee371f78837d547249e795c4f6c40a"></h2>
-
 
 ### 2.4.1 执行程序的方法, 以及多任务协调机制
 
@@ -471,7 +455,6 @@ tail -f logs/error.log
 
 
 <h2 id="0c122d55fe967d921e58cba2ddcb67fb"></h2>
-
 
 ### 2.4.2 计划任务
 
@@ -523,7 +506,6 @@ cron 时间符号 | 含义
 
 <h2 id="991d92088ce3c080fcee780e2518e739"></h2>
 
-
 ### 2.4.3 守护进程及其作用
 
 - 计划任务的执行，主要归功于 守护进程。
@@ -561,7 +543,6 @@ Usage: /etc/init.d/netconsole {start|stop|status|restart|condrestart}
 
 
 <h2 id="b8bcd1b9a3d826a6e7999ba8a079cf3c"></h2>
-
 
 ### 2.4.4 全面了解程序信息
 
@@ -696,11 +677,9 @@ systemd-+-YDLive---{YDLive}
 
 <h2 id="0362e79ba0307bc8b5f345f39f95bd95"></h2>
 
-
 ## 2.5 软件的安装方式
 
 <h2 id="38aa41c024692985abf9e2c632c7685a"></h2>
-
 
 ### 2.5.1 从源文件安装
 
@@ -714,14 +693,12 @@ systemd-+-YDLive---{YDLive}
 
 <h2 id="eeec95a63c0ff729122c760fdccb5ebc"></h2>
 
-
 ### 2.5.2 利用软件管理工具 rpm 和 dpkg
 
 - RMP:  Redhat Package Manager 
 - DPKG:  Debian Package 
 
 <h2 id="3730685067a0e8ba86894245f93b7020"></h2>
-
 
 ### 2.5.3 更酷的线上升级
 
@@ -737,13 +714,11 @@ systemd-+-YDLive---{YDLive}
 
 <h2 id="4fce619be4da556df51e20eeee95433e"></h2>
 
-
 ## 2.6 磁盘的管理方式
 
 - Linux 文件系统格式: ExtN (N=2,3,4)
 
 <h2 id="9595fe791cc313a0bb32e9e9e8c7407c"></h2>
-
 
 ### 2.6.2 磁盘的基本操作
 
@@ -853,7 +828,6 @@ tmpfs             801080       0    801080   0% /run/user/0
          
 <h2 id="8f37333cfab20727c29df10a35100c26"></h2>
 
-
 ### 2.6.3 /etc/fstab 文件 -- 决定分区的连接
 
 ```
@@ -876,7 +850,6 @@ devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
 
 
 <h2 id="9652d4aeffffea883fac404a73868aa4"></h2>
-
 
 ### 2.6.4 弹性调整容量--逻辑卷  TODO page 109
 
@@ -911,11 +884,9 @@ devpts               /dev/pts             devpts     mode=0620,gid=5       0 0
 
 <h2 id="23848b45d53536ddecad76ab9b6a10c4"></h2>
 
-
 ## 2.7 解决上网问题  TODO
 
 <h2 id="58c2de5fdf9137aec22fb053db23d20f"></h2>
-
 
 ### 2.7.2 相关配置文件
 
@@ -953,11 +924,9 @@ nameserver 183.60.82.98
   
 <h2 id="a50b8dd25ffe8197060e5b8754e83a6b"></h2>
 
-
 ## 2.8 不能割舍的shell
 
 <h2 id="eccc90c99aa6ec3bc51b1b6220d8a075"></h2>
-
 
 ### 2.8.1 bash
 
@@ -993,7 +962,6 @@ nameserver 183.60.82.98
 
 <h2 id="05d38f8b22209196d02f0ee18f1ae3b2"></h2>
 
-
 ### 2.8.2  环境变量
 
 - 变量包括 局部变量和 环境变量
@@ -1011,7 +979,6 @@ ENVTEST=ENV1
 ```
 
 <h2 id="da31a23b93e91b899d86f184f76f1bb3"></h2>
-
 
 ### 2.8.3 bash的配置文件
 
@@ -1044,11 +1011,9 @@ ENVTEST=ENV1
 
 <h2 id="b4c32ce358fc3585f97227c4008a1729"></h2>
 
-
 ## 2.9 文本处理
 
 <h2 id="0caafd3d48dc01f091820d15892e248d"></h2>
-
 
 ### 2.9.3  grep 
 
@@ -1077,7 +1042,6 @@ ENVTEST=ENV1
 
 <h2 id="2d4681c411d1568e6fa16b550226dc0d"></h2>
 
-
 ### 2.9.4 排序和去重
 
 - `cut -d' ' -f1 ~/.bash_history  | sort -d | uniq -c | sort -nr | head`
@@ -1099,7 +1063,6 @@ ENVTEST=ENV1
 
 
 <h2 id="aa0ee4642be64670b3e4176246a56945"></h2>
-
 
 ### 2.9.5 文件对比命令 -- diff
 

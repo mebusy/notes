@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Essence of linear algebra](#ab7dcbdd05408bb8c50281f539119f94)
     - [3 Linear transformations and matrices](#ebf4ed4e5dbdf709f6e2a501e1c5cbce)
@@ -13,16 +13,14 @@
     - [10. Eigenvectors and eigenvalues](#d7095a9bb84406d5fb5ed382385c7d16)
     - [11. Abstract vector spaces](#d0019094c72f442cca76cf5e53f49e73)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ab7dcbdd05408bb8c50281f539119f94"></h2>
 
-
 # Essence of linear algebra
 
 <h2 id="ebf4ed4e5dbdf709f6e2a501e1c5cbce"></h2>
-
 
 ## 3 Linear transformations and matrices
 
@@ -104,7 +102,6 @@ ans =
 
 <h2 id="9e3659318b7054360844875560006980"></h2>
 
-
 ## 4. Matrix multiplication as composition
 
 - Often-times you find yourself wanting to describe the effect of applying one transformation and then another. 
@@ -133,7 +130,6 @@ ans =
 
 <h2 id="0a05f70d4501925ef20156f580f0b07d"></h2>
 
-
 ## 5. The determinant
 
 - 有件事对理解各种linear transformation 很有用，那就是测量 变换 究竟对 空间有**多少** 拉伸或挤压，更具体一点，就是测量一个给定区域面积 增大或减小的比例
@@ -157,7 +153,6 @@ ans =
 
 <h2 id="59e335b6a8c34e003dd810410fbf4e21"></h2>
 
-
 ## 6. Inverse matrices, column space and null space
 
 - Usefulness of matrices
@@ -178,7 +173,6 @@ ans =
     - In terms of the linear system of equation Ax=b , if b happens to be the zero vector, the null space gives you all of the possible solutions to the equation. 
 
 <h2 id="8e0c7f26d1f694558baee5ef34fe55ef"></h2>
-
 
 ## footnote. Nonsquare matrices as transformations between dimensions
 
@@ -204,7 +198,6 @@ ans =
 - 因此 这是一个从 三维空间 到 二维空间的变换
 
 <h2 id="04629028685253ba3138ddced808a1ce"></h2>
-
 
 ## 7. Dot products and duality 
 
@@ -248,7 +241,6 @@ ans =
 
 <h2 id="c21e7bf7d55df7edb7e2f6a780fbccd6"></h2>
 
-
 ## 8. Cross products
 
 - 2D vxw = signed Area of parallelogram
@@ -268,7 +260,6 @@ ans =
 - question: 为什么 叉积的计算 和行列式这么相像？ 之间有什么必然联系？
 
 <h2 id="d6f39fcd3624e0b509757af47be8f6c5"></h2>
-
 
 ### Cross products in the light of linear transformations
 
@@ -308,7 +299,6 @@ ans =
 
 
 <h2 id="a08ecda2d10894d7eda0f957ef9a7ce4"></h2>
-
 
 ## 9. Change of basis
      
@@ -351,7 +341,6 @@ ans =
         
 <h2 id="d7095a9bb84406d5fb5ed382385c7d16"></h2>
 
-
 ## 10. Eigenvectors and eigenvalues
 
 - 考虑二维空间中的某个线性变换，关注它对一个特定向量的作用。 
@@ -392,7 +381,6 @@ ans =
 
 
 <h2 id="d0019094c72f442cca76cf5e53f49e73"></h2>
-
 
 ## 11. Abstract vector spaces
 

@@ -1,20 +1,18 @@
-...menustart
+[](...menustart)
 
 - [ways to sort in go](#13e5e9dd069e344545ecde826aadd758)
     - [1 Sort a slice of ints, float64s or strings](#a7078ee300282b0116b6cca37b638a11)
     - [2 Sort slice with custom comparator](#088ffc615fd30a00b2c5a7fc01a545ff)
     - [3 Implement `sort.Interface` interface for custom data structure](#d2d35ec725f17267135de166e66b8897)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="13e5e9dd069e344545ecde826aadd758"></h2>
 
-
 # ways to sort in go
 
 <h2 id="a7078ee300282b0116b6cca37b638a11"></h2>
-
 
 ## 1 Sort a slice of ints, float64s or strings
 
@@ -40,7 +38,6 @@ func main() {
 
 <h2 id="088ffc615fd30a00b2c5a7fc01a545ff"></h2>
 
-
 ## 2 Sort slice with custom comparator
 
 - Use the function `sort.Slice`.
@@ -58,7 +55,6 @@ func main() {
 ```
 
 <h2 id="d2d35ec725f17267135de166e66b8897"></h2>
-
 
 ## 3 Implement `sort.Interface` interface for custom data structure
 

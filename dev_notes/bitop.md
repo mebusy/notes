@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [位运算](#c04f8667013a3097bf12e98e424a915b)
     - [二进制](#6168fb08fe64663a502a132c5589b73d)
@@ -6,17 +6,15 @@
     - [XOR](#97675eb3f268048604dc5155511a2a4d)
         - [XOR application](#cc352fea6e400fa736030527056c3fc2)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="c04f8667013a3097bf12e98e424a915b"></h2>
-
 
 # 位运算
 
 
 <h2 id="6168fb08fe64663a502a132c5589b73d"></h2>
-
 
 ## 二进制
 
@@ -62,7 +60,6 @@
 
 <h2 id="bf94eee92531fcf0a63c55eddb6a558c"></h2>
 
-
 ### flip bits
 
 ```go
@@ -75,7 +72,6 @@ func Flipbyte(b uint8) uint8 {
 ```
 
 <h2 id="97675eb3f268048604dc5155511a2a4d"></h2>
-
 
 ## XOR
 
@@ -95,7 +91,6 @@ XOR is analogous to set difference.
     - so xor is commutative and associative.
 
 <h2 id="cc352fea6e400fa736030527056c3fc2"></h2>
-
 
 ### XOR application
 

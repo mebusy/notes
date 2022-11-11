@@ -1,14 +1,13 @@
-...menustart
+[](...menustart)
 
 - [PyTorch](#95b88f180e9eb5678e0f9ebac2cbe643)
     - [Docker](#c5fd214cdd0d2b3b4272e73b022ba5c2)
     - [Tips](#a0d4cc0f54602c3f247c72f15a7d2dbf)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="95b88f180e9eb5678e0f9ebac2cbe643"></h2>
-
 
 # PyTorch
 
@@ -19,7 +18,6 @@
 
 
 <h2 id="c5fd214cdd0d2b3b4272e73b022ba5c2"></h2>
-
 
 ## Docker
 
@@ -39,7 +37,6 @@ $ pytorch ex.py
 
 
 <h2 id="a0d4cc0f54602c3f247c72f15a7d2dbf"></h2>
-
 
 ## Tips
 

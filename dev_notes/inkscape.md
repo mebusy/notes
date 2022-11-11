@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Inkscape](#f94c773ead613bd434392fcb74685a7e)
     - [Interface and Basic Drawing](#6c546416d94ec089c4686f1ec4c78a2c)
@@ -15,16 +15,14 @@
     - [17 - Rendering Paths and Objects](#bf272c95baaec4d007bd36649e901985)
     - [22](#b6d767d2f8ed5d21a44b0e5886680cb9)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f94c773ead613bd434392fcb74685a7e"></h2>
 
-
 # Inkscape
 
 <h2 id="6c546416d94ec089c4686f1ec4c78a2c"></h2>
-
 
 ## Interface and Basic Drawing
 
@@ -45,7 +43,6 @@
 
 <h2 id="5c74f7d0a5781996cdcdbd804ba6a0c2"></h2>
 
-
 ## Groups, Levels, and Object Selection
 
 - ways to multi-select objects
@@ -63,7 +60,6 @@
 
 <h2 id="9ab84a8448ee6c390dc41477b364f2b3"></h2>
 
-
 ## Text and Fonts
 
 - modify positions of some specific characters in a text
@@ -80,7 +76,6 @@
 
 <h2 id="ad660906612d8b3fef07e54b70d88690"></h2>
 
-
 ## Drawing Lines and Paths vs Objects
 
 - FreeHand Drawing tool creates path, while tools like rectange, circle creating objects.
@@ -92,7 +87,6 @@
 
 
 <h2 id="17f95c6bc3b807798b7acdf63a60f391"></h2>
-
 
 ## Bezier Tool and Nodes
 
@@ -108,14 +102,12 @@
 
 <h2 id="5b982918e0c8628311e23fb170b924db"></h2>
 
-
 ## Trace Bitmap Tool (Convert Raster to SVG) 
 
 - Path/Trace Bitmap..
 
 
 <h2 id="9b4dc60a782520206cbb06586e275a3f"></h2>
-
 
 ## 12 Difference, Union, Intersection, Combination
 
@@ -124,14 +116,12 @@
 
 <h2 id="adb66e29613380734e6e61bcdfcdb868"></h2>
 
-
 ## 13 Align and Distribute
 
 - /Object/Align and Distribute , shift-cmd-A
 - distribute:  setting distance between objects
 
 <h2 id="5e998916953970748f03784a139c283c"></h2>
-
 
 ## 14 Spray Tool, Copy, Clone
 
@@ -144,14 +134,12 @@
 
 <h2 id="7fb90a99cc8ccb7dadeeb6a1fc587d44"></h2>
 
-
 ## 15 - Using Layers
 
 - CMD-Shift-L , to open layer panel
     - and then , you can add/delete/hierarchy layers
 
 <h2 id="86b97c880a25b935be6c9810121e887f"></h2>
-
 
 ## 16 - Using Filters
 
@@ -160,14 +148,12 @@
 
 <h2 id="bf272c95baaec4d007bd36649e901985"></h2>
 
-
 ## 17 - Rendering Paths and Objects
 
 - generate random shape
 - Menu extension/render 
 
 <h2 id="b6d767d2f8ed5d21a44b0e5886680cb9"></h2>
-
 
 ## 22
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [工作相关 Unity 笔记](#a90ab7f09671a6dc89b3cdc8613d0a16)
     - [PostProcessBuild](#24591dbf27c3a0c975b8163849f47178)
@@ -45,16 +45,14 @@
     - [http request under proxy](#7fcc9c98fbea86b9d5a1ed3186960a6f)
     - [convert Input.mouseposition to object local space](#7edf8bc89ea87e0d4a69a09a5739ce2e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="a90ab7f09671a6dc89b3cdc8613d0a16"></h2>
 
-
 # 工作相关 Unity 笔记
 
 <h2 id="24591dbf27c3a0c975b8163849f47178"></h2>
-
 
 ## PostProcessBuild
 
@@ -72,14 +70,12 @@ PostProcessBuild 这个 attribute 修饰的 **static** function 会在 Unity 建
 
 <h2 id="5799eca64b957c331cb821ef1c3c8c24"></h2>
 
-
 ## Unity Archive
 
 https://unity3d.com/get-unity/download/archive
 
 
 <h2 id="481ef6dbcc3f87fb143b77c2109eceac"></h2>
-
 
 ## isDebug
 
@@ -89,7 +85,6 @@ Debug.isDebugBuild
 
 <h2 id="d39c56b9dd99c012ae6fffa9403fe7fa"></h2>
 
-
 ## comments in inspector
 ```
 [Header("Button Settings")]
@@ -97,7 +92,6 @@ Debug.isDebugBuild
 ```
 
 <h2 id="4711c2c702d40b633bec546b1a32a686"></h2>
-
 
 ## open new OSX unity instance 
 
@@ -108,7 +102,6 @@ open -na Unity
 
 <h2 id="15f9357cdfc48bea7cdf4fd8cc236113"></h2>
 
-
 ## change the order or child object
 
 ```
@@ -117,7 +110,6 @@ transform.GetSiblingIndex
 ```
 
 <h2 id="5b22d03d81d05e11ed4b6cfd33e70535"></h2>
-
 
 ## AB: build AssetBundles
 
@@ -158,7 +150,6 @@ ChunkBasedCompression 适合实时动态加载
 
 <h2 id="cb0ff2950ad57780b5f2bb4110114794"></h2>
 
-
 ## get the name of all AssetBundles
 
 ```
@@ -175,7 +166,6 @@ public class GetAssetBundleNames
 
 <h2 id="e367c873199629ef974a3f1e21f97981"></h2>
 
-
 ## inform when Asset changed
 
 ```
@@ -190,7 +180,6 @@ public class MyPostprocessor : AssetPostprocessor {
 ```
 
 <h2 id="3d6a9a1fcd9bd7d8daf655c4614fb2e1"></h2>
-
 
 ## clean Asset Bundle name
 
@@ -218,7 +207,6 @@ public class ClearAssetBundlesName {
 ```
 
 <h2 id="861750dc9ccbf173077aeeba3d2fdad2"></h2>
-
 
 ## set Asset Bundle name
 
@@ -284,7 +272,6 @@ public class SetAssetBundleName {
 
 <h2 id="51bea0e0c0bb0336803f59dd4caf3a25"></h2>
 
-
 ## UGUI event callback
 
 ```
@@ -298,7 +285,6 @@ scriptCameraList.onValueChanged.AddListener((int id ) =>
 
 <h2 id="de581e014cf8ac9cb436e6d698c2cf55"></h2>
 
-
 ## 获取脚本名字
 
 ```
@@ -306,7 +292,6 @@ this.GetType().Name
 ```
 
 <h2 id="befbb8a946733519ec4f2ef2c50f675c"></h2>
-
 
 ## UI Text 真实宽高
 
@@ -317,14 +302,12 @@ text.preferredHeight
 
 <h2 id="acd0632863feeca076212c99f111cbf4"></h2>
 
-
 ## iOS9 App Slicing
 
 http://forum.unity3d.com/threads/second-preview-build-for-ios-9-on-demand-resources-and-app-slicing-support.353491/
 
 
 <h2 id="899fbb2716ba93c4b3b5ef8b591ae61f"></h2>
-
 
 ## 遍历目录 
 
@@ -355,7 +338,6 @@ private static void GetDirs(string dirPath, ref List<string> dirs)
 
 <h2 id="ccc5ee00fef5a89cbbce16503d586e13"></h2>
 
-
 ## native plugin bool 返回值问题
 
 ```
@@ -366,13 +348,11 @@ private static extern bool carFileExists(  string path ) ;
 
 <h2 id="84fd441f91b7d1374c49ebe97bf583dc"></h2>
 
-
 ## Unity Engine/Editor 源码
 
 https://bitbucket.org/Unity-Technologies/ui/src/b5f9aae6ff7c2c63a521a1cb8b3e3da6939b191b?at=5.3
 
 <h2 id="856d7efa01ab9a923a3b060622542f19"></h2>
-
 
 ## 调用父类 override 方法
 
@@ -382,11 +362,9 @@ base.func( ... )
 
 <h2 id="aa84ec947f0a72b161a8d27598eda21e"></h2>
 
-
 ## 优化
 
 <h2 id="0311b56e7bb9ed6bcfd178613c7dccbb"></h2>
-
 
 ### 5.3 UI 系统
 
@@ -394,7 +372,6 @@ base.func( ... )
 移动平台，使用 touchInputModule
 
 <h2 id="c75153b751bc0aab3db405c5b421864a"></h2>
-
 
 ### assetbundle 内存管理
 
@@ -411,7 +388,6 @@ base.func( ... )
 
 ***注意： 尽管guid相同, 不同 ab 实例，会 load出多分asset ，导致内存泄漏***    
 <h2 id="f36000a3efff5fdb8233c537ea001725"></h2>
-
 
 ### code strip & `link.xml`
 
@@ -433,7 +409,6 @@ base.func( ... )
 
 <h2 id="9a429b30c57c8bd08af8a4cf4a8c6300"></h2>
 
-
 ### MonoCompatibility
 
 http://docs.unity3d.com/410/Documentation/ScriptReference/MonoCompatibility.html
@@ -441,7 +416,6 @@ http://docs.unity3d.com/410/Documentation/ScriptReference/MonoCompatibility.html
 
 
 <h2 id="5fc677a1b86704002cd1192e55cd2c98"></h2>
-
 
 ## Build from command line
 
@@ -451,7 +425,6 @@ http://docs.unity3d.com/410/Documentation/ScriptReference/MonoCompatibility.html
 
 <h2 id="642693738e7080f3ccc7a49d81b58a7c"></h2>
 
-
 ## 关闭 Debug.Log 日志
 
 ```
@@ -459,7 +432,6 @@ Debug.logger.logEnabled=false;  ???
 ```
 
 <h2 id="32ab589131f3f3759f07498d06782aed"></h2>
-
 
 ##  IOS - Could not produce class with ID
 
@@ -496,7 +468,6 @@ Debug.logger.logEnabled=false;  ???
 
 <h2 id="726caa74f03c8b3adce2c7cdd35895a5"></h2>
 
-
 ## check if animation is end
 
 ```
@@ -504,7 +475,6 @@ if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsIn
 ```
 
 <h2 id="f31468ec634654039cc0cc16f1ddff39"></h2>
-
 
 ## iOS , overwrite UnityAppController
 
@@ -533,7 +503,6 @@ IMPL_APP_CONTROLLER_SUBCLASS (CustomAppController)
 
 <h2 id="bea1ee4e93f2d2997848462b810321b7"></h2>
 
-
 ## check 32-bit or 64-bit
 
 ```
@@ -547,7 +516,6 @@ else if (IntPtr.Size == 8)
 ```
 
 <h2 id="0985b5715fbcf7cd9d7b06666b3e3645"></h2>
-
 
 ## RectTransform
 
@@ -565,7 +533,6 @@ Top:  -14
 
 <h2 id="22c2cfe7924149154316a72025caca79"></h2>
 
-
 ## Change UI Opacity , Alpha
 
 ```
@@ -574,7 +541,6 @@ AlarmText.gameObject.SetAlpha((float)0.5);
 
 
 <h2 id="d847f9321932800f839faa27122a8046"></h2>
-
 
 ## ClearChildren
 
@@ -589,7 +555,6 @@ public static void ClearChildren(this GameObject mbe) {
 
 <h2 id="c5efce759624fef37e581461dc508df7"></h2>
 
-
 ## Force canvas sorting order
 
 ```
@@ -602,7 +567,6 @@ if (obj) {
 
 <h2 id="3f5ccb63301562c1f2962e4fc33e13c8"></h2>
 
-
 ## change Image's Source Image
 
 ```
@@ -610,7 +574,6 @@ image.sprite = [your sprite]
 ```
 
 <h2 id="b172f09ca5430b87593e0828ad617151"></h2>
-
 
 ## c/c++ plugin Log
 
@@ -687,7 +650,6 @@ _DebugFunc( log_buf ); \
 
 <h2 id="3a888050a1995af5dc4e05e533970e5c"></h2>
 
-
 ## detect whether an object has been destroyed ?
 
 ```
@@ -695,7 +657,6 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
 ```
 
 <h2 id="93b2ba0c1f3e74fd40ccfbdb46ee7061"></h2>
-
 
 ## ScrollView 实践
 
@@ -712,7 +673,6 @@ bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceE
 
 <h2 id="ff5c99f331bda1f9bf2e5016b22ad46e"></h2>
 
-
 ## reset scroll rect content to original postion 
 
 ```cpp#
@@ -720,7 +680,6 @@ scrollrect.content.anchoredPosition = Vector2.zero;
 ```
 
 <h2 id="ef0a7a0190d13816c3e68a733eb06cfc"></h2>
-
 
 ## Dictionary iteration 
 
@@ -733,7 +692,6 @@ foreach(KeyValuePair<EventSignal,EventManager.EventFunc> entry in myRegisterEven
 ```
 
 <h2 id="f02e785cdfc7d8abbaef854a66a36db5"></h2>
-
 
 ## AES , encrypt by python, decrypt by c# 
 
@@ -786,7 +744,6 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
 
 <h2 id="7fcc9c98fbea86b9d5a1ed3186960a6f"></h2>
 
-
 ## http request under proxy 
 
  1. do not use WWW , use WebClint instead
@@ -796,7 +753,6 @@ public String Decrypt_CBC_AES( string base64str, byte[] Key )
  3. start unity from `Unity.app/Contents/MacOS/Unity` , not by clicking Unity.app
 
 <h2 id="7edf8bc89ea87e0d4a69a09a5739ce2e"></h2>
-
 
 ## convert Input.mouseposition to object local space 
 

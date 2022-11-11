@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [6.4 MAXIMUM FLOW](#60804ce1e5e1b895af839b4ef2122a99)
 - [introduction](#8800e1c9b3e22c44ba59a34db3fe4841)
@@ -10,21 +10,18 @@
 - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
     - [Ford-Fulkerson algorithm](#3c8155f8b956bc76bd3865785d9cc8c1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="60804ce1e5e1b895af839b4ef2122a99"></h2>
-
 
 # 6.4 MAXIMUM FLOW
 
 <h2 id="8800e1c9b3e22c44ba59a34db3fe4841"></h2>
 
-
 # introduction
 
 <h2 id="450389af6383415c1047574d48dd0785"></h2>
-
 
 ## Mincut problem
 
@@ -47,7 +44,6 @@
 
 <h2 id="94a80819ddc13f6dce6240f35c75622d"></h2>
 
-
 ### Mincut application
 
 - **"Free world" goal** 
@@ -59,7 +55,6 @@
 
 
 <h2 id="e5e9af9ecfee06cab309dca7d7623ddf"></h2>
-
 
 ## Maxflow problem
 
@@ -83,7 +78,6 @@
 
 <h2 id="cbb1e31675bbfff18dfed42b332e08d6"></h2>
 
-
 ## Maxflow application
 
 - **Soviet Union goal**
@@ -93,7 +87,6 @@
 
 
 <h2 id="290612199861c31d1036b185b4e69b75"></h2>
-
 
 ## Summary
 
@@ -106,11 +99,9 @@
 
 <h2 id="3c8155f8b956bc76bd3865785d9cc8c1"></h2>
 
-
 # Ford-Fulkerson algorithm
 
 <h2 id="3c8155f8b956bc76bd3865785d9cc8c1"></h2>
-
 
 ## Ford-Fulkerson algorithm
 

@@ -1,12 +1,11 @@
-...menustart
+[](...menustart)
 
 - [22 Optimiaztion and Neural Nets](#88b84e5bd0f13fb156241e3fa8290da7)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="88b84e5bd0f13fb156241e3fa8290da7"></h2>
-
 
 # 22 Optimiaztion and Neural Nets
 

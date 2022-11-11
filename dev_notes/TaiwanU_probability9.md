@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Week 9 多个随机变数之和的概率分布](#1762299309d6cb253f2fdb43d353f294)
     - [9.1 随机变数之和](#193f6cd419c84d21dae97441a455bb44)
@@ -14,16 +14,14 @@
         - [中央极限定律(CLT)的应用](#3a6f6a5a83db8d71e439b1482fd9d360)
     - [Quiz](#ab458f4b361834dd802e4f40d31b5ebc)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="1762299309d6cb253f2fdb43d353f294"></h2>
 
-
 # Week 9 多个随机变数之和的概率分布
 
 <h2 id="193f6cd419c84d21dae97441a455bb44"></h2>
-
 
 ## 9.1 随机变数之和
 
@@ -93,7 +91,6 @@ if __name__ == '__main__':
 
 <h2 id="09fcfdc987674ca8b8ddac2800de6f82"></h2>
 
-
 ## 9.2 MGF(MOMENT GENERATING FUNCTION)
 
 - 先看个例子吧!辛苦的红娘业
@@ -112,7 +109,6 @@ if __name__ == '__main__':
 
 
 <h2 id="cdd64cb797821d59ddd73236bda46533"></h2>
-
 
 ### MGF 
 
@@ -140,7 +136,6 @@ if __name__ == '__main__':
 
 <h2 id="f8dbbf3c577f493b3b6ff0bffd301e3f"></h2>
 
-
 ### MFG重要性质
 
 - MGF 怎么做运算
@@ -154,7 +149,6 @@ if __name__ == '__main__':
 
 
 <h2 id="2be4a5f7d9346b585956a97eade6ba53"></h2>
-
 
 ### 常见离散概率分布 之 MGF
 
@@ -180,7 +174,6 @@ if __name__ == '__main__':
 
 <h2 id="a143407576e230d845a8f65a6a5354f9"></h2>
 
-
 ### 常见连续概率分布之 MGF
 
 
@@ -197,11 +190,9 @@ if __name__ == '__main__':
 
 <h2 id="cd35de7f4e9cf36be5b82a16fe6c9164"></h2>
 
-
 ## 9.3 多个随机变数之和
 
 <h2 id="5394b4fb8d4f5a0a0bb2b7475ea106d6"></h2>
-
 
 ### 独立随机变数之和
 
@@ -222,7 +213,6 @@ if __name__ == '__main__':
         - ⇒ X~N(1400,900)
 
 <h2 id="665c6ab9ba9d1f2d7fadf5c4ff5cd580"></h2>
-
 
 ### 随机个数个 独立随机变数之和
 
@@ -256,7 +246,6 @@ if __name__ == '__main__':
 
 <h2 id="7578c5441d21a59eddc6f9dcf8436a1c"></h2>
 
-
 ## 9.4 中央極限定理-萬佛朝宗
 
 
@@ -282,7 +271,6 @@ if __name__ == '__main__':
 
 
 <h2 id="3a6f6a5a83db8d71e439b1482fd9d360"></h2>
-
 
 ### 中央极限定律(CLT)的应用
 
@@ -335,7 +323,6 @@ if __name__ == '__main__':
         ```
 
 <h2 id="ab458f4b361834dd802e4f40d31b5ebc"></h2>
-
 
 ## Quiz
 

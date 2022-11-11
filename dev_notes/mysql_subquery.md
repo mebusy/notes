@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Mysql SubQuery](#a101a8d7738f063d1d49004a43b7a86f)
     - [Scalar Subquery](#27a7afaf078ad5a7de12c2991e900e31)
@@ -10,11 +10,10 @@
     - [Use sub-query in `SELECT` clause](#81e8ded1361f12f673dc6ec8222a0048)
     - [Use sub-query in `HAVING` clause](#bf0acc0d777390e702fa05c6915669a1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="a101a8d7738f063d1d49004a43b7a86f"></h2>
-
 
 # Mysql SubQuery
 
@@ -36,7 +35,6 @@
 
 <h2 id="27a7afaf078ad5a7de12c2991e900e31"></h2>
 
-
 ## Scalar Subquery
 
 - always return just **1 row and 1 column**
@@ -57,13 +55,11 @@
 
 <h2 id="d10dd98dd93c479b1064b7ef27c80ad0"></h2>
 
-
 ## Multiple row Subquery
 
 - will return multiple rows, or multiple columns
 
 <h2 id="6cee8944a69e5a841ff3c73052c30c3b"></h2>
-
 
 ### multiple rows and multiple columns
 
@@ -82,7 +78,6 @@
 
 <h2 id="ca1a624f1891364dc5965442aff0564a"></h2>
 
-
 ### multiple rows , but single columns
 
 - Question: find department who do not have any employees
@@ -94,7 +89,6 @@
 
 
 <h2 id="02e03046079cab57176425349a6f3032"></h2>
-
 
 ## Correlated Subquery
 
@@ -122,7 +116,6 @@
 
 <h2 id="68eadeedf129085779b3676895d18c57"></h2>
 
-
 ## With Clause
 
 ```sql
@@ -137,7 +130,6 @@ where ....
 
 
 <h2 id="81e8ded1361f12f673dc6ec8222a0048"></h2>
-
 
 ## Use sub-query in `SELECT` clause
 
@@ -170,7 +162,6 @@ You can always find alternative ways to remove the subquery in select clause, e.
 
 
 <h2 id="bf0acc0d777390e702fa05c6915669a1"></h2>
-
 
 ## Use sub-query in `HAVING` clause
 

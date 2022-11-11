@@ -1,14 +1,13 @@
-...menustart
+[](...menustart)
 
 - [Manim 2 : Tex Forumulas](#f2ef3b7cd3a34c64c98a94fe040e565b)
 - [Manim 3: Array](#f1727aac5db801c7193d3042b4245149)
     - [Cross Text](#0ae65dbb4d1614de1289b3b6ae3bcfb7)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f2ef3b7cd3a34c64c98a94fe040e565b"></h2>
-
 
 # Manim 2 : Tex Forumulas
 
@@ -32,7 +31,6 @@ class Formula(Scene):
 ```
 
 <h2 id="f1727aac5db801c7193d3042b4245149"></h2>
-
 
 # Manim 3: Array
 
@@ -65,7 +63,6 @@ class TextColor( Scene ):
 
 
 <h2 id="0ae65dbb4d1614de1289b3b6ae3bcfb7"></h2>
-
 
 ### Cross Text
 

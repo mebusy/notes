@@ -1,13 +1,12 @@
-...menustart
+[](...menustart)
 
 - [goroutine   调度模型](#f4826ea9897f6bce6753b7e50f3b09a8)
     - [goroutine 调度器](#082161a812b70f02ba7d92f847db36a4)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="f4826ea9897f6bce6753b7e50f3b09a8"></h2>
-
 
 # goroutine   调度模型
 
@@ -22,7 +21,6 @@
 
 
 <h2 id="082161a812b70f02ba7d92f847db36a4"></h2>
-
 
 ## goroutine 调度器
 

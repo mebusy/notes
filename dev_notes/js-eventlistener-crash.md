@@ -1,20 +1,18 @@
-...menustart
+[](...menustart)
 
 - [Learn JavaScript Event Listeners](#6d189e3b80b68b24f022b1374f10298d)
     - [addEventListener](#ad67ccdca808861a8462e31ddeb84fa7)
     - [removeEventListener](#be2c1712b98bf178b8e283bd18e226c5)
     - [How to delegate events](#697c9533e471a91b06c2daf896dde672)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="6d189e3b80b68b24f022b1374f10298d"></h2>
 
-
 # Learn JavaScript Event Listeners
 
 <h2 id="ad67ccdca808861a8462e31ddeb84fa7"></h2>
-
 
 ## addEventListener
 
@@ -52,7 +50,6 @@ grandparent.addEventListener('click', e => {
 
 <h2 id="be2c1712b98bf178b8e283bd18e226c5"></h2>
 
-
 ## removeEventListener
 
 - to remove an event listener callback, you need explicitly define the callback function
@@ -69,7 +66,6 @@ grandparent.addEventListener('click', e => {
     ```
 
 <h2 id="697c9533e471a91b06c2daf896dde672"></h2>
-
 
 ## How to delegate events
 

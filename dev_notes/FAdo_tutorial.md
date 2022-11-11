@@ -1,12 +1,11 @@
-...menustart
+[](...menustart)
 
 - [FAdo Tutorial](#844c992587ad53d6fa24ff03c8921787)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="844c992587ad53d6fa24ff03c8921787"></h2>
-
 
 # FAdo Tutorial
 

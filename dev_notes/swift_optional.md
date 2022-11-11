@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Swift Optional](#7e8b6c75b8623a87364201114150aa60)
     - [有什么用？](#b49228e7dbd38a64c71a528307f8e0a2)
@@ -8,16 +8,14 @@
         - [Optional Chaining](#c6b4dba958efc3f0aa8e21e2cb38d36a)
         - [??的使用](#6549f14d25cd64e26d5474d70e651360)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="7e8b6c75b8623a87364201114150aa60"></h2>
 
-
 # Swift Optional 
 
 <h2 id="b49228e7dbd38a64c71a528307f8e0a2"></h2>
-
 
 ## 有什么用？
 
@@ -47,7 +45,6 @@ func setObject(object:AnyObject, forKey:String)
 
 <h2 id="ebb061953c0454b2c8ee7b0ac615ebcd"></h2>
 
-
 ## Optional
 
 Optional的实际类型是一个enum: 
@@ -69,7 +66,6 @@ var numbet: Optional<Int> = 32
 
 
 <h2 id="23b4bcc6b144fc01dc2c5b7b903d7eb1"></h2>
-
 
 ### Optional Binding
 
@@ -101,7 +97,6 @@ if let actualString = myString {
 
 <h2 id="37f80459b8739bb1626224a44c92b348"></h2>
 
-
 ### 隐式解包Optional 
 
 <details>
@@ -130,7 +125,6 @@ let implicitString: String = possibleString //此处我们不需要!来对possib
 
 <h2 id="c6b4dba958efc3f0aa8e21e2cb38d36a"></h2>
 
-
 ### Optional Chaining
 
 Optional Chaining，如同名字一样，我们可以通过一个链来安全的访问一个Optional的属性或者方法。
@@ -149,7 +143,6 @@ if let isPNG = imagePaths["star"]?.hasSuffix(".png") {
 
 
 <h2 id="6549f14d25cd64e26d5474d70e651360"></h2>
-
 
 ### ??的使用
 

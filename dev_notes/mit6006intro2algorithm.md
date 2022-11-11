@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [MIT 6.006 Notes](#7ba776bce613220d5206d2ccac2dc748)
     - [2. Data Structures and Dynamic Arrays](#1a46d28a7efcf6f6d3a5ad3f3040ecae)
@@ -11,18 +11,16 @@
     - [8. Binary Heaps](#559eadcb9167527662cd16aea8846422)
     - [15. Dynamic Programming, Part 1: SRTBOT, Fib, DAGs, Bowling](#f1e318f860742d17a1970788cc87b50a)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="7ba776bce613220d5206d2ccac2dc748"></h2>
-
 
 # MIT 6.006 Notes
 
 interface: Sequences, Set, Priority Queue
 
 <h2 id="1a46d28a7efcf6f6d3a5ad3f3040ecae"></h2>
-
 
 ## 2. Data Structures and Dynamic Arrays
 
@@ -45,7 +43,6 @@ Dynamic Array | ***1*** | n | ***1***<sub>(a)</sub> | n
 
 
 <h2 id="c2a6777ee7d6c9c3a2fdb1a57b03154a"></h2>
-
 
 ### Dynamic Arrays ( Python lists )
 
@@ -79,7 +76,6 @@ Dynamic Array | ***1*** | n | ***1***<sub>(a)</sub> | n
 
 <h2 id="de36f076100f55ed119a6d6bb497af5a"></h2>
 
-
 ## 3. Sets
 
 Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
@@ -92,7 +88,6 @@ Data Structure | \| | Operation, O(·)  | &nbsp; |  &nbsp; |  &nbsp;
 
 
 <h2 id="9d4a24e513766f332d682189c849a10c"></h2>
-
 
 ## 4. Hashing
 
@@ -136,7 +131,6 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
 
 <h2 id="cf88d04fef26d8d9d16f85f510201fc0"></h2>
 
-
 ## 5. Linear Sorting
 
 - Tuple Sort
@@ -145,7 +139,6 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
         - least significant sort first, then do most significant sort again
 
 <h2 id="d561cc5e985e698a302ceeb2af0cbfcf"></h2>
-
 
 ## 6. Binary Trees: Binary Search Tree
 
@@ -179,7 +172,6 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
 
 
 <h2 id="0ca49c9a278cb825739fc77e97f43bd8"></h2>
-
 
 ## 7. Binary Trees  AVL
 
@@ -217,7 +209,6 @@ Sorted Array | nlogn | logn | n | ***1*** | logn
 
 
 <h2 id="559eadcb9167527662cd16aea8846422"></h2>
-
 
 ## 8. Binary Heaps
 
@@ -281,7 +272,6 @@ Set AVL Tree | nlogn | logn | logn | nlogn | N | AVL Sort
 
 
 <h2 id="f1e318f860742d17a1970788cc87b50a"></h2>
-
 
 ## 15. Dynamic Programming, Part 1: SRTBOT, Fib, DAGs, Bowling
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [GPU Programming for Video Games, Summer 2020, Georgia Tech](#b369fffc612dbbb4c7a6dfa31d084ab0)
 - [6 Backface Culling](#28334b98449eaca000e409a2961c6c33)
@@ -40,11 +40,10 @@
     - [Some uses of pixel shaders](#07b6d393a22ca42fc5df0d0d4b035751)
     - [Shader Language](#5eb3ef14b8dcdc301af4c983a7136410)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b369fffc612dbbb4c7a6dfa31d084ab0"></h2>
-
 
 # GPU Programming for Video Games, Summer 2020, Georgia Tech
 
@@ -59,7 +58,6 @@
 
 <h2 id="28334b98449eaca000e409a2961c6c33"></h2>
 
-
 # 6 Backface Culling
 
 - Determin "facing direction"
@@ -72,7 +70,6 @@
 
 <h2 id="ee1676bbfe64cb66faf7e5ec01593ed5"></h2>
 
-
 ## Backface culling method
 
 - Check if the normal is facing the camera
@@ -81,7 +78,6 @@
 
 
 <h2 id="6b740ec394657fb2e3006a3312e29a13"></h2>
-
 
 ## When to perform backface culling ?
 
@@ -106,11 +102,9 @@
 
 <h2 id="f645278fb1c70a40dd691e06135865fe"></h2>
 
-
 # 7 Basic Lighting
 
 <h2 id="ea06e1cd6dbd257f4c66f45eee3c0e13"></h2>
-
 
 ## Local vs. global illumination
 
@@ -129,7 +123,6 @@
 
 <h2 id="96382d822120f3c7a9014efb8261fd0e"></h2>
 
-
 ## Elements of PBR(physically-based rendering)
 
 - Linear space lighting
@@ -144,7 +137,6 @@
 
 
 <h2 id="d0c6019becee5e1db1b792e7ae3088d7"></h2>
-
 
 ## Illumination: diffuse lighting
 
@@ -165,7 +157,6 @@
 
 <h2 id="9ae158c2b7218467a0355d44a43195b8"></h2>
 
-
 ## Illumination: specular lighting
 
 - Create shinning surface ( surface perfectly reflects )
@@ -182,7 +173,6 @@
     - what is the π ?
 
 <h2 id="4e69f1c58994758054563aa7392ffa4c"></h2>
-
 
 ## BRDF 
 
@@ -207,7 +197,6 @@
 
 <h2 id="cb6bc578172fc9b2d26af7123d455935"></h2>
 
-
 ## Light source properties
 
 - Postion ( point of spot ) , or angle ( directinal )
@@ -220,7 +209,6 @@
 
 <h2 id="0cc6280c44ed3adaa5935128cae9593f"></h2>
 
-
 ## Spot light effect 
 
 [cg tutorial: 5.5.2 Adding a Spotlight Effect](https://developer.download.nvidia.com/CgTutorial/cg_tutorial_chapter05.html)
@@ -228,11 +216,9 @@
 
 <h2 id="f20a96ec50f4fc236a0a161b1ae0fb0c"></h2>
 
-
 # 8 Rasterization
 
 <h2 id="d7ecfd012daf5f79f8afb273d6e5dd7a"></h2>
-
 
 ## Shading methods
 
@@ -244,7 +230,6 @@
     - Can be done on modern GPUs
 
 <h2 id="8c99afbaad8ede5b27fa1d8b04f51aee"></h2>
-
 
 ## Z-Buffer
 
@@ -260,11 +245,9 @@
 
 <h2 id="7e81ac3c516ee9b2786c37d4f8144a9c"></h2>
 
-
 # 9 Introduction to Textures
 
 <h2 id="a3e8ae43188ae76d38f414b2bdb0077b"></h2>
-
 
 ## Texture
 
@@ -279,7 +262,6 @@
 
 <h2 id="789129d85cbd3e4c28736b7b0888bca1"></h2>
 
-
 ## Texture Coordinates
 
 - Introduce one more component to geometry
@@ -289,7 +271,6 @@
     - **Texture coordinates** (2D)
 
 <h2 id="b524170705d1cbe7fac8ab5bdb5d7a56"></h2>
-
 
 ## Texture Coordinates Conventions
 
@@ -304,7 +285,6 @@
 
 
 <h2 id="76f348c5b4f4033bbe614a1e87530854"></h2>
-
 
 ## Mip-mapping
 
@@ -322,11 +302,9 @@
 
 <h2 id="df09531a332e56d9047f13c84a238f26"></h2>
 
-
 # 10 Advanced Texture Techniques
 
 <h2 id="4297a12020af73570442a8627bb334a2"></h2>
-
 
 ## Normal mapping
 
@@ -355,7 +333,6 @@
  
 <h2 id="15a3bd330b137231f40e160b2e8c5ef4"></h2>
 
-
 ## Creating normal map from height field
 
 - To compute the normal vector, you basically want to take the partial derivatives of the height field along the various directions.
@@ -372,7 +349,6 @@
 
 <h2 id="6d70a0431d891924f9ec1ae7b7d7e0a8"></h2>
 
-
 ## Storing normals in textures
 
 - Textures don't have to store color; we can store another things as well, like normals
@@ -385,7 +361,6 @@
     ```
 
 <h2 id="45607b8307c211876c7c9c449ec4f856"></h2>
-
 
 ## Environment mapping
 
@@ -413,7 +388,6 @@
 
 <h2 id="9a127762ac5984527e7208b2eb34759f"></h2>
 
-
 ## Alpha test
 
 - Reject pixels by checking their alpha values
@@ -428,7 +402,6 @@ else
 
 <h2 id="893849f0218b9c900db556f560caa601"></h2>
 
-
 ## Multi-texturing example: light mapping
 
 - ![](../imgs/gpu_multi_tex_lighting.png)
@@ -438,11 +411,9 @@ else
 
 <h2 id="60005419066e6110f986a078554458df"></h2>
 
-
 # 11 Color Spaces
 
 <h2 id="775fd5b1afb19aeebc3f333d500bf527"></h2>
-
 
 ## Gamma Curves 
 
@@ -465,7 +436,6 @@ else
 
 <h2 id="6ce135cfb6960aacec3d01c0cb166f0b"></h2>
 
-
 ## Modern approach: Let the GPU magically handle it
 
 - Avoid wasting instructions in pixel shader
@@ -478,7 +448,6 @@ else
 
 
 <h2 id="954641d535c15b2374486ec45fc1fd36"></h2>
-
 
 ## DIY linear space (helpers)
 
@@ -525,11 +494,9 @@ You'd only need this to do linear lighting in **older, non-pro** versions of Uni
 
 <h2 id="d61c9e146d2d15883b5c8f7d218a05a2"></h2>
 
-
 # 13 GPU Architecture & Assembly Language
 
 <h2 id="6c51b2a3e1266217e1821d5fb8880283"></h2>
-
 
 ## Shader Models 
 
@@ -547,7 +514,6 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 <h2 id="629c46faa285a39d0f65b20b26a6ddde"></h2>
 
-
 ## Shader data 
 
 - Mostly floats
@@ -561,7 +527,6 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 
 <h2 id="92ae455ac58c5a02edbefd78c872cd0d"></h2>
-
 
 ## Specialized instructions ( Assembly,  GeForce 6 )
 
@@ -580,7 +545,6 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 
 <h2 id="ac6784fa422b1d1fef85036ee4decde6"></h2>
-
 
 ## Vertex Shader
 
@@ -612,7 +576,6 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 <h2 id="d3d1e02aed1546fbc9d0b0c0dfa1b97d"></h2>
 
-
 ## Pixel ( or fragment ) shader
 
 - Determine each fragment's color
@@ -641,7 +604,6 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 <h2 id="07b6d393a22ca42fc5df0d0d4b035751"></h2>
 
-
 ## Some uses of pixel shaders
 
 - Texturing objects
@@ -652,7 +614,6 @@ Basically the shader model is defined an agreement of certain kinds of registers
 
 
 <h2 id="5eb3ef14b8dcdc301af4c983a7136410"></h2>
-
 
 ## Shader Language
 

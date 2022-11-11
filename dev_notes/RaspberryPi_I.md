@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Raspberry Pi I](#73770efffd056ea55f34a6d0de671dda)
     - [Hardware Specs](#340e59e0dd03810e21611e4e545262b4)
@@ -29,16 +29,14 @@
         - [Frequency Control](#c727b8a2292403497d3a210c7dfe6bd2)
     - [GUI](#1e3042b2e2a5550b412b37edd1c36b34)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="73770efffd056ea55f34a6d0de671dda"></h2>
 
-
 # Raspberry Pi I
 
 <h2 id="340e59e0dd03810e21611e4e545262b4"></h2>
-
 
 ## Hardware Specs
 
@@ -55,13 +53,11 @@ Model B+ :
 
 <h2 id="7c9fb4b83e7d3ff04537e59f0efd1b4d"></h2>
 
-
 ## ARM Processors
 
 ![](../imgs/ARM_Family.PNG)
 
 <h2 id="bde280fad6339e66144556725e9a6925"></h2>
-
 
 ## Using Hardware Devices
 
@@ -73,7 +69,6 @@ Underneath those files, or behind those, inside the operating system , there's a
 
 <h2 id="5ffa42db2af721145d87c6f5177f2d11"></h2>
 
-
 ## Setup of the Raspberry Pi
 
 
@@ -83,7 +78,6 @@ Underneath those files, or behind those, inside the operating system , there's a
   So you're gonna get a micro SD card and put the OS onto that micro card, that's your goal.
 
 <h2 id="e148dc9454d176896815b2943a6d3dea"></h2>
-
 
 ### Installing an OS
 
@@ -105,11 +99,9 @@ One you have NOOBS on micro SD card , plug that into you Raspberry Pi , then you
 
 <h2 id="37fa544b8c35fe7e622f6fe9d375ab74"></h2>
 
-
 ## Raspberry Pi Configuration
 
 <h2 id="bf0ab4cbce41882dd4d047cd031b36ee"></h2>
-
 
 ### Raspi-Config
 
@@ -127,7 +119,6 @@ What's the config option:
 
 <h2 id="96f8e05d2ec50fb2802a469cfae45b56"></h2>
 
-
 ## Overclocking
 
 - refers to **increasing the clock frequency**
@@ -136,7 +127,6 @@ What's the config option:
 
 <h2 id="ff95fa296ce2fde051c9ff77ec518fb9"></h2>
 
-
 ### Impact of Overclocking
 
 - instructions are executed more quickly, roughly one instruction per clock period
@@ -144,7 +134,6 @@ What's the config option:
   Signals must travel between storage elements (eg. register ) in a single clock period. So the risk of over-clocking is , the signal data may not reach destination in time if the clock period was decreased too much.
 
 <h2 id="60e76035d1d55222cee3e465d15a17e2"></h2>
-
 
 ### Impact of Increasing Voltage
 
@@ -157,7 +146,6 @@ What's the config option:
 
 
 <h2 id="560f0ad6e27df1074f9399d3fc8c5967"></h2>
-
 
 ## Linux Basics
 
@@ -177,7 +165,6 @@ View a file:
 
 <h2 id="96fd0f31db825baa802614c9f0f49add"></h2>
 
-
 ### File Permissions
 
 - Files have **owners**
@@ -193,7 +180,6 @@ View a file:
     
 <h2 id="b6ec7abeb6ae29cc35a4b47475e12afe"></h2>
 
-
 ### Process
 
 view process :  `ps [a]` , if not provide 'a' , it will show only shell itself , "ps a" will list all processes.  Each process has a unique PID.
@@ -206,14 +192,12 @@ Shutdown :
 
 <h2 id="1e3042b2e2a5550b412b37edd1c36b34"></h2>
 
-
 ### GUI
 
 After initial login, type "startx". Linux can have it look however you want based on the window manager that you choose , because Linux is separate from the graphics. The manager determines the look.
 
 
 <h2 id="a7f5f35426b927411fc9231b56382173"></h2>
-
 
 ## Python
 
@@ -225,7 +209,6 @@ Python is the best supported language for Raspberry Pi.
 
 
 <h2 id="5130ecea52dfa86cf8c70e7515c1aa48"></h2>
-
 
 ## General Purpose IO Pins 通用IO引脚
 
@@ -251,7 +234,6 @@ Python is the best supported language for Raspberry Pi.
 
 <h2 id="0b62603acfc59cc53ed92f689037d1e6"></h2>
 
-
 ## Protocal Pins
 
 I2C Pins
@@ -267,7 +249,6 @@ The idea is that if you had several different , say Raspberry Pis, or other devi
 
 
 <h2 id="392687a2d5cc2a49bd0d84d8a773d985"></h2>
-
 
 ## SPI Communication Pins
 
@@ -289,7 +270,6 @@ This protocal basically involves four wires, at least four.
     
 <h2 id="1a7f823397c500781d755ddd598a1422"></h2>
 
-
 ## GPIO Access
  
 GPIO Access in Python:
@@ -307,11 +287,9 @@ GPIO Access in Python:
 
 <h2 id="f1de82e95e1ab7eafe3700df87c6b177"></h2>
 
-
 ## General Purpose IO Pins 2
 
 <h2 id="119276386b6010fa9ea006ad235e7732"></h2>
-
 
 ### Pin Direction and assignment
 
@@ -328,7 +306,6 @@ GPIO.output( 13, True )
 ```
 
 <h2 id="9d938a8190f35d6b752adf0bc4de5c61"></h2>
-
 
 #### Example : Blink an LED
 
@@ -348,7 +325,6 @@ while True:
 
 <h2 id="28e52f680c5ecc8d5a8306cb86f740ca"></h2>
 
-
 ### Reading Input Pins
 
 ```
@@ -366,7 +342,6 @@ value = GPIO.input(13)
 
 <h2 id="b4d3379cc73eeb7f1e1248ed92af6a9d"></h2>
 
-
 ## Pulse Width Modulation
     
 how to generate a pulse width modulated signal （脉冲宽度调制信号） on a GPIO pin.
@@ -382,7 +357,6 @@ The whole idea of this , is to control an analog device from a digital circuit.
 PVM functions in GPIO library:
 
 <h2 id="3899d0ca616dbcbb93a6c151e8e134e7"></h2>
-
 
 ### PVM Initilization and PVM control
 
@@ -405,7 +379,6 @@ You should note that the frequency is not accurate on Pi. And it could be off by
 
 <h2 id="c727b8a2292403497d3a210c7dfe6bd2"></h2>
 
-
 ### Frequency Control
 
 You can't change that frequency once you've created it, not easily.  But it is nice to be able to change frequencies because maybe you wanna make tones. Maybe you wanna make beautiful music and you wanna make different sounds.
@@ -424,7 +397,6 @@ while True:
 This will give you a square wave, with a 1 Hz frequency. By changing those time value you can change the frequency manually.
 
 <h2 id="1e3042b2e2a5550b412b37edd1c36b34"></h2>
-
 
 ## GUI
 

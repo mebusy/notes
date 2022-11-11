@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Math for Game Programmers: Noise-Based RNG](#9ee69d7c5e6bd53a25313f3e4eb89a6e)
     - [Limitations of traditional RNG](#cad6a6916c5f76948826b998e5c40d8c)
@@ -17,17 +17,15 @@
         - [Multidimensional Noise functions](#ed2824a8523223fb7eff712400f01233)
     - [Tidbits  and Takeaways](#578709dd263c4b7f537eae7d08785ddd)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="9ee69d7c5e6bd53a25313f3e4eb89a6e"></h2>
-
 
 # Math for Game Programmers: Noise-Based RNG
 
 
 <h2 id="cad6a6916c5f76948826b998e5c40d8c"></h2>
-
 
 ## Limitations of traditional RNG
 
@@ -44,11 +42,9 @@
 
 <h2 id="670cedefd19d4c72d0aa4abf858d53dc"></h2>
 
-
 ## Noise Functions
 
 <h2 id="537b08476158c7b1cb91dc0485eaaf0c"></h2>
-
 
 ### Noise Functions 1
 
@@ -64,7 +60,6 @@ x=0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 <h2 id="83a108ff5b945f6b39d2749259fee246"></h2>
 
-
 ### Noise Function 2 
 
 -  Stateless! Zero bytes ( if you want )!
@@ -74,7 +69,6 @@ x=0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 - True seeds -- each seed gives a unique (infinite) table, **not** just an offset into a different position in the sequence.
 
 <h2 id="7eca4f762dd5b0932aac74a1366829cc"></h2>
-
 
 ### Noise Function 3
 
@@ -90,7 +84,6 @@ x=0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 <h2 id="6728152b7331976e67ed06f5952caeb0"></h2>
 
-
 ### Noise Function 4
 
 - Okay, but Noise is only good for certain things, right ?
@@ -101,7 +94,6 @@ x=0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 <h2 id="05f4017ddc239f327fb45caac3fbcc0c"></h2>
 
-
 ### Noise Function 5
 
 - Add variance to make things more organic !
@@ -109,7 +101,6 @@ x=0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 
 <h2 id="26072a845b694dee088c4ca313ac32a4"></h2>
-
 
 ### Noise Function 6
 
@@ -124,7 +115,6 @@ x=0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 <h2 id="fec3e30176ed26132aa0254399637cc2"></h2>
 
-
 ### Noise Function 7
 
 Noise Functions are also really useful for 
@@ -138,7 +128,6 @@ Noise Functions are also really useful for
 
 
 <h2 id="30e63f9ab2e09ebad97de90c3048caf9"></h2>
-
 
 ### RNG vs. Noise
 
@@ -155,7 +144,6 @@ uint32_t SomeNoiseFunction( int position ) {
 
 <h2 id="99fcd1e7f2bf6903d3c95f6d9d149060"></h2>
 
-
 ### RNG-based Noise ?
 
 ```cpp
@@ -169,7 +157,6 @@ unit32_t NoiseFunctionMakeFromRNG( int position ) {
 - But it's not fast. We pay for construction, initialization, seeding, AND rand.
 
 <h2 id="12c75a3fe1a60e19b7215daa8da8bf3f"></h2>
-
 
 ### Noise-based RNG ?
 
@@ -190,7 +177,6 @@ uint32_t RngBasedOnNoise::Rand() {
 
 
 <h2 id="f080a3891214b7ecc37a47fa4a7040fe"></h2>
-
 
 ### 1D noise function
 
@@ -231,7 +217,6 @@ uint32_t RngBasedOnNoise::Rand() {
 
 <h2 id="ed2824a8523223fb7eff712400f01233"></h2>
 
-
 ### Multidimensional Noise functions
 
 - Q: how do you generate noise for a 2D, 3D, 4D position ?
@@ -252,7 +237,6 @@ uint32_t RngBasedOnNoise::Rand() {
 
 
 <h2 id="578709dd263c4b7f537eae7d08785ddd"></h2>
-
 
 ## Tidbits  and Takeaways
 

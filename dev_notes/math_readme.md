@@ -1,6 +1,5 @@
 <h2 id="bd8cfe5912b0bee7fd7d191afedf8995"></h2>
 
-
 # Linear ALgebra
 
 - [MIT: A 2020 Vision of Linear Algebra](LA_1806_new_vision2020.md)
@@ -51,7 +50,6 @@
 
 <h2 id="0349a55a6a70f89e604c28892ce24d82"></h2>
 
-
 # Calculus
 
 - [Calculus One](CalculusOne.md) 
@@ -62,7 +60,6 @@
 
 
 <h2 id="0d2765b30694ee9f4fb7be2ae3b676dc"></h2>
-
 
 # Probability 
 
@@ -78,7 +75,6 @@
 
 <h2 id="682352d7b7d88f46edac62cd97b58db1"></h2>
 
-
 # 3Blue1Brown
 
 - Lockdown Math
@@ -89,7 +85,6 @@
 - [3b1b Bayes theorem](bayes_theorem.md)
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
-
 
 # Misc 
 

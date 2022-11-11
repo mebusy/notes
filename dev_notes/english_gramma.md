@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [简单语法笔记](#1fe410e3570b0d8dad9dfe6df63efb5a)
     - [3个句子类型](#ad7649afe8e0d13e424d22845c82ff4f)
@@ -6,16 +6,14 @@
     - [3个特殊句式](#be53932c8b60c887388022bd9248b902)
     - [非谓语](#f894460c6f4eca967b478805a86c1c12)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="1fe410e3570b0d8dad9dfe6df63efb5a"></h2>
 
-
 # 简单语法笔记
 
 <h2 id="ad7649afe8e0d13e424d22845c82ff4f"></h2>
-
 
 ## 3个句子类型
 
@@ -24,7 +22,6 @@
 3. 复合句  主谓宾, 从句引导词 + 主谓宾 (which,when,where...)
 
 <h2 id="401dc351076205bae8bb218b847f5cf0"></h2>
-
 
 ## 6个简单句 句型
 
@@ -37,7 +34,6 @@
 
 
 <h2 id="be53932c8b60c887388022bd9248b902"></h2>
-
 
 ## 3个特殊句式
 
@@ -57,7 +53,6 @@
         2. 过去不可能(和既成事实相反): If I *had studied*(过去完成) English, it *would have been*(过去+完成) easier now.
 
 <h2 id="f894460c6f4eca967b478805a86c1c12"></h2>
-
 
 ## 非谓语
 

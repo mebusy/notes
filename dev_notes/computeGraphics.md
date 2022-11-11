@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Introduction to Compute Graphics](#ed2522f9ccf6f8396413305da6adff58)
     - [Chapter 1 Introduction](#ae6212de98066cfe7c4f284fb7bb0795)
@@ -16,11 +16,10 @@
         - [2.6.1  The 2D Graphics Context](#3cf9519b6e48c28034d7d66e00c70f25)
         - [2.6.2  TODO](#1a8a7607dedb19f8be29300d42880137)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="ed2522f9ccf6f8396413305da6adff58"></h2>
-
 
 # Introduction to Compute Graphics
 
@@ -40,11 +39,9 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 
 <h2 id="ae6212de98066cfe7c4f284fb7bb0795"></h2>
 
-
 ## Chapter 1 Introduction
 
 <h2 id="f10dad289ae05f4d583970509a372cc1"></h2>
-
 
 ## 1.2 Elements of 3D Graphics
 
@@ -70,7 +67,6 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 
 
 <h2 id="901578a22162231933351bb435643a38"></h2>
-
 
 ## 1.3 Hardware and Software
  
@@ -108,11 +104,9 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 
 <h2 id="1fbe7cb2eda7e6cc90bab73b26af826f"></h2>
 
-
 # Chapter 2 Two-Dimensional Graphics
 
 <h2 id="09f5cc118d9152e36afb92ed40ad49b0"></h2>
-
 
 ## 2.1 Pixels, Coordinates, and Colors
 
@@ -130,7 +124,6 @@ In this book , will use a subset of OpenGL 1.1 to introduce the fundamental conc
 
 <h2 id="4527049748338e479408a27beac21279"></h2>
 
-
 ## Section 2.3 Transforms
 
 **affine transform**:  A transformation of this form `T(x,y) = ( a*x + b*y + e, c*x + d*y + f )`.
@@ -139,7 +132,6 @@ An affine transform has the property that, when it is applied to two parallel li
 
 
 <h2 id="f1c711e7f3eb682d422fd2ae934c2453"></h2>
-
 
 ### 2.3.8  Matrices and Vectors
 
@@ -154,13 +146,11 @@ An affine transform has the property that, when it is applied to two parallel li
 
 <h2 id="20f7a1734dcfbfc8b8171646bc9d424a"></h2>
 
-
 ## 2.4 Hierarchical Modeling 
 
 In this section, we look at how complex scenes can be built from very simple shapes. The key is hierarchical structure.
 
 <h2 id="c0e7574b56dd30a9c9c926536be484a2"></h2>
-
 
 ### 2.4.1  Building Complex Objects
  
@@ -221,7 +211,6 @@ subroutine drawCart() :
  
 <h2 id="67137954a0f48d179144a1519998eb59"></h2>
 
-
 ### 2.4.2  Scene Graphs
  
 - Logically, the components of a complex scene form a structure. 
@@ -244,17 +233,14 @@ subroutine drawCart() :
 
 <h2 id="39e5754cf5035d8cbca9e34fd7c163e7"></h2>
 
-
 ### 2.4.3  The Transform Stack
 
 
 <h2 id="1876f21f1147124d0889f999bd06d002"></h2>
 
-
 ## 2.6 HTML Canvas Graphics
 
 <h2 id="3cf9519b6e48c28034d7d66e00c70f25"></h2>
-
 
 ### 2.6.1  The 2D Graphics Context
 
@@ -304,7 +290,6 @@ graphics = canvas.getContext("2d");
 
 
 <h2 id="1a8a7607dedb19f8be29300d42880137"></h2>
-
 
 ### 2.6.2  TODO
 

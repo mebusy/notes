@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Statistical Analysis in Python and Project](#b12fdb9660ff87143953ef6b8062e5de)
     - [Distributions](#8c88565cb04f9c9f8cb8c9cb9309d1f2)
@@ -7,16 +7,14 @@
     - [Book : Think Stats , free PDF provided](#87ef7fa2fecf7675715d8ca701fab666)
     - [Hypothesis Testing in Python](#a776871f9fd445962837a4dc94b0eb74)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="b12fdb9660ff87143953ef6b8062e5de"></h2>
 
-
 # Statistical Analysis in Python and Project
 
 <h2 id="8c88565cb04f9c9f8cb8c9cb9309d1f2"></h2>
-
 
 ## Distributions
 
@@ -49,7 +47,6 @@ print('{} tornadoes back to back in {} years'.format(two_days_in_a_row, 1000000/
 
 <h2 id="0e8df8dbf98a41a0f9b074ae6afbb382"></h2>
 
-
 ## More Distributions
 
 - expected value
@@ -57,7 +54,6 @@ print('{} tornadoes back to back in {} years'.format(two_days_in_a_row, 1000000/
     - Variance is a measure of how badly values of  samples are spread out from the mean.
 
 <h2 id="9b3ddce31a3cfefd07476ea6ac4e9049"></h2>
-
 
 ### five different characteristics of distributions
 
@@ -110,11 +106,9 @@ stats.skew(chi_squared_df5)
 
 <h2 id="87ef7fa2fecf7675715d8ca701fab666"></h2>
 
-
 ## Book : Think Stats , free PDF provided
 
 <h2 id="a776871f9fd445962837a4dc94b0eb74"></h2>
-
 
 ## Hypothesis Testing in Python
 

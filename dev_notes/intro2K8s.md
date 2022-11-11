@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [edX  Introduction to Kuberneters](#e017284a962c40a7dc29fd29bea64bb4)
 - [Access Kuberneters](#10ebfd4c6ede5e99a80eb32105dc4419)
@@ -69,22 +69,19 @@
     - [Custom Resources](#1eefdde32973942a371cb277943df70f)
     - [Monitoring and Logging](#9ad24640fe10d78bada6b5e68dd0f68f)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="e017284a962c40a7dc29fd29bea64bb4"></h2>
-
 
 # edX  Introduction to Kuberneters
 
 
 <h2 id="10ebfd4c6ede5e99a80eb32105dc4419"></h2>
 
-
 # Access Kuberneters
 
 <h2 id="c9157975d6f67292424e86421d6ca49c"></h2>
-
 
 ## HTTP API Space of Kubernetes
 
@@ -106,7 +103,6 @@ HTTP API space of Kubernetes can be divided into three independent groups:
     - This group consists of system-wide API endpoints, like /healthz, /logs, /metrics, /ui, etc.
 
 <h2 id="70becb84ec118d75e27f125448562a2b"></h2>
-
 
 ## kubectl Configuration File
 
@@ -136,7 +132,6 @@ clusters:
 
 <h2 id="d7dba71d2e1aa5aea658e819489eab4d"></h2>
 
-
 ### APIs - with 'kubectl proxy'
 
 - When kubectl proxy is configured, we can send requests to localhost on the proxy port:
@@ -162,7 +157,6 @@ $ curl http://localhost:8001/
 ```
 
 <h2 id="c4a8eba76a7943e2e98a2e8b0f014db3"></h2>
-
 
 ### APIs - without 'kubectl proxy'
 
@@ -205,11 +199,9 @@ curl $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 
 <h2 id="79ea233bebd117c1c22480caf3c940c9"></h2>
 
-
 # Kubernetes Building Blocks
 
 <h2 id="ea99654864cc0264b53634e7bf4863cb"></h2>
-
 
 ## Kubernetes Object Model
 
@@ -257,7 +249,6 @@ spec:
 
 <h2 id="dc4b70c03e8043e50e38f2068887b1d4"></h2>
 
-
 ## Pods
 
 - A Pod is the smallest and simplest Kubernetes object.
@@ -277,7 +268,6 @@ spec:
 
 <h2 id="3ad6cb6100190c8f81e99fd52debf7ef"></h2>
 
-
 ## Labels
 
 - Labels are key-value pairs that can be attached to any Kubernetes objects (e.g. Pods).
@@ -290,7 +280,6 @@ spec:
     - Based on our requirements, we have given different values to our four Pods.
 
 <h2 id="e54704b162577ba89d8f645bfd5be15d"></h2>
-
 
 ## Label Selectors
 
@@ -307,7 +296,6 @@ spec:
 
 <h2 id="aac34088fe3223e79b752a76ecdd321b"></h2>
 
-
 ## ReplicationControllers
 
 - A ReplicationController (rc) is a controller that is part of the master node's controller manager. 
@@ -316,7 +304,6 @@ spec:
 - We always use controllers like ReplicationController to create and manage Pods. 
 
 <h2 id="99a29afc20721ef52b3d558eb6873f30"></h2>
-
 
 ## ReplicaSets
 
@@ -331,7 +318,6 @@ spec:
 
 
 <h2 id="3081015fddfcd25b52903a5dc112ca7c"></h2>
-
 
 ## Deployments
 
@@ -348,7 +334,6 @@ spec:
     - with which, if something goes wrong, we can rollback to a previously known state.
 
 <h2 id="13d28e8dfc702e3456e0767dff9a128a"></h2>
-
 
 ## Namespaces
 
@@ -371,11 +356,9 @@ kube-system   Active   22h
 
 <h2 id="1e357d04dca49d644ad9513be68b74eb"></h2>
 
-
 # Authentication, Authorization, and Admission Control
 
 <h2 id="3b878279a04dc47d60932cb294d96259"></h2>
-
 
 ## Overview
 
@@ -392,7 +375,6 @@ kube-system   Active   22h
 
 
 <h2 id="c75f7811d70d17dbcd88e9d03752cbed"></h2>
-
 
 ## Authentication
 
@@ -433,7 +415,6 @@ kube-system   Active   22h
     - In order to be successful, you should enable at least two methods: the service account tokens authenticator and the user authenticator.
 
 <h2 id="9cd8a2455b1839ff98ef70c05b9b5983"></h2>
-
 
 ## Authorization
 
@@ -521,7 +502,6 @@ kube-system   Active   22h
 
 <h2 id="a7765f8868404f7c3cb890ce051f7de4"></h2>
 
-
 ## Admission Control
 
 - Admission control is used to specify granular access control policies, which include allowing privileged containers, checking on resource quota, etc.
@@ -536,11 +516,9 @@ kube-system   Active   22h
 
 <h2 id="c2ba7e785c49050f48da9aacc45c2b85"></h2>
 
-
 # Service
 
 <h2 id="96edaa8fd542cd7d2b685b4b038122cf"></h2>
-
 
 ## Connecting Users to Pods
 
@@ -550,7 +528,6 @@ kube-system   Active   22h
 - We can assign a name to the logical grouping, referred to as a **Service name**. 
 
 <h2 id="69da20bc1f38561244d83c7efb17eb3c"></h2>
-
 
 ## Service Object Example
 
@@ -581,7 +558,6 @@ spec:
 
 <h2 id="ea11065c99d9485fc7fe03aa1b668c20"></h2>
 
-
 ## kube-proxy
 
 - All of the worker nodes run a daemon called kube-proxy, which watches the API server on the master node for the addition and removal of Services and endpoints. 
@@ -592,7 +568,6 @@ spec:
 
 
 <h2 id="24bbdaf375ddacbe3973587b50d98790"></h2>
-
 
 ## Service Discovery
 
@@ -624,7 +599,6 @@ Kubernetes supports two methods of discovering a Service:
         
 <h2 id="4b351f6c3fa2b34bb1b969ce9502fe25"></h2>
 
-
 ## ServiceType
 
 - While defining a Service, we can also choose its access scope.
@@ -635,7 +609,6 @@ Kubernetes supports two methods of discovering a Service:
 - Access scope is decided by `ServiceType`, which can be mentioned when creating the Service.
 
 <h2 id="c82f134a33d4debd7b8f763ed6e1834f"></h2>
-
 
 ### ServiceType: ClusterIP and NodePort
 
@@ -654,7 +627,6 @@ Kubernetes supports two methods of discovering a Service:
 
 <h2 id="3001d26f885c56a255f931078ae477c6"></h2>
 
-
 ### ServiceType: LoadBalancer
 
 - With the LoadBalancer ServiceType:
@@ -668,16 +640,13 @@ Kubernetes supports two methods of discovering a Service:
 
 <h2 id="e7fc0ac576a6a88284d3525beadf5825"></h2>
 
-
 # Deploying an Application
 
 <h2 id="afc6a537dc75e9e56e87f88dc5d6af11"></h2>
 
-
 ## Deploy vi kubectl
 
 <h2 id="3b4e7053c64600e4f233a1ca0fb66946"></h2>
-
 
 ### List the Pods, along with their attached Labels
 
@@ -690,7 +659,6 @@ webserver-74d8bd488f-wvmpq   1/1     Running   0          14m   webserver   <non
 ```
 
 <h2 id="744302e45006d83e73e1e80fe19d7bdd"></h2>
-
 
 ### Select the Pods with a given Label
 
@@ -706,7 +674,6 @@ No resources found.
 ```
 
 <h2 id="b500ea1a492ff7210ded38234bce4f8f"></h2>
-
 
 ### Delete the Deployment 
 
@@ -726,7 +693,6 @@ No resources found.
 ```
 
 <h2 id="ea3304e0b2e6faecdb42b70d3057f290"></h2>
-
 
 ### Create a YAML file with Deployment details
 
@@ -771,7 +737,6 @@ deployment "webserver" created
 ```
 
 <h2 id="56255e54c326ca1c88892709ccdd62d9"></h2>
-
 
 ### Creating a Service and Exposing It to the External World with NodePort I
 
@@ -833,13 +798,11 @@ Events:                   <none>
 
 <h2 id="87bd2994afe1748bd27e511e65b532a7"></h2>
 
-
 ## Liveness and Readiness Probes
 
 - These probes are very important, because they allow the kubelet to control the health of the application running inside a Pod's container.
 
 <h2 id="cacca97bb7abbf614d9c8f5a7569f5ea"></h2>
-
 
 ### Liveness
 
@@ -854,7 +817,6 @@ Events:                   <none>
     - TCP Liveness Probe.
 
 <h2 id="3f1dcde80733742e2de45b734a4b4990"></h2>
-
 
 #### Liveness Command
 
@@ -892,7 +854,6 @@ spec:
 
 <h2 id="5b9d89f92b125d919fd5b98610ae68b9"></h2>
 
-
 ### Liveness HTTP Request
 
 - In the following example, the kubelet sends the HTTP GET request to the /healthz endpoint of the application, on port 8080. 
@@ -912,7 +873,6 @@ livenessProbe:
 
 <h2 id="b0d4459ffe193a51b32c146a67e97d64"></h2>
 
-
 ### TCP Liveness Probe
 
 - With TCP Liveness Probe, the kubelet attempts to open the TCP Socket to the container which is running the application. 
@@ -928,7 +888,6 @@ livenessProbe:
 
 
 <h2 id="4f27a8cdff4a57ee4e0efc7db568d939"></h2>
-
 
 ## Readiness Probes
 
@@ -954,13 +913,11 @@ readinessProbe:
 
 <h2 id="a3973c1903e1e860ead03894c4b4a082"></h2>
 
-
 # Kubernetes Volume Management  
 
 - To back a Pod with a persistent storage, Kubernetes uses **Volumes**. 
 
 <h2 id="c6f01c78bfe0a0a495cb5d3ed77824a9"></h2>
-
 
 ## Volumes
 
@@ -975,7 +932,6 @@ readinessProbe:
         - this allows data to be preserved across container restarts.
 
 <h2 id="1760f6eeb378b6f01f6ccb20faeeac82"></h2>
-
 
 ## Volume Types
 
@@ -1001,7 +957,6 @@ readinessProbe:
 
 <h2 id="3f91308865b7567ae097573f6d0519e9"></h2>
 
-
 ## PersistentVolumes
 
 - A Persistent Volume is a network-attached storage in the cluster, which is provisioned by the administrator.
@@ -1017,7 +972,6 @@ readinessProbe:
 
 <h2 id="455385b545189aa1f74511b5dc40d1eb"></h2>
 
-
 ## PersistentVolumeClaims
 
 - A PersistentVolumeClaim (PVC) is a request for storage by a user. 
@@ -1032,7 +986,6 @@ readinessProbe:
 
 <h2 id="e74688af9e034b8fe88786eee6b7ff2b"></h2>
 
-
 # ConfigMaps and Secrets
 
 - While deploying an application, we may need to pass such runtime parameters like configuration details, passwords, etc. 
@@ -1040,7 +993,6 @@ readinessProbe:
 - Similarly, when we want to pass sensitive information, we can use the Secret API resource.
 
 <h2 id="a041d4808053eb1261d0dbab572ea629"></h2>
-
 
 ## ConfigMaps
 
@@ -1051,7 +1003,6 @@ readinessProbe:
     - From files.
 
 <h2 id="8765f1ffd93b405ae1a91c13aae3e663"></h2>
-
 
 ### Create a ConfigMap from Literal Values and Get Its Details
 
@@ -1078,7 +1029,6 @@ metadata:
 
 <h2 id="ea3972a8f5c658d8ede325d13968d46f"></h2>
 
-
 ### Create a ConfigMap from a Configuration File
 
 - First, we need to create a configuration file.
@@ -1101,7 +1051,6 @@ configmap "customer1" created
 
 
 <h2 id="36b689f5b271da1324001d06c4d83dfe"></h2>
-
 
 ### Use ConfigMap Inside Pods
 
@@ -1143,7 +1092,6 @@ configmap "customer1" created
 
 <h2 id="ffb85bfe93f1d2f1654a7048b87f0403"></h2>
 
-
 ## Secrets 
 
 - With Secrets, we can share sensitive information like passwords, tokens, or keys in the form of key-value pairs, similar to ConfigMaps; thus, we can control how the information in a Secret is used, reducing the risk for accidental exposures.
@@ -1154,7 +1102,6 @@ configmap "customer1" created
 
 
 <h2 id="f1f3541f0c90a9bcc70092dbedacb64b"></h2>
-
 
 ### Create the Secret with the 'kubectl create secret' Command
 
@@ -1167,7 +1114,6 @@ $ kubectl create secret generic my-password --from-literal=password=mysqlpasswor
 
 
 <h2 id="656442f43e660ae59f8878a63474407a"></h2>
-
 
 ### Create a Secret Manually
 
@@ -1193,11 +1139,9 @@ data:
 
 <h2 id="b81fb44d1f7de48c36dbb8f865a9cd2c"></h2>
 
-
 ### Use Secrets Inside Pods
 
 <h2 id="472677ea9956d73c10d21a2d17777435"></h2>
-
 
 #### Using Secrets as Environment Variables
 
@@ -1219,7 +1163,6 @@ spec:
 
 <h2 id="9488499f57000e087049e3d8faac3473"></h2>
 
-
 #### Using Secrets as Files from a Pod
 
 - We can also mount a Secret as a Volume inside a Pod.
@@ -1229,7 +1172,6 @@ spec:
 ---
 
 <h2 id="7d05c708b92b4809bfe9bf66edf8f765"></h2>
-
 
 # Ingress
 
@@ -1251,11 +1193,9 @@ spec:
 
 <h2 id="41ef0c7e3aa81f83c8172c71f9986dfb"></h2>
 
-
 # Advanced Topics
 
 <h2 id="933e469cb306a0ea9faabd3e4235d3be"></h2>
-
 
 ## Annotations
 
@@ -1296,7 +1236,6 @@ spec:
 
 <h2 id="e4c677a2cc444dd3ce2cea9f020921aa"></h2>
 
-
 ## Deployment Features
 
 - Earlier, we have seen how we can use the Deployment object to deploy an application. 
@@ -1309,7 +1248,6 @@ spec:
 
 <h2 id="12ceff2290bb9039beaa8f36d5dec226"></h2>
 
-
 ## Jobs
 
 - A Job creates one or more Pods to perform a given task. 
@@ -1319,7 +1257,6 @@ spec:
 - Starting with the Kubernetes 1.4 release, we can also perform Jobs at specified times/dates, such as [cron jobs](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/).
  
 <h2 id="708c25df4f4584405d14fbf936539d2e"></h2>
-
 
 ## Quota Management
 
@@ -1335,7 +1272,6 @@ spec:
 
 <h2 id="d1026cec97f2e9854c2a3b4a8f8bd039"></h2>
 
-
 ## DaemonSets
 
 - In some cases, like collecting monitoring data from all nodes, or running a storage daemon on all nodes, etc., we need a specific type of Pod running on all nodes at all times.
@@ -1345,7 +1281,6 @@ spec:
 
 <h2 id="a5896f58556198d1653d2d00a0db9b06"></h2>
 
-
 ## StatefulSets
 
 - The StatefulSet controller is used for applications which require a unique identity, such as name, network identifications, strict ordering, etc.
@@ -1354,13 +1289,11 @@ spec:
 
 <h2 id="022ea9eb4d6919b0b0b73c167d1c0083"></h2>
 
-
 ## Kubernetes Federation
 
 - With the Kubernetes Cluster Federation we can manage multiple Kubernetes clusters from a single control plane. 
 
 <h2 id="1eefdde32973942a371cb277943df70f"></h2>
-
 
 ## Custom Resources
 
@@ -1379,7 +1312,6 @@ spec:
 
 
 <h2 id="9ad24640fe10d78bada6b5e68dd0f68f"></h2>
-
 
 ## Monitoring and Logging
 

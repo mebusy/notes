@@ -1,18 +1,16 @@
-...menustart
+[](...menustart)
 
 - [Redis Tips](#0ac68c6db10bb40156c1e107f2ee9b6d)
     - [Redis 分布式锁](#4f37e290c426fcf9f61d3e6dca17a4e1)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="0ac68c6db10bb40156c1e107f2ee9b6d"></h2>
 
-
 # Redis Tips
 
 <h2 id="4f37e290c426fcf9f61d3e6dca17a4e1"></h2>
-
 
 ## Redis 分布式锁
 

@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [GPU Programming for Video Games](#a4d5cf4464f3bba0f9c36b417944984d)
 - [Notes](#f4c6f851b00d5518bf888815de279aba)
@@ -32,11 +32,10 @@
     - [Viewport transformation](#f6604ad5915f76404baf1b53d4cfa1b9)
     - [Unity's coordinates systems ( conventions )](#2c48d234ff5065e0c27f346e9c30ad02)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="a4d5cf4464f3bba0f9c36b417944984d"></h2>
-
 
 # GPU Programming for Video Games
 
@@ -44,7 +43,6 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
 
 
 <h2 id="f4c6f851b00d5518bf888815de279aba"></h2>
-
 
 # Notes
 
@@ -62,7 +60,6 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
 
 <h2 id="71418df45ef46a0f40bd390be0bd5434"></h2>
 
-
 # 1. Introduction
 
 - CS4455: Video Game Design
@@ -71,7 +68,6 @@ https://www.youtube.com/watch?v=i5yK56XFbrU&list=PLOunECWxELQQwayE8e3WjKPJsTGKkn
 - CS4480: Digital Video Special Effects
 
 <h2 id="ad3192ebab6bd1c18dbd92623ce4f39a"></h2>
-
 
 # 2. 3D Coordinate Systems
 
@@ -90,7 +86,6 @@ Shader | vertex shader(3d vertex) | fragment shader(final color of pixel)
 - We'll be focusing on vertex shader and fragment shader.
 
 <h2 id="2a60530e5648d746b919649d662d53e2"></h2>
-
 
 ## 3D Coord
 
@@ -136,14 +131,12 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="f6b4d8fbfbe805f4bad788e4ac45bf1a"></h2>
 
-
 ## Geometry format -- vertex coordinates
 
 - At least at present , the models used in 3D games are formed from triangels.
     - each vertex of the triangle also has an associated unit normal, and this arises from the export process that your 3D artist will make from their 3D modeling software.
 
 <h2 id="08d6add3f89bc1916c779604800482da"></h2>
-
 
 ## Geometry format -- vertex color
 
@@ -154,7 +147,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
 <h2 id="4c6ba5bbf22f99dff6eec285f40a760c"></h2>
-
 
 ## Specifying a 3D object 
 
@@ -173,7 +165,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="caf560e397afafbc5a2f66cf9316f5d1"></h2>
 
-
 ## Transformation Pipeline
 
 - Model(World) Transformation
@@ -187,7 +178,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
 <h2 id="6a707eec7b1c33a0efd0be3458a3f599"></h2>
-
 
 # 3D Vertex Transformations
 
@@ -208,7 +198,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="ab6b29c0ed728a4affdc2082ca0cf8a6"></h2>
 
-
 ## homogeneous coordinates
 
 - Enable all transformations to be done by "multiplication".
@@ -222,7 +211,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
     - w should be 1 in Cartesian coordinate system
 
 <h2 id="50b83591a5b89e7bcd7b1cd4ebae7093"></h2>
-
 
 ## Transformation 1:  translation( offset )
 
@@ -244,7 +232,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="5244f03eefd30cfa1634ecd3727d5637"></h2>
 
-
 ## Transformation 2:  scaling
 
 - ![](../imgs/gpu_scaling1.png)
@@ -260,7 +247,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
 <h2 id="7177203eef562264d13cd6117b1aaf6e"></h2>
-
 
 ## Transformation 3:  rotation
 
@@ -319,7 +305,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="747cfc00edd6fbf9f13ca14b362f24ba"></h2>
 
-
 ## Specifying the view transformation
 
 - Most commonly parameterized by
@@ -336,11 +321,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="85d9631454d48fa7f6750ce622190a4d"></h2>
 
-
 # 4 Orthogonal Projection 
 
 <h2 id="cad6897b540a7ded6cec17c2e329a8b6"></h2>
-
 
 ## canonical view volumn
 
@@ -352,13 +335,11 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="5bd27b5c850e0930a4db65f419ab89bc"></h2>
 
-
 ## Strange "conventions"
 
 - ![](../imgs/gpu_strange_convention_orthognal_proj.png)
 
 <h2 id="116e2d4351534088bd1e7214e73cf49a"></h2>
-
 
 ## Style of orthographic projection
 
@@ -370,7 +351,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - Good for tile-based games where camera is in fixed location (elg. Mahjong or 3D Tetris)
 
 <h2 id="9ef6b37b68a67f02935531a7aa4a1e2d"></h2>
-
 
 ## Orthographic Projection
 
@@ -406,7 +386,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="1eb46bbd726b584a89cb53c9a4e7a73d"></h2>
 
-
 ## Ortho projection matrix (LHS, row-coord)
 
 - ![](../imgs/gpu_ortho_proj_matrix_LHS_row.png)
@@ -419,7 +398,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
 <h2 id="ef317d05e00327a7e864e16014b486ad"></h2>
-
 
 ## Ortho projection matrix (RHS)
 
@@ -437,7 +415,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="3dc64e759911f87934942dbd1b719bdd"></h2>
 
-
 ## Simpler ortho projection (LHS)
 
 - In most orthographic projection setups
@@ -452,7 +429,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="05acbf9e6506f6b3b958f498efd7558c"></h2>
 
-
 ## Simpler ortho projection (RHS)
 
 - ![](../imgs/gpu_simple_ortho_proj_matrix_RHS_row.png)
@@ -462,11 +438,9 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="4bdcf9d8e9a42b9d20e7446f49a7844b"></h2>
 
-
 # 5 Perspective Projection
 
 <h2 id="da253eb516cf27dd062e171c8b9c9856"></h2>
-
 
 ## Viewing frustum
 
@@ -481,7 +455,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 - We will map x from [l,r] to [-1,1], and y from [b,t] to [-1,1]
 
 <h2 id="62d886fbef30eb4b2189a7e443275367"></h2>
-
 
 ## Perspective projection math
 
@@ -531,7 +504,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="0aded01d21104ab97191049a388bcccc"></h2>
 
-
 ## Simple perspective projection 
 
 - if l=-r, t=-b  (D3D)
@@ -566,7 +538,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="9969336c9677abfc719b82bd67e4e09c"></h2>
 
-
 ## Custom projections in Unity
 
 - https://docs.unity3d.com/ScriptReference/Camera-projectionMatrix.html
@@ -578,7 +549,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 <h2 id="f6604ad5915f76404baf1b53d4cfa1b9"></h2>
 
-
 ## Viewport transformation
 
 - The actuall 2D projection to the viewer
@@ -587,7 +557,6 @@ Y-up | Direct3D, Unity3D  |  OpenGL, XNA, Maya, Milkshape
 
 
 <h2 id="2c48d234ff5065e0c27f346e9c30ad02"></h2>
-
 
 ## Unity's coordinates systems ( conventions )
 

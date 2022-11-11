@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Centos7](#8db8d64778c367a62ad2b609fd6c2095)
     - [mono](#654db8a14a5f633b9ba85ec92dc51f7c)
@@ -21,11 +21,10 @@
         - [1 create a share fold](#ced6fe808bc1654ffe62ac3e6b5888a4)
         - [2 Install Guest Additions](#9be07da516116f6994db2e276de42d2b)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="8db8d64778c367a62ad2b609fd6c2095"></h2>
-
 
 # Centos7
 
@@ -33,7 +32,6 @@
 
 
 <h2 id="654db8a14a5f633b9ba85ec92dc51f7c"></h2>
-
 
 ## mono
 
@@ -53,7 +51,6 @@ xbuild /p:Configuration=Release xxx.sln
 ```
 
 <h2 id="36e5371ad91c9d2d09e9d7c0e76055db"></h2>
-
 
 ## firewall 
 
@@ -86,7 +83,6 @@ netstat -nltp
 ```
 
 <h2 id="9edb3c572b56b91542af659480518681"></h2>
-
 
 ## Mysql
 
@@ -127,7 +123,6 @@ mysql> FLUSH PRIVILEGES;
 
 <h2 id="6dfa7a8202801ab86e07a577ba4da59f"></h2>
 
-
 ## 查看 TIME_WAIT
 
 ```
@@ -137,7 +132,6 @@ TIME_WAIT 1
 ```
 
 <h2 id="0d0306c1df74d541e32e7dcbaaf0fe69"></h2>
-
 
 ## TIME_WAIT 优化
 
@@ -152,7 +146,6 @@ net.ipv4.tcp_tw_recycle = 1
 ```
 
 <h2 id="1056f9281c64e7ce0c0ad739e5640797"></h2>
-
 
 ## 文件描述符数
 
@@ -179,7 +172,6 @@ $ vi /etc/security/limits.conf
 ```
 
 <h2 id="c5bfde7337a2b4013d953a5ef1e298f3"></h2>
-
 
 ## TC 云服务器的 /etc/sysctl.conf 配置
 
@@ -243,7 +235,6 @@ net.ipv4.tcp_tw_recycle = 1
 
 <h2 id="48cd249a485752b67116301484bb3978"></h2>
 
-
 ## kill process by port 
 
 ```bash
@@ -251,7 +242,6 @@ kill $(lsof -t -i :PORTNUMBER)
 ```
 
 <h2 id="65395697d2dab77dd22f054b888fb803"></h2>
-
 
 ## linux 系统监控
 
@@ -288,7 +278,6 @@ $ dstat --time --cpu --mem --load --output report.csv 1 5
 
 <h2 id="107aedca6bab06cabee6aac093e48464"></h2>
 
-
 ## ab test 
 
 - install ab
@@ -309,7 +298,6 @@ $ ab -k -r -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: de
 
 <h2 id="182779261a101fea13d68ad6ca885ef8"></h2>
 
-
 ## systemctl autorun script 
 
 - 服务又分为系统服务（system）和用户服务（user）。
@@ -322,7 +310,6 @@ $ ab -k -r -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: de
 
 
 <h2 id="cd25acb9fca49873079b8dc3ebc5021b"></h2>
-
 
 ### 创建脚本
 
@@ -364,7 +351,6 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 
 <h2 id="fc37e2a196cecdc81fbdbe5a257b7652"></h2>
 
-
 ### 创建一个新的 systemd service unit
 
 ```
@@ -385,7 +371,6 @@ WantedBy=default.target
 ```
 
 <h2 id="4937eedceb267c9e4326ecf2ba78b05d"></h2>
-
 
 ### Enable the systemd service unit
 
@@ -427,7 +412,6 @@ journalctl -e -f -u uwsgimind.service
 
 
 <h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
-
 
 ### Example 
 
@@ -477,7 +461,6 @@ WantedBy=default.target
 
 <h2 id="c6805678c62648e428cea464f3e8b4b7"></h2>
 
-
 ## how the see the log of a running process which is redirected to `/dev/null` ?
 
 - `tail -f /proc/<pid>/fd/1`
@@ -486,11 +469,9 @@ WantedBy=default.target
 
 <h2 id="69a3af8e4da356a41a5db362a321370e"></h2>
 
-
 ## Vbox Centos access Host folder
 
 <h2 id="ced6fe808bc1654ffe62ac3e6b5888a4"></h2>
-
 
 ### 1 create a share fold
 
@@ -499,7 +480,6 @@ WantedBy=default.target
    - remember the shared name , i.e. "D_DRIVER"
 
 <h2 id="9be07da516116f6994db2e276de42d2b"></h2>
-
 
 ### 2 Install Guest Additions
 

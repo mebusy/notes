@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [docker](#05b6053c41a2130afd6fc3b158bda4e6)
 - [基本概念](#e2d6d0e301f7dcc1afe228f7cbcf285a)
@@ -99,11 +99,10 @@
     - [docker cleanup](#ada28088d8540a0471c00fb0673b9882)
     - [docker pandoc](#b64e99ff98a5173b25e6d0d91bc330f3)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="05b6053c41a2130afd6fc3b158bda4e6"></h2>
-
 
 # docker 
 
@@ -116,13 +115,11 @@
 
 <h2 id="e2d6d0e301f7dcc1afe228f7cbcf285a"></h2>
 
-
 # 基本概念
 
 理解了 镜像（Image）/ 容器（Container） / 仓库（Repository） 这三个概念 ，就理解了 Docker 的整个生命周期。
 
 <h2 id="19f6588aaa5d5f651bf694f2b7a7a6a3"></h2>
-
 
 ## 镜像（Image）
 
@@ -132,7 +129,6 @@
     - 比如官方镜像 ubuntu:14.04 就包含了完整的一套 Ubuntu 14.04 最小系统的 root 文件系统
 
 <h2 id="f96eee41708b8eed50d6e54fcee9ff58"></h2>
-
 
 ### 分层存储
 
@@ -150,7 +146,6 @@
 
 
 <h2 id="ce9d5c685661911c7fe0bcb1c08c3705"></h2>
-
 
 ## 容器（Container）
 
@@ -173,11 +168,9 @@
 
 <h2 id="e9ce47c1438cc8cd01d7147f7d93a169"></h2>
 
-
 ## 仓库（Repository）
 
 <h2 id="a6713cd9dc3c442c7735a2b08a2a768d"></h2>
-
 
 ### Docker Registry
 
@@ -205,7 +198,6 @@
 
 <h2 id="c77b89c512b53b948badba879bcb7411"></h2>
 
-
 ### Docker Registry 公开服务
 
 - Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。
@@ -216,7 +208,6 @@
     - 常见的有 [阿里云加速器](https://cr.console.aliyun.com/#/accelerator) 、[DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc) 、[灵雀云加速器](http://docs.alauda.cn/feature/accelerator.html) 等
 
 <h2 id="3b51596a30d07a4cccce378ebc71a546"></h2>
-
 
 ### 私有 Docker Registry
 
@@ -229,7 +220,6 @@
 ---
 
 <h2 id="e655a410ff21cd07e7a0150491e04371"></h2>
-
 
 # 安装
  
@@ -314,13 +304,11 @@ yum list docker-ce.x86_64  --showduplicates | sort -r
 
 <h2 id="4da5582c2bd22e8a31b18a4362a2e4db"></h2>
 
-
 # 使用 Docker 镜像
 
 Docker 运行容器前需要本地存在对应的镜像，如果镜像不存在本地，Docker 会从镜像仓库下载 ( 默认是 Docker Hub 公共注册服务器中的仓库 )
 
 <h2 id="dde7c093537b2671dc3e20601fe1ad50"></h2>
-
 
 ## 获取镜像
 
@@ -333,7 +321,6 @@ docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
     - 对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。
 
 <h2 id="4c763bb67e6013dd35dd97d1efd9c8f2"></h2>
-
 
 ## 运行
 
@@ -367,7 +354,6 @@ $
 
 <h2 id="edfeb4bbaa399a7dd5981ee43139839e"></h2>
 
-
 ## 列出镜像
 
 ```
@@ -386,7 +372,6 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 <h2 id="27a7f5880024c773ace50993e2478d92"></h2>
 
-
 ### 虚悬镜像
 
 - 上面的镜像列表中，还可以看到一个特殊的镜像，这个镜像既没有仓库名，也没有标签，均为 `<none>`
@@ -400,7 +385,6 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 
 <h2 id="472571f817083bd6c1adc28636865cbc"></h2>
 
-
 ### 中间层镜像
 
 - 为了加速镜像构建、重复利用资源，Docker 会利用 **中间层镜像**
@@ -410,7 +394,6 @@ ubuntu               14.04               1e0c3dd64ccd        4 weeks ago        
 - 这样会看到很多无标签的镜像，与之前的虚悬镜像不同，这些无标签的镜像很多都是中间层镜像，是其它镜像所依赖的镜像。这些无标签镜像不应该删除，否则会导致上层镜像因为依赖丢失而出错. 实际上，这些镜像也没必要删除.
 
 <h2 id="44e1a2382c5d3428c9e6991adff4b6cd"></h2>
-
 
 ### 列出部分镜像
 
@@ -442,7 +425,6 @@ $ docker images -f label=com.example.version=0.1
 
 <h2 id="572b05bc4b772aa9955181aa862e489e"></h2>
 
-
 ### 以特定格式显示
 
 - 默认情况下，docker images 会输出一个完整的表格，但是我们并非所有时候都会需要这些内容
@@ -468,7 +450,6 @@ fe9198c04d62: mongo
 ```
 
 <h2 id="4b409ece8383ea0f14f598b08fa3f7fc"></h2>
-
 
 ## 利用 commit 理解镜像构成
 
@@ -560,7 +541,6 @@ docker run --name web2 -d -p 81:80 nginx:v2
 
 <h2 id="a93f325da3a605ac9c7976c259cc3c99"></h2>
 
-
 ### 慎用 docker commit
 
 使用 docker commit 命令虽然可以比较直观的帮助理解镜像分层存储的概念，但是实际环境中并不会这样使用。
@@ -577,7 +557,6 @@ docker commit 命令除了学习之外，还有一些特殊的应用场合，比
 ---
 
 <h2 id="ca15f31abd0e0c5beb65f69cd39f697e"></h2>
-
 
 ## 使用 Dockerfile 定制镜像
 
@@ -606,7 +585,6 @@ RUN echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 
 <h2 id="ad64b82a688e4563306595a8bcbd75df"></h2>
 
-
 ### FROM 指定基础镜像
 
 - FROM 是必备的指令，并且必须是第一条指令。
@@ -630,7 +608,6 @@ FROM scratch
 - 使用 Go 语言 开发的应用很多会使用这种方式来制作镜像，这也是为什么有人认为 Go 是特别适合容器微服务架构的语言的原因之一。
 
 <h2 id="c40a005104159611a8abcc3e7f4e8e8f"></h2>
-
 
 ### RUN 执行命令
 
@@ -689,7 +666,6 @@ Dockerfile 支持 Shell 类的行尾添加 \ 的命令换行方式，以及行�
 
 <h2 id="0cd7fc52e88767f46089b6fc4bc14cdc"></h2>
 
-
 ### 构建镜像
 
 好了，让我们再回到之前定制的 nginx 镜像的 Dockerfile 来。让我们来构建这个镜像吧。
@@ -722,7 +698,6 @@ docker build [选项] <上下文路径/URL/->
 在这里我们指定了最终镜像的名称 -t nginx:v3，构建成功后，我们可以像之前运行 nginx:v2 那样来运行这个镜像，其结果会和 nginx:v2 一样。
 
 <h2 id="697df4e515f25078aa8b3ba4573d6964"></h2>
-
 
 ### 镜像构建上下文（Context）
 
@@ -782,11 +757,9 @@ Sending build context to Docker daemon 2.048 kB
 
 <h2 id="e2ccb8bb6d2b9d1f6ef53430262eb335"></h2>
 
-
 ### 其它 docker build 的用法
 
 <h2 id="e3b76237c22c121138eb68b7e15928ed"></h2>
-
 
 #### 直接用 Git repo 进行构建
 
@@ -807,7 +780,6 @@ aed15891ba52: Already exists
 
 <h2 id="ffc9590011c00baebbf79d7d2db28ba3"></h2>
 
-
 #### 用给定的 tar 压缩包构建
 
 ```
@@ -818,7 +790,6 @@ $ docker build http://server/context.tar.gz
 
 
 <h2 id="20183161339129a8f9da73bc60cc95ba"></h2>
-
 
 #### 从标准输入中读取 Dockerfile 进行构建
 
@@ -837,7 +808,6 @@ cat Dockerfile | docker build -
 
 <h2 id="c3257bd208d0a3934d193cf26aa2df71"></h2>
 
-
 #### 从标准输入中读取上下文压缩包进行构建
 
 ```
@@ -848,11 +818,9 @@ $ docker build - < context.tar.gz
 
 <h2 id="ab7b66399bb75089097e87d4fe04cf86"></h2>
 
-
 ## Dockerfile 指令详解
 
 <h2 id="36960c37c1514474b4d1eb8f2e9af565"></h2>
-
 
 ### COPY 复制文件
 
@@ -885,7 +853,6 @@ COPY hom?.txt /mydir/
 
 <h2 id="bc734ce94f563958ed54ed85e7c24626"></h2>
 
-
 ### ADD 更高级的复制文件
 
 ADD 指令和 COPY 的格式和性质基本一致。但是在 COPY 基础上增加了一些功能。
@@ -905,7 +872,6 @@ ADD ubuntu-xenial-core-cloudimg-amd64-root.tar.gz /
 - 最适合使用 ADD 的场合，就是所提及的需要自动解压缩的场合。
 
 <h2 id="d3bc2b31db3b0c82ec91ac3e2f9dd85b"></h2>
-
 
 ### CMD 容器启动命令
 
@@ -966,7 +932,6 @@ CMD ["nginx", "-g", "daemon off;"]
 
 <h2 id="1cd6041bdc91a8e6a4c862d3636ce5ed"></h2>
 
-
 ### ENTRYPOINT 入口点
 
 ENTRYPOINT 的格式和 RUN 指令格式一样，分为 exec 格式和 shell 格式。
@@ -1019,7 +984,6 @@ CMD [ "redis-server" ]
 
 <h2 id="15a80d9facd5298221ecbed6e7ee75c7"></h2>
 
-
 ### ENV 设置环境变量
 
 格式有两种：
@@ -1056,7 +1020,6 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 
 <h2 id="14e2e3b76460818c68b72dfaa4534d96"></h2>
 
-
 ### ARG 构建参数
 
 格式：ARG <参数名>[=<默认值>]
@@ -1070,7 +1033,6 @@ RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-
 Dockerfile 中的 ARG 指令是定义参数名称，以及定义其默认值。该默认值可以在构建命令 docker build 中用 --build-arg <参数名>=<值> 来覆盖。
 
 <h2 id="49b45cf4204f235e160ea09e07a16829"></h2>
-
 
 ### VOLUME 定义匿名卷
 
@@ -1097,7 +1059,6 @@ docker run -d -v mydata:/data xxxx
 
 <h2 id="a7a926de3ef2a0c352f59030d0bbc6dd"></h2>
 
-
 ### EXPOSE 声明端口
 
 格式为 EXPOSE <端口1> [<端口2>...]
@@ -1116,7 +1077,6 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
 
 
 <h2 id="5a844af8a8f0576eb7a818856d201a20"></h2>
-
 
 ### WORKDIR 指定工作目录
 
@@ -1139,7 +1099,6 @@ RUN echo "hello" > world.txt
 
 
 <h2 id="40211142c56583b06d2fe618fa0b3405"></h2>
-
 
 ### USER 指定当前用户
 
@@ -1170,7 +1129,6 @@ CMD [ "exec", "gosu", "redis", "redis-server" ]
 
 
 <h2 id="28feabf1a02ad73fb34a3d5aa47c26e9"></h2>
-
 
 ### HEALTHCHECK 健康检查
 
@@ -1244,7 +1202,6 @@ $ docker inspect --format '{{json .State.Health}}' web | python -m json.tool
 
 <h2 id="8487eec94911eb65c7d2f4bc18cbbe2b"></h2>
 
-
 ### ONBUILD 为他人做嫁衣裳
 
 格式：ONBUILD <其它指令>。
@@ -1264,18 +1221,15 @@ TODO
 
 <h2 id="84c8ea5f92b2186182f00a2443cbab12"></h2>
 
-
 # 操作容器
 
 简单的说，容器是独立运行的一个或一组应用，以及它们的运行态环境.
 
 <h2 id="b093c1c365b165c1d14e32dba65e94f6"></h2>
 
-
 ## 启动容器
 
 <h2 id="54aae6275e57c681fe430764be974c77"></h2>
-
 
 ### 新建并启动
 
@@ -1297,14 +1251,12 @@ root@af8bae53bdd3:/#
 
 <h2 id="63e39864e294349dc722ce9ba8b51ee7"></h2>
 
-
 ### 启动已终止容器
 
 可以利用 docker start 命令，直接将一个已经终止的容器启动运行。
 
 
 <h2 id="28b855ee0bcfa0640199f634fb5c23a0"></h2>
-
 
 ## 后台(background)运行
 
@@ -1324,7 +1276,6 @@ docker logs [container ID or NAMES]
 
 <h2 id="cd1786012578ed41f6a2435c1dcc5966"></h2>
 
-
 ### 终止容器
 
 - 可以使用 docker stop 来终止一个运行中的容器
@@ -1334,13 +1285,11 @@ docker logs [container ID or NAMES]
 
 <h2 id="51fddac8e0d43b8c4cedf5c7536a2b12"></h2>
 
-
 ## 进入容器
 
 在使用 -d 参数时，容器启动后会进入后台。 某些时候需要进入容器进行操作，有很多种方法，包括使用 docker attach 命令或 nsenter 工具等。
 
 <h2 id="ed8bd9329f54fdae47e248ee852d1a1d"></h2>
-
 
 ### attach 命令
 
@@ -1349,7 +1298,6 @@ docker attach [container ID or NAMES]
 ```
 
 <h2 id="bfc5650eb46f0bddb423c490b0c28be3"></h2>
-
 
 ## 导出和导入容器
 
@@ -1365,7 +1313,6 @@ $ docker export 7691a814370e > ubuntu.tar
 这样将导出容器快照到本地文件。
 
 <h2 id="21eccb9f6a6709dc17c387515e123d28"></h2>
-
 
 ### 导入容器快照
 
@@ -1394,7 +1341,6 @@ docker import http://example.com/exampleimage.tgz example/imagerepo
 
 <h2 id="2f4aaddde33c9b93c36fd2503f3d122b"></h2>
 
-
 ## 删除
 
 ```
@@ -1404,7 +1350,6 @@ $ docker rm  trusting_newton
 如果要删除一个运行中的容器，可以添加 -f 参数。Docker 会发送 SIGKILL 信号给容器。
 
 <h2 id="cd287c2794249580cfc4de4006ac9362"></h2>
-
 
 ### 清理所有处于终止状态的容器
 
@@ -1417,11 +1362,9 @@ docker rm $(docker ps -a -q)
 
 <h2 id="5e6078663fa925398d77b106c67215db"></h2>
 
-
 # 访问仓库   Repository
 
 <h2 id="ec104a6054aee6dccf8a9fc8f6842317"></h2>
-
 
 ## Docker Hub
 
@@ -1472,11 +1415,9 @@ docker pull centos
 
 <h2 id="96387a3a5055939b42bfc6181ba784df"></h2>
 
-
 ## 私有仓库
 
 <h2 id="8c80d32c81877be8ad508c7e075bbc13"></h2>
-
 
 ### Deploy a registry server
 
@@ -1484,7 +1425,6 @@ docker pull centos
 - A registry is an instance of the *registry* image, and runs within Docker.
 
 <h2 id="5f65c52efba3f11c0512e5433920dc5e"></h2>
-
 
 #### Run a local registry
 
@@ -1496,7 +1436,6 @@ $ docker run -d -p 5000:5000 --restart=always --name registry registry:2
 - Warning: These first few examples show registry configurations that are only appropriate for testing. A production-ready registry must be protected by TLS and should ideally use an access-control mechanism.
 
 <h2 id="17443590fa63f19e5857da6f6407d646"></h2>
-
 
 #### Copy an image from Docker Hub to your registry
 
@@ -1546,7 +1485,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 
 <h2 id="919d9a1b6552e2443bcba07ac2fcf531"></h2>
 
-
 ## 配置文件 TODO
 
 
@@ -1555,7 +1493,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 ---
 
 <h2 id="092d280d669c713c8778047dbe6b2259"></h2>
-
 
 # Docker 数据管理
 
@@ -1567,7 +1504,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 
 
 <h2 id="99b935d7193a1934689a928ae0139d33"></h2>
-
 
 ## 数据卷
 
@@ -1581,7 +1517,6 @@ For more details: [registry deploy and config](https://docs.docker.com/registry/
 *注意：数据卷的使用，类似于 Linux 下对目录或文件进行 mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能显示看的是挂载的数据卷*
 
 <h2 id="f1a6ea6cc69a550bafe35f56eb079327"></h2>
-
 
 ### 创建一个数据卷
 
@@ -1598,14 +1533,12 @@ docker run -d -P --name web -v /webapp training/webapp python app.py
 
 <h2 id="9e416de2b887c7c78160255665c297bd"></h2>
 
-
 ### 删除数据卷
 
 - 数据卷是被设计用来持久化数据的，它的生命周期独立于容器，Docker不会在容器被删除后自动删除数据卷，并且也不存在垃圾回收这样的机制来处理没有任何容器引用的数据卷。
 - 如果需要在删除容器的同时移除数据卷。可以在删除容器的时候使用 docker rm -v 这个命令。
 
 <h2 id="e5be13163123d804d337301b9c09eeb4"></h2>
-
 
 ### 挂载一个主机目录作为数据卷
 
@@ -1629,7 +1562,6 @@ $ sudo docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp
 
 <h2 id="f7d1e7013f50a458471e5d4c805fbb4f"></h2>
 
-
 ### 查看数据卷的具体信息
 
 在主机里使用以下命令可以查看指定容器的信息
@@ -1639,7 +1571,6 @@ $ docker inspect web
 ```
 
 <h2 id="bb673754af06a1493de8c9a1255c3947"></h2>
-
 
 ### 挂载一个本地主机文件作为数据卷
 
@@ -1656,7 +1587,6 @@ docker run --rm -it -v ~/.bash_history:/.bash_history ubuntu /bin/bash
 
 
 <h2 id="2df5c8a6ca62324d4237ab45a6fc7391"></h2>
-
 
 ## 数据卷容器
 
@@ -1687,13 +1617,11 @@ docker run -d --name db3 --volumes-from db1 training/postgres
 
 <h2 id="35de814218f4269e2c883f78d4f1e504"></h2>
 
-
 ## 利用数据卷容器来备份、恢复、迁移数据卷
 
 可以利用数据卷对其中的数据进行进行备份、恢复和迁移。
 
 <h2 id="664b37da2222287adcb1ecc4e48edb73"></h2>
-
 
 ### 备份
 
@@ -1706,7 +1634,6 @@ docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup
 容器启动后，使用了 tar 命令来将 dbdata 卷备份为容器中 /backup/backup.tar 文件，也就是主机当前目录下的名为 backup.tar 的文件。
 
 <h2 id="c7db6d4f1a42987a0df962e927926f14"></h2>
-
 
 ### 恢复
 
@@ -1731,11 +1658,9 @@ docker run --volumes-from dbdata2 busybox /bin/ls /dbdata
 
 <h2 id="55e0f8921afc8ae4c8c0536410b973af"></h2>
 
-
 # 使用网络
 
 <h2 id="fe6bb93e4d01fd9317947eef46670807"></h2>
-
 
 ## 外部访问容器
 
@@ -1769,7 +1694,6 @@ $ docker logs -f nostalgic_morse
 
 <h2 id="cc4add018dea50c5c26e286522ecaa9f"></h2>
 
-
 ### 映射所有接口地址
 
 使用 hostPort:containerPort 格式本地的 5000 端口映射到容器的 5000 端口，可以执行
@@ -1783,7 +1707,6 @@ docker run -d -p 5000:5000 training/webapp python app.py
 
 <h2 id="7a9d7a6fd9999d4c50012bf194a0d5f8"></h2>
 
-
 ### 映射到指定地址的指定端口
 
 可以使用 ip:hostPort:containerPort 格式指定映射使用一个特定地址，比如 localhost 地址 127.0.0.1
@@ -1793,7 +1716,6 @@ docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py
 ```
 
 <h2 id="5bfc1ca85e80abb7f382b15b0d1e05ae"></h2>
-
 
 ### 映射到指定地址的任意端口
 
@@ -1810,7 +1732,6 @@ docker run -d -p 127.0.0.1:5000:5000/udp training/webapp python app.py
 ```
 
 <h2 id="2689da8e24fd82172b01f89e377c0081"></h2>
-
 
 ### 查看映射端口配置
 
@@ -1832,7 +1753,6 @@ docker run -d -p 5000:5000  -p 3000:80 training/webapp python app.py
 
 <h2 id="06dc7504152a3981b873a938686fbb62"></h2>
 
-
 ## 容器互联
 
 容器的连接（linking）系统是除了端口映射外，另一种跟容器中应用交互的方式。
@@ -1840,7 +1760,6 @@ docker run -d -p 5000:5000  -p 3000:80 training/webapp python app.py
 该系统会在源和接收容器之间创建一个隧道，接收容器可以看到源容器指定的信息。
 
 <h2 id="2a4bb5c86ebcad25a1debf231dc8e752"></h2>
-
 
 ### 自定义容器命名
 
@@ -1873,7 +1792,6 @@ $ sudo docker inspect -f "{{ .Name }}" aed84ee21bde
 ```
 
 <h2 id="06dc7504152a3981b873a938686fbb62"></h2>
-
 
 ### 容器互联
 
@@ -1968,7 +1886,6 @@ PING db (172.17.0.5): 48 data bytes
 
 <h2 id="89a0c0e3c241795282a7a015dcf8f159"></h2>
 
-
 # 高级网络配置
 
 - 当 Docker 启动时，会自动在主机上创建一个 docker0 虚拟网桥，
@@ -1993,11 +1910,9 @@ TODO
 
 <h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
 
-
 # Misc
 
 <h2 id="106810e843fbd66af6ee48cb3ee7e07f"></h2>
-
 
 ## stop / rm all container 
 
@@ -2008,7 +1923,6 @@ docker rm $(docker ps -a -q)
 
 
 <h2 id="5e7908d41ed1f3e6e1906d575e2dfea0"></h2>
-
 
 ## 继续一个刚刚结束的container 
 
@@ -2028,7 +1942,6 @@ Explanation:
 
 <h2 id="7505ce8849f25ae527019ac6a637535a"></h2>
 
-
 ## pass proxy to docker container  ( not necessary if have set proxy for docker correctly)
 
 - set https_proxy and http_proxy in you host machine
@@ -2036,7 +1949,6 @@ Explanation:
 
 
 <h2 id="48d4b214fbddf86eecf9ba549ba5aae1"></h2>
-
 
 ## proxy when docker build  ( not necessary if have set proxy for docker correctly)
 
@@ -2046,7 +1958,6 @@ docker build ... --build-arg http_proxy=http://host:port --build-arg https_proxy
 
 
 <h2 id="9ae6e60d70ba5ec8ec4be8649b5d4d2a"></h2>
-
 
 ## Configure Docker to use a proxy server
 
@@ -2073,7 +1984,6 @@ works for daemon and containers.
 
 <h2 id="ed931520f4337c85396faa61455d56ec"></h2>
 
-
 ## docker daemon proxy for Centos7
 
 Many Linux distributions use systemd to start the Docker daemon.
@@ -2099,7 +2009,6 @@ Environment="HTTPS_PROXY=https://host:port/"
 
 <h2 id="5ef5bd47a5282fb1ad1694bbb5f46954"></h2>
 
-
 ## run bash of existing containter
 
 ```bash
@@ -2110,7 +2019,6 @@ docker exec -it <container> -- command args
 
 
 <h2 id="47a7dbe444a0af8498cf01950ad552ef"></h2>
-
 
 ## get DockerFile from Image
 
@@ -2123,7 +2031,6 @@ docker history --no-trunc $argv  | tac | tr -s ' ' | cut -d " " -f 5- | sed 's,^
 
 <h2 id="9b68cd8277b36a785a1a8784426e3095"></h2>
 
-
 ## add a restart policy to a container 
 
 - i.e.
@@ -2134,7 +2041,6 @@ docker update --restart unless-stopped <container>
 
 
 <h2 id="e03d31b41fc936f76920bb647520ef01"></h2>
-
 
 ## docker redis 
 
@@ -2171,7 +2077,6 @@ redis> config get save
 
 <h2 id="5b1064e3e54b4f22a3419f9d198df904"></h2>
 
-
 ## docker mysql
 
 ```
@@ -2180,7 +2085,6 @@ docker run -d --restart unless-stopped -p 3306:3306 --name mysql-test  -e MYSQL_
 ```
 
 <h2 id="f3ae289f1fc693ed1145272cb7bfa4b7"></h2>
-
 
 ## docker mongodb
 
@@ -2194,7 +2098,6 @@ docker run -d --restart unless-stopped -p 27017:27017 --name mongo-test \
 
 <h2 id="ada28088d8540a0471c00fb0673b9882"></h2>
 
-
 ## docker cleanup
 
 ```
@@ -2204,7 +2107,6 @@ docker container prune
 ```
 
 <h2 id="b64e99ff98a5173b25e6d0d91bc330f3"></h2>
-
 
 ## docker pandoc
 

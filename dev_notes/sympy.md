@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Sympy](#38fd3ceb035c8e920e5e0c2fb9dac987)
     - [Install](#349838fb1d851d3e2014b9fe39203275)
@@ -12,16 +12,14 @@
     - [Improper Integrals](#7387cf9e62ffc13d8fa0cdb3f6b8c713)
     - [Sequences and Series](#832826a63475e2f03db54022ee25a05c)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="38fd3ceb035c8e920e5e0c2fb9dac987"></h2>
 
-
 # Sympy 
 
 <h2 id="349838fb1d851d3e2014b9fe39203275"></h2>
-
 
 ## Install 
 
@@ -30,7 +28,6 @@ $ pip3 install sympy --user
 ```
 
 <h2 id="684a1bbf3d02adcb97e71bcc040d835d"></h2>
-
 
 ## Import Library
 
@@ -52,7 +49,6 @@ f, g, h = symbols('f g h', cls=Function)
 ```
 
 <h2 id="972e73b7a882d0802a4e3a16946a2f94"></h2>
-
 
 ## Basic
 
@@ -92,7 +88,6 @@ f, g, h = symbols('f g h', cls=Function)
 
 <h2 id="80d2677cf518f4d04320042f4ea6c146"></h2>
 
-
 ## Limit
 
 ```python
@@ -130,7 +125,6 @@ cos(x) - 1
 ```
 
 <h2 id="2a7f1476b6ddab6d53b03d77dacdbd1e"></h2>
-
 
 ## Derivatives
 
@@ -189,7 +183,6 @@ z(x + g(x))
 
 <h2 id="4a8e9ba67237902d213660ff31ccc31f"></h2>
 
-
 ## Basci Antiderivatives
 
 ```python
@@ -204,7 +197,6 @@ sin(x)
 ```
 
 <h2 id="b1d0bd686b3d10d4a7bb0dcbf19b125f"></h2>
-
 
 ## Initial Value Problems
 
@@ -232,7 +224,6 @@ Given dy/dx =  8⋅x + csc²(x) with y(π/2)=-7, solve for y(x)
 ```
 
 <h2 id="c72ec967dac2878fe23512f22da247f7"></h2>
-
 
 ## Definite Integrals
 
@@ -267,7 +258,6 @@ x  ⋅ℯ
 
 <h2 id="7387cf9e62ffc13d8fa0cdb3f6b8c713"></h2>
 
-
 ## Improper Integrals
 
 ```python
@@ -284,7 +274,6 @@ x  ⋅ℯ
 ```
 
 <h2 id="832826a63475e2f03db54022ee25a05c"></h2>
-
 
 ## Sequences and Series
 

@@ -1,20 +1,19 @@
-...menustart
+[](...menustart)
 
 - [Python3 tips](#a1f4779bb48ab8eccef9c7430a8f591e)
     - [Print Colored Output](#574083d4ce2c240d64205f07595f82c4)
     - [Yaml, References Variables , and Concat Strings](#37fde4cf4b72158aff18de1784ec0f23)
+    - [remove single-line / multiple-line comments](#2ff3865f3455ca50e9de317f1c7851ea)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="a1f4779bb48ab8eccef9c7430a8f591e"></h2>
-
 
 # Python3 tips
 
 
 <h2 id="574083d4ce2c240d64205f07595f82c4"></h2>
-
 
 ## Print Colored Output
 
@@ -67,7 +66,6 @@ class ColorPrint:
 
 <h2 id="37fde4cf4b72158aff18de1784ec0f23"></h2>
 
-
 ## Yaml, References Variables , and Concat Strings
 
 ```yaml
@@ -95,6 +93,8 @@ def loadconf():
         conf = yaml.load(fp.read(), Loader=yaml.FullLoader  )  # , Loader=yaml.SafeLoader
 ```
 
+
+<h2 id="2ff3865f3455ca50e9de317f1c7851ea"></h2>
 
 ## remove single-line / multiple-line comments
 

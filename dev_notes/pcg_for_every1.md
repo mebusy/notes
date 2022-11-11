@@ -1,14 +1,13 @@
-...menustart
+[](...menustart)
 
 - [Practical Procedural Generation for Everyone](#eacc3a9a45637984cc50fd76d47aefd1)
     - [Additive methods](#6c23aa7f2a6ef1bc6de8c021be1f269b)
     - [Subtractive methods](#6809d0cbfba4b408a9f32fac2a549d2e)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="eacc3a9a45637984cc50fd76d47aefd1"></h2>
-
 
 # Practical Procedural Generation for Everyone
 
@@ -16,7 +15,6 @@
 
 
 <h2 id="6c23aa7f2a6ef1bc6de8c021be1f269b"></h2>
-
 
 ## Additive methods
 
@@ -94,7 +92,6 @@ For more info about the Spore pipeline:
 - How to Animate a Character You've Never Seen Before
 
 <h2 id="6809d0cbfba4b408a9f32fac2a549d2e"></h2>
-
 
 ## Subtractive methods
 

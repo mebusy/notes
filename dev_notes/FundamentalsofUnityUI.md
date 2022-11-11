@@ -1,4 +1,4 @@
-...menustart
+[](...menustart)
 
 - [Fundamentals of Unity UI](#1dfc0817fb1b2cab37c5877272360d75)
 - [术语](#6d5c26750224532b44582db82a984403)
@@ -8,16 +8,14 @@
 - [Layout rebuilds](#48573fb33426281a66a7df414d308adf)
 - [Graphic rebuilds](#3bb07e02843305c2da7e77bb4877f16b)
 
-...menuend
+[](...menuend)
 
 
 <h2 id="1dfc0817fb1b2cab37c5877272360d75"></h2>
 
-
 # Fundamentals of Unity UI
 
 <h2 id="6d5c26750224532b44582db82a984403"></h2>
-
 
 # 术语
 
@@ -48,7 +46,6 @@
 
 <h2 id="2a168379a54008088b779159b876072f"></h2>
 
-
 # 渲染细节
 
 - 当使用Unity UI 制作用户界面时，记住，所有的被canvas绘制的图形都是被放在透明渲染队列。
@@ -56,7 +53,6 @@
 - 有一个重要的性能点要注意：图形上的每一个像素都会被采样，即使它被另一个不透明的图形完全覆盖。在移动设备上，大量的的过度绘制（overdraw）可以快速超出GPU填充率的上限。
 
 <h2 id="919839be384cb16c603fcf7941d47a2b"></h2>
-
 
 # The Batch building process (Canvases)
 
@@ -67,7 +63,6 @@
     - This operation is multi-threaded, and so its performance will generally be very different across different CPU architectures, and especially between mobile SoCs (which generally have few CPU cores) and modern desktop CPUs (which often have 4 or more cores).
 
 <h2 id="4b236b0defe0140ab7c6ca4d6eb9ce03"></h2>
-
 
 # The rebuild process (Graphics)
 
@@ -82,7 +77,6 @@
 
 <h2 id="48573fb33426281a66a7df414d308adf"></h2>
 
-
 # Layout rebuilds
 
 - To recalculate the appropriate positions (and potentially sizes) of components contained within one or more Layout components, it is necessary to apply the Layouts in their appropriate hierarchical order. 
@@ -90,7 +84,6 @@
 - 为了实现这个，Unity UI 按照hierarchy中深度对dirty的排版组件排序，越高的（父节点少的）排在前面。排序后的布局组件被要求重建它们的布局；这就是通过改变布局组件来控制UI元素位置和大小。
 
 <h2 id="3bb07e02843305c2da7e77bb4877f16b"></h2>
-
 
 # Graphic rebuilds
 
