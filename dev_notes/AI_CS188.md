@@ -64,7 +64,7 @@
         - [Graph Search Pseudo-Code](#1388b32869f8288febeb18f8ec802b42)
         - [Optimality of A\* Graph Search](#53d3b2a00e84590355f57034c84cc1a0)
     - [demo code in python](#c9f86c35957917fe5e25e926f8923c75)
-        - [ python graph search](#41ac4b4e9e2441a0a74f1372fbca3c52)
+        - [python graph search](#58ce5643f90610e28abec82f0c32ff5c)
         - [other implementation](#65e0ab6e34746c2231d34656e5134d92)
 
 [](...menuend)
@@ -1236,7 +1236,7 @@ end // func
 
 ## demo code in python
 
-<h2 id="41ac4b4e9e2441a0a74f1372fbca3c52"></h2>
+<h2 id="58ce5643f90610e28abec82f0c32ff5c"></h2>
 
 ###  python graph search
 
