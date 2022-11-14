@@ -20,7 +20,8 @@
  15. [Unite 2015, res archi, ab ](UnityResArchitecture.md) 
  16. [unityShaderCamp1](unityShaderCamp1.md) 
  17. [Json to Dictionary](unity_serialize_dictionary.md)
-
+ 18. [script to force sync U3d C# Solution](../codes/u3d/SyncSolutionUtilities.cs)
+    - in U3D menu  /Assets/`Sync C# Solution`
 
 <h2 id="cd47dd01745339787e4c7300389401f2"></h2>
 
