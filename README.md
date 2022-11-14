@@ -205,7 +205,7 @@ a | b | c | d
 [run GUI app in docker on MacOSX](dev_notes/docker_mac_gui_app.md) |
 [blender api](dev_notes/blender.md) |  [blender lowpoly model](dev_notes/blender_low_poly.md) | 
 [inkscape](dev_notes/inkscape.md) | [manim](dev_notes/manim_readme.md) |
-[mdfind](dev_notes/mdfind.md) | 
+[mdfind](dev_notes/mdfind.md) |  [mermaid](dev_notes/mermaid.md) |
 [bit operation](dev_notes/bitop.md) |
 [GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
 [openssl 生成密钥](dev_notes/openssl.md) | [windows WSL2 tips](dev_notes/windows_tips.md) | 
