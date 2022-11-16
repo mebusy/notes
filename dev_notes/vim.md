@@ -81,7 +81,7 @@
 
 ## YouCompleteMe Configuaration Tips
 
-- for C family support:  `./install.py --clangd-completer`
+- for C family support:  `./install.py --clang-completer`
     - optional `--system-libclang` Use the libclang that comes with mac, but generally the version is relatively old and there will be problems
 - C# support: install Mono and add `--cs-completer` 
 - Go support: install Go and add `--go-completer` 
@@ -119,8 +119,12 @@
 - Java support: install JDK8 (version 8 required) and add `--java-completer` 
 - for common using
     ```bash
-    ./install.py --clangd-completer --cs-completer  --go-completer \
+    ./install.py --clang-completer --cs-completer  --go-completer \
                     --ts-completer --java-completer --rust-completer
+    ```
+    - or
+    ```bash
+    ./install.py --all
     ```
     - for Ubuntu, `sudo apt install build-essential` is needed
 
