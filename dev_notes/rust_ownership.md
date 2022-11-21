@@ -4,14 +4,16 @@
 ## Ownership rules
 
 1. Each value in Rust has a variable that's called its owner
-    - ![](../imgs/rust_ownership.png)
 2. There can only one owner at a time
+    - ![](../imgs/rust_ownership.png)
 3. When the owner goes out of scope, the value will be dropped
 
 
 ## Move / Borrow
 
-```rust
+- rust by default move the value
+- reference borrowing won't take ownership
+    ```rust
     let x = 5;
     let y = x; // a copy, not a move,
                // rust has a copy trait, simple type stored on stack implement this trait
@@ -22,7 +24,7 @@
     let s1 = String::from("hello");
     let s2 = s1; // moved, rust default move the value
     // println!("s1 = {}, s2 = {}", s1, s2);
-```
+    ```
 
 ## Reference
 

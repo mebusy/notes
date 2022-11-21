@@ -1,7 +1,6 @@
 [](...menustart)
 
 - [Rust Crash Course](#c5822cd18f83072f8602e5235e1b7ed5)
-    - [mod](#ad148a3ca8bd0ef3b48c52454c493ec5)
     - [Variable](#47c14840d8e15331fa420b9b2f757cd9)
     - [Primitive Data Types](#6c1067528b82c9144a62fb1dd2cd925e)
         - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
@@ -33,24 +32,6 @@
 # Rust Crash Course
 
 <h2 id="ad148a3ca8bd0ef3b48c52454c493ec5"></h2>
-
-## mod
-
-```rust
-// print.rs
-pub fn run() {
-    println!("Hello from print.rs file");
-}
-```
-
-```rust
-// main.rs
-mod print;
-
-fn main() {
-    print::run();    
-}
-```
 
 
 <h2 id="47c14840d8e15331fa420b9b2f757cd9"></h2>
@@ -300,7 +281,7 @@ pub fn run() {
 
 <h2 id="9a6a7f4d3eff618bae767bf2afefc00e"></h2>
 
-### Struct which has functions
+### Methods
 
 ```rust
 struct Person {
@@ -309,27 +290,24 @@ struct Person {
 }
 ```
 
-
 define functions associated with that Person struct:
 
 ```rust
 impl Person {
     // Constructor ( without &self )
-    // Self here means the struct itself
-    fn new(first: &str, last: &str) -> Self {
+    // Self here means the struct itself: i.e. Person
+    fn new(first: &str, last: &str) -> Self { // --> Person
         Self {
             first_name: first.to_string(), 
             last_name: last.to_string()
         }
     }
 
-
-    // Get full name
+    // methods take an explicit `self` parameter
     fn full_name(&self) -> String {
         format!( "{} {}", self.first_name, self.last_name )
     }
 
-    // Set last name
     fn set_last_name( &mut self, last: &str ) {
         self.last_name = last.to_string();  // last str->String
     }
@@ -350,13 +328,28 @@ let mut p = Person::new("John", "Doe");
 
 ## Enums
 
+### Basic C-like enum
+
+```rust
+enum Direction {
+    Left,
+    Right,
+    Up,
+    Down,
+}
+
+let up = Direction::Up;
+```
+
+### Enum with fields
+
 ```rust
 enum Movement {
     // Variants
-    Up(u32,u32,String),  // tuple
-    Down {x:u32,y:u32},
-    Left(Point),
-    Right
+    Up(u32,u32,String),  // stores 3 integers
+    Down {x:u32,y:u32},  // stores anonymous struct
+    Left(Point),  // ( ) store data in Enums
+    Right  // stores no data
 }
 
 struct Point {
@@ -373,24 +366,69 @@ fn move_avatar(m: Movement) {
     }
 }
 
+// just like struct, we could define methods
+// and associated functions on Enums
 impl Movement {
     ...
 }
 ```
 
+
+### The Option Enum
+
+- **Rust doesn't have the null feature!**  But it does have an enum that can encode the concept of a value being present or absent. 
+    ```rush
+    enum Option<T> {
+        Some(T),
+        None
+    }
+    ```
+    ```rust
+    let some_number = Some(5);
+    let some_string = Some("a string");
+    let absent_number: Option<i32> = None;
+    ```
+- unwrap
+    ```rust
+    let x: i8 = 5;
+    let y: Option<i8> = Some(5);
+    let sum = x + y.unwrap_or(0);
+    ```
+- match
+    ```rust
+    fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            Some(i) => Some(i + 1),
+            // None => None,
+            _ => None,
+        }
+    }
+    ```
+- if-let syntax: branch if pattern can be assigned
+    - it's a little verbose to write the entire match
+        ```rust
+        let some_value = Some(3);
+        match some_value {
+            Some(3) => println!("three"),
+            _ => (), // otherwise do nothing
+        }
+        ```
+    - rewrite this using the if-let syntx
+        ```rust
+        if let Some(3) = some_value {
+            println!("three");
+        }
+        ```
+
+
 <h2 id="aaee770340310065a9498e2788783098"></h2>
 
-### Result & Option
+### The Result Enum
 
 ```rust
 enum Result<T,E> {
     Ok(T),
     Err(E),
-}
-
-enum Option<T> {
-    Some(T),
-    None
 }
 
 ```
