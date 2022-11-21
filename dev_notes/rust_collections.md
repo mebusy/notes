@@ -101,4 +101,12 @@ use std::collections::HashMap;
     }
 
     hm.remove("key1");
+
+    // update
+    hm.insert("key1", "haha2");
+    // update only if not exist
+    hm.entry("key1").or_insert("haha3");
 ```
+
+
+

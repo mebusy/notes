@@ -108,6 +108,10 @@ const ID: i32 = 380;
     - if we want the print more pretty, we can use `:#?`
 
 
+## Common Collections -- String / Vector / HashMap
+
+[common collections](./rust_collections.md)
+
 
 <h2 id="c647c38e64bd84c0fe9fe165f3fff0eb"></h2>
 
