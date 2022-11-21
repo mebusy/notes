@@ -217,20 +217,6 @@ let mut now_its_mine = mine;
     ```
 - Rust compiler guarantee `pointer` not be null.
 
-<h2 id="bf17ac149e2e7a530c677e9bd51d3fd2"></h2>
-
-## Modules
-
-- Modules to Control Scope and Privacy
-- Exposing Paths with the `pub` Keyword
-- Starting Relative Paths with `super`
-    - construct relative paths that begin in the parent module by using `super` at the start of the path.
-- Bringing Paths into Scope with the `use` Keyword
-- Re-exporting Names with `pub use`
-- We can declare a module by starting with the `mod` keyword 
-
-[Packages, Crates, and Modules](https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html)
-
 
 <h2 id="ef43236673ca0bb606b14091061ac271"></h2>
 
