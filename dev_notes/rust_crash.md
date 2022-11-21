@@ -6,7 +6,6 @@
         - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
         - [Compound Types](#9e57b6b46532794638212df8e239adde)
     - [Strings](#89be9433646f5939040a78971a5d103a)
-    - [Vectors](#b3f69e461542074d9696ee29ded180a0)
     - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
     - [Structs](#6293f87533836e1d190c7b144ee25975)
@@ -132,18 +131,6 @@ const ID: i32 = 380;
     let hello = &s1[..5]; // :&str
     ```
 
-<h2 id="b3f69e461542074d9696ee29ded180a0"></h2>
-
-## Vectors
-
-```rust
-let mut numbers: Vec<i32> = vec![1,2,3,4,5];
-// we can change its value while looping
-for x in numbers.iter_mut() {
-    *x *= 2;
-}
-// [2, 4, 6, 8, 10]
-```
 
 <h2 id="c647c38e64bd84c0fe9fe165f3fff0eb"></h2>
 

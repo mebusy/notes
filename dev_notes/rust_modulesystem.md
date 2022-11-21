@@ -20,7 +20,6 @@
 2. a package could have either 0 or 1 library crate.
 3. a package could have any number of binary crates.
     - if we want multiple binary crate, we would create a folder called `bin`, and in this folder we can add another file. and each file in this folder will represent another binary crate.
-- lastly, a package could have any number binary crates,
 
 
 ## Modules
