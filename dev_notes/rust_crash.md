@@ -5,14 +5,12 @@
     - [Primitive Data Types](#6c1067528b82c9144a62fb1dd2cd925e)
         - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
         - [Compound Types](#9e57b6b46532794638212df8e239adde)
-    - [Strings](#89be9433646f5939040a78971a5d103a)
     - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
     - [Structs](#6293f87533836e1d190c7b144ee25975)
         - [Struct which has functions](#9a6a7f4d3eff618bae767bf2afefc00e)
     - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
         - [Option](#aaee770340310065a9498e2788783098)
-    - [Hash](#fae8a9257e154175da4193dbf6552ef6)
     - [CLI](#91af5705f16502125e8b2187e64202c0)
     - [Trait](#9118ea0f76d0a8f21a42591caeee043e)
         - [Debug Trait](#8c24bd362f72757a4105edc427912b83)
@@ -109,27 +107,6 @@ const ID: i32 = 380;
     - `:?` mark here is what's called a **debug flag**, and since arrays have a debug **trait** built into them, so we can do it this way.
     - if we want the print more pretty, we can use `:#?`
 
-
-<h2 id="89be9433646f5939040a78971a5d103a"></h2>
-
-## Strings
-
-- Primitive str 
-    - Immutable fixed-length string somewhere in memory
-    ```rust
-    let hello = "Hello";
-    ```
-- String
-    - Growable, heap-allocated data structure -- Use when you need to modify or own string data
-    ```rust
-    let mut hello = String::from( "Hello" );
-    ```
-- String slice
-    - a view into another string
-    ```rust 
-    let s1 = String::from("hello world");
-    let hello = &s1[..5]; // :&str
-    ```
 
 
 <h2 id="c647c38e64bd84c0fe9fe165f3fff0eb"></h2>
@@ -410,30 +387,7 @@ impl Movement {
 
 
 
-<h2 id="fae8a9257e154175da4193dbf6552ef6"></h2>
 
-## Hash
-
-```rust
-use std::collections::HashMap;
-```
-
-```rust
-    let mut hm = HashMap::new();
-    hm.insert( "key1", "haha" );
-
-    for (k,v) in &hm {
-        println!( "{}: {}", k,v );
-    }
-    println!( "{:?}", hm );
-
-    match hm.get( "key1" ) {
-        Some(n) => println!("{}", n),
-        _ => println!("no match"),
-    }
-
-    hm.remove("key1");
-```
 
 
 <h2 id="91af5705f16502125e8b2187e64202c0"></h2>
