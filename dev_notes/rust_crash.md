@@ -10,7 +10,6 @@
     - [Vectors](#b3f69e461542074d9696ee29ded180a0)
     - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
-    - [Reference Pointers](#0752ca655d1e188fa66c5383455d199d)
     - [Structs](#6293f87533836e1d190c7b144ee25975)
         - [Struct which has functions](#9a6a7f4d3eff618bae767bf2afefc00e)
     - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
@@ -65,13 +64,26 @@ fn main() {
 ```rust
 let name = "Brad";  // immutable
 let mut age = 43; // mutable variable
-
-// define const, const must explicityly define a type
+// const must explicityly define a type
 const ID: i32 = 380; 
-
-// Assign multiple vars
-let ( my_name, my_age ) = ( "Brad", 43 );
 ```
+
+### Shadowding
+
+- advantage
+    1. keep mutability
+    2. change type
+- example
+    ```rust
+    {
+        let x = ...;
+        // do stuff that does not modify x.
+        let mut x = x;
+        // do stuff that modifies x.
+        let x = x;
+        // x is immutable once more.
+    }
+    ```
 
 <h2 id="6c1067528b82c9144a62fb1dd2cd925e"></h2>
 
@@ -89,33 +101,30 @@ let ( my_name, my_age ) = ( "Brad", 43 );
 - Booleanbs
     - bool : true/false
 - Characters (char)
-    - Single character
-    - Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
+    - A unicode character, written within a single quote
     - Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive
     - `'z'`,  `'\u{1F600}'`
-    ```rust
-    println!( "{}, {}", 200 as char, 255 as char  ); // È, ÿ
-    ```
+        ```rust
+        println!( "{}, {}", 200 as char, 255 as char  ); // È, ÿ
+        ```
 
 <h2 id="9e57b6b46532794638212df8e239adde"></h2>
 
 ### Compound Types
 
 - Tuple
-    - group together values of different types
-    - max 12 elements
     ```rust
-    let person: (&str, &str, i8) = ( "Brad", "Mass", 37 );
-    println!("{} is from {} and is {}", person.0, person.1, persion.2);
+    let person = ("Brad", "Mass", 37);
+    let (first, last, age) = person;
     ```
 - Array
     - fixed list where elements are the same data type , NOT `vector`
     ```rust
-    let mut numbers: [i32; 5] = [1,2,3,4,5];
+    let numbers = [1, 2, 3, 4, 5];
     println!( "{:?}", numbers );
-
-    // Get Slice
-    let slice: &[i32] = &numbers;
+    // create an array with 8 values, and all set to 0
+    let bytes = [0; 8];
+    println!("{:?}", bytes);
     ```
     - `:?` mark here is what's called a **debug flag**, and since arrays have a debug **trait** built into them, so we can do it this way.
     - if we want the print more pretty, we can use `:#?`
@@ -135,6 +144,12 @@ let ( my_name, my_age ) = ( "Brad", 43 );
     ```rust
     let mut hello = String::from( "Hello" );
     ```
+- String slice
+    - a view into another string
+    ```rust 
+    let s1 = String::from("hello world");
+    let hello = &s1[..5]; // :&str
+    ```
 
 <h2 id="b3f69e461542074d9696ee29ded180a0"></h2>
 
@@ -153,10 +168,12 @@ for x in numbers.iter_mut() {
 
 ## Flows
 
-- Shorthand If
-    ```rust
-    let is_of_age = if age >=21 {true} else {false};
-    ```
+- If
+    - `if / else if / else`
+    - Shorthand If
+        ```rust
+        let is_of_age = if age >=21 {true} else {false};
+        ```
 - Infinite loop
     ```rust
     loop {
@@ -178,8 +195,11 @@ for x in numbers.iter_mut() {
     ```
 - For Range
     ```rust
-    for x in 0..100 {
+    for x in 0..100 { // [0,1,...99]
         ...
+    }
+    for number in numbers.iter() {
+        println!("{}", number);
     }
     ```
 - Match
@@ -243,32 +263,6 @@ pub fn run() {
 }
 ```
 
-<h2 id="0752ca655d1e188fa66c5383455d199d"></h2>
-
-## Reference Pointers
-
-- Reference Pointers  point to a resource in memory.
-    ```rust
-    // Primitive Array
-    let arr1 = [1,2,3];
-    let arr2 = arr1;  // assign
-    println!( "{:?}", (arr1, arr2) );
-    // ([1,2,3], [1,2,3])
-    ```
-
-- With non-primitives, if you assign another variable to a data, the first variable will no longer hold that value.
-    - You'll need to use a reference (&) to point to the resource.
-    ```rust
-    // Primitive Array
-    let vec1 = vec![1,2,3];
-    let vec2 = vec1;  // assign
-    println!( "{:?}", (vec1, vec2) );  // error
-    ```
-    ```rust
-    let vec1 = vec![1,2,3];
-    let vec2 = &vec1;  
-    println!( "{:?}", (&vec1, vec2) );  
-    ```
 
 <h2 id="6293f87533836e1d190c7b144ee25975"></h2>
 
@@ -277,21 +271,26 @@ pub fn run() {
 - Traditional Struct
     ```rust
     struct Color {
-        red: u8;
-        green: u8;
-        blue: u8;
+        red: u8,
+        green: u8,
+        blue: u8,
     }
     ```
     ```rust
     // use struct
-    let c = Color {
-        red: 255,
+    let red = 255;
+    let c1 = Color {
+        red, // field init shorthand syntax
         green: 0,
         blue: 0,
     };
-    // c.red
+    // c1.red
+    let c2 = Color {
+        red: 128,
+        ..c1 // remaining fields comes from c1
+    };
     ```
-- Tuple Struct
+- Tuple Struct (without name fields)
     ```rust
     struct Color( u8,u8,u8 )
     ...

@@ -1,15 +1,8 @@
 [](...menustart)
 
 - [Rust](#f5e265d607cb720058fc166e00083fe8)
-    - [所有权](#ed840a18e255779553359d5e0ec6f8a8)
-    - [Data Types](#637881603c973c4967d77ec4ba147e0c)
-        - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
-        - [Compound Types](#9e57b6b46532794638212df8e239adde)
     - [Grammar](#d305bbe79fb9dd87a3fda339c8b601b6)
-        - [String](#27118326006d3829667a400ad23d5d98)
         - [Vectors/arrays](#a9ed91a0564c396f668757003053c533)
-        - [Tuples](#e7e26a0ac2e1758814e4999a9242ba71)
-        - [Struct](#886ef5dbd655a6c97726d7091c6b173e)
         - [Enum](#cf20423ed48998082c20099488a0917c)
         - [Generics](#0d7bdbf7f4e4f0dc8ed310a01dee3502)
         - [Methods](#20c51b5f4e9aeb5334c90ff072e6f928)
@@ -45,79 +38,12 @@
 
 # Rust
 
-<h2 id="ed840a18e255779553359d5e0ec6f8a8"></h2>
-
-## 所有权
-
-- Rust编译器：对于任何给定的对象都只有一个绑定与之对应。
-    - ![](../imgs/rust_ownership.png)
-- 怎么把 v 传递给另外一个函数呢?
-    - 借用 (&v), 临时借给其他函数
-    - 类似java中的 引用
-- recap 
-    - ![](../imgs/rust_ownership2.webp)
-- 同一时刻，
-    - 要么只有一个可变（&mut）借用，
-    - 要么有多个不可变（&) 借用，
-    - 不能同时存在可变和不可变借用。 
-    - 没有人希望 自己在读的时候，对象被别人改变了。
-    - ![](../imgs/rust_ownership3.0.webp)
-    - ![](../imgs/rust_ownership3.webp)
-- 当大家都在读一个东西的时候，是不能写的。当一个人在写的时候，别人是不能读的。
-    - 经典的读写锁问题, Rust在编译器级别做了限制.
-
-<h2 id="637881603c973c4967d77ec4ba147e0c"></h2>
-
-## Data Types 
-
-<h2 id="09d9982852d86c2479924a4e3b723b1e"></h2>
-
-### Scalar Types
-
-- integers
-    - i8,i32,u64,...
-- floating-point numbers
-    - f32,f64
-- Booleanbs
-    - bool : true/false
-- characters
-    - `'z'`
-    - Rust’s char type is four bytes in size and represents a Unicode Scalar Value, which means it can represent a lot more than just ASCII.
-    - Unicode Scalar Values range from U+0000 to U+D7FF and U+E000 to U+10FFFF inclusive
-
-<h2 id="9e57b6b46532794638212df8e239adde"></h2>
-
-### Compound Types
-
-- Tuple
-- Array
 
 
 <h2 id="d305bbe79fb9dd87a3fda339c8b601b6"></h2>
 
 ## Grammar
 
-<h2 id="27118326006d3829667a400ad23d5d98"></h2>
-
-### String 
-
-- String literals ( static str )
-    -
-    ```rust
-    let x: &str = "hello world!";
-    ```
-- A heap-allocated string
-    -
-    ```rust
-    let s: String = "hello world".to_string();
-    ```
-- A string slice – an immutable view into another string
-    -
-    ```rust
-    let s_slice: &str = &s;
-    println!("{} {}", s, s_slice); // hello world hello world
-    ```
-    - This is basically an immutable pair of pointers to a string
 
 
 <h2 id="a9ed91a0564c396f668757003053c533"></h2>
@@ -143,46 +69,8 @@
     println!("{:?} {:?}", vector, slice); // [1, 2, 3, 4, 5] [1, 2, 3, 4, 5]
     ```
 
-<h2 id="e7e26a0ac2e1758814e4999a9242ba71"></h2>
-
-### Tuples 
-
-- A fixed-size set of values of possibly different types
-    -
-    ```rust
-    let x: (i32, &str, f64) = (1, "hello", 3.4);
-    ```
-- Destructuring `let`
-    -
-    ```rust
-    let (a, b, c) = x;
-    ```
-- Indexing
-    -
-    ```rust
-    println!("{}", x.1); // hello
-    ```
 
 
-<h2 id="886ef5dbd655a6c97726d7091c6b173e"></h2>
-
-### Struct
-
-```rust
-struct Point {
-    x: i32,
-    y: i32,
-}
-
-let origin: Point = Point { x: 0, y: 0 };
-```
-
-- A struct with unnamed fields, called a ‘tuple struct’
-    -
-    ```rust
-    struct Point2(i32, i32);
-    let origin2 = Point2(0, 0);
-    ```
 
 <h2 id="cf20423ed48998082c20099488a0917c"></h2>
 
