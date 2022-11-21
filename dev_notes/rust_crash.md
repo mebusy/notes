@@ -12,7 +12,7 @@
     - [Structs](#6293f87533836e1d190c7b144ee25975)
         - [Struct which has functions](#9a6a7f4d3eff618bae767bf2afefc00e)
     - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
-        - [Result & Option](#aaee770340310065a9498e2788783098)
+        - [Option](#aaee770340310065a9498e2788783098)
     - [Hash](#fae8a9257e154175da4193dbf6552ef6)
     - [CLI](#91af5705f16502125e8b2187e64202c0)
     - [Trait](#9118ea0f76d0a8f21a42591caeee043e)
@@ -421,21 +421,6 @@ impl Movement {
         ```
 
 
-<h2 id="aaee770340310065a9498e2788783098"></h2>
-
-### The Result Enum
-
-```rust
-enum Result<T,E> {
-    Ok(T),
-    Err(E),
-}
-
-```
-
-- The Result enum is basically usually used for error-checking.
-- You can also use Option enum to error check as well.
-- But Result allow us see why it failed.
 
 
 <h2 id="fae8a9257e154175da4193dbf6552ef6"></h2>

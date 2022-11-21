@@ -25,8 +25,12 @@
 
 ## Modules
 
+> you can create a module with or without inline body.
+
+> A module without a body is loaded from an external file. When the module does not have a path attribute, the path to the file mirrors the logical module path. 
+
+
 - Each file in Rust (besides main.rs or lib.rs) corresponds to one module in a crate (main.rs and lib.rs are the crate's root). 
-    > A module without a body is loaded from an external file. When the module does not have a path attribute, the path to the file mirrors the logical module path. 
 - To create a module, you add this line to its parent module (or to lib.rs or main.rs, which makes it a submodule under the crate)
     ```rust
     mod somemod;
