@@ -471,41 +471,75 @@ println!( "{}", a );
 
 ## Generic
 
-```rust
-struct A<T> {
-    x: T
-}
-
-impl <T> A<T> {
-    fn item(&self) -> &T {
-        &self.x
+- Make this function Generic
+    ```rust
+    fn get_large_number(list: &Vec<i32>) -> i32 {
+        let mut largest = &list[0];
+        for number in list {
+            if number > largest {
+                largest = number;
+            }
+        }
+        *largest
     }
-}
-```
+    // get_large_number(&number_list)
+    ```
+- first specify that `get_large_number` function uses generics
+    ```rust
+    fn get_large_number<T>(list: &Vec<i32>) -> i32 {
+    ```
+- now we have our generic type defined, we can use it inside our function
+    ```rust
+    fn get_large_number<T>(list: &Vec<T>) -> T {
+    ```
+- our function now almost work, but a compile error: operation `>` cannot be applied to type `&T`
+    - because generic type may be anything, it could also possibly be something which can not be compared.
+    - in order to solve this problem, we need to restrict our generic type that it must be comparable.
+    - we need use `Traits`.
+    ```rust
+    fn get_large_number<T: PartialOrd + Copy>(list: &Vec<T>) -> T {
+        ...
+    }
+    // get_large_number(&number_list) // nothing changed
+    ```
+
+We can also use Generics on structs.
+
+<details>
+<summary>
+Generic Point:  'struct Point &lt;T, U&gt;'
+</summary>
 
 
 ```rust
-use std::ops::Mul;
-
-trait Shape<T> {
-    fn area(&self) -> T;
-}
-
-// must be T that implements `Mul` trait
-struct Rectangle<T: Mul> {
+struct Point<T, U> {
     x: T,
-    y: T,
+    y: U,
 }
 
-impl <T: Copy> Shape<T> for Rectangle<T> where T:Mul<Output = T> , 
-// or use this instead
-// impl <T: Mul<Output = T> +  Copy> Shape<T> for Rectangle<T> 
-{
-    fn area<&self> -> T {
-        self.x + self.y
+impl<T, U> Point<T, U> {
+    fn new(x: T, y: U) -> Self {
+        Self { x, y }
+    }
+
+    fn item(&self) -> (&T, &U) {
+        (&self.x, &self.y)
     }
 }
+
+fn main() {
+    let a = Point::new(1, 1.0);
+    let b = Point::new(2.1, 3);
+
+    println!("a = {:?}", a.item());
+    println!("b.x = {}", b.x);
+}
 ```
+
+</details>
+
+Generic won't incur a performance hit, that's because at compile time, rust will actually **turn the generic type into different explicit types**.
+
 
 <h2 id="1a10be3692cec335c74387f33221a6fa"></h2>
 
