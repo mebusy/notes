@@ -18,7 +18,6 @@
         - [Clone](#ff24590464659ee8cdec688128c35f89)
         - [Copy](#5fb63579fc981698f97d55bfecb213ea)
     - [Generic](#8045a0a6c688b0635e3caccc408a1446)
-    - [Lifetime](#1a10be3692cec335c74387f33221a6fa)
 
 [](...menuend)
 
@@ -541,15 +540,21 @@ fn main() {
 Generic won't incur a performance hit, that's because at compile time, rust will actually **turn the generic type into different explicit types**.
 
 
-<h2 id="1a10be3692cec335c74387f33221a6fa"></h2>
-
-## Lifetime
-
-the flowing code compile error
+## Generic Type Parameters, Trait Bounds, and Lifetimes Together
 
 ```rust
-fn pr(x: &str, y: &str) -> &str {
-    if x.len() == y.len() {
+use std::fmt::Display;
+
+fn longest_with_an_announcement<'a, T>(
+    x: &'a str,
+    y: &'a str,
+    ann: T,
+) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {}", ann);
+    if x.len() > y.len() {
         x
     } else {
         y
@@ -557,12 +562,4 @@ fn pr(x: &str, y: &str) -> &str {
 }
 ```
 
-to solve it :
-
-
-```rust
-// add 'a to specify lifetime
-fn pr<'a>(x: &'a str, y: &'a str) -> &'a str {
-    ...
-```
 

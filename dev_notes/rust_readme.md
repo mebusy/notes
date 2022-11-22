@@ -6,6 +6,8 @@
 4. [module system](rust_modulesystem.md)
 5. [error handling](rust_errorhandle.md)
 6. [Traits (interface)](rust_trait.md)
+7. [lifetime](rust_lifetime.md)
+
 4. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
 5. [Concurrency,Threads,Channel,Mutex,Arc](rust_thread_channels_mutex_arc.md)
 6. [learnRustInYMintues](./learnRustInYMintues.md)
