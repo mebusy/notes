@@ -237,4 +237,76 @@ impl<T: Display> ToString for T {
 }
 ```
 
+----
+
+# Some Built-in Traits
+
+<h2 id="8c24bd362f72757a4105edc427912b83"></h2>
+
+## Debug Trait
+
+if you  use `{:?}` format to print a custom struct, rust will throw an error.  To solve this problem, you need to add `Debug`  trait to that struct.
+
+```rust
+#[derive(Debug)]
+struct Person {
+    first_name: String,
+    last_name: String
+}
+```
+
+now you can use `{:?}` to print this struct.
+
+
+<h2 id="ea5b3400b3db3c5423190c549a3139c0"></h2>
+
+## Display Trait
+
+if you use `{}` to print a struct, rust will ask you to implement `std::fmt::Display` trait.
+
+```rust
+use std::fmt;
+
+impl fmt::Display for Person {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.first_name, self.last_name)
+    }
+}
+```
+
+<h2 id="ff24590464659ee8cdec688128c35f89"></h2>
+
+## Clone
+
+```rust
+#[derive(Clone)]
+...
+
+let a = Person {
+    first_name: String::from("John"),
+    last_name: String::from("Doe"),
+};
+let b = a.clone();
+println!("{},{}", a, b);
+```
+
+<h2 id="5fb63579fc981698f97d55bfecb213ea"></h2>
+
+## Copy
+
+```rust
+#[derive(Debug, Clone, Copy)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let a = Point { x: 1, y: 2 };
+    let b = a;
+    println!("{:?},{:?}", a, b)
+}
+```
+
+
 

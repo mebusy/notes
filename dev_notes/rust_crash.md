@@ -15,12 +15,6 @@
         - [Basic C-like enum](#e68fb48b0db95ac056021af55842cf57)
         - [Enum with fields](#e1436516cb5325961f9689ee8a1cccc5)
         - [The Option Enum](#c2d88d3b75e172263120c90a1942bd55)
-    - [CLI](#91af5705f16502125e8b2187e64202c0)
-    - [Trait](#9118ea0f76d0a8f21a42591caeee043e)
-        - [Debug Trait](#8c24bd362f72757a4105edc427912b83)
-        - [Display Trait](#ea5b3400b3db3c5423190c549a3139c0)
-        - [Clone](#ff24590464659ee8cdec688128c35f89)
-        - [Copy](#5fb63579fc981698f97d55bfecb213ea)
     - [Generic](#8045a0a6c688b0635e3caccc408a1446)
     - [Generic Type Parameters, Trait Bounds, and Lifetimes Together](#b5b64e222aafad7b06e8070ef4879937)
 
@@ -204,7 +198,7 @@ fn add(n1:i32, n2:i32) -> i32 {
 }
 ```
 
-- Closure
+## Closure
 
 ```rust
 pub fn run() {
@@ -404,79 +398,7 @@ impl Movement {
 
 
 
-<h2 id="91af5705f16502125e8b2187e64202c0"></h2>
 
-## CLI
-
-```rust
-use std::env;
-
-pub fn run() {
-    // print command-line arguments
-    let args: Vec<String> = env::args().collect();
-    println!("Args: {:?}", args)
-}
-```
-
-<h2 id="9118ea0f76d0a8f21a42591caeee043e"></h2>
-
-## Trait
-
-<h2 id="8c24bd362f72757a4105edc427912b83"></h2>
-
-### Debug Trait
-
-if you  use `{:?}` format to print a custom struct, rust will throw an error.  In order to print it, you need to add `Debug`  trait to that struct.
-
-```rust
-#[derive(Debug)]
-struct Person {
-    first_name: String,
-    last_name: String
-}
-```
-
-now you can use `{:?}` to print this struct.
-
-<h2 id="ea5b3400b3db3c5423190c549a3139c0"></h2>
-
-### Display Trait
-
-to use `{}` to print a struct,
-
-```rust
-use std::fmt;
-
-impl fmt::Display for Person {
-    fn fmt(*self, f: &mut fmt::Formatter ) -> fmt::Result {
-        write!(f, "({},{})", self.first_name, self,last_name);
-    }
-}
-```
-
-<h2 id="ff24590464659ee8cdec688128c35f89"></h2>
-
-### Clone
-
-```rust
-#[derive(Debug, Clone)]
-...
-let a = A(32);
-let b = a.clone();
-println!( "{}", a );
-```
-
-<h2 id="5fb63579fc981698f97d55bfecb213ea"></h2>
-
-### Copy
-
-```rust
-#[derive(Debug, Copy)]
-...
-let a = A(32);
-let b = a;
-println!( "{}", a );
-```
 
 <h2 id="8045a0a6c688b0635e3caccc408a1446"></h2>
 
