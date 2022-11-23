@@ -9,12 +9,16 @@
     - [Common Collections -- String / Vector / HashMap](#e8bc9e8a8229453b8a3d5bb0e3f1fa9c)
     - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
+    - [Closure](#af4bb376939e77df0e7c2332b837a866)
     - [Structs](#6293f87533836e1d190c7b144ee25975)
         - [Methods](#20c51b5f4e9aeb5334c90ff072e6f928)
     - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
         - [Basic C-like enum](#e68fb48b0db95ac056021af55842cf57)
         - [Enum with fields](#e1436516cb5325961f9689ee8a1cccc5)
         - [The Option Enum](#c2d88d3b75e172263120c90a1942bd55)
+    - [Iterator](#2a29178a57901ddb90f15e2026465103)
+        - [Custom Iterator](#54beef80e0bdfb40d150270f78f2e783)
+        - [Other Iterator Methods](#7b927c8e92f3c7a4db479901db78d290)
     - [Generic](#8045a0a6c688b0635e3caccc408a1446)
     - [Generic Type Parameters, Trait Bounds, and Lifetimes Together](#b5b64e222aafad7b06e8070ef4879937)
 
@@ -197,6 +201,8 @@ fn add(n1:i32, n2:i32) -> i32 {
     n1 + n2  // no semicolon if ignore `return` keyword
 }
 ```
+
+<h2 id="af4bb376939e77df0e7c2332b837a866"></h2>
 
 ## Closure
 
@@ -393,11 +399,98 @@ impl Movement {
         ```
 
 
+<h2 id="2a29178a57901ddb90f15e2026465103"></h2>
+
+## Iterator
+
+```rust
+    let v1 = vec![1, 2, 3];
+
+    // iterator method
+    let iter = v1.iter();
+    let total: i32 = iter.sum();
+    println!("total: {}", total); // total: 6
+
+    // map returns a iterator, but iterator are lazy
+    // this won't do anything until we use a consumer
+    let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
+    println!("v2: {:?}", v2); // v2: [2, 3, 4]
+
+    // When used as a pattern match
+    // (and closure and function arguments are also pattern matches),
+    // the & binds to a reference, making the variable the dereferenced value.
+    let v3: Vec<_> = v1.iter().filter(|&x| x % 2 == 0).collect();
+    println!("v3: {:?}", v3); // v3: [2]
+```
 
 
+<h2 id="54beef80e0bdfb40d150270f78f2e783"></h2>
+
+### Custom Iterator
+
+<details>
+<summary>
+A Counter
+</summary>
+
+```rust
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        // initial count is 0
+        Counter { count: 0 }
+    }
+}
+
+impl Iterator for Counter {
+    // specify the associated type of item
+    type Item = u32;
+
+    // next method returns the next value in the sequence
+    // or None when the sequence is over
+    fn next(&mut self) -> Option<Self::Item> {
+        self.count += 1;
+
+        if self.count < 6 {
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn main() {
+    let counter = Counter::new();
+
+    for i in counter {
+        println!("{}", i); // 1, 2, 3, 4, 5
+    }
+}
+```
+
+</details>
 
 
+<h2 id="7b927c8e92f3c7a4db479901db78d290"></h2>
 
+### Other Iterator Methods
+
+The standard library provides default implementations for a lot of other methods on iterator.
+
+```rust
+#[test]
+fn using_other_iterator_trait_methods() {
+    let sum: u32 = Counter::new()
+        .zip(Counter::new().skip(1)) // [(1, 2), (2, 3), (3, 4), (4, 5)]
+        .map(|(a, b)| a * b) // [2, 6, 12, 20]
+        .filter(|x| x % 3 == 0) // [6, 12]
+        .sum();
+    assert_eq!(18, sum);
+}
+```
 
 
 <h2 id="8045a0a6c688b0635e3caccc408a1446"></h2>

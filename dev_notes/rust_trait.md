@@ -9,6 +9,11 @@
     - [Returning Types that Implement Traits](#8bc762cd737affa437bd5226f1a3f07a)
     - [Using Trait Bounds to Conditionally Implement Methods](#8d14778e381116681aa5fcf8e7fad595)
     - [Blanket Implementation](#20dfee67ef39a47a17576acf5bbe044d)
+- [Some Built-in Traits](#b5c26203975fba6cc92390194c8dd144)
+    - [Debug Trait](#8c24bd362f72757a4105edc427912b83)
+    - [Display Trait](#ea5b3400b3db3c5423190c549a3139c0)
+    - [Clone](#ff24590464659ee8cdec688128c35f89)
+    - [Copy](#5fb63579fc981698f97d55bfecb213ea)
 
 [](...menuend)
 
@@ -238,6 +243,8 @@ impl<T: Display> ToString for T {
 ```
 
 ----
+
+<h2 id="b5c26203975fba6cc92390194c8dd144"></h2>
 
 # Some Built-in Traits
 
