@@ -1,3 +1,14 @@
+[](...menustart)
+
+- [Rust's Module System Explained!](#219fbef8a2b4504f3c6f56ae94b3593e)
+    - [Crates](#fd8eb8cadb7befc1882e26ed13565a5f)
+        - [Some Crate Rules](#7c8e8419e953c266e08298cb5ce8c068)
+    - [Modules](#bf17ac149e2e7a530c677e9bd51d3fd2)
+
+[](...menuend)
+
+
+<h2 id="219fbef8a2b4504f3c6f56ae94b3593e"></h2>
 
 # Rust's Module System Explained!
 
@@ -5,6 +16,8 @@
     - a crate could either be a binary crate or a library crate.  crates contain modules.
     - modules allow you to organize a chunk of code and control the privacy rules.
 
+
+<h2 id="fd8eb8cadb7befc1882e26ed13565a5f"></h2>
 
 ## Crates
 
@@ -14,6 +27,8 @@
 - so even though we don't have any crates defined in `cargo.toml`, our package may actually have 2 crates.
 
 
+<h2 id="7c8e8419e953c266e08298cb5ce8c068"></h2>
+
 ### Some Crate Rules
 
 1. a package must have at least one crate.
@@ -21,6 +36,8 @@
 3. a package could have any number of binary crates.
     - if we want multiple binary crate, we would create a folder called `bin`, and in this folder we can add another file. and each file in this folder will represent another binary crate.
 
+
+<h2 id="bf17ac149e2e7a530c677e9bd51d3fd2"></h2>
 
 ## Modules
 

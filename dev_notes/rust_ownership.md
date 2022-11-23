@@ -1,5 +1,19 @@
+[](...menustart)
+
+- [Understanding Ownership in Rust](#e2a8efc0b9843be08e5a98bd4643972c)
+    - [Ownership rules](#e8d1ae0e7d33cb31e8ff0b54bc904f86)
+    - [Move / Borrow](#3260e15ab0b0472a8c60fe10dc282a51)
+    - [Reference](#63d5049791d9d79d86e9a108b0a999ca)
+    - [Slices](#ebb25066940285a0271542b54f76e9e1)
+
+[](...menuend)
+
+
+<h2 id="e2a8efc0b9843be08e5a98bd4643972c"></h2>
 
 # Understanding Ownership in Rust
+
+<h2 id="e8d1ae0e7d33cb31e8ff0b54bc904f86"></h2>
 
 ## Ownership rules
 
@@ -8,6 +22,8 @@
     - ![](../imgs/rust_ownership.png)
 3. When the owner goes out of scope, the value will be dropped
 
+
+<h2 id="3260e15ab0b0472a8c60fe10dc282a51"></h2>
 
 ## Move / Borrow
 
@@ -25,6 +41,8 @@
     let s2 = s1; // moved, rust default move the value
     // println!("s1 = {}, s2 = {}", s1, s2);
     ```
+
+<h2 id="63d5049791d9d79d86e9a108b0a999ca"></h2>
 
 ## Reference
 
@@ -56,6 +74,8 @@
     2. References must always be valid
 
 
+
+<h2 id="ebb25066940285a0271542b54f76e9e1"></h2>
 
 ## Slices
 

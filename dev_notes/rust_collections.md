@@ -1,6 +1,21 @@
+[](...menustart)
+
+- [Common Collections in Rust](#08582156814ae0358bca2ce3318bd2a0)
+    - [Vector](#57dea6f5039281b7fee517fc43bf3110)
+    - [String](#27118326006d3829667a400ad23d5d98)
+        - [Concat String](#e00c79e7084b18fb370b2195be267984)
+        - [Get String Character](#2f1844e4a053e671634071bb4eb7aa8d)
+    - [Hash](#fae8a9257e154175da4193dbf6552ef6)
+
+[](...menuend)
+
+
+<h2 id="08582156814ae0358bca2ce3318bd2a0"></h2>
 
 # Common Collections in Rust
 
+
+<h2 id="57dea6f5039281b7fee517fc43bf3110"></h2>
 
 ## Vector
 
@@ -24,6 +39,8 @@ to access a vector element
 ```
 
 
+<h2 id="27118326006d3829667a400ad23d5d98"></h2>
+
 ## String
 
 
@@ -44,6 +61,8 @@ to access a vector element
     let hello = &s1[..5]; // :&str
     ```
 
+<h2 id="e00c79e7084b18fb370b2195be267984"></h2>
+
 ### Concat String
 
 ```rust
@@ -62,6 +81,8 @@ to access a vector element
 ```
 
 
+<h2 id="2f1844e4a053e671634071bb4eb7aa8d"></h2>
+
 ### Get String Character
 
 
@@ -79,6 +100,8 @@ to access a vector element
     }
 ```
 
+
+<h2 id="fae8a9257e154175da4193dbf6552ef6"></h2>
 
 ## Hash
 

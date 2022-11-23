@@ -1,5 +1,20 @@
+[](...menustart)
+
+- [Error Handling in Rust](#c3879240de2d5548d9e0d6de8118bf24)
+    - [Unrecoverable Errors with panic!](#689fed929813adeb0bf87f95904bb0ed)
+    - [Recoverable Errors with Result Enum](#cbc612a63c2eb3d2d381c3acaa6532e0)
+        - [unwrap and expect](#d0dd9c6057e4b7304e97d4b63a862cdc)
+        - [Propagating Errors](#fb49d19dc99200030dd86a0b9521e776)
+        - [? Operator : End earlier & Return the error](#7860fefe2180786396fab5ef224be6e0)
+
+[](...menuend)
+
+
+<h2 id="c3879240de2d5548d9e0d6de8118bf24"></h2>
 
 # Error Handling in Rust
+
+<h2 id="689fed929813adeb0bf87f95904bb0ed"></h2>
 
 ## Unrecoverable Errors with panic!
 
@@ -15,6 +30,8 @@ To abort on panic in release mode, add the following lines into `[profile]` sect
 [profile.release]
 panic = 'abort'
 ```
+
+<h2 id="cbc612a63c2eb3d2d381c3acaa6532e0"></h2>
 
 ## Recoverable Errors with Result Enum
 
@@ -69,6 +86,8 @@ fn main() {
 The `Result<T, E>` type has many methods that accept a closure and are implemented using match expressions.
 
 
+<h2 id="d0dd9c6057e4b7304e97d4b63a862cdc"></h2>
+
 ### unwrap and expect
 
 If the Result value is the Ok variant, unwrap will return the value inside the Ok.
@@ -91,6 +110,8 @@ fn main() {
 }
 ```
 
+
+<h2 id="fb49d19dc99200030dd86a0b9521e776"></h2>
 
 ### Propagating Errors
 
@@ -125,6 +146,8 @@ fn read_username_from_file() -> Result<String, io::Error> {
 
 </details>
 
+
+<h2 id="7860fefe2180786396fab5ef224be6e0"></h2>
 
 ### ? Operator : End earlier & Return the error
 

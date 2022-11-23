@@ -1,5 +1,3 @@
-
-
 1. [rust cheat sheet](https://cheats.rs)
 2. [rust crash course](./rust_crash.md)
 3. [ownership](rust_ownership.md)
@@ -10,7 +8,6 @@
 
 4. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
 5. [Concurrency,Threads,Channel,Mutex,Arc](rust_thread_channels_mutex_arc.md)
-6. [learnRustInYMintues](./learnRustInYMintues.md)
 
 
 ----

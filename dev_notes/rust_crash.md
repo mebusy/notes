@@ -2,15 +2,19 @@
 
 - [Rust Crash Course](#c5822cd18f83072f8602e5235e1b7ed5)
     - [Variable](#47c14840d8e15331fa420b9b2f757cd9)
+        - [Shadowding](#68ac3dabc5d182da440f74a6bccf79a7)
     - [Primitive Data Types](#6c1067528b82c9144a62fb1dd2cd925e)
         - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
         - [Compound Types](#9e57b6b46532794638212df8e239adde)
+    - [Common Collections -- String / Vector / HashMap](#e8bc9e8a8229453b8a3d5bb0e3f1fa9c)
     - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
     - [Structs](#6293f87533836e1d190c7b144ee25975)
-        - [Struct which has functions](#9a6a7f4d3eff618bae767bf2afefc00e)
+        - [Methods](#20c51b5f4e9aeb5334c90ff072e6f928)
     - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
-        - [Option](#aaee770340310065a9498e2788783098)
+        - [Basic C-like enum](#e68fb48b0db95ac056021af55842cf57)
+        - [Enum with fields](#e1436516cb5325961f9689ee8a1cccc5)
+        - [The Option Enum](#c2d88d3b75e172263120c90a1942bd55)
     - [CLI](#91af5705f16502125e8b2187e64202c0)
     - [Trait](#9118ea0f76d0a8f21a42591caeee043e)
         - [Debug Trait](#8c24bd362f72757a4105edc427912b83)
@@ -18,6 +22,7 @@
         - [Clone](#ff24590464659ee8cdec688128c35f89)
         - [Copy](#5fb63579fc981698f97d55bfecb213ea)
     - [Generic](#8045a0a6c688b0635e3caccc408a1446)
+    - [Generic Type Parameters, Trait Bounds, and Lifetimes Together](#b5b64e222aafad7b06e8070ef4879937)
 
 [](...menuend)
 
@@ -25,9 +30,6 @@
 <h2 id="c5822cd18f83072f8602e5235e1b7ed5"></h2>
 
 # Rust Crash Course
-
-<h2 id="ad148a3ca8bd0ef3b48c52454c493ec5"></h2>
-
 
 <h2 id="47c14840d8e15331fa420b9b2f757cd9"></h2>
 
@@ -43,6 +45,8 @@ let mut age = 43; // mutable variable
 // const must explicityly define a type
 const ID: i32 = 380; 
 ```
+
+<h2 id="68ac3dabc5d182da440f74a6bccf79a7"></h2>
 
 ### Shadowding
 
@@ -105,6 +109,8 @@ const ID: i32 = 380;
     - `:?` mark here is what's called a **debug flag**, and since arrays have a debug **trait** built into them, so we can do it this way.
     - if we want the print more pretty, we can use `:#?`
 
+
+<h2 id="e8bc9e8a8229453b8a3d5bb0e3f1fa9c"></h2>
 
 ## Common Collections -- String / Vector / HashMap
 
@@ -245,7 +251,7 @@ pub fn run() {
     // c.0
     ```
 
-<h2 id="9a6a7f4d3eff618bae767bf2afefc00e"></h2>
+<h2 id="20c51b5f4e9aeb5334c90ff072e6f928"></h2>
 
 ### Methods
 
@@ -294,6 +300,8 @@ let mut p = Person::new("John", "Doe");
 
 ## Enums
 
+<h2 id="e68fb48b0db95ac056021af55842cf57"></h2>
+
 ### Basic C-like enum
 
 ```rust
@@ -306,6 +314,8 @@ enum Direction {
 
 let up = Direction::Up;
 ```
+
+<h2 id="e1436516cb5325961f9689ee8a1cccc5"></h2>
 
 ### Enum with fields
 
@@ -339,6 +349,8 @@ impl Movement {
 }
 ```
 
+
+<h2 id="c2d88d3b75e172263120c90a1942bd55"></h2>
 
 ### The Option Enum
 
@@ -539,6 +551,8 @@ fn main() {
 
 Generic won't incur a performance hit, that's because at compile time, rust will actually **turn the generic type into different explicit types**.
 
+
+<h2 id="b5b64e222aafad7b06e8070ef4879937"></h2>
 
 ## Generic Type Parameters, Trait Bounds, and Lifetimes Together
 

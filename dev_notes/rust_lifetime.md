@@ -1,3 +1,15 @@
+[](...menustart)
+
+- [Rust Lifetimes](#7534212773247d67ab31b026ee9b2ba7)
+    - [Generic Lifetime Annotation in Function Signatures](#f4871a3cacf3845ded1078a594f7aa67)
+    - [Generic Lifetime Annotations in Struct Definitions](#883542a7c1a8b1e22f8dd8b815157720)
+    - [Generic Lifetime Annotations in Method Definitions](#5980499271d0e9a299dd7fd13d83ab35)
+    - [The Static Lifetime](#2bb98037fd2da57e912de143f6c29347)
+
+[](...menuend)
+
+
+<h2 id="7534212773247d67ab31b026ee9b2ba7"></h2>
 
 # Rust Lifetimes
 
@@ -39,6 +51,8 @@ fn main() {
 To solve this error, we need something called **generic lifetime annotation**.
 
 
+<h2 id="f4871a3cacf3845ded1078a594f7aa67"></h2>
+
 ## Generic Lifetime Annotation in Function Signatures
 
 Generic Lifetime Annotation describe the relationship between the lifetimes of multiple reference.  They don't actually change the lifetime of a reference but rather just explain the relationship between different lifetimes.
@@ -63,6 +77,8 @@ fn longest2<'a>(x: &'a str, y: &'a str) -> &str {
 ```
 
 
+<h2 id="883542a7c1a8b1e22f8dd8b815157720"></h2>
+
 ## Generic Lifetime Annotations in Struct Definitions
 
 ```rust
@@ -70,6 +86,8 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 ```
+
+<h2 id="5980499271d0e9a299dd7fd13d83ab35"></h2>
 
 ## Generic Lifetime Annotations in Method Definitions
 
@@ -87,6 +105,8 @@ impl<'a> ImportantExcerpt<'a> {
 }
 ```
 
+
+<h2 id="2bb98037fd2da57e912de143f6c29347"></h2>
 
 ## The Static Lifetime
 
