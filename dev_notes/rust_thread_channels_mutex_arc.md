@@ -16,36 +16,6 @@
 
 ## Thread
 
-**Spawn**
-
-```rust
-use std::thread;
-
-/// rust uses the OS-threads directly because 
-/// its sake of having a lower runtime
-/// possible output:
-///     thread number: 3
-///     thread number: 0
-///     main thread output.
-///     thread number: 1
-///     thread number: 2
-///     thread number: 5
-pub fn spawn_thread() {
-    println!( "---- thread spawn ----" );
-
-    let mut c = vec![];
-
-    for i in 0..10 {
-        c.push(  thread::spawn( move || {
-                println!("thread number: {}", i);
-            }
-        ));
-    }
-
-    println!( "main thread output.");
-
-}
-```
 
 **Join**
 
