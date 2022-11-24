@@ -250,6 +250,11 @@ pub fn run() {
     let c = Color( 255,0,0 );
     // c.0
     ```
+- Unit Structs
+    - Unit structs are useful when you need to implement a trait on something, but don’t need to store any data inside it.
+    ```rusts
+    struct Unit;
+    ```
 
 <h2 id="20c51b5f4e9aeb5334c90ff072e6f928"></h2>
 
