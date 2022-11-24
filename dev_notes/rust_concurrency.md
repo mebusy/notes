@@ -1,8 +1,26 @@
+[](...menustart)
+
+- [Concurrency](#3e48afddb0c5521684b8d2687b0869d6)
+    - [Spawn](#4fd1dddbd78f7f7cdcd62e926266611e)
+    - [Join](#a286d9991c6a547ae25a5f5216164b8f)
+    - [Using Move Closures With Threads](#41f033a11762f7eda240a32e428e0e99)
+    - [Channel: Message Passing](#36e5dfc60557bdff7e4760871d799e50)
+        - [Multiple Producer](#d2a0579b82231d769d7afe60b5d3cef2)
+    - [Mutex, Arc: Sharing State](#303091e2e398a8d8c719e24b43a7fea7)
+    - [Channel + Mutex](#b185fe3ec2b9f12d732c93ca7e06ad52)
+
+[](...menuend)
+
+
+<h2 id="3e48afddb0c5521684b8d2687b0869d6"></h2>
+
 # Concurrency
 
 Rust only includes one-to-one threads, or OS-threads in its stardard library.
 
 However if you would like to use green threads (m to n model) with the trade-off of having a larger binary, then you could use crates that provide such functionality.
+
+<h2 id="4fd1dddbd78f7f7cdcd62e926266611e"></h2>
 
 ## Spawn
 
@@ -34,6 +52,8 @@ fn main() {
 
 Note the spawn thread didn't finish printing all of its numbers. This is because the main thread ends, the spawn thread is stopped no matter if it finished executing or not.
 
+
+<h2 id="a286d9991c6a547ae25a5f5216164b8f"></h2>
 
 ## Join
 
@@ -73,6 +93,8 @@ fn main() {
 // hi number 9 from the spawned thread!
 ```
 
+<h2 id="41f033a11762f7eda240a32e428e0e99"></h2>
+
 ## Using Move Closures With Threads
 
 This exmaple will raise an error: 
@@ -104,6 +126,8 @@ To force the closure to take ownership of *v*, use the `move` keyword.
     ...
 }
 ```
+
+<h2 id="36e5dfc60557bdff7e4760871d799e50"></h2>
 
 ## Channel: Message Passing
 
@@ -201,6 +225,8 @@ fn main() {
     - `try_recv()` is non-blocking
 
 
+<h2 id="d2a0579b82231d769d7afe60b5d3cef2"></h2>
+
 ### Multiple Producer
 
 ```rust
@@ -238,6 +264,8 @@ fn main() {
 }
 ```
 
+
+<h2 id="303091e2e398a8d8c719e24b43a7fea7"></h2>
 
 ## Mutex, Arc: Sharing State
 
@@ -336,6 +364,8 @@ fn main() {
 
 You might have noticed that `counter` is immutable, but we're able to get a mutable reference to the value. That's because mutex uses *interior mutability*.
 
+
+<h2 id="b185fe3ec2b9f12d732c93ca7e06ad52"></h2>
 
 ## Channel + Mutex
 
