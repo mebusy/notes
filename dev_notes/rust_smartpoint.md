@@ -314,7 +314,7 @@ fn main() {
 
 ## Interior Mutability
 
-Interior mutability is a design pattern in rust that allows you to mutate data even there are immutable referencess to that data, which is typically disallowed by the borrowing rules.
+Interior mutability is a design pattern in rust that allows you to **mutate data even there are immutable referencess** to that data, which is typically disallowed by the borrowing rules.
 
 To mutate data this pattern use unsafe code inside a data structure to bypass the typical rules around mutation and borrowing. 
 

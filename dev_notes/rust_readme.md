@@ -6,9 +6,9 @@
 6. [Traits (interface)](rust_trait.md)
 7. [lifetime](rust_lifetime.md)
 8. [smart pointer](rust_smartpoint.md)
+9. [concurrency,threads,channel,mutex,arc](rust_concurrency.md)
 
 4. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
-5. [Concurrency,Threads,Channel,Mutex,Arc](rust_thread_channels_mutex_arc.md)
 
 
 ----
