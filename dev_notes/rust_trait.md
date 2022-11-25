@@ -14,6 +14,10 @@
     - [Display Trait](#ea5b3400b3db3c5423190c549a3139c0)
     - [Clone](#ff24590464659ee8cdec688128c35f89)
     - [Copy](#5fb63579fc981698f97d55bfecb213ea)
+- [Trait Objects](#958d49973ce1cbbef0568304f29ed8b8)
+    - [Object Safe Trait](#54cd7d1ff84ce266ad43e9146fdb1149)
+- [Advanced Traits](#4ffb7ac08a15b1d3811fff77137701ec)
+    - [Associated Types](#985cb623ec3c652fac4377ad107f3f9a)
 
 [](...menuend)
 
@@ -316,6 +320,8 @@ fn main() {
 ```
 
 
+<h2 id="958d49973ce1cbbef0568304f29ed8b8"></h2>
+
 # Trait Objects
 
 Rust doesn't support classical inheritance. However it does achieve polymorphism, which is the ability for code to work on multiple types of data through **trait objects**.
@@ -423,6 +429,8 @@ Let's say if you had a function called `add<T>(a:T, b:T)` ,  you use that functi
 The opposite is **dynamic dispatch**. Dynamic dispatch happens when the compiler does not know the concrete methods you're calling at compile time. Instead it figures that out at runtime. When using trait objects, the rust compiler must use dynamic dispatch. The compiler will add code to figure out the correct method to call at runtime.
 
 
+<h2 id="54cd7d1ff84ce266ad43e9146fdb1149"></h2>
+
 ## Object Safe Trait
 
 You can only make object safety traits into trait bounds. 
@@ -432,7 +440,11 @@ You can only make object safety traits into trait bounds.
     - if a trait does not have these 2 properties, then the rust compiler can't figure out the concrete type of that trait and therefore doesn't know the correct methods to call.
 
 
+<h2 id="4ffb7ac08a15b1d3811fff77137701ec"></h2>
+
 # Advanced Traits 
+
+<h2 id="985cb623ec3c652fac4377ad107f3f9a"></h2>
 
 ## Associated Types
 

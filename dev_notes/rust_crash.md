@@ -6,12 +6,15 @@
     - [Primitive Data Types](#6c1067528b82c9144a62fb1dd2cd925e)
         - [Scalar Types](#09d9982852d86c2479924a4e3b723b1e)
         - [Compound Types](#9e57b6b46532794638212df8e239adde)
+        - [Type Aliase](#1d03b00d077f71ec0057d930d8b59e4d)
     - [Common Collections -- String / Vector / HashMap](#e8bc9e8a8229453b8a3d5bb0e3f1fa9c)
     - [Flows](#c647c38e64bd84c0fe9fe165f3fff0eb)
     - [Functions](#e93acb146e114b5dfa6ce2d12dcb96e4)
     - [Closure](#af4bb376939e77df0e7c2332b837a866)
+        - [Returning Closures](#3625c84e56f1dcfb7aeeca953f192f5d)
     - [Structs](#6293f87533836e1d190c7b144ee25975)
         - [Methods](#20c51b5f4e9aeb5334c90ff072e6f928)
+        - [Struct Inheritance ?](#34c0b94543a1d5fad1e1c9acc4388dc7)
     - [Enums](#1b22e7dc709b52f1767fe1eb5dc56625)
         - [Basic C-like enum](#e68fb48b0db95ac056021af55842cf57)
         - [Enum with fields](#e1436516cb5325961f9689ee8a1cccc5)
@@ -108,6 +111,8 @@ const ID: i32 = 380;
     - if we want the print more pretty, we can use `:#?`
 
 
+
+<h2 id="1d03b00d077f71ec0057d930d8b59e4d"></h2>
 
 ### Type Aliase
 
@@ -224,6 +229,8 @@ pub fn run() {
 }
 ```
 
+
+<h2 id="3625c84e56f1dcfb7aeeca953f192f5d"></h2>
 
 ### Returning Closures
 
@@ -353,6 +360,8 @@ let mut p = Person::new("John", "Doe");
 // p.first_name
 // p.full_name()
 ```
+
+<h2 id="34c0b94543a1d5fad1e1c9acc4388dc7"></h2>
 
 ### Struct Inheritance ?
 
