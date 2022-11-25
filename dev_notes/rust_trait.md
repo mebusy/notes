@@ -316,4 +316,119 @@ fn main() {
 ```
 
 
+# Trait Objects
+
+Rust doesn't support classical inheritance. However it does achieve polymorphism, which is the ability for code to work on multiple types of data through **trait objects**.
+
+An GUI app example:
+
+<details>
+<summary>
+lib.rs
+</summary>
+
+```rust
+pub trait Draw {
+    fn draw(&self);
+}
+
+// main screen
+pub struct Screen {
+    // visual components to be drawn
+    pub components: Vec<Box<dyn Draw>>,
+}
+
+impl Screen {
+    // iterate over components and call draw on each
+    pub fn run(&self) {
+        for component in self.components.iter() {
+            component.draw();
+        }
+    }
+}
+
+// botton component
+pub struct Button {
+    pub width: u32,
+    pub height: u32,
+    pub label: String,
+}
+
+impl Draw for Button {
+    fn draw(&self) {
+        println!("Drawing button with label {}", self.label);
+    }
+}
+```
+
+</details>
+
+
+<details>
+<summary>
+main.rs
+</summary>
+
+```rust
+use rust_tutor::{Button, Draw, Screen};
+
+struct SelectBox {
+    width: u32,
+    height: u32,
+    options: Vec<String>,
+}
+
+impl Draw for SelectBox {
+    fn draw(&self) {
+        // Code to actually draw a select box
+    }
+}
+
+fn main() {
+    let screen = Screen {
+        components: vec![
+            Box::new(SelectBox {
+                width: 75,
+                height: 10,
+                options: vec![
+                    String::from("Yes"),
+                    String::from("Maybe"),
+                    String::from("No"),
+                ],
+            }),
+            Box::new(Button {
+                width: 50,
+                height: 10,
+                label: String::from("OK"),
+            }),
+        ],
+    };
+
+    screen.run();
+}
+```
+
+</details>
+
+You might noticed here we use `dyn` dynamic dispatch.  The trait objects **must include the `dyn` keyword**, otherwise it it raise a compile error [E0782].
+
+```rust
+    pub components: Vec<Box<dyn Draw>>,
+```
+
+Let's talk about a little bit about static vs dynamic dispatch. 
+
+Let's say if you had a function called `add<T>(a:T, b:T)` ,  you use that function with floating point numbers and integers. The compiler will generate a function called `integer_add` and a `float_add` , then it will find all the call sites of the `add` methods and replace it with the concrete implementation. This is called **static dispatch**.
+
+The opposite is **dynamic dispatch**. Dynamic dispatch happens when the compiler does not know the concrete methods you're calling at compile time. Instead it figures that out at runtime. When using trait objects, the rust compiler must use dynamic dispatch. The compiler will add code to figure out the correct method to call at runtime.
+
+
+## Object Safe Trait
+
+You can only make object safety traits into trait bounds. 
+
+- A trait is object safe when all of the methods implemented on that trait have these 2 properties: 
+    - the return type it not itself and there are no generic parameters
+    - if a trait does not have these 2 properties, then the rust compiler can't figure out the concrete type of that trait and therefore doesn't know the correct methods to call.
+
 
