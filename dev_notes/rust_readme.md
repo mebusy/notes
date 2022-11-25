@@ -1,4 +1,4 @@
-1. [rust cheat sheet](https://cheats.rs)
+1. [rust cheat sheet](https://cheats.rs)    [rust by example](https://doc.rust-lang.org/rust-by-example/flow_control/if_let.html)
 2. [rust crash course](./rust_crash.md)
 3. [ownership](rust_ownership.md)
 4. [module system](rust_modulesystem.md)

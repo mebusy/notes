@@ -108,6 +108,14 @@ const ID: i32 = 380;
     - if we want the print more pretty, we can use `:#?`
 
 
+
+### Type Aliase
+
+```rust
+    type Trunk = Box<dyn Fn() + Send + 'static>;
+```
+
+
 <h2 id="e8bc9e8a8229453b8a3d5bb0e3f1fa9c"></h2>
 
 ## Common Collections -- String / Vector / HashMap

@@ -432,3 +432,64 @@ You can only make object safety traits into trait bounds.
     - if a trait does not have these 2 properties, then the rust compiler can't figure out the concrete type of that trait and therefore doesn't know the correct methods to call.
 
 
+# Advanced Traits 
+
+## Associated Types
+
+**Associated Types** are placeholders which you can add to your trait and then methods can use that placeholder.
+
+```rust
+pub trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+}
+```
+
+For example here we've defined the `Iterator` trait which has one associated type named `Item`, and we use it in the `next` method. Then when we implement our iteractor trait we will specify a concrete type for `Item`.
+
+This way you can define a trait which uses some type that's unknown until we implement the trait.
+
+What's the difference between associated types and generics? They both allow use to define a type without specifying the concrete value. The difference is with associated types we can only have 1 concrete type per implementation.
+
+```rust
+struct Counter {}
+
+// you implement Iterator trait with Item type u32
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        Some(1)
+    }
+}
+// you can NOT do another implementation with Item type u16, for example
+```
+
+whereas with generics we can have multiple concrete types per implementation.
+
+```rust
+// Generic Example
+pub trait Iterator<T> {
+    fn next(&mut self) -> Option<T>;
+}
+
+struct Counter {}
+
+impl Iterator<u32> for Counter {
+    fn next(&mut self) -> Option<u32> {
+        Some(1)
+    }
+}
+impl Iterator<u16> for Counter {
+    fn next(&mut self) -> Option<u16> {
+        Some(1)
+    }
+}
+```
+
+Using associated type trait if for any given implementation  you want the `next` method to return the same concrete type. 
+
+
+
+
