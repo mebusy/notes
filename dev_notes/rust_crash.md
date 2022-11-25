@@ -299,6 +299,51 @@ let mut p = Person::new("John", "Doe");
 // p.full_name()
 ```
 
+### Struct Inheritance ?
+
+Rust does **NOT** have struct inheritance of any kind.
+
+If you want StructB to contain the same fields as StructA, then you need to use composition.
+
+```rust
+struct StructB {
+    a: StructA,
+    // other fields...
+}
+```
+
+If you want to be able to use a `StructB` as a `StructA`, you can get some of the way there by implementing the `Deref` and `DerefMut` traits, which will allow the compiler to implicitly cast pointers to `StructB`s to pointers to `StructA`s:
+
+```rust
+struct StructA;
+
+impl StructA {
+    fn name(&self) -> &'static str {
+        "Anna"
+    }
+}
+
+struct StructB {
+    a: StructA,
+    // other fields...
+}
+
+impl std::ops::Deref for StructB {
+    type Target = StructA;
+    fn deref(&self) -> &Self::Target {
+        &self.a
+    }
+}
+
+fn main() {
+    let b = StructB { a: StructA };
+    println!("{}", b.name()); // Anna
+}
+```
+
+
+Another alternative is to use generic + trait.
+
 
 
 <h2 id="1b22e7dc709b52f1767fe1eb5dc56625"></h2>
