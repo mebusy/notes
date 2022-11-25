@@ -225,6 +225,53 @@ pub fn run() {
 ```
 
 
+### Returning Closures
+
+Closures are presented using traits. We can not return a concrete type. Instead we can use `impl TRAIT` syntax.
+
+```rust
+fn returns_closure() -> impl Fn(i32) -> i32 {
+    |x| x + 1
+}
+```
+
+Note that this syntax will not work in all situations.
+
+
+```rust
+// `if` and `else` have incompatible types expected closure 
+// no two closures, even if identicial, have same type
+fn returns_closure(a: i32) -> impl Fn(i32) -> i32 {
+    if a > 0 {
+        move |x| x + a
+    } else {
+        move |x| x - a
+    }
+}
+```
+
+In this case,  the 2 closures are different types, and the `impl TRAIT` syntax only works if we're returning one type. But in this case we're returning one of 2 types depending on the value of `a`. 
+
+So instead of using the `impl trait` syntax, we can return a trait object.
+
+```rust
+// return type cannot have an unboxed trait object for information on trait objects
+fn returns_closure(a: i32) -> dyn Fn(i32) -> i32
+```
+
+But rest doesn't know the size of closure being returned, so we have to wrap it in some sort of pointer.
+
+```rust
+fn returns_closure(a: i32) -> Box<dyn Fn(i32) -> i32> {
+    if a > 0 {
+        Box::new(move |x| x + a)
+    } else {
+        Box::new(move |x| x - a)
+    }
+}
+```
+
+
 <h2 id="6293f87533836e1d190c7b144ee25975"></h2>
 
 ## Structs
