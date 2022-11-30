@@ -95,18 +95,16 @@ it seems that TKE will automatically use  `tencenthubkey` ?
             ],
             "resource": "qcs::cos:::BUCKET-NAME/*",
             "effect": "allow"
-        },
-        {
-            "effect": "allow",
-            "action": [
-                "monitor:*",
-                "cam:ListUsersForGroup",
-                "cam:ListGroups",
-                "cam:GetGroup"
-            ],
-            "resource": "*"
         }
     ]
+}
+```
+
+更加精准的6段式资源:
+
+```json
+{
+    "resource": "qcs::cos:ap-shanghai:uid/YourAccountID:BUCKETNAME-YourAccountID/access/path/*"
 }
 ```
 
