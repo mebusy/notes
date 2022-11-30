@@ -30,7 +30,7 @@
 
 # Maxq 
 
-Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE policy.
+Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greedy in the Limit with Infinite Exploration) policy.
 
  ![][1] 
 
