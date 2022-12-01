@@ -30,6 +30,31 @@
 
 # Maxq 
 
+[youtube course from IIT](https://www.youtube.com/watch?v=EbTIQqVDJsg&list=PLHD22PKARkdR5qnXSwYOzZY4VjIDvZWan)
+
+## 0. Some Concepts
+
+- SMDP
+    - Semi Markov Decision Process
+    - you take an action, and the time of state transitions is a general continuous random variable
+
+- Recursive versus Hierarchical **Optimality**
+    - ![](../imgs/hierarchy_vs_recursive_optimal.png)
+        - the policy shown in the left diagram is recursively optimal 
+        - the policy shown in the right diagram is hierarchically optimal
+    - Recursive optimality
+        - each individual component is solved optimally
+        - only guarantees that the policy of each subtask is optimal given the policies of its children
+    - Hierarchically optimal
+        - finds the policy optimal within the space of policies defined by the hierarchy. 
+        - In this form of optimality, the policy for each individual subtask is not necessarily optimal, but the policy for the entire hierarchy is optimal,
+        - Generally, Hierarchically optimal is NOT **global flat optimal**, even though in this example, they are same one.
+
+- Options
+    - so called `macro actions`
+    - An option is essentially some kind of an encapsulated policy.
+
+
 Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greedy in the Limit with Infinite Exploration) policy.
 
  ![][1] 
