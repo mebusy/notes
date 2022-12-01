@@ -1,8 +1,9 @@
 [](...menustart)
 
 - [Backend tips](#6edcb6f97b94edc1579875d8335df797)
-    - [CORS](#5a8feff0b4bde3eec9244b76023b791d)
-        - [test whether your server supoort CORS](#1e545f4bd1d09eb09ed43fabac84aba4)
+    - [Test whether your server supoort CORS](#548a5cc4c4019da5a34fbb22dcf5a26d)
+        - [Normal HTTP server](#778777314b185e9e67802ca4dd15ebfb)
+        - [Socket.io Server](#7a07e7f39c73f6c4430af211308bfd16)
     - [check whether server enable 'keepalive' feature](#f779c9d1d9da7473f0eebf90d56dc319)
     - [self signed cert](#b09fb18aea2fecd5ff9b30027f00a5aa)
     - [Redeem](#81ed4dcb851fefbbbc791eeef4cd97a2)
@@ -16,9 +17,11 @@
 # Backend tips
 
 
-<h2 id="5a8feff0b4bde3eec9244b76023b791d"></h2>
+<h2 id="548a5cc4c4019da5a34fbb22dcf5a26d"></h2>
 
 ## Test whether your server supoort CORS
+
+<h2 id="778777314b185e9e67802ca4dd15ebfb"></h2>
 
 ### Normal HTTP server
 
@@ -53,6 +56,8 @@ If the preflight request is successful,  the response **should** include the Acc
 < Vary: Access-Control-Request-Headers
 < Access-Control-Allow-Headers: X-Requested-With
 ```
+
+<h2 id="7a07e7f39c73f6c4430af211308bfd16"></h2>
 
 ### Socket.io Server
 
