@@ -18,26 +18,61 @@
 
 <h2 id="5a8feff0b4bde3eec9244b76023b791d"></h2>
 
-## CORS 
+## Test whether your server supoort CORS
 
-<h2 id="1e545f4bd1d09eb09ed43fabac84aba4"></h2>
+### Normal HTTP server
 
-### test whether your server supoort CORS
+**Sending a regular CORS request using cUrl:**
 
-- in chrome  console 
-
-```
-var xhr = new XMLHttpRequest();
-xhr.open('OPTIONS', 'http://localhost:3000',true);
-xhr.send();
+```bash
+curl -H "Origin: http://example.com" --head -v <your_request_url>
 ```
 
+The **response** should include the Access-Control-**Allow**-Origin header.
+
+```bash
+< Access-Control-Allow-Origin: *
+Access-Control-Allow-Origin: *
 ```
-var xhr = new XMLHttpRequest();
-xhr.open('POST', 'http://localhost:3000/setuserdata/test-UUID-0',true);
-xhr.setRequestHeader("auth-ts", 12234 )
-xhr.setRequestHeader("auth-sig", 12234 )
-xhr.send();
+
+**Sending a preflight request using cUrl:**
+
+```bash
+curl -H "Origin: http://example.com" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: X-Requested-With" \
+  -X OPTIONS -v \
+  <your_request_url>
+```
+
+If the preflight request is successful,  the response **should** include the Access-Control-**Allow**-Origin, Access-Control-**Allow**-Methods, and Access-Control-**Allow**-Headers response headers.
+
+```bash
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE
+< Vary: Access-Control-Request-Headers
+< Access-Control-Allow-Headers: X-Requested-With
+```
+
+### Socket.io Server
+
+append `/socket.io/` to your request url
+
+```bash
+curl -H "Origin: http://example.com" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: X-Requested-With" \
+  -X OPTIONS -v \
+  http://localhost:8000/socket.io/
+```
+
+```bash
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 204 No Content
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET,HEAD,PUT,PATCH,POST,DELETE
+< Vary: Access-Control-Request-Headers
+< Access-Control-Allow-Headers: X-Requested-With
 ```
 
 
