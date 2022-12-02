@@ -38,8 +38,9 @@
     - Semi Markov Decision Process
     - you take an action, and the time of state transitions is a general continuous random variable
 
-- Recursive versus Hierarchical **Optimality**
-    - ![](../imgs/hierarchy_vs_recursive_optimal.png)
+- **Optimality**
+    - Recursive optimal versus Hierarchical optimal
+        - ![](../imgs/hierarchy_vs_recursive_optimal.png)
         - the policy shown in the left diagram is recursively optimal 
         - the policy shown in the right diagram is hierarchically optimal
     - Recursive optimality
@@ -50,9 +51,19 @@
         - In this form of optimality, the policy for each individual subtask is not necessarily optimal, but the policy for the entire hierarchy is optimal,
         - Generally, Hierarchically optimal is NOT **global flat optimal**, even though in this example, they are same one.
 
-- Options
-    - so called `macro actions`
+- **Options**
     - An option is essentially some kind of an encapsulated policy.
+        - so called `macro actions`
+    - Markov Option
+        - A Markov option can be represented as:  o = `< I, π, β >`
+            1. I⊆S - a set of initial states, which o may be started
+            2. π:SxA → [0,1] - the policy followed during o
+            3. β:S → [0,1] - the probability of terminating in each state
+    - Semi Markov Option
+        - policy and termination condition may depend on the **entire history** of states, actions, and rewards since `o` started.
+            - while Markov option depend only on the **current state**.
+        - π:HxA → [0,1]
+        - β:H → [0,1] 
 
 
 Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greedy in the Limit with Infinite Exploration) policy.
