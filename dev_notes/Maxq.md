@@ -36,7 +36,7 @@
 
 - SMDP
     - Semi Markov Decision Process
-    - you take an action, and the time of state transitions is a general continuous random variable
+    - the actions can take a variable amount of time to complete.
 
 - **Optimality**
     - Recursive optimal versus Hierarchical optimal
