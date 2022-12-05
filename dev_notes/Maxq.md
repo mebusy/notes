@@ -64,7 +64,7 @@
             - while Markov option depend only on the **current state**.
         - π:HxA → [0,1]
         - β:H → [0,1] 
-
+    - Learning: Intra-Option Q-Learning
 
 Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greedy in the Limit with Infinite Exploration) policy.
 
