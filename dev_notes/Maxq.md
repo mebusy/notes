@@ -74,6 +74,15 @@ Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greed
 <h2 id="1ca2a53e3aee2426fbe0471c0788f16d"></h2>
 
 # 3. The MAXQ Value Function Decomposition
+
+- NOTEs
+    - projected value function V<sup>π</sup>(a,s) : 
+        - value function of a subtask a, following π
+            - if a is subtask, V<sup>π</sup>(a,s) is the expected accumlative reward of `option` a
+            - if a is primitive , V<sup>π</sup>(a,s) is the expected immediate reward
+        - R̅ᵢ(s,a) = V<sup>π</sup>(a,s)
+
+
  
 <h2 id="11b7c68186495355b7770a6777ab2f40"></h2>
 
