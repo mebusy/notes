@@ -70,6 +70,9 @@ Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greed
 
  ![][1] 
 
+
+There are **500 possible states**: 25 taxi postion(grid), 5 locations for the passenger (4 starting locations, or on the taxi), and 4 destinations.
+
  
 <h2 id="1ca2a53e3aee2426fbe0471c0788f16d"></h2>
 
@@ -87,6 +90,8 @@ Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greed
 <h2 id="11b7c68186495355b7770a6777ab2f40"></h2>
 
 ## 3.1 Taxi example
+
+
 
 **subtasks** : Each of these **subtasks** is defined by a *subgoal*, and each **subtask** terminates when the *subgoal* is achieved.
 
@@ -629,100 +634,78 @@ Now let us describe and analyze the 5 abstraction conditions. We have identified
 
 ### 5.1.1 CONDITION 1: MAX NODE IRRELEVANCE
 
-The first condition arises when a set of state variables is irrelevant to a Max node.
+Let `𝒳(s) = x` be the associated abstraction function,
 
-**Definition 12 (Max Node Irrelevance)**  Let Mᵢ be a Max node in a MAXQ graph H for MDP M. A set of state variable Y is irrelevant for node i if the state variables of M can be partitioned into 2 sets X and Y such that for any stationary abstract hierarchical policy π executed by the descendents of i , the following 2 properties hold:
+Definition 12 (Max Node Irrelevance):
 
-- the state transition probability distribution P<sup>π</sup>(s',N|s,a) at node i can be factored into the product of 2 distructions 
-    - P<sup>π</sup>(x',y',N|x,y,a) = P<sup>π</sup>(y'|x,y,a)·P<sup>π</sup>(x',N|x,a)     (17)
-    - where y and y' give values for the variables in Y , and x and x' give values for the variable X. 
-- for any pair of state s₁ = (x,y₁) and s₂=(x,y₂) such that *x*(s₁) = *x*(s₂) = x , and any child action a, V<sup>π</sup>(a,s₁) = V<sup>π</sup>(a,s₂), and R̃(s₁) = R̃(s₂).
+for any pair of states 𝒳(s₁) = 𝒳(s₂) = x, and any child action *a*, 
+
+<center>
+V<sup>π</sup>(a,s<sub>1</sub>) = V<sup>π</sup>(a,s<sub>2</sub>) , and R̃<sub>i</sub>(a,s<sub>1</sub>) = R̃<sub>i</sub>(a,s<sub>2</sub>)
+</center>
 
 
-Note that the two conditions must hold for all stationary abstract policies π rexecuted by all of the descendents of the subtask i. 
+Lemma 2: 
 
-**Lemma 2** Let M be an MDP with full-state MAXQ graph H, and suppose that state variables Yᵢ are irrelevant for Max node i.  Let *x*ᵢ(s) be  the associated abstraction function that projects s onto the remaining relevant variables Xᵢ. Let π  be any abstract hierarchical policy. Then the action-valuefunction Q<sup>π</sup> at node i can be represented compactly , with only one value of the completion function C<sup>π</sup>(i,s,j) for each equivalence class of states s that share the same values on the relevant variables.
+<center>
+Q<sup>π</sup>(i, s, j) = V<sup>π</sup>(j, 𝒳<sub>i</sub>(s)) +  C<sup>π</sup>(i, 𝒳<sub>i</sub>(s), j)
+</center>
 
-Specifically Q<sup>π</sup>(i,s,j) can be computed as follows:
-
- ![](../imgs/maxq_5_lemma2_1.png)
-
-where
-
-    
- ![](../imgs/maxq_5_lemma2_2.png)
-
-where
-
- 
- ![](../imgs/maxq_5_lemma2_3.png) for some arbitrary value y₀ for the irrelevant state variables Yᵢ.
-
----
-
-As stated, the Max node irrelevance condition appears quite difficult to satisfy. However, in practice, this condition is often satisfied.
 
 For example, let us consider the Navigate(t) subtask.  The source and destination of the passenger are irrelevant to the achievement of this subtask. Any policy that successfully completes this subtask will have the same value function regardless of the source and destination locations of the passenger. 
 
-By abstracting away the passenger source and destination, we obtain a huge savings in space. Instead of requiring 8000 values to represent the C functions for this task, we require only 400 values (4 actions, 25 locations, 4 possible values for t). 
+By abstracting away the passenger source and destination, we obtain a huge savings in space. Instead of requiring 8000 values(500 states, 4 possible values for t, 4 actions) to represent the C functions for this task, we require only 400 values (25 locations, 4 possible values for t, and 4 actions ). 
 
 Figure 7 shows that the irrelevant variables Y do not affect the rewards either directly or indirectly.
 
+<center>
+
 ![](../imgs/maxq_f7.png)
 
-**怎么来发现是否可以应用 MAX NODE IRRELEVANCE 呢?**
+</center>
 
-One rule for noticing cases where this abstraction condition holds , is , to examine the subgraph rooted at the given Max node i. 
+> nodes X and Y represent the state variables at time t,  X' and Y' represent the state variables at a later time t + N
 
-If a set of state variables is irrelevant to the leaf state transition probabilities and reward functions and also to all pseudo-reward functions and termination conditions in the subgraph, then those variables satisfy the Max Node Irrelevance condition:
+> square action node j is the chosen child subroutine
 
-**Lemma 3** A set of state variables Yᵢ, is irrelevant to node i if 
+> utility node V represents the value function V(j, x) of that child action
 
-- For each primitive leaf node a that is a descendent of i,
-    - P(x',y'|x,y,a) = P(y'|x,y,a)·P(x'|x,a) and 
-    - R(x',y'|x,y,a) = R(x'|x,a)
-- For each internal node j that is equal to node i or is a descendent of i 
-    - R̃ⱼ(x',y') = R̃ⱼ(x')  
-    - and the termination predicate Tⱼ(x',y') is true iff Tⱼ(x').
+Note that while X may influence Y' , Y cannot affect X', and therefore, it cannot affect V .
 
-In the Taxi task, the primitive navigation actions, North, South, East, and West only depend on the location of the taxi and not on the location of the passenger. The pseudo- reward function and termination condition for the MaXNavigate(t) node only depend on the location of the taxi (and the parameter t). Hence, this lemma applies, and the passenger source and destination are irrelevant for the MaxNavigate node.
+---
 
+Lemma 3: 
 
+<center>
+P, R, R̃, T
+</center>
+
+In the Taxi task, the primitive navigation actions, North, South, East, and West only depend on the location of the taxi and not on the location of the passenger. The pseudo-reward function and termination condition for the MaXNavigate(t) node only depend on the location of the taxi (and the parameter t). Hence,  the passenger source and destination are irrelevant for the MaxNavigate node.
 
 
 <h2 id="87349168dccb260456b23839e9702af4"></h2>
 
 ### 5.1.2 CONDITION 2: LEAF IRRELEVANCE
 
-**Definition 13 (Leaf Irrelevance)** A set of state variablesY is irrelevant for a primitive action a of a MAXQ graph if for all states s the expectedvalue of the reward function, 
+Lemma 4:
 
- V(a,s) = ∑<sub>s'</sub> P(s'|s,a)·R(s'|s,a)
+<center>
+V(a, s) = V(a, 𝒳(s)) = V(a, x)
+</center>
 
-does not depend on any of the values of the state variables in Y.  
+Lemma 5:
 
-
-Then we can represent V(a, s) for any state s by an abstracted value function: V(a,*x*(s)) = V(a,s).
-
-**怎么来发现是否可以应用 LEAF IRRELEVANCE 呢?**
-
-Here are two rules for finding caseswhere Leaf Irrelevance applies.
-
-The first rule shows that if the probability distribution factors, then we have Leaf Irrelevance.
-
-**Lemma 5** Suppose the probability transition function for primitive action a , P(s'|s,a) , factors as P(x',y'|x,y,a) = P(y'|x,y,a)·P(x'|x,a) , and the reward function satisfies R(s'|s,a) = R(x'|x,a). Then the variablesin Y are irrelevant to the leaf node a.
-
-Hence, the expected reward for the action a depends only on the variables in X and not on the variables in Y. 
-
----
-
-The second rule shows that if the reward function for a primitive action is constant, then we can apply state abstractions evenif P(s’|s, a) does not factor.
-
-**Lemma 6** SupposeR(s’|s, a) is always equal to a constant rₐ. Then the entire state s is irrelevant to the primitive action a.
-
-This lemma is satisfied by the four leaf nodes North, South, East, and West in the taxi task, because their one-step reward is a constant (-1). Hence, instead of requiring 2000 values to store the V functions, we only need 4 valuesione for each action. 
-
-Similarly, the expected rewards of the Pickup and Putdown actions each require only 2 values, depending on whether the corresponding actions are legal or illegal. Hence, together, they require 4 values, instead of 1000 values.
+<center>
+P, R
+</center>
 
 
+Lemma 6: Suppose R(s' | s, a)  is always equal to a constant r<sub>a</sub> . Then the entire state *s* is irrelevant to the primitive action *a*.
+
+
+The four leaf nodes North, South, East, and West in the taxi task, because their one-step reward is a constant (-1). Hence, instead of requiring 2000 values(500 states * 4 actions) to store the V functions, we only need 4 values, one for each action. 
+
+Similarly, the expected rewards of the Pickup and Putdown actions each require only 2 values, depending on whether the corresponding actions are legal or illegal. Hence, together, they require 4 values( 2 per action * 2 actions ), instead of 1000 values ( 500 states * 2 actions ).
 
 
 
@@ -732,31 +715,19 @@ Similarly, the expected rewards of the Pickup and Putdown actions each require o
 
 Now we consider a condition that results from “funnel” actions.
 
-**Definition 14 (Result Distribution Irrelevance)** A set of state variables Yⱼ is irrelevant for the result distribution of action j if , for all abstract policies π executed by node j and its descendents in the MAXQ hierarchy, the following holds:
-
- for all pairs of states s₁ and s₂ that differ only in their values for the state variables in Yⱼ , P<sup>π</sup>(s',N|s₁,j) = P<sup>π</sup>(s',N|s₂,j) for all s' and N.
-
-If this condition is satisfied for subtask j, then the C value of its parent task i can be represented compactly:
-
- C<sup>π</sup>(i,s,j) = C<sup>π</sup>(i,*x*ᵢⱼ(s),j).
-
-Consider any two states s₁,s₂, such that *x*ᵢⱼ(s₁) = *x*ᵢⱼ(s₂) = x. Under Result Dis- tribution Irrelevance, their transition probability distributions are the same. Hence,  C<sup>π</sup>(i,s₁,j) = C<sup>π</sup>(i,s₂,j). Therefore, we can define an abstract completion function,   C<sup>π</sup>(i,x,j) to represent this quantity.
-
-In undiscounted cumulative reward problems, the definition of result distribution irrelevance can be weakened to eliminate N, the number of steps. All that is needed is that for all pairs of states  s₁ and s₂ that differ only in the irrelevant state variables, P<sup>π</sup>(s'|s₁,j) = P<sup>π</sup>(s'|s₂,j) (for all s'). In the undiscountedcase,Lemma 7 still holds under this revised definition.  **Great!**.
-
----
+Lemma 7: C<sup>π</sup>(i, s, j) = C<sup>π</sup>(i, 𝒳<sub>ij</sub>(s), j)
 
 Consider, for example, the Get subroutine for the taxi task. No matter what location the taxi has in state s , the taxi will be at the passenger’s starting location when the Get finishes executing . Hence, the starting location is irrelevant to the resulting location of the taxi, and P(s'|s₁,Get) = P(s'|s₂,Get) for all state s₁ and s₂ that differ only in the taxi's location.
 
 Note, however, that if we were maximizing discounted reward, the taxi’s location would not be irrelevant, because the probability that Get will terminate in exactly N steps would depend on the location of the taxi, which could differ in states s₁ and s₂.
 
-But in the undiscounted case, by applying Lemma 7, we can represent C(Root, s, Get) using 16 distinct values, because there are 16 equivalence classes of states (4 source locations times 4 destination locations). 
+But in the **undiscounted** case, by applying Lemma 7, we can represent C(Root, s, Get) using 16 distinct values, because there are 16 equivalence classes of states (4 source locations times 4 destination locations).  This is much less than the 500 quantities in the unabstracted representation.
 
 Note that although state variables Y may be irrelevant to the result distribution of a subtask j, they may be important within subtask j. 
 
 In the Taxi task, the location of the taxi is critical for representing the value of V(Get, s),  but it is irrelevant to the result state distribution for Get, and therefore it is irrelevant for representing C(Root, 3, Get).  Hence, the MAXQ decomposition is essential for obtaining the benefits of result distribution irrelevance.
 
-The Result Distribution Irrelevance condition is applicable in all such situations as long as we are in the undiscounted setting.
+The Result Distribution Irrelevance condition is applicable in all such situations as long as we are in the **undiscounted** setting.
 
 <h2 id="fa47406de877edbd1d58fe0b8f4489b6"></h2>
 
@@ -764,19 +735,17 @@ The Result Distribution Irrelevance condition is applicable in all such situatio
 
 The fourth condition is closely related to the “funnel” property. 
 
-It applies when a subtask is guaranteed to cause its parent task to terminate in a goal state.In a sense, the subtask is funneling the environment into the set of states described by the goal predicate of the parent task.
+It applies when a subtask is guaranteed to cause its **parent task** to terminate in a **goal state**.In a sense, the subtask is funneling the environment into the set of states described by the goal predicate of the parent task.
 
-**Lemma 8(Termination)** Let Mᵢ be a task in a MAXQ graph such that for all states s where the goal predicate Gᵢ(s) is true, the pseudo-reward function  R̃ᵢ(s) = 0. Suppose there is a child task a and state s such that for all hierarchical policies π , 
+**Lemma 8(Termination)** Let Mᵢ be a task in a MAXQ graph such that for all states s where the goal predicate Gᵢ(s) is true, the pseudo-reward function  R̃ᵢ(s) = 0. 
 
- ∀s' P<sup>π</sup>ᵢ (s',N |s,a) >0 ⇒ Gᵢ(s').
+Suppose there is a child task *a* and for every possible state s’ that results from applying *a* in s will make the goal predicate, Gᵢ, true.
 
-(i.e., every possible state s’ that results from applying *a* in s will make the goal predicate, Gᵢ, true.)
+Then for any policy executed at node i, the completion cost  C(i,s,a) is 0 and does not need to be explicitly represented.  
 
-Then for any policy executed at node i, the completion cost  C(i,s,a) is 0 and does not need to be explicitly represented.
+- 子任务a 执行总是 满足  Gᵢ(s')=true
 
-- 子任务a 执行总是 满足  Gᵢi(s')=true
-
-For example, in the Taxi task, in all states where the taxi is holding the passenger, the Put subroutine will succeed and result in a goal terminal state for Root.This is because the termination predicate for Put (i.e., that the passenger is at his or her destination location) implies the goal condition for Root (which is the same).This means that C(Root, s, Put) is uniformly zero, for all states s where Put is not terminated.
+For example, in the Taxi task, in all states where the taxi is holding the passenger, the Put subroutine will succeed and result in a goal terminal state for Root.This is because the termination predicate for Put (i.e., that the passenger is at his or her destination location, because illegally put won't ternimate) implies the goal condition for Root (which is the same).This means that C(Root, s, Put) is uniformly zero, for all states s where Put is not terminated.
 
 It is easy to detect caseswhere the Termination condition is satisfied. We only need to compare the termination predicate  Tₐ of a subtask with the goal predicate Gᵢ of the parent task. If the first implies the second, then the termination lemma is satisfied.
 
@@ -788,7 +757,11 @@ The shielding condition arises from the structure of the MAXQ graph.
 
 **Lemma 9 (Shielding)** Let s be a state such that in all paths from the root of the graph down to node Mᵢ there is a subtask j (possibly equal to i) whose termination predicate Tⱼ(s) is true , then the Q nodes of Mᵢ do not need to represent C values for state s.
 
-In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where the passenger is not in the taxi. This means that we do not need to represent C(Root,s, Put) in these states. The result is that, when combined with the Termination condition above, we do not need to explicitly represent the completion function for Put at all!
+As with the Termination condition, the Shielding condition can be verified by analyzing the structure of the MAXQ graph and identifying nodes whose ancestor tasks are terminated.
+
+In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where the passenger is not in the taxi. This means that we do not need to represent C(Root,s, Put) in these states. 
+
+The result is that, when combined with the Termination condition above, we do not need to explicitly represent the completion function for Put at all!
 
 <h2 id="fb8187ec15df35190dbc58aa6d7d4815"></h2>
 
