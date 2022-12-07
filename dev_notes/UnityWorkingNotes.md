@@ -653,7 +653,7 @@ _DebugFunc( log_buf ); \
 ## detect whether an object has been destroyed ?
 
 ```
-bool bInvalidObj  = gameObject == null || gameObject.Equals(null)  || ReferenceEquals (gameObject, null);
+bool bInvalidObj  = gameObject == null || gameObject.Equals(null)
 ```
 
 <h2 id="93b2ba0c1f3e74fd40ccfbdb46ee7061"></h2>
