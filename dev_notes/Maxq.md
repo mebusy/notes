@@ -654,7 +654,7 @@ Q<sup>π</sup>(i, s, j) = V<sup>π</sup>(j, 𝒳<sub>i</sub>(s)) +  C<sup>π</su
 
 For example, let us consider the Navigate(t) subtask.  The source and destination of the passenger are irrelevant to the achievement of this subtask. Any policy that successfully completes this subtask will have the same value function regardless of the source and destination locations of the passenger. 
 
-By abstracting away the passenger source and destination, we obtain a huge savings in space. Instead of requiring 8000 values(500 states, 4 possible values for t, 4 actions) to represent the C functions for this task, we require only 400 values (25 locations, 4 possible values for t, and 4 actions ). 
+By abstracting away the passenger source and destination, we obtain a huge savings in space. Instead of requiring 8000 values(500 states, 4 possible values for t, 4 actions) to represent the C functions for this task, we require only 400 values (25 status (taxi locations), 4 possible values for t, and 4 actions ). 
 
 Figure 7 shows that the irrelevant variables Y do not affect the rewards either directly or indirectly.
 
@@ -700,7 +700,7 @@ P, R
 </center>
 
 
-Lemma 6: Suppose R(s' | s, a)  is always equal to a constant r<sub>a</sub> . Then the entire state *s* is irrelevant to the primitive action *a*.
+Lemma 6: Suppose R(s' | s, a)  is always equal to a constant r<sub>a</sub> . Then **the entire state *s* is irrelevant to the primitive action *a*.**
 
 
 The four leaf nodes North, South, East, and West in the taxi task, because their one-step reward is a constant (-1). Hence, instead of requiring 2000 values(500 states * 4 actions) to store the V functions, we only need 4 values, one for each action. 
@@ -745,7 +745,7 @@ Then for any policy executed at node i, the completion cost  C(i,s,a) is 0 and d
 
 - 子任务a 执行总是 满足  Gᵢ(s')=true
 
-For example, in the Taxi task, in all states where the taxi is holding the passenger, the Put subroutine will succeed and result in a goal terminal state for Root.This is because the termination predicate for Put (i.e., that the passenger is at his or her destination location, because illegally put won't ternimate) implies the goal condition for Root (which is the same).This means that C(Root, s, Put) is uniformly zero, for all states s where Put is not terminated.
+For example, in the Taxi task, in all states where **the taxi is holding the passenger**, the Put subroutine will succeed and result in a goal terminal state for Root.This is because the termination predicate for Put (i.e., that the passenger is at his or her destination location, because illegally put won't ternimate) implies the goal condition for Root (which is the same).This means that C(Root, s, Put) is uniformly zero, for all states s where Put is not terminated.
 
 It is easy to detect caseswhere the Termination condition is satisfied. We only need to compare the termination predicate  Tₐ of a subtask with the goal predicate Gᵢ of the parent task. If the first implies the second, then the termination lemma is satisfied.
 
@@ -759,7 +759,7 @@ The shielding condition arises from the structure of the MAXQ graph.
 
 As with the Termination condition, the Shielding condition can be verified by analyzing the structure of the MAXQ graph and identifying nodes whose ancestor tasks are terminated.
 
-In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where the passenger is not in the taxi. This means that we do not need to represent C(Root,s, Put) in these states. 
+In the Taxi domain, a simple example of this arises in the Put task,  which is terminated in all states where **the passenger is not in the taxi**. This means that we do not need to represent C(Root,s, Put) in these states. 
 
 The result is that, when combined with the Termination condition above, we do not need to explicitly represent the completion function for Put at all!
 
@@ -769,13 +769,14 @@ The result is that, when combined with the Termination condition above, we do no
 
 By applying these 5 abstraction conditions, we obtain the following “safe” state abstractions for the Taxi task:
 
-- North, South, East, and West. These terminal nodes require one quantity each, for a total of four values. (Leaf Irrelevance).
+- North, South, East, and West. These terminal nodes require one quantity each, for a total of four **values**. (Leaf Irrelevance).
     - for any s , V = -1
-- Pickup and Putdown each require 2 values (legal and illegal states), for a total of four. (Leaf Irrelevance.)
-- QNorth(t), QSouth(t), QEast(t), and QWest(t) each require 100 values (four values for t and 25 locations). (Max Node Irrelevance.)
+- Pickup and Putdown each require 2 **values** (legal and illegal states), for a total of four. (Leaf Irrelevance.)
+- QNorth(t), QSouth(t), QEast(t), and QWest(t) each require 100 **values** (four values for t and 25 locations). (Max Node Irrelevance.)
     - QNorth(t) : C( Navigate , s , North )
 - QNavigateForGet requires 4 values (for the four possible source locations). 
     - (The passenger destination is Max Node Irrelevant for MaxGet, and the taxi starting location is Result Distribution Irrelevant for the Navigate action.)
+    - > Max node is for only graph structure,  it eventaully instantiated as incoming Q ?
 - QPickup requires 100 possible values, 4 possible source locations and 25 possible taxi locations. (Passenger destination is Max Node Irrelevant to MaxGet.)
 - QGet requires 16 possible values(4 source locations, 4 destination locations). (Result Distribution Irrelevance.)
 - QNavigateForPut requires only 4 values (for the four possible destination locations). 
@@ -784,7 +785,7 @@ By applying these 5 abstraction conditions, we obtain the following “safe” s
 - QPut requires 0 values. (Termination and Shielding.) 
 
 
-This gives a total of 632 distinct values, which is much less than the 3000 values required by flat Q learning.  
+This gives a total of 632 distinct values, which is much less than the 3000 values required by flat Q learning.
 
 A key thing to note is that with these state abstractions, the value function is decomposed into a sum of terms such that no single term depends on the entire state of the MDP, even though the value function as a whole does depend on the entire state of the MDP. 
 
