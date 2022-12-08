@@ -28,19 +28,14 @@
 
 <h2 id="ef0aea7fada38d87f635b347acae4117"></h2>
 
-# Maxq 
 
-[youtube course from IIT](https://www.youtube.com/watch?v=EbTIQqVDJsg&list=PLHD22PKARkdR5qnXSwYOzZY4VjIDvZWan)
+# Some HRL Concepts
 
-## 0. Some Concepts
-
-- SMDP
-    - Semi Markov Decision Process
+- **SMDP** (Semi Markov Decision Process)
     - the actions can take a variable amount of time to complete.
 
-- **Optimality**
-    - Recursive optimal versus Hierarchical optimal
-        - ![](../imgs/hierarchy_vs_recursive_optimal.png)
+- **Recursive optimal VS. Hierarchical optimal**
+    - ![](../imgs/hierarchy_vs_recursive_optimal.png)
         - the policy shown in the left diagram is recursively optimal 
         - the policy shown in the right diagram is hierarchically optimal
     - Recursive optimality
@@ -49,7 +44,6 @@
     - Hierarchically optimal
         - finds the policy optimal within the space of policies defined by the hierarchy. 
         - In this form of optimality, the policy for each individual subtask is not necessarily optimal, but the policy for the entire hierarchy is optimal,
-        - Generally, Hierarchically optimal is NOT **global flat optimal**, even though in this example, they are same one.
 
 - **Options**
     - An option is essentially some kind of an encapsulated policy.
@@ -68,22 +62,21 @@
 
 Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greedy in the Limit with Infinite Exploration) policy.
 
- ![][1] 
+# Maxq 
 
+[youtube course from IIT](https://www.youtube.com/watch?v=EbTIQqVDJsg&list=PLHD22PKARkdR5qnXSwYOzZY4VjIDvZWan)
 
-There are **500 possible states**: 25 taxi postion(grid), 5 locations for the passenger (4 starting locations, or on the taxi), and 4 destinations.
 
  
 <h2 id="1ca2a53e3aee2426fbe0471c0788f16d"></h2>
 
 # 3. The MAXQ Value Function Decomposition
 
-- NOTEs
-    - projected value function V<sup>π</sup>(a,s) : 
-        - value function of a subtask a, following π
-            - if a is subtask, V<sup>π</sup>(a,s) is the expected accumlative reward of `option` a
-            - if a is primitive , V<sup>π</sup>(a,s) is the expected immediate reward
-        - R̅ᵢ(s,a) = V<sup>π</sup>(a,s)
+- **projected value function** V<sup>π</sup>(a,s) : 
+    - value function of a subtask a, following π
+        - if a is subtask, V<sup>π</sup>(a,s) is the expected accumlative reward of `option` a
+        - if a is primitive , V<sup>π</sup>(a,s) is the expected immediate reward
+    - R̅ᵢ(s,a) = V<sup>π</sup>(a,s)
 
 
  
@@ -92,8 +85,29 @@ There are **500 possible states**: 25 taxi postion(grid), 5 locations for the pa
 ## 3.1 Taxi example
 
 
+<center>
 
-**subtasks** : Each of these **subtasks** is defined by a *subgoal*, and each **subtask** terminates when the *subgoal* is achieved.
+ ![][1] 
+
+</center>
+
+- six primitive actions
+    - North, South, East, or West
+    - Pickup, Putdown
+- reward
+    - -1 for each action
+    - +20 for successfully delivering the passenger
+    - -10 for illegal Pickup, Putdown
+- 3 variables
+    1. taxi position (25)
+    2. passenger position ( 5 = 4 starting postions + 1 on the taxi )
+    3. destination (4)
+- total states: 25 * 5 * 4 = **500 possible states**
+
+---
+
+
+**subtasks** : 
 
 - Navigate(t)
     - the goal is to move the taxi from its current location to one of the four target locations,
@@ -105,6 +119,7 @@ There are **500 possible states**: 25 taxi postion(grid), 5 locations for the pa
 - Root
     - This is the whole taxi task.
 
+Each of these **subtasks** is defined by a *subgoal*, and each **subtask** terminates when the *subgoal* is achieved.
 
 After defining these subtasks, we must indicate available actions in each subtask. 
 
@@ -123,7 +138,7 @@ All of this information can be summarized by a directed acyclic graph called the
 
 If we have a policy for each subtask, then this gives us an overall policy for the Taxi MDP.
 
--The collection of policies is called *hierarchical policy* 
+- The collection of policies is called *hierarchical policy* 
     - In a hierarchical policy, each subroutine executes until it enters a terminal state for its subtask.
 
 <h2 id="28fc65dfb6f48abdf33b71b4b0440cf7"></h2>
@@ -136,9 +151,9 @@ If we have a policy for each subtask, then this gives us an overall policy for t
 
 **Definition 2** An unparameterized subtask is a *3-tuple* , < Tᵢ,Aᵢ,R̃ᵢ  > 
 
-- Tᵢ(sᵢ) is a termination predicate *that partitions S into a set of active states, Sᵢ, and a set of terminal states, Tᵢ*
-    - The policy for subtask Mᵢ can only be executed if current state *s* is in *Sᵢ*.
-    - ?? If , at any time Mᵢ is being executed, the MDP enters a state in Tᵢ , then Mᵢ terminates immediately , even if it is still executing a subtask
+- Tᵢ(sᵢ) is a termination predicate that **partitions S into** a set of **active states**, Sᵢ, and a set of **terminal states**, Tᵢ
+    - The policy for subtask Mᵢ **can only be executed** if current state *s* is in *Sᵢ*.
+    - If , at any time Mᵢ is being executed, the MDP enters a state in Tᵢ , then Mᵢ terminates immediately , even if it is still executing a subtask.
 - Aᵢ is a set of actions that can be performed to achieve subtask Mᵢ.
     - can either be primitive action from A, or can be other subtasks.
     - Aᵢ define a direct graph over subtasks
@@ -153,7 +168,7 @@ If we have a policy for each subtask, then this gives us an overall policy for t
     - The pseudo-rewardis **only used during learning**, so it will not be mentioned further until Section 4.
 
 
-Each primitive action a from M is a primitive subtask , that is alwasy executable, it always terminates immediately after execution, and its pseudo-reward function is uniformly zero.
+Each **primitive action** a from M is a primitive subtask, that is **alwasy executable**, it **always terminates immediately** after execution, and its **pseudo-reward function is uniformly zero**.
 
 
 If a subtask has formal parameters, and b specifies the actual parameter values for task Mᵢ, Then we can define a parameterized termination predicate Tᵢ(s,b) and and a parameterized pseudo-reward function R̃ᵢ(s,b).
