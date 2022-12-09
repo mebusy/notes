@@ -274,7 +274,7 @@ With this definition, we can express the Q function recursively as
 
  Q<sup>π</sup>(i,s,a)  = V<sup>π</sup>(a,s) + C<sup>π</sup>(i,s,a)     (10)
 
-- 实际上，C<sup>π</sup> is related to *s'*
+- 实际上，C<sup>π</sup> is related to *s'*, so **undiscounted** setting can simplify the computation of C().
 
 
 Finally, we can re-expressthe definition for  V<sup>π</sup>(i,s) as 
@@ -429,7 +429,7 @@ The reason to seek recursive optimality rather than hierarchical optimality is t
 - The shaded cells indicate points where the locally-optimal policy is not globally optimal.
 
 If we consider for a moment, we can see a way to fix this problem. 
-    
+
 - The value of the upper starred state under the optimal hierarchical policy is -2 and the value of the lower starred state is -6
 - Hence, if we changed pseudo reward R̃ to have these values(intead of being zero) , then the recursively-optimal policy would be hierarchically optimal (and globally optimal).
 - In other words, if the programmer can guess the right values for the terminal states of a subtask, then the recursively optimal policy will be hierarchically optimal.
@@ -437,11 +437,11 @@ If we consider for a moment, we can see a way to fix this problem.
 in principle, it is possible to learn good values for the pseudo-reward function, in practice, we must rely on the programmer to specify a single pseudo-reward function, R̃  , for each subtask. 
 
 
-In our experiments, we have employed the following simplified approach to defining R̃.  
+In our experiments, we have employed the following simplified approach to defining R̃.
 
 - For each subtask Mᵢ, we define two predicates: the termination predicate, Tᵢ, and a goal predicate, Gᵢ. 
     - The goal predicate defines a subset of the terminal states that are “goal states”, and these have a pseudo-reward of 0.
-    - All other terminal states have a fixed constant pseudo-reward (e.g., -100)  , that is set so that it is always better to terminate in a goal state than in a non-goal state.  
+    - All other terminal states have a fixed constant pseudo-reward (e.g., -100)  , that is set so that it is always better to terminate in a goal state than in a non-goal state.
 
 
 
@@ -635,13 +635,14 @@ Now let us describe and analyze the 5 abstraction conditions. We have identified
 
  1. The first kind involves eliminating irrelevant variables within a subtask of the MAXQ graph.
     - nodes toward the leaves of the MAXQ graph tend to have very few relevant variables, and nodes higher in the graph have more relevant variables.
-    - Hence, this kind of abstraction is most useful at the lower levels of the MAXQ graph.
+    - Hence, this kind of abstraction is **most useful at the lower levels** of the MAXQ graph.
  2. The second kind of abstraction arises from “funnel” actions.
     - These are macro actions that move the environment from some large number of initial states to a small number of resulting states.
         - s₂,s₃,... all leads to s' ?
-    - The completion cost of such subtasks can be represented using a number of values proportional to the number of resulting states.
-    - Funnel actions tend to appear higher in the MAXQ graph, so this form of abstraction is most useful near the root of the graph.
- 3. The third kind of abstraction arises from the structure of the MAXQ graph itself. It exploits the fact that large parts of the state space for a subtask may not be reachable because of the termination conditions of its ancestors in the MAXQ graph.
+    - The **completion cost** of such subtasks can be represented using a number of values proportional to the number of resulting states.
+    - Funnel actions tend to appear higher in the MAXQ graph, so this form of abstraction is **most useful near the root** of the graph.
+ 3. The third kind of abstraction arises from the structure of the MAXQ graph itself. 
+    - It exploits the fact that large parts of the state space for a subtask may not be reachable because of the termination conditions of its **ancestors** in the MAXQ graph.
 
 ---
 
@@ -663,6 +664,9 @@ V<sup>π</sup>(a,s<sub>1</sub>) = V<sup>π</sup>(a,s<sub>2</sub>) , and R̃<sub>
 Lemma 2: 
 
 <center>
+
+Q<sup>π</sup>(i, s, j) = Q<sup>π</sup>(i, 𝒳<sub>i</sub>(s), j) 
+
 Q<sup>π</sup>(i, s, j) = V<sup>π</sup>(j, 𝒳<sub>i</sub>(s)) +  C<sup>π</sup>(i, 𝒳<sub>i</sub>(s), j)
 </center>
 
@@ -730,16 +734,36 @@ Similarly, the expected rewards of the Pickup and Putdown actions each require o
 
 Now we consider a condition that results from “funnel” actions.
 
-Lemma 7: C<sup>π</sup>(i, s, j) = C<sup>π</sup>(i, 𝒳<sub>ij</sub>(s), j)
+**Definition 14 (Result Distribution Irrelevance)**:
+
+ For all pairs of s₁ and s₂ that differs for the state variables in Y<sub>j</sub>,
+
+ <center>
+ P<sup>π</sup>( s', N | s₁, j ) = P<sup>π</sup>( s', N | s₂, j )
+ </center>
+
+ for all s' and N, then the C value of its parent task i can be represented compactly:
+
+**Lemma 7**: 
+
+<center>
+C<sup>π</sup>(i, s, j) = C<sup>π</sup>(i, 𝒳<sub>ij</sub>(s), j)
+</center>
+
+In **undiscounted** cumulative reward problems, the definition of result distribution irrelevance can be weakened to eliminate N , the number of steps.
+
+ <center>
+ P<sup>π</sup>( s' | s₁, j ) = P<sup>π</sup>( s' | s₂, j )
+ </center>
+
+---
 
 Consider, for example, the Get subroutine for the taxi task. No matter what location the taxi has in state s , the taxi will be at the passenger’s starting location when the Get finishes executing . Hence, the starting location is irrelevant to the resulting location of the taxi, and P(s'|s₁,Get) = P(s'|s₂,Get) for all state s₁ and s₂ that differ only in the taxi's location.
 
-Note, however, that if we were maximizing discounted reward, the taxi’s location would not be irrelevant, because the probability that Get will terminate in exactly N steps would depend on the location of the taxi, which could differ in states s₁ and s₂.
-
+**Note**, however, that if we were maximizing **discounted** reward, the taxi’s location **would NOT** be irrelevant, because the probability that Get will terminate in exactly N steps would depend on the location of the taxi, which could differ in states s₁ and s₂. Different values of N will produce different amounts of discouting, and hense we cannot ignore the taxi location when representing the C() function for Get.
 But in the **undiscounted** case, by applying Lemma 7, we can represent C(Root, s, Get) using 16 distinct values, because there are 16 equivalence classes of states (4 source locations times 4 destination locations).  This is much less than the 500 quantities in the unabstracted representation.
 
-Note that although state variables Y may be irrelevant to the result distribution of a subtask j, they may be important within subtask j. 
-
+**Note** that although state variables Y may be irrelevant to the result distribution of a subtask j, **they may be important within subtask j**. 
 In the Taxi task, the location of the taxi is critical for representing the value of V(Get, s),  but it is irrelevant to the result state distribution for Get, and therefore it is irrelevant for representing C(Root, 3, Get).  Hence, the MAXQ decomposition is essential for obtaining the benefits of result distribution irrelevance.
 
 The Result Distribution Irrelevance condition is applicable in all such situations as long as we are in the **undiscounted** setting.
@@ -756,7 +780,7 @@ It applies when a subtask is guaranteed to cause its **parent task** to terminat
 
 Suppose there is a child task *a* and for every possible state s’ that results from applying *a* in s will make the goal predicate, Gᵢ, true.
 
-Then for any policy executed at node i, the completion cost  C(i,s,a) is 0 and does not need to be explicitly represented.  
+Then for any policy executed at node i, the **completion cost  C(i,s,a) is 0** and does not need to be explicitly represented.
 
 - 子任务a 执行总是 满足  Gᵢ(s')=true
 
