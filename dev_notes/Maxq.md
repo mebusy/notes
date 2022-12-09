@@ -990,7 +990,15 @@ For Boltzmann exploration, we established an initial temperature and then a cool
     - But as the execution becomes “more greedy”, there is a temporary drop in performance,because MAXQ-Q must learn C values in new regions of the state space that were not visited by the recursively optimal policy.
 
 
+# MaxQ-OP
 
+1. 计算 completion function C() 不适合在线算法
+    - 使用 undiscounted 的设定, γ=1, 
+    - C<sup>\*</sup>(i, s, a) = ∑ P(s' | s, a)·V<sup>\*</sup>(i, s') , 其中 s' ∈ T<sub>i</sub>
+2. 但是这样仍然不适合在线算法，因为V 和 C 会递归地 调用/计算自己。
+    - 引入 深度数组 d 和 最大深度数组 D, 并引入 heuristic function H 在超过搜索深度是预估值
+3. 但是怎么得到 *termination distribution*  P(s' | s, a) ？
+    - 实践中，我们不使用 termination distribution， 而是使用 从T的子集中 采样, 来计算 C()
 
  
 
@@ -1015,3 +1023,4 @@ For Boltzmann exploration, we established an initial temperature and then a cool
 ---
 
  [1]: ../imgs/maxq_taxi_fig1.png
+
