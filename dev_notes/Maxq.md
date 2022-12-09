@@ -266,7 +266,7 @@ Let Q<sup>π</sup>(i,s,a) be the expected cumulative reward for subtask Mᵢ of 
     - This term only depends on i, s, and a, because the summation marginalizes away the dependence on s' and N.
     - Let us define C<sup>π</sup>(i,s,a) to be equal to this term:
 
-**Definition 6** The completion function, C<sup>π</sup>(i,s,a) , is the expected discounted cumulative reward of completing subtask Mᵢ after invoking the subroutine for subtask Mₐ in state *s*. The reward is discounted back to the point in time where a begins execution ( \* γᴺ ) .
+**Definition 6** The completion function, C<sup>π</sup>(i,s,a) , is the expected discounted cumulative reward of **completing** subtask **Mᵢ** after invoking the subroutine for **subtask Mₐ** in state *s*. The reward is discounted back to the point in time where a begins execution ( \* γᴺ ) .
 
  ![](../imgs/maxq_eq_9.png)
 
