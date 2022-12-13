@@ -33,3 +33,11 @@ mvn package
 </settings>
 ```
 
+
+## download all dependency jars to local directory
+
+```bash
+mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
+```
+
+
