@@ -170,3 +170,31 @@ func serveReverseProxy(target string, res http.ResponseWriter, req *http.Request
 }
 ```
 
+
+## Platform nodejs code to browser
+
+https://browserify.org/#install
+
+
+```bash
+browserify node-app.js --standalone CustomLib  -o  bundle.js
+```
+
+How to use
+
+```html
+<script src="bundle.js"></script>
+```
+
+```javascript
+{
+    var foo = CustomLib.foo;
+    ...
+}
+
+
+
+```
+
+
+
