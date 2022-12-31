@@ -299,9 +299,7 @@ void f(const type& arg1, const type& arg2) {
     }
     ```
     ```cpp
-    namespace module_2 {
-        int SomeFunc() {}
-    }
+    namespace module_2 { int SomeFunc() {} }
     ```
 
 - **Avoid** using namespace <name>
@@ -326,6 +324,88 @@ void f(const type& arg1, const type& arg2) {
         const int kLocakImportantFloat = 13.0f;
     } // nameless
     ...
+    ```
+
+## Modern C++: The C++ STL Library (Lecture 4, I. Vizzo, 2020)
+
+### std::array
+
+- `#include <array>` to use std::array
+- Store a collection of items of **same type**
+- Create from data: `array<float, 3> arr = {1.0f, 2.0f, 3.0f};`
+- Access items with `arr[i]`
+- Number of stored items: `arr.size()`
+- Useful access aliases:
+    - First item: `arr.front() == arr[0]`
+    - Last item: `arr.back() == arr[arr.size() - 1]`
+
+
+
+<details>
+<summary>
+std::array
+</summary>
+
+```cpp
+#include <array>
+#include <iostream>
+
+int main() {
+    std::array<float, 3> data{10.0F, 100.0F, 1000.0F};
+    for (const auto &elem : data) {
+        std::cout << elem << std::endl;
+    }
+    // std::cout << std::boolalpha;
+    std::cout << "Array empty: " << data.empty() << std::endl;
+    std::cout << "Array size : " << data.size() << std::endl;
+}
+```
+
+</details>
+
+
+### std::vector
+
+- `#include <vector>` to use std::vector
+- Vector is implemented as a **dynamic table**
+- Remove all elements: `vec.clear()`
+- Add a new item in one of two ways:
+    - `vec.emplace_back(value)` [preferred, c++11]
+    - `vec.push_back(value)` [historically better known]
+- **Use it! It is fast and flexible!**
+    - Consider it to be a default container to store collections of items of any same type.
+
+<details>
+<summary>
+std::vector
+</summary>
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+int main() {
+    std ::vector<int> numbers = {1, 2, 3};
+
+    std ::vector<std ::string> names = {"Nacho", "Cyrill"};
+    names.emplace_back("Roberto");
+
+    std::cout << "First name : " << names.front() << std::endl;
+    std::cout << "Last number: " << numbers.back() << std::endl;
+    return 0;
+}
+```
+
+</details>
+
+#### Optimize vector resizing
+
+- `reserve(n)` ensures that the vector has enough capacity to store n items
+- This is a very **important optimization**
+    ```cpp
+    vector <int> vec; // size 0, capacity 0
+    vec.reserve(N); // size 0, capacity 100
     ```
 
 
