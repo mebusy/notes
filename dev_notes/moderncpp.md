@@ -749,3 +749,17 @@ int main() {
     // max = 9
 ```
 
+
+### std::clamp
+
+```cpp
+    // value should be between [kMin ,kMax]
+    const double kMax = 1.0F;
+    const double kMin = 0.0F
+
+    cout << std :: clamp (0.5 , kMin , kMax) << endl; // 0.5
+    cout << std :: clamp (1.1 , kMin , kMax) << endl; // 1
+    cout << std :: clamp (0.1 , kMin , kMax) << endl; // 0.1
+    cout << std :: clamp (-2.1, kMin , kMax) << endl; // 0
+```
+
