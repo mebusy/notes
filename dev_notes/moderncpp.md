@@ -641,7 +641,7 @@ int main() {
 ### std::fill
 
 ```cpp
-    std :: fill(v.begin (), v.end (), -1);
+    std::fill(v.begin (), v.end (), -1);
 ```
 
 ### std::count
@@ -649,7 +649,7 @@ int main() {
 how many time a value appears in the container
 
 ```cpp
-    int num_items1 = std :: count(v.begin (), v.end (), n1);
+    int num_items1 = std::count(v.begin (), v.end (), n1);
 ```
 
 ### std::count_if
@@ -657,8 +657,8 @@ how many time a value appears in the container
 ```cpp
 inline bool div_by_3(int i) { return i % 3 == 0; }
 int main () {
-    std :: vector <int> v{1, 2, 3, 3, 4, 3, 7, 8, 9, 10};
-    int n3 = std :: count_if(v.begin (), v.end (), div_by_3);
+    std::vector <int> v{1, 2, 3, 3, 4, 3, 7, 8, 9, 10};
+    int n3 = std::count_if(v.begin (), v.end (), div_by_3);
     ...
 }
 ```
@@ -666,25 +666,86 @@ int main () {
 ### std::for_each
 
 ```cpp
-    std :: vector <int> nums {3, 4, 2, 8, 15, 267};
+    std::vector <int> nums {3, 4, 2, 8, 15, 267};
     // lambda expression
     auto print = [](const int& n) { cout << " " << n; };
-    std :: for_each(nums.cbegin (), nums.cend (), print);
+    std::for_each(nums.cbegin (), nums.cend (), print);
 ```
 
 
-### std::all_off
+### std::all_of
 
 ```cpp
 inline bool even(int i) { return i % 2 == 0; };
 int main () {
-    std :: vector <int> v(10, 2); // 2 2 2 2 2  2 2 2 2 2
-    std :: partial_sum (v.cbegin (), v.cend (), v.begin ());
+    std::vector <int> v(10, 2); // 2 2 2 2 2  2 2 2 2 2
+    std::partial_sum (v.cbegin (), v.cend (), v.begin ());
     // 2 4 6 8 10 12 14 16 18 20
 
     bool all_even = all_of(v.cbegin (), v.cend (), even);
     // true
 ```
 
+### std::rotate
 
+```cpp
+std::vector <int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+std::rotate(v.begin (), v.begin () + 2, v.end ());
+// before rotate: 1 2 3 4 5 6 7 8 9 10
+// after rotate: 3 4 5 6 7 8 9 10 1 2
+```
+
+### std::transform
+
+```cpp
+auto UpperCase (char c) { return std::toupper(c); }
+int main () {
+    const std::string s("hello");
+    std::string S{s};
+    std::transform (s.begin (), s.end (), S.begin (), UpperCase );
+    // s: hello
+    // S: HELLO
+}
+```
+
+### std::accumulate
+
+```cpp
+    std::vector <int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int sum = std::accumulate (v.begin (), v.end (), 0); // 55
+    int product = std::accumulate (v.begin (), v.end (), 1, std::multiplies ()); // 3628800
+```
+
+### std::max
+
+```cpp
+    using std::max;
+    cout << "max(1, 9999) : " << max(1, 9999) << endl;
+    cout << "max('a', 'b'): " << max('a', 'b') << endl;
+```
+
+### std::min_element
+
+```cpp
+int main() {
+    std::vector<int> v{3, 1, 4, 1, 0, 5, 9};
+    auto result = std::min_element(v.begin(), v.end());
+    std::cout << "The minimum element is " << *result << std::endl; // 0
+    auto min_location = std::distance(v.begin(), result);
+    std::cout << "min at: " << min_location << std::endl; // min at: 4
+    return 0;
+}
+```
+
+### std::minmax_element
+
+```cpp
+    using std::minmax_element ;
+    auto v = {3, 9, 1, 4, 2, 5, 9};
+    auto [min , max] = minmax_element (begin(v), end(v));
+    cout << "min = " << *min << endl;
+    cout << "max = " << *max << endl;
+    // min = 1
+    // max = 9
+```
 
