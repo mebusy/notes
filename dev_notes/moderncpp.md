@@ -763,3 +763,25 @@ int main() {
     cout << std :: clamp (-2.1, kMin , kMax) << endl; // 0
 ```
 
+### std::sample
+
+```cpp
+#include <algorithm>
+#include <iostream> // I/O stream for simple input/output
+#include <random>
+#include <vector>
+
+int main() {
+    std ::string in = "C++ is cool", out;
+    auto rnd_dev = std::mt19937{std::random_device{}()};
+    const int kNLetters = 5;
+    std ::sample(in.begin(), in.end(), std ::back_inserter(out), kNLetters,
+                 rnd_dev);
+    std::cout << "from : " << in << std::endl;   // C++ is cool
+    std::cout << "sample: " << out << std::endl; // sample: +  ol   // random
+    return 0;
+}
+```
+
+
+
