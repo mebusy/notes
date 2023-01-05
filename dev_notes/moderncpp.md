@@ -1,3 +1,85 @@
+[](...menustart)
+
+- [Modern C++](#091a6498eab3c508beea02f499f51f72)
+    - [Modern C++: Build and Tools (Lecture 1, I. Vizzo, 2020)](#325510d6bba829b766911a52d3936c5c)
+        - [Compilation flags](#62cd52fdf3d2a8bff72649fcd20e4eb7)
+        - [Header file](#24c503e9d5c57f1eb6af12e9873a8842)
+        - [Libraries](#aeb428554a0acc6cc503a2e4da6ae61a)
+        - [Build Systems](#9062aef37682ecaeb79a2df3f3820105)
+        - [Build a CMake project](#0458b03d5c8e257e5832ae13f35c64d4)
+    - [Modern C++: Core C++ (Lecture 2, I. Vizzo, 2020)](#3e2af85ef3711cbd431c3a2a0e06d42a)
+        - [Range for loop](#4bb1ad49e08a18886c3d80a8642067f0)
+        - [c++17, Iterating map in a pythonic way](#e102f67b68837b497f8f248b27fe42f2)
+        - [References to variables](#5ec0d21ae7ae7c4254aa1660eb6e4c65)
+        - [stringstream](#65803f90b5371dc3b88b60a06713354b)
+    - [Modern C++: C++ Functions (Lecture 3, I. Vizzo, 2020)](#a229d387ccd502315aeb3181517851e9)
+        - [string](#b45cffe084dd3d20d928bee85e7b0f21)
+        - [Return type](#0007c63d15df657b740c1ee3154c262e)
+            - [Automatic return type deduction C++14](#d3cb767ab10f736c78010d8580888b03)
+            - [return multiple value like python](#1e4c066fde8dc7dce4d43f7b12f8ecfb)
+            - [WARNING: Never return reference to locally variables !!!](#535395200405220009c672236d3cd0f0)
+            - [Argument List](#4b3473986e35c311d04c1f51e2364e5c)
+            - [Default Arguments](#1cc836adaa1ff6687e4b7268d53fd690)
+            - [Passing big objects](#97b1664f687df9ed0e3dfb1930a5e08b)
+            - [Namespaces](#13d28e8dfc702e3456e0767dff9a128a)
+            - [Nameless namespace](#2f456caae6a443a8904f3985a3b76b52)
+    - [Modern C++: The C++ STL Library (Lecture 4, I. Vizzo, 2020)](#6559a7c277d5ab1e9354d0f6a688aaff)
+        - [std::array](#326a83eb53ef155a2689ddafaebdc904)
+        - [std::vector](#f0f1af1e35355df34019a2c3783b10b3)
+            - [Optimize vector resizing](#3f074b0debc6864e448427c629c9244e)
+        - [std::map](#1b3695f21224f3bbc288e793cf882f63)
+        - [std::unordered_map](#dc7ff92730fbf5c6f11c3cf17606dbae)
+        - [Iterating over maps](#aa703c156fde48ca1bd441cec6280929)
+        - [Much More](#749a4adc947e16689fe9c879ee3c493a)
+            - [Sequence containers](#d427f3a724f7121a73daa3141b530c54)
+            - [Associative containers](#31d750310fd00290fe605fba289138f1)
+            - [Unordered Associative containers](#b6666e72d36bedf79abe8f6f7df90a45)
+            - [Container adaptors](#0b7e76082bd309e16701c104e9dac707)
+        - [Iterators](#523a8681903bcf53bace35316c86fe33)
+            - [Access Data](#e35ac241f07c82101c044391318203b2)
+            - [Range Access Iterators](#e4ce2be0ecd34562628da38caf2ef7fc)
+    - [STL Algorithms](#1bc9ae9db55fe7155f74151a7aa7c02c)
+        - [std::sort](#6ae257cb23885f8b48f39b1b9d4231aa)
+        - [std::find](#c4b7e2a44e8a44588292a31f9011f63f)
+        - [std::fill](#2f4de93bdd1dd3d7dbf6e9921d8c5532)
+        - [std::count](#38f03ac751e3f817af19626d93d8717c)
+        - [std::count_if](#9b198cfb6790551429485d6acd2cf2e5)
+        - [std::for_each](#0961a9c4c06073f32a96a680e3888619)
+        - [std::all_of](#9c53a489806cc3a34873b4379eef31c8)
+        - [std::rotate](#67f8cacb091969dc1c51ac79678a8e18)
+        - [std::transform](#2a61c221f8277712d39ce802d9b6f952)
+        - [std::accumulate](#26a950b3fc74670b811b42da3ab8a292)
+        - [std::max](#18ae435191aaee20621eb10024fbbb34)
+        - [std::min_element](#dd8ec9efd2fe56b7abf66f2a11daa933)
+        - [std::minmax_element](#5f12a37961c2f3791b1cd8ed74dc0e8f)
+        - [std::clamp](#a73735cb6e23b9a7b8336d2704580ebc)
+        - [std::sample](#7d7e5802dcba0b7b9e4f9095d2ede15e)
+    - [Modern C++: I/O Files, Intro to Classes (Lecture 5, I. Vizzo, 2020)](#ca60008ff3f9f37c01aa32cc26f27d57)
+        - [C++ Utilities](#64329a7f7fdda209400a0e09e030b72a)
+            - [std::swap](#4f1b4f40c11bae1ef7016617425c47ce)
+            - [std::variant](#edfc81f5909201a3635b0510580efd59)
+            - [std::any](#68cdf81a296c17812f5703c4853431bf)
+            - [std::optional](#86a6516c2565ea4d02f523528704628c)
+            - [std::tuple](#a0085eb6fbe44026d573660ddc6dfdb1)
+            - [std::chrono](#c19047f100b3ef25731b892ae53676e7)
+        - [Error Handling](#ef43236673ca0bb606b14091061ac271)
+            - [Error handling with exceptions](#7510820b7a388de6f1d29fb1016855c6)
+            - [throw exceptions](#ce13141dd4e4dce25cbb4332e6da68bd)
+            - [catch exceptions](#db263daf8d9aaa24b3310e63e8a2039d)
+        - [IO Library](#edde613ff4105afe6b46342e6349d4dc)
+            - [Reading and writing to files](#1d76348345dba9e6f8aa5be00cd1ce47)
+            - [Regular columns](#6d339878496ab35daf9a4791d88d3cfa)
+            - [Reading files one line at a time](#9b554d6150f4065e7e97e9623ad9b663)
+            - [Writing into text files](#62f2f943d940531f78915e94151c9f20)
+            - [Writing to binary files](#71eb2af1d3698b17486be09467c11cf1)
+            - [Reading from binary files](#0f30f0d2efdfcf48af794b13f6b23dd9)
+        - [C++17 Filesystem library](#606b6a8c6de3d15095ae41e960390cea)
+            - [directory_iterator](#60a3cb9955bbb37b1e6985ef26315afd)
+
+[](...menuend)
+
+
+<h2 id="091a6498eab3c508beea02f499f51f72"></h2>
 
 # Modern C++
 
@@ -10,7 +92,11 @@
 
 
 
+<h2 id="325510d6bba829b766911a52d3936c5c"></h2>
+
 ## Modern C++: Build and Tools (Lecture 1, I. Vizzo, 2020)
+
+<h2 id="62cd52fdf3d2a8bff72649fcd20e4eb7"></h2>
 
 ###  Compilation flags
 
@@ -24,6 +110,8 @@
     - `-g`
 
 
+
+<h2 id="24c503e9d5c57f1eb6af12e9873a8842"></h2>
 
 ### Header file
 
@@ -51,6 +139,8 @@
     ```
 
 
+<h2 id="aeb428554a0acc6cc503a2e4da6ae61a"></h2>
+
 ### Libraries
 
 - Create a static library with
@@ -77,6 +167,8 @@
         - `-l` specify the library you want to link
 
 
+<h2 id="9062aef37682ecaeb79a2df3f3820105"></h2>
+
 ### Build Systems
 
 - They began as `shell` scripts
@@ -86,6 +178,8 @@
     - It's a build system generator
     - You need to use an actual build system like `Make` of `Ninja`
 
+
+<h2 id="0458b03d5c8e257e5832ae13f35c64d4"></h2>
 
 ### Build a CMake project
 
@@ -160,7 +254,11 @@
     ```
 
 
+<h2 id="3e2af85ef3711cbd431c3a2a0e06d42a"></h2>
+
 ## Modern C++: Core C++ (Lecture 2, I. Vizzo, 2020)
+
+<h2 id="4bb1ad49e08a18886c3d80a8642067f0"></h2>
 
 ### Range for loop
 
@@ -172,6 +270,8 @@
         // this happens for each value in the container
     }
     ```
+
+<h2 id="e102f67b68837b497f8f248b27fe42f2"></h2>
 
 ### c++17, Iterating map in a pythonic way
 
@@ -192,6 +292,8 @@
     ```
 
 
+<h2 id="5ec0d21ae7ae7c4254aa1660eb6e4c65"></h2>
+
 ### References to variables
 
 - We can create a **reference** to any variable
@@ -203,6 +305,8 @@
 - Whatever happens to a reference happens to the variable and vice versa
 - Yields performance gain as references avoid **copying data**.
 
+
+<h2 id="65803f90b5371dc3b88b60a06713354b"></h2>
 
 ### stringstream
 
@@ -220,7 +324,11 @@
 ```
 
 
+<h2 id="a229d387ccd502315aeb3181517851e9"></h2>
+
 ## Modern C++: C++ Functions (Lecture 3, I. Vizzo, 2020)
+
+<h2 id="b45cffe084dd3d20d928bee85e7b0f21"></h2>
 
 ### string
 
@@ -230,7 +338,11 @@
     std::string dest = source;
     ```
 
+<h2 id="0007c63d15df657b740c1ee3154c262e"></h2>
+
 ### Return type 
+
+<h2 id="d3cb767ab10f736c78010d8580888b03"></h2>
 
 #### Automatic return type deduction C++14
 
@@ -239,6 +351,8 @@ auto GetDictionary() {
     return std::map<char, int> my_dict{{'a', 1}, {'b', 2}};
 }
 ```
+
+<h2 id="1e4c066fde8dc7dce4d43f7b12f8ecfb"></h2>
 
 #### return multiple value like python
 
@@ -256,8 +370,12 @@ auto GetDictionary() {
     }
     ```
 
+<h2 id="535395200405220009c672236d3cd0f0"></h2>
+
 #### WARNING: Never return reference to locally variables !!!
 
+
+<h2 id="4b3473986e35c311d04c1f51e2364e5c"></h2>
 
 #### Argument List 
 
@@ -277,6 +395,8 @@ void f(const type& arg1, const type& arg2) {
 ```
 
 
+<h2 id="1cc836adaa1ff6687e4b7268d53fd690"></h2>
+
 #### Default Arguments
 
 - Only **set in declaration**, not in definition
@@ -286,6 +406,8 @@ void f(const type& arg1, const type& arg2) {
     - Can lead to unexpected behavior when overused
 - Only use them when readability gets much better.
 
+<h2 id="97b1664f687df9ed0e3dfb1930a5e08b"></h2>
+
 #### Passing big objects
 
 - **Pass by reference** to avoid copy
@@ -293,6 +415,8 @@ void f(const type& arg1, const type& arg2) {
     - use const refs to ensure the object passed in won't be modified unexpectedly
     - non-const refs are mostly used in older code written before c++11
 
+
+<h2 id="13d28e8dfc702e3456e0767dff9a128a"></h2>
 
 #### Namespaces
 
@@ -307,7 +431,7 @@ void f(const type& arg1, const type& arg2) {
     namespace module_2 { int SomeFunc() {} }
     ```
 
-- **Avoid** using namespace <name>
+- **Avoid** using namespace `<name>`
     ```c++
     // Avoid !!!
     using namespace std;
@@ -320,6 +444,8 @@ void f(const type& arg1, const type& arg2) {
 - **Never** use `using namespace <name>` in *.hpp files
     - Prefer using explicit `using` even in *.cpp files
 
+<h2 id="2f456caae6a443a8904f3985a3b76b52"></h2>
+
 #### Nameless namespace
 
 - If you find yourself relying on some constants in a file and these constants should not be seen in any other file, put them into a **nameless namespace** on the top of this file
@@ -331,7 +457,11 @@ void f(const type& arg1, const type& arg2) {
     ...
     ```
 
+<h2 id="6559a7c277d5ab1e9354d0f6a688aaff"></h2>
+
 ## Modern C++: The C++ STL Library (Lecture 4, I. Vizzo, 2020)
+
+<h2 id="326a83eb53ef155a2689ddafaebdc904"></h2>
 
 ### std::array
 
@@ -369,6 +499,8 @@ int main() {
 </details>
 
 
+<h2 id="f0f1af1e35355df34019a2c3783b10b3"></h2>
+
 ### std::vector
 
 - `#include <vector>` to use std::vector
@@ -404,6 +536,8 @@ int main() {
 
 </details>
 
+<h2 id="3f074b0debc6864e448427c629c9244e"></h2>
+
 #### Optimize vector resizing
 
 - `reserve(n)` ensures that the vector has enough capacity to store n items
@@ -413,6 +547,8 @@ int main() {
     vec.reserve(N); // size 0, capacity 100
     ```
 
+
+<h2 id="1b3695f21224f3bbc288e793cf882f63"></h2>
 
 ### std::map
 
@@ -460,6 +596,8 @@ int main() {
 
 
 
+<h2 id="dc7ff92730fbf5c6f11c3cf17606dbae"></h2>
+
 ### std::unordered_map
 
 - `#include <unordered_map>`
@@ -467,6 +605,8 @@ int main() {
 - key type has to be hashable
 - faster to use than **std::map**
 
+
+<h2 id="aa703c156fde48ca1bd441cec6280929"></h2>
 
 ### Iterating over maps
 
@@ -484,7 +624,11 @@ New in **C++17**
     }
 ```
 
+<h2 id="749a4adc947e16689fe9c879ee3c493a"></h2>
+
 ### Much More
+
+<h2 id="d427f3a724f7121a73daa3141b530c54"></h2>
 
 #### Sequence containers
 
@@ -496,6 +640,8 @@ deque | double-ended queue
 forward_list (c++11)  | single-linked list
 list | doubly-linked list
 
+
+<h2 id="31d750310fd00290fe605fba289138f1"></h2>
 
 #### Associative containers
 
@@ -510,6 +656,8 @@ multimap | keys may be non-unique,  sorted by keys
 
 
 
+<h2 id="b6666e72d36bedf79abe8f6f7df90a45"></h2>
+
 #### Unordered Associative containers
 
 container | desc
@@ -519,6 +667,8 @@ unordered_map | hashed by keys
 unordered_multiset  | keys may be non-unique, hashed by keys
 unordered_multimap | keys may be non-unique,  hashed by keys
 
+
+<h2 id="0b7e76082bd309e16701c104e9dac707"></h2>
 
 #### Container adaptors
 
@@ -530,6 +680,8 @@ stack | adapts a container to provide LIFO data structure
 queue | adapts a container to provide  FIFO data structure
 priority_queue | adapts a container to provide priority queue
 
+
+<h2 id="523a8681903bcf53bace35316c86fe33"></h2>
 
 ### Iterators
 
@@ -554,6 +706,8 @@ STL uses iterators to access data in containers
 - Defined for all using STL containers
 
 
+<h2 id="e35ac241f07c82101c044391318203b2"></h2>
+
 #### Access Data
 
 - Access current element with `*iter`
@@ -562,6 +716,8 @@ STL uses iterators to access data in containers
 - Prefer range-based for loops
 - Compare iterators with `==, !=, <`
 
+
+<h2 id="e4ce2be0ecd34562628da38caf2ef7fc"></h2>
 
 #### Range Access Iterators
 
@@ -610,6 +766,8 @@ int main() {
 </details>
 
 
+<h2 id="1bc9ae9db55fe7155f74151a7aa7c02c"></h2>
+
 ## STL Algorithms
 
 - About 80 standard algorithms
@@ -622,12 +780,16 @@ int main() {
 - If you are not using STL containers, then providing implementations for the stardard iterators will give you access to all algorithms for free.
 
 
+<h2 id="6ae257cb23885f8b48f39b1b9d4231aa"></h2>
+
 ### std::sort
 
 ```c++
     std::array<int, 10> s = {5, 7, 4, 2, 8, 6, 1, 9, 0, 3};
     std::sort(s.begin(), s.end());
 ```
+
+<h2 id="c4b7e2a44e8a44588292a31f9011f63f"></h2>
 
 ### std::find
 
@@ -643,11 +805,15 @@ int main() {
 ```
 
 
+<h2 id="2f4de93bdd1dd3d7dbf6e9921d8c5532"></h2>
+
 ### std::fill
 
 ```c++
     std::fill(v.begin (), v.end (), -1);
 ```
+
+<h2 id="38f03ac751e3f817af19626d93d8717c"></h2>
 
 ### std::count
 
@@ -656,6 +822,8 @@ how many time a value appears in the container
 ```c++
     int num_items1 = std::count(v.begin (), v.end (), n1);
 ```
+
+<h2 id="9b198cfb6790551429485d6acd2cf2e5"></h2>
 
 ### std::count_if
 
@@ -668,6 +836,8 @@ int main () {
 }
 ```
 
+<h2 id="0961a9c4c06073f32a96a680e3888619"></h2>
+
 ### std::for_each
 
 ```c++
@@ -677,6 +847,8 @@ int main () {
     std::for_each(nums.cbegin (), nums.cend (), print);
 ```
 
+
+<h2 id="9c53a489806cc3a34873b4379eef31c8"></h2>
 
 ### std::all_of
 
@@ -691,6 +863,8 @@ int main () {
     // true
 ```
 
+<h2 id="67f8cacb091969dc1c51ac79678a8e18"></h2>
+
 ### std::rotate
 
 ```c++
@@ -699,6 +873,8 @@ std::rotate(v.begin (), v.begin () + 2, v.end ());
 // before rotate: 1 2 3 4 5 6 7 8 9 10
 // after rotate: 3 4 5 6 7 8 9 10 1 2
 ```
+
+<h2 id="2a61c221f8277712d39ce802d9b6f952"></h2>
 
 ### std::transform
 
@@ -713,6 +889,8 @@ int main () {
 }
 ```
 
+<h2 id="26a950b3fc74670b811b42da3ab8a292"></h2>
+
 ### std::accumulate
 
 ```c++
@@ -721,6 +899,8 @@ int main () {
     int product = std::accumulate (v.begin (), v.end (), 1, std::multiplies ()); // 3628800
 ```
 
+<h2 id="18ae435191aaee20621eb10024fbbb34"></h2>
+
 ### std::max
 
 ```c++
@@ -728,6 +908,8 @@ int main () {
     cout << "max(1, 9999) : " << max(1, 9999) << endl;
     cout << "max('a', 'b'): " << max('a', 'b') << endl;
 ```
+
+<h2 id="dd8ec9efd2fe56b7abf66f2a11daa933"></h2>
 
 ### std::min_element
 
@@ -742,6 +924,8 @@ int main() {
 }
 ```
 
+<h2 id="5f12a37961c2f3791b1cd8ed74dc0e8f"></h2>
+
 ### std::minmax_element
 
 ```c++
@@ -755,6 +939,8 @@ int main() {
 ```
 
 
+<h2 id="a73735cb6e23b9a7b8336d2704580ebc"></h2>
+
 ### std::clamp
 
 ```c++
@@ -767,6 +953,8 @@ int main() {
     cout << std::clamp (0.1 , kMin , kMax) << endl; // 0.1
     cout << std::clamp (-2.1, kMin , kMax) << endl; // 0
 ```
+
+<h2 id="7d7e5802dcba0b7b9e4f9095d2ede15e"></h2>
 
 ### std::sample
 
@@ -788,7 +976,11 @@ int main() {
 }
 ```
 
+<h2 id="ca60008ff3f9f37c01aa32cc26f27d57"></h2>
+
 ## Modern C++: I/O Files, Intro to Classes (Lecture 5, I. Vizzo, 2020)
+
+<h2 id="64329a7f7fdda209400a0e09e030b72a"></h2>
 
 ### C++ Utilities
 
@@ -810,6 +1002,8 @@ int main() {
         - much more...
 
 
+<h2 id="4f1b4f40c11bae1ef7016617425c47ce"></h2>
+
 #### std::swap
 
 ```c++
@@ -818,6 +1012,8 @@ int main() {
 
     std::swap(a, b); // a:5, b:3
 ```
+
+<h2 id="edfc81f5909201a3635b0510580efd59"></h2>
 
 #### std::variant
 
@@ -837,6 +1033,8 @@ int main() {
     cout << std::get <int >(v2) << endl; // 12
 ```
 
+<h2 id="68cdf81a296c17812f5703c4853431bf"></h2>
+
 #### std::any
 
 - `#include <any>`
@@ -853,6 +1051,8 @@ int main() {
     std::cout << std::boolalpha << std::any_cast <bool >(a) << std::endl; // true
 ```
 
+
+<h2 id="86a6516c2565ea4d02f523528704628c"></h2>
 
 #### std::optional
 
@@ -877,6 +1077,8 @@ int main() {
 ```
 
 
+<h2 id="a0085eb6fbe44026d573660ddc6dfdb1"></h2>
+
 #### std::tuple
 
 ```c++
@@ -893,6 +1095,8 @@ int main() {
 ```
 
 
+<h2 id="c19047f100b3ef25731b892ae53676e7"></h2>
+
 #### std::chrono
 
 - there are much better ways of doing benchmarking but let's say that you want to benchmark a function...
@@ -907,11 +1111,15 @@ int main() {
 ```
 
 
+<h2 id="ef43236673ca0bb606b14091061ac271"></h2>
+
 ### Error Handling
 
 - Only used for **exceptional behavior**
 - **Often misused** : e.g. wrong parameter should not lead to an exception
 - **GOOGLE-STYLE** Don’t use exceptions
+
+<h2 id="7510820b7a388de6f1d29fb1016855c6"></h2>
 
 #### Error handling with exceptions
 
@@ -921,6 +1129,8 @@ int main() {
 - An exception can be **caught** at any point of the program (`try - catch`) and even **thrown** further (throw)
 - The constructor of an exception receives a string error message as a parameter
     - This string can be called through a member function `what()`
+
+<h2 id="ce13141dd4e4dce25cbb4332e6da68bd"></h2>
 
 #### throw exceptions
 
@@ -935,6 +1145,8 @@ int main() {
     ```
     - they are due to errors in the internal logic of the program. In theory, they are preventable.
 
+
+<h2 id="db263daf8d9aaa24b3310e63e8a2039d"></h2>
 
 #### catch exceptions
 
@@ -954,7 +1166,11 @@ int main() {
     }
 ```
 
+<h2 id="edde613ff4105afe6b46342e6349d4dc"></h2>
+
 ### IO Library
+
+<h2 id="1d76348345dba9e6f8aa5be00cd1ce47"></h2>
 
 #### Reading and writing to files
 
@@ -984,6 +1200,8 @@ std :: fstream f_in_out(string& file_name , Mode mode);
     ios_base::out | open file for writing
     ios_base::trunc | overwrite the existing file
 
+
+<h2 id="6d339878496ab35daf9a4791d88d3cfa"></h2>
 
 #### Regular columns
 
@@ -1020,6 +1238,8 @@ int main() {
 ```
 
 
+<h2 id="9b554d6150f4065e7e97e9623ad9b663"></h2>
+
 #### Reading files one line at a time
 
 ```c++
@@ -1046,6 +1266,8 @@ int main() {
 // line in file: `filename = /home/ivizzo /. bashrc`
 ```
 
+<h2 id="62f2f943d940531f78915e94151c9f20"></h2>
+
 #### Writing into text files
 
 ```c++
@@ -1068,6 +1290,8 @@ int main() {
 // 1.2345678899999998901
 ```
 
+<h2 id="71eb2af1d3698b17486be09467c11cf1"></h2>
+
 #### Writing to binary files
 
 - fast
@@ -1083,6 +1307,8 @@ int main() {
 00000020: 0a
 ```
 
+
+<h2 id="0f30f0d2efdfcf48af794b13f6b23dd9"></h2>
 
 #### Reading from binary files
 
@@ -1118,6 +1344,8 @@ int main() {
 // 0 0 0 0 0 0
 ```
 
+<h2 id="606b6a8c6de3d15095ae41e960390cea"></h2>
+
 ### C++17 Filesystem library
 
 - Use to perform operations on:
@@ -1129,6 +1357,8 @@ int main() {
     - Makes your life easier.
     - https://en.cppreference.com/w/cpp/filesystem
 
+
+<h2 id="60a3cb9955bbb37b1e6985ef26315afd"></h2>
 
 #### directory_iterator
 

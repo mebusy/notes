@@ -8,6 +8,7 @@
     - [self signed cert](#b09fb18aea2fecd5ff9b30027f00a5aa)
     - [Redeem](#81ed4dcb851fefbbbc791eeef4cd97a2)
     - [golang forward request](#e165301d2a7fe3a79049eb6aab23632a)
+    - [Platform nodejs code to browser](#ea16176003eeb0aed81b048e08bdf2f4)
 
 [](...menuend)
 
@@ -170,6 +171,8 @@ func serveReverseProxy(target string, res http.ResponseWriter, req *http.Request
 }
 ```
 
+
+<h2 id="ea16176003eeb0aed81b048e08bdf2f4"></h2>
 
 ## Platform nodejs code to browser
 

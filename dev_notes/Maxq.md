@@ -1,5 +1,6 @@
 [](...menustart)
 
+- [Some HRL Concepts](#beaed6a3b12899edfbf2c2cce85863e1)
 - [Maxq](#ef0aea7fada38d87f635b347acae4117)
 - [3. The MAXQ Value Function Decomposition](#1ca2a53e3aee2426fbe0471c0788f16d)
     - [3.1 Taxi example](#11b7c68186495355b7770a6777ab2f40)
@@ -22,12 +23,12 @@
     - [5.3 The Hierarchical Credit Assignment Problem](#3a77b82cf90e359bca449dc6baea1a13)
 - [6. Non-Hierarchical Execution of the MAXQ Hierarchy](#be3d80bb862c5123b4a97b94416dd9cd)
 - [7. Experimental Evaluation of the MAXQ Method](#624966685e552964b681142cfb943122)
+- [MaxQ-OP](#24bea4a7a08acd82c097e58cd49ff462)
 
 [](...menuend)
 
 
-<h2 id="ef0aea7fada38d87f635b347acae4117"></h2>
-
+<h2 id="beaed6a3b12899edfbf2c2cce85863e1"></h2>
 
 # Some HRL Concepts
 
@@ -61,6 +62,8 @@
     - Learning: Intra-Option Q-Learning
 
 Q-learning will converge to the optimal  , while SARSA(0) will need a GLIE(Greedy in the Limit with Infinite Exploration) policy.
+
+<h2 id="ef0aea7fada38d87f635b347acae4117"></h2>
 
 # Maxq 
 
@@ -989,6 +992,8 @@ For Boltzmann exploration, we established an initial temperature and then a cool
 - with greedy execution, the MAXQ policy is also able to attain optimal performance. 
     - But as the execution becomes “more greedy”, there is a temporary drop in performance,because MAXQ-Q must learn C values in new regions of the state space that were not visited by the recursively optimal policy.
 
+
+<h2 id="24bea4a7a08acd82c097e58cd49ff462"></h2>
 
 # MaxQ-OP
 
