@@ -909,6 +909,258 @@ int main() {
 
 ### Error Handling
 
+- Only used for **exceptional behavior**
+- **Often misused** : e.g. wrong parameter should not lead to an exception
+- **GOOGLE-STYLE** Don’t use exceptions
+
+#### Error handling with exceptions
+
+- We can **throw** an exception if there is an error
+- STL defines classes that represent exceptions. Base `class:std::exception`
+- `#include <stdexcept>`
+- An exception can be **caught** at any point of the program (`try - catch`) and even **thrown** further (throw)
+- The constructor of an exception receives a string error message as a parameter
+    - This string can be called through a member function `what()`
+
+#### throw exceptions
+
+- Runtime Error:
+    ```c++
+    string msg = "specific error string";
+    throw runtime_error (msg);
+    ```
+- Logic Error: an error in logic of the user
+    ```c++
+    throw logic_error (msg);
+    ```
+    - they are due to errors in the internal logic of the program. In theory, they are preventable.
+
+
+#### catch exceptions
+
+```c++
+    try {
+        x = someUnsafeFunction (a, b, c);
+    }
+    // we can catch multiple types of exceptions
+    catch ( runtime_error &ex ) {
+        cerr << "Runtime error: " << ex.what () << endl;
+    } catch ( logic_error &ex ) {
+        cerr << "Logic error: " << ex.what () << endl;
+    } catch ( exception &ex ) {
+        cerr << "Some exception: " << ex.what () << endl;
+    } catch ( ... ) { // all others
+        cerr << "Error: unknown exception" << endl;
+    }
+```
+
+### IO Library
+
+#### Reading and writing to files
+
+- Use streams from STL
+- Syntax similar to `std::cerr`, `ctd::cout`
+
+```c++
+#include <fstream>
+
+using Mode = std :: ios_base :: openmode;
+
+// ifstream: stream for input file
+std :: ifstream f_in(string& file_name , Mode mode);
+// ofstream: stream for output file
+std :: ofstream f_out(string& file_name , Mode mode);
+// stream for input and output file
+std :: fstream f_in_out(string& file_name , Mode mode);
+```
+
+- **modes** under which a file can be opened
+    Mode | Meaning
+    --- | ---
+    ios_base::app | append output
+    ios_base::ate | seek to EOF when opened
+    ios_base::binary | open file in binary mode
+    ios_base::in | open file for reading
+    ios_base::out | open file for writing
+    ios_base::trunc | overwrite the existing file
+
+
+#### Regular columns
+
+- Use it when:
+    - The file contains organized data
+    - Every line has to have all columns
+    ```txt
+    1 2.34 One 0.21
+    2 2.004 two 0.23
+    3 -2.34 string 0.22
+    ```
+
+```c++
+#include <fstream>
+#include <iostream>
+#include <string>
+
+int main() {
+    int i;
+    double a, b;
+    std::string s;
+
+    std::ifstream in("test.txt"); // default mode: std::ios_base::in
+    // Read data, until it is there.
+    // even if there are empty lines and leading spaces
+    while (in >> i >> a >> s >> b) {
+        std::cout << i << " " << a << " " << s << " " << b << std::endl;
+    }
+    return 0;
+}
+// 1 2.34 One 0.21
+// 2 2.004 two 0.23
+// 3 -2.34 string 0.22
+```
+
+
+#### Reading files one line at a time
+
+```c++
+#include <fstream>
+#include <iostream>
+
+int main() {
+    std::string line, file_name;
+    std::ifstream input("test_bel.txt");
+    // Read data line-wise
+    while (std::getline(input, line)) {
+        // std::cout << line << std::endl;
+        // Strting has a find method
+        std::string::size_type loc = line.find("filename");
+        if (loc != std::string::npos) {
+            // Get the file name
+            file_name = line.substr(line.find("=", 0) + 1, std::string::npos);
+            std::cout << "File name: " << file_name << std::endl;
+            // File name:  /home/ivizzo /. bashrc
+        }
+    }
+    return 0;
+}
+// line in file: `filename = /home/ivizzo /. bashrc`
+```
+
+#### Writing into text files
+
+```c++
+#include <fstream>
+#include <iomanip> // for setprecision
+
+int main() {
+    std::string filename = "out.txt";
+    std::ofstream out(filename);
+    if (!out.is_open()) {
+        return EXIT_FAILURE;
+    }
+    double a = 1.23456789;
+    out << "Just string" << std::endl;
+    out << std::setprecision(10) << a << std::endl;
+    return 0;
+}
+// out.txt
+// Just string
+// 1.2345678899999998901
+```
+
+#### Writing to binary files
+
+- fast
+- No precision loss for floating point types
+- syntax:
+    ```c++
+    file.write(reinterpret_cast <char*>(&a), sizeof(a));
+    ```
+
+```c++
+00000000: 0200 0000 0300 0000 0000 0000 0000 0000
+00000010: 0000 0000 0000 0000 0000 0000 0000 0000
+00000020: 0a
+```
+
+
+#### Reading from binary files
+
+- syntax
+    ```c++
+    file.read(reinterpret_cast <char*>(&a), sizeof(a));
+    ```
+
+```c++
+#include <fstream>
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::string filename = "image.dat";
+    int r = 0, c = 0;
+    std::ifstream in(filename, std::ios::binary);
+    if (!in) {
+        return EXIT_FAILURE;
+    }
+    in.read(reinterpret_cast<char *>(&r), sizeof(r));
+    in.read(reinterpret_cast<char *>(&c), sizeof(c));
+    std::cout << "r = " << r << ", c = " << c << std::endl;
+    std::vector<float> data(r * c, 0);
+    in.read(reinterpret_cast<char *>(data.data()), data.size() * sizeof(float));
+    for (float d : data) {
+        std::cout << d << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+// r = 2, c = 3
+// 0 0 0 0 0 0
+```
+
+### C++17 Filesystem library
+
+- Use to perform operations on:
+    - paths
+    - regular files
+    - directories
+- like a utility library on top of the IO library
+- Inspired in `boost::filesystem`
+    - Makes your life easier.
+    - https://en.cppreference.com/w/cpp/filesystem
+
+
+#### directory_iterator
+
+
+```c++
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+
+namespace fs = std::filesystem;
+
+int main() {
+    // PS. it's create_directories, NOT create_directory
+    fs::create_directories("sandbox/a/b"); // mkdir -p
+    std::ofstream("sandbox/file1.txt");
+    std::ofstream("sandbox/file2.txt");
+    // walk
+    for (auto &p : fs::recursive_directory_iterator("sandbox")) {
+        std::cout << p.path() << std::endl;
+    }
+    fs::remove_all("sandbox"); // rm -rf sandbox
+    return 0;
+}
+// "sandbox/file2.txt"
+// "sandbox/file1.txt"
+// "sandbox/a"
+// "sandbox/a/b"
+```
+
+
+
+
 
 
 
