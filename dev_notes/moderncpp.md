@@ -18,11 +18,11 @@
             - [Automatic return type deduction C++14](#d3cb767ab10f736c78010d8580888b03)
             - [return multiple value like python](#1e4c066fde8dc7dce4d43f7b12f8ecfb)
             - [WARNING: Never return reference to locally variables !!!](#535395200405220009c672236d3cd0f0)
-            - [Argument List](#4b3473986e35c311d04c1f51e2364e5c)
-            - [Default Arguments](#1cc836adaa1ff6687e4b7268d53fd690)
-            - [Passing big objects](#97b1664f687df9ed0e3dfb1930a5e08b)
-            - [Namespaces](#13d28e8dfc702e3456e0767dff9a128a)
-            - [Nameless namespace](#2f456caae6a443a8904f3985a3b76b52)
+        - [Argument List](#4b3473986e35c311d04c1f51e2364e5c)
+        - [Default Arguments](#1cc836adaa1ff6687e4b7268d53fd690)
+        - [Passing big objects](#97b1664f687df9ed0e3dfb1930a5e08b)
+        - [Namespaces](#13d28e8dfc702e3456e0767dff9a128a)
+        - [Nameless namespace](#2f456caae6a443a8904f3985a3b76b52)
     - [Modern C++: The C++ STL Library (Lecture 4, I. Vizzo, 2020)](#6559a7c277d5ab1e9354d0f6a688aaff)
         - [std::array](#326a83eb53ef155a2689ddafaebdc904)
         - [std::vector](#f0f1af1e35355df34019a2c3783b10b3)
@@ -377,7 +377,7 @@ auto GetDictionary() {
 
 <h2 id="4b3473986e35c311d04c1f51e2364e5c"></h2>
 
-#### Argument List 
+### Argument List 
 
 ```c++
 void f(type arg1, type arg2) {
@@ -397,7 +397,7 @@ void f(const type& arg1, const type& arg2) {
 
 <h2 id="1cc836adaa1ff6687e4b7268d53fd690"></h2>
 
-#### Default Arguments
+### Default Arguments
 
 - Only **set in declaration**, not in definition
 - Cons:
@@ -408,7 +408,7 @@ void f(const type& arg1, const type& arg2) {
 
 <h2 id="97b1664f687df9ed0e3dfb1930a5e08b"></h2>
 
-#### Passing big objects
+### Passing big objects
 
 - **Pass by reference** to avoid copy
 - **Avoid using non-const ref**
@@ -418,7 +418,7 @@ void f(const type& arg1, const type& arg2) {
 
 <h2 id="13d28e8dfc702e3456e0767dff9a128a"></h2>
 
-#### Namespaces
+### Namespaces
 
 - helps avoiding name conflicts
 - group the project into logical moduels
@@ -446,7 +446,7 @@ void f(const type& arg1, const type& arg2) {
 
 <h2 id="2f456caae6a443a8904f3985a3b76b52"></h2>
 
-#### Nameless namespace
+### Nameless namespace
 
 - If you find yourself relying on some constants in a file and these constants should not be seen in any other file, put them into a **nameless namespace** on the top of this file
     ```c++
