@@ -1,8 +1,13 @@
 
 # Modern C++
 
+- youtube
+    - https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9GCIA&index=5
+- STL algorithm
+    - https://en.cppreference.com/w/cpp/algorithm
+- C++ Utilities
+    - https://en.cppreference.com/w/cpp/utility
 
-https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9GCIA&index=5
 
 
 ## Modern C++: Build and Tools (Lecture 1, I. Vizzo, 2020)
@@ -162,7 +167,7 @@ https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9G
 - Iterating over a standard containers like array or vector has simple syntax
 - Avoid mistakes with indices
 - added in c++11
-    ```cpp
+    ```c++
     for (const auto& value: container) {
         // this happens for each value in the container
     }
@@ -171,7 +176,7 @@ https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9G
 ### c++17, Iterating map in a pythonic way
 
 - New in c++17
-    ```cpp
+    ```c++
     #include <map>
 
         std::map<char, int> my_dict{{'a', 1}, {'b', 2}};
@@ -190,7 +195,7 @@ https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9G
 ### References to variables
 
 - We can create a **reference** to any variable
-    ```cpp
+    ```c++
     float& ref = original_variable;
     std::string& hello_ref = hello;
     ```
@@ -201,7 +206,7 @@ https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9G
 
 ### stringstream
 
-```cpp
+```c++
     std::stringstream filename("205.txt");
 
     int num = 0;
@@ -220,7 +225,7 @@ https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9G
 ### string
 
 - `#include <string>`
-    ```cpp
+    ```c++
     const std::string source("copy this!");
     std::string dest = source;
     ```
@@ -229,7 +234,7 @@ https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9G
 
 #### Automatic return type deduction C++14
 
-```cpp
+```c++
 auto GetDictionary() {
     return std::map<char, int> my_dict{{'a', 1}, {'b', 2}};
 }
@@ -238,7 +243,7 @@ auto GetDictionary() {
 #### return multiple value like python
 
 - with the introduction of structured binding in c++17 you can now:
-    ```cpp
+    ```c++
     #include <tuple>
 
     auto Foo() {
@@ -256,7 +261,7 @@ auto GetDictionary() {
 
 #### Argument List 
 
-```cpp
+```c++
 void f(type arg1, type arg2) {
     // f holds a copy of arg1 and arg2 } 
 }
@@ -293,22 +298,22 @@ void f(const type& arg1, const type& arg2) {
 
 - helps avoiding name conflicts
 - group the project into logical moduels
-    ```cpp
+    ```c++
     namespace module_1 {
         int SomeFunc() {}
     }
     ```
-    ```cpp
+    ```c++
     namespace module_2 { int SomeFunc() {} }
     ```
 
 - **Avoid** using namespace <name>
-    ```cpp
+    ```c++
     // Avoid !!!
     using namespace std;
     ```
 - Only use what you need
-    ```cpp
+    ```c++
     using std::cout;  // explicitly use cout.
     using std::endl;
     ```
@@ -318,7 +323,7 @@ void f(const type& arg1, const type& arg2) {
 #### Nameless namespace
 
 - If you find yourself relying on some constants in a file and these constants should not be seen in any other file, put them into a **nameless namespace** on the top of this file
-    ```cpp
+    ```c++
     namespace {
         const int kLocalImportantInt = 13;
         const int kLocakImportantFloat = 13.0f;
@@ -346,7 +351,7 @@ void f(const type& arg1, const type& arg2) {
 std::array
 </summary>
 
-```cpp
+```c++
 #include <array>
 #include <iostream>
 
@@ -380,15 +385,15 @@ int main() {
 std::vector
 </summary>
 
-```cpp
+```c++
 #include <iostream>
 #include <string>
 #include <vector>
 
 int main() {
-    std ::vector<int> numbers = {1, 2, 3};
+    std::vector<int> numbers = {1, 2, 3};
 
-    std ::vector<std ::string> names = {"Nacho", "Cyrill"};
+    std::vector<std::string> names = {"Nacho", "Cyrill"};
     names.emplace_back("Roberto");
 
     std::cout << "First name : " << names.front() << std::endl;
@@ -403,7 +408,7 @@ int main() {
 
 - `reserve(n)` ensures that the vector has enough capacity to store n items
 - This is a very **important optimization**
-    ```cpp
+    ```c++
     vector <int> vec; // size 0, capacity 0
     vec.reserve(N); // size 0, capacity 100
     ```
@@ -417,7 +422,7 @@ int main() {
 - keys are stored using the `<` operator
     - your **keys** should be comparable
 - create from data
-    ```cpp
+    ```c++
     std::map<KeyT, ValueT> m{{key1, value1}, {...} };
     ```
 - check size: `m.size()`
@@ -434,7 +439,7 @@ int main() {
 std::map
 </summary>
 
-```cpp
+```c++
 #include <iostream> // I/O stream for simple input/output
 #include <map>
 
@@ -465,7 +470,7 @@ int main() {
 
 ### Iterating over maps
 
-```cpp
+```c++
     for (const auto &student : students) {
         std::cout << student.first << " " << student.second << std::endl;
     }
@@ -473,7 +478,7 @@ int main() {
 
 New in **C++17**
 
-```cpp
+```c++
     for (const auto &[id, name] : students) {
         std::cout << id << " " << name << std::endl;
     }
@@ -576,7 +581,7 @@ the leading `c` means **const**
 iter example
 </summary>
 
-```cpp
+```c++
 #include <iostream> // I/O stream for simple input/output
 #include <map>
 #include <vector>
@@ -619,14 +624,14 @@ int main() {
 
 ### std::sort
 
-```cpp
+```c++
     std::array<int, 10> s = {5, 7, 4, 2, 8, 6, 1, 9, 0, 3};
     std::sort(s.begin(), s.end());
 ```
 
 ### std::find
 
-```cpp
+```c++
     std::array<int, 10> s = {5, 7, 4, 2, 8, 6, 1, 9, 0, 3};
     auto result1 = std::find(s.begin(), s.end(), 7);
     if (result1 != s.end()) {
@@ -640,7 +645,7 @@ int main() {
 
 ### std::fill
 
-```cpp
+```c++
     std::fill(v.begin (), v.end (), -1);
 ```
 
@@ -648,13 +653,13 @@ int main() {
 
 how many time a value appears in the container
 
-```cpp
+```c++
     int num_items1 = std::count(v.begin (), v.end (), n1);
 ```
 
 ### std::count_if
 
-```cpp
+```c++
 inline bool div_by_3(int i) { return i % 3 == 0; }
 int main () {
     std::vector <int> v{1, 2, 3, 3, 4, 3, 7, 8, 9, 10};
@@ -665,7 +670,7 @@ int main () {
 
 ### std::for_each
 
-```cpp
+```c++
     std::vector <int> nums {3, 4, 2, 8, 15, 267};
     // lambda expression
     auto print = [](const int& n) { cout << " " << n; };
@@ -675,7 +680,7 @@ int main () {
 
 ### std::all_of
 
-```cpp
+```c++
 inline bool even(int i) { return i % 2 == 0; };
 int main () {
     std::vector <int> v(10, 2); // 2 2 2 2 2  2 2 2 2 2
@@ -688,7 +693,7 @@ int main () {
 
 ### std::rotate
 
-```cpp
+```c++
 std::vector <int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 std::rotate(v.begin (), v.begin () + 2, v.end ());
 // before rotate: 1 2 3 4 5 6 7 8 9 10
@@ -697,7 +702,7 @@ std::rotate(v.begin (), v.begin () + 2, v.end ());
 
 ### std::transform
 
-```cpp
+```c++
 auto UpperCase (char c) { return std::toupper(c); }
 int main () {
     const std::string s("hello");
@@ -710,7 +715,7 @@ int main () {
 
 ### std::accumulate
 
-```cpp
+```c++
     std::vector <int> v{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     int sum = std::accumulate (v.begin (), v.end (), 0); // 55
     int product = std::accumulate (v.begin (), v.end (), 1, std::multiplies ()); // 3628800
@@ -718,7 +723,7 @@ int main () {
 
 ### std::max
 
-```cpp
+```c++
     using std::max;
     cout << "max(1, 9999) : " << max(1, 9999) << endl;
     cout << "max('a', 'b'): " << max('a', 'b') << endl;
@@ -726,7 +731,7 @@ int main () {
 
 ### std::min_element
 
-```cpp
+```c++
 int main() {
     std::vector<int> v{3, 1, 4, 1, 0, 5, 9};
     auto result = std::min_element(v.begin(), v.end());
@@ -739,7 +744,7 @@ int main() {
 
 ### std::minmax_element
 
-```cpp
+```c++
     using std::minmax_element ;
     auto v = {3, 9, 1, 4, 2, 5, 9};
     auto [min , max] = minmax_element (begin(v), end(v));
@@ -752,36 +757,163 @@ int main() {
 
 ### std::clamp
 
-```cpp
+```c++
     // value should be between [kMin ,kMax]
     const double kMax = 1.0F;
     const double kMin = 0.0F
 
-    cout << std :: clamp (0.5 , kMin , kMax) << endl; // 0.5
-    cout << std :: clamp (1.1 , kMin , kMax) << endl; // 1
-    cout << std :: clamp (0.1 , kMin , kMax) << endl; // 0.1
-    cout << std :: clamp (-2.1, kMin , kMax) << endl; // 0
+    cout << std::clamp (0.5 , kMin , kMax) << endl; // 0.5
+    cout << std::clamp (1.1 , kMin , kMax) << endl; // 1
+    cout << std::clamp (0.1 , kMin , kMax) << endl; // 0.1
+    cout << std::clamp (-2.1, kMin , kMax) << endl; // 0
 ```
 
 ### std::sample
 
-```cpp
+```c++
 #include <algorithm>
 #include <iostream> // I/O stream for simple input/output
 #include <random>
 #include <vector>
 
 int main() {
-    std ::string in = "C++ is cool", out;
+    std::string in = "C++ is cool", out;
     auto rnd_dev = std::mt19937{std::random_device{}()};
     const int kNLetters = 5;
-    std ::sample(in.begin(), in.end(), std ::back_inserter(out), kNLetters,
+    std::sample(in.begin(), in.end(), std::back_inserter(out), kNLetters,
                  rnd_dev);
     std::cout << "from : " << in << std::endl;   // C++ is cool
     std::cout << "sample: " << out << std::endl; // sample: +  ol   // random
     return 0;
 }
 ```
+
+## Modern C++: I/O Files, Intro to Classes (Lecture 5, I. Vizzo, 2020)
+
+### C++ Utilities
+
+- two groups libraries
+    1. language support libraries
+        - type support (`std::size_t`)
+        - dynamic memory management (`std::shared_ptr`)
+        - error handling (`std::exception, assert`)
+        - initializer list(`std::vector{1,2}`)
+        - much more...
+    2. general-purpose libraries
+        - program utilities (`std::abort`)
+        - date and time (`std::chrono::duration`)
+        - optional, variant and any (`std::variant`)
+        - pairs and tuples (`std::tuple`)
+        - swap, forward and move (`std::move`)
+        - hash support (`std::hash`)
+        - formatting library (coming in c++20)
+        - much more...
+
+
+#### std::swap
+
+```c++
+    int a = 3;
+    int b = 5;
+
+    std::swap(a, b); // a:5, b:3
+```
+
+#### std::variant
+
+```c++
+    // can be either int or float, but not both
+    std::variant <int, float > v1;
+    v1 = 12; // v contains int
+    cout << std::get <int >(v1) << endl; // 12
+    // will raise error if you want to get float
+
+    std::variant <int, float > v2 {3.14F};
+    cout << std::get <1>(v2) << endl;  // 3.14
+
+    v2 = std::get <int >(v1); // assigns v1 to v2
+    v2 = std::get <0>(v1);  // same assignment
+    v2 = v1;  // same assignment
+    cout << std::get <int >(v2) << endl; // 12
+```
+
+#### std::any
+
+- `#include <any>`
+
+```c++
+    std::any a; // any type
+    a = 1; // int
+    std::cout << std::any_cast<int>(a) << std::endl;
+
+    a = 3.14; // double
+    std::cout << std::any_cast <double >(a) << std::endl;  // 3.14
+
+    a = true; // bool
+    std::cout << std::boolalpha << std::any_cast <bool >(a) << std::endl; // true
+```
+
+
+#### std::optional
+
+- this is usually something we can solve using like `if/else`
+
+```c++
+#include <iostream> // I/O stream for simple input/output
+#include <optional>
+
+std::optional<std::string> StringFactory(bool create) {
+    if (create) {
+        return "C++17";
+    }
+    return {}; // return nothing
+}
+
+int main() {
+    std::cout << StringFactory(true).value() << '\n';         // C++17
+    std::cout << StringFactory(false).value_or(":(") << '\n'; // :(
+    return 0;
+}
+```
+
+
+#### std::tuple
+
+```c++
+    std::tuple <double , char , string > student1;
+
+    using Student = std::tuple <double , char , string >;
+    Student student2 {1.4 , 'A', "Jose"};
+
+    cout << std::get <string >( student2) << endl; // Jose
+    cout << std::get <2>( student2) << endl; // Jose
+
+    // C++17 structured binding:
+    auto [gpa , grade , name] = make_tuple (4.4 , 'B', "");
+```
+
+
+#### std::chrono
+
+- there are much better ways of doing benchmarking but let's say that you want to benchmark a function...
+
+```c++
+    auto start = std::chrono::steady_clock::now ();
+    cout << "f(42) = " << fibonacci (42) << '\n'; // f(42) = 267914296
+    auto end = std::chrono::steady_clock::now ();
+
+    std::chrono::duration <double > sec = end - start;
+    cout << "elapsed time: " << sec.count () << "s\n"; // elapsed time: 1.84088s
+```
+
+
+### Error Handling
+
+
+
+
+
+
 
 
 
