@@ -1389,6 +1389,116 @@ int main() {
 ```
 
 
+#### filename
+
+
+```c++
+#include <filesystem>
+#include <iostream>
+
+namespace fs = std ::filesystem;
+
+int main() {
+    std::cout << fs::path("/foo/bar.txt").filename() << '\n' // "bar.txt"
+              << fs::path("/foo/.bar").filename() << '\n'    // ".bar"
+              << fs::path("/foo/bar/").filename() << '\n'    // ""
+              << fs::path("/foo/.").filename() << '\n'       // "."
+              << fs::path("/foo/..").filename() << '\n'      // ".."
+              << fs::path("//host").filename() << '\n';      // "host"
+
+    return 0;
+}
+```
+
+#### extension
+
+```c++
+#include <filesystem>
+#include <iostream>
+
+namespace fs = std ::filesystem;
+
+int main() {
+    std::cout << fs::path("/foo/bar.txt").extension() << '\n' // ".txt"
+              << fs::path("/foo/bar.").extension() << '\n'    // "."
+              << fs::path("/foo/bar").extension() << '\n'     // ""
+              << fs::path("/foo/bar.png").extension() << '\n' // ".png"
+              << fs::path("/foo/.").extension() << '\n'       // ""
+              << fs::path("/foo/..").extension() << '\n'      // ""
+              << fs::path("/foo/.hidden").extension() << '\n' // ""
+              << fs::path("/foo/..bar").extension() << '\n';  // ".bar"
+    return 0;
+}
+```
+
+
+#### stem
+
+```c++
+#include <filesystem>
+#include <iostream>
+
+namespace fs = std ::filesystem;
+
+int main() {
+    std::cout << fs::path("/foo/bar.txt").stem() << std::endl   // "bar"
+              << fs::path("/foo/00000.png").stem() << std::endl // "00000"
+              << fs::path("/foo/.bar").stem() << std::endl;     // ".bar"
+    return 0;
+}
+```
+
+#### exists
+
+```c++
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+
+namespace fs = std ::filesystem;
+
+void demo_exists(const fs::path &p) {
+    std::cout << p;
+    if (fs::exists(p))
+        std::cout << " exists\n";
+    else
+        std::cout << " does not exist\n";
+}
+
+int main() {
+    fs::create_directory("sandbox");
+    std::ofstream("sandbox/file");
+    demo_exists("sandbox/file");  // "sandbox/file" exists
+    demo_exists("sandbox/cacho"); // "sandbox/cacho" does not exist
+    fs::remove_all("sandbox");
+    return 0;
+}
+```
+
+
+### Type safety
+
+- **bad – the unit is ambiguous**
+    ```c++
+    void blink_led_bad (int time_to_blink ) {
+        // do something with time_to_blink
+    }
+    ```
+- **good – the unit is explicit**
+    ```c++
+    void blink_led_good ( miliseconds time_to_blink ) {
+        // do something with time_to_blink
+    }
+    ```
+
+- **Usage**
+    ```c++
+    void use () {
+        blink_led_good (100); // ERROR: What unit?
+        blink_led_good (100ms); //
+        blink_led_good (5s); // ERROR: Bad unit
+    }
+    ```
 
 
 
