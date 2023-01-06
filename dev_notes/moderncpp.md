@@ -89,6 +89,8 @@
     - https://en.cppreference.com/w/cpp/algorithm
 - C++ Utilities
     - https://en.cppreference.com/w/cpp/utility
+- Google C++ Testing
+    - https://www.youtube.com/watch?v=nbFXI9SDfbk
 
 
 
@@ -978,7 +980,7 @@ int main() {
 
 <h2 id="ca60008ff3f9f37c01aa32cc26f27d57"></h2>
 
-## Modern C++: I/O Files, Intro to Classes (Lecture 5, I. Vizzo, 2020)
+## Modern C++: I/O Files (Lecture 5, I. Vizzo, 2020)
 
 <h2 id="64329a7f7fdda209400a0e09e030b72a"></h2>
 
@@ -1473,6 +1475,7 @@ int main() {
     fs::remove_all("sandbox");
     return 0;
 }
+
 ```
 
 
@@ -1499,6 +1502,224 @@ int main() {
         blink_led_good (5s); // ERROR: Bad unit
     }
     ```
+
+
+## Modern C++ Classes
+
+
+### Example class definition
+
+```c++
+class Image { // Should be in Image.hpp
+public:
+    Image(const std ::string &file_name);
+    void Draw();
+
+private:
+    int rows_ = 0; // New in C+=11
+    int cols_ = 0; // New in C+=11
+};
+```
+
+
+### What about structs?
+
+- struct is a class where everything is public
+- **GOOGLE-STYLE** Use **struct** as a **simple data container**, if it needs a function it should be a **class** instead.
+
+### Always initialize structs using braced initialization
+
+```c++
+struct NamedInt {
+    int num;
+    std :: string name;
+};
+
+NamedInt var{1, std :: string{"hello"}};
+```
+
+### Constructors and Destructor
+
+- Classes always have **at least one Constructor** and **exactly one Destructor**
+- Constructors crash course:
+    - Are functions with no **explicit** return type
+    - Named exactly as the class
+    - There can be many constructors
+    - **If there is no explicit constructor an implicit default constructor will be generated**.
+- Destructor for class SomeClass:
+    - `~SomeClass()`
+    - Last function called in the lifetime of an object
+    - Generated automatically if not explicitly defined
+
+
+### Setting and getting data
+
+- Use **initializer list** to initialize data
+- Name getter functions as the private member they return
+- **Avoid setters**, set data in the constructor
+
+```c++
+class Student {
+public:
+    // initializer list
+    Student(int id, std::string name) : id_{id}, name_{name} {}
+    // getter
+    int id() const { return id_; }
+    const std::string &name() const { return name_; }
+
+private:
+    int id_;
+    std::string name_;
+};
+```
+
+
+### Declaration and definition
+
+- Data members belong to declaration
+- Class methods can be defined elsewhere
+- Class name becomes part of function name
+    ```c++
+    SomeClass::SomeClass () {} // This is a constructor
+    int SomeClass::var () const { return var_; }
+    void SomeClass::DoSmth () {}
+    ```
+
+### Always initialize members for classes
+
+- **C++ 11 allows to initialize variables in-place**
+- **Do not initialize them in the constructor**
+- No need for an explicit default constructor
+
+
+```c++
+class Student {
+public:
+    // No need for default constructor.
+    // Getters and functions omitted.
+private:
+    int earned_points_ = 0;   // initialize in-place
+    float happiness_ = 1.0f;
+};
+```
+
+- **Note**: Leave the members of structs uninitialized as which will forbid using brace initialization
+
+
+### Const correctness
+
+- **const** after function states that this function **does not change the object**
+    ```c++
+    int var () const;
+    ```
+- Mark all functions that **should not** change the state of the object as **const**
+- Ensures that we can pass objects by a **const** reference and still call their functions
+    ```c++
+    #include <iostream>
+    #include <string>
+
+    class Student {
+    public:
+        Student(std::string name) : name_(name) {}
+        // This function might change the object
+        // compilation error, you must add `const` after the function name()
+        const std::string &name() { return name_; }
+
+    private:
+        std::string name_;
+    };
+
+    void Print(const Student &s) { std::cout << s.name() << std::endl; }
+
+    // error: 'this' argument to member function 'name' has type 'const Student',
+    // but function is not marked const
+    ```
+
+### Move semantics
+
+#### Intuition lvalues, rvalues
+
+- Every expression is an **lvalue** or an **rvalue**
+- lvalues can be written on the **left** of assignment operator (=)
+- rvalues are all the other expressions
+- Explicit rvalue defined using **&&**
+- Use `std::move(…)` to explicitly convert an lvalue to an rvalue
+
+```c++
+int a; // "a" is an lvalue
+int& a_ref = a; // "a" is an lvalue
+                // "a_ref" is a reference to an lvalue
+a = 2 + 2;  // "a" is an lvalue ,
+            // "2 + 2" is an rvalue
+int b = a + 2;  // "b" is an lvalue ,
+                // "a + 2" is an rvalue
+int&& c = std::move(a); // "c" is an rvalue
+```
+
+
+#### std::move
+
+- `std::move` is used to indicate that an object **t** may be “moved from”, i.e. allowing the efficient transfer of resources from **t** to another object.
+- In particular, **std::move** produces an **xvalue expression** that identifies its argument **t**. It is exactly equivalent to a `static_cast` to an rvalue reference type.
+- So, this is the definition, it's **impossible to understand**...
+
+#### Important std::move
+
+- The `std::move()` is a standard-library function returning an **rvalue** reference to its argument.
+- `std::move(x)` means "give me an rvalue reference to x.""
+- That is, `std::move(x)` does not move anything; instead, it allows a user to move **x**, taking ownership.
+
+#### Hands on example
+
+```c++
+#include <iostream>
+#include <string>
+
+using namespace std; // Save space on slides.
+void Print(const string &str) { cout << "lvalue: " << str << endl; }
+// the parameter is a rvalue
+void Print(string &&str) { cout << "rvalue: " << str << endl; }
+
+int main() {
+    string hello = "hi";
+    Print(hello);            // lvalue: hi
+    Print("world");          // rvalue: world
+    Print(std::move(hello)); // rvalue: hi
+    // DO NOT access "hello" after move!
+    return 0;
+}
+```
+
+#### Never access values after move
+
+- The value after **move** is **undefined**
+
+```cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+int main() {
+    std::string str = "Hello";
+    std::vector<std::string> v;
+
+    // uses the push_back(const T&) overload , which means
+    // we'll incur the cost of copying str
+    v.push_back(str);
+    std::cout << "After copy , str is " << str << std::endl;
+    // After copy , str is Hello
+
+    // uses the rvalue reference push_back(T&&) overload ,
+    // which means no strings will be copied; instead ,
+    // the contents of str will be moved into the vector.
+    // This is less expensive , but also means str might
+    // now be empty.
+    v.push_back(std::move(str));
+    std::cout << "After move , str is " << str << std::endl;
+    // After move , str is
+    return 0;
+}
+```
 
 
 
