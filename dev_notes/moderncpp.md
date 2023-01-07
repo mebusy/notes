@@ -83,15 +83,17 @@
 
 # Modern C++
 
-- youtube
+- This lecture
     - https://www.youtube.com/watch?v=9mZw6Rwz1vg&list=PLgnQpQtFTOGRM59sr3nSL8BmeMZR9GCIA&index=5
-- STL algorithm
-    - https://en.cppreference.com/w/cpp/algorithm
-- C++ Utilities
-    - https://en.cppreference.com/w/cpp/utility
-- Google C++ Testing
-    - https://www.youtube.com/watch?v=nbFXI9SDfbk
-
+- Resources
+    - STL algorithm
+        - https://en.cppreference.com/w/cpp/algorithm
+    - C++ Utilities
+        - https://en.cppreference.com/w/cpp/utility
+    - Google C++ Testing
+        - https://www.youtube.com/watch?v=nbFXI9SDfbk
+    - CPP-06 Modern C++: Static, Numbers, Arrays, Non-owning pointers, Classes (2018, Igor)
+        - https://www.youtube.com/watch?v=mIrOcFf2crk&t=1729s
 
 
 <h2 id="325510d6bba829b766911a52d3936c5c"></h2>
@@ -1552,6 +1554,29 @@ NamedInt var{1, std :: string{"hello"}};
     - Generated automatically if not explicitly defined
 
 
+### Many ways to create instances
+
+```c++
+class SomeClass {
+public:
+    SomeClass(){};               // Default constructor.
+    SomeClass(int a){};          // Custom constructor.
+    SomeClass(int a, float b){}; // Custom constructor.
+    ~SomeClass(){};              // Destructor.
+};
+// How to use them?
+int main() {
+    SomeClass var_1;     // Default constructor
+    SomeClass var_2(10); // Custom constructor
+    // Type is checked when using {} braces. Use them!
+    SomeClass var_3{10};          // Custom constructor
+    SomeClass var_4 = {10};       // Same as var_3
+    SomeClass var_5{10, 10.0};    // Custom constructor
+    SomeClass var_6 = {10, 10.0}; // Same as var_5
+    return 0;
+}
+```
+
 ### Setting and getting data
 
 - Use **initializer list** to initialize data
@@ -1721,9 +1746,689 @@ int main() {
 }
 ```
 
+#### How to think about std::move
+
+- Think about **ownership**
+- Entity **owns** a variable if it deletes it, e.g.
+    - A function scope owns a variable defined in it 
+    - An object of a class owns its data members
+- **Moving a variable transfers ownership** of its resources to another variable
+- When designing your program think **who should own this thing?**.
+- **Runtime**: better than copying, worse than passing by reference.
+
+
+### Custom operators for a class
+
+- Operators are functions with a signature:
+    - `<RETURN_TYPE> operator<NAME>(<PARAMS>)`
+- `<NAME>` represents the target operation, e.g. `>, <, =, ==, <<` etc.
+- Have all attributes of functions
+- All available operators: http://en.cppreference.com/w/cpp/language/operators
+
+#### Example operator `<`
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Human {
+public:
+    Human(int kindness) : kindness_(kindness) {}
+    bool operator<(const Human &other) const {
+        return kindness_ < other.kindness_;
+    }
+    int kindness() const { return kindness_; }
+
+private:
+    int kindness_ = 100;
+};
+
+int main() {
+    std::vector<Human> humans = {Human(40), Human(20), Human(30)};
+    std::sort(humans.begin(), humans.end());
+    for (const auto &human : humans) {
+        std::cout << human.kindness() << std::endl;
+    }
+    // 20 30 40
+    return 0;
+}
+```
+
+
+#### Example operator `<<`
+
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <string>
+#include <vector>
+
+class Human {
+public:
+    Human(int kindness) : kindness_(kindness) {}
+    int kindness() const { return kindness_; }
+
+private:
+    int kindness_ = 100;
+};
+
+std::ostream &operator<<(std::ostream &os, const Human &human) {
+    return os << "Human with kindness " << human.kindness();
+}
+
+int main() {
+    std::vector<Human> humans = {Human{0}, Human{10}};
+    for (const auto &human : humans) {
+        std::cout << human << std::endl;
+    }
+    return 0;
+}
+// Human with kindness 0
+// Human with kindness 10
+```
+
+
+### Class Special Functions
+
+#### Copy constructor
+
+- **Called automatically** when the object is **copied**
+- For a class `MyClass` has the signature: `MyClass(const MyClass& other)`
+    ```c++
+    MyClass a;      // Calling default constructor.
+    MyClass b(a);   // Calling copy constructor.
+    MyClass c = a;  // Calling copy constructor.
+    ```
+
+#### Copy assignment operator
+
+- Copy assignment operator is **called automatically** when the object is **assigned a new value** from an **L**value
+- For class `MyClass` has a signature: `MyClass& operator=(const MyClass& other)`
+- **Returns a reference** to the changed object
+- Use **this** from within a function of a class to get a reference to the current object
+    ```c++
+    MyClass a;     // Calling default constructor.
+    MyClass b(a);  // Calling copy constructor.
+    MyClass c = a; // Calling copy constructor.  ???
+    a = b;         // Calling copy assignment operator.
+    ```
+
+#### Move constructor
+
+- **Called automatically** when the object is **moved**
+- For a class `MyClass` has a signature: `MyClass(MyClass&& other)`
+    ```c++
+    MyClass a;                  // Default constructors.
+    MyClass b(std::move(a));  // Move constructor.
+    MyClass c = std::move(a); // Move constructor.
+    ```
+
+#### Move assignment operator
+
+- **Called automatically** when the object is **assigned a new value** from an **R**value
+- For class *MyClass* has a signature: `MyClass& operator=(MyClass&& other)`
+- **Returns a reference** to the changed object
+    ```c++
+    MyClass a;                  // Default constructors.
+    MyClass b(std::move(a));  // Move constructor.
+    MyClass c = std::move(a); // Move constructor.
+    b = std::move(c);         // Move assignment operator.
+    ```
+
+#### Example
+
+```c++
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+class MyClass {
+public:
+    MyClass() { cout << "default" << endl; }
+    // Copy(&) and Move(&&) constructors
+    MyClass(const MyClass &other) { cout << "copy" << endl; }
+    MyClass(MyClass &&other) { cout << "move" << endl; }
+    // Copy(&) and Move(&&) operators
+    MyClass &operator=(const MyClass &other) {
+        cout << "copy assignment" << endl;
+        return *this;
+    }
+    MyClass &operator=(MyClass &&other) {
+        cout << "move assignment" << endl;
+        return *this;
+    }
+};
+
+int main() {
+    MyClass a;                 // default
+    MyClass b = a;             // copy
+    a = b;                     // copy assignment
+    MyClass c = std ::move(a); // move
+    c = std ::move(b);         // move assignment
+    return 0;
+}
+```
+
+
+#### Do I need to define all of them?
+
+- The constructors and operators will be **generated automatically**
+- **Under some conditions…**
+- Six special functions for class `MyClass`:
+    ```c++
+    MyClass()
+    MyClass(const MyClass& other)
+    MyClass& operator=(const MyClass& other)
+    MyClass(MyClass&& other)
+    MyClass& operator=(MyClass&& other)
+    ~MyClass()
+    ```
+- **None** of them defined: **all** auto-generated
+- **Any** of them defined: **none** auto-generated
+
+
+#### Rule of all or nothing
+
+- Try to **define** none of the special functions
+- If you **must** define one of them define **all**
+- Use `=default` to use default implementation
+    - because usually the compiler will give you a better implementation
+    - for example, you have to define a destructor
+        ```c++
+        class MyClass {
+        public:
+            MyClass () = default;
+            MyClass(MyClass && var) = default;
+            MyClass(const MyClass& var) = default;
+            MyClass& operator=( MyClass && var) = default;
+            MyClass& operator=(const MyClass& var) = default;
+        };
+        ```
+
+#### Deleted functions
+
+- Any function can be set as **deleted**
+    ```c++
+    void SomeFunc (...) = delete;
+    ```
+- Calling such a function will result in compilation error
+    - Example: remove copy constructors when only one instance of the class must be guaranteed (`Singleton Pattern`)
+- Compiler marks some functions deleted automatically
+    - Example: if a class has a constant data member, the `copy/move` constructors and `assignment` operators are implicitly deleted
 
 
 
+### Static variables and methods
+
+- **Static member variables of a class**
+    - Exist exactly **once** per class, **not** per object
+    - The value is equal across all instances
+    - Must be defined in `*.cpp` files(before C++17)
+- **Static member functions of a class**
+    - Do not need to access through an object of the class
+    - Can access private members but need an object
+    - Syntax for calling:
+        - `ClassName::MethodName(<params>)`
+
+### `using` for type aliasing
+
+- Use word `using` to declare new types from existing and to create type aliases
+- Basic syntax: `using NewType = OldType`;
+- `using` is a versatile word
+    - When used outside of functions declares a new type alias
+    - When used in function creates an alias of a type available in the current scope
+- http://en.cppreference.com/w/cpp/language/type_alias
+
+```c++
+#include <array>
+#include <memory>
+
+template <class T, int SIZE> struct Image {
+    // Can be used in classes.
+    using Ptr = std ::unique_ptr<Image<T, SIZE>>;
+    std ::array<T, SIZE> data;
+};
+// Can be combined with "template".
+template <int SIZE> using Imagef = Image<float, SIZE>;
+
+int main() {
+    // Can be used in a function for type aliasing.
+    using Image3f = Imagef<3>;
+    auto image_ptr = Image3f ::Ptr(new Image3f);
+    return 0;
+}
+```
+
+### Enumeration classes
+
+- Store an enumeration of options
+- Usually derived from `int` type
+- Options are assigned consequent numbers
+- Mostly used to pick path in `switch`
+    ```c++
+    enum class EnumType { OPTION_1 , OPTION_2 , OPTION_3 };
+    ```
+- Use values as:
+    ```c++
+    EnumType::OPTION_1, EnumType::OPTION_2, …
+    ```
+
+```c++
+#include <iostream>
+#include <string>
+
+using std::cout, std::cerr, std::endl, std::string;
+
+enum class Channel { STDOUT, STDERR };
+
+void Print(Channel print_style, const string &msg) {
+    switch (print_style) {
+    case Channel::STDOUT:
+        cout << msg << endl;
+        break;
+    case Channel::STDERR:
+        cerr << msg << endl;
+        break;
+    default:
+        cerr << "Skipping\n";
+    }
+}
+int main() {
+    Print(Channel ::STDOUT, "hello");
+    Print(Channel ::STDERR, "world");
+    return 0;
+}
+```
+
+#### Explicit values
+
+- By default enum values start from 0
+- We can specify custom values if needed
+- Usually used with default values
+
+
+```c++
+enum class EnumType {
+    OPTION_1 = 10,   // Decimal.
+    OPTION_2 = 0x2, // Hexacedimal.
+    OPTION_3 = 13
+};
+```
+
+
+## Modern C++: Object Oriented Design (Lecture 7, I. Vizzo, 2020)
+
+
+### C vs C++ Inheritance Example
+- C code
+    ```c
+    // "Base" class , Vehicle
+    typedef struct vehicle {
+        int seats_;     // number of seats on the vehicle
+        int capacity_ ; // amount of fuel of the gas tank
+        char* brand_;   // make of the vehicle
+    } vehicle_t ;
+    ```
+- C++ code
+    ```c++
+    class Vehicle {
+        private:
+            int seats_ = 0;    // number of seats on the vehicle
+            int capacity_ = 0; // amount of fuel of the gas tank
+            string brand_;     // make of the vehicle
+    }
+    ```
+
+
+### Inheritance
+
+- Class and struct can inherit data and functions from other classes
+- There are 3 types of inheritance in C++:
+    - public [used in this course] **GOOGLE-STYLE**
+    - protected
+    - private
+- public inheritance keeps all access specifiers of the base class
+
+
+### Public inheritance
+
+- Allows Derived to use all **public** and **protected** members of Base
+- **Derived** still gets its own special functions: constructors, destructor, assignment operators
+    ```c++
+    class Derived : public Base {
+        // Contents of the derived class.
+    };
+    ```
+
+```c++
+#include <iostream>
+using std::cout, std::endl;
+
+class Rectangle {
+public:
+    Rectangle(int w, int h) : width_{w}, height_{h} {}
+    int width() const { return width_; }
+    int height() const { return height_; }
+
+protected:
+    int width_ = 0;
+    int height_ = 0;
+};
+
+class Square : public Rectangle {
+public:
+    // initialize base class with initializer list, same as Rectangle(w, h)
+    explicit Square(int size) : Rectangle{size, size} {}
+};
+
+int main() {
+    Square sq(10); // Short name to save space.
+    cout << sq.width() << " " << sq.height() << endl;
+    return 0;
+}
+```
+
+### Function overriding
+
+- A function can be declared virtual: 
+    - `virtual Func(<PARAMS >);`
+- If function is virtual in `Base` class it can be overridden in `Derived` class:
+    - `Func(<PARAMS >) override;`
+- `Base` can **force** all `Derived` classes to override a function by making it **pure virtual**
+    - `virtual Func(<PARAMS >) = 0;`
+    - sometimes, you may not see the keywords `virtual`, but it is still a pure virtual function,  because
+        - A member function that overrides a virtual funcction in the base class is automatically virtual even if the virtual keywors is not used
+
+
+### Overloading vs overriding
+
+- **Overloading**
+    - Pick from all functions with the **same name**, but **different parameters**
+    - Pick a function at **compile time**
+    - Functions don’t have to be in a class
+- **overriding**
+    - Pick from functions with the **same arguments and names** in different classes of **one class hierarchy**
+    - Pick **at runtime**
+
+
+### Abstract classes and interfaces
+
+- **Abstract class**: class that has at least one `pure virtual function`
+- **Interface**: class that has only `pure virtual functions` and no data members
+
+### How virtual works
+
+- A class **with virtual functions** has a virtual table
+- When calling a function the class checks which of the virtual functions that match the signature should be called
+- Called **runtime polymorphism**
+- Costs some time but is very convenient
+
+### Using interfaces
+
+- Use interfaces when you must **enforce** other classes to implement some functionality
+- Allow thinking about classes in terms of **abstract functionality**
+- **Hide implementation** from the caller
+- Allow to easily extend functionality by simply adding a new class
+
+```c++
+#include <iostream>
+
+using std ::cout, std ::endl;
+
+struct Printable { // Saving space. Should be a class.
+    virtual void Print() const = 0;
+};
+struct A : public Printable {
+    void Print() const override { cout << "A" << endl; }
+};
+struct B : public Printable {
+    void Print() const override { cout << "B" << endl; }
+};
+
+void Print(const Printable &var) { var.Print(); }
+
+int main() {
+    Print(A());
+    Print(B());
+    return 0;
+}
+```
+
+
+### Polymorphism
+
+- Allows morphing derived classes into their base class type:
+    - `const Base& base = Derived(…)`
+- Allows encapsulating the implementation inside a class only asking it to conform to a common interface
+- Often used for:
+    - Working with all children of some Base class in unified manner
+    - Enforcing an interface in multiple classes to force them to implement some functionality
+    - In **strategy** pattern, where some complex functionality is outsourced into separate classes and is passed to the object in a modular fashion
+
+
+- GOOGLE-STYLE: **Prefer composition**
+    - i.e. including an object of another class as a member of your class
+
+
+### Type Casting
+
+#### Casting type of variables
+
+- Every variable has a type
+- Types can be converted from one to another
+- Type conversion is called **type casting**
+
+- There are 5 ways of type casting:
+    - `static_cast`
+    - `reinterpret_cast`
+    - `const_cast`
+    - `dynamic_cast`
+    - C-style cast(unsafe)
+        - compile will try combination of those 4 casting, and you have no idea what's going on
+
+#### static_cast
+
+- `static_cast<NewType>(variable)`
+- Convert type of a variable at **compile** time
+- **Rarely needed to be used explicitly**
+- Can happen implicitly for some types, e.g. float can be cast to int
+- Pointer to an object of a Derived class can be **upcast** to a pointer of a Base class
+- Enum value can be caster to int or float
+- Full specification is complex!
+
+
+#### dynamic_cast
+
+- `dynamic_cast<Base*>(derived_ptr)`
+- Used to convert a pointer to a variable of Derived type to a pointer of a Base type
+- Conversion happens at runtime
+- If derived_ptr cannot be converted to `Base*` returns a `nullptr`
+- GOOGLE-STYLE **Avoid** using dynamic casting
+
+
+#### reinterpret_cast
+
+- `reinterpret_cast<NewType>(variable)`
+- Reinterpret the bytes of a variable as another type
+- We must know what we are doing!
+- Mostly used when writing binary data
+
+
+#### const_cast
+
+- `const_cast<NewType>(variable)`
+- Used to “constify” objects
+- Used to “de-constify” objects
+- Not widely used
+
+
+#### Google Style
+
+- `GOOGLE-STYLE` Do not use C-style casts.
+- `GOOGLE-STYLE` Use brace initialization to convert arithmetic types (e.g. `int64{x}`).
+    - This is the safest approach because code will not compile if conversion can result in information loss. The syntax is also concise.
+- `GOOGLE-STYLE` Use `static_cast` as the equivalent of a C-style cast that does value conversion, 
+    - when you need to explicitly up-cast a pointer from a class to its superclass, 
+    - or when you need to explicitly cast a pointer from a superclass to a subclass. 
+        - In this last case, you must be sure your object is actually an instance of the subclass.
+- `GOOGLE-STYLE` Use `const_cast` to remove the const qualifier (see const).
+- `google-style` use `reinterpret_cast` to do unsafe conversions of pointer types to and from integer and other pointer types. 
+    - Use this only if you know what you are doing and you understand the aliasing issues.
+
+
+### Using strategy pattern
+
+- If a class relies on complex external functionality use strategy pattern
+- Allows to **add/switch functionality** of the class without changing its implementation
+- All strategies must conform to one strategy interface
+
+```c++
+#include <iostream>
+
+using std::cout, std::endl;
+
+class Strategy {
+public:
+    virtual void Print() const = 0;
+};
+class StrategyA : public Strategy {
+public:
+    void Print() const override { cout << "A" << endl; }
+};
+
+class StrategyB : public Strategy {
+public:
+    void Print() const override { cout << "B" << endl; }
+};
+
+// so far, nothing is new, just interface
+
+class MyClass {
+public:
+    // 2. The strategy will be “picked” when
+    //    we create an object of the class MyClass.
+    explicit MyClass(const Strategy &s) : strategy_(s) {}
+    void Print() const { strategy_.Print(); }
+
+private:
+    // 1. holds a const reference to Strategy object
+    const Strategy &strategy_;
+};
+```
+
+
+#### Do not overuse it
+
+- Only use these patterns when you need to
+- If your class should have a single method for some functionality and will never need another implementation don’t make it virtual
+- Used mostly to avoid copying code and to make classes smaller by moving some functionality out.
+
+
+### Singleton Pattern
+
+- We want only one instance of a given class.
+- Without C++ this would be a if/else mess.
+- C++ has a powerfull compiler, we can use it.
+- We can make sure that nobody creates more than 1 instance of a given class, **at compile time**.
+- Don’t over use it, it’s easy to learn, but usually hides a **design** error in your code.
+- Sometimes is still necessary, and makes your code better.
+
+
+#### Singleton Pattern: How?
+
+- We can `delete` any **class** member functions.
+- This also holds true for the special functions:
+    - `MyClass()`
+    - `MyClass(const MyClass& other)`
+    - `MyClass& operator=(const MyClass& other)`
+    - `MyClass(MyClass&& other)`
+    - `MyClass& operator=(MyClass&& other)`
+    - `~MyClass()`
+- Any `private` function can only be accessed by member of the class.
+
+- Let’s **hide** the default Constructor and also the destructor.
+    ```c++
+    class Singleton {
+        private:
+            Singleton () = delete ;
+            ~ Singleton () = delete ;
+    };
+    ```
+    - This completely **disable** the possibility to create a Singleton object or destroy it.
+- And now let’s delete any copy capability:
+    - Copy Constructor.
+    - Copy Assigment Operator.
+    ```c++
+    class Singleton {
+        public:
+            Singleton (const Singleton &) = delete;
+            void operator=(const Singleton &) = delete;
+    };
+    ```
+    - This completely **disable** the possibility to copy any existing Singleton object.
+
+
+#### Singleton Pattern: What now?
+
+- Now we need to create at least **one** instance of the `Singleton` class.
+- **How?** Compiler to the rescue:
+    - We can create **one unique** instance of the class.
+    - At compile time …
+    - Using `static` !.
+    ```c++
+    class Singleton {
+        public:
+            static Singleton& GetInstance () {
+                static Singleton instance ;
+                return instance;
+            }
+    };
+    ```
+
+#### Singleton Pattern: Completed
+
+```c++
+class Singleton {
+private:
+    Singleton() = default;
+    ~Singleton() = default;
+
+public:
+    Singleton(const Singleton &) = delete;
+    void operator=(const Singleton &) = delete;
+    static Singleton &GetInstance() {
+        static Singleton instance;
+        return instance;
+    }
+};
+```
+
+
+#### Singleton Pattern: Usage
+
+```c++
+int main() {
+    auto &singleton = Singleton ::GetInstance();
+    // ...
+    // do stuff with singleton , the only instance.
+    // ...
+
+    Singleton s1;             // Compiler Error!
+    Singleton s2(singleton);  // Compiler Error!
+    Singleton s3 = singleton; // Compiler Error!
+
+    return 0;
+}
+```
+
+
+## Modern C++: Memory Management (Lecture 8, I. Vizzo, 2020)
+
+- cdtdebug
 
 
 
