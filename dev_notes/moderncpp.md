@@ -1021,12 +1021,19 @@ int main() {
 
 #### std::variant
 
+- safty union
+- [如何优雅的使用 std::variant 与 std::optional](https://zhuanlan.zhihu.com/p/366537214)
+
 ```c++
     // can be either int or float, but not both
     std::variant <int, float> v1;
     v1 = 12; // v contains int
     cout << std::get <int>(v1) << endl; // 12
     // will raise error if you want to get float
+    v1 = 1.0; // override value
+
+    // get the index of stored type
+    std::cout << "v1 - " << v1.index() << std::endl;
 
     std::variant <int, float> v2 {3.14F};
     cout << std::get <1>(v2) << endl;  // 3.14
@@ -1037,10 +1044,67 @@ int main() {
     cout << std::get <int>(v2) << endl; // 12
 ```
 
+- when to use ?
+    1. a function may return different types of return values.
+        - For example: the formula for finding the root of a quadratic equation in one variable, 
+        - the root may be one, or two, or none
+        ```c++
+        using Two = std::pair<double, double>;
+        using Roots = std::variant<Two, double, void*>;
+
+        Roots FindRoots(double a, double b, double c) {
+            auto d = b*b-4*a*c;
+
+            if (d> 0.0)
+            {
+                auto p = sqrt(d);
+                return std::make_pair((-b + p) / 2 * a, (-b - p) / 2 * a);
+            }
+            else if (d == 0.0)
+                return (-1*b)/(2*a);
+            return nullptr;
+        }
+
+        struct RootPrinterVisitor
+        {
+            void operator()(const Two& roots) const
+            {
+                std::cout << "2 roots: " << roots.first << " " << roots.second << '\n';
+            }
+            void operator()(double root) const
+            {
+                std::cout << "1 root: " << root << '\n';
+            }
+            void operator()(void *) const
+            {
+                std::cout << "No real roots found.\n";
+            }
+        };
+
+        TEST_F(TestFindRoot) {
+            std::visit(RootPrinterVisitor(), FindRoots(1, -2, 1)); //(x-1)*(x-1)=0
+            std::visit(RootPrinterVisitor(), FindRoots(1, -3, 2)); //(x-2)*(x-1)=0
+            std::visit(RootPrinterVisitor(), FindRoots(1, 0, 2));  //x*x - 2 = 0
+        }
+        ```
+    2. polymorphism
+        ```c++
+        using Draw = std::variant<Triangle, Circle>;
+        Draw draw;
+        std::vector<Draw> draw_list {Triangle{}, Circle{}, Triangle{}};
+        auto DrawVisitor = [](const auto &t) { t.Draw(); };
+        for (const auto &item : draw_list) {
+            std::visit(DrawVisitor, item);
+        }
+        ```
+- The time complexity of std::visit to obtain the type actually stored in std::variant is O(1), and the performance will not decrease with the increase of types in std::variant.
+
+
 <h2 id="68cdf81a296c17812f5703c4853431bf"></h2>
 
 #### std::any
 
+- https://devblogs.microsoft.com/cppblog/stdany-how-when-and-why/
 - `#include <any>`
 
 ```c++
@@ -2647,23 +2711,24 @@ ptr_1 = nullptr;
     - `ptr.reset(raw_ptr)` stops using currently managed pointer, freeing its memory if needed, sets `ptr` to `raw_ptr`
 
 
-### std::unique_ptr example
+### std::unique_ptr 
 
-- Create an `unique_ptr` to a type `Vehicle`
-    ```c++
-    std :: unique_ptr <Vehicle> vehicle_1 = 
-        std :: make_unique <Bus>(20 , 10, "Volkswagen", "LPM_");
-    std :: unique_ptr <Vehicle> vehicle_2 = 
-        std :: make_unique <Car>(4, 60, "Ford", "Sony");
-    ```
-- Now you can have fun as we had with **raw pointers**
-    ```c++
-    // vehicle_x is a pointer , so we can us it as it is
-    vehicle_1 ->Print ();
-    vehicle_2 ->Print ();
-    ```
+- A Simple Example
+    - Create an `unique_ptr` to a type `Vehicle`
+        ```c++
+        std :: unique_ptr <Vehicle> vehicle_1 = 
+            std :: make_unique <Bus>(20 , 10, "Volkswagen", "LPM_");
+        std :: unique_ptr <Vehicle> vehicle_2 = 
+            std :: make_unique <Car>(4, 60, "Ford", "Sony");
+        ```
+    - Now you can have fun as we had with **raw pointers**
+        ```c++
+        // vehicle_x is a pointer , so we can us it as it is
+        vehicle_1 ->Print ();
+        vehicle_2 ->Print ();
+        ```
 
-### std::unique_ptr
+---
 
 - `unique_ptr` are **unique** (ownship is unique): This means that we can move stuff but **not copy**:
     - `vehicle_2 = std :: move( vehicle_1 );`
@@ -2683,7 +2748,7 @@ ptr_1 = nullptr;
 - Wait, Didn't you use NEW and DELETE ?
     - No, we are smart now... right ?
 
-### Unique pointer (std::unique_ptr)
+#### Unique pointer (std::unique_ptr)
 
 - Constructor of a unique pointer takes **ownership** of a provided raw pointer
 - **No runtime overhead** over a raw pointer
@@ -2701,6 +2766,226 @@ ptr_1 = nullptr;
     auto p = std :: make_unique <Type>(<params>);
     ```
 
+#### What makes it “unique”
+
+- Unique pointer **has no copy constructor**
+- Cannot be copied, **can be moved**
+- Guarantees that memory is always owned by a single `std::unique_ptr`
+- A non-null `std::unique_ptr` always owns what it points to.
+- Moving a `std::unique_ptr` transfers ownership from the source pointer to the destination pointer. 
+    - (The source pointer is set to `nullptr`.)
+
+
+### Shared pointer (std::shared_ptr)
+
+- What if we want to use the same `pointer` for different resources?
+- An object accessed via `std::shared_ptrs` has its lifetime managed by those pointers through shared ownership.
+- No specific `std::shared_ptr` owns the object.
+    - because you just share the ownship
+- When the last `std::shared_ptr` pointing to an object stops pointing there, that `std::shared_ptr` destroys the object it points to
+
+- Constructed just like a `unique_ptr` 
+- Can be copied
+- Stores a usage counter and a raw pointer
+    - Increases usage counter when copied
+    - Decreases usage counter when destructed
+- Frees memory when counter reaches 0 
+- Can be initialized from a `unique_ptr`
+- Syntax:
+    ```c++
+    #include <memory>
+    // Using default constructor Type();
+    auto p = std :: shared_ptr <Type>(new Type);
+    auto p = std :: make_shared <Type>();
+
+    // Using constructor Type(<params>);
+    auto p = std :: shared_ptr <Type>(new Type(<params>));
+    auto p = std :: make_shared <Type>(<params>);
+    ```
+
+#### Shared pointer Example
+
+```c++
+#include <iostream>
+
+using std::cout, std::endl;
+
+class MyClass {
+public:
+    MyClass() { cout << "I'm alive!\n"; }
+    ~MyClass() { cout << "I'm dead... :(\n"; }
+};
+
+int main() {
+    auto a_ptr = std ::make_shared<MyClass>();
+    cout << a_ptr.use_count() << endl;
+    {
+        auto b_ptr = a_ptr;
+        cout << a_ptr.use_count() << endl;
+    }
+    cout << "Back to main scope\n";
+    cout << a_ptr.use_count() << endl;
+    return 0;
+}
+// I'm alive!
+// 1
+// 2
+// Back to main scope
+// 1
+// I'm dead... :(
+```
+
+### When to use what?
+
+- Use smart pointers when the pointer **must manage memory**
+- By default use `unique_ptr`
+- If multiple objects must **share ownership** over something, use a `shared_ptr` to it
+- Think of any free standing `new` or `delete` as of a memory leak or a dangling pointer:
+    - Don’t use `delete`
+    - Allocate memory with `make_unique`, `make_shared`
+    - Only use `new` in smart pointer constructor if cannot use the functions above
+
+
+### Typical beginner error
+
+```c++
+int main () {
+    // Allocate a variable in the stack
+    int a = 42;
+
+    // Create a pointer to that part of the memory
+    // first error: why you create a pointer to stack variable? just use reference!
+    int* ptr_to_a = &a;
+
+    // Know stuff about pointers eh?
+    // 2nd error
+    auto a_unique_ptr = std :: unique_ptr <int>( ptr_to_a);
+
+    // Same happens with std::shared_ptr.
+    // 3rd error
+    auto a_shared_ptr = std :: shared_ptr <int>( ptr_to_a);
+
+    std :: cout << "Program terminated correctly!!!\n";
+    return 0;
+}
+```
+
+- Create a **smart pointer** from a `pointer` to a stack-managed variable
+- The variable ends up being owned both by the `smart pointer` and the `stack` and gets deleted twice → **Error!**
+
+
+## Modern C++ Course: Templates (Lecture 9, I. Vizzo, 2020)
+
+### Function Templates
+
+```c++
+template <typename T>
+T abs(T x) {
+    return (x>= 0) ? x : -x;
+}
+```
+
+- Function templates are **not** functions.
+    - **They are templates for making functions**
+- You don’t pay for what you don’t use:
+    - If nobody calls `abs<int>`, it won’t be instantiated by the compiler at all.
+- A function template defines a **family** of functions.
+
+
+#### Using Function Templates
+
+```c++
+int main () {
+    const double x = 5.5;
+    const int y = -5;
+
+    auto abs_x = abs <double>(x);
+    int abs_y = abs <int>(y);
+
+    double abs_x_2 = abs(x); // type -deduction
+    auto abs_y_2 = abs(y); // type -deduction
+}
+```
+
+**Templates lives in a "static" world.**
+
+
+### Template classes
+
+```c++
+template <class T> class MyClass {
+public:
+    MyClass(T x) : x_(x) {}
+
+private:
+    T x_;
+};
+```
+
+- Classes templates are not classes.
+    - **They are templates for making classes**
+- You don’t pay for what you don’t use:
+    - If nobody calls `MyClass<int>`, it won’t be instantiated by the compiler at all.
+
+#### Template classes usage
+
+```c++
+int main() {
+    MyClass<int> my_float_object(10);
+    MyClass<double> my_double_object(10.0);
+    return 0;
+}
+```
+
+### Template Parameters
+
+```c++
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <vector>
+
+template <typename T, size_t N = 10>
+T AccumulateVector (const T& val) {
+    std::vector <T> vec(val , N);
+    return std::accumulate (vec.begin (), vec.end (), 0);
+}
+```
+
+- Every **template** is parameterized by one or more **template parameters**:
+    - `template < parameter-list > declaration`
+- Think the template parameters the same way as any function arguemnents, but at compile-time.
+
+#### Usage
+
+```c++
+using std::cout, std::endl;
+int main() {
+    cout << AccumulateVector(1) << endl;             // 10
+    cout << AccumulateVector<float>(2) << endl;      // 20
+    cout << AccumulateVector<float, 5>(2.0) << endl; // 10
+    return 0;
+}
+```
+
+### Template Full Specialization
+
+- Prefix the definition with `template<>`
+- Then write the function **definition**.
+- Usually means you don’t need to write any more angle brackets at all.
+- Unless `T` can’t be deduced/defaulted:
+
+```c++
+template <typename T>
+int my_sizeof () {
+    return sizeof(T);
+}
+
+template <>
+int my_sizeof <void >() {
+    return 1;
+}
+```
 
 
 
