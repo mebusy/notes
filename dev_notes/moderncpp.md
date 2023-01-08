@@ -570,7 +570,7 @@ int main() {
 - modify or add item: `m[key] = value;`
 - Get const ref to an item: m.at(key);
 - check if key present: 
-    - `m.count(key) > 0` 
+    - `m.count(key)> 0` 
     - `m.contains(key) [bool]` starting in c++20
 
 
@@ -1023,18 +1023,18 @@ int main() {
 
 ```c++
     // can be either int or float, but not both
-    std::variant <int, float > v1;
+    std::variant <int, float> v1;
     v1 = 12; // v contains int
-    cout << std::get <int >(v1) << endl; // 12
+    cout << std::get <int>(v1) << endl; // 12
     // will raise error if you want to get float
 
-    std::variant <int, float > v2 {3.14F};
+    std::variant <int, float> v2 {3.14F};
     cout << std::get <1>(v2) << endl;  // 3.14
 
-    v2 = std::get <int >(v1); // assigns v1 to v2
+    v2 = std::get <int>(v1); // assigns v1 to v2
     v2 = std::get <0>(v1);  // same assignment
     v2 = v1;  // same assignment
-    cout << std::get <int >(v2) << endl; // 12
+    cout << std::get <int>(v2) << endl; // 12
 ```
 
 <h2 id="68cdf81a296c17812f5703c4853431bf"></h2>
@@ -1049,10 +1049,10 @@ int main() {
     std::cout << std::any_cast<int>(a) << std::endl;
 
     a = 3.14; // double
-    std::cout << std::any_cast <double >(a) << std::endl;  // 3.14
+    std::cout << std::any_cast <double>(a) << std::endl;  // 3.14
 
     a = true; // bool
-    std::cout << std::boolalpha << std::any_cast <bool >(a) << std::endl; // true
+    std::cout << std::boolalpha << std::any_cast <bool>(a) << std::endl; // true
 ```
 
 
@@ -1086,12 +1086,12 @@ int main() {
 #### std::tuple
 
 ```c++
-    std::tuple <double , char , string > student1;
+    std::tuple <double , char , string> student1;
 
-    using Student = std::tuple <double , char , string >;
+    using Student = std::tuple <double , char , string>;
     Student student2 {1.4 , 'A', "Jose"};
 
-    cout << std::get <string >( student2) << endl; // Jose
+    cout << std::get <string>( student2) << endl; // Jose
     cout << std::get <2>( student2) << endl; // Jose
 
     // C++17 structured binding:
@@ -1110,7 +1110,7 @@ int main() {
     cout << "f(42) = " << fibonacci (42) << '\n'; // f(42) = 267914296
     auto end = std::chrono::steady_clock::now ();
 
-    std::chrono::duration <double > sec = end - start;
+    std::chrono::duration <double> sec = end - start;
     cout << "elapsed time: " << sec.count () << "s\n"; // elapsed time: 1.84088s
 ```
 
@@ -2135,11 +2135,11 @@ int main() {
 ### Function overriding
 
 - A function can be declared virtual: 
-    - `virtual Func(<PARAMS >);`
+    - `virtual Func(<PARAMS>);`
 - If function is virtual in `Base` class it can be overridden in `Derived` class:
-    - `Func(<PARAMS >) override;`
+    - `Func(<PARAMS>) override;`
 - `Base` can **force** all `Derived` classes to override a function by making it **pure virtual**
-    - `virtual Func(<PARAMS >) = 0;`
+    - `virtual Func(<PARAMS>) = 0;`
     - sometimes, you may not see the keywords `virtual`, but it is still a pure virtual function,  because
         - A member function that overrides a virtual funcction in the base class is automatically virtual even if the virtual keywors is not used
 
@@ -2651,10 +2651,10 @@ ptr_1 = nullptr;
 
 - Create an `unique_ptr` to a type `Vehicle`
     ```c++
-    std :: unique_ptr <Vehicle > vehicle_1 = 
-        std :: make_unique <Bus >(20 , 10, "Volkswagen", "LPM_");
-    std :: unique_ptr <Vehicle > vehicle_2 = 
-        std :: make_unique <Car >(4, 60, "Ford", "Sony");
+    std :: unique_ptr <Vehicle> vehicle_1 = 
+        std :: make_unique <Bus>(20 , 10, "Volkswagen", "LPM_");
+    std :: unique_ptr <Vehicle> vehicle_2 = 
+        std :: make_unique <Car>(4, 60, "Ford", "Sony");
     ```
 - Now you can have fun as we had with **raw pointers**
     ```c++
@@ -2691,14 +2691,14 @@ ptr_1 = nullptr;
     ```c++
     #include <memory>
     // Using default constructor Type();
-    auto p = std :: unique_ptr <Type >(new Type);
-    // Using constructor Type(<params >);
-    auto p = std :: unique_ptr <Type >(new Type(<params >));
+    auto p = std :: unique_ptr <Type>(new Type);
+    // Using constructor Type(<params>);
+    auto p = std :: unique_ptr <Type>(new Type(<params>));
     ```
 - From C++14 on:
     ```c++
-    // Forwards <params > to constructor of unique_ptr
-    auto p = std :: make_unique <Type >(<params >);
+    // Forwards <params> to constructor of unique_ptr
+    auto p = std :: make_unique <Type>(<params>);
     ```
 
 
