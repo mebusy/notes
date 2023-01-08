@@ -2430,6 +2430,277 @@ int main() {
 
 - cdtdebug
 
+### Using pointers for classes
+
+- You actually don't do this. If you do, then there's something else wrong...
+    ```c++
+    MyClass* obj_ptr = &obj;
+    obj_ptr ->MyFunc ();
+    ```
+- `obj->Func()` ↔ `(*obj).Func()`
+
+### Pointers are polymorphic
+
+- Pointers are just like references, but have additional useful properties:
+    - Can be reassigned
+    - Can point to “nothing” (`nullptr`)
+    - Can be stored in a vector or an array
+- **Use pointers for polymorphism**
+    ```c++
+    Derived derived;
+    Base* ptr = &derived;
+    ```
+
+### this pointer
+
+- Every object of a class or a struct holds a pointer to itself
+- This pointer is called `this`
+- Allows the objects to:
+    - Return a reference to themselves: **return *this;**
+    - Create copies of themselves within a function
+    - Explicitly show that a member belongs to the current object: `this->x();`
+    - `this` is a C++ keyword
+
+### Using const with pointers
+
+- Pointers can **point to** a `const` variable:
+    ```c++
+    // Cannot change value , can reassign pointer.
+    const MyType* const_var_ptr = &var;
+    const_var_ptr = & var_other ;
+    ```
+- Pointers can be const:
+    ```c++
+    // Cannot reassign pointer , can change value.
+    MyType* const var_const_ptr = &var;
+    var_const_ptr ->a = 10;
+    ```
+- Pointers can do both at the same time:
+    ```c++
+    // Cannot change in any way, read -only.
+    const MyType* const const_var_const_ptr = &var;
+    ```
+- Read from right to left to see which const refers to what
+
+
+### Stack memory
+
+- **Static** memory (compile time)
+- Available for **short term** storage (scope)
+- **Small / limited** (8 MB Linux typically)
+    ```bash
+    $ ulimit -a
+    -t: cpu time (seconds)              unlimited
+    -f: file size (blocks)              unlimited
+    -d: data seg size (kbytes)          unlimited
+    -s: stack size (kbytes)             8192
+    ...
+    ```
+- Memory allocation is **fast**
+- **LIFO** (Last in First out) structure
+- Items added to top of the stack with `push`
+- Items removed from the top with `pop`
+
+### Heap memory
+
+- **Dynamic** memory (runtime)
+- Available for **long** time (program runtime)
+- Raw modifications possible with `new` and `delete` (usually encapsulated within a class)
+- Allocation is slower than stack allocations
+
+#### Operators new and new[]
+
+- User controls memory allocation (**unsafe**)
+- Use `new` to allocate data:
+    ```c++
+    // pointer variable stored on stack
+    int* int_ptr = nullptr;
+    // 'new' returns a pointer to memory in heap
+    int_ptr = new int;
+
+    // also works for arrays
+    float* float_ptr = nullptr;
+    // 'new' returns a pointer to an array on heap
+    float_ptr = new float[number ];
+    ```
+- `new` returns an address of the variable on the heap
+- **Prefer using smart pointers!**
+
+
+#### Operators delete and delete[]
+
+- **Memory is not freed automatically!**
+- User must remember to free the memory
+- Use `delete` or `delete[]` to free memory:
+    ```c++
+    int* int_ptr = nullptr;
+    int_ptr = new int;
+    // delete frees memory to which the pointer points
+    delete int_ptr;
+
+    // also works for arrays
+    float* float_ptr = nullptr;
+    float_ptr = new float[number ];
+    // make sure to use 'delete[]' for arrays
+    delete[] float_ptr ;
+    ```
+- **Prefer using smart pointers!**
+
+
+### Memory leak
+
+- Can happen when working with Heap memory if we are not careful
+- **Memory leak**: memory allocated on Heap access to which has been lost
+    ```bash
+                 heap
+    ptr_1 ----> ▢▢▢▢▢▢▢▢▢
+           /     LEAKED!
+    ptr_2 /     ▨▨▨▨▨▨▨▨▨
+    ```
+- It will also raise a problem of double free.
+
+### Dangling pointer
+
+- Dangling Pointer: pointer to a freed memory
+- Think of it as the opposite of a memory leak
+- Dereferencing a dangling pointer causes **undefined behavior**
+
+```c++
+int* ptr_1 = some_heap_address ;
+int* ptr_2 = some_heap_address ;
+delete ptr_1;
+ptr_1 = nullptr;
+// Cannot use ptr_2 anymore! Behavior undefined!
+```
+
+### RAII
+
+- Resource Allocation Is Initialization.
+- New object → allocate memory
+- Remove object → free memory
+- Objects **own** their data!
+
+- You say, ah, I know how to RAII now!
+    ```c++
+    class MyClass {
+    public:
+        MyClass() { data_ = new SomeOtherClass; }
+        ~MyClass() {
+            delete data_;
+            data_ = nullptr;
+        }
+
+    private:
+        SomeOtherClass *data_;
+    };
+    ```
+- Does it work ?
+    - No!
+    - Still cannot copy an object of `MyClass`!!!
+    ```c++
+    int main() {
+        MyClass a;
+        MyClass b(a); // !! double free or corruption : 0 x0000000000877c20 ***
+        return 0;
+    }
+    ```
+
+### Shallow vs deep copy
+
+- Shallow copy: just copy pointers, not data
+- Deep copy: copy data, create new pointers
+- Default copy constructor and assignment operator implement **shallow copying**
+- RAII + shallow copy → **dangling pointer**
+- RAII + **Rule of All Or Nothing** → **correct**
+- **Use smart pointers instead!**
+
+
+### Smart pointers
+
+- Smart pointers wrap a raw pointer into a class and manage its lifetime (**RAII**)
+- Smart pointers are **all about ownership**
+- Always use smart pointers when the pointer should **own heap memory**
+- **Only use them with heap memory!**.
+- Still use raw pointers for non-owning pointers and simple address storing
+- `#include <memory>` to use smart pointers
+
+
+### C++11 smart pointers types
+
+- **std::unique_ptr**
+- **std::shared_ptr**
+- std::auto_ptr
+- std::weak_ptr
+- We will focus on 2 types of smart pointers:
+    - `std::unique_ptr` , `std::shared_ptr`
+
+
+### Smart pointers manage memory!
+
+- Smart pointers apart from memory allocation behave exactly as raw pointers(it is still poiner):
+    - Can be set to `nullptr`
+    - Use `*ptr` to dereference `ptr`
+    - Use `ptr->` to access methods
+    - Smart pointers are polymorphic
+- **Additional functions of smart pointers:**
+    - `ptr.get()` returns a raw pointer that the smart pointer manages
+    - `ptr.reset(raw_ptr)` stops using currently managed pointer, freeing its memory if needed, sets `ptr` to `raw_ptr`
+
+
+### std::unique_ptr example
+
+- Create an `unique_ptr` to a type `Vehicle`
+    ```c++
+    std :: unique_ptr <Vehicle > vehicle_1 = 
+        std :: make_unique <Bus >(20 , 10, "Volkswagen", "LPM_");
+    std :: unique_ptr <Vehicle > vehicle_2 = 
+        std :: make_unique <Car >(4, 60, "Ford", "Sony");
+    ```
+- Now you can have fun as we had with **raw pointers**
+    ```c++
+    // vehicle_x is a pointer , so we can us it as it is
+    vehicle_1 ->Print ();
+    vehicle_2 ->Print ();
+    ```
+
+### std::unique_ptr
+
+- `unique_ptr` are **unique** (ownship is unique): This means that we can move stuff but **not copy**:
+    - `vehicle_2 = std :: move( vehicle_1 );`
+- Address of the pointers before the move:
+    ```c++
+    cout << "vehicle_1 = " << vehicle_1 .get () << endl;
+    cout << "vehicle_2 = " << vehicle_2 .get () << endl;
+    // vehicle_1 = 0x56330247ce70  (xxx70)
+    // vehicle_2 = 0x56330247cec0  (xxxc0)
+    ```
+- Address of the pointers after the move:
+    ```c++
+    // vehicle_2 = 0 x56330247ce70
+    // vehicle_1 = 0
+    ```
+
+- Wait, Didn't you use NEW and DELETE ?
+    - No, we are smart now... right ?
+
+### Unique pointer (std::unique_ptr)
+
+- Constructor of a unique pointer takes **ownership** of a provided raw pointer
+- **No runtime overhead** over a raw pointer
+- Syntax for a unique pointer to type Type: (Ugly!!)
+    ```c++
+    #include <memory>
+    // Using default constructor Type();
+    auto p = std :: unique_ptr <Type >(new Type);
+    // Using constructor Type(<params >);
+    auto p = std :: unique_ptr <Type >(new Type(<params >));
+    ```
+- From C++14 on:
+    ```c++
+    // Forwards <params > to constructor of unique_ptr
+    auto p = std :: make_unique <Type >(<params >);
+    ```
+
 
 
 
