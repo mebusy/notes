@@ -54,7 +54,7 @@
         - [std::minmax_element](#5f12a37961c2f3791b1cd8ed74dc0e8f)
         - [std::clamp](#a73735cb6e23b9a7b8336d2704580ebc)
         - [std::sample](#7d7e5802dcba0b7b9e4f9095d2ede15e)
-    - [Modern C++: I/O Files, Intro to Classes (Lecture 5, I. Vizzo, 2020)](#ca60008ff3f9f37c01aa32cc26f27d57)
+    - [Modern C++: I/O Files (Lecture 5, I. Vizzo, 2020)](#6b612f673c58c59f08dd9dff98921501)
         - [C++ Utilities](#64329a7f7fdda209400a0e09e030b72a)
             - [std::swap](#4f1b4f40c11bae1ef7016617425c47ce)
             - [std::variant](#edfc81f5909201a3635b0510580efd59)
@@ -75,6 +75,100 @@
             - [Reading from binary files](#0f30f0d2efdfcf48af794b13f6b23dd9)
         - [C++17 Filesystem library](#606b6a8c6de3d15095ae41e960390cea)
             - [directory_iterator](#60a3cb9955bbb37b1e6985ef26315afd)
+            - [filename](#435ed7e9f07f740abf511a62c00eef6e)
+            - [extension](#566bbee0f961ad71b54c3c2fd36db053)
+            - [stem](#e730db5c29b7ba34f4d465b01bd33c5e)
+            - [exists](#e087923eb5dd1310f5f25ddd5ae5b580)
+        - [Type safety](#8c800c6bd66ee804c1102836b8f375be)
+    - [Modern C++ Classes](#54bf25ff3921c0e5ebdc9205b7902c35)
+        - [Example class definition](#75458cc99937a04c5e3353e144a7a992)
+        - [What about structs?](#f09bc6faed74c3fbab3311f610c57565)
+        - [Always initialize structs using braced initialization](#bdc1ff08b6ff00c1a6a5b95e9552c6a6)
+        - [Constructors and Destructor](#fff7c892e0960645e398064e32ab6297)
+        - [Many ways to create instances](#352771047fedbd7b0eb907c89c1634c6)
+        - [Setting and getting data](#e043c979883e65dc381c618fbe7e1706)
+        - [Declaration and definition](#b84d0e8580534792f9b7d25188b8283f)
+        - [Always initialize members for classes](#80dfe513dea5b2ac3ea182d6b164675c)
+        - [Const correctness](#3a1dedcb28865ffa846a83439ad98f4b)
+        - [Move semantics](#6968e0c5ce7cf21cda6568106fc4ad90)
+            - [Intuition lvalues, rvalues](#84be678c622eb3674adb2dadfa62d994)
+            - [std::move](#c8926a02e9917ba20ca6e44cbee36963)
+            - [Important std::move](#31fc7853dce961550bd94847833116d9)
+            - [Hands on example](#0f8701acaf3e6cfc809cfa7d9be7a335)
+            - [Never access values after move](#61bf40f95ea0221e41cd38fe7bb94ac5)
+            - [How to think about std::move](#f98cc579cb1039871a752bcd0be13615)
+        - [Custom operators for a class](#466d5122ff97297902e40b755d7a2ab1)
+            - [Example operator `<`](#741d87ff4c970c140c8e12c122716da0)
+            - [Example operator `<<`](#d40b75c8bf9d8972f500b8bb25637a1f)
+        - [Class Special Functions](#2b04788ff820d22f5fd6cf3e87713bfe)
+            - [Copy constructor](#9e81af005e7a42287f55a805bdaf3db9)
+            - [Copy assignment operator](#b339bb2a7c67336b33c2f442e5207325)
+            - [Move constructor](#04f69f35142789ab5f10ae43efab0a54)
+            - [Move assignment operator](#c332414ee8b3a0feb6ea9a528ce3a46d)
+            - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+            - [Do I need to define all of them?](#08cad8a0c7a42eca501678c7171f892a)
+            - [Rule of all or nothing](#856d2d3cbcb99bdc02d67407467887e5)
+            - [Deleted functions](#5312eb6759309d28c7ea2d239a4f7e72)
+        - [Static variables and methods](#f258b4094c997d13c499fc50cc0138cf)
+        - [`using` for type aliasing](#fbe24973f9df7e0a856ccd9d871c4b90)
+        - [Enumeration classes](#d777b421635efebe637ee2f4726d5689)
+            - [Explicit values](#a22b86e6d7d06811669d602bbb89e7c0)
+    - [Modern C++: Object Oriented Design (Lecture 7, I. Vizzo, 2020)](#59427b00f0bc9e475e34732652d9395e)
+        - [C vs C++ Inheritance Example](#adc9ad40993dd6a8ffd8c5ce60244c16)
+        - [Inheritance](#e40489cd1e7102e35469c937e05c8bba)
+        - [Public inheritance](#37f714fa982009c0f7f34a34222f19c6)
+        - [Function overriding](#9838b3876aec076af99ebf663cfd7b7a)
+        - [Overloading vs overriding](#8a88083322dc5c249a3dc33b350ee8b5)
+        - [Abstract classes and interfaces](#4c7393aee7be19ada4689a7b266a1be1)
+        - [How virtual works](#8fbbb2c24bf977e5ed7f81e2f229bc06)
+        - [Using interfaces](#f6f847324f6a271ea8bd9e36a55511bd)
+        - [Polymorphism](#371fedf6ee6747b1de368aafb08094e8)
+        - [Type Casting](#479c01e471347f335628cee17db0bf54)
+            - [Casting type of variables](#784be77baa4e7400b3b0e93738c5d66b)
+            - [static_cast](#7788e276172dacc2d8d33631b670d026)
+            - [dynamic_cast](#fe9be20b5d842a2d5963b97405c48505)
+            - [reinterpret_cast](#dcb294fefdac1da8cef8bcd08d082ebf)
+            - [const_cast](#cee88a63ff1bf6d523474d7541ef35d8)
+            - [Google Style](#ca5cd6f7f005a605b98372084def1151)
+        - [Using strategy pattern](#f158d755e5e03f201a3dc6a3afd64932)
+            - [Do not overuse it](#bb58d1a88af40f4f934c4dffa00ed22c)
+        - [Singleton Pattern](#685dbb4186ac6d36022cfce886a84a95)
+            - [Singleton Pattern: How?](#a07d5ad4d01026b8866d306c2b5949f1)
+            - [Singleton Pattern: What now?](#7678e529808ac059561fe6aacf2a7978)
+            - [Singleton Pattern: Completed](#6a1ac8cfc4b7407c34517264846ea4b9)
+            - [Singleton Pattern: Usage](#665b944a415c8ddbd9ed36ddbb7f82c9)
+    - [Modern C++: Memory Management (Lecture 8, I. Vizzo, 2020)](#8cfd35dc9cd1d651af6f30e4c35cef61)
+        - [Using pointers for classes](#6c0d5a1fc5c807937c9b607415342ca0)
+        - [Pointers are polymorphic](#4d968934f6b4cb1379ef5be325f5893c)
+        - [this pointer](#e88f1fdda31d52dc7548803ec585a30f)
+        - [Using const with pointers](#6cd14f084543b2c4c8c156f51c0324e0)
+        - [Stack memory](#83606af2c1b6fdc0c282316a2a0f7c7a)
+        - [Heap memory](#c44d45c3605314ab2b325d1e136bda78)
+            - [Operators new and new\[\]](#9efb2d5bad0c25e7b0adb30fd0ae501a)
+            - [Operators delete and delete\[\]](#25f56d385df2991bc164c6a6b9cfe858)
+        - [Memory leak](#c78f80d07a54f3c3d7e38298cc4a1786)
+        - [Dangling pointer](#e83d85c788c205ca23e19b8c71e6b39b)
+        - [RAII](#cc4f050d3506116dff9932e4a4757538)
+        - [Shallow vs deep copy](#b18489be0d1214fc2a0f7a298e8c52c0)
+        - [Smart pointers](#458ac9389d0193edc10ce1dfdd38f863)
+        - [C++11 smart pointers types](#86971efe3c54c299f3907707bec8e9ad)
+        - [Smart pointers manage memory!](#c2aba4da9cb163cfb67728508ee2ac9a)
+        - [std::unique_ptr](#16f2e352c2cf12dca00e4dc91155f5da)
+            - [Unique pointer (std::unique_ptr)](#f33f2c9b7326ad4e484bdbacb864c84b)
+            - [What makes it “unique”](#8a41b856c1a73927ce95f110f3250ee7)
+        - [Shared pointer (std::shared_ptr)](#45a58bbc7dc4952b58ee0a2b32e6b48f)
+            - [Shared pointer Example](#dc9ef9971bc35a4001eca9017ef469e9)
+        - [When to use what?](#e0cea2d9b07115ed4382ac3f387083dc)
+        - [Typical beginner error](#203e97fd9b28daf2c3e09382bac0d780)
+    - [Modern C++ Course: Templates (Lecture 9, I. Vizzo, 2020)](#767ee4093437fa55b8b907894fa83222)
+        - [Function Templates](#a6b89f6ccba6b648ecd74450ed854270)
+            - [Using Function Templates](#c2ec03a8417f8f4202a6a2932ad5e8c3)
+        - [Template classes](#388f30d859ac3e81d44254f60c3db2f6)
+            - [Template classes usage](#d44c55af7e30ae17cc73e9567c4cd549)
+        - [Template Parameters](#ba2ee1ff0688e49bdc6a7a3588538c0d)
+            - [Usage](#c64518704ce0c0d5501a45763f464276)
+        - [Template Full/Partial Specialization](#2653777f97753f188dcfad2b7743ce47)
+        - [Static code generatrion with constexpr](#9827d2ec485f02fcd7073d1cd9650f3a)
 
 [](...menuend)
 
@@ -94,6 +188,8 @@
         - https://www.youtube.com/watch?v=nbFXI9SDfbk
     - CPP-06 Modern C++: Static, Numbers, Arrays, Non-owning pointers, Classes (2018, Igor)
         - https://www.youtube.com/watch?v=mIrOcFf2crk&t=1729s
+    - CppCon 2016: Arthur O'Dwyer “Template Normal Programming (part 1 of 2)”
+        - https://www.youtube.com/watch?v=vwrXHznaYLA
 
 
 <h2 id="325510d6bba829b766911a52d3936c5c"></h2>
@@ -980,7 +1076,7 @@ int main() {
 }
 ```
 
-<h2 id="ca60008ff3f9f37c01aa32cc26f27d57"></h2>
+<h2 id="6b612f673c58c59f08dd9dff98921501"></h2>
 
 ## Modern C++: I/O Files (Lecture 5, I. Vizzo, 2020)
 
@@ -1457,6 +1553,8 @@ int main() {
 ```
 
 
+<h2 id="435ed7e9f07f740abf511a62c00eef6e"></h2>
+
 #### filename
 
 
@@ -1477,6 +1575,8 @@ int main() {
     return 0;
 }
 ```
+
+<h2 id="566bbee0f961ad71b54c3c2fd36db053"></h2>
 
 #### extension
 
@@ -1500,6 +1600,8 @@ int main() {
 ```
 
 
+<h2 id="e730db5c29b7ba34f4d465b01bd33c5e"></h2>
+
 #### stem
 
 ```c++
@@ -1515,6 +1617,8 @@ int main() {
     return 0;
 }
 ```
+
+<h2 id="e087923eb5dd1310f5f25ddd5ae5b580"></h2>
 
 #### exists
 
@@ -1545,6 +1649,8 @@ int main() {
 ```
 
 
+<h2 id="8c800c6bd66ee804c1102836b8f375be"></h2>
+
 ### Type safety
 
 - **bad – the unit is ambiguous**
@@ -1570,8 +1676,12 @@ int main() {
     ```
 
 
+<h2 id="54bf25ff3921c0e5ebdc9205b7902c35"></h2>
+
 ## Modern C++ Classes
 
+
+<h2 id="75458cc99937a04c5e3353e144a7a992"></h2>
 
 ### Example class definition
 
@@ -1588,10 +1698,14 @@ private:
 ```
 
 
+<h2 id="f09bc6faed74c3fbab3311f610c57565"></h2>
+
 ### What about structs?
 
 - struct is a class where everything is public
 - **GOOGLE-STYLE** Use **struct** as a **simple data container**, if it needs a function it should be a **class** instead.
+
+<h2 id="bdc1ff08b6ff00c1a6a5b95e9552c6a6"></h2>
 
 ### Always initialize structs using braced initialization
 
@@ -1603,6 +1717,8 @@ struct NamedInt {
 
 NamedInt var{1, std :: string{"hello"}};
 ```
+
+<h2 id="fff7c892e0960645e398064e32ab6297"></h2>
 
 ### Constructors and Destructor
 
@@ -1617,6 +1733,8 @@ NamedInt var{1, std :: string{"hello"}};
     - Last function called in the lifetime of an object
     - Generated automatically if not explicitly defined
 
+
+<h2 id="352771047fedbd7b0eb907c89c1634c6"></h2>
 
 ### Many ways to create instances
 
@@ -1641,6 +1759,8 @@ int main() {
 }
 ```
 
+<h2 id="e043c979883e65dc381c618fbe7e1706"></h2>
+
 ### Setting and getting data
 
 - Use **initializer list** to initialize data
@@ -1663,6 +1783,8 @@ private:
 ```
 
 
+<h2 id="b84d0e8580534792f9b7d25188b8283f"></h2>
+
 ### Declaration and definition
 
 - Data members belong to declaration
@@ -1673,6 +1795,8 @@ private:
     int SomeClass::var () const { return var_; }
     void SomeClass::DoSmth () {}
     ```
+
+<h2 id="80dfe513dea5b2ac3ea182d6b164675c"></h2>
 
 ### Always initialize members for classes
 
@@ -1694,6 +1818,8 @@ private:
 
 - **Note**: Leave the members of structs uninitialized as which will forbid using brace initialization
 
+
+<h2 id="3a1dedcb28865ffa846a83439ad98f4b"></h2>
 
 ### Const correctness
 
@@ -1724,7 +1850,11 @@ private:
     // but function is not marked const
     ```
 
+<h2 id="6968e0c5ce7cf21cda6568106fc4ad90"></h2>
+
 ### Move semantics
+
+<h2 id="84be678c622eb3674adb2dadfa62d994"></h2>
 
 #### Intuition lvalues, rvalues
 
@@ -1746,17 +1876,23 @@ int&& c = std::move(a); // "c" is an rvalue
 ```
 
 
+<h2 id="c8926a02e9917ba20ca6e44cbee36963"></h2>
+
 #### std::move
 
 - `std::move` is used to indicate that an object **t** may be “moved from”, i.e. allowing the efficient transfer of resources from **t** to another object.
 - In particular, **std::move** produces an **xvalue expression** that identifies its argument **t**. It is exactly equivalent to a `static_cast` to an rvalue reference type.
 - So, this is the definition, it's **impossible to understand**...
 
+<h2 id="31fc7853dce961550bd94847833116d9"></h2>
+
 #### Important std::move
 
 - The `std::move()` is a standard-library function returning an **rvalue** reference to its argument.
 - `std::move(x)` means "give me an rvalue reference to x.""
 - That is, `std::move(x)` does not move anything; instead, it allows a user to move **x**, taking ownership.
+
+<h2 id="0f8701acaf3e6cfc809cfa7d9be7a335"></h2>
 
 #### Hands on example
 
@@ -1778,6 +1914,8 @@ int main() {
     return 0;
 }
 ```
+
+<h2 id="61bf40f95ea0221e41cd38fe7bb94ac5"></h2>
 
 #### Never access values after move
 
@@ -1810,6 +1948,8 @@ int main() {
 }
 ```
 
+<h2 id="f98cc579cb1039871a752bcd0be13615"></h2>
+
 #### How to think about std::move
 
 - Think about **ownership**
@@ -1821,6 +1961,8 @@ int main() {
 - **Runtime**: better than copying, worse than passing by reference.
 
 
+<h2 id="466d5122ff97297902e40b755d7a2ab1"></h2>
+
 ### Custom operators for a class
 
 - Operators are functions with a signature:
@@ -1828,6 +1970,8 @@ int main() {
 - `<NAME>` represents the target operation, e.g. `>, <, =, ==, <<` etc.
 - Have all attributes of functions
 - All available operators: http://en.cppreference.com/w/cpp/language/operators
+
+<h2 id="741d87ff4c970c140c8e12c122716da0"></h2>
 
 #### Example operator `<`
 
@@ -1860,6 +2004,8 @@ int main() {
 }
 ```
 
+
+<h2 id="d40b75c8bf9d8972f500b8bb25637a1f"></h2>
 
 #### Example operator `<<`
 
@@ -1895,7 +2041,11 @@ int main() {
 ```
 
 
+<h2 id="2b04788ff820d22f5fd6cf3e87713bfe"></h2>
+
 ### Class Special Functions
+
+<h2 id="9e81af005e7a42287f55a805bdaf3db9"></h2>
 
 #### Copy constructor
 
@@ -1906,6 +2056,8 @@ int main() {
     MyClass b(a);   // Calling copy constructor.
     MyClass c = a;  // Calling copy constructor.
     ```
+
+<h2 id="b339bb2a7c67336b33c2f442e5207325"></h2>
 
 #### Copy assignment operator
 
@@ -1920,6 +2072,8 @@ int main() {
     a = b;         // Calling copy assignment operator.
     ```
 
+<h2 id="04f69f35142789ab5f10ae43efab0a54"></h2>
+
 #### Move constructor
 
 - **Called automatically** when the object is **moved**
@@ -1929,6 +2083,8 @@ int main() {
     MyClass b(std::move(a));  // Move constructor.
     MyClass c = std::move(a); // Move constructor.
     ```
+
+<h2 id="c332414ee8b3a0feb6ea9a528ce3a46d"></h2>
 
 #### Move assignment operator
 
@@ -1941,6 +2097,8 @@ int main() {
     MyClass c = std::move(a); // Move constructor.
     b = std::move(c);         // Move assignment operator.
     ```
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 #### Example
 
@@ -1978,6 +2136,8 @@ int main() {
 ```
 
 
+<h2 id="08cad8a0c7a42eca501678c7171f892a"></h2>
+
 #### Do I need to define all of them?
 
 - The constructors and operators will be **generated automatically**
@@ -1994,6 +2154,8 @@ int main() {
 - **None** of them defined: **all** auto-generated
 - **Any** of them defined: **none** auto-generated
 
+
+<h2 id="856d2d3cbcb99bdc02d67407467887e5"></h2>
 
 #### Rule of all or nothing
 
@@ -2013,6 +2175,8 @@ int main() {
         };
         ```
 
+<h2 id="5312eb6759309d28c7ea2d239a4f7e72"></h2>
+
 #### Deleted functions
 
 - Any function can be set as **deleted**
@@ -2026,6 +2190,8 @@ int main() {
 
 
 
+<h2 id="f258b4094c997d13c499fc50cc0138cf"></h2>
+
 ### Static variables and methods
 
 - **Static member variables of a class**
@@ -2037,6 +2203,8 @@ int main() {
     - Can access private members but need an object
     - Syntax for calling:
         - `ClassName::MethodName(<params>)`
+
+<h2 id="fbe24973f9df7e0a856ccd9d871c4b90"></h2>
 
 ### `using` for type aliasing
 
@@ -2066,6 +2234,8 @@ int main() {
     return 0;
 }
 ```
+
+<h2 id="d777b421635efebe637ee2f4726d5689"></h2>
 
 ### Enumeration classes
 
@@ -2108,6 +2278,8 @@ int main() {
 }
 ```
 
+<h2 id="a22b86e6d7d06811669d602bbb89e7c0"></h2>
+
 #### Explicit values
 
 - By default enum values start from 0
@@ -2124,8 +2296,12 @@ enum class EnumType {
 ```
 
 
+<h2 id="59427b00f0bc9e475e34732652d9395e"></h2>
+
 ## Modern C++: Object Oriented Design (Lecture 7, I. Vizzo, 2020)
 
+
+<h2 id="adc9ad40993dd6a8ffd8c5ce60244c16"></h2>
 
 ### C vs C++ Inheritance Example
 - C code
@@ -2148,6 +2324,8 @@ enum class EnumType {
     ```
 
 
+<h2 id="e40489cd1e7102e35469c937e05c8bba"></h2>
+
 ### Inheritance
 
 - Class and struct can inherit data and functions from other classes
@@ -2157,6 +2335,8 @@ enum class EnumType {
     - private
 - public inheritance keeps all access specifiers of the base class
 
+
+<h2 id="37f714fa982009c0f7f34a34222f19c6"></h2>
 
 ### Public inheritance
 
@@ -2196,6 +2376,8 @@ int main() {
 }
 ```
 
+<h2 id="9838b3876aec076af99ebf663cfd7b7a"></h2>
+
 ### Function overriding
 
 - A function can be declared virtual: 
@@ -2208,6 +2390,8 @@ int main() {
         - A member function that overrides a virtual funcction in the base class is automatically virtual even if the virtual keywors is not used
 
 
+<h2 id="8a88083322dc5c249a3dc33b350ee8b5"></h2>
+
 ### Overloading vs overriding
 
 - **Overloading**
@@ -2219,10 +2403,14 @@ int main() {
     - Pick **at runtime**
 
 
+<h2 id="4c7393aee7be19ada4689a7b266a1be1"></h2>
+
 ### Abstract classes and interfaces
 
 - **Abstract class**: class that has at least one `pure virtual function`
 - **Interface**: class that has only `pure virtual functions` and no data members
+
+<h2 id="8fbbb2c24bf977e5ed7f81e2f229bc06"></h2>
 
 ### How virtual works
 
@@ -2230,6 +2418,8 @@ int main() {
 - When calling a function the class checks which of the virtual functions that match the signature should be called
 - Called **runtime polymorphism**
 - Costs some time but is very convenient
+
+<h2 id="f6f847324f6a271ea8bd9e36a55511bd"></h2>
 
 ### Using interfaces
 
@@ -2263,6 +2453,8 @@ int main() {
 ```
 
 
+<h2 id="371fedf6ee6747b1de368aafb08094e8"></h2>
+
 ### Polymorphism
 
 - Allows morphing derived classes into their base class type:
@@ -2278,7 +2470,11 @@ int main() {
     - i.e. including an object of another class as a member of your class
 
 
+<h2 id="479c01e471347f335628cee17db0bf54"></h2>
+
 ### Type Casting
+
+<h2 id="784be77baa4e7400b3b0e93738c5d66b"></h2>
 
 #### Casting type of variables
 
@@ -2294,6 +2490,8 @@ int main() {
     - C-style cast(unsafe)
         - compile will try combination of those 4 casting, and you have no idea what's going on
 
+<h2 id="7788e276172dacc2d8d33631b670d026"></h2>
+
 #### static_cast
 
 - `static_cast<NewType>(variable)`
@@ -2305,6 +2503,8 @@ int main() {
 - Full specification is complex!
 
 
+<h2 id="fe9be20b5d842a2d5963b97405c48505"></h2>
+
 #### dynamic_cast
 
 - `dynamic_cast<Base*>(derived_ptr)`
@@ -2314,6 +2514,8 @@ int main() {
 - GOOGLE-STYLE **Avoid** using dynamic casting
 
 
+<h2 id="dcb294fefdac1da8cef8bcd08d082ebf"></h2>
+
 #### reinterpret_cast
 
 - `reinterpret_cast<NewType>(variable)`
@@ -2322,6 +2524,8 @@ int main() {
 - Mostly used when writing binary data
 
 
+<h2 id="cee88a63ff1bf6d523474d7541ef35d8"></h2>
+
 #### const_cast
 
 - `const_cast<NewType>(variable)`
@@ -2329,6 +2533,8 @@ int main() {
 - Used to “de-constify” objects
 - Not widely used
 
+
+<h2 id="ca5cd6f7f005a605b98372084def1151"></h2>
 
 #### Google Style
 
@@ -2343,6 +2549,8 @@ int main() {
 - `google-style` use `reinterpret_cast` to do unsafe conversions of pointer types to and from integer and other pointer types. 
     - Use this only if you know what you are doing and you understand the aliasing issues.
 
+
+<h2 id="f158d755e5e03f201a3dc6a3afd64932"></h2>
 
 ### Using strategy pattern
 
@@ -2385,12 +2593,16 @@ private:
 ```
 
 
+<h2 id="bb58d1a88af40f4f934c4dffa00ed22c"></h2>
+
 #### Do not overuse it
 
 - Only use these patterns when you need to
 - If your class should have a single method for some functionality and will never need another implementation don’t make it virtual
 - Used mostly to avoid copying code and to make classes smaller by moving some functionality out.
 
+
+<h2 id="685dbb4186ac6d36022cfce886a84a95"></h2>
 
 ### Singleton Pattern
 
@@ -2401,6 +2613,8 @@ private:
 - Don’t over use it, it’s easy to learn, but usually hides a **design** error in your code.
 - Sometimes is still necessary, and makes your code better.
 
+
+<h2 id="a07d5ad4d01026b8866d306c2b5949f1"></h2>
 
 #### Singleton Pattern: How?
 
@@ -2436,6 +2650,8 @@ private:
     - This completely **disable** the possibility to copy any existing Singleton object.
 
 
+<h2 id="7678e529808ac059561fe6aacf2a7978"></h2>
+
 #### Singleton Pattern: What now?
 
 - Now we need to create at least **one** instance of the `Singleton` class.
@@ -2452,6 +2668,8 @@ private:
             }
     };
     ```
+
+<h2 id="6a1ac8cfc4b7407c34517264846ea4b9"></h2>
 
 #### Singleton Pattern: Completed
 
@@ -2472,6 +2690,8 @@ public:
 ```
 
 
+<h2 id="665b944a415c8ddbd9ed36ddbb7f82c9"></h2>
+
 #### Singleton Pattern: Usage
 
 ```c++
@@ -2490,9 +2710,13 @@ int main() {
 ```
 
 
+<h2 id="8cfd35dc9cd1d651af6f30e4c35cef61"></h2>
+
 ## Modern C++: Memory Management (Lecture 8, I. Vizzo, 2020)
 
 - cdtdebug
+
+<h2 id="6c0d5a1fc5c807937c9b607415342ca0"></h2>
 
 ### Using pointers for classes
 
@@ -2502,6 +2726,8 @@ int main() {
     obj_ptr ->MyFunc ();
     ```
 - `obj->Func()` ↔ `(*obj).Func()`
+
+<h2 id="4d968934f6b4cb1379ef5be325f5893c"></h2>
 
 ### Pointers are polymorphic
 
@@ -2515,6 +2741,8 @@ int main() {
     Base* ptr = &derived;
     ```
 
+<h2 id="e88f1fdda31d52dc7548803ec585a30f"></h2>
+
 ### this pointer
 
 - Every object of a class or a struct holds a pointer to itself
@@ -2524,6 +2752,8 @@ int main() {
     - Create copies of themselves within a function
     - Explicitly show that a member belongs to the current object: `this->x();`
     - `this` is a C++ keyword
+
+<h2 id="6cd14f084543b2c4c8c156f51c0324e0"></h2>
 
 ### Using const with pointers
 
@@ -2547,6 +2777,8 @@ int main() {
 - Read from right to left to see which const refers to what
 
 
+<h2 id="83606af2c1b6fdc0c282316a2a0f7c7a"></h2>
+
 ### Stack memory
 
 - **Static** memory (compile time)
@@ -2565,12 +2797,16 @@ int main() {
 - Items added to top of the stack with `push`
 - Items removed from the top with `pop`
 
+<h2 id="c44d45c3605314ab2b325d1e136bda78"></h2>
+
 ### Heap memory
 
 - **Dynamic** memory (runtime)
 - Available for **long** time (program runtime)
 - Raw modifications possible with `new` and `delete` (usually encapsulated within a class)
 - Allocation is slower than stack allocations
+
+<h2 id="9efb2d5bad0c25e7b0adb30fd0ae501a"></h2>
 
 #### Operators new and new[]
 
@@ -2590,6 +2826,8 @@ int main() {
 - `new` returns an address of the variable on the heap
 - **Prefer using smart pointers!**
 
+
+<h2 id="25f56d385df2991bc164c6a6b9cfe858"></h2>
 
 #### Operators delete and delete[]
 
@@ -2611,6 +2849,8 @@ int main() {
 - **Prefer using smart pointers!**
 
 
+<h2 id="c78f80d07a54f3c3d7e38298cc4a1786"></h2>
+
 ### Memory leak
 
 - Can happen when working with Heap memory if we are not careful
@@ -2622,6 +2862,8 @@ int main() {
     ptr_2 /     ▨▨▨▨▨▨▨▨▨
     ```
 - It will also raise a problem of double free.
+
+<h2 id="e83d85c788c205ca23e19b8c71e6b39b"></h2>
 
 ### Dangling pointer
 
@@ -2636,6 +2878,8 @@ delete ptr_1;
 ptr_1 = nullptr;
 // Cannot use ptr_2 anymore! Behavior undefined!
 ```
+
+<h2 id="cc4f050d3506116dff9932e4a4757538"></h2>
 
 ### RAII
 
@@ -2669,6 +2913,8 @@ ptr_1 = nullptr;
     }
     ```
 
+<h2 id="b18489be0d1214fc2a0f7a298e8c52c0"></h2>
+
 ### Shallow vs deep copy
 
 - Shallow copy: just copy pointers, not data
@@ -2678,6 +2924,8 @@ ptr_1 = nullptr;
 - RAII + **Rule of All Or Nothing** → **correct**
 - **Use smart pointers instead!**
 
+
+<h2 id="458ac9389d0193edc10ce1dfdd38f863"></h2>
 
 ### Smart pointers
 
@@ -2689,6 +2937,8 @@ ptr_1 = nullptr;
 - `#include <memory>` to use smart pointers
 
 
+<h2 id="86971efe3c54c299f3907707bec8e9ad"></h2>
+
 ### C++11 smart pointers types
 
 - **std::unique_ptr**
@@ -2698,6 +2948,8 @@ ptr_1 = nullptr;
 - We will focus on 2 types of smart pointers:
     - `std::unique_ptr` , `std::shared_ptr`
 
+
+<h2 id="c2aba4da9cb163cfb67728508ee2ac9a"></h2>
 
 ### Smart pointers manage memory!
 
@@ -2710,6 +2962,8 @@ ptr_1 = nullptr;
     - `ptr.get()` returns a raw pointer that the smart pointer manages
     - `ptr.reset(raw_ptr)` stops using currently managed pointer, freeing its memory if needed, sets `ptr` to `raw_ptr`
 
+
+<h2 id="16f2e352c2cf12dca00e4dc91155f5da"></h2>
 
 ### std::unique_ptr 
 
@@ -2748,6 +3002,8 @@ ptr_1 = nullptr;
 - Wait, Didn't you use NEW and DELETE ?
     - No, we are smart now... right ?
 
+<h2 id="f33f2c9b7326ad4e484bdbacb864c84b"></h2>
+
 #### Unique pointer (std::unique_ptr)
 
 - Constructor of a unique pointer takes **ownership** of a provided raw pointer
@@ -2766,6 +3022,8 @@ ptr_1 = nullptr;
     auto p = std :: make_unique <Type>(<params>);
     ```
 
+<h2 id="8a41b856c1a73927ce95f110f3250ee7"></h2>
+
 #### What makes it “unique”
 
 - Unique pointer **has no copy constructor**
@@ -2775,6 +3033,8 @@ ptr_1 = nullptr;
 - Moving a `std::unique_ptr` transfers ownership from the source pointer to the destination pointer. 
     - (The source pointer is set to `nullptr`.)
 
+
+<h2 id="45a58bbc7dc4952b58ee0a2b32e6b48f"></h2>
 
 ### Shared pointer (std::shared_ptr)
 
@@ -2802,6 +3062,8 @@ ptr_1 = nullptr;
     auto p = std :: shared_ptr <Type>(new Type(<params>));
     auto p = std :: make_shared <Type>(<params>);
     ```
+
+<h2 id="dc9ef9971bc35a4001eca9017ef469e9"></h2>
 
 #### Shared pointer Example
 
@@ -2835,6 +3097,8 @@ int main() {
 // I'm dead... :(
 ```
 
+<h2 id="e0cea2d9b07115ed4382ac3f387083dc"></h2>
+
 ### When to use what?
 
 - Use smart pointers when the pointer **must manage memory**
@@ -2845,6 +3109,8 @@ int main() {
     - Allocate memory with `make_unique`, `make_shared`
     - Only use `new` in smart pointer constructor if cannot use the functions above
 
+
+<h2 id="203e97fd9b28daf2c3e09382bac0d780"></h2>
 
 ### Typical beginner error
 
@@ -2874,7 +3140,11 @@ int main () {
 - The variable ends up being owned both by the `smart pointer` and the `stack` and gets deleted twice → **Error!**
 
 
+<h2 id="767ee4093437fa55b8b907894fa83222"></h2>
+
 ## Modern C++ Course: Templates (Lecture 9, I. Vizzo, 2020)
+
+<h2 id="a6b89f6ccba6b648ecd74450ed854270"></h2>
 
 ### Function Templates
 
@@ -2891,6 +3161,8 @@ T abs(T x) {
     - If nobody calls `abs<int>`, it won’t be instantiated by the compiler at all.
 - A function template defines a **family** of functions.
 
+
+<h2 id="c2ec03a8417f8f4202a6a2932ad5e8c3"></h2>
 
 #### Using Function Templates
 
@@ -2910,6 +3182,8 @@ int main () {
 **Templates lives in a "static" world.**
 
 
+<h2 id="388f30d859ac3e81d44254f60c3db2f6"></h2>
+
 ### Template classes
 
 ```c++
@@ -2927,6 +3201,8 @@ private:
 - You don’t pay for what you don’t use:
     - If nobody calls `MyClass<int>`, it won’t be instantiated by the compiler at all.
 
+<h2 id="d44c55af7e30ae17cc73e9567c4cd549"></h2>
+
 #### Template classes usage
 
 ```c++
@@ -2936,6 +3212,8 @@ int main() {
     return 0;
 }
 ```
+
+<h2 id="ba2ee1ff0688e49bdc6a7a3588538c0d"></h2>
 
 ### Template Parameters
 
@@ -2956,6 +3234,8 @@ T AccumulateVector (const T& val) {
     - `template < parameter-list > declaration`
 - Think the template parameters the same way as any function arguemnents, but at compile-time.
 
+<h2 id="c64518704ce0c0d5501a45763f464276"></h2>
+
 #### Usage
 
 ```c++
@@ -2968,10 +3248,14 @@ int main() {
 }
 ```
 
+<h2 id="2653777f97753f188dcfad2b7743ce47"></h2>
+
 ### Template Full/Partial Specialization
 
 TODO
 
+
+<h2 id="9827d2ec485f02fcd7073d1cd9650f3a"></h2>
 
 ### Static code generatrion with constexpr
 
