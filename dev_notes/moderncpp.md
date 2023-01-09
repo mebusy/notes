@@ -2968,25 +2968,41 @@ int main() {
 }
 ```
 
-### Template Full Specialization
+### Template Full/Partial Specialization
 
-- Prefix the definition with `template<>`
-- Then write the function **definition**.
-- Usually means you don’t need to write any more angle brackets at all.
-- Unless `T` can’t be deduced/defaulted:
+TODO
+
+
+### Static code generatrion with constexpr
+
+- `constexpr` specifies that the value of a variable or function can appear in constant expressions
 
 ```c++
-template <typename T>
-int my_sizeof () {
-    return sizeof(T);
+#include <iostream>
+constexpr int factorial(int n) {
+    // Compute this at compile time
+    return n <= 1 ? 1 : (n * factorial(n - 1));
 }
 
-template <>
-int my_sizeof <void >() {
-    return 1;
+int main() {
+    // Guaranteed to be computed at compile time
+    return factorial(10);
 }
 ```
 
+- It only works if the variable of function can be defined at **compile-time**:
+    ```c++
+    #include <array>
+    #include <vector>
+
+    int main() {
+        std ::vector<int> vec;
+        constexpr size_t size_err = vec.size(); // error
+
+        std ::array<int, 10> arr;
+        constexpr size_t size = arr.size(); // works!
+    }
+    ```
 
 
 
