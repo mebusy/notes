@@ -179,12 +179,14 @@ public:
 # Why copy constructor take argument as reference ?
 
 ```cpp
+    // error
     Foo(const Foo obj) {
         ...
     }
 ```
 
 A: To avoid infinite recursive.
+    - If we pass an object only (we will be passing the copy of that object) but to create the copy we will need a copy constructor, Hence it leads to infinite recursion. 
 
 
 <h2 id="a78a7dd142e4347a3c846d15ef09f39c"></h2>
