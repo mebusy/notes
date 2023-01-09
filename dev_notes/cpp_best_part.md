@@ -1,7 +1,8 @@
 
 # The Best Parts of C++
 
-https://www.youtube.com/watch?v=iz5Qx18H6lg
+- youtube video: https://www.youtube.com/watch?v=iz5Qx18H6lg
+- slides: https://nbviewer.jupyter.org/github/mebusy/cppcontalk/blob/main/pdfs/back_to_basics_the_best_parts_of_cpp__jason_turner__cppcon_2019.pdf
 
 
 ## #7 List Initialization  (C++11)
