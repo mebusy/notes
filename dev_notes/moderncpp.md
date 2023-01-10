@@ -474,6 +474,13 @@ auto GetDictionary() {
 
 #### WARNING: Never return reference to locally variables !!!
 
+- But in fact, in C++11, this is the preferred way:
+    ```c++
+    std::vector<X> f();
+    ```
+- With C++11, std::vector has **move-semantics**, which means the local vector declared in your function will be moved on return and in some cases even the move can be elided by the compiler.
+- [RVO: Return value optimization](https://en.wikipedia.org/wiki/Copy_elision#RVO)
+
 
 <h2 id="4b3473986e35c311d04c1f51e2364e5c"></h2>
 
