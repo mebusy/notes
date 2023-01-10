@@ -512,6 +512,7 @@ def min-value(state , α, β):
 - Values of intermediate nodes might be wrong
     - Important: children of the root may have the wrong value
     - So the most naive version won’t let you do action selection
+        - so it might not give us which action we can actually take, it just tell us "ok, here's the value of game".
 - ![](../imgs/cs188_advS_alpha-beta-properties.png)
     - in the case that pic shows, the left min is 10, the value passes to root, the right min satisfied the condition ≤ 10, it will skip the rest, it may choose the right sub-tree if ties break on equality, 
     - if the algorithm will not prune on equality( change ≤ to `<` ) , then this case will no happen.
@@ -523,6 +524,7 @@ def min-value(state , α, β):
         - you lose out a lot of pruning, you will compute more nodes.
 - Good child ordering improves effectiveness of pruning
     - The effectiveness of alpha–beta pruning is highly dependent on the order in which the states are examined
+    - the best thing that you would be able to do is actually like try to expand the optimal play first, so at to prune a lot.
 - With “perfect ordering”:
     - Time complexity drops to O(b<sup>m/2</sup>)
     - Doubles solvable depth!
