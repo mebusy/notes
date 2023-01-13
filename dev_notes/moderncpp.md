@@ -390,7 +390,7 @@
     for key, value in my_dict.items():
         print(key, value)
     ```
-
+- implemented as a tree, so it does not have a `reserve` method to set capacity.
 
 <h2 id="5ec0d21ae7ae7c4254aa1660eb6e4c65"></h2>
 
@@ -711,7 +711,8 @@ int main() {
 - implemented as a **hash table**
 - key type has to be hashable
 - faster to use than **std::map**
-
+- in contrast to `map`,  `std::unordered_map` has the concept of capacity, it has `reserve` method.
+    - add `clear` won't affect its capacity.
 
 <h2 id="aa703c156fde48ca1bd441cec6280929"></h2>
 
