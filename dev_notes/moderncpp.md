@@ -776,6 +776,61 @@ unordered_multiset  | keys may be non-unique, hashed by keys
 unordered_multimap | keys may be non-unique,  hashed by keys
 
 
+**To be able to use std::unordered_map (or one of the other unordered associative containers) with a user-defined key-type, you need to define two things:**
+
+1. A hash function; this must be a class that overrides `operator()` and calculates the hash value given an object of the key-type. 
+    - One particularly straight-forward way of doing this is to specialize the `std::hash` template for your key-type.
+2. A comparison function for equality; 
+    - this is required because the hash cannot rely on the fact that the hash function will always provide a unique hash value for every distinct key (i.e., it needs to be able to deal with collisions), so it needs a way to compare two given keys for an exact match. 
+    - You can implement this either as a class that overrides operator(), or as a specialization of std::equal, or – easiest of all – by overloading operator==() for your key type (as you did already).
+
+<details>
+<summary>
+<b>Example</b>
+</summary>
+
+For example, assuming a `Key` type like this:
+
+```c++
+struct Key
+{
+  std::string first;
+  std::string second;
+  int         third;
+
+  bool operator==(const Key &other) const
+  { return (first == other.first
+            && second == other.second
+            && third == other.third);
+  }
+};
+
+namespace std {
+
+  template <>
+  struct hash<Key>
+  {
+    std::size_t operator()(const Key& k) const
+    {
+      using std::size_t;
+      using std::hash;
+      using std::string;
+
+      // Compute individual hash values for first,
+      // second and third and combine them using XOR
+      // and bit shifting:
+
+      return ((hash<string>()(k.first)
+               ^ (hash<string>()(k.second) << 1)) >> 1)
+               ^ (hash<int>()(k.third) << 1);
+    }
+  };
+}
+```
+
+</details>
+
+
 <h2 id="0b7e76082bd309e16701c104e9dac707"></h2>
 
 #### Container adaptors
