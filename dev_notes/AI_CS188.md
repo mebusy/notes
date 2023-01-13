@@ -1242,7 +1242,8 @@ end // func
 
 - note1:
     - for uniform search,  fringe is a priority queue , the cumulate cost is the key (  `lambda item: item[2]` )
-    - for astar search , fringe is a priority queue which use  cumulate cost + heuristic(state) 
+    - for astar search , fringe is a priority queue 
+        - it use `cumulate cost + heuristic(state)`  as its priority , also as the 2nd parametes of the push() methods
 - note2:
     - we store the info of parent node (parentState,action) , and use it to rebuild the whole shortest path.
 
