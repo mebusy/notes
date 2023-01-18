@@ -476,6 +476,339 @@ OpenAPI 3.0 also supports nullable in schemas, allowing operation parameters to 
         nullable: true
 ```
 
+## Describing Request Body
+
+- `requestBody` keyword
+    - Schemas can vary by media type.
+    - `requestBody.content` maps the media types to their schemas.
+    - `anyOf` and `oneOf` can be used to specify alternate schemas.
+
+```yaml
+paths:
+  /pets:
+    post:
+      summary: Add a new pet
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PetForm'
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: Created
+```
+
+### anyOf, oneOf
+
+- OpenAPI 3.0 supports `anyOf` and `oneOf`.
+
+```yaml
+      requestBody:
+        description: A JSON object containing pet information
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Cat'
+                - $ref: '#/components/schemas/Dog'
+                - $ref: '#/components/schemas/Hamster'
+```
+
+
+### Reusable Bodies
+
+- You can put the request body definitions in the global `components.requestBodies` section and `$ref` them elsewhere. - This is handy if multiple operations have the same request body – this way you can reuse the same definition easily.
+
+```yaml
+paths:
+  /pets:
+    post:
+      summary: Add a new pet
+      requestBody:
+        $ref: '#/components/requestBodies/PetBody'
+  /pets/{petId}
+    put:
+      summary: Update a pet
+      parameters: [ ... ]
+      requestBody:
+        $ref: '#/components/requestBodies/PetBody'
+components:
+  requestBodies:
+    PetBody:
+        ...
+```
+
+
+## Describing Responses
+
+- `responses`
+- Each operation must have at least one response defined, usually a successful response.
+- A response is defined by its HTTP status code and the data returned in the response body and/or headers. 
+- a minimal example:
+    ```yaml
+    paths:
+      /ping:
+        get:
+          responses:
+            '200':
+              description: OK
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                    example: pong
+    ```
+
+### Response Media Types
+
+- To specify the response media types, use the `content` keyword at the operation level.
+- `schema` keyword is used to describe the response body. A `schema` can define:
+    - an `object` or an `array` — typically used with JSON and XML APIs,
+    - a primitive data type such as a number or string – used for plain text responses,
+    - a file 
+- or defined in the global `components.schemas` section and referenced via `$ref`. 
+
+```yaml
+paths:
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfUsers'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ArrayOfUsers'
+            text/plain:
+              schema:
+                type: string
+  # This operation returns image
+  /logo:
+    get:
+      summary: Get the logo image
+      responses:
+        '200':
+          description: Logo image in PNG format
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+```
+
+
+### anyOf, oneOf
+
+OpenAPI 3.0 also supports oneOf and anyOf, so you can specify alternate schemas for the response body.
+
+
+### Empty Response Body
+
+Some responses, such as 204 No Content, have no body. To indicate the response body is empty, do not specify a content for the response:
+
+### Response Headers
+
+Responses from an API can include custom headers to provide additional information on the result of an API call.
+
+For example, a rate-limited API may provide the rate limit status via response headers as follows:
+
+```http
+HTTP 1/1 200 OK
+X-RateLimit-Limit: 100
+X-RateLimit-Remaining: 99
+X-RateLimit-Reset: 2016-10-12T11:00:00Z
+{ ... }
+```
+
+You can define custom `headers` for each response as follows:
+
+```yaml
+paths:
+  /ping:
+    get:
+      summary: Checks if the server is alive.
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Request limit per hour.
+            ...
+```
+
+
+### Reusing Responses
+
+```yaml
+# Descriptions of common components
+components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error' # Note. $ref again to schemas
+```
+
+
+## Data Models (Schemas)
+
+### Data Types
+
+- `type` keyword
+    - `string` (this includes dates and files)
+        - String length can be restricted using `minLength` and `maxLength`
+        - An optional `format` modifier serves as a hint at the contents and format of the string. 
+        - The pattern `keyword` lets you define a regular expression template for the string value.
+    - `number`
+        - includes both integer and floating-point numbers
+        - An optional `format` keyword to specifiy numeric type
+        - Use the `minimum` and `maximum` keywords to specify the range of possible values
+            - To exclude the boundary values, specify `exclusiveMinimum: true` and `exclusiveMaximum: true`
+        - Use the `multipleOf` keyword to specify that a number must be the multiple of another number
+    - `integer`
+        - similar to number
+    - `boolean`
+        - true, false
+    - `array`
+        ```yaml
+        type: array
+        items:
+          type: ...
+        ```
+        ```yaml
+        type: array
+        items:
+          $ref: '#/components/schemas/Pet'
+        ```
+        - Mixed-Type Arrays
+            ```yaml
+            # ["foo", 5, -2, "bar"]
+            type: array
+            items:
+              oneOf:
+                - type: string
+                - type: integer
+            ```
+        - Array of arbitrary types
+            ```yaml
+            type: array
+            items: {}
+            # [ "hello", -2, true, [5.7], {"id": 5} ]
+            ```
+        - use `minItems`, `maxItems` to limit array length
+        - use `uniqueItems: true` to specify that all items in the array must be unique:
+    - `object`
+        - **objects are usually defined in the global** `components/schemas` section
+        - Required Properties. Note that `required` is an object-level attribute, not a property attribute:
+            ```yaml
+            type: object
+            properties:
+              id:
+                type: integer
+                ...
+            required:
+              - id
+              - username
+            ```
+        - `readOnly` and `writeOnly`
+            - This is useful, for example, when GET returns more properties than used in POST – you can use the same schema in both GET and POST and mark the extra properties as readOnly.
+            ```yaml
+            type: object
+            properties:
+              id:
+                # Returned by GET, not used in POST/PUT/PATCH
+                type: integer
+                readOnly: true
+              username:
+                type: string
+              password:
+                # Used in POST/PUT/PATCH, not returned by GET
+                type: string
+                writeOnly: true
+            ```
+        - Free-Form Object:  (arbitrary property/value pairs) 
+            ```yaml
+            type: object
+            ```
+        - `minProperties` and `maxProperties` to restrict the number of properties.
+- Mixed Types
+    - mixed types can be described using `oneOf` and `anyOf`, which specify a list of alternate types:
+    ```yaml
+    oneOf:
+      - type: string
+      - type: integer
+    ```
+- String Formats
+    - An optional `format` modifier serves as a hint at the contents and format of the string. OpenAPI defines the following built-in string formats:
+        - `date` , for example, 2017-07-21
+        - `date-time` , for example, 2017-07-21T17:32:28Z
+        - `password` – a hint to UIs to mask the input
+        - `byte` – base64-encoded characters, for example, U3dhZ2dlciByb2Nrcw==
+        - `binary` – binary data, used to describe files
+    - However, format is an open value, so you can use any formats, even not those defined by the OpenAPI Specification, such as:
+        - email, uuid, uri, hostname, ipv4, ipv6, and others ...
+- pattern
+    - The pattern keyword lets you define a regular expression template for the string value.
+    ```yaml
+    ssn:
+      type: string
+      pattern: '^\d{3}-\d{2}-\d{4}$'
+    ```
+- Any Type
+    - `{}` is shorthand syntax for an arbitrary-type schema:
+    ```yaml
+    components:
+      schemas:
+        AnyValue: {}
+          nullable: true  # optional
+          description: Can be any value, including `null`.
+    ```
+
+### Enums
+
+- example
+    ```yaml
+              schema:
+                type: string
+                enum: [asc, desc]
+    ```
+- Nullable enums
+    ```yaml
+    type: string
+    nullable: true  # <--- Using `nullable: true` alone is not enough here
+    enum:
+      - asc
+      - desc
+      - null        # <--- without quotes, i.e. null not "null"
+    ```
+- Reusable enums
+    ```yaml
+    components:
+      schemas:
+        Color:
+          ...
+    ```
+
+### Dictionaries, HashMaps and Associative Arrays
 
 
 
