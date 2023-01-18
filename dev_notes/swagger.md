@@ -93,4 +93,288 @@ Animal:
 ```
 
 
+## Code Gen
+
+Note: `-v3` for openapi 3.0
+
+```bash
+docker run --rm -v `pwd`:/local swaggerapi/swagger-codegen-cli-v3 generate \
+    -i /local/swagger.yaml \
+    -l go \
+    -o /local/out/go
+```
+
+
+# OpenAPI 3.0
+
+## Basic Structure
+
+```yaml
+openapi: 3.0.0
+info:
+  title: my-server       # Note. title is your API name
+  description: Optional multiline or single-line description
+               in [CommonMark](http://commonmark.org/help/) or HTML.
+  version: 0.1.9  # Note. an arbitrary string that specifies the version of your own API
+
+servers:  # Note. API server and base URL
+  - url: http://api.example.com/v1  
+    description: Optional server description,
+                  e.g. Main (production) server
+    # Note. If the server URL is relative, (e.g. `/v1/reports`, `/` , it is resolved 
+    #       against the server where the given OpenAPI definition file is hosted 
+  - url: http://staging-api.example.com
+    description: Optional server description,
+                  e.g. Internal staging server for testing
+
+paths: # Note. defines individual endpoints (paths)
+  /users:
+    ...
+```
+
+
+### Parameters
+
+Operations can have parameters passed via URL path (`/users/{userId}`), query string (`/users?role=admin`), headers (`X-CustomHeader: Value`) or cookies (`Cookie: debug=0`). 
+
+You can define the parameter data types, format, whether they are required or optional, and other details:
+
+```yaml
+paths:
+  /users/{userId}:  # Note. Parameter in path
+    get:
+      summary: Returns a user by ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type : integer
+            format: int64
+            minimum: 1
+      responses: 
+        '200':
+          description: OK
+```
+
+
+### Request Body
+
+If an operation sends a request body, use the `requestBody` keyword to describe the body content and media type.
+
+```yaml
+paths:
+  /users:
+    post:
+      summary: Creates a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+      responses: 
+        '201':
+          description: Created
+```
+
+### Responses
+
+For each operation, you can define possible status codes, such as 200 OK or 404 Not Found, 
+
+and the response body schema. Schemas can be defined inline or referenced via `$ref`. 
+
+You can also provide example responses for different content types:
+
+```yaml
+  /users/{userId}:
+    get:
+      summary: Returns a user by ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The ID of the user to return.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: Jessica Smith
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+```
+
+```bash
+# response data
+{
+  "id": 4,
+  "name": "Jessica Smith"
+}
+```
+
+
+### Input and Output Models
+
+The global `components/schemas` section lets you define common data structures used in your API. 
+
+They can be referenced via `$ref` whenever a schema is required, – in parameters, request bodies, and response bodies. 
+
+For example, this JSON object:
+
+```bash
+{
+  "id": 4,
+  "name": "Arthur Dent"
+}
+```
+
+can be represented as:
+
+```yaml
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 4
+        name:
+          type: string
+          example: Arthur Dent
+      # Both properties are required
+      required:  
+        - id
+        - name
+```
+
+and then referenced in the request body schema and response body schema as follows:
+
+```yaml
+  /users:
+    post:
+      summary: Creates a new user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'      # <-------
+      responses:
+        '201':
+          description: Created
+```
+
+
+### Authentication
+
+The `securitySchemes` and `security` keywords are used to describe the authentication methods used in your API.
+
+```yaml
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []
+```
+
+Supported authentication methods are:
+
+- HTTP authentication: [Basic](https://swagger.io/docs/specification/authentication/basic-authentication/), [Bearer](https://swagger.io/docs/specification/authentication/bearer-authentication/), and so on.
+- [API key](https://swagger.io/docs/specification/authentication/api-keys/) as a header or query parameter or in cookies
+- [OAuth 2](https://swagger.io/docs/specification/authentication/oauth2/)
+- [OpenID Connect Discovery](https://swagger.io/docs/specification/authentication/openid-connect-discovery/)
+
+
+## API Server and Base URL
+
+valid server URLs:
+
+```url
+https://api.example.com
+https://api.example.com:8443/v1/reports
+http://localhost:3025/v1
+http://10.0.81.36/v1
+ws://api.example.com/v1
+wss://api.example.com/v1
+/v1/reports
+/
+//api.example.com
+```
+
+If the server URL is relative, it is resolved against the server where the given OpenAPI definition file is hosted (more on that below).
+
+### Server Templating
+
+Any part of the server URL – scheme, host name or its parts, port, subpath – can be parameterized using variables. Variables are indicated by {curly braces} in the server url, like so:
+
+
+```yaml
+servers:
+  - url: https://{customerId}.saas-app.com:{port}/v2
+    variables:
+      customerId:
+        default: demo
+        description: Customer ID assigned by the service provider
+      port:
+        enum:
+          - '443'
+          - '8443'
+        default: '443'
+```
+
+Common use cases for server templating:
+
+- Specifying multiple protocols (such as HTTP vs HTTPS).
+- SaaS (hosted) applications where each customer has their own subdomain.
+- Regional servers in different geographical regions (example: Amazon Web Services).
+- Single API definition for SaaS and on-premise APIs.
+
+Examples: HTTPS and HTTP
+
+```yaml
+servers:
+  - url: '{protocol}://api.example.com'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+```
+
+## operationId
+
+`operationId` is an optional unique string used to identify an operation. If provided, these IDs must be unique among all operations described in your API.
+
+Some common use cases for operationId are:
+
+- Some code generators use this value to name the corresponding methods in code.
+- Links can refer to the linked operations by operationId.
+
+
 
