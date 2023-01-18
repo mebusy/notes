@@ -97,12 +97,15 @@ Animal:
 
 Note: `-v3` for openapi 3.0
 
-```bash
-docker run --rm -v `pwd`:/local swaggerapi/swagger-codegen-cli-v3 generate \
-    -i /local/swagger.yaml \
-    -l go \
-    -o /local/out/go
-```
+
+
+- client
+    ```bash
+    docker run --rm -v `pwd`:/local swaggerapi/swagger-codegen-cli-v3 generate \
+        -i /local/swagger.yaml \
+        -l go \
+        -o /local/client/go
+    ```
 
 
 # OpenAPI 3.0
@@ -375,6 +378,97 @@ Some common use cases for operationId are:
 
 - Some code generators use this value to name the corresponding methods in code.
 - Links can refer to the linked operations by operationId.
+
+
+## Describing Parameters
+
+- parameters are defined in the `parameters` section of an operation or path
+- To describe a parameter, you specify
+    - its `name`,
+    - location (`in`),
+    - data type (defined by either `schema` or `content`)
+    - and other attributes, such as `description` or `required`. 
+- `parameters` is an array, so, in YAML, each parameter definition must be listed with a dash (`-`) in front of it.
+
+
+### Parameter Types
+
+- parameter types based on the parameter location , location is determined by the parameter’s `in` key
+    - `path` parameters, such as `/users/{id}`
+        - remember to add `required: true`, **because path parameters are always required**. 
+    - `query` parameters, such as `/users?role=admin`
+    - `header` parameters, such as `X-MyHeader: Value`
+    - `cookie` parameters, which are passed in the Cookie header, such as `Cookie: debug=0; csrftoken=BUSe35dohU3O1MZvDCU`
+
+### schema vs content
+
+In most cases, you would use `schema`.
+
+`content` is used in complex serialization scenarios.
+
+```yaml
+parameters:
+  - in: query
+    name: filter
+    # Wrap 'schema' into 'content.<media-type>'
+    content:
+      application/json:  # <---- media type indicates how to serialize / deserialize the parameter content
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+            color:
+              type: string
+```
+
+### Default Parameter Values
+
+Use the `default` keyword in the parameter schema to specify the default value for an **optional!!** parameter. 
+
+```yaml
+  name: offset
+  schema:
+    type: integer
+    minimum: 0
+    default: 0
+```
+
+- There are two common mistakes when using the `default` keyword:
+    1. Using `default` with `required` parameters or properties, for example, with path parameters. 
+        - This does not make sense – if a value is required, the client must always send it, and the default value is never used.
+    2. Using `default` to specify a sample value. This is not intended use of default and can lead to unexpected behavior in some Swagger tools. 
+        - Use the `example` or `examples` keyword for this purpose instead. 
+
+### Empty-Valued and Nullable Parameters
+
+Query string parameters may only have a name and no value, like so:
+
+```http
+GET /foo?metadata
+```
+
+Use `allowEmptyValue` to describe such parameters:
+
+```yaml
+      parameters:
+        - in: query
+          name: metadata
+          schema:
+            type: boolean
+          allowEmptyValue: true  # <-----
+```
+
+
+OpenAPI 3.0 also supports nullable in schemas, allowing operation parameters to have the null value.
+
+```yaml
+      schema:
+        type: integer
+        format: int32
+        nullable: true
+```
+
 
 
 
