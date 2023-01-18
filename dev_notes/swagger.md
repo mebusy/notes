@@ -99,6 +99,13 @@ Note: `-v3` for openapi 3.0
 
 
 
+- server
+    ```bash
+    docker run --rm -v `pwd`:/local swaggerapi/swagger-codegen-cli-v3 generate \
+        -i /local/swagger.yaml \
+        -l go-server \
+        -o /local/server/go
+    ```
 - client
     ```bash
     docker run --rm -v `pwd`:/local swaggerapi/swagger-codegen-cli-v3 generate \
