@@ -808,7 +808,15 @@ components:
           ...
     ```
 
-### Dictionaries, HashMaps and Associative Arrays
+### Dictionaries(aka. HashMaps, or Associative Arrays )
+
+- To define a dictionary, use `type: object` and use the `additionalProperties` keyword to specify the type of values in key/value pairs
+    - For example, a string-to-string dictionary like this:
+        ```yaml
+        type: object
+        additionalProperties:
+          type: string
+        ```
 
 
 
