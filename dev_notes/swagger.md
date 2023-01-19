@@ -62,7 +62,10 @@ https://swagger.io/docs/specification/about/
 
 ```bash
 docker pull swaggerapi/swagger-ui
-docker run -p 8080:8080 swaggerapi/swagger-ui
+docker run --rm -p 8088:8080 swaggerapi/swagger-ui
+
+# ruuning in background
+docker run --name swagger-ui --restart=unless-stopped -d -p 8088:8080 swaggerapi/swagger-ui
 ```
 
 <h2 id="d965025d55377342fd1e4ff3e57ad750"></h2>
