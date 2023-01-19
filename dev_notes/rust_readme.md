@@ -7,8 +7,9 @@
 7. [lifetime](rust_lifetime.md)
 8. [smart pointer](rust_smartpoint.md)
 9. [concurrency,threads,channel,mutex,arc](rust_concurrency.md)
+10. [rust collections](rust_collections.md)
 
-4. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
+20. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
 
 
 ----
