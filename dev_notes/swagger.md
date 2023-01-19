@@ -61,16 +61,27 @@ https://swagger.io/docs/specification/about/
 
 
 ```bash
-docker pull swaggerapi/swagger-ui
-docker run --rm -p 8088:8080 swaggerapi/swagger-ui
+docker pull swaggerapi/swagger-editor
+docker run --rm -p 8088:8080 swaggerapi/swagger-editor
 
 # ruuning in background
-docker run --name swagger-ui --restart=unless-stopped -d -p 8088:8080 swaggerapi/swagger-ui
+docker run --name swagger-editor --restart=unless-stopped -d -p 8088:8080 swaggerapi/swagger-editor
 ```
 
 <h2 id="d965025d55377342fd1e4ff3e57ad750"></h2>
 
 ## swagger UI 
+
+run:
+
+```bash
+docker pull swaggerapi/swagger-ui
+docker run --rm -p 8089:8080 swaggerapi/swagger-ui
+
+# ruuning in background
+docker run --name swagger-ui --restart=unless-stopped -d -p 8089:8080 swaggerapi/swagger-ui
+```
+
 
 you can integrate swagger UI in you web server
 
@@ -761,6 +772,17 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error' # Note. $ref again to schemas
+```
+
+to use:
+
+```yaml
+      response:
+        '401':
+          $ref: '#/components/responses/Unauthorized'   # <-----
+        '404':
+          $ref: '#/components/responses/NotFound'       # <-----
+
 ```
 
 
