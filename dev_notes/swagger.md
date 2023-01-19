@@ -777,7 +777,7 @@ components:
 to use:
 
 ```yaml
-      response:
+      responses:
         '401':
           $ref: '#/components/responses/Unauthorized'   # <-----
         '404':
