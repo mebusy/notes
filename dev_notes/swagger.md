@@ -172,6 +172,11 @@ Note: `-v3` for openapi 3.0
         -o /local/client/go
     ```
 
+To list config option for you language, 
+
+```bash
+docker run --rm  swaggerapi/swagger-codegen-cli-v3 config-help -l go-server
+```
 
 <h2 id="a2374b8c1492381dc2135504e8e6800b"></h2>
 
