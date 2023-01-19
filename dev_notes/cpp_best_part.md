@@ -1,9 +1,30 @@
+[](...menustart)
+
+- [The Best Parts of C++](#2e13d677842eef043db60ae766d4a90d)
+    - [#7 List Initialization  (C++11)](#09de7e0b1431dff7e5148fca1c932198)
+    - [#8 Variadic Templates (C++11)](#28687fab746f50332ca0c853b55dd99a)
+    - [#9 constexpr (C++ 14)](#e5f12eb8ae249a4ae062f20f3a08f46c)
+    - [#10 auto (C++11)](#f85a38333552c1843e898be015951483)
+    - [#11 Return type deduction for normal functions (C++14)](#0d8471844167aafee522ae1607244135)
+    - [#12 Lambdas (C++11)](#45a91169c8c9f7427b688c6fe7673df6)
+    - [#13 Generic And Variadic Lambdas (C++14)](#76005f0b9720124fdc4d06cf098f17fa)
+    - [#14 range-based for loop (C++11)](#47f24a12632f1bc48ebb43dabd31844a)
+    - [#15 Structured Bindings (C++17)](#d36ee5721e2136e8485d007b6908053d)
+    - [#20 Class Template Argument Deduction (C++17)](#5104199984b3db0a9e5cb95cbb760f4a)
+    - [#22: Guaranteed Copy Elision (C++17)](#5390d4b827185948e9f9a87999bd453a)
+
+[](...menuend)
+
+
+<h2 id="2e13d677842eef043db60ae766d4a90d"></h2>
 
 # The Best Parts of C++
 
 - youtube video: https://www.youtube.com/watch?v=iz5Qx18H6lg
 - slides: https://nbviewer.jupyter.org/github/mebusy/cppcontalk/blob/main/pdfs/back_to_basics_the_best_parts_of_cpp__jason_turner__cppcon_2019.pdf
 
+
+<h2 id="09de7e0b1431dff7e5148fca1c932198"></h2>
 
 ## #7 List Initialization  (C++11)
 
@@ -33,6 +54,8 @@ template <typename VT> std::array<VT, 2> get_data(const VT &v1, const VT &v2) {
 }
 ```
 
+
+<h2 id="28687fab746f50332ca0c853b55dd99a"></h2>
 
 ## #8 Variadic Templates (C++11)
 
@@ -65,6 +88,8 @@ std::array<VT, sizeof...(Params) + 1> get_data(const VT &v1,
 }
 ```
 
+
+<h2 id="e5f12eb8ae249a4ae062f20f3a08f46c"></h2>
 
 ## #9 constexpr (C++ 14)
 
@@ -106,6 +131,8 @@ int main() {
 ```
 
 
+<h2 id="f85a38333552c1843e898be015951483"></h2>
+
 ## #10 auto (C++11)
 
 ```c++
@@ -122,6 +149,8 @@ int main() {
 ```
 
 
+<h2 id="0d8471844167aafee522ae1607244135"></h2>
+
 ## #11 Return type deduction for normal functions (C++14)
 
 ```c++
@@ -131,6 +160,8 @@ auto get_thing() {
 }
 ```
 
+
+<h2 id="45a91169c8c9f7427b688c6fe7673df6"></h2>
 
 ## #12 Lambdas (C++11)
 
@@ -153,6 +184,8 @@ void print_map(const Map &map, const std::string key_desc = "key",
 ```
 
 
+<h2 id="76005f0b9720124fdc4d06cf098f17fa"></h2>
+
 ## #13 Generic And Variadic Lambdas (C++14)
 
 Create implicit templates by simply using the auto keyword.
@@ -163,6 +196,8 @@ auto lambda = [/*captures*/](auto... params) {
     return std::vector<int>{params...};
 };
 ```
+
+<h2 id="47f24a12632f1bc48ebb43dabd31844a"></h2>
 
 ## #14 range-based for loop (C++11)
 
@@ -187,6 +222,8 @@ void print_map(const Map &map, const std::string &key_desc = "key",
 }
 ```
 
+<h2 id="d36ee5721e2136e8485d007b6908053d"></h2>
+
 ## #15 Structured Bindings (C++17)
 
 ```c++
@@ -210,6 +247,8 @@ void print_map(const Map &map, const std::string &key_desc = "key",
 The whole template syntax is a bit bulky. Is there any way to simplify that?  C++20 Concepts !
 
 
+<h2 id="5104199984b3db0a9e5cb95cbb760f4a"></h2>
+
 ## #20 Class Template Argument Deduction (C++17)
 
 ```c++
@@ -228,6 +267,8 @@ auto get_data(const Params &...params) {
 
 note: This might make using this function harder as it would result in a compile-time error if the types differ.
 
+
+<h2 id="5390d4b827185948e9f9a87999bd453a"></h2>
 
 ## #22: Guaranteed Copy Elision (C++17)
 

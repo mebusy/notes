@@ -1,13 +1,32 @@
+[](...menustart)
+
+- [Google Test](#d0787974e29f9f2120fed0d80f8ecd94)
+    - [1. install](#14a76e12a26eab33b33df71bcc17d1ca)
+    - [1.1  Or you may want to install from source ...](#887153ee6928ae477839b766df75177f)
+    - [2. includes & libs](#b58307117bb118487b3241ced67bafed)
+    - [2.1 includes & libs from source](#69953f7b34141e940324a5d01de0c9e7)
+    - [3. most simple program](#7bb7dc3d1076c5f58804cdfa18add655)
+    - [4. add a demo test](#ce41ea2d19a4d3a700aed0cd2aae6667)
+    - [5. Assertions](#755be3c257d480a497a4fba1da95db48)
+
+[](...menuend)
+
+
+<h2 id="d0787974e29f9f2120fed0d80f8ecd94"></h2>
 
 # Google Test
 
 https://github.com/google/googletest
 
 
+<h2 id="14a76e12a26eab33b33df71bcc17d1ca"></h2>
+
 ## 1. install
 
 brew install googletest
 
+
+<h2 id="887153ee6928ae477839b766df75177f"></h2>
 
 ## 1.1  Or you may want to install from source ...
 
@@ -36,6 +55,8 @@ build from source
 
 </details>
 
+<h2 id="b58307117bb118487b3241ced67bafed"></h2>
+
 ## 2. includes & libs
 
 ```bash
@@ -48,6 +69,8 @@ $ brew --prefix googletest
 - lib
     - `/usr/local/opt/googletest/lib/`
 
+
+<h2 id="69953f7b34141e940324a5d01de0c9e7"></h2>
 
 ## 2.1 includes & libs from source
 
@@ -88,6 +111,8 @@ libgtest.a      libgtest_main.a
 
 
 
+<h2 id="7bb7dc3d1076c5f58804cdfa18add655"></h2>
+
 ## 3. most simple program
 
 ```c++
@@ -109,6 +134,8 @@ $ c++ -std=c++17  -lgtest -lgtest_main  ./*.cpp && ./a.out
 [  PASSED  ] 0 tests.
 ```
 
+
+<h2 id="ce41ea2d19a4d3a700aed0cd2aae6667"></h2>
 
 ## 4. add a demo test
 
@@ -132,6 +159,8 @@ int main(...)
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 ```
+
+<h2 id="755be3c257d480a497a4fba1da95db48"></h2>
 
 ## 5. Assertions
 
