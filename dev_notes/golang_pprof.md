@@ -166,6 +166,74 @@ $ go tool pprof -http=:8080 [binary] profile.out
 
 
 
+# How to read pprof ?
+
+https://blog.pickme.lk/how-to-get-profiling-right-with-go-813ff89d4757
+
+
+## 1. top command 
+
+```bash
+(pprof) top
+Showing nodes accounting for 3816, 100% of 3816 total
+Showing top 10 nodes out of 27
+      flat  flat%   sum%        cum   cum%
+      2521 66.06% 66.06%       2521 66.06%  runtime.malg
+       910 23.85% 89.91%        910 23.85%  runtime.allocm
+       257  6.73% 96.65%        257  6.73%  bufio.NewWriterSize (inline)
+       128  3.35%   100%        128  3.35%  syscall.copyenv
+         0     0%   100%        257  6.73%  net/http.(*conn).serve
+         0     0%   100%        257  6.73%  net/http.newBufioWriterSize
+```
+
+#### Flat and Cumulative?
+
+- Flat means the amount of resources used in the function itself. 
+- Cumulative is the total amount of resources used in the function **and the calling functions down the call stack**.
+
+- `sum%` is basically the total of `flat%`
+    - e.g. , `66.06% + 23.85% = 89.91%`
+    - e.g. , `66.06% + 23.85% + 6.73% = 96.65%`
+
+
+## 2. list command
+
+```bash
+(pprof) list runtime.malg
+Total: 3816
+ROUTINE ======================== runtime.malg in /usr/local/Cellar/go/1.19.1/libexec/src/runtime/proc.go
+      2521       2521 (flat, cum) 66.06% of Total
+         .          .   4063:	execLock.unlock()
+         .          .   4064:}
+         .          .   4065:
+         .          .   4066:// Allocate a new g, with a stack big enough for stacksize bytes.
+         .          .   4067:func malg(stacksize int32) *g {
+      2521       2521   4068:	newg := new(g)
+         .          .   4069:	if stacksize >= 0 {
+         .          .   4070:		stacksize = round2(_StackSystem + stacksize)
+         .          .   4071:		systemstack(func() {
+         .          .   4072:			newg.stack = stackalloc(uint32(stacksize))
+         .          .   4073:		})
+```
+
+
+## 3. web command
+
+The above command will open the call-graph in a web-view( it wil open your browser ).
+
+
+## 4. The `weblist` command
+
+something like `list` to `web` browser ...
+
+```bash
+(pprof) help weblist
+Display annotated source in a web browser
+  Usage:
+    weblist<func_regex|address> [-focus_regex]* [-ignore_regex]*
+    Include functions matching func_regex, or including the address specified.
+    Include samples matching focus_regex, and exclude ignore_regex.
+```
 
 
 
