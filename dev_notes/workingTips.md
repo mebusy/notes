@@ -201,7 +201,7 @@ change audio volume
  
 <h2 id="ac1edf8d7497b1d5b6039ad9656cdeee"></h2>
 
-## ab testing 
+## ab benchmark
 
 ```
 ab -r -k -s 120 -n 100000 -c 1500  <url>
@@ -211,6 +211,17 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
 - `-r`  Don't exit on socket receive errors.
 - `-k`  Use HTTP KeepAlive feature
     - caution: not work with nodejs. it is a bug of ab , since ab is a http 1.0 client. You should add extra `-H "TE: chunked"`
+
+- Post Example
+    ```bash
+    ab -r -k -s 120 -n 100000 -c 1500 \
+        -H 'accept: application/json' -H 'token: asdf' \
+        -T application/json -p body.json  \
+        'http://localhost:3000/user'
+    ```
+    - the 2nd line is Arbitrary header
+    - the 3rd line,  `-p` specify the post file, `-T` specify content-type
+
 
 <h2 id="e06944207d65338bc4b5d43aef44aef4"></h2>
 
