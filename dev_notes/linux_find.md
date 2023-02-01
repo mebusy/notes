@@ -72,9 +72,12 @@ find . -perm 755
 ```
 
 
-https://www.youtube.com/watch?v=KCVaNb_zOuw
+## Limit walk depth
 
-
+- find all markdown files in only current directory
+    ```bash
+    find . -type f -name "*.md" -maxdepth 1
+    ```
 
 
 
