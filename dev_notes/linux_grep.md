@@ -222,7 +222,18 @@ $ grep -rinI -E "get(Count|Priority)"  .
     ./priorityqueue.hpp:34:ouble getPriority() const { r
     ```
 
-Grep is not using perl compatible regular expression.  If you wanna use perl compatible RE, you can use GNU grep and `-P` option.
+Grep is not using POSIX regular expression.  If you wanna use perl compatible RE, you can use GNU grep and `-P` option.
+
+
+### Limit Match Times :  -m num, --max-count=num
+
+Stop reading the file after num matches.
+
+```bash
+grep -rinI -e "getCount" -e "getPriority" -m 1 .
+./priorityqueue.hpp:33:    size_t getCount() const { return count_; }
+```
+
 
 <h2 id="c372ce68f746709e625ff6a439caabb9"></h2>
 
