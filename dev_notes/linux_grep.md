@@ -249,6 +249,10 @@ grep -rinI -e "getCount" -e "getPriority" -m 1 .
     ```
 - It's possible to exclude one or more directories. For example, this will exclude the dirs `dir1/`, `dir2/` and all of them matching `*.dst/`:
     ```bash
+    # single directory
+    grep --exclude-dir=oneDirOnly -rnw "pattern"  path
+
+    # multiple directory
     grep --exclude-dir={dir1,dir2,*.dst}  -rnw "pattern"  path
     ```
 
