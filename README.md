@@ -180,7 +180,8 @@ a | b | c | d
 [大型网站技术架构](dev_notes/WebArchitecture.md) | 
 [Linux performace tool](imgs/linux_performance.jpg) |
 [check disk usage](dev_notes/disk_usage.md) | 
-[AWK](dev_notes/linux_awk.md) | [xargs](dev_notes/linux_xargs.md) | [find](dev_notes/linux_find.md) | [sed](dev_notes/linux_sed.md)
+[AWK](dev_notes/linux_awk.md) | [find](dev_notes/linux_find.md) | [sed](dev_notes/linux_sed.md) | [grep](dev_notes/linux_grep.md)
+[xargs](dev_notes/linux_xargs.md) | 
 
 
 <h2 id="3c4fa4393bee44ea7fbc83268824b3ed"></h2>
