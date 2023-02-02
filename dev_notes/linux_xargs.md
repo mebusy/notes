@@ -1,3 +1,15 @@
+[](...menustart)
+
+- [XArgs](#3f43a8743eade0074a537f7f38a8899e)
+    - [-t](#b7cc4b6b2b8c0f37377b5cc259385de0)
+    - [-I alias](#e5609751fdeeccc7f4fc2691c6f82f12)
+    - [-n number](#259f085821c8ece082980839c0a87d3c)
+    - [-P maxprocs](#59d1e8dcbb71e4e67597a52af6a4158f)
+
+[](...menuend)
+
+
+<h2 id="3f43a8743eade0074a537f7f38a8899e"></h2>
 
 # XArgs
 
@@ -12,6 +24,8 @@ $ seq 5 | xargs echo  # xargs can help
 ```
 
 
+<h2 id="b7cc4b6b2b8c0f37377b5cc259385de0"></h2>
+
 ## -t
 
 Echo the command to be executed to standard error immediately before it is executed.
@@ -22,6 +36,8 @@ echo 1 2 3 4 5
 1 2 3 4 5
 ```
 
+
+<h2 id="e5609751fdeeccc7f4fc2691c6f82f12"></h2>
 
 ## -I alias
 
@@ -47,6 +63,8 @@ $ ls | xargs -I zzz echo /home/dt/zzz
 ...
 ```
 
+<h2 id="259f085821c8ece082980839c0a87d3c"></h2>
+
 ## -n number
 
 Set the maximum number of arguments taken from standard input for each invocation of utility.
@@ -62,6 +80,8 @@ Documents
 Downloads
 ...
 ```
+
+<h2 id="59d1e8dcbb71e4e67597a52af6a4158f"></h2>
 
 ## -P maxprocs
 

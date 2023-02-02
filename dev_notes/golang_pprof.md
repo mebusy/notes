@@ -8,6 +8,12 @@
     - [分析 Profiling](#2dc9540acc752760e72345ad9529d612)
         - [go 1.10 提供了一个 web UI， 同时支持 火焰图](#628f3bfbcd42ebb9c0e60322c9cdfce8)
     - [和go test files 的集成](#f6876b634c1b05222f8af0f08779c5bb)
+- [How to read pprof ?](#96e35e989d711c6180e69fa8c1e955f2)
+    - [1. top command](#af8e514ca88585778216fa252b7d16cb)
+        - [Flat and Cumulative?](#3e2de8dc7fe0399edc6344ef3ba5b123)
+    - [2. list command](#be71634fa95b36054a7229468f71a4ca)
+    - [3. web command](#ef163e61675d9202f1ba10d5fbe86540)
+    - [4. The `weblist` command](#0dba03248234ae56c1a032c17d1d13a4)
 
 [](...menuend)
 
@@ -166,10 +172,14 @@ $ go tool pprof -http=:8080 [binary] profile.out
 
 
 
+<h2 id="96e35e989d711c6180e69fa8c1e955f2"></h2>
+
 # How to read pprof ?
 
 https://blog.pickme.lk/how-to-get-profiling-right-with-go-813ff89d4757
 
+
+<h2 id="af8e514ca88585778216fa252b7d16cb"></h2>
 
 ## 1. top command 
 
@@ -186,6 +196,8 @@ Showing top 10 nodes out of 27
          0     0%   100%        257  6.73%  net/http.newBufioWriterSize
 ```
 
+<h2 id="3e2de8dc7fe0399edc6344ef3ba5b123"></h2>
+
 #### Flat and Cumulative?
 
 - Flat means the amount of resources used in the function itself. 
@@ -195,6 +207,8 @@ Showing top 10 nodes out of 27
     - e.g. , `66.06% + 23.85% = 89.91%`
     - e.g. , `66.06% + 23.85% + 6.73% = 96.65%`
 
+
+<h2 id="be71634fa95b36054a7229468f71a4ca"></h2>
 
 ## 2. list command
 
@@ -217,10 +231,14 @@ ROUTINE ======================== runtime.malg in /usr/local/Cellar/go/1.19.1/lib
 ```
 
 
+<h2 id="ef163e61675d9202f1ba10d5fbe86540"></h2>
+
 ## 3. web command
 
 The above command will open the call-graph in a web-view( it wil open your browser ).
 
+
+<h2 id="0dba03248234ae56c1a032c17d1d13a4"></h2>
 
 ## 4. The `weblist` command
 

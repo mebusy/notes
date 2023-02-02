@@ -1,5 +1,20 @@
+[](...menustart)
+
+- [AWK](#00dbc48aa9a98544b52efb89b6ae601a)
+    - [Syntax](#92e9d6227d5534e7afc27a11179c808e)
+    - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
+    - [Specify field separator](#afdd5066763979dfed0ba27a5e973afe)
+    - [Use Regular Expression](#2f04f3e6eee339eeb0ddb6c39606424d)
+    - [BEGIN / END](#cf99b2a271634d8ea4a068771d8d0462)
+
+[](...menuend)
+
+
+<h2 id="00dbc48aa9a98544b52efb89b6ae601a"></h2>
 
 # AWK
+
+<h2 id="92e9d6227d5534e7afc27a11179c808e"></h2>
 
 ## Syntax
 
@@ -20,6 +35,8 @@ Since this way of doing things is so common, the `if` statement is never written
 # syntax
 awk 'PATTERN1{ACTION1} PATTERN2{ACTION2} ...'
 ```
+
+<h2 id="0a52730597fb4ffa01fc117d9e71e3a9"></h2>
 
 ## Example
 
@@ -45,6 +62,8 @@ awk 'PATTERN1{ACTION1} PATTERN2{ACTION2} ...'
     ```
 
 
+<h2 id="afdd5066763979dfed0ba27a5e973afe"></h2>
+
 ## Specify field separator
 
 - awk treats space as the column delimiter
@@ -52,6 +71,8 @@ awk 'PATTERN1{ACTION1} PATTERN2{ACTION2} ...'
     ```bash
     $awk -F ':' '{...}'
     ```
+
+<h2 id="2f04f3e6eee339eeb0ddb6c39606424d"></h2>
 
 ## Use Regular Expression
 
@@ -68,6 +89,8 @@ awk 'PATTERN1{ACTION1} PATTERN2{ACTION2} ...'
     ```bash
     ls -l | awk '$0 ~ /s$/{print $NF}'
     ```
+
+<h2 id="cf99b2a271634d8ea4a068771d8d0462"></h2>
 
 ## BEGIN / END
 

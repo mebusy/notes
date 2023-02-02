@@ -1,3 +1,24 @@
+[](...menustart)
+
+- [GREP](#2e3c6549274df5124474188e6ecdf946)
+    - [Search Files Contain Specify Text](#f5288477170f1bbf987c63d9f6eb9646)
+        - [Searched for as a word :  -w, --word-regexp](#18b17f53fd730635aa282a78bda26cd3)
+        - [Ignore Case Sensitive : -i, --ignore-case](#c29e07949c8112e7467b6ae4b870f306)
+        - [Print Line Number : -n, --line-number](#87faee44c10595068bc1f4f9430046e3)
+        - [Print Extra Lines After/Before/Surround  each Match : -A/-B/-C](#90cd8844042f6ea867ca08d4feec727c)
+        - [Find In Directory](#fc6c3ac3c6cdc3d7cc1f90ceb12ed74c)
+        - [Recursive Serach (Most Common Usage)](#824f25bf4142c25228fdb263e1ab135c)
+        - [Ignore Binary Files : -I](#ba2c03c5ca59895837aa4700676b804a)
+        - [Print File Name Only : -l, --files-with-matches](#868f184aaaf9fc3641367296c19e659b)
+        - [Multiple Pattern : -e pattern, --regexp=pattern](#ee97868fe3c5683b61bdae5870097767)
+        - [Use extended regular expressions (supports `?`, `+`, `{}`, `()` and `|`):  -E, --extended-regexp](#33f6321fe9d0b056d5438f5542973fa4)
+        - [Include / Exclude](#c372ce68f746709e625ff6a439caabb9)
+    - [Pipe output of Other Commands Into GREP](#658f8a592ea5feae877420d94058847b)
+
+[](...menuend)
+
+
+<h2 id="2e3c6549274df5124474188e6ecdf946"></h2>
 
 # GREP 
 
@@ -10,6 +31,8 @@ Global Regular Expression Print
 
 
 
+<h2 id="f5288477170f1bbf987c63d9f6eb9646"></h2>
+
 ## Search Files Contain Specify Text
 
 - most simple case: Print all lines which contains specific pattern in a file
@@ -20,6 +43,8 @@ Global Regular Expression Print
      const TState &getGoalState() const { return goalState_; }
     ```
 
+
+<h2 id="18b17f53fd730635aa282a78bda26cd3"></h2>
 
 ### Searched for as a word :  -w, --word-regexp
 
@@ -33,6 +58,8 @@ $ grep -w GoalState astar.hpp
 # nothing
 ```
 
+
+<h2 id="c29e07949c8112e7467b6ae4b870f306"></h2>
 
 ### Ignore Case Sensitive : -i, --ignore-case
 
@@ -48,6 +75,8 @@ $ grep -i goalstate astar.hpp
          if (problem.isGoalState(state)) {
 ```
 
+<h2 id="87faee44c10595068bc1f4f9430046e3"></h2>
+
 ### Print Line Number : -n, --line-number
 
 Each output line is preceded by its relative line number in the file, starting at line 1.
@@ -57,6 +86,8 @@ $ grep -n "const TState &get" astar.hpp
 20:    const TState &getStartState() const { return startState_; }
 21:    const TState &getGoalState() const { return goalState_; }
 ```
+
+<h2 id="90cd8844042f6ea867ca08d4feec727c"></h2>
 
 ### Print Extra Lines After/Before/Surround  each Match : -A/-B/-C
 
@@ -102,6 +133,8 @@ $ grep -n -C 2 "StartState" astar.hpp
 70-        // record cost before push to fringe
 ```
 
+<h2 id="fc6c3ac3c6cdc3d7cc1f90ceb12ed74c"></h2>
+
 ### Find In Directory
 
 ```bash
@@ -122,6 +155,8 @@ grep: ./a.out.dSYM: Is a directory
 ./astar.hpp:21:    const TState &getGoalState() const { return goalState_; }
 ```
 
+<h2 id="824f25bf4142c25228fdb263e1ab135c"></h2>
+
 ### Recursive Serach (Most Common Usage)
 
 ```bash
@@ -131,12 +166,16 @@ grep -rin  "const TState &get" ..
 ```
 
 
+<h2 id="ba2c03c5ca59895837aa4700676b804a"></h2>
+
 ### Ignore Binary Files : -I
 
 ```bash
 grep -rinI  "const TState &get" ..
 ```
 
+
+<h2 id="868f184aaaf9fc3641367296c19e659b"></h2>
 
 ### Print File Name Only : -l, --files-with-matches
 
@@ -145,6 +184,8 @@ grep -ril  "const TState &get" ..
 ../cpp_alg/astar.hpp
 ```
 
+
+<h2 id="ee97868fe3c5683b61bdae5870097767"></h2>
 
 ### Multiple Pattern : -e pattern, --regexp=pattern
 
@@ -157,6 +198,8 @@ $ grep -rinI -e "getCount" -e "getPriority" .
 ./priorityqueue.hpp:34:    double getPriority() const { return priority_; }
 ```
 
+
+<h2 id="33f6321fe9d0b056d5438f5542973fa4"></h2>
 
 ### Use extended regular expressions (supports `?`, `+`, `{}`, `()` and `|`):  -E, --extended-regexp
 
@@ -181,6 +224,8 @@ $ grep -rinI -E "get(Count|Priority)"  .
 
 Grep is not using perl compatible regular expression.  If you wanna use perl compatible RE, you can use GNU grep and `-P` option.
 
+<h2 id="c372ce68f746709e625ff6a439caabb9"></h2>
+
 ### Include / Exclude
 
 - This will only search through those files which have .c or .h extensions:
@@ -196,6 +241,8 @@ Grep is not using perl compatible regular expression.  If you wanna use perl com
     grep --exclude-dir={dir1,dir2,*.dst}  -rnw "pattern"  path
     ```
 
+
+<h2 id="658f8a592ea5feae877420d94058847b"></h2>
 
 ## Pipe output of Other Commands Into GREP
 
