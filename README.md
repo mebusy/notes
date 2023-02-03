@@ -138,7 +138,7 @@ a | b | c | d
 [redis tips](dev_notes/redis_tips.md) | [redis patterns](dev_notes/redis_pattern.md) |  [redis pub/sub vs. stream](dev_notes/redis_pubsub_vs_stream.md) | 
 [mysql subquery](dev_notes/mysql_subquery.md) | [mysql 锁](dev_notes/mysql_lock.md) | [mysql索引正确打开方式](dev_notes/mysql_index.md) | [mysql实践](dev_notes/mysql_practice.md)
 [mysql技术内幕?](dev_notes/mysql.md) | 
-[intro to mongoDB](dev_notes/intro-2-mongodb.md) | 
+[intro to mongoDB](dev_notes/intro-2-mongodb.md) |  [mongoimport](dev_notes/mongoimport.md)
 
 
 
