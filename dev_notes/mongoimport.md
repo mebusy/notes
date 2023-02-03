@@ -4,6 +4,11 @@
 https://www.mongodb.com/developer/products/mongodb/mongoimport-guide/
 
 
+```bash
+docker run --rm -it mongo:5  mongoimport
+```
+
+
 ## Connect
 
 - uri protocal
