@@ -535,4 +535,8 @@ match without retry            |  `atom\@>`        |  `(?>atom)`
 
 
 
+# VIM Script
+
+- [5 minutes vim script](http://andrewscala.com/vimscript/)
+- [VIM9 用户手册](https://vimcdoc.sourceforge.net/doc/usr_41.html)
 
