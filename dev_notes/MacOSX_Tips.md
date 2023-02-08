@@ -37,13 +37,6 @@
 
 OPTION/Alt+COMMAND+S
 
-<h2 id="1c305ad1fad7ba14dd448d08a73f3ab8"></h2>
-
-## openofficer error
-
-```bash
-rm -rf ~/Library/Saved Application State/org.openoffice.script.savedState
-```
 
 <h2 id="ec69fb46be4996fda376dcb4054c528b"></h2>
 
@@ -56,7 +49,7 @@ rm -rf ~/Library/Saved Application State/org.openoffice.script.savedState
 - `xxd  <filename>`   以16进制显示文件内容
 - `xxd -i <filename>`   转成c数组
 
-```
+```c++
 unsigned char note_txt[] = {
   0x0a, 0x0a, 0x0a, 0x35, 0x30, 0x30, 0x30, 0x20, 0x2b, 0x20, 0x37, 0x35,
   0x30, 0x20, 0x70, 0x68, 0x6f, 0x74, 0x6f, 0x0a, 0x31, 0x32, 0x30, 0x20,
@@ -80,7 +73,7 @@ unsigned int note_txt_len = 61;
 
 ### man ascii  字符表
 
-```
+```bash
  The hexadecimal set:
 
  00 nul   01 soh   02 stx   03 etx   04 eot   05 enq   06 ack   07 bel
@@ -101,7 +94,7 @@ unsigned int note_txt_len = 61;
 
 ### find files to rm 
 
-```
+```bash
 find . -name '.DS_Store' -path '*/.*' | xargs  rm
 ```
 
@@ -109,7 +102,7 @@ find . -name '.DS_Store' -path '*/.*' | xargs  rm
 
 ### in terminal, show git branch in path
 
-```
+```bash
 # Git branch in prompt.
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -195,7 +188,7 @@ echo”5”
 
 ## 打开文件数 / 最大链接数
 
-```
+```bash
 launchctl limit
 sudo launchctl limit maxfiles 100000 500000
 
@@ -323,6 +316,12 @@ If you placed your Mac plist file in one of the two system directories (/Library
 
 
 
+## check SSD lifespan
+
+```bash
+brew install smartmontools
+$(brew --prefix smartmontools)/bin/smartctl --all /dev/disk0
+```
 
 
 
