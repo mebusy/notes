@@ -320,13 +320,23 @@ If you placed your Mac plist file in one of the two system directories (/Library
 
 ```bash
 brew install smartmontools
-$(brew --prefix smartmontools)/bin/smartctl --all /dev/disk0
+smartctl -a /dev/disk0
+
+# you may need do some test on disk
+smartctl -t short /dev/disk0
 ```
 
 
+## screen capture to clipborad
+
+cmd +  ctl + shift + 4
 
 
+## copy wifi password to clipboard
 
+```bash
+$ security find-generic-password -wa "ChinaNet-Mebusy" |  pbcopy
+```
 
 
 
