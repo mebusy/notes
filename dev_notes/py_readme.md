@@ -23,6 +23,13 @@
 - [**Python Decorator Library**](https://wiki.python.org/moin/PythonDecoratorLibrary)
 
 
+# Misc
+
+· | · | · | ·
+--- | --- | --- | ---
+[logging like a pro](python_logging.md) |
+
+
 <h2 id="1b5abc0bb936130701c7dfc8025642f1"></h2>
 
 # Python implementation
