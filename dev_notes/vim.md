@@ -171,6 +171,11 @@
         vim -V9myVim.log
         ```
     - would create a log of debug level 9 in the current directory with the filename myVim.log
+- pyenv : ERROR: found static Python library … but a dynamic one is required.
+    ```bash
+    $ export PYTHON_CONFIGURE_OPTS="--enable-framework"
+    $ pyenv install 3.10.3
+    ```
 
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
