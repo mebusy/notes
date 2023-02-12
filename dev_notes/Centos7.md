@@ -233,13 +233,6 @@ net.ipv4.tcp_tw_recycle = 1
 ```
 
 
-<h2 id="48cd249a485752b67116301484bb3978"></h2>
-
-## kill process by port 
-
-```bash
-kill $(lsof -t -i :PORTNUMBER)
-```
 
 <h2 id="65395697d2dab77dd22f054b888fb803"></h2>
 
@@ -275,25 +268,6 @@ $ dstat -c --top-cpu -dn --top-mem
 $ dstat --time --cpu --mem --load --output report.csv 1 5
 ```
 
-
-<h2 id="107aedca6bab06cabee6aac093e48464"></h2>
-
-## ab test 
-
-- install ab
-
-```
-yum -y install httpd-tools 
-```
-
-- ab test
-
-```
-$ echo "{ \"channel\": \"official\"}" > post.json
-$ ab -k -r -n 500000 -c 20000 -T "application/json" -p post.json  -H "userID: debugUserID" -H "Authorization: 7eb0f0a9798af24a883f4859db88a634"  http://10.192.8.17:9000/announcement
-```
-
-- also see [ab useage](workingTips.md)
 
 
 <h2 id="182779261a101fea13d68ad6ca885ef8"></h2>
@@ -466,36 +440,6 @@ WantedBy=default.target
 - `tail -f /proc/<pid>/fd/1`
     - where 
     - 1 = stdout, 2 = stderr
-
-<h2 id="69a3af8e4da356a41a5db362a321370e"></h2>
-
-## Vbox Centos access Host folder
-
-<h2 id="ced6fe808bc1654ffe62ac3e6b5888a4"></h2>
-
-### 1 create a share fold
-
-- in vbox menu,  create a shared folder 
-   - choose `auto mount` and "permanent"
-   - remember the shared name , i.e. "D_DRIVER"
-
-<h2 id="9be07da516116f6994db2e276de42d2b"></h2>
-
-### 2 Install Guest Additions
-
-- 1. from Centos Vbox menu `Devices` , choose `Insert Guest Additions CD Image`
-- 2. in centos shell
-
-```
-$ mkdir -p /media/cdrom
-$ mount /dev/cdrom /media/cdrom/
-$ cd /media/cdrom/
-$ sh VBoxLinuxAdditions.run
-...
-VirtualBox Guest Additions: Starting.
-```
-
-Now, the shared fold has be mounted at `/media/sf_D_DRIVE/`. (if not , try reboot)
 
 
 
