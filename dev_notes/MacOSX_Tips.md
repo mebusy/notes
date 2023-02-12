@@ -63,7 +63,7 @@ unsigned int note_txt_len = 61;
 
 <h2 id="0968ea4dc36ecbcdc0810a8ca0f674c8"></h2>
 
-### mdfind
+### mdfind(deprecated)
 
 [mdfind](https://raw.githubusercontent.com/mebusy/notes/master/dev_notes/mdfind.md)
 
@@ -90,99 +90,6 @@ unsigned int note_txt_len = 61;
 - `-j` 参数, day 显示为 当年的第几天
 
 
-<h2 id="a21d96fb754b9ce8455858e14ed36571"></h2>
-
-### find files to rm 
-
-```bash
-find . -name '.DS_Store' -path '*/.*' | xargs  rm
-```
-
-<h2 id="394dd2658e932bd638e3017ac1a98c39"></h2>
-
-### in terminal, show git branch in path
-
-```bash
-# Git branch in prompt.
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-export PS1="\u@\h \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
-```
-
-<h2 id="75aeaa38d609e022daed8f30150edfa7"></h2>
-
-### find all json file , and remove all `\r` 
-
-```bash
-ls *.json | xargs -I {}  sh -c  "cat {} | tr -d '\r' > {}2 && mv {}2 {} "
-or
-ls *.json | xargs -I {}  sh -c  " tr -d '\r' < {}  > {}2 && mv {}2 {} "
-```
- 
-  - `{}` :  handle every file , and to prevent path with space
-  - `sh -c`  : directly use `{}` in redirection `>` not works, put them in a shell command
-  - you can not do that by sed  , remember  sed delimits on `\n` newlines - they are always removed on input and reinserted on output.   you may need `-z` mode 
- 
-
-<h2 id="b5a637298d7d74567762e4ce9127bd5e"></h2>
-
-### find pattern in specific file types 
-
-```bash
-find . -type f -name '*.cpp' -o -name '*.h' -o -name '*.as'  | xargs -I {} grep  -m 1  ReturnToMap "{}" /dev/null
-```
-
-- `*.ext1` -o `*.ext2` 
-- `/dev/null` is to show the file path
-- ` -m 1`  stop when 1st matching
-
-use mdfind ...
-
-```bash
-mdfind -onlyin . "kMDItemDisplayName == *.as || kMDItemDisplayName == *.cpp || kMDItemDisplayName == *.h"  | xargs -I {} grep  -m 1  ReturnToMap "{}" /dev/null
-```
-
-最高效的方式
-
-```bash
-grep -r --include \*.h --include \*.cpp --include \*.as ReturnToMap  .
-```
-
-- ` -m 1` will not works as expect in `-r` mode
-
-- or more clean 
-
-```bash
-grep -r --include=*.{h,cpp,as}  ReturnToMap  .
-```
-
-- add `-w ` if you want matching the whole word 
-
-
-<h2 id="639aab73c8776e2711502bd23e7dd4de"></h2>
-
-### bash  wait previous command to finish 
-
-```bash
-#！/bin/sh
-echo “1”
-sleep 5&
-echo “3”
-echo “4”
-wait  #会等待wait所在bash上的所有子进程的执行结束，本例中就是sleep 5这句
-echo”5”
-```
-
-
-<h2 id="ccbf87c494cf62aca0164aa04719e15f"></h2>
-
-### sed 使用
-
- 1. sed语句中如果要引用变量， 使用 双括号 `" "` ， 不要使用 单括号 `' '` 
- 2. 查找/替换中 匹配 white space
-    - 使用  `[[:space:]]` , 而不是 `\s`
-    - 没有 `+` 的用法
 
 <h2 id="c635de9cfd3f586235866c25b1208360"></h2>
 
@@ -337,11 +244,4 @@ cmd +  ctl + shift + 4
 ```bash
 $ security find-generic-password -wa "ChinaNet-Mebusy" |  pbcopy
 ```
-
-
-
-
-
-
-
 
