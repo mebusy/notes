@@ -1,5 +1,19 @@
+[](...menustart)
+
+- [Command Line Tips ( may incompatible on MacOSX and Linux)](#f213e24a291202fd8e154c3471e2653e)
+    - [show pid of process by name](#ca16a9ebaa795350051c2666d4a7f8ba)
+    - [kill process by port](#48cd249a485752b67116301484bb3978)
+    - [check port using](#ab1922f2cde102e230acb305eb9338f2)
+    - [\[bash\] wait previous command to finish](#2de1f3339dbd36d1d32da11a424bc79d)
+
+[](...menuend)
+
+
+<h2 id="f213e24a291202fd8e154c3471e2653e"></h2>
 
 # Command Line Tips ( may incompatible on MacOSX and Linux)
+
+<h2 id="ca16a9ebaa795350051c2666d4a7f8ba"></h2>
 
 ## show pid of process by name
 
@@ -19,12 +33,16 @@
 
 
 
+<h2 id="48cd249a485752b67116301484bb3978"></h2>
+
 ## kill process by port
 
 ```bash
 kill $(lsof -t -i :PORTNUMBER)
 ```
 
+
+<h2 id="ab1922f2cde102e230acb305eb9338f2"></h2>
 
 ## check port using
 
@@ -48,6 +66,8 @@ sudo lsof -i:8080
 
 NOTE: lsof just list files opened by current users,  you need add `sudo` if you want to see all opened files.
 
+
+<h2 id="2de1f3339dbd36d1d32da11a424bc79d"></h2>
 
 ## [bash] wait previous command to finish 
 

@@ -1,5 +1,18 @@
+[](...menustart)
+
+- [Python Logging: How to Write Logs Like a Pro!](#272190d0f7628eae810eb386862457b9)
+    - [Basic](#972e73b7a882d0802a4e3a16946a2f94)
+    - [Config Logging](#a880c8bc5cc63affc1304be842655c5d)
+    - [Integration with logging services](#eb18ed283b3da74c80fbf23a4551c1bf)
+
+[](...menuend)
+
+
+<h2 id="272190d0f7628eae810eb386862457b9"></h2>
 
 # Python Logging: How to Write Logs Like a Pro!
+
+<h2 id="972e73b7a882d0802a4e3a16946a2f94"></h2>
 
 ## Basic
 
@@ -26,6 +39,8 @@ WARNING:root:this is warning
 ERROR:root:this is error
 CRITICAL:root:this is critical
 ```
+
+<h2 id="a880c8bc5cc63affc1304be842655c5d"></h2>
 
 ## Config Logging
 
@@ -54,6 +69,8 @@ def test():
 2023-02-10 22:02:13 ERROR test.py:14 this is error
 2023-02-10 22:02:13 CRITICAL test.py:15 this is critical
 ```
+
+<h2 id="eb18ed283b3da74c80fbf23a4551c1bf"></h2>
 
 ## Integration with logging services
 

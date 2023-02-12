@@ -2,18 +2,11 @@
 
 - [MacOSX](#5dad7f6f2d7af4cc1196128ec251af8a)
     - [sidebar 丢失](#2921868f08055ef268441139489a6130)
-    - [openofficer error](#1c305ad1fad7ba14dd448d08a73f3ab8)
     - [Useful Commands](#ec69fb46be4996fda376dcb4054c528b)
         - [xxd](#25c04b9b782789c092a38c06cc87632a)
-        - [mdfind](#0968ea4dc36ecbcdc0810a8ca0f674c8)
+        - [mdfind(deprecated)](#8fa27b7030fcdda4e88c6240caf99bf1)
         - [man ascii  字符表](#726e07a4bf9abb9ebcdce89b16eb7807)
         - [cal 日历](#e1bde9f80b42328020cb6b0a4c7d26ab)
-        - [find files to rm](#a21d96fb754b9ce8455858e14ed36571)
-        - [in terminal, show git branch in path](#394dd2658e932bd638e3017ac1a98c39)
-        - [find all json file , and remove all `\r`](#75aeaa38d609e022daed8f30150edfa7)
-        - [find pattern in specific file types](#b5a637298d7d74567762e4ce9127bd5e)
-        - [bash  wait previous command to finish](#639aab73c8776e2711502bd23e7dd4de)
-        - [sed 使用](#ccbf87c494cf62aca0164aa04719e15f)
     - [打开文件数 / 最大链接数](#c635de9cfd3f586235866c25b1208360)
     - [性能测试](#ddd22119a924356d5fd97057285c0689)
     - [内网传输速度测试](#d8f5e5c499ab6b35afcd8cfed2906d9d)
@@ -22,6 +15,9 @@
         - [Create a Mac plist file to describe your job](#00379fb669143aee93f220a535b222a5)
         - [load and test it](#548797edc19fa3483f6f9a6f36faa5e2)
         - [An important note about root and sudo access](#cfdb23d5d79b7e7d55330583c081e20c)
+    - [check SSD lifespan](#fb8aa0d64bf13765b2377276fc9e9ed7)
+    - [screen capture to clipborad](#49d6e205c8881024108f1681926717a8)
+    - [copy wifi password to clipboard](#6831a70b0b58947b7c63e20394b71a09)
 
 [](...menuend)
 
@@ -61,7 +57,7 @@ unsigned char note_txt[] = {
 unsigned int note_txt_len = 61;
 ```
 
-<h2 id="0968ea4dc36ecbcdc0810a8ca0f674c8"></h2>
+<h2 id="8fa27b7030fcdda4e88c6240caf99bf1"></h2>
 
 ### mdfind(deprecated)
 
@@ -223,6 +219,8 @@ If you placed your Mac plist file in one of the two system directories (/Library
 
 
 
+<h2 id="fb8aa0d64bf13765b2377276fc9e9ed7"></h2>
+
 ## check SSD lifespan
 
 ```bash
@@ -234,10 +232,14 @@ smartctl -t short /dev/disk0
 ```
 
 
+<h2 id="49d6e205c8881024108f1681926717a8"></h2>
+
 ## screen capture to clipborad
 
 cmd +  ctl + shift + 4
 
+
+<h2 id="6831a70b0b58947b7c63e20394b71a09"></h2>
 
 ## copy wifi password to clipboard
 

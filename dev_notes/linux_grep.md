@@ -12,6 +12,7 @@
         - [Print File Name Only : -l, --files-with-matches](#868f184aaaf9fc3641367296c19e659b)
         - [Multiple Pattern : -e pattern, --regexp=pattern](#ee97868fe3c5683b61bdae5870097767)
         - [Use extended regular expressions (supports `?`, `+`, `{}`, `()` and `|`):  -E, --extended-regexp](#33f6321fe9d0b056d5438f5542973fa4)
+        - [Limit Match Times :  -m num, --max-count=num](#8c4268471de0b40920decfd639a33d24)
         - [Include / Exclude](#c372ce68f746709e625ff6a439caabb9)
     - [Pipe output of Other Commands Into GREP](#658f8a592ea5feae877420d94058847b)
 
@@ -224,6 +225,8 @@ $ grep -rinI -E "get(Count|Priority)"  .
 
 Grep is not using POSIX regular expression.  If you wanna use perl compatible RE, you can use GNU grep and `-P` option.
 
+
+<h2 id="8c4268471de0b40920decfd639a33d24"></h2>
 
 ### Limit Match Times :  -m num, --max-count=num
 
