@@ -212,7 +212,7 @@ a | b | c | d
 [mdfind](dev_notes/mdfind.md) |  [mermaid](dev_notes/mermaid.md) |
 [bit operation](dev_notes/bitop.md) |
 [GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
-[openssl 生成密钥](dev_notes/openssl.md) | [windows WSL2 tips](dev_notes/windows_tips.md) | 
+[openssl](dev_notes/openssl_cookbook.md) | [windows WSL2 tips](dev_notes/windows_tips.md) | 
 
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
