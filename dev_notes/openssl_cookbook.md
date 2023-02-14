@@ -11,6 +11,20 @@
         - [Creating Certificate Signing Requests](#65229e6867fee7f382d257166ac2bb70)
             - [CSR Verification](#31157b4a29c8c0b0a5bafc768e689ba1)
             - [Self Signed Certificate](#5268c2edcf0f7ae7ce41e905564de177)
+        - [Key and Certificate Conversion](#c1f061fc07e339060fdee68b6e6fe858)
+            - [PEM and DER Conversion](#754014ce9cfa74c39214abce03284f0d)
+            - [convert between PKCS#1 and PKCS#8](#e8759212e92e32d3654613a8bb64ccdb)
+    - [Testing with OpenSSL](#bd19a0b75e268da9a5fed8ddd347fe26)
+        - [Connecting to SSL Services](#0ee6bf1381cea193a44901bd6f6161d9)
+        - [Extracting Remote Certificates](#6c59b3e66e386f8bd237466e9502a75e)
+        - [Testing Protocol Support](#c0ba517e5697c8eadc30894c02ba239b)
+        - [Testing Session Reuse](#f4f526e2ee7828bd47af449aaed0d1d2)
+    - [Other Commands](#32fa66f13d05678402f1989484ea0327)
+        - [rand](#34d1c35063280164066ecc517050da0b)
+        - [dgst](#89a989347373b1b0a211f15dc1cee2af)
+- [OpenSSH Key](#4d3e358489bdaf54b3f4a637f7c239c1)
+    - [SSH RSA Public Key](#25d10e0e599a839f7973eb01bf1d4b8c)
+    - [Convert between different formats...](#b877b734093e9001b4572816c5ed60bd)
 
 [](...menuend)
 
@@ -199,8 +213,6 @@ If you want to generate the **obsoluted** `RSA PUBLIC KEY`, add `-RSAPublicKey_o
 
 <details>
 
-> The "RSA PUBLIC KEY" format was used in very early SSLeay, which evolved into OpenSSL, but obsoleted before 2000
-> Although this format is long obsolete, **OpenSSL still supports** it.
 
 ```bash
 $ openssl rsa -in serv.key -pubout -out serv-rsa-pub.key -RSAPublicKey_out
@@ -211,6 +223,10 @@ $cat serv-rsa-pub.key
 
 </details>
 
+> The "RSA PUBLIC KEY" format was used in very early SSLeay, which evolved into OpenSSL, but obsoleted before 2000.
+> Although this format is long obsolete, **OpenSSL still supports** it.
+> "RSA PUBLIC KEY" format is the RSA-specific format from PKCS#1, 
+> whereas "PUBLIC KEY" is the X.509 generic structure that handles numerous (and extensible) algorithm. 
 
 
 <h2 id="da56800f6139b1a4e7b0d5fb42ef0e02"></h2>
@@ -317,6 +333,8 @@ $ openssl x509 -text -in serv.crt -noout
 ```
 
 
+<h2 id="c1f061fc07e339060fdee68b6e6fe858"></h2>
+
 ### Key and Certificate Conversion
 
 Private keys and certificates can be stored in a variety of formats:
@@ -339,6 +357,8 @@ Private keys and certificates can be stored in a variety of formats:
     - It’s commonly seen with .p12 and .pfx extensions. This format is commonly used in Microsoft products, but is also used for client certificates.
 
 
+<h2 id="754014ce9cfa74c39214abce03284f0d"></h2>
+
 #### PEM and DER Conversion
 
 Convert X.509 certificate:
@@ -351,7 +371,26 @@ openssl x509 -in cert.crt -inform pem -out cert.cer -outform der
 The syntax is identical if you need to convert private keys between DER and PEM formats, but different commands are used: `rsa` for RSA keys, and `dsa` for DSA keys.
 
 
+<h2 id="e8759212e92e32d3654613a8bb64ccdb"></h2>
+
+#### convert between PKCS#1 and PKCS#8
+
+```bash
+# #1 -> #8
+openssl pkcs8 -in private-pkcs1.pem -topk8 -out private-pkcs8.pem -nocrypt
+openssl pkcs8 -in private-pkcs1.pem -topk8 -out private-pkcs8-enc.pem
+```
+```bash
+# #8 -> #1
+openssl rsa -in private-pkcs8.pem -out private-pkcs1.pem
+```
+
+
+<h2 id="bd19a0b75e268da9a5fed8ddd347fe26"></h2>
+
 ## Testing with OpenSSL
+
+<h2 id="0ee6bf1381cea193a44901bd6f6161d9"></h2>
 
 ### Connecting to SSL Services
 
@@ -438,6 +477,8 @@ SSL-Session:
 The most important information here is the protocol version (TLS 1.2), and cipher suite used `ECDHE-RSA-AES256-GCM-SHA384`.
 
 
+<h2 id="6c59b3e66e386f8bd237466e9502a75e"></h2>
+
 ### Extracting Remote Certificates
 
 If you need the server certificate for any reason, you can copy it from the scroll-back buffer.
@@ -456,6 +497,8 @@ MIIIvDCCBqSgAwIBAgITMwCJVYBSn8/jQ4R/UwAAAIlVgDANBgkqhkiG9w0BAQwF
 ...
 -----END CERTIFICATE-----
 ```
+
+<h2 id="c0ba517e5697c8eadc30894c02ba239b"></h2>
 
 ### Testing Protocol Support
 
@@ -485,6 +528,8 @@ e.g.
 $ openssl s_client -connect openai.com:443 -tls1_1
 ```
 
+<h2 id="f4f526e2ee7828bd47af449aaed0d1d2"></h2>
+
 ### Testing Session Reuse
 
 When coupled with the `-reconnect` switch, the s_client command can be used to test session reuse.
@@ -499,6 +544,115 @@ Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
 Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
 ```
 
+<h2 id="32fa66f13d05678402f1989484ea0327"></h2>
+
+## Other Commands
+
+<h2 id="34d1c35063280164066ecc517050da0b"></h2>
+
+### rand
+
+Generate random bytes, can be encoded as `-base64` or `-hex`
+
+To generate a random password in hex format:
+
+```bash
+$ openssl rand -hex 20
+a23b977ca0fac4ced01de8cb69f0dfb73bdb41ab
+```
+
+To generate the random password in base64:
+
+```bash
+$ openssl rand -base64 20
+ocrioY+RhvmV3OfWl6D7BhyXmjY=
+```
+
+<h2 id="89a989347373b1b0a211f15dc1cee2af"></h2>
+
+### dgst
+
+Calculate hash
+
+```bash
+$ echo -m hello | openssl dgst -md5
+8f5dbe1b32c6881ddc8a74238d52ef2a
+$ echo -m hello | md5 # verify
+8f5dbe1b32c6881ddc8a74238d52ef2a
+```
+
+```bash
+$ echo -m hello | openssl dgst -sha1
+9fe12ce55bf59bc5d099870e8bcc20a433e78bb8
+$ echo -m hello | shasum # verify
+9fe12ce55bf59bc5d099870e8bcc20a433e78bb8  -
+```
+
+
+<h2 id="4d3e358489bdaf54b3f4a637f7c239c1"></h2>
+
+# OpenSSH Key
+
+<h2 id="25d10e0e599a839f7973eb01bf1d4b8c"></h2>
+
+## SSH RSA Public Key
+
+An RSA public key formatted by OpenSSH , can be generated by  `ssh-keygen`
+
+
+```bash
+$ ssh-keygen -b 2048 -t rsa
+```
+
+SSH keys are used for secure connections across a network, usually they are all in one line.
+
+```bash
+ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYsc8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7rNzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaXfgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQLGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L
+```
+
+The standard ssh2 file format for use in Secure Shell.
+
+```bash
+$ ssh-keygen -b 2048 -t rsa -e
+```
+
+- `-e` 
+    - The export format is “RFC4716”
+
+```bash
+---- BEGIN SSH2 PUBLIC KEY ----
+Comment: "2048-bit RSA, ..."
+AAAAB3NzaC1yc2EAAAABJQAAAQB/nAmOjTmezNUDKYvEeIRf2YnwM9/uUG1d0BYs
+c8/tRtx+RGi7N2lUbp728MXGwdnL9od4cItzky/zVdLZE2cycOa18xBK9cOWmcKS
+0A8FYBxEQWJ/q9YVUgZbFKfYGaGQxsER+A0w/fX8ALuk78ktP31K69LcQgxIsl7r
+NzxsoOQKJ/CIxOGMMxczYTiEoLvQhapFQMs3FL96didKr/QbrfB1WT6s3838SEaX
+fgZvLef1YB2xmfhbT9OXFE3FXvh2UPBfN+ffE7iiayQf/2XR+8j4N4bW30DiPtOQ
+LGUrH1y5X/rpNZNlWW2+jGIxqZtgWg7lTy3mXy5x836Sj/6L
+---- END SSH2 PUBLIC KEY ----
+```
+
+<h2 id="b877b734093e9001b4572816c5ed60bd"></h2>
+
+## Convert between different formats...
+
+**The ssh-keygen utility is used to covert SSH keys between the different formats.**
+
+- convert to OpenSSH format.
+    - `-i` : this option will read an unencrypted private (or public) key file in the format specified by the -m option and print an OpenSSH compatible private (or public) key to stdout.
+        - The default **import** format is “RFC4716”(SSH2).
+    ```bash
+    # -mPKCS8  to specify the input format
+    ssh-keygen -f pub1key.pub -i -mPKCS8
+    ```
+
+> -m key_format Specify a key format for the -i (import) or -e (export) conversion options. The supported key formats are: “RFC4716” (RFC 4716/SSH2 public or private key), “PKCS8” (PEM PKCS8 public key) or “PEM” (PEM public key). The default conversion format is “RFC4716”.
+
+- to convert OpenSSH format(ssh-rsa) to SSH2 format
+    - `-e`: read a private or public OpenSSH key file and print to stdout a public key in one of the formats specified by the -m option
+        - The default **export** format is “RFC4716”(SSH2).
+    ```bash
+    ssh-keygen -e -f ./openssh.pub
+    ```
 
 
 
