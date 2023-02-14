@@ -151,7 +151,7 @@ Before you begin, you must make several decisions:
 To generate an RSA key
 
 ```bash
-$ openssl genrsa -out fd.key 2048
+$ openssl genrsa -out serv.key 2048
 Generating RSA private key, 2048 bit long modulus
 ...................+++++
 .......................+++++
@@ -163,13 +163,13 @@ This key is in **PKCS1** ( Public Key Cryptography Standards ) format.
 If you want to use passphrase, add `-aes128` (or `-aes192`, `-aes256`), and it's best to stay away from the other algorithms (DES, 3DES, and SEED).
 
 ```bash
-$ openssl genrsa -aes128 -out fd.key 2048
+$ openssl genrsa -aes128 -out serv.key 2048
 ```
 
 Private keys are stored in the so-called **PEM** format, which is just text:
 
 ```bash
-$ cat fd.key 
+$ cat serv.key 
 -----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
 DEK-Info: AES-128-CBC,30666299C618C15D7C38ACAB4DE673BE
@@ -185,10 +185,9 @@ vRbvP2NH7cQyZP8HwFMrD9dQ6jYnODQsd2YKAM12hU22vBNu1qBob1ds1jLhQGtP
 #### Extract Public Key from Private Key
 
 ```bash
-$ openssl rsa -in fd.key -pubout -out fd-public.key
+$ openssl rsa -in serv.key -pubout -out serv-public.key
 
-$ cat fd-public.key
-# x.509 public key
+$ cat serv-public.key
 -----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuQgy4mnd07n137wNVcHE
 ...
@@ -200,9 +199,12 @@ If you want to generate the **obsoluted** `RSA PUBLIC KEY`, add `-RSAPublicKey_o
 
 <details>
 
+> The "RSA PUBLIC KEY" format was used in very early SSLeay, which evolved into OpenSSL, but obsoleted before 2000
+> Although this format is long obsolete, **OpenSSL still supports** it.
+
 ```bash
-$ openssl rsa -in fd.key -pubout -out fd-rsa-pub.key -RSAPublicKey_out
-$cat fd-rsa-pub.key                
+$ openssl rsa -in serv.key -pubout -out serv-rsa-pub.key -RSAPublicKey_out
+$cat serv-rsa-pub.key                
 -----BEGIN RSA PUBLIC KEY-----
 ...
 ```
@@ -232,7 +234,7 @@ Once you have a private key, you can proceed to create a `Certificate Signing Re
 This is a formal request asking a CA to sign a certificate, and it contains the public key, and some information about the entity. 
 
 ```bash
-$ openssl req -new -key fd.key -out fd.csr
+$ openssl req -new -key serv.key -out serv.csr
 -----
 Country Name (2 letter code) []:PK
 State or Province Name (full name) []:ISB
@@ -258,7 +260,7 @@ After a CSR is generated, use it to sign your own certificate and/or send it to 
 But before you do that, it’s a good idea to double-check that the CSR is correct. 
 
 ```bash
-$ openssl req -text -in fd.csr -noout -verify
+$ openssl req -text -in serv.csr -noout -verify
 verify OK
 Certificate Request:
     Data:
@@ -276,14 +278,16 @@ Everything that you provided is showing here. If you find that anything is wrong
 
 #### Self Signed Certificate
 
+If you’re installing a TLS server for your own use, you probably don’t want to go to a CA for a publicly trusted certificate. It’s much easier to just use a self-signed certificate.
+
 ```bash
-$ openssl x509 -in fd.csr -out fd.crt -req -signkey fd.key -days 3650
+$ openssl x509 -in serv.csr -out serv.crt -req -signkey serv.key -days 3650
 Signature ok
 subject=/C=PK/ST=ISB/L=ISB/O=fakecom/OU=fakecom/CN=*.example.com/emailAddress=abc@fake.com
 Getting Private key
 ```
 
-`fd.crt` is our signed x509 certificate.
+`serv.crt` is our signed x509 certificate.
 
 
 > X.509是密码学里公钥证书的格式标准。
@@ -294,7 +298,7 @@ Getting Private key
 You don’t actually have to create a CSR in a separate step. User `openssl req` to create both CSR and CRT.
 
 ```bash
-$ openssl req -new -x509 -days 3650 -key fd.key -out fd.crt
+$ openssl req -new -x509 -days 3650 -key serv.key -out serv.crt
 ```
 
 If you don’t wish to be asked any questions, use the `-subj` to provide the informations.
@@ -302,14 +306,200 @@ If you don’t wish to be asked any questions, use the `-subj` to provide the in
 **One line command to self-assign**:
 
 ```bash
-$ openssl req -new -x509 -days 3650 -key fd.key -out fd.crt \
+$ openssl req -new -x509 -days 3650 -key serv.key -out serv.crt \
     -subj "/C=PK/ST=ISB/L=ISB/O=fakecom/OU=fakecom/CN=*.example.com/emailAddress=abc@fake.com"
 ```
 
 We can take a look inside the certificate.
 
 ```bash
-$ openssl x509 -text -in fd.crt -noout
+$ openssl x509 -text -in serv.crt -noout
 ```
+
+
+### Key and Certificate Conversion
+
+Private keys and certificates can be stored in a variety of formats:
+
+- Binary (DER) certificate
+    - Contains an X.509 certificate in its raw form, using DER ASN.1 encoding.
+- ASCII (PEM) certificate(s)
+    - Contains a base64-encoded DER certificate, with `-----BEGIN CERTIFICATE-----` used as the header and `-----END CERTIFICATE-----` as the footer. 
+- Binary (DER) key
+    - Contains a private key in its raw form, using DER ASN.1 encoding. 
+    - OpenSSL creates keys in its own traditional (SSLeay) format
+    - There’s also an alternative format called PKCS#8 (defined in RFC 5208), but it’s not widely used.
+    - OpenSSL can convert **to and from** PKCS#8 format using the `pkcs8` command.
+- ASCII (PEM) key
+    - Contains a base64-encoded DER key, sometimes with additional metadata(e.g., the algorithm used for password protection).
+- PKCS#7 certificate(s)
+    - It’s usually seen with .p7b and .p7c extensions and can include the entire certificate chain as needed. This format is supported by Java’s keytool utility.
+- PKCS#12 (PFX) key and certificate(s)
+    - A complex format that can store and protect a server key along with an entire certificate chain.
+    - It’s commonly seen with .p12 and .pfx extensions. This format is commonly used in Microsoft products, but is also used for client certificates.
+
+
+#### PEM and DER Conversion
+
+Convert X.509 certificate:
+
+```bash
+openssl x509 -in cert.cer -inform der -out cert.crt -outform pem
+openssl x509 -in cert.crt -inform pem -out cert.cer -outform der
+```
+
+The syntax is identical if you need to convert private keys between DER and PEM formats, but different commands are used: `rsa` for RSA keys, and `dsa` for DSA keys.
+
+
+## Testing with OpenSSL
+
+### Connecting to SSL Services
+
+OpenSSL comes with a client tool, this tool is similar to telnet or nc, in the sense that it handles the SSL/TLS layer **but** allows you to fully control the layer that comes next.
+
+```bash
+$ openssl s_client -connect openai.com:443
+```
+
+Once you type the command, you’re going to see a lot of diagnostic output,
+
+followed by an opportunity to type whatever you want.
+
+Because we’re talking to an HTTP server, the most sensible thing to do is to submit an HTTP request. 
+
+```bash
+HEAD / HTTP/1.0
+HOST: openai.com
+
+HTTP/1.1 200 OK
+...
+closed
+```
+
+Now, let’s go back to the diagnostic output. 
+
+The first couple of lines show the information about the server certificate:
+
+```bash
+CONNECTED(00000006)
+depth=2 C = US, O = DigiCert Inc, OU = www.digicert.com, CN = DigiCert Global Root G2
+verify return:1
+depth=1 C = US, O = Microsoft Corporation, CN = Microsoft Azure TLS Issuing CA 01
+verify return:1
+depth=0 C = US, ST = WA, L = Redmond, O = Microsoft Corporation, CN = *.azureedge.net
+verify return:1
+```
+
+The next section in the output lists all the certificates presented by the server in the order in which they were delivered:
+
+
+```bash
+Certificate chain
+ 0 s:/C=US/ST=WA/L=Redmond/O=Microsoft Corporation/CN=*.azureedge.net
+   i:/C=US/O=Microsoft Corporation/CN=Microsoft Azure TLS Issuing CA 01
+ 1 s:/C=US/O=Microsoft Corporation/CN=Microsoft Azure TLS Issuing CA 01
+   i:/C=US/O=DigiCert Inc/OU=www.digicert.com/CN=DigiCert Global Root G2
+```
+
+For each certificate, the first line shows the subject and the second line shows the issuer information.
+
+The next item in the output is the server certificate.
+
+```bash
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIIvDCCBqSgAwIBAgITMwCJVYBSn8/jQ4R/UwAAAIlVgDANBgkqhkiG9w0BAQwF
+...
+-----END CERTIFICATE-----
+subject=/C=US/ST=WA/L=Redmond/O=Microsoft Corporation/CN=*.azureedge.net
+issuer=/C=US/O=Microsoft Corporation/CN=Microsoft Azure TLS Issuing CA 01
+```
+
+The following is a lot of information about the TLS connection.
+
+```bash
+No client certificate CA names sent
+Server Temp Key: ECDH, P-384, 384 bits
+---
+SSL handshake has read 4286 bytes and written 445 bytes
+---
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 2048 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    ...
+```
+
+The most important information here is the protocol version (TLS 1.2), and cipher suite used `ECDHE-RSA-AES256-GCM-SHA384`.
+
+
+### Extracting Remote Certificates
+
+If you need the server certificate for any reason, you can copy it from the scroll-back buffer.
+
+Or use this command line as a shortcut:
+
+```bash
+# Following command is for MacOSX. On Linux, you may replace `-n` with `--quiet`
+echo | openssl s_client -connect openai.com:443 2>&1 | sed -n '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > openai.crt
+```
+
+```bash
+$ cat openai.crt
+-----BEGIN CERTIFICATE-----
+MIIIvDCCBqSgAwIBAgITMwCJVYBSn8/jQ4R/UwAAAIlVgDANBgkqhkiG9w0BAQwF
+...
+-----END CERTIFICATE-----
+```
+
+### Testing Protocol Support
+
+By default, s_client will try to use the best protocol to talk to the remote server and report the negotiated version in output.
+
+```bash
+    Protocol  : TLSv1.2
+```
+
+If you need to test support for specific protocol versions
+
+```bash
+ -no_tls1           Disable the use of TLSv1
+ -no_tls1_1         Disable the use of TLSv1.1
+ -no_tls1_2         Disable the use of TLSv1.2
+ -no_tls1_3         Disable the use of TLSv1.3
+
+ -tls1              Just use TLSv1
+ -tls1_1            Just use TLSv1.1
+ -tls1_2            Just use TLSv1.2
+ -tls1_3            Just use TLSv1.3
+```
+
+e.g.
+
+```bash
+$ openssl s_client -connect openai.com:443 -tls1_1
+```
+
+### Testing Session Reuse
+
+When coupled with the `-reconnect` switch, the s_client command can be used to test session reuse.
+
+```bash
+$ echo | openssl s_client -connect baidu.com:443 -reconnect 2>/dev/null |  grep 'New\|Reuse'
+New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+Reused, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-GCM-SHA256
+```
+
+
+
 
 

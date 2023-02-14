@@ -91,7 +91,6 @@ QSYlFuShWrHPtiLmUdPoP6CV2mML1tk+l7DIIqXrQhLUKDACeM5roMx0kLhUWB8P
 ```
 
 > The "RSA PUBLIC KEY" format was used in very early SSLeay, which evolved into OpenSSL, but obsoleted before 2000
-
 > Although this format is long obsolete, **OpenSSL still supports** it.
 
 openssl  x.509 public key, which looks like this:
@@ -194,7 +193,7 @@ openssl x509 -in cert.crt -inform pem -pubkey -noout
 openssl x509 -in cert.cer -inform der -pubkey -noout
 ```
 
-Convert X.509 certificate between DER and PEM formats
+Convert X.509 certificate between DER and PEM formats (done.)
 
 ```bash
 openssl x509 -in cert.cer -inform der -out cert.crt -outform pem

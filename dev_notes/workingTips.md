@@ -343,7 +343,7 @@ watch -n 1 -d find . -path ./.git  -prune -o -print
         ```bash
         $ ssh-keygen
         Generating public/private rsa key pair.
-        Enter file in which to save the key (/Users/qibinyi/.ssh/id_rsa): 
+        Enter file in which to save the key (/Users/mebusy/.ssh/id_rsa): 
         ```
     - It is best to stick with the default location at this stage. 
         - Doing so will allow your SSH client to automatically find your SSH keys when attempting to authenticate.
