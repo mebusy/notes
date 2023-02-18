@@ -18,10 +18,6 @@
        Individual readline initialization file
 ```
 
-Generally,
-
-- For bash, put stuff in ~/.bashrc, and make ~/.bash_profile source it.
-- For zsh, put stuff in ~/.zshrc, which is always executed.
 
 ------
 
@@ -32,23 +28,13 @@ Generally,
     - or use `sudo -i or su -` to run commands as another user.
 - When you log in graphically(under X), `~/.profile` will be specifically sourced by the script that launches gnome-session (or whichever desktop environment you're using)
     - So `~/.bash_profile` is not sourced at all when you log in graphically.
-    - When you open a terminal, the terminal starts bash in ( **non-login** ) interactive mode, 
-        - which means it will source `~/.bashrc`.
-- The right place for you to put these environment variables is in `~/.profile`, and the effect should be apparent next time you log in.
-    - bash is not involved when logging in graphically, so it goes straight for `.profile` instead of `.bash_profile`
+- When you open a terminal, the terminal starts bash in ( **non-login** ) interactive mode, 
+    - which means it will source `~/.bashrc`.
+
+----
 
 
----
+Generally,
 
-So what should you put where?
-
-- A good .bash_profile loads `.profile`, and loads `.bashrc` if the shell is interactive.
-    ```bash
-    . ~/.profile
-    if [[ $- == *i* ]]; then . ~/.bashrc; fi
-    ```
-- In `.profile`, put environment variable definitions, and other session settings such as ulimit.
-- In `.bashrc`, put bash interactive settings such as aliases, functions, completion, key bindings (that aren't in .inputrc), …
-
-
-
+- For bash, put stuff in ~/.bashrc, and make ~/.bash_profile source it.
+- For zsh, put stuff in ~/.zshrc, which is always executed.
