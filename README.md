@@ -179,7 +179,7 @@ a | b | c | d
 [Centos 7](dev_notes/Centos7.md) | [docker](dev_notes/docker.md)  | [logrotate](dev_notes/linux_logrotate.md) | [Centos Netatalk 4 TimeMachine](dev_notes/centos7_nettalk_timemachine.md)
 [大型网站技术架构](dev_notes/WebArchitecture.md) | 
 [Linux performace tool](imgs/linux_performance.jpg) |
-[check disk usage](dev_notes/disk_usage.md) | 
+[check disk usage](dev_notes/disk_usage.md) |  [Linux Zsh/Bash startup files loading](dev_notes/linux_bash_rcprofile.md) |
 [AWK](dev_notes/linux_awk.md) | [find](dev_notes/linux_find.md) | [sed](dev_notes/linux_sed.md) | [grep](dev_notes/linux_grep.md)
 [xargs](dev_notes/linux_xargs.md) | 
 
