@@ -37,6 +37,6 @@
 Generally,
 
 - For bash, put stuff in ~/.bashrc, and make ~/.bash_profile source it.
+    - For stuff like https proxy, put it in `/etc/bashrc` so as to `sudo` can access those setting as well.
 - For zsh, put stuff in ~/.zshrc, which is always executed.
-- For stuff like https proxy, put it in `/etc/bashrc` so as to `sudo` can access those setting as well.
 
