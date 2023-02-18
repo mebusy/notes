@@ -31,7 +31,7 @@ $ sudo usermod --append --groups vboxsf $USER
 
 ```bash
 $ sudo dnf update
-$ sudo dnf groupinstall "Development Tools"
+$ sudo dnf group install "C Development Tools and Libraries" "Development Tools"
 $ sudo dnf install clang
 ```
 
