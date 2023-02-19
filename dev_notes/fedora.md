@@ -71,6 +71,10 @@ $ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 $ vim +BundleInstall
 ```
 
+If YCM building need gcc-11 ...  `brew install gcc@11`
+
+
+
 
 ## HiDP
 
