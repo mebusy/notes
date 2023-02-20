@@ -62,6 +62,8 @@ $ brew install romkatv/powerlevel10k/powerlevel10k
 $ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
 ```
 
+For gnome-terminal, `Preferences/Unnamed/Command`, Select “Run a custom command instead of my shell” then type `zsh`
+
 ## VIM
 
 copy .vimrc from somewhere...
