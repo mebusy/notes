@@ -82,6 +82,8 @@ If YCM building need gcc-11 ...  `brew install gcc@11`
 sudo dnf install gnome-tweak-tool
 ```
 
+- Font -> Scale Factor : 2
+
 # Linux Misc
 
 
