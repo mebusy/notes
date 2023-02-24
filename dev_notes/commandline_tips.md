@@ -81,4 +81,12 @@ wait  #会等待wait所在bash上的所有子进程的执行结束，本例中�
 echo”5”
 ```
 
+## concat 2 stdout to one file 
+
+```bash
+{ command1 && command2  } > dist.file
+```
+
+
+
 
