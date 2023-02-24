@@ -370,11 +370,22 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 ###  复制/移动 行
 
 ```vim
-:6t.  // 复制第6行 到当前位置
-:6,8t. // 复制6-8行 到当前位置
-:6m.   // 移动 第6行 到当前位置
-;6,8m. // 移动 6-8行 到当前位置
+:6t.  // copy line:6 to current postion
+:6,8t. // copy lines:6-8 to current postion
+:6m.   // move line:6 to current postion
+:6,8m. // move lines:6-8 to current postion
+:-3t.  // copy line:-3 to current postion  
 ```
+
+
+### MOVE
+
+- move to line:9
+    ```vim
+    9G
+    " or
+    :9
+    ```
 
 
 <h2 id="b492b625b61dc9e4718c98561d7b0296"></h2>
@@ -393,7 +404,8 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
     - go back to you last visual selection
 - gJ
     - conjoin lines, but without leaving space between them ( unlike J )
-
+- g;
+    - jump back to the previous position where a change was made in the current buffer.
 
 
 <h2 id="fc1f1e8c6d70d860957c66f735e60e2b"></h2>
@@ -439,6 +451,43 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
         - and `d5}` means "delete from the current line through the end of the fifth paragraph down from here."
 - **This is all intermediate level vi.**
 
+
+---
+
+part of speech | action | function | comments
+--- | --- | ---  | ---
+verb | d |  delete  | 
+&nbsp; | y | yank  |
+&nbsp; | c | change |
+&nbsp; | f | find  |
+&nbsp; | r | replace (char)  |  then in enter mode
+&nbsp; | s | Substitute (char) | then in insert mode
+noun | b | bracket `()`  |
+&nbsp; | s | sentence  | 
+&nbsp; | p | paragraph |
+&nbsp; | w | word  |
+adj/prep.  | i | in |
+&nbsp; | a | all  |
+
+example
+
+commands | function  | comments
+--- | --- | ---
+dib | delete content within `(...)`
+dap | delete entire paragraph
+yap | yank entire paragraph
+caw | change a word  | the cursor don't need be on the first char of the word
+cas | change all sentense
+ci) | change in bracket
+c5w | change 5 words from current postion
+df, | delete from current position up to and **including** the next `,`
+d/foo  | delete from current postion up to the next pattern `foo`
+d?foo |  delete from current postion up to and **including** the previous pattern `foo` (backward find)
+dt,  | delete from current postion until the next `,`
+y'a  | yank lines, from current line up to the marked lines ('a)
+{d} | Jump to beginning of a paragraph, then delete it
+
+
 ---
 
 <h2 id="a5787082a16f14e8db2acbf78497ee99"></h2>
@@ -452,7 +501,7 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
     - One could also use some abbreviations such as `.` or `$` for current and last line respectively
     - One could also use relative prefixes `+` and `-` to refer to offsets after or before the curent line, 
     - Thus, `:.,$j` meaning "from the current line to the last line, join them all into one line".
-    - `:%` is synonymous with `:1,$` (all the lines).
+    - **NOTE**:  `:%` is synonymous with `:1,$` (all the lines).
 - The `:...g` and `:...v` commands are incredibly powerful.
     - `:...g` is a prefix for "globally" applying a subsequent command to current line which match a pattern (regular expression) 
     - while `:...v` applies such a command to current line which do NOT match the given pattern ("v" from "conVerse").
