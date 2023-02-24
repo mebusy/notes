@@ -83,8 +83,10 @@ echo”5”
 
 ## concat 2 stdout to one file 
 
+NOTE: the last `;` is key important to Linux
+
 ```bash
-{ command1 && command2  } > dist.file
+{ command1 && command2 ; } > dist.file
 ```
 
 
