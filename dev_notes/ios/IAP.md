@@ -55,6 +55,11 @@
 
 # Deprecated:  StoreKit 2 is MORE recommended !!
 
+## StoreKit2
+
+新装app， 只要网络正常， 现登陆apple id 下的 所有的transaction 和 product 信息都会被同步到 新app 里， 以后，即使关闭网络， product 信息和 transaction 都可以从本地获取到。
+
+
 <h2 id="91e7d7af9b27b33b0eccfdabb1a17e07"></h2>
 
 # IAP (StoreKit 1)
