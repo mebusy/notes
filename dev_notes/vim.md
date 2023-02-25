@@ -253,6 +253,19 @@ A-Z | 用户 | 全局标注，可以作用于不同文件。大写标注也称�
     # or remove register `i`
     :exec setreg('i', [])
     ```
+- open files in tab
+    ```bash
+    vim -p file1 file2 file3 ...
+    ```
+
+- save&restore session
+    ```vim
+    :makesession sessionname.vim
+    ```
+    ```bash
+    $ vim -S sessionname.vim
+    ```
+
 
 <h2 id="d97b62cc38ac0f48ee2ef1675eceb014"></h2>
 
@@ -476,7 +489,7 @@ commands | function  | comments
 dib | delete content within `(...)`
 dap | delete entire paragraph
 yap | yank entire paragraph
-caw | change a word  | the cursor don't need be on the first char of the word
+caw | change a word  | same effect as `ciw`
 cas | change all sentense
 ci) | change in bracket
 c5w | change 5 words from current postion
