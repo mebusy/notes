@@ -496,7 +496,7 @@ impl Movement {
         }
     }
     ```
-- if-let syntax: branch if pattern can be assigned
+- `if-let` syntax: branch if pattern can be assigned
     - it's a little verbose to write the entire match
         ```rust
         let some_value = Some(3);
@@ -511,6 +511,8 @@ impl Movement {
             println!("three");
         }
         ```
+- `unwarp_or_else` OR `if-let` ?
+    - In general, you should use `if let` when you only need to handle one specific case and `unwrap_or_else` when you need to handle both success and failure cases.
 
 
 <h2 id="2a29178a57901ddb90f15e2026465103"></h2>
