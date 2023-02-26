@@ -902,6 +902,18 @@ with open(filename, "r+") as f:
     f.truncate()
 ```
 
+
+### read a large file
+
+for large file, parse file line by line, but do NOT use `readlines()`
+
+
+```python
+with open( ... ) as fp
+  for line in fp:
+```
+
+
 <h2 id="fdbe9d1605732955d440487ba60d2368"></h2>
 
 ### basis of Datetime and Time
