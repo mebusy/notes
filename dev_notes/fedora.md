@@ -119,6 +119,10 @@ $ sudo dnf install -y acpid
 $ systemctl enable --now acpid
 ```
 
+## key remapping
+
+https://github.com/petrstepanov/gnome-macos-remap
+
 
 # Linux Misc
 
