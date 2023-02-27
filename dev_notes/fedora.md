@@ -27,7 +27,7 @@ $ sudo usermod --append --groups vboxsf $USER
 
 
 
-## Home Brew
+## ???
 
 ```bash
 $ sudo dnf update
@@ -36,17 +36,10 @@ $ sudo dnf install clang
 ```
 
 ```bash
-$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# after installation
-$ (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> ~/.profile
-$ brew install gcc
-```
+~$ brew install~
+  vim ctags go gotags node@16 prettier black cpplint clang-format rust rustfmt cmake openjdk@17 mono
 
-```bash
-$ brew install vim ctags go gotags node@16 prettier black cpplint clang-format rust rustfmt cmake openjdk@17 mono
-
-$ brew link  --overwrite  node@16
-$ echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"' >>  ~/.profile
+~ $ echo 'export PATH="/home/linuxbrew/.linuxbrew/opt/clang-format/bin:$PATH"' >>  ~/.profile
 ```
 
 ## ohmyzsh
@@ -58,8 +51,8 @@ $ chsh -s $(which zsh)
 
 $ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-$ brew install romkatv/powerlevel10k/powerlevel10k
-$ echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 ```
 
 For gnome-terminal, `Preferences/Unnamed/Command`, Select “Run a custom command instead of my shell” then type `zsh`
@@ -74,8 +67,6 @@ $ vim +BundleInstall
 ```
 
 If YCM building need gcc-11 ...  `brew install gcc@11`
-
-
 
 
 ## HiDP
