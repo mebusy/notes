@@ -96,6 +96,24 @@ sudo update-crypto-policies --set LEGACY
 sudo dnf install -y google-chrome-stable
 ```
 
+## key remapping
+
+https://github.com/petrstepanov/gnome-macos-remap
+
+```bash
+$ sudo dnf install autokey autokey-gtk
+```
+
+```bash
+git clone https://github.com/petrstepanov/gnome-macos-remap
+cd gnome-macos-remap
+chmod +x ./install.sh ./uninstall.sh
+./install.sh
+```
+
+Last step:
+
+Open `AutoKey` (autokey-gtk). In `Edit -> Preferences` menu make sure the `Automatically start AutoKey at login checkbox` is on.
 
 
 ---
@@ -118,10 +136,6 @@ $ systemctl start mbpfan.service
 $ sudo dnf install -y acpid
 $ systemctl enable --now acpid
 ```
-
-## key remapping
-
-https://github.com/petrstepanov/gnome-macos-remap
 
 
 # Linux Misc
