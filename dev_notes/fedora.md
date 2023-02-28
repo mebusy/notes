@@ -155,6 +155,17 @@ SESSION  UID USER   SEAT  TTY
 $ loginctl unlock-session 6
 ```
 
+## Bluetooth keyboard
+
+if disconnect right after connect
+
+```bash
+sudo nano /etc/modprobe.d/bluetooth.conf
+
+Add this line:
+options bluetooth disable_ertm=Y
+```
+
 
 # Linux Misc
 
