@@ -130,12 +130,6 @@ $ chkconfig --level 2345 mbpfan on && chkconfig --level 016 mbpfan off
 $ systemctl start mbpfan.service
 ```
 
-##  walk up after sleep
-
-```bash
-$ sudo dnf install -y acpid
-$ systemctl enable --now acpid
-```
 
 ## RDP
 
@@ -188,3 +182,11 @@ to get the UUID,  run command 'sudo blkid'
 then, replace  blk device with uuid
 UUID=3255683f-53a2-4fdf-91cf-b4c1041e2a62 /mnt/mydisk  ext4 defaults  0 0
 ```
+
+## update kernel args
+
+```bash
+$ grubby --remove-args="acpi=strict noapic" --update-kernel=$(ls -t1 /boot/vmlinuz-*.x86_64 | head -1)
+```
+
+
