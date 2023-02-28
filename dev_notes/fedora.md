@@ -137,6 +137,24 @@ $ sudo dnf install -y acpid
 $ systemctl enable --now acpid
 ```
 
+## RDP
+
+You can not access remote desktop if the host fedora screen is locked.
+
+To unlock the it,
+
+```bash
+$ loginctl list-sessions
+SESSION  UID USER   SEAT  TTY  
+      2 1000 mebusy       pts/0
+      6 1000 mebusy seat0 tty2
+```
+
+
+```bash
+$ loginctl unlock-session 6
+```
+
 
 # Linux Misc
 
