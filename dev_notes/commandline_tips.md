@@ -69,7 +69,7 @@ NOTE: lsof just list files opened by current users,  you need add `sudo` if you 
 
 <h2 id="2de1f3339dbd36d1d32da11a424bc79d"></h2>
 
-## [bash] wait previous command to finish 
+## wait previous command to finish 
 
 ```bash
 #！/bin/sh
@@ -89,6 +89,20 @@ NOTE: the last `;` is key important to Linux
 { command1 && command2 ; } > dist.file
 ```
 
+
+## ssh to server and execute something on command
+
+- solution1: ssh one line command
+    ```bash
+    ssh 192.168.171.161 "uptime;hostname"
+    ```
+- solution2: if the job is complex, add `bash` command to suppress *Pseudo-terminal* warning
+    ```bash
+    ssh 192.168.171.161 bash <<EOF
+      uptime
+      hostname
+    EOF
+    ```
 
 
 
