@@ -428,3 +428,48 @@ mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea
 ```
 
 
+# use 'dotnet' to create project
+
+1. new project 
+    ```bash
+    dotnet new --list
+    dotnet new console
+    dotnet new gitignore
+    ```
+2. edit Program.cs
+    ```csharp
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+
+        }
+    }
+    ```
+3. add reference
+    - Check `dotnet add -h`
+    - If you would like to use a local copy of pre-built dll instead of fetching one from Nuget, you can use an ItemGroup containing a reference instead of the PackageReference
+        - edit .csproj,  add `ItemGroup`   next to `<PropertyGroup>`
+        ```csharp
+        <ItemGroup>
+           <Reference Include="Google.Protobuf">      
+           <HintPath>../protobuf/runtime/Google.Protobuf.dll</HintPath>
+           </Reference>
+           <Reference Include="System.Buffers">      
+           <HintPath>../protobuf/runtime/System.Buffers.dll</HintPath>
+           </Reference>
+           <Reference Include="System.Memory">      
+           <HintPath>../protobuf/runtime/System.Memory.dll</HintPath>
+           </Reference>
+           <Reference Include="System.Runtime.CompilerServices.Unsafe">      
+           <HintPath>../protobuf/runtime/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+           </Reference>
+        </ItemGroup>
+        ```
+4. run
+    ```bash
+    dotnet run
+    ```
+
+
