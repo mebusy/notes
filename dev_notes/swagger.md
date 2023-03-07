@@ -178,6 +178,17 @@ To list config option for you language,
 docker run --rm  swaggerapi/swagger-codegen-cli-v3 config-help -l go-server
 ```
 
+## Swagger to Protobuf Schema
+
+https://github.com/OpenAPITools/openapi-generator
+
+find `SNAPSHOT` link to get a pre-built cli.
+
+```bash
+java -jar openapi-generator-cli.jar generate -g protobuf-schema  -i path-to-swagger.yaml -o pb-schema
+```
+
+
 <h2 id="a2374b8c1492381dc2135504e8e6800b"></h2>
 
 # OpenAPI 3.0
