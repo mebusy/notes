@@ -416,7 +416,7 @@ Python has a locals() function which gives you back a dictionary of local variab
 
 <h2 id="8160fc3170b680fdd05d32a93937bcb9"></h2>
 
-### re.sub group: number after \number
+### re.sub :  gourp '\number' followd normal numbers
 
 ```
 re.sub(r'(foo)', r'\1123', 'foobar') 
