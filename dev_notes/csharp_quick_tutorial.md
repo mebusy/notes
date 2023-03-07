@@ -471,5 +471,12 @@ mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea
     ```bash
     dotnet run
     ```
+5. create a .sln
+    ```bash
+    dotnet new sln --name client
+    # add .project to .sln
+    dotnet sln client.sln add client.csproj
+    ```
+
 
 
