@@ -88,6 +88,15 @@
     ```bash
     brew install mono
     ```
+    - NOTE: brew mono only shipped with limited .Net framework.
+        ```bash
+        $ ls  /usr/local/opt/mono/etc/mono/
+        2.0          4.0          4.5          browscap.ini config       mconfig
+        ```
+        - you may need add `<TargetFrameworkVersion>` in you .csproj
+            ```csproj
+            <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+            ```
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install nodejs and add `--ts-completer` 
     - NOTE: TSServer need a `.tern-project`
