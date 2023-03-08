@@ -451,7 +451,7 @@ mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea
     - Check `dotnet add -h`
     - e.g. add reference from NuGet
         ```bash
-        otnet add package SocketIOClient --version 3.0.8
+        dotnet add package SocketIOClient --version 3.0.8
         ```
     - If you would like to use a local copy of pre-built dll instead of fetching one from Nuget, you can use an ItemGroup containing a reference instead of the PackageReference
         - edit .csproj,  add `ItemGroup`   next to `<PropertyGroup>`
