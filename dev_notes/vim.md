@@ -84,7 +84,11 @@
 
 - for C family support:  `./install.py --clang-completer`
     - optional `--system-libclang` Use the libclang that comes with mac, but generally the version is relatively old and there will be problems
-- C# support: install Mono and add `--cs-completer` 
+- C# support:  `--cs-completer` 
+    ```bash
+    brew install mono
+    brew install dotnet@6
+    ```
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install nodejs and add `--ts-completer` 
     - NOTE: TSServer need a `.tern-project`
