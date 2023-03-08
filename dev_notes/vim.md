@@ -97,6 +97,10 @@
             ```csproj
             <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
             ```
+    - NOTE: current mono distribution not fully support .Net 7.0, so it's better to use dotnet6
+        ```bash
+        brew install dotnet@6
+        ```
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install nodejs and add `--ts-completer` 
     - NOTE: TSServer need a `.tern-project`
