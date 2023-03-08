@@ -87,7 +87,6 @@
 - C# support:  `--cs-completer` 
     ```bash
     brew install mono
-    brew install dotnet@6
     ```
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install nodejs and add `--ts-completer` 
