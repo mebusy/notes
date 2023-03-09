@@ -88,19 +88,19 @@
     ```bash
     brew install mono
     ```
-    - NOTE: brew mono only shipped with limited .Net framework.
+    - NOTE: [YCMD] brew mono only shipped with limited .Net framework.
         ```bash
-        $ ls  /usr/local/opt/mono/etc/mono/
-        2.0          4.0          4.5          browscap.ini config       mconfig
+        $ ls  /usr/local/opt/mono/lib/mono/
+        2.0-api                   4.6.1-api                 gac
+        3.5-api                   4.8-api                 lldb
         ```
-        - you may need add `<TargetFrameworkVersion>` in you .csproj
+        - to make YCM work, you may need add `<TargetFrameworkVersion>` in you .csproj
             ```csproj
-            <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+            <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
             ```
-    - NOTE: current mono distribution not fully support .Net 7.0, so it's better to use dotnet6
-        ```bash
-        brew install dotnet@6
-        ```
+    - NOTE: [viminspect]
+        - https://dotnet.microsoft.com/en-us/download/dotnet
+        - brew dotnet can not manage multiple SDKs
 - Go support: install Go and add `--go-completer` 
 - JavaScript and TypeScript support: install nodejs and add `--ts-completer` 
     - NOTE: TSServer need a `.tern-project`
