@@ -60,6 +60,10 @@ awk 'PATTERN1{ACTION1} PATTERN2{ACTION2} ...'
     Movies
     Music
     ```
+- print the last 2nd filed
+    ```bash
+    awk '....{print $(NF-1)}'
+    ```
 
 
 <h2 id="afdd5066763979dfed0ba27a5e973afe"></h2>
@@ -70,6 +74,10 @@ awk 'PATTERN1{ACTION1} PATTERN2{ACTION2} ...'
 - use `-F` to specify a delimiter
     ```bash
     $awk -F ':' '{...}'
+    ```
+- The delimiter can be a regular expression.
+    ```bash
+    $awk -F '[.:]' '{...}'
     ```
 
 <h2 id="2f04f3e6eee339eeb0ddb6c39606424d"></h2>
