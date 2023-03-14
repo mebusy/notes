@@ -14,7 +14,8 @@
 # XArgs
 
 - some shell commands can not take stdin and use that as a parameter, to do this you need another program to help with this and that is what `xargs` command does.
-- xargs allows to take standard input and pass that along as an argument into another command.
+- xargs allows to take **standard input** and pass that along as **an argument** into another command.
+    - stdin -> argument
 
 ```bash
 $ seq 5 | echo  # echo can not take stdin as parameter
