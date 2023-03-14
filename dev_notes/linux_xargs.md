@@ -93,4 +93,7 @@ $ seq 5 | xargs -n 1 -P 2 bash -c 'echo $0;sleep 1'
 # execution will took 3 seconds
 ```
 
+If `maxprocs` is set to 0, xargs will run as many processes as possible.
+
+
 
