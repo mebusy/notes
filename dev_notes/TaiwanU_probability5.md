@@ -347,6 +347,16 @@ plt.plot( x, stats.norm.pdf( x, mu, sigma  ) )
 plt.show()
 ```
 
+#### The 68-95-99.7 rule
+
+1. 68% of values fall within **1** standard deviations of the mean
+2. 95% of values fall within **2** standard deviations of the mean
+3. 99.7% of values fall within **3** standard deviations of the mean
+
+
+<img src="https://www.freecodecamp.org/news/content/images/2020/08/normal_dist_68_rule.jpg" width="480">
+
+
 ---
 
 
