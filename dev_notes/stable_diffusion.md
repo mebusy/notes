@@ -127,5 +127,10 @@ set `Sampling Method` to **DPM++ SDE Karras** ?
 
 
 
+# Misc
+
+- 提示词生成 https://wolfchen.top/tag/
+
+
 
 
