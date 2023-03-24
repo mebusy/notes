@@ -218,5 +218,211 @@ done
 内建命令，并不是关键字
 
 
+## built-in commands
+
+- source, or `.`
+    - 读取文件的内容，并在当前bash环境下将其内容当命令执行
+- read
+    - 从 标准输入读取输字符串到一个变量中
+        - `read -p "Login: " username`
+    - 读取到数组中
+        - `read -a test`
+- mapfile
+    - 将一个文本文件直接变成一个数组，每行作为数组的一个元素
+- readarray
+    - 同上
+    - 如果内建命令放到管道环境中执行，那么bash会给它创建一个subshell进行处理。于是创建的数组实际上与父进程没有关系
+- printf
+    - 进行格式化输出
+- getopts
+    - 命令行参数处理
+
+
+## Execution
+
+- 优先级
+    - alias
+    - keyword
+    - function
+    - built-in commands  (cd, pwd, etc...)
+    - hash (用hash命令可以查看 hash情况)
+    - external commands
+- you can use `type` to check whether a command is built-in, external, alias, or etc.
+    ```bash
+    $ type pwd
+    pwd is a shell builtin
+    $ type docker
+    docker is /usr/local/bin/docker
+    $ type myfind
+    myfind is a shell function from /Users/qibinyi/.myProfile
+    ```
+- 脚本的退出
+    - built-in command `exit` , 人为指定退出的返回码是多少
+    - 如果不使用exit 指定，使用最后执行命令的返回码
+- 调试
+    - `-v` 可视模式, 执行bash程序的时候将要执行的内容也打印出来
+    - `-x` 跟踪模式(xtrace),  跟踪各种语法的调用，并打印出每个命令的输出结果
+    - `-n` 检查bash的语法错误, 不会真正执行bash脚本
+    - `-e` 脚本命令执行错误的时候直接退出
+
+## 环境变量
+
+- `env`
+    - 查看当前bash已经定义的环境变量
+- `aaa=100`
+    - 这是个一般变量，不能被子进程继承
+- `export`
+    - 可以将一个一般变量转成环境变量
+    - `export aaa`
+
+## 常用环境变量
+
+- 进程信息
+    - HOSTNAME
+    - HOSTTYPE
+    - OLDPWD / PWD
+    - HOME
+    - SHELL
+    - BASHPID
+    - UID / EUID
+    - GROUPS  用户组
+    - PPID  父进程PID
+- RANDOM
+    - 得到一个0-32767的随机数
+        ```bash
+        echo $RANDOM
+        24746
+        ```
+- ulimit
+    - 查看和设置bash环境中的资源限制
+    - `ulimit -a`
+
+
+## redirection
+
+- shell在产生一个新进程后，新进程的前三个文件描述符都默认指向三个相关文件
+    - 0 stdin
+    - 1 stdout
+    - 2 stderr
+- stdin redirection
+    - 可以读取其他终端输入
+    - `cat < /dev/pts/3`
+- stdout redirection
+    - `>`
+- stderr redirection
+    - `2>`
+- 常见用法
+    - 只看报错信息
+        - `xxx > /dev/null`
+    - 只看正确输出
+        - `xxx 2> /dev/null`
+    - 所有输出都不看
+        - `xxx &> /dev/null`
+        - or `xxx >& /dev/null`
+    - 将标准报错输出，重定向到和标准输出相同的地方
+        - `xxx 2>&1`
+        - `&1` 表示 引用 fd 1
+    - 从描述符3读取
+        - `3<`
+
+
+## pipeline
+
+- `|`
+    - `command1 | command2`
+    - 将command1的stdout跟command2的stdin 通过管道(pipe)连接起来
+- `|&`
+    - `command1 |& command2`
+    - 将command1 stdout 和 stderr 都跟command2的和stdin连接起来
+    - `command1 2>&1 | command2` 的简写方式
+
+
+## 数组操作
+
+- 定义数组
+    - `declare -a array`
+- 元素赋值
+    - `array[0] = 1000`
+- 取值
+    - `${array[0]}`
+    - `${array[*]}`   (get all)
+    - `${#array[*]}`  (数组长度)
+- 定义一个关键数组
+    - `declare -A array`
+
+
+## 扩展
+
+### 大括号扩展
+
+```bash
+$ {a,b,c,d}{1,2,3,4}
+a1 a2 a3 a4 b1 b2 b3 b4 c1 c2 c3 c4 d1 d2 d3 d4
+
+$ {a,c}.conf
+a.conf c.conf
+```
+
+### 变量扩展
+
+- `:-` A or 1000
+    - `${aaa:-1000}`
+- `:=` A or A=1000
+    - `${aaa:=1000}`
+- Slice
+    - `${aaa:10:5}`
+        - aaa[10:15]，`[start:length]`
+    - `${aaa:10}`
+        - aaa[10:]
+    - `${aaa: -5}`
+        - aaa[:-5] 注意负号 前面的空格
+    - `${#aaa}`
+        - 变量值的长度
+    - `${aaa#pattern}`
+        - remove pattern
+        - 从左往右, 从头**match** 到第一个 `^pattern`，删除pattern，取其后面的字串
+    - `${aaa##pattern}`
+        - greedy version
+        - keey base path
+            ```bash
+            $ aaa="/Volumes/WORK/WORK/test"
+            $ echo ${aaa##*/}
+            test
+            ```
+        - get file extension
+            ```bash
+            ${aaa##*.}
+            ```
+    - `${aaa%pattern}`
+        - also remove pattern, except it apply to the back of variable.
+            ```bash
+            $ FILE="xcache-1.3.0.tar.gz"
+            $ echo "${FILE%.tar.gz}"
+            xcache-1.3.0
+            ```
+        - remove file extension
+            ```bash
+            ${aaa%.*}
+            ```
+    - `${aaa%%pattern}`
+        - greedy version
+- 字符串替换
+    - `${aaa/pattern/string}`
+        - 将`pattern`匹配到的第一个字符串替换成`string`
+    - `${aaa//pattern/string}`
+        - 全局替换
+
+- 算数扩展
+    - `((...))`
+        ```bash
+        $ a=1
+        $ ((a++))
+        $ echo $a
+        2
+        ```
+    - 支持 整数运算/位运算/关系运算/三元运算
+    - 内建命令let
+        - `let i=i**2`
+        - `(())` 的另一种写法
 
 
