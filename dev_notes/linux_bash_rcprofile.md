@@ -1,3 +1,11 @@
+[](...menustart)
+
+- [Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)](#0504ebb2cb3cdae2dd497029e147d0e3)
+
+[](...menuend)
+
+
+<h2 id="0504ebb2cb3cdae2dd497029e147d0e3"></h2>
 
 # Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)
 

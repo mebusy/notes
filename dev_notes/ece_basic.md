@@ -1,6 +1,23 @@
+[](...menustart)
 
+- [Basic Electronics For Beginners](#7410fe92490df7c6dd5b98e039e1e174)
+    - [Electricity](#656e43581640c08d44b1eb0228846623)
+    - [Resistors](#d6df7f2e127bb9b8363cb35de92256fc)
+    - [LED](#53e0dbc06e48e3d381ac224fa8bae3df)
+    - [Potentiometer](#95d3f279bc717c9008a09a17c0bebe62)
+    - [Capacitors](#d2b1424142f79db620855ab8b666e28c)
+    - [Diodes](#dfcc5315f4c70a99d2103f74cfa1ac6e)
+    - [Transistors](#3ab62a78a6c53ea42fec023a55b3a3e3)
+    - [Integrated Circuits](#7bf2084fde7f81e2912434fdfffb4148)
+
+[](...menuend)
+
+
+<h2 id="7410fe92490df7c6dd5b98e039e1e174"></h2>
 
 # Basic Electronics For Beginners
+
+<h2 id="656e43581640c08d44b1eb0228846623"></h2>
 
 ## Electricity
 
@@ -12,6 +29,8 @@
         - the electricity flows in one direction, between the power and groud.
         - you can test is by reading a battery with a volting meter
 
+
+<h2 id="d6df7f2e127bb9b8363cb35de92256fc"></h2>
 
 ## Resistors
 
@@ -32,10 +51,14 @@
         ```
         R = (1/R₁ + 1/R₂ + ...)⁻¹
         ```
+<h2 id="53e0dbc06e48e3d381ac224fa8bae3df"></h2>
+
 ## LED
     - light emitting diode (发光二极管)
     - monochromatic light sources, they generate light of one specific wavelength
     - a typical led has a voltage drop of 2V, and the amount of current usually flows to it vary between 0.1mA~20mA.
+
+<h2 id="95d3f279bc717c9008a09a17c0bebe62"></h2>
 
 ## Potentiometer
     - a variable resistor
@@ -47,6 +70,8 @@
     - os it is a power source, more specifically  a DC power source.
 
 
+<h2 id="d2b1424142f79db620855ab8b666e28c"></h2>
+
 ## Capacitors
 
 - a component that stores electricity and then discharges it into the circuit when there is a drop in electricity.
@@ -55,12 +80,16 @@
     - if it is connected backwards, it won't work correctly.
 
 
+<h2 id="dfcc5315f4c70a99d2103f74cfa1ac6e"></h2>
+
 ## Diodes
 
 - components which are polarized, they only allow electricall current to pass through them in one direction.
     - this is useful in that it can be placed in a circuit to prevent electricity from flowing in the wrong direction.
 - typically results 0.7V voltage drop
 
+
+<h2 id="3ab62a78a6c53ea42fec023a55b3a3e3"></h2>
 
 ## Transistors
 
@@ -71,6 +100,8 @@
     2. PNP
 - BJT
     - ![](https://i0.wp.com/ettron.com/wp-content/uploads/2020/07/image-1.jpg?resize=333%2C281&ssl=1)
+
+<h2 id="7bf2084fde7f81e2912434fdfffb4148"></h2>
 
 ## Integrated Circuits
 

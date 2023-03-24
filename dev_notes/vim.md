@@ -19,6 +19,7 @@
         - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
         - [make multiple line word into java string](#fe7fb0107de52ad2a0bca9917a32301a)
         - [复制/移动 行](#87b0406cc2b93c7df74c3cfc9b2e690b)
+        - [MOVE](#f7f93635f8e193a924ae4a691bb66b8f)
         - [Advance g](#b492b625b61dc9e4718c98561d7b0296)
 - [grok VIM](#fc1f1e8c6d70d860957c66f735e60e2b)
     - [A sampling of more advanced tricks:](#a5787082a16f14e8db2acbf78497ee99)
@@ -406,6 +407,8 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 :-3t.  // copy line:-3 to current postion  
 ```
 
+
+<h2 id="f7f93635f8e193a924ae4a691bb66b8f"></h2>
 
 ### MOVE
 

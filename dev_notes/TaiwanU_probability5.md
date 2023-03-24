@@ -17,6 +17,7 @@
     - [6-1: 连续机率分布 II ( CONTINUOUS PROBABILITY DISTRIBUTIONS )](#2f5c9c5eb9da34f36d7092d770b94259)
         - [Normal 机率分布(常态分布)](#a638878f993f94c84c6c050963d0f635)
             - [Standard Normal Distribution 标准常态分布](#b672e9679aa32ead876e8b9c6c43d78c)
+            - [The 68-95-99.7 rule](#cdfda3a64e2be69c7339bf9914528638)
     - [QUIZ](#e1f7ff5183a361cd3b41e3ab5e647cb5)
         - [max/min](#cd1c601d65c97e1393f70771cd14e8a1)
 
@@ -346,6 +347,8 @@ x = np.linspace( mu - 5*sigma, mu + 5*sigma, 200 )
 plt.plot( x, stats.norm.pdf( x, mu, sigma  ) )
 plt.show()
 ```
+
+<h2 id="cdfda3a64e2be69c7339bf9914528638"></h2>
 
 #### The 68-95-99.7 rule
 

@@ -1,6 +1,7 @@
 [](...menustart)
 
 - [Deprecated:  StoreKit 2 is MORE recommended !!](#9b5c27967e51e039f3e532ccd629da63)
+    - [StoreKit2](#43d132d5651f83597977e7bcacdfb154)
 - [IAP (StoreKit 1)](#91e7d7af9b27b33b0eccfdabb1a17e07)
     - [IAP Process Flow](#58915c1729b0554fba11908a387eecc6)
         - [Load In-App identifiers](#0581a394c7c5b9dbd1f282ec2281c044)
@@ -54,6 +55,8 @@
 <h2 id="9b5c27967e51e039f3e532ccd629da63"></h2>
 
 # Deprecated:  StoreKit 2 is MORE recommended !!
+
+<h2 id="43d132d5651f83597977e7bcacdfb154"></h2>
 
 ## StoreKit2
 

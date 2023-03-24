@@ -1,5 +1,32 @@
+[](...menustart)
+
+- [Bash](#7024ff0860dec6ab1519a3f71c7d8779)
+    - [Common](#d13bc5b68b2bd9e18f29777db17cc563)
+    - [if](#39c8942e1038872a822c0dc75eedbde3)
+    - [while / until](#8ec47e29c787d7e06995e367d36ae96c)
+    - [case](#cd14c323902024e72c850aa828d634a7)
+    - [for loop](#9a499caceec56c05b0f6d0b9dc864f45)
+    - [select](#99938282f04071859941e18f16efcf42)
+    - [continue / break](#2278dab81c22a2a29d9f84d9a618ad33)
+    - [built-in commands](#09a03771d1d8425ee09a0543cb085691)
+    - [Execution](#8f44785c8c19412c5b6611db30984514)
+    - [环境变量](#3867e350ebb33a487c4ac5f7787e1c29)
+    - [常用环境变量](#3d07adb9606ee94b6396caf87b7d6885)
+    - [redirection](#94a83445293b766bbc8eced03aeca4bd)
+    - [pipeline](#99f6f4be0908f24bb4a22a4ffb277da4)
+    - [数组操作](#b2cd6f460120d71c5dba4731c34dee64)
+    - [扩展](#2dc90225b8033d17c41b08f39fa42de2)
+        - [大括号扩展](#745adcbbabbc720ab0eba67b1fb06fbc)
+        - [变量扩展](#afbb26efcbdb6a4c1c6a481099d27ea3)
+
+[](...menuend)
+
+
+<h2 id="7024ff0860dec6ab1519a3f71c7d8779"></h2>
 
 # Bash
+
+<h2 id="d13bc5b68b2bd9e18f29777db17cc563"></h2>
 
 ## Common
 
@@ -60,6 +87,8 @@
     - `$?` 上一个命令的返回值
     - 所以上述所有取值都可以写成`${x}`的方式
 
+<h2 id="39c8942e1038872a822c0dc75eedbde3"></h2>
+
 ## if
 
 ```bash
@@ -89,6 +118,8 @@ fi
     - 等价于 `if test $ret -eq 0 ...`
 
 
+<h2 id="8ec47e29c787d7e06995e367d36ae96c"></h2>
+
 ## while / until
 
 ```bash
@@ -105,6 +136,8 @@ done
 
 - `while list-1; do list-2; done`
 - `until list-1; do list-2; done`
+
+<h2 id="cd14c323902024e72c850aa828d634a7"></h2>
 
 ## case
 
@@ -128,6 +161,8 @@ case EXPRESSION in
     ;;
 esac
 ```
+
+<h2 id="9a499caceec56c05b0f6d0b9dc864f45"></h2>
 
 ## for loop
 
@@ -164,6 +199,8 @@ do
 done
 ```
 
+
+<h2 id="99938282f04071859941e18f16efcf42"></h2>
 
 ## select
 
@@ -213,10 +250,14 @@ done
 
 </details>
 
+<h2 id="2278dab81c22a2a29d9f84d9a618ad33"></h2>
+
 ## continue / break
 
 内建命令，并不是关键字
 
+
+<h2 id="09a03771d1d8425ee09a0543cb085691"></h2>
 
 ## built-in commands
 
@@ -237,6 +278,8 @@ done
 - getopts
     - 命令行参数处理
 
+
+<h2 id="8f44785c8c19412c5b6611db30984514"></h2>
 
 ## Execution
 
@@ -265,6 +308,8 @@ done
     - `-n` 检查bash的语法错误, 不会真正执行bash脚本
     - `-e` 脚本命令执行错误的时候直接退出
 
+<h2 id="3867e350ebb33a487c4ac5f7787e1c29"></h2>
+
 ## 环境变量
 
 - `env`
@@ -274,6 +319,8 @@ done
 - `export`
     - 可以将一个一般变量转成环境变量
     - `export aaa`
+
+<h2 id="3d07adb9606ee94b6396caf87b7d6885"></h2>
 
 ## 常用环境变量
 
@@ -297,6 +344,8 @@ done
     - 查看和设置bash环境中的资源限制
     - `ulimit -a`
 
+
+<h2 id="94a83445293b766bbc8eced03aeca4bd"></h2>
 
 ## redirection
 
@@ -326,6 +375,8 @@ done
         - `3<`
 
 
+<h2 id="99f6f4be0908f24bb4a22a4ffb277da4"></h2>
+
 ## pipeline
 
 - `|`
@@ -336,6 +387,8 @@ done
     - 将command1 stdout 和 stderr 都跟command2的和stdin连接起来
     - `command1 2>&1 | command2` 的简写方式
 
+
+<h2 id="b2cd6f460120d71c5dba4731c34dee64"></h2>
 
 ## 数组操作
 
@@ -351,7 +404,11 @@ done
     - `declare -A array`
 
 
+<h2 id="2dc90225b8033d17c41b08f39fa42de2"></h2>
+
 ## 扩展
+
+<h2 id="745adcbbabbc720ab0eba67b1fb06fbc"></h2>
 
 ### 大括号扩展
 
@@ -362,6 +419,8 @@ a1 a2 a3 a4 b1 b2 b3 b4 c1 c2 c3 c4 d1 d2 d3 d4
 $ {a,c}.conf
 a.conf c.conf
 ```
+
+<h2 id="afbb26efcbdb6a4c1c6a481099d27ea3"></h2>
 
 ### 变量扩展
 

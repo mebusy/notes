@@ -25,7 +25,7 @@
         - [方法内全部局部变量](#76a7e51a79a55462350aaed109577894)
         - [输出一个对象各个成员的名称和值](#dd6b35cfcf7bc2919f28aaba9e65fa92)
         - [python 下划线变量](#379e1d911a58f6e847ad68e52703c7eb)
-        - [re.sub group: number after \number](#8160fc3170b680fdd05d32a93937bcb9)
+        - [re.sub :  gourp '\number' followd normal numbers](#634ebc2e707a7aeeb3f0a8a3822fd684)
         - [call super class constructor](#7bb8886dc369a3137b7dd907c9ff7993)
         - [numpy argmax tie breaking](#4330cb83a720d5c17727f9762bff14cd)
     - [数字进制转换](#4155a2d7d71ebf1611555bda413d2961)
@@ -65,6 +65,7 @@
         - [enter interact mode after executing a python file](#e3c3e4edeeaec5c36e52fe88b8fd33fe)
         - [add python module search path](#c005e12b106174340f49500f7c1ab309)
         - [open file with both reading and writing](#b8976c77d38eafc77157b35d8969c262)
+        - [read a large file](#932519c187b8a3b104489d10219f1810)
         - [basis of Datetime and Time](#fdbe9d1605732955d440487ba60d2368)
         - [seconds to readable date](#ec96030c0279fc4c33c1d008de5222c0)
         - [convert between seconds since the epoch  and  struct_time](#fb28c08f40bf7d1c5542c312b46232c8)
@@ -414,7 +415,7 @@ Python has a locals() function which gives you back a dictionary of local variab
     - 系统定义名字 
     - python里特殊方法专用的标识
 
-<h2 id="8160fc3170b680fdd05d32a93937bcb9"></h2>
+<h2 id="634ebc2e707a7aeeb3f0a8a3822fd684"></h2>
 
 ### re.sub :  gourp '\number' followd normal numbers
 
@@ -902,6 +903,8 @@ with open(filename, "r+") as f:
     f.truncate()
 ```
 
+
+<h2 id="932519c187b8a3b104489d10219f1810"></h2>
 
 ### read a large file
 

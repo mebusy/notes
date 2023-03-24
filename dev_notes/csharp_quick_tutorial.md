@@ -21,6 +21,7 @@
     - [struct](#0f8d6fb56fe6cdf55ad0114ec5b51dbb)
     - [boxing](#4684c60ddc71bc393a1bf007f5452372)
 - [compile & run C# code](#f373d24404837ec338f4a3286f9df48e)
+- [use 'dotnet' to create project](#f5a912e4318d5a520ef6436be3c1cd56)
 
 [](...menuend)
 
@@ -427,6 +428,8 @@ csc  /out:resp_verify.exe  *.cs
 mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea0cadd9"}'
 ```
 
+
+<h2 id="f5a912e4318d5a520ef6436be3c1cd56"></h2>
 
 # use 'dotnet' to create project
 

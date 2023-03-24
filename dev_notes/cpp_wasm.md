@@ -1,6 +1,21 @@
+[](...menustart)
+
+- [C++ 2 WASM](#04b687d530d939da6556492edd2ce09a)
+    - [1 Setting Up Your Toolchain](#3a157ad067712e34eed57ea16b861092)
+    - [2 Hello World](#576bf482f0e7634add05ce80a0dc6f3a)
+    - [3 Interacting with the Browser](#fbcd61b551dae978f714283936e343cf)
+    - [4 Interacting with System Libraries](#d507c7afc9368f32c80bb989442db9ad)
+    - [5 SDL](#a5f53dae0134725a778b2f73fd65e94e)
+
+[](...menuend)
+
+
+<h2 id="04b687d530d939da6556492edd2ce09a"></h2>
 
 # C++ 2 WASM
 
+
+<h2 id="3a157ad067712e34eed57ea16b861092"></h2>
 
 ## 1 Setting Up Your Toolchain
 
@@ -13,6 +28,8 @@ brew install emscripten
 emcc -v
 ```
 
+
+<h2 id="576bf482f0e7634add05ce80a0dc6f3a"></h2>
 
 ## 2 Hello World
 
@@ -39,6 +56,8 @@ emrun hello.html
 ```
 
 
+<h2 id="fbcd61b551dae978f714283936e343cf"></h2>
+
 ## 3 Interacting with the Browser
 
 - WebAssembly cannot natively interact with the web browser
@@ -54,6 +73,8 @@ emrun hello.html
         - pic_2
 
 
+<h2 id="d507c7afc9368f32c80bb989442db9ad"></h2>
+
 ## 4 Interacting with System Libraries
 
 - Most native executable link against a standard library (libc, libc++, etc..) 
@@ -64,6 +85,8 @@ emrun hello.html
 - Some parts of the implementation are done in WebAssembly, others in JavaScript.
     - e.g. https://github.com/emscripten-core/emscripten/blob/main/system/lib/libcxx/src/future.cpp
 
+
+<h2 id="a5f53dae0134725a778b2f73fd65e94e"></h2>
 
 ## 5 SDL
 

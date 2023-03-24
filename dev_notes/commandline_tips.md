@@ -4,7 +4,9 @@
     - [show pid of process by name](#ca16a9ebaa795350051c2666d4a7f8ba)
     - [kill process by port](#48cd249a485752b67116301484bb3978)
     - [check port using](#ab1922f2cde102e230acb305eb9338f2)
-    - [\[bash\] wait previous command to finish](#2de1f3339dbd36d1d32da11a424bc79d)
+    - [wait previous command to finish](#541ac88de2966e25923b3142914c12fa)
+    - [concat 2 stdout to one file](#06f8febd60d902a29111157609148ed4)
+    - [ssh to server and execute something on command](#fb5aa28bd5781882fcbe8c435e69d705)
 
 [](...menuend)
 
@@ -67,7 +69,7 @@ sudo lsof -i:8080
 NOTE: lsof just list files opened by current users,  you need add `sudo` if you want to see all opened files.
 
 
-<h2 id="2de1f3339dbd36d1d32da11a424bc79d"></h2>
+<h2 id="541ac88de2966e25923b3142914c12fa"></h2>
 
 ## wait previous command to finish 
 
@@ -81,6 +83,8 @@ wait  #会等待wait所在bash上的所有子进程的执行结束，本例中�
 echo”5”
 ```
 
+<h2 id="06f8febd60d902a29111157609148ed4"></h2>
+
 ## concat 2 stdout to one file 
 
 NOTE: the last `;` is key important to Linux
@@ -89,6 +93,8 @@ NOTE: the last `;` is key important to Linux
 { command1 && command2 ; } > dist.file
 ```
 
+
+<h2 id="fb5aa28bd5781882fcbe8c435e69d705"></h2>
 
 ## ssh to server and execute something on command
 

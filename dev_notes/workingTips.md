@@ -24,7 +24,6 @@
     - [FTP Server](#98cc3814df5e703cb40d72247999d91a)
     - [\[MacOSX\] move large files out of system volumn](#876a5afb8f5f4d9fe22d3f93b322e87d)
     - [\[MacOSX\] monitor files changes under current folder](#75da08a12859c3c32281ae78bfb39348)
-    - [Configure SSH Key-Based Authentication on a Linux Server](#f0f02b1fd00a41a63b898fb962d4826d)
 
 [](...menuend)
 

@@ -5,6 +5,7 @@
     - [swagger UI](#d965025d55377342fd1e4ff3e57ad750)
     - [inheritance](#5fed3411faf832174ef1f040028b2c21)
     - [Code Gen](#fe08e791970673313c63001a59ae8f88)
+    - [Swagger to Protobuf Schema](#9d0e710f4d4b4adc17cac203fdd8a1ec)
 - [OpenAPI 3.0](#a2374b8c1492381dc2135504e8e6800b)
     - [Basic Structure](#fe1861d778ca03acdf4244a3bc9ccdce)
         - [Parameters](#3225a10b07f1580f10dee4abc3779e6c)
@@ -177,6 +178,8 @@ To list config option for you language,
 ```bash
 docker run --rm  swaggerapi/swagger-codegen-cli-v3 config-help -l go-server
 ```
+
+<h2 id="9d0e710f4d4b4adc17cac203fdd8a1ec"></h2>
 
 ## Swagger to Protobuf Schema
 
