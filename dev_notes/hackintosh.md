@@ -320,4 +320,11 @@ https://opencore.slowgeek.com/
 7. run OC patcher again,
     - apply 5. POST ...
 
+## bluetooth problem: airpod audio crack
 
+```bash
+$ defaults write bluetoothaudiod "Enable AAC codec" -bool true
+
+$ defaults read bluetoothaudiod "Enable AAC codec"
+1
+```
