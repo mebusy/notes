@@ -485,3 +485,58 @@ a.conf c.conf
         - `(())` 的另一种写法
 
 
+# Bash Commands Notes
+
+## sort / uniq
+
+- uniq : report or filter out repeated lines
+- uniq 多 伴随着 sort 命令同时出现, 因为 uniq 只能去掉 相邻的重复line
+- 虽然 `sort -u` 自己就可以去掉重复, 但 uniq 有这更多的功能
+- `uniq -c` 打印重复的次数
+    ```bash
+    5 chocolate
+    4 mint
+    1 ranbow
+    2 rocky
+    ```
+- `uniq -d`
+    - display only repeated lines 
+    ```bash
+    chocolate
+    mint
+    rocky
+    ```
+- `uniq -u`
+    - display non-dup lines
+    ```bash
+    ranbow
+    ```
+- combo...
+    ```bash
+    $ sort favFlavors.txt | uniq -c | sort -nr
+    5 chocolate
+    4 mint
+    2 rocky
+    1 ranbow
+    ```
+
+## expansion
+
+```bash
+$ ls *.{json,py}
+```
+
+```bash
+$ echo Day{1..7}
+Day1 Day2 Day3 Day4 Day5 Day6 Day7
+```
+
+## du (disk usage)
+
+[disk usage](./disk_usage.md)
+
+
+
+
+
+

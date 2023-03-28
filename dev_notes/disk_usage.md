@@ -87,5 +87,7 @@ du – display disk usage statistics
     1	Movies
     1	Documents  
     ```
-
-
+- display & sort by human-readable
+    ```bash
+    $ du -h . | sort -hr | head -n 10
+    ```
