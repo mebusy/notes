@@ -297,7 +297,7 @@ done
     $ type docker
     docker is /usr/local/bin/docker
     $ type myfind
-    myfind is a shell function from /Users/qibinyi/.myProfile
+    myfind is a shell function from /Users/xxx/.myProfile
     ```
 - 脚本的退出
     - built-in command `exit` , 人为指定退出的返回码是多少
