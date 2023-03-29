@@ -395,6 +395,11 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 8@@
 ```
 
+## %s  newline `\n` in replace str
+
+use `\r` instead.
+
+
 <h2 id="87b0406cc2b93c7df74c3cfc9b2e690b"></h2>
 
 ###  复制/移动 行
