@@ -536,7 +536,71 @@ Day1 Day2 Day3 Day4 Day5 Day6 Day7
 [disk usage](./disk_usage.md)
 
 
+## su (switch user)
+
+```bash
+$ su testuser
+```
+
+To simulate a full login
+
+```bash
+$ su -[l] testuser
+```
+
+## permission
+
+```bash
+$ ls -l
+drwxr-xr-x  5  mebusy  staff   160 Aug  1  2022 go
+```
+
+`drwxr-xr-x`
+
+- the 1st character could be
+    1. `d` :  a directory
+    2. `-` :  a file
+    3. `l` :  a symbolic link
+- the following 9 characters are `rwx` permssions for `owner`, `group`, `others` (any user)
 
 
+## chmod
+
+syntax:
+
+```bash
+chmod mode file
+```
+
+- who
+    - u : user
+    - g : group
+    - o : others
+    - a : all
+- what
+    - `-` : remove permission
+    - `+` : grants permission
+    - `=` : set a permission and remove others
+- which
+    - r : read permission
+    - w : write permission
+    - x : execute permission
+
+examples:
+
+- add write permission to group
+    ```bash
+    chmod g+w file.txt
+    ```
+- remove write permission from all
+    ```bash
+    chmod a-w file.txt
+    # or
+    chmod -w file.txt
+    ```
+- prevent others to access this file
+    ```bash
+    chmod o-rwx file.txt
+    ```
 
 
