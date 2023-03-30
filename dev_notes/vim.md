@@ -18,6 +18,7 @@
         - [duplicate column, then paste it next to it](#4bfa29dd5fb09c6b1e51c19cadea0e12)
         - [Remove unwanted empty lines](#67c5f9b419ed15a16a0cb4786a4a6552)
         - [make multiple line word into java string](#fe7fb0107de52ad2a0bca9917a32301a)
+    - [%s  newline `\n` in replace str](#6c24d675fa3c2aeb536fa5d6901dcd17)
         - [复制/移动 行](#87b0406cc2b93c7df74c3cfc9b2e690b)
         - [MOVE](#f7f93635f8e193a924ae4a691bb66b8f)
         - [Advance g](#b492b625b61dc9e4718c98561d7b0296)
@@ -394,6 +395,8 @@ qa0I"escA",esc0jq   // ( 0I 0j to correct position )
 @a
 8@@
 ```
+
+<h2 id="6c24d675fa3c2aeb536fa5d6901dcd17"></h2>
 
 ## %s  newline `\n` in replace str
 

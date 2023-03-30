@@ -8,6 +8,7 @@
 8. [smart pointer](rust_smartpoint.md)
 9. [concurrency,threads,channel,mutex,arc](rust_concurrency.md)
 10. [rust collections](rust_collections.md)
+11. [rust for cpp user](rust_4_cppuser.md)
 
 20. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
 

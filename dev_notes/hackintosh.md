@@ -11,6 +11,7 @@
     - [Iris Plus 655  Without WhatEverGreen](#b629a48f87baa1255d141a0d31957405)
     - [check your opencore plist](#f9a1aa084270d908f100a833ffc5f42d)
     - [Install Monterey on unsupported Mac](#269dbe135802539e86431697032c3599)
+    - [bluetooth problem: airpod audio crack (NOT WORK)](#5b39fb0e867ea7803ee39bad2c8ea7d6)
 
 [](...menuend)
 
@@ -319,6 +320,8 @@ https://opencore.slowgeek.com/
 6. hold Option Reboot,   hold ctrl + EFI
 7. run OC patcher again,
     - apply 5. POST ...
+
+<h2 id="5b39fb0e867ea7803ee39bad2c8ea7d6"></h2>
 
 ## bluetooth problem: airpod audio crack (NOT WORK)
 

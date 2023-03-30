@@ -18,6 +18,13 @@
     - [扩展](#2dc90225b8033d17c41b08f39fa42de2)
         - [大括号扩展](#745adcbbabbc720ab0eba67b1fb06fbc)
         - [变量扩展](#afbb26efcbdb6a4c1c6a481099d27ea3)
+- [Bash Commands Notes](#e783b04af539ac9f3181c7d5e9ac540f)
+    - [sort / uniq](#195c5418af40d0e25b0d4fe8035e569b)
+    - [expansion](#1180a13c0273c83a6e0b2dcd9a7a6f62)
+    - [du (disk usage)](#c7943266901b49752011b2cafa63d405)
+    - [su (switch user)](#80a2812465be83176899c0fe624e5967)
+    - [permission](#4b65ca0f8b76e7181a12bf1fabc48532)
+    - [chmod](#417e248f80c35ca0d471575a5fb951f5)
 
 [](...menuend)
 
@@ -485,7 +492,11 @@ a.conf c.conf
         - `(())` 的另一种写法
 
 
+<h2 id="e783b04af539ac9f3181c7d5e9ac540f"></h2>
+
 # Bash Commands Notes
+
+<h2 id="195c5418af40d0e25b0d4fe8035e569b"></h2>
 
 ## sort / uniq
 
@@ -520,6 +531,8 @@ a.conf c.conf
     1 ranbow
     ```
 
+<h2 id="1180a13c0273c83a6e0b2dcd9a7a6f62"></h2>
+
 ## expansion
 
 ```bash
@@ -531,10 +544,14 @@ $ echo Day{1..7}
 Day1 Day2 Day3 Day4 Day5 Day6 Day7
 ```
 
+<h2 id="c7943266901b49752011b2cafa63d405"></h2>
+
 ## du (disk usage)
 
 [disk usage](./disk_usage.md)
 
+
+<h2 id="80a2812465be83176899c0fe624e5967"></h2>
 
 ## su (switch user)
 
@@ -547,6 +564,8 @@ To simulate a full login
 ```bash
 $ su -[l] testuser
 ```
+
+<h2 id="4b65ca0f8b76e7181a12bf1fabc48532"></h2>
 
 ## permission
 
@@ -563,6 +582,8 @@ drwxr-xr-x  5  mebusy  staff   160 Aug  1  2022 go
     3. `l` :  a symbolic link
 - the following 9 characters are `rwx` permssions for `owner`, `group`, `others` (any user)
 
+
+<h2 id="417e248f80c35ca0d471575a5fb951f5"></h2>
 
 ## chmod
 
