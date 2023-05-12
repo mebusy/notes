@@ -263,6 +263,12 @@ listen on all src/dst net with address 192.30.0.0/16, and port 443
 $ sudo tcpdump -i en0 net 192.30.0.0/16  and  port 443 -n
 ```
 
+listen on all traffics with specific host
+
+```bash
+$ sudo tcpdump -i en0 dst host google.com  -n
+```
+
 
 
 <h2 id="869d7745a2b610e3fcd5afed798f8986"></h2>
