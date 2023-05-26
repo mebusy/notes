@@ -117,6 +117,13 @@ chrome: `chrome://net-internals/#proxy`
 
 ## download youtube playlist
 
+- install
+    - `brew install youtube-dl`
+- alternative install
+    ```bash
+    python3 -m pip install --force-reinstall https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz
+    yt-dlp URL
+    ```
 
 ```
 youtube-dl -c --write-auto-sub --sub-lang=en --ignore-errors -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
