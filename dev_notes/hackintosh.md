@@ -137,9 +137,23 @@ https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
 17. womp is 1 if you want your Mac to wake when it receives a ‘magic’ network packet, which is the same as wake for network access in the pane;
 
 
+## pmset utils
+
+```bash
+# restore 
+sudo pmset restoredefaults
+
+pmset -g 
+pmset -g assertions
+pmset -g log
+pmset -g assertionslog
+```
+
+## Tips:  disalbe `Power Nap` !!!
+
 <h2 id="bcbe6e609bff0627e2e3654d1a1123e8"></h2>
 
-## Catalina 10.5.2 Sleep problem
+## Catalina 10.5.2 Sleep problem (Deprecated in Ventura)
 
 ```bash
 launchctl unload -w /System/Library/LaunchAgents/com.apple.parsec-fbf.plist
@@ -156,7 +170,7 @@ rm -R com.apple.parsecd
 
 <h2 id="8793db1e9550cee531b14bcf6086ff68"></h2>
 
-## Big Sur Sleep problem
+## Big Sur Sleep problem (Deprecated in Ventura)
 
 ```bash
 launchctl unload -w  /System/Library/LaunchAgents/com.apple.triald.plist
