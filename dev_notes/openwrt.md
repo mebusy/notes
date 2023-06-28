@@ -34,6 +34,8 @@
     - 系统/管理权
 3. 网络/接口/LAN
     - + ipv4 网关
+    - + option dns: 114.114.114
+    - + IPv4 广播:  192.168.71.255 , (e.g.)
     - DHCP
         - 基本设置/ '忽略此接口'
         - ipv6 设置/ 全部'已禁用'
@@ -43,6 +45,14 @@
     - + DNS加速
 6. 网络/ 'DHCP/DNS'
     - 确认 DNS转发 :  `127.0.0.1#5333`
+    - 高级设置: 禁止解析 IPv6 DNS (maybe)
+7. passwall
+    - 主要
+        - 主开关
+        - TCP节点/ UDP节点
+    - DNS
+        - DNS分流: SmartDNS (maybe)
+
 
 
 # R2S
