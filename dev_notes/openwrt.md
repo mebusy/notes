@@ -22,6 +22,30 @@
 - [openwrt-rpi](https://github.com/SulingGG/Openwrt-rpi)
 - [tool: balena Etcher](https://www.balena.io/etcher/?ref=etcher_footer)
 
+## 设置
+
+1. 修改 IP 地址
+    ```bash
+    vi /etc/config/network
+    # option ipaddress
+    service network restart
+    ```
+2. 修改 密码
+    - 系统/管理权
+3. 网络/接口/LAN
+    - + ipv4 网关
+    - DHCP
+        - 基本设置/ '忽略此接口'
+        - ipv6 设置/ 全部'已禁用'
+4. 网络/负载均衡
+    - 全局/ 本地源接口 / none ?
+5. 网络/Turbo ACC
+    - + DNS加速
+6. 网络/ 'DHCP/DNS'
+    - 确认 DNS转发 :  `127.0.0.1:5333`
+
+
+# R2S
 
 <h2 id="752b8691dd263cd43606d53be8c481fd"></h2>
 
@@ -69,10 +93,4 @@
 1. [旁路由设置](https://mlapp.cn/1008.html)
 2. 电脑网络设置，
     - gateway 设置为 192.168.1.10 ( Rpi )
-
-
-
-
-
-
 
