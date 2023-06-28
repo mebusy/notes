@@ -52,7 +52,8 @@
         - TCP节点/ UDP节点
     - DNS
         - DNS分流: SmartDNS (maybe)
-
+    - 高级设置
+        - TCP转发端口: 所有
 
 
 # R2S
