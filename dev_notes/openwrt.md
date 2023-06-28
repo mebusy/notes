@@ -94,3 +94,18 @@
 2. 电脑网络设置，
     - gateway 设置为 192.168.1.10 ( Rpi )
 
+
+# VBox run openwrt on Host machine
+
+https://www.youtube.com/watch?v=XmUGMOoccOc
+
+
+convert image to vdi
+
+```bash
+VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img openwrt.vdi
+```
+
+
+
+
