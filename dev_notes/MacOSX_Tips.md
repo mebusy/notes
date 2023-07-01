@@ -216,6 +216,9 @@ If you placed your Mac plist file in one of the two system directories (/Library
 
 1. First, output files created by your script will be owned by the root user.
 2. Second, you'll need to use sudo before any of your launchctl commands, as shown here:
+    ```bash
+    sudo launchctl ...
+    ```
 
 
 
