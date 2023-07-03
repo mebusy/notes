@@ -138,11 +138,13 @@
 - Java support: install JDK8 (version 8 required) and add `--java-completer` 
 - for common using
     ```bash
-    ./install.py --clang-completer --cs-completer  --go-completer \
+    ./install.py --clangd-completer --cs-completer  --go-completer \
                     --ts-completer --java-completer --rust-completer
     ```
     - or
     ```bash
+    # CAVEAT: it will also add --js-completer and then use tern server which is deprecated
+    # to disable tern server, manually delete `third_party/ycmd/third_party/tern_runtime/node_modules`
     ./install.py --all
     ```
     - for Ubuntu, `sudo apt install build-essential` is needed
