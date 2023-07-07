@@ -145,7 +145,7 @@ http://10.192.89.89:81/
 
 <h2 id="f488c026a96a1c56683f3f6afb629010"></h2>
 
-## launchd
+## launchd (Ventura)
 
 About crond : *"“The cron utility is launched by launchd(8) when it sees the existence of /etc/crontab or files in /usr/lib/cron/tabs. There should be no need to start it manually.”"*
 
@@ -169,11 +169,11 @@ There are three main directories you can use with launchd:
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.alvin.crontabtest</string>
+  <string>com.user.launchVM</string>
 
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/al/bin/crontab-test.sh</string>
+    <string>/Volumes/WORK/VBoxVDIs/openwrt/launchVM.sh</string>
   </array>
 
   <key>Nice</key>
@@ -186,7 +186,7 @@ There are three main directories you can use with launchd:
   <true/>
 
   <key>StandardErrorPath</key>
-  <string>/tmp/AlTest1.err</string>
+  <string>/Volumes/WORK/VBoxVDIs/openwrt/err.log</string>
 
   <key>StandardOutPath</key>
   <string>/dev/null</string>
@@ -194,29 +194,30 @@ There are three main directories you can use with launchd:
 </plist>
 ```
 
+### set permission
+
+```bash
+cp ./launchVM.plist ~/Library/LaunchAgents/ 
+cd ~/Library/LaunchAgents/
+sudo chown root ./launchVM.plist
+sudo chgrp wheel ./launchVM.plist
+```
+
+
+
 <h2 id="548797edc19fa3483f6f9a6f36faa5e2"></h2>
 
 ### load and test it
 
 ```bash
-launchctl load <path>/com.alvin.crontabtest.plist
+sudo launchctl bootstrap system  ~/Library/LaunchAgents/launchVM.plist
 ```
 
-To turned it off 
+or just test whether it works:
 
 ```bash
-launchctl unload <path>/com.alvin.crontabtest.plist
+launchctl load ~/Library/LaunchAgents/launchVM.plist
 ```
-
-<h2 id="cfdb23d5d79b7e7d55330583c081e20c"></h2>
-
-### An important note about root and sudo access
-
-If you placed your Mac plist file in one of the two system directories (/Library/LaunchDaemons, /Library/LaunchAgents), your job will be running as the root user after a system reboot. This means a couple of things:
-
-1. First, output files created by your script will be owned by the root user.
-2. Second, you'll need to use sudo before any of your launchctl commands, as shown here:
-
 
 
 <h2 id="fb8aa0d64bf13765b2377276fc9e9ed7"></h2>

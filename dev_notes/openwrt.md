@@ -22,6 +22,41 @@
 - [openwrt-rpi](https://github.com/SulingGG/Openwrt-rpi)
 - [tool: balena Etcher](https://www.balena.io/etcher/?ref=etcher_footer)
 
+## 设置
+
+1. 修改 IP 地址
+    ```bash
+    vi /etc/config/network
+    # option ipaddress
+    service network restart
+    ```
+2. 修改 密码
+    - 系统/管理权
+3. 网络/接口/LAN
+    - + ipv4 网关
+    - + option dns: 114.114.114 (vbox 下安装可能需要，确保 可以访问外网)
+    - + IPv4 广播:  192.168.71.255 , (e.g.)
+    - DHCP
+        - 基本设置/ '忽略此接口'
+        - ipv6 设置/ 全部'已禁用'
+4. 网络/负载均衡
+    - 全局/ 本地源接口 / none ?
+5. 网络/Turbo ACC
+    - + DNS加速
+6. 网络/ 'DHCP/DNS'
+    - 确认 DNS转发 :  `127.0.0.1#5333`
+    - 高级设置: 禁止解析 IPv6 DNS (maybe)
+7. passwall
+    - 主要
+        - 主开关
+        - TCP节点/ UDP节点
+    - DNS
+        - DNS分流: SmartDNS (maybe)
+    - 高级设置
+        - TCP转发端口: 所有
+
+
+# R2S
 
 <h2 id="752b8691dd263cd43606d53be8c481fd"></h2>
 
@@ -71,7 +106,16 @@
     - gateway 设置为 192.168.1.10 ( Rpi )
 
 
+# VBox run openwrt on Host machine
 
+https://www.youtube.com/watch?v=XmUGMOoccOc
+
+
+convert image to vdi
+
+```bash
+VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img openwrt.vdi
+```
 
 
 
