@@ -33,3 +33,15 @@ registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 
 
 </details>
+
+
+# some go concept VS. in rust
+
+concept | rust implementation
+--- | ---
+parallelism |  [rayon](https://docs.rs/rayon/latest/rayon/)
+Concurrency |  [async/await](https://blog.ediri.io/how-to-asyncawait-in-rust-an-introduction)
+Channel  | Rust allows you to transfer a pointer from one thread to another to avoid racing conditions for resources. Through passing pointers, Rust can enforce thread isolation for channels:  [fearless concurrency](https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html)
+Lock | Data is only accessible when the lock is held. [fearless concurrency](https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html)
+
+
