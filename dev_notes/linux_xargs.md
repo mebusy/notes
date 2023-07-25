@@ -64,6 +64,13 @@ $ ls | xargs -I zzz echo /home/dt/zzz
 ...
 ```
 
+the replstr of alias has max-length limit, default is 255, it the length of replstr is greater than its limit, the `alias` will not match, to solve this problem, you may specify the max-lenght
+
+```bash
+xargs -S 10240 -I {} ...
+```
+
+
 <h2 id="259f085821c8ece082980839c0a87d3c"></h2>
 
 ## -n number
