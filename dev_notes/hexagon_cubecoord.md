@@ -1,8 +1,18 @@
+[](...menustart)
 
+- [Hexagons & Cube Coordinates](#910f17b88a240302504a7353b7d76e73)
+    - [Cube coordinates](#490c42797b617e1c7f9c1b879ece9a8c)
+
+[](...menuend)
+
+
+<h2 id="910f17b88a240302504a7353b7d76e73"></h2>
 
 # Hexagons & Cube Coordinates
 
 https://www.redblobgames.com/grids/hexagons/
+
+<h2 id="490c42797b617e1c7f9c1b879ece9a8c"></h2>
 
 ## Cube coordinates
 

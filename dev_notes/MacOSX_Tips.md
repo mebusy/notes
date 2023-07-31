@@ -11,10 +11,10 @@
     - [性能测试](#ddd22119a924356d5fd97057285c0689)
     - [内网传输速度测试](#d8f5e5c499ab6b35afcd8cfed2906d9d)
     - [传输速度测试方案2: speedtest](#87c5409b5cb0632cb1d44f17c36c7d83)
-    - [launchd](#f488c026a96a1c56683f3f6afb629010)
+    - [launchd (Ventura)](#1140697b7cb93fa5d169b584735051c3)
         - [Create a Mac plist file to describe your job](#00379fb669143aee93f220a535b222a5)
+        - [set permission](#9fc04cfc1a7d7e7505e7417dddf947c8)
         - [load and test it](#548797edc19fa3483f6f9a6f36faa5e2)
-        - [An important note about root and sudo access](#cfdb23d5d79b7e7d55330583c081e20c)
     - [check SSD lifespan](#fb8aa0d64bf13765b2377276fc9e9ed7)
     - [screen capture to clipborad](#49d6e205c8881024108f1681926717a8)
     - [copy wifi password to clipboard](#6831a70b0b58947b7c63e20394b71a09)
@@ -143,7 +143,7 @@ http://10.192.89.89:81/
 ```
 
 
-<h2 id="f488c026a96a1c56683f3f6afb629010"></h2>
+<h2 id="1140697b7cb93fa5d169b584735051c3"></h2>
 
 ## launchd (Ventura)
 
@@ -193,6 +193,8 @@ There are three main directories you can use with launchd:
 </dict>
 </plist>
 ```
+
+<h2 id="9fc04cfc1a7d7e7505e7417dddf947c8"></h2>
 
 ### set permission
 

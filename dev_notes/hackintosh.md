@@ -4,8 +4,10 @@
     - [NUC8i5BEK BISO setting](#90b4244131823d7d8c05f4f1c274183e)
     - [Hackintosh USB Creation](#3144f57f7c88cbc932e24094440b99d8)
 - [PMSET](#4aef377d2268514c138fb8df812de501)
-    - [Catalina 10.5.2 Sleep problem](#bcbe6e609bff0627e2e3654d1a1123e8)
-    - [Big Sur Sleep problem](#8793db1e9550cee531b14bcf6086ff68)
+    - [pmset utils](#6b11e49104896b1ebbbba0efc133864a)
+    - [Tips:  disalbe `Power Nap` !!!](#88de13afc9c8f51b1576661724f9e502)
+    - [Catalina 10.5.2 Sleep problem (Deprecated in Ventura)](#21b23f4b2c31a358f6a64baa1bd7f0e6)
+    - [Big Sur Sleep problem (Deprecated in Ventura)](#71a0c3b13bc8bba856aaa874173e33a8)
 - [Misc](#74248c725e00bf9fe04df4e35b249a19)
     - [Centos bootable USB installer on OSX](#e529594e6b7af1bbc305ae37bca03507)
     - [Iris Plus 655  Without WhatEverGreen](#b629a48f87baa1255d141a0d31957405)
@@ -137,6 +139,8 @@ https://eclecticlight.co/2017/01/20/power-management-in-detail-using-pmset/
 17. womp is 1 if you want your Mac to wake when it receives a ‘magic’ network packet, which is the same as wake for network access in the pane;
 
 
+<h2 id="6b11e49104896b1ebbbba0efc133864a"></h2>
+
 ## pmset utils
 
 ```bash
@@ -149,9 +153,11 @@ pmset -g log
 pmset -g assertionslog
 ```
 
+<h2 id="88de13afc9c8f51b1576661724f9e502"></h2>
+
 ## Tips:  disalbe `Power Nap` !!!
 
-<h2 id="bcbe6e609bff0627e2e3654d1a1123e8"></h2>
+<h2 id="21b23f4b2c31a358f6a64baa1bd7f0e6"></h2>
 
 ## Catalina 10.5.2 Sleep problem (Deprecated in Ventura)
 
@@ -168,7 +174,7 @@ cd ~/Library/Caches
 rm -R com.apple.parsecd
 ```
 
-<h2 id="8793db1e9550cee531b14bcf6086ff68"></h2>
+<h2 id="71a0c3b13bc8bba856aaa874173e33a8"></h2>
 
 ## Big Sur Sleep problem (Deprecated in Ventura)
 

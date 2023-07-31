@@ -35,6 +35,8 @@ registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 </details>
 
 
+<h2 id="fa3ba5bbd902b187a92e4b988f12b29d"></h2>
+
 # some go concept VS. in rust
 
 concept | rust implementation

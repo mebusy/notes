@@ -1,13 +1,18 @@
 [](...menustart)
 
-- [Deploy a stateful set](#7dca21fd06e067f3857514c73c69c33d)
+- [Deploy stateful set mongoDB in local redis and expose service](#e17ec5d192fb3858c49e4993eaad4d94)
+    - [PersistentVolume](#858e55ea2e6429120a862313c50a9f5f)
+    - [STATEFUL SET MongoDb](#6485e1c68187975fdbfc44e4325775b3)
+    - [Deploy](#507a3a88cebc46603ce2be8eaa924eee)
 
 [](...menuend)
 
 
-<h2 id="7dca21fd06e067f3857514c73c69c33d"></h2>
+<h2 id="e17ec5d192fb3858c49e4993eaad4d94"></h2>
 
 # Deploy stateful set mongoDB in local redis and expose service
+
+<h2 id="858e55ea2e6429120a862313c50a9f5f"></h2>
 
 ## PersistentVolume
 
@@ -36,6 +41,8 @@ spec:
 - On MacOs Docker Desktop, `/Volumes` is mounted by default, you can specify the `hostPath` of PV to maintain pod data, 
     - e.g., `/Volumes/WORK/_DockerMnt/mongodb-503`.
 
+
+<h2 id="6485e1c68187975fdbfc44e4325775b3"></h2>
 
 ## STATEFUL SET MongoDb
 
@@ -119,6 +126,8 @@ spec:
 
 ```
 
+
+<h2 id="507a3a88cebc46603ce2be8eaa924eee"></h2>
 
 ## Deploy 
 

@@ -1,14 +1,19 @@
 [](...menustart)
 
-- [Deploy a stateful set](#7dca21fd06e067f3857514c73c69c33d)
+- [Deploy Redis in local k8s and expose service](#867c17202bd1062ba34bf99faf434d6b)
+    - [PersistentVolume](#858e55ea2e6429120a862313c50a9f5f)
+    - [STATEFUL SET Redis](#305457477e783f4354ecabe28cd3081c)
+    - [Deploy](#507a3a88cebc46603ce2be8eaa924eee)
 - [If you just want redis as memory cache...](#15b6834685dfbd80ef67e02007df091d)
 
 [](...menuend)
 
 
-<h2 id="7dca21fd06e067f3857514c73c69c33d"></h2>
+<h2 id="867c17202bd1062ba34bf99faf434d6b"></h2>
 
 # Deploy Redis in local k8s and expose service
+
+<h2 id="858e55ea2e6429120a862313c50a9f5f"></h2>
 
 ## PersistentVolume
 
@@ -36,6 +41,8 @@ spec:
 - On MacOs Docker Desktop, `/Volumes` is mounted by default, you can specify the `hostPath` of PV to maintain pod data, 
     - e.g., `/Volumes/WORK/_DockerMnt/redisdb-626`.
 
+
+<h2 id="305457477e783f4354ecabe28cd3081c"></h2>
 
 ## STATEFUL SET Redis
 
@@ -113,6 +120,8 @@ spec:
 
 ```
 
+
+<h2 id="507a3a88cebc46603ce2be8eaa924eee"></h2>
 
 ## Deploy 
 
