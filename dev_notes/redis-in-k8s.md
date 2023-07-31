@@ -8,30 +8,43 @@
 
 <h2 id="7dca21fd06e067f3857514c73c69c33d"></h2>
 
-# Deploy a stateful set
+# Deploy Redies 
+
+## PersistentVolume
 
 PV
 
 ```yaml
+# redis-pv.yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: redisdb-pv
+  name: redisdb-626-pv
 spec:
-  storageClassName: redisdb-storageclass
+  storageClassName: redisdb-626-storageclass
   persistentVolumeReclaimPolicy: "Recycle"
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/opt/data/redis"
+    path: "/Volumes/WORK/_DockerMnt/redisdb-626"
 ```
 
+- Persistent volumes are cluster-global objects and do not live in specific namespaces.  
+    - So you'd better to name it with a unique name, e.g. `redisdb-626-storageclass`
+- On MacOs Docker Desktop, `/Volumes` is mounted by default, you can specify the `hostPath` of PV to maintain pod data, 
+    - e.g., `/Volumes/WORK/_DockerMnt/redisdb-626`.
 
-STATEFUL SET
+
+## STATEFUL SET Redis
+
+- You should specify a correct storageClassName
+- You normally deploy redis in specific namespace, no need worry about naming.
 
 ```yaml
+# redis.yaml
+
 # PVC
 
 apiVersion: v1
@@ -39,7 +52,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: redisdb-pvc
 spec:
-  storageClassName: redisdb-storageclass
+  storageClassName: redisdb-626-storageclass
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
@@ -48,7 +61,6 @@ spec:
       storage: 1Gi
 
 ---
-
 # StatefulSet
 
 apiVersion: apps/v1
@@ -68,20 +80,19 @@ spec:
         selector: redisdb-test
     spec:
       containers:
-      - name: redisdb-test
-        args:
-          - --appendonly yes
-        image: redis:6.2.6
-        volumeMounts:
-        - mountPath: /data
-          name: redisdb-data
+        - name: redisdb-test
+          args:
+            - --appendonly yes
+          image: redis:6.2.6
+          volumeMounts:
+            - mountPath: /data
+              name: redisdb-data
       volumes:
-      - name: redisdb-data
-        persistentVolumeClaim:
-          claimName: redisdb-pvc
+        - name: redisdb-data
+          persistentVolumeClaim:
+            claimName: redisdb-pvc
 
 ---
-
 # Service
 
 apiVersion: v1
@@ -92,19 +103,33 @@ metadata:
     app: database
 spec:
   ports:
-  - name: 6379-6379-tcp
-    port: 6379
-    protocol: TCP
-    targetPort: 6379
+    - name: 6379-6379-tcp
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
   selector:
     app: database
   type: ClusterIP
 
-
-
 ```
 
 
+## Deploy 
+
+```bash
+kubectl create -f redis-pv.yaml
+kubectl create ns redis-626
+kubectl -n redis-626 create -f redis.yaml
+```
+
+To expose redis by port-forward to redis service:
+
+```bash
+# access locally
+kubectl -n redis-626 --address 127.0.0.1 port-forward   statefulset.apps/redisdb-test 6379:6379
+# can access from any host
+kubectl -n redis-626 --address 0.0.0.0 port-forward   statefulset.apps/redisdb-test 6379:6379
+```
 
 
 <h2 id="15b6834685dfbd80ef67e02007df091d"></h2>
