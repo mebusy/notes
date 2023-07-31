@@ -7,133 +7,137 @@
 [](...menuend)
 
 
+# Create A Stateful Set Mysql in local k8s
+
 <h2 id="5f8275d909a1c3cade324a55d89e0337"></h2>
 
 ## Create A Persistent Volume
 
 ```yaml
+# mysql57-pv.yaml 
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-mysql-data
-  labels:
-    type: local
+  name: mysql-57-pv
 spec:
-  storageClassName: manual
+  storageClassName: mysql-57-storageclass
   # default reclaim poliy is "Retain", the data persists even if you delete pv.
   #   use Recycle is case you set you local testing environment.
-  # persistentVolumeReclaimPolicy: "Recycle"
+  persistentVolumeReclaimPolicy: "Recycle"
   capacity:
-    storage: 100Gi
+    storage: 10Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/opt/data/mysql"
+    path: "/Volumes/WORK/_DockerMnt/mysql-57"
 ```
+
+- Persistent volumes are cluster-global objects and do not live in specific namespaces.  
+    - So you'd better to name it with a unique name, e.g. `mysql-57-storageclass`
+- On MacOs Docker Desktop, `/Volumes` is mounted by default, you can specify the `hostPath` of PV to maintain pod data, 
+    - e.g., `/Volumes/WORK/_DockerMnt/mysql-57`.
+
 
 <h2 id="e6c4fa270e7ad3daf363af62c5a08163"></h2>
 
 ## Create a mysql in k8s with root/rootpwd
 
+- You should specify a correct storageClassName
+- You normally deploy it in specific namespace, no need worry about naming.
+
 
 ```yaml
+# mysql57.yaml
+
+# PVC
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-mysql-57
+  name: mysqldb-pvc
 spec:
-  storageClassName: manual
+  storageClassName: mysql-57-storageclass
   accessModes:
     - ReadWriteOnce
+  volumeMode: Filesystem
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
 
 ---
-apiVersion: v1
-items:
-- apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    labels:
-      k8s-app: mysql-57
-    name: mysql-57
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
-        k8s-app: mysql-57
-    strategy:
-      type: RollingUpdate
-    template:
-      metadata:
-        labels:
-          k8s-app: mysql-57
-      spec:
-        containers:
+# StatefulSet
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-test
+spec:
+  serviceName: mysql-test
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: mysql-test
+  template:
+    metadata:
+      labels:
+        k8s-app: mysql-test
+    spec:
+      containers:
         - env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: rootpwd
+            - name: MYSQL_ROOT_PASSWORD
+              value: rootpwd
           image: mysql:5.7
           imagePullPolicy: IfNotPresent
-          name: mysql-57
-          resources:
-            limits:
-              cpu: "1"
-              memory: 1Gi
-            requests:
-              cpu: 100m
-              memory: 128Mi
-          volumeMounts: # sub level under containers [optional]
+          name: mysql-test
+          volumeMounts:
             - mountPath: "/var/lib/mysql"
-              name: pvc-mysql-57-storage
-        dnsPolicy: ClusterFirst
-        restartPolicy: Always
-        volumes: # same level as containers [optional]
-          - name: pvc-mysql-57-storage
-            persistentVolumeClaim:
-              claimName: pvc-mysql-57
+              name: mysql-data
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysqldb-pvc
+---
+# Service
 
-- apiVersion: v1
-  kind: Service
-  metadata:
-    name: mysql-57
-  spec:
-    ports:
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-test
+spec:
+  ports:
     - name: 3306-3306-tcp
       port: 3306
       protocol: TCP
       targetPort: 3306
-    selector:
-      k8s-app: mysql-57
-    sessionAffinity: None
-    type: ClusterIP
+  selector:
+    k8s-app: mysql-test
+  type: ClusterIP
 
-kind: List
 
 ```
 
 
-<h2 id="73daabeddc65e8243ffa9143bbc6d239"></h2>
+## Deploy
 
-## Expose Mysql service in k8s
+```bash
+kubectl create -f mysql57-pv.yaml
+kubectl create ns mysql-57
+kubectl -n mysql-57 create -f mysql57.yaml 
+```
+
 
 so far you can not access mysql exterannly because its type is `ClusterIP`.
 
-use [portforward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) ,   say you have mysql service  under namespace mysql-57,  you listen on port 33057 on all address, and forward to 3306 in a pod select by the deployment.
+use [portforward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) to expose mysql service:
 
 
 ```bash
-kubectl -n mysql-57  --address 0.0.0.0   port-forward deployment/mysql-57 33057:3306
+# access locally
+kubectl -n mysql-57 --address 127.0.0.1 port-forward   statefulset.apps/mysql-test 6379:6379
+# can access from any host
+kubectl -n mysql-57 --address 0.0.0.0 port-forward   statefulset.apps/mysql-test 6379:6379
 ```
-
-Now you can connect to mysql  from outside
-
-```bash
-mysql -h <host-name> -P 33057 -u<user> -p<passwd>
-```
-
-NOTE: port-forward will fail after service restarting.
 
 
 
