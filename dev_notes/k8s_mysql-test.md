@@ -1,11 +1,14 @@
 [](...menustart)
 
-- [Create A Persistent Volume](#5f8275d909a1c3cade324a55d89e0337)
-- [Create a mysql in k8s with root/rootpwd](#e6c4fa270e7ad3daf363af62c5a08163)
-- [Expose Mysql service in k8s](#73daabeddc65e8243ffa9143bbc6d239)
+- [Create A Stateful Set Mysql in local k8s](#7a3f20726fceef6b44adb1938dc84900)
+    - [Create A Persistent Volume](#5f8275d909a1c3cade324a55d89e0337)
+    - [Create a mysql in k8s with root/rootpwd](#e6c4fa270e7ad3daf363af62c5a08163)
+    - [Deploy](#507a3a88cebc46603ce2be8eaa924eee)
 
 [](...menuend)
 
+
+<h2 id="7a3f20726fceef6b44adb1938dc84900"></h2>
 
 # Create A Stateful Set Mysql in local k8s
 
@@ -117,6 +120,8 @@ spec:
 
 ```
 
+
+<h2 id="507a3a88cebc46603ce2be8eaa924eee"></h2>
 
 ## Deploy
 
