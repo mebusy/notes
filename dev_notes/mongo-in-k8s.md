@@ -7,7 +7,7 @@
 
 <h2 id="7dca21fd06e067f3857514c73c69c33d"></h2>
 
-# Deploy MongoDB
+# Deploy stateful set mongoDB in local redis and expose service
 
 ## PersistentVolume
 

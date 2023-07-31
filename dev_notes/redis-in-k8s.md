@@ -8,7 +8,7 @@
 
 <h2 id="7dca21fd06e067f3857514c73c69c33d"></h2>
 
-# Deploy Redies 
+# Deploy Redis in local k8s and expose service
 
 ## PersistentVolume
 
