@@ -454,6 +454,7 @@ ok
     ret=`lsof -i:$loc_port`
     if [ -z "$ret" ]
     then
+        # run in background is not necessary
         nohup ssh -p 2222 -L $loc_port:127.0.0.1:8001 -N -f -l <ssh user> <ssh host> &> /dev/null
     fi
 
@@ -464,6 +465,7 @@ ok
     ret=`lsof -i:$loc_port`
     if [ -z "$ret" ]
     then
+        # run in background is not necessary
         nohup ssh -p 2222 -L $loc_port:127.0.0.1:45933 -N -f -l <ssh user> <ssh host> &> /dev/null
     fi
     ```
