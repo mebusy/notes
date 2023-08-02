@@ -351,3 +351,69 @@ $ defaults write bluetoothaudiod "Enable AAC codec" -bool true
 $ defaults read bluetoothaudiod "Enable AAC codec"
 1
 ```
+
+## Extract DSDT
+
+- 名词解释
+    - ACPI：Advanced Configuration and Power Management Interface
+    - DSDT：The Differentiated System Description Table，字面翻译是“差异系统描述表”，是ACPI规范的一部分。包含了所有除基本系统以外所有不同设备的信息。
+        - 和 Windows 相反，macOS 的驱动是被动驱动，需要让系统知道存在这个硬件且知道硬件位置，所以修改DSDT的主要目的就是让macOS识别存在这个硬件并告诉系统硬件位置，以便让系统内置的驱动来使硬件工作。
+    - SSDT：System Services Descriptor Table，字面翻译是“系统服务描述符表”，是DSDT的主要组成部分。
+        - SSDT相当于系统内部API（Application Programming Interface，应用程序接口）的指向标，
+        - 告诉系统，需要调用的API在什么地方。在黑苹果中，SSDT里的信息主要关于处理器电源管理、USB、显卡等相关信息。针对DSDT打补丁，将使设备的控制尽量向白苹果靠近，解决稳定性并提升性能。
+
+- get hardware info (on Windows)
+    ```bash
+    AIDA64  获取硬件配置信息
+      管理员身份打开，
+      /报告/报告向导/ * 硬件相关内容 / * HTML 文件 --> 保存为文件
+    ```
+- extract ACPI (DSDT & SSDT)
+    - methods
+        - https://dortania.github.io/Getting-Started-With-ACPI/Manual/dump.html
+    - using clover
+        - 在网上随便下载一个 四叶草 Clover 的 EFI 文件
+            - /Clover/ACPI/origin  清空
+        - 拷贝到 空的Fat32 U盘
+        - U 盘启动， 四叶草引导界面，按一下 左右键 防止自动进入系统，然后按 F4 或者 Fn+F4，稍等半分钟， /Clover/ACPI/origin 会重新生成你的ACPI 文件
+- SSDT Time
+    1. dump DSDT
+        - delete the generated DSDT.aml in /Results folder, replace with yours
+        - `d`  select dsdt file
+        - run SSDT command from 1 through 7 
+        - using those generated .aml files to replace corresponding files in your OPEN CORE /EFI/OC/ACPI .
+
+
+## 黑苹果睡眠问题
+
+http://blog.webleon.me/2021/08/blog-post.html
+
+```txt
+首先，在黑苹果里我们追求的睡眠主要是指 Sleep，而不是hibernatemode或者standby。
+
+log show --last 2h | grep 'Wake reason'
+过去2小时的唤醒原因
+
+
+
+pmset -g log | grep -e "Sleep.*due to" -e "Wake.*due to"
+查看睡眠与唤醒的原因
+
+pmset -g assertions
+查看电源管理当前状态
+
+最大程度保证休眠的稳定：
+
+hibernatemode = 0 数据只写入内存，不写入硬盘
+
+proximitywake = 0 关闭被同一网络下的同 iCloud 设备唤醒
+
+standby = 0 只使用睡眠，不使用待机
+
+tcpkeepalive = 0 休眠后断开网络
+
+ttyskeepawake = 0 远程登录或其他远程输入不影响睡眠
+
+
+如果设置了屏幕保护，进入屏幕保护的时间要短于屏幕关闭的等待时间（displaysleep），否则可能会造成 (sleep prevented by sharingd) 而无法睡眠。
+```
