@@ -61,6 +61,19 @@ reboot Mac
     ```
 
 
+## better way
+
+```bash
+xhost + localhost
+```
+
+- use `host.docker.internal` to access localhost on host from docker container.
+
+```bash
+docker run --rm  --name firefox -e DISPLAY=host.docker.internal jess/firefox 
+```
+
+
 ---
 
 <h2 id="48a8990e0175dd1649fdd9ffc44942aa"></h2>
