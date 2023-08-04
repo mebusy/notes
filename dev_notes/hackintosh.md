@@ -377,11 +377,11 @@ $ defaults read bluetoothaudiod "Enable AAC codec"
         - 拷贝到 空的Fat32 U盘
         - U 盘启动， 四叶草引导界面，按一下 左右键 防止自动进入系统，然后按 F4 或者 Fn+F4，稍等半分钟， /Clover/ACPI/origin 会重新生成你的ACPI 文件
 - SSDT Time
-    1. dump DSDT
-        - delete the generated DSDT.aml in /Results folder, replace with yours
-        - `d`  select dsdt file
-        - run SSDT command from 1 through 7 
-        - using those generated .aml files to replace corresponding files in your OPEN CORE /EFI/OC/ACPI .
+    - dump DSDT
+    - delete the generated DSDT.aml in /Results folder, replace with yours
+    - `d`  select dsdt file
+    - run SSDT command from 1 through 7 
+    - using those generated .aml files to replace corresponding files in your OPEN CORE /EFI/OC/ACPI .
 
 
 ## 黑苹果睡眠问题
