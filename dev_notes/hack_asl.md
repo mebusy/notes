@@ -1,9 +1,5 @@
 
 
-https://github.com/daliansky/OC-little/blob/master/10-PTSWAK%E7%BB%BC%E5%90%88%E6%89%A9%E5%B1%95%E8%A1%A5%E4%B8%81
-
-https://ocbook.tlhub.cn/00-%E6%80%BB%E8%BF%B0/00-1-ASL%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%80/
-
 # ASL 语言基础
 
 ## 简述
