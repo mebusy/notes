@@ -38,6 +38,14 @@ OPTION/Alt+COMMAND+S
 
 ## Useful Commands
 
+
+### bash64 decode to hex
+
+```bash
+$ echo -n 'R1BSVwI=' | base64 -D | hexdump -v -e '/1 "%02x" '
+4750525702
+```
+
 <h2 id="25c04b9b782789c092a38c06cc87632a"></h2>
 
 ### xxd 
