@@ -3,6 +3,7 @@
 - [MacOSX](#5dad7f6f2d7af4cc1196128ec251af8a)
     - [sidebar 丢失](#2921868f08055ef268441139489a6130)
     - [Useful Commands](#ec69fb46be4996fda376dcb4054c528b)
+        - [bash64 decode to hex](#9ce547db2f9c1a445bc410d99d7ac737)
         - [xxd](#25c04b9b782789c092a38c06cc87632a)
         - [mdfind(deprecated)](#8fa27b7030fcdda4e88c6240caf99bf1)
         - [man ascii  字符表](#726e07a4bf9abb9ebcdce89b16eb7807)
@@ -38,6 +39,8 @@ OPTION/Alt+COMMAND+S
 
 ## Useful Commands
 
+
+<h2 id="9ce547db2f9c1a445bc410d99d7ac737"></h2>
 
 ### bash64 decode to hex
 

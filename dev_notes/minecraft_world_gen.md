@@ -1,3 +1,20 @@
+[](...menustart)
+
+- [Reinventing Minecraft world generation](#96e75305b322e594ce2306f5a30ab5dc)
+- [Terrain Shaping](#1ecd272b0d72d00d6836b914db9f0fba)
+    - [Perlin Noise](#af3462ddc2e2da770f2e68b7f1c0dc98)
+    - [Octaves](#e2e85df2662cca65725c9579e636f4e6)
+    - [Noise Transformation](#bafd676d01211ad97b90e256fe1dd60e)
+    - [Do more deliberate Noise Transformation: Continentalness](#13e64d78231fbc637e4efeeaea767514)
+    - [Multinoise](#af14c8424f79e6ca6961814e1ac0833c)
+    - [3D Noise](#08b98ab159219b50eb6192e7dc1776de)
+    - [Cave Generation](#e62ecbf6c6addf50c3cf990d97893700)
+    - [Biomes](#206f531dc3ec38029e7e42e0b6785ba0)
+
+[](...menuend)
+
+
+<h2 id="96e75305b322e594ce2306f5a30ab5dc"></h2>
 
 # Reinventing Minecraft world generation
 
@@ -22,7 +39,11 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
         - trees, villages...
 
 
+<h2 id="1ecd272b0d72d00d6836b914db9f0fba"></h2>
+
 # Terrain Shaping
+
+<h2 id="af3462ddc2e2da770f2e68b7f1c0dc98"></h2>
 
 ## Perlin Noise
 
@@ -35,6 +56,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
     }
     ```
     - <img src="../imgs/2d-perlin-noise-example.png" width=400 />
+
+<h2 id="e2e85df2662cca65725c9579e636f4e6"></h2>
 
 ## Octaves
 
@@ -57,6 +80,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
     - more interesting
 
 
+<h2 id="bafd676d01211ad97b90e256fe1dd60e"></h2>
+
 ## Noise Transformation
 
 - noise value gives us value from -1 to 1
@@ -70,6 +95,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
 - and gave us such terrain
     - <img src="../imgs/2d-perlin-noise-example.png" width=400 />
 
+
+<h2 id="13e64d78231fbc637e4efeeaea767514"></h2>
 
 ## Do more deliberate Noise Transformation: Continentalness
 
@@ -86,6 +113,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
     - <img src="../imgs/spline_points_segment.png" width=300 /> , <img src="../imgs/terrain-with-segments-shaping.png" width=300 />
 
 
+
+<h2 id="af14c8424f79e6ca6961814e1ac0833c"></h2>
 
 ## Multinoise
 
@@ -111,6 +140,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
     - <img src="../imgs/multinoise-ex-flat.png" width=400 />
 
 
+<h2 id="08b98ab159219b50eb6192e7dc1776de"></h2>
+
 ## 3D Noise
 
 - <img src="../imgs/3d-noise-detailed-terrain-shape.png" width=300 /> , <img src="../imgs/3d-noise-what-2d-cannot.png" width=300 />
@@ -135,6 +166,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
     - <img src="../imgs/3d-noise-mix.png" width=400 />
 
 
+<h2 id="e62ecbf6c6addf50c3cf990d97893700"></h2>
+
 ## Cave Generation
 
 - use 3d noise as well
@@ -147,6 +180,8 @@ https://www.youtube.com/watch?v=ob3VwY4JyzE
 - we can combines things that's when the mgaic happens.
     - <img src="../imgs/combine-caves.png" width=400 />
 
+
+<h2 id="206f531dc3ec38029e7e42e0b6785ba0"></h2>
 
 ## Biomes
 

@@ -3,6 +3,7 @@
 - [Docker for Mac and GUI applications](#da8f018826cd634d83e9bedeef10f24e)
     - [1. install xquartz](#86f31b01b31e677cd37cf505c57369a3)
     - [2. setup xquartz](#b87bd81eea00083fb21d246bc3f3baef)
+    - [better way](#c595faaa40f40ab409bc3f23debda184)
 - [Other example](#48a8990e0175dd1649fdd9ffc44942aa)
     - [matplotlib X11 test program](#7f491c02453ff410c8d86998578039c0)
 
@@ -60,6 +61,8 @@ reboot Mac
     docker run --rm  --name firefox -e DISPLAY=$DISPLAY jess/firefox 
     ```
 
+
+<h2 id="c595faaa40f40ab409bc3f23debda184"></h2>
 
 ## better way
 
