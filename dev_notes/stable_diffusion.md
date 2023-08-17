@@ -175,5 +175,13 @@ set `Sampling Method` to **DPM++ SDE Karras** ?
 - 提示词生成 https://wolfchen.top/tag/
 
 
+```
+# good
+male_focus, solo, simple_background, girl,
+masterpiece, best quality, official art, extremely detailed CG unity 8k wallpaper, «lora: koreanDollLikeness_v15.0.8
 
+# bad
+lowres, bad anatomy, bad hands, text,error, missing fngers,extra digt, fewer digits, cropped, wort quality, low quality, normal quality, jpeg artifacts, signature, watermark, username,blurry, bad
+feet.nsfwolf
+```
 
