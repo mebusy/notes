@@ -1,6 +1,8 @@
 
 # Reinventing Minecraft world generation
 
+https://www.youtube.com/watch?v=ob3VwY4JyzE
+
 - chunk
     - 16x16x256
 - what is the "procedure" ?
@@ -91,3 +93,87 @@
     - Continentalness, Erosion, Peaks & valleys
     - ![](../imgs/multinoise-3.png)
     - Erosion changes quite slowly, Peaks & valleys tends to generate ridges.
+
+- We basically create lots of spline points.
+    - this spline points is kind of how far inland are we.
+        - <img src="../imgs/spline_points_ex_2.png" width=400 />
+        - high continentalness we're far inland, low continentalness means we're kind of offshore.
+        - that's why as continentalness starts growing, terrain height goes way down below the sea level, and that's how we get oceans.
+        - and then we get kind of the caostline coming in (`/`) and as we go further up the scale we suddenly get plateaus, etc...
+    - but there points lead to other splines too. 
+        - so we're saying that when continentalness is over here, terrain height is there but only if other noises are at 0, because we have other splines connected to it.
+        - <img src="../imgs/other-spline-connect.png" width=300 />
+        - so we're saying that but if erosion, let's say, is low, then the terrain height gets even higher, if erosion is high, terrain gets lower.
+    - and same thing there each dot here is connected to yet another one
+        - <img src="../imgs/other-spline-connect2.png" width=300 />
+- multinoise examples
+    - <img src="../imgs/multinoise-ex-steep-mountain-ridges.png" width=400 />
+    - <img src="../imgs/multinoise-ex-flat.png" width=400 />
+
+
+## 3D Noise
+
+- <img src="../imgs/3d-noise-detailed-terrain-shape.png" width=300 /> , <img src="../imgs/3d-noise-what-2d-cannot.png" width=300 />
+- 3d noise function
+    - 3 inputs (x,y,z)
+    - 1 output ("density")
+- let's say a block is AIR if its density is `<= 0`, we get this
+    - <img src="../imgs/3d-noise-normal-ex.png" width=400 />
+- we then apply a bias to it, so the higher up we are the more we lower the density value, and the lower down we are, the more we increase the density value.
+    - <img src="../imgs/3d-noise-adjusted-ex.png" width=400 />
+- Why do we do that ?  That's how we generate the detailed surface of world.
+    - because the terrain shape is controlled by two things, squashing factor and height offset.
+    - The squashing factor is what I just showed you, this is an example of high squashing factor where we with that bias is very strong. So it's basically almost like a flat world.
+        - <img src="../imgs/squashing-factor-1.png" width=400 />
+        - but as we relax that bias , we reduce squashing factor then the 3d noise is allowed to be shown.
+        - <img src="../imgs/squashing-factor-2.png" width=400 />
+    - and the height offset is just literally moving everything up or down.
+    - Those 2 numbers have a radical effect on the world, 
+- In practice, we can figure that the same using spline points. So we define how continentalness, and all these other noises.
+    - basically add points for squashing factor, and we add points for terrain elevation, that is , **both are controlled via terrain shaping spline points**.
+- So those things together give us a max of madness and kind of more normal looking terrain.
+    - <img src="../imgs/3d-noise-mix.png" width=400 />
+
+
+## Cave Generation
+
+- use 3d noise as well
+    - <img src="../imgs/cheese-caves.png" width=600 />
+    - however we will do a little bit of transformation to make it little flatter to make it possible to run around.
+- long tunnels (spaghetti caves)
+    - now what we didn't get from this was long tunnels.
+    - to get long tunnels, 
+    - <img src="../imgs/spaghetti-caves.png" width=600 />
+- we can combines things that's when the mgaic happens.
+    - <img src="../imgs/combine-caves.png" width=400 />
+
+
+## Biomes
+
+- A minecraft world is divided into biomes.
+- Biomes are placed based on 5 noises
+    - 3 noise we already have:  Continentalness,  Erosion, Peaks & valleys
+    - Temperature ,  Humidity
+    - ![](../imgs/biome-5-noises.png)
+- The combination of noise values determines which biome to place where.
+- We configure biomes by using tables rather than spline points because biomes are discrete.
+    - <img src="../imgs/biome-peak.png" height=200 />
+    - <img src="../imgs/biome-table.png" width=600 />
+    - if we're in an area where peak noise is hight, then look at continentalness and erosion and that decide which biome we're in.
+    - to make this easier to configure we split the noise values into number ranges. 
+        - <img src="../imgs/biome-index-range.png" width=600 />
+        - we say that, erosion index 0 means a value from -1 to -0.78,  erosion index 6 means 0.55 to 1.
+- Let's way this place I'm in right now is `Far Inland` and erosion index 1, so there's going to be a peak here.
+    - but what kind of peak ? There's different types of peaks, it's these snowy things.
+    - well that depends on temperature. e.g. High continentalness + Low erosion + Low temp = Jagged Peaks
+        - <img src="../imgs/noise-jagged-peaks.png" width=200 />
+- In a jungle case, we were low continentalness and medium erosion (say index 3), so this is going to be a middle biome. 
+    - But what kind of a middle biome ? So we look at this table
+    - <img src="../imgs/biome-temp-hum-table.png" width=600 />
+    - the humidity is higher, and the temperature is kind of high, so it is Jungle.
+- configuring this is tricky because you need to understand and visualize a 5D grid. 
+    - <img src="../imgs/biome-config-5d-grid.png" width=400 />
+    - Why does it matter because neighbors mattera lot, we don't want a desert to neighbor a snowy peaks.
+    - we configure these tables we think a lot about what biomes could neighbor which bomes. But it's 5D configuration space, it makes really hard.
+
+
