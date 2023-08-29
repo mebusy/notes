@@ -8,9 +8,9 @@
     - [FileMerge](#19a991a87a69e4435918f98d2ffc8421)
     - [Get Proxy Info](#ca07600a3602fddc156831a6716fae12)
     - [lldb 调试 Segment Fault on MacOSX](#93bc8417f2018ae4424cbad9060081fa)
-    - [download youtube playlist : youtube-dl](#7f4d4875ec457dfd08542218955cb95d)
+    - [download youtube playlist : yt-dlp](#7f4d4875ec457dfd08542218955cb95d)
         - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
-        - [youtube-dl download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
+        - [yt-dlp download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
     - [using ffmpeg to convert video to mp3 (未验证)](#a8e23293ddbb3302f18d430ee2fdaaf2)
     - [use ffmpeg select left audio channel and downgrade to mono](#160eb38b6a6c8f90bf98171aa12bb8d8)
     - [use ffmpeg manipulate audio channel](#a2ccb84c0c3f7f1113c305a7f2499969)
@@ -115,19 +115,18 @@ chrome: `chrome://net-internals/#proxy`
 
 <h2 id="7f4d4875ec457dfd08542218955cb95d"></h2>
 
-## download youtube playlist : youtube-dl
+## download youtube playlist : yt-dlp
 
-- install
-    - `brew install youtube-dl`
-- alternative install
+- install: deprecated !!!
+    - ~`brew install yt-dlp`~
+- best installation
     ```bash
     python3 -m pip install --force-reinstall https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz
     yt-dlp URL
     ```
-    - yt-dlp is a youtube-dl fork based on the now inactive youtube-dlc. 
 
 ```
-youtube-dl --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
+yt-dlp --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
 ```
 
 
@@ -145,15 +144,15 @@ youtube-dl --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f
 ### re-download youtube auto sub
 
 ```bash
-$ youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
+$ yt-dlp --write-auto-sub --skip-download --sub-lang=en  ...
 ```
 
 <h2 id="a070b11a3504a9c79ea234b981f7db6d"></h2>
 
-### youtube-dl download mp3 audio only
+### yt-dlp download mp3 audio only
 
 ```bash
-youtube-dl --ignore-errors --rm-cache-dir  -x --audio-format mp3  'your-url'
+yt-dlp --ignore-errors --rm-cache-dir  -x --audio-format mp3  'your-url'
 ```
 
 
