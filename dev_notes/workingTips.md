@@ -8,9 +8,9 @@
     - [FileMerge](#19a991a87a69e4435918f98d2ffc8421)
     - [Get Proxy Info](#ca07600a3602fddc156831a6716fae12)
     - [lldb 调试 Segment Fault on MacOSX](#93bc8417f2018ae4424cbad9060081fa)
-    - [download youtube playlist](#dd3177fffb44df0088f08893f1e8b000)
-    - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
-    - [youtube-dl download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
+    - [download youtube playlist : youtube-dl](#7f4d4875ec457dfd08542218955cb95d)
+        - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
+        - [youtube-dl download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
     - [using ffmpeg to convert video to mp3 (未验证)](#a8e23293ddbb3302f18d430ee2fdaaf2)
     - [use ffmpeg select left audio channel and downgrade to mono](#160eb38b6a6c8f90bf98171aa12bb8d8)
     - [use ffmpeg manipulate audio channel](#a2ccb84c0c3f7f1113c305a7f2499969)
@@ -113,9 +113,9 @@ chrome: `chrome://net-internals/#proxy`
 - 运行， crash后，输入 `bt` 打印跟踪堆栈
 
 
-<h2 id="dd3177fffb44df0088f08893f1e8b000"></h2>
+<h2 id="7f4d4875ec457dfd08542218955cb95d"></h2>
 
-## download youtube playlist
+## download youtube playlist : youtube-dl
 
 - install
     - `brew install youtube-dl`
@@ -126,45 +126,34 @@ chrome: `chrome://net-internals/#proxy`
     ```
 
 ```
-youtube-dl -c --write-auto-sub --sub-lang=en --ignore-errors -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
+youtube-dl --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
 ```
+
 
 - 如果视频确定有 premade 字幕， 使用  `--write-sub`
 - ensure you add `' '` to url since some special character may appears in URL has a special meaning in bash
-- `-c` means resume downloading 
-- `--ignore-errors` 忽略下载错误，比如 private vidoe
+- other useful options
+    - `-c` means resume downloading 
+    - `--ignore-errors` 忽略下载错误，比如 private vidoe
+    - `--rm-cache-dir` 避免403 错误
+- start from specific entry from a list, e.g. from 20
+    - `--playlist-start 20`
 
 <h2 id="a86e10fc913cd54076f6a27289d1d713"></h2>
 
-## re-download youtube auto sub
+### re-download youtube auto sub
 
-```
-youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
+```bash
+$ youtube-dl --write-auto-sub --skip-download --sub-lang=en  ...
 ```
 
 <h2 id="a070b11a3504a9c79ea234b981f7db6d"></h2>
 
-## youtube-dl download mp3 audio only
+### youtube-dl download mp3 audio only
 
 ```bash
-youtube-dl -x --audio-format mp3  'your-url'
+youtube-dl --ignore-errors --rm-cache-dir  -x --audio-format mp3  'your-url'
 ```
-
-Or list all support format, and pick one audio-only format
-
-```bash
-$ youtube-dl -F  'your-url'
-format code  extension  resolution note
-249          webm       audio only tiny   53k , webm_dash container, opus @ 53k (48000Hz), 1.10MiB
-250          webm       audio only tiny   72k , webm_dash container, opus @ 72k (48000Hz), 1.49MiB
-140          m4a        audio only tiny  127k , m4a_dash container, mp4a.40.2@127k (44100Hz), 2.60MiB
-251          webm       audio only tiny  140k , webm_dash container, opus @140k (48000Hz), 2.87MiB
-278          webm       256x144    144p   97k , webm_dash container, vp9@  97k, 13fps, video only, 2.00MiB
-160          mp4        256x144    144p  108k , mp4_dash container, avc1.42c00c@ 108k, 13fps, video only, 2.23Mi
-
-$ youtube-dl -f 140  'your-url'
-```
-
 
 
 <h2 id="a8e23293ddbb3302f18d430ee2fdaaf2"></h2>
