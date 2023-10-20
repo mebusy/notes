@@ -8,9 +8,9 @@
     - [FileMerge](#19a991a87a69e4435918f98d2ffc8421)
     - [Get Proxy Info](#ca07600a3602fddc156831a6716fae12)
     - [lldb 调试 Segment Fault on MacOSX](#93bc8417f2018ae4424cbad9060081fa)
-    - [download youtube playlist : yt-dlp](#7f4d4875ec457dfd08542218955cb95d)
+    - [download youtube playlist : yt-dlp](#139e4d9ac2e847f7d427ba67996b489a)
         - [re-download youtube auto sub](#a86e10fc913cd54076f6a27289d1d713)
-        - [yt-dlp download mp3 audio only](#a070b11a3504a9c79ea234b981f7db6d)
+        - [yt-dlp download mp3 audio only](#57065f297414ce97d3e39c4619a99fc3)
     - [using ffmpeg to convert video to mp3 (未验证)](#a8e23293ddbb3302f18d430ee2fdaaf2)
     - [use ffmpeg select left audio channel and downgrade to mono](#160eb38b6a6c8f90bf98171aa12bb8d8)
     - [use ffmpeg manipulate audio channel](#a2ccb84c0c3f7f1113c305a7f2499969)
@@ -113,7 +113,7 @@ chrome: `chrome://net-internals/#proxy`
 - 运行， crash后，输入 `bt` 打印跟踪堆栈
 
 
-<h2 id="7f4d4875ec457dfd08542218955cb95d"></h2>
+<h2 id="139e4d9ac2e847f7d427ba67996b489a"></h2>
 
 ## download youtube playlist : yt-dlp
 
@@ -147,7 +147,7 @@ yt-dlp --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f 'be
 $ yt-dlp --write-auto-sub --skip-download --sub-lang=en  ...
 ```
 
-<h2 id="a070b11a3504a9c79ea234b981f7db6d"></h2>
+<h2 id="57065f297414ce97d3e39c4619a99fc3"></h2>
 
 ### yt-dlp download mp3 audio only
 
