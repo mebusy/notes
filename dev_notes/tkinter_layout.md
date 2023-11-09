@@ -20,3 +20,55 @@
     - take a window and you place widgets with a certain position.
     - you can also change the size.
     - fairly straightforward you always have an X and a Y postion.
+
+
+**You can combine these layout methods very easily.**
+
+
+## A couple of important things
+
+- You will rely heavily on parenting and frames
+- That way you can combine diferent layouts easily and keep them organized.
+    - Basically what you are going to do is you are placing one layout inside of a frame, and then you are placing that frame.
+    - ![](../imgs/tkinter_layout_combine_s.png)
+
+
+
+## example
+
+pack example
+
+```python
+# widgets
+lable1 = tk.Label(window, text="Label 1", background="red")
+lable2 = tk.Label(window, text="Label 2", background="blue")
+
+# pack
+lable1.pack(side="left", expand=True, fill="y")  # expand to entire window
+lable2.pack(side="bottom")
+```
+
+grid example
+
+```python
+# grid
+window.columnconfigure(0, weight=1)  # 3 columns with different weights (1, 1, 2)
+window.columnconfigure(1, weight=1)
+window.columnconfigure(2, weight=2)
+window.rowconfigure(0, weight=1)  # 1 row with weight 1
+window.rowconfigure(1, weight=1)  # 1 row with weight 1
+
+label1.grid(row=0, column=1, sticky="nsew")  # sticky: n, s, e, w, ne, se, sw, nw
+label2.grid(row=1, column=1, columnspan=2, sticky="nsew")
+```
+
+place example
+
+```python
+# place
+label1.place(x=200, y=150, width=150, anchor="nw")
+label2.place(
+    relx=0.5, rely=0.5, anchor="center", relwidth=0.5, relheight=0.5
+)  # large botton which has area of 1/4 of window
+```
+
