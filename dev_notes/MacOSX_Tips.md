@@ -205,6 +205,21 @@ There are three main directories you can use with launchd:
 </plist>
 ```
 
+trouble shooting
+
+```bash
+# list
+VBoxManage list runningvms
+# stop vm
+VBoxManage controlvm openwrt poweroff
+# unlock session
+vboxmanage startvm openwrt --type emergencystop
+
+# restart
+sh /Volumes/WORK/VBoxVDIs/openwrt/launchVM.sh
+```
+
+
 <h2 id="9fc04cfc1a7d7e7505e7417dddf947c8"></h2>
 
 ### set permission
