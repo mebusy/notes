@@ -54,13 +54,6 @@ git cherry-pick [-n] <commit>
 
 - `-n` means `no commit `
 
-<h2 id="e35fc6dbd7673d56c0824c31ff378241"></h2>
-
-## show file change of a commit 
-
-```
-git diff-tree <commit>
-```
 
 <h2 id="6f4311248df3ab2115e904e14c7836c9"></h2>
 
@@ -75,7 +68,13 @@ git show REVISION:filePath > outFilePath
 
 ## git show/diff 乱码问题
 
+```bash
+git config --global core.quotepath false
 ```
+
+OR
+
+```bash
 git diff | less -r
 ```
 
@@ -106,7 +105,7 @@ git diff commit1  commit2 --name-only
 ## provide username when clone private repos
 
 ```
-git clone https://username:password@github.com/username/repository.git
+git clone https://username[:password]@github.com/username/repository.git
 ```
 
 
@@ -120,21 +119,6 @@ git clone ...
 git config --global http.sslVerify true
 ```
 
-
-<h2 id="60f96f2175fb84d4839e67f2533a4c10"></h2>
-
-## Calling git clone using password with special character
-
-```
-!   #   $    &   '   (   )   *   +   ,   /   :   ;   =   ?   @   [   ]
-%21 %23 %24 %26 %27 %28 %29 %2A %2B %2C %2F %3A %3B %3D %3F %40 %5B %5D
-```
-
-- for example
-
-```
-$ git clone https://myuser:password%21@github.com/myuser/repo.git
-```
 
 <h2 id="9af7d00519ec3625b399242404c33af2"></h2>
 
@@ -159,23 +143,6 @@ $ git push --delete <remote_name> <branch_name>
 $ git branch -d <branch_name>
 ```
 
-
-<h2 id="299ba8422f7eafd171b8c712b9319131"></h2>
-
-## delete all commit history in github
-
-1. Checkout
-    - `git checkout --orphan latest_branch`
-2. Add all the files
-    - `git add -A`
-3. Commit the changes
-    - `git commit -am "commit message"`
-4. Delete the branch
-    - `git branch -D master`
-5. Rename the current branch to master
-    - `git branch -m master`
-6. Finally, force update your repository
-    - `git push -f origin master`
 
 
 <h2 id="f2bba2dd74d36e3d71aed69d628f2346"></h2>
