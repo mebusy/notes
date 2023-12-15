@@ -74,10 +74,12 @@ mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
 2. build event
     - `mvn compile && mvn build`
     - copy 1 jar from /target
-3. extra dependency jars from event repo
+    - so far 3 jar + 1 jar = 4 jars, for event `/libs`
+3. extra dependency jars from **event** repo
     ```bash
     mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
     ```
+    - those jars are for event `/jars`
 
 
 ## trouble shooting...
