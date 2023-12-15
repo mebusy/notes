@@ -69,6 +69,7 @@ mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
 1. build core engine
     - https://github.com/CodinGame/codingame-game-engine.git
     - `mvn compile && mvn build`
+        - NOTE: sometimes the target will rename to `mvn pacakge`
     - copy 3 jars from  ./runner/target
 2. build event
     - `mvn compile && mvn build`
