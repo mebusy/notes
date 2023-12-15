@@ -79,3 +79,11 @@ mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
     mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
     ```
 
+
+## trouble shooting...
+
+1. class file has wrong version 55.0, should be 52.0
+    ```bash
+    rm -rf ~/.m2/repository/
+    ```
+
