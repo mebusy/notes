@@ -137,3 +137,56 @@ def comment_replacer(match):
 def remove_comments(text):
     return RE_COMMENTS.sub(comment_replacer, text)
 ```
+
+
+## defaultdict tree
+
+```python
+from collections import defaultdict
+import json
+
+def tree():
+    """
+    Factory that creates a defaultdict that also uses this factory
+    """
+    return defaultdict(tree)
+
+root = tree()
+root['Page']['Python']['defaultdict']['Title'] = 'Using defaultdict'
+root['Page']['Python']['defaultdict']['Subtitle'] = 'Create a tree'
+root['Page']['Java'] = None
+
+print(json.dumps(root, indent=4))
+```
+
+```bash
+# output
+{
+    "Page": {
+        "Python": {
+            "defaultdict": {
+                "Title": "Using defaultdict",
+                "Subtitle": "Create a tree"
+            }
+        },
+        "Java": null
+    }
+}
+```
+
+## lru_cache
+
+```python
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fibonacci(n):
+    print('calling fibonacci(%d)' % n)
+    if n < 2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print([fibonacci(n) for n in range(1, 9)])
+```
+
+
