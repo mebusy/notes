@@ -209,10 +209,10 @@
 
 - launch app in inspect mode
     ```bash
-    node --inspect app.js
+    node --inspect[=port] app.js
     
     # if you're using nodemon
-    nodemon --config nodemon.json --async-stack-traces --exec 'node --inspect app.js'
+    nodemon --config nodemon.json --async-stack-traces --exec 'node --inspect[=port] app.js'
     ```
 
 
