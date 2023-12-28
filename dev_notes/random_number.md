@@ -209,7 +209,9 @@ def random(self):
     from math import sqrt as _sqrt
 
     # NV_MAGICCONST = 4 * _exp(-0.5) / _sqrt(2.0)
-
+    # self.assertAlmostEqual(random.NV_MAGICCONST, 1.71552776992141)
+    # 4 * (math.e**-0.5) / math.sqrt(2.0)
+    # 1.7155277699214135
     def normalvariate(self, mu, sigma):
         """Normal distribution.
         mu is the mean, and sigma is the standard deviation.
