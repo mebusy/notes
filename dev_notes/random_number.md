@@ -58,23 +58,26 @@ Pseudo random numbers:  a series of numbers in a particular range that seems unp
 
 ### Choice of multiplier
 
-- **Theorem A**. The linear congruential sequence defined by m, a, c, and X₀ has period length m if and only if
-    1. c is relatively prime to m;
-    2. b = a-1, is a multiple of p , for every prime p dividing m; 
-    3. b is a multiple of 4, if m is a multiple of 4. 
+- **Theorem A**. The linear congruential sequence defined by m, a, c, and X₀ has period length m if and only if  // 序列有周期长度m当且仅当
+    1. c is relatively prime to m;  // c 与 m 互质
+    2. b = a-1, is a multiple of p , for every prime p dividing m;  // 对于整除m的每个素数p，b=a-1是p的倍数;
+    3. b is a multiple of 4, if m is a multiple of 4.   // 如果m是4的倍数，则b也是4的倍数
 - if m is the word size zᵉ , the multiplier 
-    - a = zᵏ + 1,  2 ≤ k ≤ e
+    - a = zᵏ + 1,  **2 ≤ k** ≤ e
     - satisfies these conditions. 
+    - Note: **z = 2 for a binary computer**, and z = 10 for a demical compute
 
 - We may take c=1,
     - X<sub>n+1</sub> = ( ( zᵏ + 1 )  X<sub>n</sub> + 1 ) mod zᵉ
     - then we can avoid multiplication ; merely shifting and adding will suffice.
+        - e.g, for z=2, `X = ((X<<k) + X + 1) & ( zᵉ - 1 )`
 
 <h2 id="29c8b42cc2ff4fc09c6a75a4dfbc1885"></h2>
 
 ### An implementation :  No guaranteed of correctness 
 
 ```python
+# python3
 class Random(object):
     def __init__(self, e ,  x=None):
         if x is None:
@@ -190,6 +193,11 @@ def random(self):
 ### Python normalvariate implementation
 
 ```python
+    from math import log as _log, exp as _exp, e as _e
+    from math import sqrt as _sqrt
+
+    # NV_MAGICCONST = 4 * _exp(-0.5) / _sqrt(2.0)
+
     def normalvariate(self, mu, sigma):
         """Normal distribution.
         mu is the mean, and sigma is the standard deviation.
@@ -214,7 +222,4 @@ def random(self):
 
 Book "Probability Theory and Examples"
 
-
-
-    
 
