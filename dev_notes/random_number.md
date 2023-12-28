@@ -132,9 +132,19 @@ if __name__ == "__main__":
     lcg = LCG( 7,7,7, 10  )
     print( [ lcg.next() for i in range(16) ] )
 
+    lcg = LCG(7, 5, 1, 16)
+    print([lcg.next() for i in range(16)])
+    # [4, 5, 10, 3, 0, 1, 6, 15, 12, 13, 2, 11, 8, 9, 14, 7]
 
-    lcg = LCG( 7, 5 ,1, 16  )
-    print( [ lcg.next() for i in range(20) ] )
+    lcg = LCG(7, 5, 3, 16)
+    print([lcg.next() for i in range(16)])
+    # [6, 1, 8, 11, 10, 5, 12, 15, 14, 9, 0, 3, 2, 13, 4, 7]
+
+    lcg = LCG(9, 5, 91, 16)
+    print([lcg.next() for i in range(16)])
+    # [8, 3, 10, 13, 12, 7, 14, 1, 0, 11, 2, 5, 4, 15, 6, 9]
+
+    # NOTE: the last number of sequence always be the (initial seed % m)
 ```
 
 <h2 id="31d89b288043a80670b7a9af27dba6b6"></h2>
