@@ -208,6 +208,8 @@ func main() {
 {2 Jack}
 ```
 
+所以， 如果希望 方法修改对象，使用 pointer receiver 定义方法。
+
 <h2 id="62d1e1b4496f4bc6655d3fa0ca283c01"></h2>
 
 ##### method value和闭包 实现方式相同,实际返回FuncVal类型对象
@@ -221,53 +223,94 @@ FuncVal { method_address, receiver_copy }
 
 ## 5.4 方法集
 
-<h2 id="7890ce32dbf3f41637771765ed06aee7"></h2>
+类型有个与之相关的 方法集合(method set), 这决定了它是否实现某个接口。
 
-##### 使用 方法表达式 的时候，需要注意方法集
+类型T 方法集包含 receiver T 方法,  类型*T 方法集包含 receiver T + receiver *T 方法
 
-<h2 id="80c52cc54adcaa6401e1f84c1802e504"></h2>
+```golang
+T.set = T
+*T.set = T + *T
+```
 
-##### 类型T 方法集包含 receiver T 方法
+<details>
+<summary>
+example 
+</summary>
 
-<h2 id="7b87dd62941aeee66f3b724ed347de57"></h2>
+```golang
+type T int
+func (T) A() {}
+func (T) B() {}
+func (*T) C() {}
+func (*T) D() {}
 
-##### 类型*T 方法集包含 receiver T + receiver *T 方法
-
-<h2 id="dcd56429ed2339afccdc4e4ede7e08d0"></h2>
-
-##### 类型 S包含匿名 T, 则S方法集包含 T 方法
-
-<h2 id="65aa5e87b85df7b4923ef6cc856194a6"></h2>
-
-##### 类型 S包含匿名 *T, 则S方法集包含 T + *T 方法
-
-<h2 id="3b702da3bdd1ba387db099309dcceb72"></h2>
-
-##### 不论嵌入 T或*T, *S 方法集总是包含 T + *T 方法
-
-<h2 id="3e12f098448b6572e3192cf7e7846461"></h2>
-
-##### 用实例value或 pointer调用方法不受方法集约束
-
-
-```go
-type Data struct{}
-func (Data) TestValue()    {}
-func (*Data) TestPointer() {}
+func show(i interface{} ) {
+    t := reflect.TypeOf(i)
+    for i := 0; i < t.NumMethod(); i++ {
+        println(t.Method(i).Name)
+    }
+}
 
 func main() {
-    var p *Data = nil
-    p.TestPointer()
-    (*Data)(nil).TestPointer()  // method value
-    (*Data).TestPointer(nil)    // method expression
-    // p.TestValue()   //空指针
-    // Data.TestValue(nil)  // nil不能转为Data
-    // Data.TestPointer() //T方法集里没有receiver *T方法
+    var n T = 1
+    var p *T = &n
+
+    show(n) // T = [A, B]
+    println("---")
+    show(p) // *T = [A, B, C, D]
 }
 ```
 
----
----
+</details>
+
+直接方法调用，不涉及方法集。 编译器自动转换所需参数(receiver).
+
+而转换(赋值)接口(interface)时，需检查方法集是否完全实现接口申明。
+
+<details>
+<summary>
+example
+</summary>
+
+```golang
+type Xer interface {
+    B ()
+    C ()
+}
+
+func main() {
+    var n T = 1
+
+    // 方法调用，不涉及方法集
+    n.B()
+    n.C()
+
+    // 接口，检查方法集
+    var x Xer = n  // assign type T variable to interface
+    //  error:    ~ T does not implement Xer (C method has pointer receiver)
+    var x Xer = &n // correct
+    ...
+}
+```
+
+</details>
+
+
+embed struct 方法集合
+
+
+类型 T 包含匿名 E, 则T方法集包含 E 方法
+
+类型 T 包含匿名 *E, 则T方法集包含 E + *E 方法
+
+不论嵌入 E或*E, *T 方法集总是包含 E + *E 方法
+
+
+```golang
+T{ E } = T + E
+T{ *E } = T + E + *E
+*Т{ Е | *Е } = Т + *T + Е + *Е
+```
 
 <h2 id="57f2ffaf14788e0050594f8ce0c6a134"></h2>
 
