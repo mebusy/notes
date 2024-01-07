@@ -27,6 +27,7 @@
  24. [cgo](cgo.md)
  25. [gorilla websocket](websocket.md)
  26. [go template cheatsheet](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet)
+ 27. [go error prone](go_error_prone.md)
 
 ---------
 
