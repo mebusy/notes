@@ -318,7 +318,7 @@ defer panic
 
 <h2 id="fd1722d28270f4c115d3f3d87194ba71"></h2>
 
-##### recover 只有`defer` 语句中`直接`调用才会中止错误, 其他调用方式总是返回 nil
+##### recover 只有`defer` 函数中`直接`调用才会中止错误, 其他调用方式总是返回 nil
 
 ```go
 func test() {
