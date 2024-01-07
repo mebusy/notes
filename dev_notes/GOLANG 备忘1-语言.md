@@ -136,7 +136,7 @@ func main() {
 
 #### 自定义枚举类型
 
-```python
+```golang
 type Color int
 const (
     Black Color = iota
@@ -167,6 +167,14 @@ channel                 引用类型
 interface               接口
 function                函数
 ```
+
+`byte`, `rune` 是语言规范中，专门提供的两个别名，只是语法糖， 编译器会将其还原为原始类型。
+
+```golang
+byte  // alias for uint8
+rune  // alias for uint32
+```
+
 
 <h2 id="e607fa976dff12f265568440e58e7d5d"></h2>
 
@@ -209,7 +217,7 @@ v := new(int)   // v的类型为*int
 <h2 id="2c8a6bb0da0655ef57c7f4a7d7c04a9e"></h2>
 
 #### 数据结构:
-```python
+```golang
 struct String {
         byte* str;
         intgo len; 
@@ -259,7 +267,7 @@ s1 := s[:5]
 
 #### 单引号字符常量 'aaa' 表示 rune 类型 ( Unicode Code Point )
 
-```python
+```golang
     a:='我'
     b:="我"
     c:='a'
@@ -271,7 +279,7 @@ s1 := s[:5]
 
 #### 要修改字符串,可先将其转换成 []rune 或 []byte, 完成后再转换为 string
 
-```python
+```golang
     s := "abcd"
     bs := []byte(s)
     bs[1] = 'B'
@@ -302,7 +310,7 @@ for _,v in range 遍历, v 是 rune
 
 #### 可以在 unsafe.Pointer 和任意类型指针间进行转换
 
-```python
+```golang
 func main() {
     x := 0x12345678
     p := unsafe.Pointer(&x)
@@ -317,7 +325,7 @@ func main() {
 
 #### 指针不支持加减法, 但可将Pointer 转换成 uintptr,可变相实现指针运算。
 
-```python
+```golang
 func main() {
     d := struct {
         s string
@@ -339,7 +347,7 @@ func main() {
 
 #### go函数内返回局部变量指针 是安全的，编译器会根据需要将其分配在GC Heap上
 
-```python
+```golang
 func test() *int {
     x := 100
     return &x //在堆上分配内存, 但在内联时,也可能直接分配在目标栈。 
@@ -383,7 +391,7 @@ array、slice、map 等和 具体元素类型、 长度等 有关,属于未命�
 
 #### type 在全局 或函数内 定义新类型。
 
-```python
+```golang
 func main() {
     type bigint int64
     var x bigint = 100
@@ -399,7 +407,7 @@ func main() {
 
 未命名类型, 可以显式转换。
 
-```python
+```golang
 x := 1234
 var b bigint = bigint(x) // 必须显式转换,除 是常量。
 var s myslice = []int{1, 2, 3} // 未命名类型,隐式转换。
