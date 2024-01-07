@@ -97,21 +97,34 @@ const (
 #1.3 枚举
 <h2 id="cb7a8f084225d830d18f49a44720786f"></h2>
 
-#### 关键字 iota 定义常量组中从 0 开始按 计数的 自增枚举值。
-<h2 id="36e89a4379afe38a68470f5c1586aa4b"></h2>
+const 定义可以使用 iota 
 
-#### 同一行常量组中，可以有多个 iota,它们各自自增 
+```golang
+package main
 
-```go
+import "fmt"
+
 const (
-    _   = iota                  // iota = 0
-    KB  int64=1<<(10*iota) MB   //iota=1
-    GB                          // 与 KB 表达式相同,但 iota = 2
-    TB
-    A,B  =iota,iota<<10         // 4, 4<<10 
-    C,D                         // 5, 5 << 10
-    
+	// r 1: iota ignore comments line
+	// r 2: the first constant must assign a right value
+	// r 3: iota start from first line with value 0, and increment by 1
+	a = iota // iota = 0 ,
+
+	// r 1: iota ignore empty line
+	_            // iota = 1 ,  r 1.1: _ is not empy line
+	b = 2        // iota = 2
+	c            // iota = 3, r4: if right value not provided, use the previous value (b)
+	d = iota * 2 // iota = 4
 )
+
+// r5: iota is scoped to the constant block
+const x = iota // iota = 0
+
+func main() {
+	fmt.Printf("c=%v\n", c) // c=2
+	fmt.Printf("d=%v\n", d) // d=8
+	fmt.Printf("x=%v\n", x) // x=0
+}
 ```
 
 <h2 id="259c7fb47f2b676cb50d51ce5709cfbf"></h2>
