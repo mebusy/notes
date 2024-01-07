@@ -97,7 +97,7 @@ const (
 #1.3 枚举
 <h2 id="cb7a8f084225d830d18f49a44720786f"></h2>
 
-const 定义可以使用 iota 
+没有明确意义上的枚举类型(enum), 借助 iota 自增常量值来实现枚举效果
 
 ```golang
 package main
