@@ -111,18 +111,23 @@ const (
 	a = iota // iota = 0 ,
 
 	// r 1: iota ignore empty line
-	_            // iota = 1 ,  r 1.1: _ is not empy line
-	b = 2        // iota = 2
-	c            // iota = 3, r4: if right value not provided, use the previous value (b)
-	d = iota * 2 // iota = 4
+	_                    // iota = 1 ,  r 1.1: _ is not empy line
+	b = 2                // iota = 2
+	c                    // iota = 3, c=2, c not provide a value, so use the previous value (b)
+	d         = iota * 2 // iota = 4
+	e float64 = iota     // iota = 5, you can specify the type of iota, default is int
+	f
 )
 
-// r5: iota is scoped to the constant block
+// r 5: iota is scoped to the constant block
 const x = iota // iota = 0
 
 func main() {
-	fmt.Printf("c=%v\n", c) // c=2
-	fmt.Printf("d=%v\n", d) // d=8
+	fmt.Printf("c=%v\n", c)   // c=2
+	fmt.Printf("d=%v\n", d)   // d=8
+	fmt.Printf("e=%.2f\n", e) // e=5.00
+	fmt.Printf("f=%.2f\n", f) // f=6.00
+
 	fmt.Printf("x=%v\n", x) // x=0
 }
 ```
