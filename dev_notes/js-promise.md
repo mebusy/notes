@@ -4,6 +4,8 @@
     - [What is Promise](#42c13d91edca77a10e5e59f6936ee2c9)
     - [What problem can Promises solve ?](#7b9bcee29941c7e84649a74394a12b7a)
     - [What else can Promises do ?](#2e533b31a6610c21756a5aac95c9d7f0)
+- [Misc](#74248c725e00bf9fe04df4e35b249a19)
+    - [Pure javascript: Resolve promises one by one (sequentially)](#e5420029636c9b3fe746c592c003c7ea)
 
 [](...menuend)
 
@@ -268,7 +270,11 @@ watchTutorialPromise().then(  // <- watchTutorialCallback(
     // Output: Video 1 Recorded
     ```
 
+<h2 id="74248c725e00bf9fe04df4e35b249a19"></h2>
+
 # Misc
+
+<h2 id="e5420029636c9b3fe746c592c003c7ea"></h2>
 
 ## Pure javascript: Resolve promises one by one (sequentially)
 

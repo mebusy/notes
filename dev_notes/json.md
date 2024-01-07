@@ -1,5 +1,17 @@
+[](...menustart)
+
+- [JSON misk](#650bc7423e41dab11cdd854b7d823a25)
+    - [encode with sorted objected keys](#5d04d34527e63407c1192d2df7274935)
+    - [For number type x.0, remove the tailing .0](#5f97e015797c375ca0dc997cccf4b847)
+
+[](...menuend)
+
+
+<h2 id="650bc7423e41dab11cdd854b7d823a25"></h2>
 
 # JSON misk
+
+<h2 id="5d04d34527e63407c1192d2df7274935"></h2>
 
 ## encode with sorted objected keys
 
@@ -74,6 +86,8 @@ static class SignatureHelper
     strJson = SignatureHelper.NormalizeJsonString(strJson);
 ```
 
+
+<h2 id="5f97e015797c375ca0dc997cccf4b847"></h2>
 
 ## For number type x.0, remove the tailing .0
 

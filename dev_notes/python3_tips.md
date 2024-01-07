@@ -4,6 +4,8 @@
     - [Print Colored Output](#574083d4ce2c240d64205f07595f82c4)
     - [Yaml, References Variables , and Concat Strings](#37fde4cf4b72158aff18de1784ec0f23)
     - [remove single-line / multiple-line comments](#2ff3865f3455ca50e9de317f1c7851ea)
+    - [defaultdict tree](#7a652adbada4c294364e2c3c61fb5c25)
+    - [lru_cache](#89dd193fac1729cebfd50aff749b688c)
 
 [](...menuend)
 
@@ -139,6 +141,8 @@ def remove_comments(text):
 ```
 
 
+<h2 id="7a652adbada4c294364e2c3c61fb5c25"></h2>
+
 ## defaultdict tree
 
 ```python
@@ -173,6 +177,8 @@ print(json.dumps(root, indent=4))
     }
 }
 ```
+
+<h2 id="89dd193fac1729cebfd50aff749b688c"></h2>
 
 ## lru_cache
 

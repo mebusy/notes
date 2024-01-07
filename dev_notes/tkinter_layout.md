@@ -1,4 +1,18 @@
+[](...menustart)
+
+- [An overview of tkinter layouts](#dfa2fd249a9b3329a85e377b9c6c12a1)
+    - [3 major methods](#f795e59b2f2582c88f1ff7ece88c917e)
+    - [A couple of important things](#d4641d8da5cf5d77de42dbe9b2ee6fac)
+    - [example](#1a79a4d60de6718e8e5b326e338ae533)
+
+[](...menuend)
+
+
+<h2 id="dfa2fd249a9b3329a85e377b9c6c12a1"></h2>
+
 # An overview of tkinter layouts
+
+<h2 id="f795e59b2f2582c88f1ff7ece88c917e"></h2>
 
 ## 3 major methods
 
@@ -25,6 +39,8 @@
 **You can combine these layout methods very easily.**
 
 
+<h2 id="d4641d8da5cf5d77de42dbe9b2ee6fac"></h2>
+
 ## A couple of important things
 
 - You will rely heavily on parenting and frames
@@ -33,6 +49,8 @@
     - ![](../imgs/tkinter_layout_combine_s.png)
 
 
+
+<h2 id="1a79a4d60de6718e8e5b326e338ae533"></h2>
 
 ## example
 

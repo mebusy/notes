@@ -5,6 +5,7 @@
     - [download all dependency jars to local directory](#e042c2dceb644e0011dadcebdee7d5ca)
 - [codingame](#2493f542e5fd965bb3eae545ed75a93f)
     - [set environment](#97e576d6033c8d1ede04911d1722cb4e)
+    - [trouble shooting...](#17fa37b9d6237f6ba45c70d29f40881b)
 
 [](...menuend)
 
@@ -81,6 +82,8 @@ mvn dependency:copy-dependencies -DoutputDirectory="`pwd`/jars"
     ```
     - those jars are for event `/jars`
 
+
+<h2 id="17fa37b9d6237f6ba45c70d29f40881b"></h2>
 
 ## trouble shooting...
 
