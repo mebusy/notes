@@ -30,6 +30,11 @@
  27. [go error prone](go_error_prone.md)
  28. [go io patter](go_io_pattern.md)
 
+### Youtube Video
+
+- [I/O 2012 Go Concurrency Patterns](https://www.youtube.com/watch?v=f6kdp27TYZs&t=2457s)
+    - [sliders](https://go.dev/talks/2012/concurrency.slide)
+
 ---------
 
 <h2 id="0a924bf17d1b7242d5600e9b537b969f"></h2>
