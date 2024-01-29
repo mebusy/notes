@@ -1,6 +1,20 @@
+[](...menustart)
+
+- [error-prone place in golang](#13bd409154e8c66bdbe621b5a6e511ca)
+    - [1. `range`  will copy the value](#b0bae40f21223254e952e1d16b90806b)
+    - [2. `range` will reuse same k,v variable when iterating](#7350871036e378fe4a506a200349ac5f)
+    - [3. value method will copy the receiver](#8204b360f64157d1e621a87be4ce0358)
+    - [4. if a map's value is array or struct, you can not modify only part of the value](#e57d94614f7c698df1752d2b4f729e35)
+
+[](...menuend)
+
+
+<h2 id="13bd409154e8c66bdbe621b5a6e511ca"></h2>
 
 # error-prone place in golang
 
+
+<h2 id="b0bae40f21223254e952e1d16b90806b"></h2>
 
 ## 1. `range`  will copy the value
 
@@ -22,6 +36,8 @@ func main() {
 	fmt.Println(arr) // [{0} {20}]
 }
 ```
+
+<h2 id="7350871036e378fe4a506a200349ac5f"></h2>
 
 ## 2. `range` will reuse same k,v variable when iterating
 
@@ -68,6 +84,8 @@ func main() {
 ```
 
 
+<h2 id="8204b360f64157d1e621a87be4ce0358"></h2>
+
 ## 3. value method will copy the receiver
 
 ```golang
@@ -94,6 +112,8 @@ func main() {
 	fmt.Println(s) // {2}
 }
 ```
+
+<h2 id="e57d94614f7c698df1752d2b4f729e35"></h2>
 
 ## 4. if a map's value is array or struct, you can not modify only part of the value
 
