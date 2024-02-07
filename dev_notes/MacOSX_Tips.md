@@ -81,6 +81,8 @@ unsigned int note_txt_len = 61;
 ### man ascii  字符表
 
 ```bash
+$ man ascii
+
  The hexadecimal set:
 
  00 nul   01 soh   02 stx   03 etx   04 eot   05 enq   06 ack   07 bel
@@ -275,4 +277,20 @@ cmd +  ctl + shift + 4
 ```bash
 $ security find-generic-password -wa "ChinaNet-Mebusy" |  pbcopy
 ```
+
+## open finder where specific file exists
+
+```bash
+open -R <path-to-file>
+```
+
+## Easily Find Forgotten Commands from History (bck-i-search)
+
+1. Open up Terminal.
+2. Type `Ctrl-r`.
+3. type letters you remember...
+4. As you type, the terminal keeps suggesting a command that matches what you’ve typed. 
+
+
+
 
