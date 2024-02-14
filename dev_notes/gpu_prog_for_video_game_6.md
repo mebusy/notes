@@ -561,7 +561,8 @@ Basically the shader model is defined an agreement of certain kinds of registers
             - you will only really see that in some extremely old 3D games
         - Constant inputs
             - common to all of the vertices, e.g. your 4x4 transformation matrix for your vertices, often refer to uniform
-    - Output to a pixel (fragment) shader
+- Output to a pixel (fragment) shader
+
 - Vertex shader is executed once per vertex, so usually less expensive than pixel shader
 
 - Vertex Compute Unit under shader model 3.0
