@@ -20,11 +20,11 @@
 
 ## Qualifiers
 
-1.0 name | 2.0 name | Facility | Data Update Frequency
+1.0 name | 2.0 name | Facility | Data 
 --- | --- | --- | ---
-attribute | in | store current vertex data |  per vertex
-varying | out | store current fragment data | per fragment
-uniform | uniform | store "constant" data | per draw call
+attribute | in | store current vertex data |  per vertex parameters
+varying | out | interpolated data between vertex/fragment shaders | per-fragment(or per-pixel)
+uniform | uniform | store "constant" data during entire draw call | per primitive parameters
 
 
 <h2 id="435827c0432e29e22a2b69df5c4a9db4"></h2>
