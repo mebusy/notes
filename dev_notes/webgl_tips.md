@@ -23,7 +23,7 @@
 1.0 name | 2.0 name | Facility | Data 
 --- | --- | --- | ---
 attribute | in | store current vertex data |  per vertex parameters
-varying | out | interpolated data between vertex/fragment shaders | per-fragment(or per-pixel)
+varying | out | interpolated data between vertex/fragment shaders(e.g. pass the vertex position to fragment shader) | per-fragment(or per-pixel)
 uniform | uniform | store "constant" data during entire draw call | per primitive parameters
 
 
@@ -54,7 +54,44 @@ gl_FragDepth | depth value in [0,1] | Fragment | Read only
     - https://threejs.org/docs/#api/en/renderers/webgl/WebGLProgram 
 
 
+## custom shader
 
+```javascript
+import vertexShader from './shaders/vertex.glsl'
+import fragmentShader from './shaders/fragment.glsl'
 
+//...
+
+  // meshes
+  const geometry = new THREE.PlaneGeometry(2, 2)
+  const material = new THREE.ShaderMaterial({
+    vertexShader: vertexShader,
+    fragmentShader: fragmentShader,
+    // wireframe: true,
+  })
+  // ...
+```
+
+- three.js ShaderMaterial class create some attributes, uniform for you
+    - such like `projectionMatrix`, `modelViewMatrix`, `position`
+    - if you want take control everything yourself, you should use `THREE.RawShaderMaterial`
+        - when using `THREE.RawShaderMaterial`, you need to specify a precision for floats
+        ```c
+        precision mediump float;
+        ```
+
+## custom uniform
+
+e.g. create a float uniform named `uTime`
+
+```javascript
+    // in javascript
+    material.uniforms.uTime = {value: 0}
+```
+
+```c
+// in shader
+uniform float uTime;
+```
 
 
