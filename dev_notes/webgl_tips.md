@@ -14,7 +14,7 @@
 
 [OpenGL-ES-2_0-Reference-card](https://www.khronos.org/opengles/sdk/docs/reference_cards/OpenGL-ES-2_0-Reference-card.pdf)
 
-
+[the book of shaders](https://thebookofshaders.com/)   You can find the visualization of gsgl functions.
 
 <h2 id="619dd4db8171a8f1bf978f44c9cf10c4"></h2>
 
@@ -93,5 +93,23 @@ e.g. create a float uniform named `uTime`
 // in shader
 uniform float uTime;
 ```
+
+## useful GSGL functions
+
+- [pow](https://thebookofshaders.com/glossary/?search=pow)
+- [lerp/mix](https://thebookofshaders.com/glossary/?search=mix)
+- [clamp](https://thebookofshaders.com/glossary/?search=clamp)
+- [step](https://thebookofshaders.com/glossary/?search=step), [smoothstep](https://thebookofshaders.com/glossary/?search=smoothstep)
+- [length](https://thebookofshaders.com/glossary/?search=length), [distance](https://thebookofshaders.com/glossary/?search=distance)
+- [fract](https://thebookofshaders.com/glossary/?search=fract)
+- [mod](https://thebookofshaders.com/glossary/?search=mod)
+- [dot](https://thebookofshaders.com/glossary/?search=dot), [cross](https://thebookofshaders.com/glossary/?search=cross)
+
+
+## signed distance field
+
+https://iquilezles.org/articles/distfunctions2d/
+
+
 
 
