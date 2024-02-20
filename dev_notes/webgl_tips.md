@@ -111,5 +111,39 @@ uniform float uTime;
 https://iquilezles.org/articles/distfunctions2d/
 
 
+## Customize ThreeJS Materials With Shaders
+
+```javascript
+  const geometry = new THREE.IcosahedronGeometry()
+  const material = new THREE.MeshStandardMaterial({
+    onBeforeCompile: (shader) => {
+      // shader.vertexShader
+      // shader.fragmemtShader
+
+      // save shader reference for later using
+      material.userData.shader = shader
+
+      // add a uniform
+      shader.uniforms.uTime = {value: 0}
+    }
+  })
+  const ico = new THREE.Mesh(geometry, material)
+```
+
+add `defines`
+
+```javascript
+    // in javascript
+    material.defines.NO_ANIMATION = true
+```
+
+```c
+    // in gsgl
+    # ifdef NO_ANIMATION
+        ...
+    #else
+        ...
+    #endif
+```
 
 
