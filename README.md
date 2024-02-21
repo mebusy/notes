@@ -206,7 +206,7 @@ a | b | c | d
 [MacOSX Tips](dev_notes/MacOSX_Tips.md) | [working tips](dev_notes/workingTips.md)	|  [command line tips](dev_notes/commandline_tips.md)
 [cntlm proxy](dev_notes/cntlm.md) | [manage multiple java version on OSX](dev_notes/java_version_manage_osx.md) |
 [VIM](dev_notes/vim.md) | [brew](dev_notes/homebrew.md) |  [comparing regular expression engine](dev_notes/re-engine.md) |
-[run GUI app in docker on MacOSX](dev_notes/docker_mac_gui_app.md) |
+[run GUI app in docker on MacOSX](dev_notes/docker_mac_gui_app.md) | [run docker w/o desktop](dev_notes/docker_without_desktop.md) |
 [blender api](dev_notes/blender.md) |  [blender lowpoly model](dev_notes/blender_low_poly.md) | 
 [inkscape](dev_notes/inkscape.md) | [manim](dev_notes/manim_readme.md) |
 [mdfind](dev_notes/mdfind.md) |  [mermaid](dev_notes/mermaid.md) |
