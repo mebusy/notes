@@ -40,6 +40,8 @@ if __name__ == "__main__":
     image = image.convert("P", palette=Image.Palette.ADAPTIVE, colors=numberColor)
 
     ppath, ext = os.path.splitext(imagePath)
+    # for ext to be .png
+    ext = ".png"
     newPath = ppath + "_s" + ext
     image.save(newPath)
 

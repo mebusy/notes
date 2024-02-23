@@ -147,3 +147,66 @@ add `defines`
 ```
 
 
+## toon shader implementation
+
+https://www.youtube.com/watch?v=V5UllFImvoE&list=PLTEbuqk52pICikiHfD-a52dxEav5UqMLy&index=12
+
+![](../imgs/3js_toon.png)
+
+```javascript
+import TOON_TONE from './images/textures/threeTone.jpg' 
+...
+
+  const solidify = (mesh, thickness = 0.02) => {
+    const geometry = mesh.geometry
+    const material = new THREE.ShaderMaterial({
+      vertexShader: `
+        void main() {
+          // outline is bit larger than the original mesh
+          vec3 newPosition = position + normal * ${thickness};
+          gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+        }
+      `,
+      fragmentShader: `
+        void main() {
+          // outline is in black
+          gl_FragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+        }
+        `,
+      side: THREE.BackSide, // which side of faces will be rendered
+    })
+
+    const outline = new THREE.Mesh(geometry, material)
+
+    scene.add(outline)
+  }
+
+  // original mesh
+  const _addTorus = async () => {
+    // a toon texture to make THREE.MeshToonMaterial look better
+    const texture = await new THREE.TextureLoader().loadAsync(TOON_TONE)
+    texture.minFilter = texture.magFilter = THREE.NearestFilter // really important !
+
+    const geometry = new THREE.TorusKnotGeometry(1, 0.4, 100, 100)
+    // there.js provides a MeshToonMaterial, we use it on the original mesh, but
+    //  it may be bad looking... we can add a gradient map to make it look better
+    const material = new THREE.MeshToonMaterial({
+      color: '#4e62f9',
+      gradientMap: texture,
+    })
+    const torus = new THREE.Mesh(geometry, material)
+
+    // make cartoon effect
+    solidify(torus, 0.02)
+
+    scene.add(torus)
+  }
+
+  _addTorus()
+
+```
+
+<img src="../imgs/threeTone_s.png" width=80>  (threeTone 3x1)
+<img src="../imgs/fourTone_s.png" width=80>  (fourTone 4x1)
+<img src="../imgs/fiveTone_s.png" width=80>  (fiveTone 5x1)
+
