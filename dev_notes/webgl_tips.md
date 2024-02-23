@@ -210,3 +210,34 @@ import TOON_TONE from './images/textures/threeTone.jpg'
 <img src="../imgs/fourTone_s.png" width=80>  (fourTone 4x1)
 <img src="../imgs/fiveTone_s.png" width=80>  (fiveTone 5x1)
 
+
+## Add Toon effect on prebuilt realistic model
+
+1. open .glb model by blender
+2. find the final mesh (Yellow inverted triangle icon), delete all the parerent from top to down
+3. go into the `shading` tab
+    - delete all other color nodes except the `BASE COLOR` node
+    - unpack the texture image in `BASE COLOR` node,   the texture image will be extracted from the model
+4. use tool like [krita](https://krita.org/en/download/) or photoshop  make that texture image cartoonish
+    - krita : filter/Start G'MIC-Qt
+    - photoshop : Filter / filter gallery / Cut Out (change color levels)
+10. export the .glb model
+    - export options: `Include / Selected Objects`
+11. apply `solidify()` method on the model
+
+```javascript
+
+  const _addModel = async () => {
+    const gltf = await gltfLoader.loadAsync(SWORD_MODEL)
+
+    const model = gltf.scene.children[0]
+
+    solidify(model, 0.01)
+
+    scene.add(model)
+  }
+
+  _addModel()
+```
+
+
