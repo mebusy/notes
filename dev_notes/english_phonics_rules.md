@@ -116,3 +116,103 @@ ur | fur
 5. 该元音是元音规则的特例。
 
 
+# 英语 6种音节类型
+
+## clover
+
+### c : closed
+
+闭音节 cvc结构： 辅1 + 元音 + 辅2,  2个辅音字母 把 元音字母关闭起来，元音字母发 短音。
+
+e.g. quiz
+
+因为 辅音字母音节划分的多是 优先和后面的元音结合， 所以闭音节总是在**单词末尾**。（但是并不绝对，比如`cam el`）
+
+辅1 可以是 qu ， 发音 /qw/ .
+
+辅2 不能是 w, y 这两个半元音。 因为半元音w,y 会和前面的元音结合， 如 snow不是闭音节.
+
+
+### e : slient e
+
+元 + 辅 + e(不发音)
+
+
+<img src="../imgs/vowel-consonant-e.png" width=320 />
+
+### o : open
+
+开音节 辅 + 元
+
+e.g. be
+
+
+### l : c + le
+
+辅 + le
+
+e.g. apple
+
+
+### v : vowel team
+
+元音组合
+
+e.g. steak
+
+发音:
+
+1. 发两个字母其中一个的长元音
+2. 发音和 原来的两个字母完全不同
+    - aw, au (law, author)
+    - ew, oo (brew, food)
+    - oi, oy (point, boy)
+    - ow, ou (how, out)
+
+
+
+### r : r-controlled
+
+元音 + r
+
+元音 即不发 长元音， 也不发短元音， 发音完全变掉了。
+
+- ar (car)
+- er-ir-ur (jerk, shirt, hurt)
+- or (fort)
+
+
+## REVLOC 音节划分
+
+- 一个口诀 REVLOC
+    - 划分音节， 音节类型的优先级
+    - 先找 r-controlled， 再找 slient-e ...
+- 三个步骤
+    1. 找元音
+    2. 用口诀排查音节类型
+    3. 用6种方法/规则 划分
+- 六种方法
+    1. rabbit rule
+        - `rab bit`, `fun ny`, `in side`
+        - 元音之间，有2个或多个辅音，在两个辅音中间做出划分
+    2. reptile
+        - `rep tile`
+        - slient-e 结构看作一个整体，然后依照rabbit rule 在pt中间做出划分
+    3. camel tiger
+        - `cam el`, `hab it`, `com ic`
+        - `ti ger`, `ro tate`, `ho tel`
+            - er r-controlled 结构
+        - 两个元音中间只有一个辅音， 辅音的划分 没有规律。
+    4. turtle
+        - `tur tle`
+            - ur r-controlled
+            - tle  cle结构
+    5. raccoon
+        - `rac coon`
+    6. lion
+        - io 不是一个元音组合
+        - 两个元音在一起，但不是元音组合， 从元音中间划分
+        - `li on`, `po et`, `ne on`
+
+
+
