@@ -195,4 +195,123 @@ $ git submodule foreach --recursive git reset --hard
 ```
 
 
+# Cool Git Command
+
+## 1. git stash
+
+- save your local modifications away and reverts the working directory to match the HEAD commit.
+    - `git stash --all`
+- Restore saved progress
+    - `git stash pop`
+
+
+## 2. git blame
+
+```bash
+git blame  --color-lines  --color-by-age    -L xxx  path/to/file
+```
+
+`-L` means L*ittle*,  it can be a range `<start>,<end>`, or a function `:<funcname>`
+
+you can do exactly the same thing with `git log`
+
+```bash
+git log -L 40,60:path/to/file
+```
+
+find line copies within and across files in the same commit
+
+```bash
+git blame -w -C
+```
+
+or the commit that create the file
+
+```bash
+git blame -w -C -C
+```
+
+or any commit at all
+
+```bash
+git blame -w -C -C -C
+```
+
+find line movements 
+
+```bash
+git blame -w -M -M -M
+```
+
+## 3. git log -S
+
+the *pickaxe*
+
+filter all my git log output to anything that has this regular expression or the string in it
+
+```bash
+git log -S files_watcher -p
+```
+
+
+## 4. git diff
+
+show word based diff instead of lines
+
+```bash
+git diff --word-diff
+```
+
+example:
+
+```txt
+reset a [-specified-]{+speci fied+} sub module
+```
+
+## 5. git maintenance 
+
+```bash
+$ git maintenance start
+
+$tail -3 .git/config
+[maintenance]
+	auto = false
+	strategy = incremental
+```
+
+start background job to 
+
+- gc:   disabled
+- commit-graph: hourly
+- prefetch: hourly
+- loose-objects: daily
+- incremental-repack: daily
+- pack-refs:  none
+
+
+
+# Big Repo Stuff
+
+## filesystem monitor
+
+```bash
+git config core.untrackedCache true
+git config core.fsmonitor true
+```
+
+## partially clone
+
+filter out all blobs (file contents) until needed by Git.
+
+```bash
+$ git clone --filter=blob:none  #omits all blobs.
+```
+
+or NO trees ( it's relatively rare to use this except for in CI build type stuff)
+
+```bash
+$ git clone --filter=tree:0
+```
+
+
 
