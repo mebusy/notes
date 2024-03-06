@@ -11,8 +11,10 @@
     }
     ```
 3. `brew install colima`
-4. `colima start --mount /Volumes/WORK:w`
-    - this is very important, you must make some Volumn writable which you want to mount 
+4. `colima start --network-address --mount /Volumes/WORK:w`
+    - this is very important
+    - mechanism for OSX , it asks for an admin pwd to be able to work.
+    - and you must make some Volumn writable which you want to mount 
 
 After the initial run above, you can use `colima start` or use `colima start -e` to edit the configuration file. Run `colima status` at any time to check Colima’s status.
 
@@ -27,3 +29,4 @@ brew services start colima
 By default, Colima only mounts your home directory, so it’s easiest to use it in a subdirectory there. See the `~/.colima/default/colima.yaml`.
 
 
+sometimes you need restart colima for some problem-defect ... 
