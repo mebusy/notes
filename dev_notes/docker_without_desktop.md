@@ -14,4 +14,16 @@
 4. `colima start --mount /Volumes/WORK:w`
     - this is very important, you must make some Volumn writable which you want to mount 
 
+After the initial run above, you can use `colima start` or use `colima start -e` to edit the configuration file. Run `colima status` at any time to check Colima’s status.
+
+https://ddev.readthedocs.io/en/latest/users/install/docker-installation/#macos
+
+to start Colima automatically on reboot
+
+```bash
+brew services start colima
+```
+
+By default, Colima only mounts your home directory, so it’s easiest to use it in a subdirectory there. See the `~/.colima/default/colima.yaml`.
+
 
