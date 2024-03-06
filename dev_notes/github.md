@@ -268,6 +268,50 @@ example:
 reset a [-specified-]{+speci fied+} sub module
 ```
 
+## 5. git maintenance 
+
+```bash
+$ git maintenance start
+
+$tail -3 .git/config
+[maintenance]
+	auto = false
+	strategy = incremental
+```
+
+start background job to 
+
+- gc:   disabled
+- commit-graph: hourly
+- prefetch: hourly
+- loose-objects: daily
+- incremental-repack: daily
+- pack-refs:  none
+
+
+
+# Big Repo Stuff
+
+## filesystem monitor
+
+```bash
+git config core.untrackedCache true
+git config core.fsmonitor true
+```
+
+## partially clone
+
+filter out all blobs (file contents) until needed by Git.
+
+```bash
+$ git clone --filter=blob:none  #omits all blobs.
+```
+
+or NO trees ( it's relatively rare to use this except for in CI build type stuff)
+
+```bash
+$ git clone --filter=tree:0
+```
 
 
 
