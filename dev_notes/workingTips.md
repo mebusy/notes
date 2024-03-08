@@ -312,5 +312,17 @@ watch -n 1 -d find .
 watch -n 1 -d find . -path ./.git  -prune -o -print
 ```
 
+## [MacOSX] chrome gpu acceleration not work
+
+1. delete chrome app
+2. delete `~/Library/Application Support/Google/Chrome`
+3. reinstall chrome app
+
+check chrome gpu acceleration status
+
+```bash
+chrome://gpu
+```
+
 
 
