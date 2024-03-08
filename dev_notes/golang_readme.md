@@ -19,7 +19,6 @@
  16. [cheat sheet](golang_cheatsheet.md)
  17. [GoInPractice70Tech](GoInPractice70Tech.md), [6 template](GoIn70_6.md), [7 web form](GoIn70_7.md), [8 with web service](GoIn70_8.md), [9 cloud, 10 micro service](GoIn70_9.md), [11 reflection & code generation](GoIn70_11.md)
  18. [go tips](go_tips.md)
- 19. [godoc](godoc.md)
  20. [go pprof](golang_pprof.md)
  21. [ways to sort in go](go_sort.md)
  22. [go encrypt](go_encrypt.md)
@@ -73,18 +72,3 @@ go get -u github.com/...
 go get -u gopkg.in/...
 ```
 
-<h2 id="e8db5cfdd7d47c516453db67161e7537"></h2>
-
-### list all package 
-
-```
-go list ...
-```
-
-<h2 id="e761880bea8f1f8b4c77ba1e0662b258"></h2>
-
-### list all GOOS/GOARCH
-
-```
-go tool dist list
-```
