@@ -19,6 +19,7 @@
  16. [cheat sheet](golang_cheatsheet.md)
  17. [GoInPractice70Tech](GoInPractice70Tech.md), [6 template](GoIn70_6.md), [7 web form](GoIn70_7.md), [8 with web service](GoIn70_8.md), [9 cloud, 10 micro service](GoIn70_9.md), [11 reflection & code generation](GoIn70_11.md)
  18. [go tips](go_tips.md)
+ 18. [go tool tips](golang_tool_tips.md)
  20. [go pprof](golang_pprof.md)
  21. [ways to sort in go](go_sort.md)
  22. [go encrypt](go_encrypt.md)
@@ -59,7 +60,7 @@ git clone https://github.com/golang/tools.git
 
 <h2 id="592aa5aafd64f18a5b4759ec0820ef33"></h2>
 
-### get get update multiple pacakge 
+### go get update multiple pacakge 
 
 ```
 go get -u all

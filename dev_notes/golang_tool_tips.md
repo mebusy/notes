@@ -67,3 +67,11 @@ func Printf(format string, a ...any) (n int, err error)
         }
         ```
 
+## trace
+
+```bash
+go test -trace=trace.out
+go tool trace trace.out
+```
+
+
