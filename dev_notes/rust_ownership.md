@@ -94,6 +94,27 @@
             let s3 = &s1; // E: borrow of moved value: `s1` value borrowed here after move
             ```
 
+- Reference in function
+    ```rust
+    fn main() {
+        let data = "Rust is great!".to_string();
+
+        get_char(&data);
+        string_uppercase(data);
+    }
+
+    // Should not take ownership
+    fn get_char(data: &String) -> char {
+        data.chars().last().unwrap()
+    }
+
+    // Should take ownership
+    fn string_uppercase(mut data: String) {
+        data = data.to_uppercase();
+        println!("{}", data);
+    }
+    ```
+
 <h2 id="ebb25066940285a0271542b54f76e9e1"></h2>
 
 ## Slices: a different kind of reference
