@@ -28,6 +28,8 @@
 ## Move / Borrow
 
 - rust by default move the value
+    - for simple type, rust has a copy trait, so it will **copy the value** instead of move
+    - for turple and Array (not vector) it depends on whether its elements implement the copy trait
 - reference borrowing won't take ownership
     ```rust
     let x = 5;
