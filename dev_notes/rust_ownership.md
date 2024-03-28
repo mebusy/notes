@@ -104,6 +104,7 @@
     }
 
     // Should not take ownership
+    // PS. & on type !!!
     fn get_char(data: &String) -> char {
         data.chars().last().unwrap()
     }
