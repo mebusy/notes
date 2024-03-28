@@ -54,7 +54,7 @@
     - it points to NOT the underlying data, BUT the **variable** hold the data.
 - **The References**
     1. At any given time, you can have either one mutable reference, or any number of immutable references.
-        - Rust restricts *the classic read-write lock problem* at the compiler level.
+        - Rust restricts *the classic read-write lock problem* at the compiler level:  读锁可以有很多个，但 写锁 具有排他性
         - <img src="../imgs/rust_ownership3.0.webp" width=320 />
         ```rust
             let s1 = String::from("hello");
