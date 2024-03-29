@@ -94,10 +94,18 @@ const ID: i32 = 380;
 ### Compound Types
 
 - Tuple
-    ```rust
-    let person = ("Brad", "Mass", 37);
-    let (first, last, age) = person;
-    ```
+    - fixed length, vary types
+        ```rust
+        let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+        let person = ("Brad", "Mass", 37);
+        let (first, last, age) = person;
+        // or
+        let brad = person.0;
+        ```
+    - `unit : ()`
+        - this value and its corresponding type are both written `()` and represent an **empty value** or an **empty return type**
+        - expressions implicitly return the unit value if they don’t return any other value.
 - Array
     - fixed list where elements are the same data type , NOT `vector`
     ```rust
@@ -312,11 +320,16 @@ fn returns_closure(a: i32) -> Box<dyn Fn(i32) -> i32> {
     let c = Color( 255,0,0 );
     // c.0
     ```
-- Unit Structs
-    - Unit structs are useful when you need to implement a trait on something, but don’t need to store any data inside it.
+- Unit-Like Structs (Without Any Fields)
     ```rusts
-    struct Unit;
+    struct AlwaysEqual;
+
+    fn main() {
+        let subject = AlwaysEqual;
+    }
     ```
+    - behave similarly to `()`
+    - Unit structs are useful when you need to implement a trait on something, but don’t need to store any data inside it.
 
 <h2 id="20c51b5f4e9aeb5334c90ff072e6f928"></h2>
 
