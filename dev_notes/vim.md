@@ -563,6 +563,15 @@ y'a  | yank lines, from current line up to the marked lines ('a)
     - @ executes the contents of a register as if it were a *vi* or *ex* command.
 
 
+## g
+
+1. long test — gj gk gh gl
+2. capitalization — gu gU g~
+3. open a file by name in the document — gf
+4. reselect    — visual select something,   go to another place and do some other job, `gv` to reselect the visual text
+5. co-injoining line — gJ  join lines without space between them
+
+
 ---
 
 <h2 id="97786adcbde368256fe1cb51b6339c7e"></h2>
