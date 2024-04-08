@@ -36,49 +36,6 @@
 
 # VIM 
 
-<h2 id="431e27fdb6a4c378a592fb761c7e5519"></h2>
-
-## Plugin Installation
-
-
-- Install `vundle` first
-    ```bash
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-    ```
-
-- Configure your .vimrc to add support for vundle
-    ```vim
-    filetype off
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    ```
-
-- Configure plugins
-    - Bundles are in three categories, the more commonly used is the 2nd one
-        1. For repos under the Github user vim-scripts , just write the repo name
-        2. For repos under other users on Github, you need to write "username/repo-name"
-        3. For plugins not on Github, you need to write out the full path of git
-    - Add the plugins that need to be installed to ~/.vimrc
-        ```vim
-        " user Vundle to manage Bundles
-        Bundle 'gmarik/vundle'
-         
-        " Define bundles via Github repos
-        Bundle 'christoomey/vim-run-interactive'
-        Bundle 'croaky/vim-colors-github'
-        Bundle "Valloric/YouCompleteMe"
-        ...
-        ```
-
-- Install the plugins
-    - Open vim, run `:BundleInstall` or directly run in the shell
-        ```bash
-        vim +BundleInstall +qall
-        ```
-    - To update plugins :
-        ```bash
-        vim +PluginUpdate
-        ```
 
 <h2 id="72aef9272e534c2840a7b9f5e4899694"></h2>
 
