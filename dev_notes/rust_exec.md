@@ -36,3 +36,21 @@ vec 2
     }
 
 
+
+mod 1
+
+```rust
+mod delicious_snacks {
+    // You can bring module paths into scopes and provide new names for them with
+    // the 'use' and 'as' keywords. Fix these 'use' statements to make the code
+    pub use self::fruits::PEAR as fruit;
+    pub use self::veggies::CUCUMBER as veggie;
+```
+
+especially from the Rust standard library into your scope
+
+```rust
+use std::time::{SystemTime, UNIX_EPOCH};
+```
+
+
