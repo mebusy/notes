@@ -54,3 +54,22 @@ use std::time::{SystemTime, UNIX_EPOCH};
 ```
 
 
+hashmap
+
+```rust
+        // get existing team or create a new one
+        // update the goals scored and conceded
+        // insert the team back into the hashmap
+        let team_1 = scores.entry(team_1_name).or_insert(Team {
+            goals_scored: 0,
+            goals_conceded: 0,
+        });
+        team_1.goals_scored += team_1_score;
+```
+
+
+parent scope
+
+```rust
+    super::xxx
+```
