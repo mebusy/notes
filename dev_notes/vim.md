@@ -376,21 +376,25 @@ use `\r` instead.
 
 <h2 id="b492b625b61dc9e4718c98561d7b0296"></h2>
 
-### Advance g
+### Advanced `g`
 
-- gj/gk/... g$,g0 
-    - move on a visual line, not vim line
+1. handle long text
+    - gj/gk/gh/gl g$,g0 
+        - move on a **visual line**, not vim line
 - gq  (useful when you work with markdown )
     - format whole line in sperate lines
-- gu, gU, g~
+2. capitalization
     - cap, uncap 
-- gf
-    - open file (filename where your cursor on )
-- gv
-    - go back to you last visual selection
-- gJ
-    - conjoin lines, but without leaving space between them ( unlike J )
-- g;
+    - gu, gU, g~
+3. open file by filename where your cursor on
+    - gf
+4. reselect (jump back to you last visual selection)
+    - gv
+    - visual select something,   go to another place and do some other job, `gv` to reselect the visual text
+5. conjoin lines, but without leaving space between them ( unlike J )
+    - gJ
+6. jump back to last edit position
+    - g;
     - jump back to the previous position where a change was made in the current buffer.
 
 
@@ -519,14 +523,6 @@ y'a  | yank lines, from current line up to the marked lines ('a)
 - The @ command is probably the most obscure vi command. 
     - @ executes the contents of a register as if it were a *vi* or *ex* command.
 
-
-## g
-
-1. long test — gj gk gh gl
-2. capitalization — gu gU g~
-3. open a file by name in the document — gf
-4. reselect    — visual select something,   go to another place and do some other job, `gv` to reselect the visual text
-5. co-injoining line — gJ  join lines without space between them
 
 
 ---
