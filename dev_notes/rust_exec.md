@@ -73,3 +73,16 @@ parent scope
 ```rust
     super::xxx
 ```
+
+Option
+
+- Option<T>
+    - Some(T) / None
+    - normally use `if let` or `while let` to filter out the None value
+
+Result
+
+- Result<T,E>
+    - Ok(T) / Err(E)
+
+

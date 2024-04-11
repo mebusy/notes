@@ -496,8 +496,9 @@ impl Movement {
 - unwrap
     ```rust
     let x: i8 = 5;
-    let y: Option<i8> = Some(5);
-    let sum = x + y.unwrap_or(0);
+    let y = Some(x); //  y: Option <i8>
+    let sum = x + y.unwrap();  // .unwrap() a None value will panic
+    // let sum = x + y.unwrap_or(0);
     ```
 - match
     ```rust
@@ -509,6 +510,16 @@ impl Movement {
         }
     }
     ```
+    - NOTE: if x is Option of a type that not implement `Copy` trait, then x will be moved into the match,  if we want to use x later, we need to use `ref` keyword.
+        ```rust
+        // e.g. struct type that not implement Copy trait by default
+        fn plus_one(x: Option<struct_type>) -> Option<struct_type> {
+            match x {
+                Some(ref i) => do-something ,
+                None => None,
+            }
+        }
+        ```
 - `if-let` syntax: branch if pattern can be assigned
     - it's a little verbose to write the entire match
         ```rust
@@ -520,12 +531,37 @@ impl Movement {
         ```
     - rewrite this using the if-let syntx
         ```rust
-        if let Some(3) = some_value {
-            println!("three");
-        }
+        if let Some(x) = some_value {
+            println!("x = {}", x);
+        } 
+        //   else {
+        //     println!("some_value is None");
+        // }
         ```
 - `unwarp_or_else` OR `if-let` ?
     - In general, you should use `if let` when you only need to handle one specific case and `unwrap_or_else` when you need to handle both success and failure cases.
+- the question mark operator
+    - when writing code that calls many functions that return the Option type, handling Some/None can be tedious.
+        ```rust
+        fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
+            let a = stack.pop();
+            let b = stack.pop();
+
+            match (a, b) {
+                (Some(x), Some(y)) => Some(x + y),
+                _ => None,
+            }
+        }
+        ```
+    - The question mark operator, ?, hides some of the boilerplate of propagating values up the call stack.
+        ```rust
+        fn add_last_numbers(stack: &mut Vec<i32>) -> Option<i32> {
+            Some(stack.pop()? + stack.pop()?)
+        }
+        ```
+        - It’s much nicer!
+        - Ending the expression with ? will result in the Some’s unwrapped value, unless the result is None, in which case **None is returned early** from the enclosing function.
+        - `?` can be used **in functions that return Option** because of the **early return of None** that it provides.
 
 
 <h2 id="2a29178a57901ddb90f15e2026465103"></h2>
