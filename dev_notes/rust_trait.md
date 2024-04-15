@@ -88,22 +88,33 @@ pub trait Summary {
 
 ## Generic Example
 
+example 1:
 
-<details>
-<summary>
-A Generic Trait Example
-</summary>
+```rust
+pub struct ReportCard<T: std::fmt::Display> {
+    pub grade: T,
+    pub student_name: String,
+    pub student_age: u8,
+}
+
+impl<T: std::fmt::Display> ReportCard<T> {
+    pub fn print(&self) -> String {
+        format!(
+            "{} ({}) - achieved a grade of {}",
+            &self.student_name, &self.student_age, &self.grade
+        )
+    }
+}
+```
+
+example 2:
 
 
 ```rust
 trait Frobnicate<T> {
     fn frobnicate(self) -> Option<T>;
 }
-```
 
-To implement trait
-
-```rust
 impl<T> Frobnicate<T> for Foo<T> {
     fn frobnicate(self) -> Option<T> {
         Some(self.bar)
@@ -112,9 +123,6 @@ impl<T> Frobnicate<T> for Foo<T> {
 let another_foo = Foo { bar: 1 };
 println!("{:?}", another_foo.frobnicate()); // Some(1)
 ```
-
-
-</details>
 
 
 <h2 id="75832ea3de9cc56f0bc1187a55230953"></h2>
