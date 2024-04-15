@@ -525,5 +525,18 @@ impl Iterator<u16> for Counter {
 Using associated type trait if for any given implementation  you want the `next` method to return the same concrete type. 
 
 
+# Choosing impl Trait or dyn Trait
 
+- Advantages of `impl Trait` or generics:
+    - fine-grained control of properties of types using where clauses,
+    - can have multiple trait bounds (e.g., `impl Foo + Qux` is allowed, but `dyn Foo + Qux` is not),
+- Disadvantages of `impl Trait` or generics:
+    - monomorphisation causes increased code size.
+
+- Advantages of `dyn Trait`:
+    - a single variable, argument, or return value can take values of multiple different types.
+- Disadvantages of `dyn Trait`:
+    - virtual dispatch means slower method calls,
+    - objects must always be passed by pointer
+    - requires object safety
 
