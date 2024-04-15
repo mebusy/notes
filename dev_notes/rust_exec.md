@@ -86,3 +86,11 @@ Result
     - Ok(T) / Err(E)
 
 
+Box<dyn ???>
+
+any type which implements a particular trait ??? ,  think as interface in other languages.
+
+
+`impl<T> Wrapper<T> ...`
+
+

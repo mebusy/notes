@@ -135,12 +135,33 @@ pub fn notify<T: Summary>(item: &T) {
 }
 ```
 
+- this version of notify takes a reference to T.
+    - you can also use `item: impl Summary` , or `Box<impl Summary>`
+
 Trait bound is more clear when this function takes mutiple parameters with same type
 
 ```rust
 pub fn notify<T: Summary>(item1: &T, item2: &T) {
     // ...
 }
+```
+
+Note: If you want to use the type variable in multiple places you will need to use the longer version.
+
+```rust
+fn f(b1: impl Bar, b2: impl Bar) -> usize
+```
+
+is equivalent to
+
+```russt
+fn f<B1: Bar, B2: Bar>(b1: B1, b2: B2) -> usize
+```
+
+not 
+
+```rust
+fn f<B: Bar>(b1: B, b2: B) -> usize
 ```
 
 
@@ -182,12 +203,12 @@ fn some_function<T, U>(t: T, u: U) -> i32
 
 ## Returning Types that Implement Traits
 
-Returning Trait Objects allows you return any type.
-
+`impl Trait` can also be used in the return type of a function. In this case it is not a shorthand for a generic type parameter, but a way to return a value of some type that implements a trait without naming the concrete type.
 
 ```rust
 fn returns_summarizable() -> impl Summary {
 ```
+
 
 Returning types that implement a certain trait instead of concrete types is **very useful inside of closures and iterators**.
 
@@ -418,9 +439,10 @@ fn main() {
 
 You might noticed here we use `dyn` dynamic dispatch.  The trait objects **must include the `dyn` keyword**, otherwise it it raise a compile error [E0782].
 
-```rust
-    pub components: Vec<Box<dyn Draw>>,
-```
+That is , a trait object is always passed by pointer (a borrowed reference, Box, or other smart pointer) and has a vtable so that methods can be dispatched dynamically.
+
+The type of trait objects uses `dyn Trait`, e.g. `&dyn Bar` or `Box<dyn Bar>`.
+
 
 Let's talk about a little bit about static vs dynamic dispatch. 
 
