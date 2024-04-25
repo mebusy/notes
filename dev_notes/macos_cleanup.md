@@ -20,3 +20,11 @@ Also, you can remove files under following directories:
 
 
 
+## Docker
+
+```bash
+docker container prune
+docker image prune -a
+```
+
+
