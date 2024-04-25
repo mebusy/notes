@@ -94,3 +94,35 @@ any type which implements a particular trait ??? ,  think as interface in other 
 `impl<T> Wrapper<T> ...`
 
 
+Lifetime
+
+`fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {`
+
+
+collect()方法可以被用来将一个可迭代对象转成任意类型的集合，包括数组、向量、链表、哈希表等等
+
+    words
+        .iter()
+        .map(|word| capitalize_first(word))
+        .collect::<Vec<String>>()  // 如果编译器不能推断类型，则需要指定 collect的类型
+        .join("")
+
+
+`Box` - a smart pointer used to store data on the heap, which also allows us  to wrap a recursive type.
+
+pub enum List {
+    Cons(i32, Box<List>),
+    Nil,
+}
+
+
+multiple owners via the Rc<T> type
+
+
+let sun = Rc::new(Sun {});
+let mercury = Planet::Mercury(Rc::clone(&sun)); // sun.clone() is not recommended
+
+drop(mercury);
+
+
+
