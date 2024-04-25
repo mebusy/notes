@@ -193,6 +193,12 @@ kubectl get namespace "stucked-namespace" -o json \
   | kubectl replace --raw /api/v1/namespaces/stucked-namespace/finalize -f -
 ```
 
+## Run Image with specific command to test purpose
+
+```bash
+$ kubectl [-n <namespace>] run <pod-name>  --image=<image-path> --command -- <command [args]>
+```
+
 
 <h2 id="10e2e86d43aa4ce9a791d75c478a23dc"></h2>
 
