@@ -116,13 +116,61 @@ pub enum List {
 }
 
 
-multiple owners via the Rc<T> type
+## multiple owners via the Rc<T> type
 
 
+```rust
 let sun = Rc::new(Sun {});
 let mercury = Planet::Mercury(Rc::clone(&sun)); // sun.clone() is not recommended
 
 drop(mercury);
+```
 
+
+
+## Arc (Atomically Reference Counted)
+
+```rust
+let numbers: Vec<_> = (0..100u32).collect();
+let shared_numbers = Arc::new(numbers);
+
+let child_numbers = Arc::clone(&shared_numbers);
+```
+
+
+## share a struct between threads
+
+```rust
+use std::sync::{Arc, Mutex};
+use std::thread;
+use std::time::Duration;
+
+struct JobStatus {
+    jobs_completed: u32,
+}
+
+fn main() {
+    let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));
+    let mut handles = vec![];
+    for _ in 0..10 {
+        let status_shared = Arc::clone(&status);
+        let handle = thread::spawn(move || {
+            thread::sleep(Duration::from_millis(250));
+            // TODO: You must take an action before you update a shared value to make it safe to share between threads
+            let mut status_shared = status_shared.lock().unwrap();
+            status_shared.jobs_completed += 1;
+
+        });
+        handles.push(handle);
+    }
+    for handle in handles {
+        handle.join().unwrap();
+        // TODO: Print the value of the JobStatus.jobs_completed. Did you notice
+        // anything interesting in the output? Do you have to 'join' on all the
+        // handles?
+        println!("jobs completed {}", status.lock().unwrap().jobs_completed);
+    }
+}
+```
 
 

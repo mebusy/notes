@@ -192,6 +192,32 @@ change audio volume
 -af  "pan=stereo|c0=0.5*c0|c1=c1"
 ```
 
+
+## merge subtile to video
+
+```bash
+# mergeSubtile.sh
+
+#!/bin/sh
+
+set -e
+
+INFILE=$1
+SUBTITLES=$2
+
+# if arguments are not passed, show usage and exit
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <inputfile> <subtitlefile>"
+    exit 1
+fi
+
+echo $INFILE , $SUBTITLES
+
+ffmpeg -i $SUBTITLES temp.ass && \
+BITRATE=$(ffprobe -v error -select_streams v:0 -show_entries stream=bit_rate -of default=noprint_wrappers=1:nokey=1 $INFILE) && \
+ffmpeg -i $INFILE -vf ass=temp.ass -vcodec h264_videotoolbox -b:v $BITRATE -c:a copy output_burnedin.mp4
+```
+
  
 <h2 id="4eda4ef40a71cb2632162cc03ece5480"></h2>
 
