@@ -38,7 +38,7 @@
 - h
     - 单个h
         - exh 开头, 别紧张, h不发音
-            - exhaust, exhilarated, exhibit
+            - exhaust, exhilarated, exhibit (音位学 规则[5])
             - BUT, 有个讨厌的特例:  exhale ( 来源于拉丁语，词根是 halare, 因此也保留了h的发音)
         - rh 开头
             - rhyme, rhythm, rheumatism, rhinoceros, rhino
@@ -47,7 +47,7 @@
         - 两个元音之间的h
             - vehicle, vehement, annihilate
         - h 跟在元音后面结束一个单词
-            - ah, oh, cheetah
+            - ah, oh, cheetah  ( 音位学 规则[4])
     - ch,gh,wh 组合 (多数位于开头)
         - chemical, anchor, school
         - ghost, ghetto, ghastly, spaghetti (注意： gh 在某些单词中完全不发音)
@@ -91,6 +91,8 @@
 
 # phonotactics 音位学
 
+https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
+
 1. 当单词以爆破音（例如 /p/、/b/、/t/、/d/、/k/ 或 /g/）开头时，在下一个元音之前可以跟随的声音有限制 。
     - a) 如果单词以 /p/ 开头，则 /p/ 和下一个元音之间允许的唯一发音是 /r/、/l/ 和 /w/。
         - 当英语从其他语言（例如希腊语或拉丁语）借用单词时，一些辅音组合会和这条规则产生冲突。 解决方法有两种 1. 中间插入元音 2. 删除其中一个发音(e.g. “Psychology”, “Pseudo”中p的发音被删除)
@@ -101,6 +103,11 @@
     - 所以 k 从发音中被删除
     - e.g. knife, knock, knowledge, knit, know, knee
     - e.g. Wednesday, handsome, sandwich
+4. 英语不允许 /h/ 出现在一个音节的尾声中。
+    - e.g. cheetah
+5. /t/, /d/, /h/ 不会出现在 复杂的 音节开头结构中
+6. if the first consonant in a two-consonant onset is not an /s/, the second consonant must be a liquid or a glide - /l/, /r/, /w/, /j/
+
 
 # Misc
 
