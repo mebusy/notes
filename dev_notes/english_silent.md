@@ -1,12 +1,3 @@
-[](...menustart)
-
-- [不发音的辅音们](#4edcab669141561056b18c68d9ee220b)
-
-[](...menuend)
-
-
-<h2 id="4edcab669141561056b18c68d9ee220b"></h2>
-
 # 不发音的辅音们
 
 - b
@@ -110,15 +101,7 @@ https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
 6. if the first consonant in a two-consonant onset is not an /s/, the second consonant must be a liquid or a glide - /l/, /r/, /w/, /j/
 
 
-# Misc
-
-## stop consonant
-
-- p, b, t, d, k, g
-    - 塞音，也称为爆破音
-
-
-## Inflection 词型变化
+# Inflection 词型变化
 
 - 名词
     - 单数变复数 +s / +es
@@ -134,3 +117,9 @@ https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
     - 比较级 +er
     - 最高级 +est
     - 副词 +ly
+
+
+# stop consonant
+
+- p, b, t, d, k, g
+    - 塞音，也称为爆破音
