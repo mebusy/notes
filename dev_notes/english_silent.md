@@ -33,8 +33,8 @@
         - gnat, gnarl, gnaw, gnome
     - gn 结尾
         - champaign, champagne, foreign, sign, design
-        - 单词中间的，还是需要发音 magnet，cognitive，signature
-    - 解释: 见 音位学 规则[1-a].
+        - 单词中间的，还是需要发音 magnet，cognitive，signature, 因为n被划分到后面的音节了。
+    - 解释: 见 音位学 规则[3].
 - h
     - 单个h
         - exh 开头, 别紧张, h不发音
