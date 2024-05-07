@@ -38,7 +38,7 @@
 - h
     - 单个h
         - exh 开头, 别紧张, h不发音
-            - exhaust, exhilarated, exhibit (音位学 规则[5])
+            - exhaust, exhilarated, exhibit
             - BUT, 有个讨厌的特例:  exhale ( 来源于拉丁语，词根是 halare, 因此也保留了h的发音)
         - rh 开头
             - rhyme, rhythm, rheumatism, rhinoceros, rhino
@@ -106,7 +106,7 @@ https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
     - e.g. Wednesday, handsome, sandwich
 4. 英语不允许 /h/ 出现在一个音节的尾声中。
     - e.g. cheetah
-5. /t/, /d/, /h/ 不会出现在 复杂的 音节开头结构中
+5. 塞擦音 /tʃ/, /dʒ/, 声门擦音/h/ 不会出现在 复杂的 起始音(onset)中.
 6. if the first consonant in a two-consonant onset is not an /s/, the second consonant must be a liquid or a glide - /l/, /r/, /w/, /j/
 
 
