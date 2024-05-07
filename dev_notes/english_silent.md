@@ -71,9 +71,10 @@
         - ps 开头
             - psychiatrist, psychologist, psalm, psychology 心理学, psychic
             - 江南style 大叔的名字叫 Psy
-        - pt
-            - Ptolomy 托勒密, receipt 收据(并不是因为发音限制，而是来源于法语,法语中p不发音)
+        - pt 开头
+            - Ptolomy 托勒密
     - 解释: 见 音位学 规则[1-a].
+    - receipt 收据(并不是因为发音限制，而是来源于法语,法语中p不发音)
 - s
     - island, islet, aisle
     - 解释: 这些词的形成，都受到了法语的影响，现代英语丢弃了s 的发音
