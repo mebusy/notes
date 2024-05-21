@@ -27,5 +27,10 @@ docker system prune [-a]
 ```
 
 
+## Chrome
+
+`~/Library/Application Support/Google/Chrome/Default/Extensions/`
+
+clean extension
 
 
