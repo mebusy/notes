@@ -28,13 +28,6 @@
 # MacOSX 
 
 
-<h2 id="2921868f08055ef268441139489a6130"></h2>
-
-## sidebar 丢失
-
-OPTION/Alt+COMMAND+S
-
-
 <h2 id="ec69fb46be4996fda376dcb4054c528b"></h2>
 
 ## Useful Commands
@@ -121,11 +114,16 @@ ulimit -n 8192
 ## 性能测试
 
 ```bash
-# cpu performance
-python -c 'import test.pystone;print test.pystone.pystones()'
-
 # memory speed
-dd if=/dev/zero of=/dev/null bs=1m count=32768
+$ dd if=/dev/zero of=/dev/null bs=1m count=32768
+32768+0 records in
+32768+0 records out
+34359738368 bytes transferred in 0.988451 secs (34761195414 bytes/sec)
+
+# explain
+# Memory Bandwidth (GB/s)=Memory Clock Frequency (MHz)×Bus Width (bytes)×Transfers per Clock Cycle×10 −3
+# for example, 2667MHz, 8bytes, 2 transfers per clock cycle
+# Memory Bandwidth(GB/s) = 2667 * 8 * 2 * 10^-3 = 42.672GB/s # 理论内存带宽
 ```
 
 <h2 id="d8f5e5c499ab6b35afcd8cfed2906d9d"></h2>
@@ -269,6 +267,11 @@ smartctl -t short /dev/disk0
 
 cmd +  ctl + shift + 4
 
+## screen video capture
+
+cmd +  ctl + shift + 5
+
+
 
 <h2 id="6831a70b0b58947b7c63e20394b71a09"></h2>
 
@@ -292,5 +295,13 @@ open -R <path-to-file>
 4. As you type, the terminal keeps suggesting a command that matches what you’ve typed. 
 
 
+## software update issue
+
+### 1. software update stuck on restarting...
+
+```bash
+softwareupdate -l : to see a list of the current updates (to make sure I was updating the same things)
+sudo softwareupdate -i -a -R : to install the updates, and restart the computer if required
+```
 
 
