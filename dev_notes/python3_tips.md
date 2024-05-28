@@ -196,3 +196,12 @@ print([fibonacci(n) for n in range(1, 9)])
 ```
 
 
+## cgi server
+
+```bash
+python -m http.server --cgi 
+```
+
+- This defaults to ['/cgi-bin', '/htbin'] and describes directories to treat as containing CGI scripts.
+
+
