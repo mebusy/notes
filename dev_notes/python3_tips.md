@@ -207,3 +207,10 @@ python -m http.server --cgi
 - This defaults to ['/cgi-bin', '/htbin'] and describes directories to treat as containing CGI scripts.
 
 
+## open a link in webbrowser
+
+```bash
+python -m webbrowser [-t|-n] <url>
+```
+
+
