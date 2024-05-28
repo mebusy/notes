@@ -198,6 +198,8 @@ print([fibonacci(n) for n in range(1, 9)])
 
 ## cgi server
 
+CGIHTTPRequestHandler
+
 ```bash
 python -m http.server --cgi 
 ```
