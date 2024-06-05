@@ -397,11 +397,17 @@ ok
 
 ## Install Dashboard
 
+NOTE: **As of version 7.0.0, we have dropped support for Manifest-based installation. Only Helm-based installation is supported now.**
+
 - install dash board
     ```bash
     # check https://github.com/kubernetes/dashboard
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
     ```
+- helm install
+    - `helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/`
+    - `helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard`
+    - `kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443`
 - create a simple user
     - Creating a Service Account
         ```yaml
@@ -470,4 +476,18 @@ ok
     fi
     ```
 
+## metrics server 
 
+https://github.com/kubernetes-sigs/metrics-server
+
+```bash
+wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+# high available version if you have a cluster with at least 2 nodes 
+# wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/high-availability-1.21+.yaml
+```
+
+add `- --kubelet-insecure-tls` to container args
+
+```bash
+kubectl apply -f components.yaml
+```

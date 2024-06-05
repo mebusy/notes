@@ -173,4 +173,15 @@ fn main() {
 }
 ```
 
+## as 
+
+Type casting in Rust is done via the usage of the `as` operator. Please note that the `as` operator is not only used when type casting. It also helps with renaming imports.
+
+```rust
+    total / values.len() as f64
+```
+
+
+
+
 
