@@ -52,7 +52,7 @@
 
 ```go
 // 一般写在写在 main.go 文件中
-f, err := os.Create(*cpuprofile)
+f, err := os.Create(outFilePath)
 if err != nil {
     log.Fatal("could not create CPU profile: ", err)
 }
