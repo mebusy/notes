@@ -126,7 +126,7 @@ chrome: `chrome://net-internals/#proxy`
     ```
 
 ```
-yt-dlp --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
+yt-dlp --ignore-errors --rm-cache-dir -c --write-auto-sub --sub-lang=en   -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' --cookies-from-browser chrome 'https://www.youtube.com/playlist?list=PLKUel_nHsTQ1yX7tQxR_SQRdcOFyXfNAb'
 ```
 
 
