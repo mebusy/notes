@@ -34,6 +34,7 @@
 start at state s0, the first thing need to add the available actions
 
 - <img src="../imgs/mcts_ex_1_s.png" width=300 />
+    - N: visit count of parent node
 - <img src="../imgs/mcts_ex_2_s.png" width=300 />
 
 1st iteration, same ucb value, choose s1, s1 has not been visited yet, rollout it, get a terminal state (v:20), backpropagate it to s1.
@@ -43,7 +44,6 @@ start at state s0, the first thing need to add the available actions
 2nd iteration, ucb(s2) is infinite, choose  s2, rollout & backpropagate
 
 - <img src="../imgs/mcts_ex_4_s.png" width=300 />
-    - so far, N=2, n1=1, n2=1
 
 3rd iteration, ucb(s1) is maximum,  so choose s1, it is leaf node and already been visited before, so expand it, add s3, s4, choose s3, rollout & backpropagate
 
