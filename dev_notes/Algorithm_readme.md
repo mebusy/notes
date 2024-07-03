@@ -13,6 +13,7 @@
  7. [hash](Algorithm_hash.md)
  8. [**Symbol Table 实现**](AlgorithmI_SmybolTables.md), [**HASH**](AlgorithmI_HashTables.md)
  9. [Dynamic Programming](DynamicProgramming.md)
+ 10. [Monte Carlo Tree Search](mcts.md)
 
 ---
  
