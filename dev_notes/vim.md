@@ -127,11 +127,13 @@
                 apply plugin: 'java'
 
                 // include local jar dependencies ./libs ./jars
-                // if load jar failed, check target java version
                 dependencies {
                     implementation fileTree(dir: 'libs', include: ['*.jar'])
                     implementation fileTree(dir: 'jars', include: ['*.jar'])
                 }
+                // NOTE:  if LSP server loading local .jar failed, 
+                // it may be caused by the impatience of target java version
+                //   between the .jar and the gradle setting
                 ```
     2. or a `pom.xml` file
 
