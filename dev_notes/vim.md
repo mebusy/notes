@@ -116,6 +116,24 @@
 		...
 	```
 
+## Java Completer
+
+- you should provide either
+    1. a `build.gradle` file
+        - e.g. for an existing project
+            1. `gradle init --type java-library`
+            2. `vi build.gradle`
+                ```gradle
+                apply plugin: 'java'
+
+                // include local jar dependencies ./libs ./jars
+                dependencies {
+                    implementation fileTree(dir: 'libs', include: ['*.jar'])
+                    implementation fileTree(dir: 'jars', include: ['*.jar'])
+                }
+                ```
+    2. or a `pom.xml` file
+
 
 <h2 id="fab255294e7b3b58a06c83405029a7c0"></h2>
 
