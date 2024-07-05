@@ -121,7 +121,7 @@
 - you should provide either
     1. a `build.gradle` file
         - e.g. for an existing project
-            1. `gradle init --type java-library`
+            1. `gradle init --type java-application`
             2. `vi build.gradle`
                 ```gradle
                 apply plugin: 'java'
