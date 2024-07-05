@@ -127,6 +127,7 @@
                 apply plugin: 'java'
 
                 // include local jar dependencies ./libs ./jars
+                // if load jar failed, check target java version
                 dependencies {
                     implementation fileTree(dir: 'libs', include: ['*.jar'])
                     implementation fileTree(dir: 'jars', include: ['*.jar'])
