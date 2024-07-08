@@ -480,6 +480,13 @@ mono resp_verify.exe '{"data":{"time":1626939359},"errcode":-1,"sig":"97f5e396ea
            </Reference>
         </ItemGroup>
         ```
+    - add a source file to .csproject
+        ```csharp
+        <ItemGroup>
+           <Compile Include="../csharp/socket.cs" />
+        </ItemGroup>
+        ```
+
 5. run
     ```bash
     dotnet run
