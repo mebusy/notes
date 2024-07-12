@@ -54,4 +54,4 @@ start at state s0, the first thing need to add the available actions
 - <img src="../imgs/mcts_ex_6_s.png" width=300 />
 
 
-If we were asked to stop at this point. The search would essentially tell us that the best action to take. Because the value of s2 is 24, and the value of s1 is 20. 
+If we were asked to stop at this point. The search would essentially tell us that the best action to take. 
