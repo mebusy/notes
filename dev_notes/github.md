@@ -178,6 +178,14 @@ git commit -p <filename>
     git rebase --abort
     ```
 
+### submodule conflict
+
+Well, its not technically managing conflicts with submodules (ie: keep this but not that), but I found a way to continue working...and all I had to do was pay attention to my git status output and reset the submodules:
+
+```bash
+it reset HEAD <sub-module-name>
+git commit
+```
 
 
 <h2 id="740e34f3f2acfa61cdf6a6d376b3510d"></h2>
