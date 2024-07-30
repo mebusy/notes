@@ -54,4 +54,5 @@ start at state s0, the first thing need to add the available actions
 - <img src="../imgs/mcts_ex_6_s.png" width=300 />
 
 
-If we were asked to stop at this point. The search would essentially tell us that the best action to take. 
+If we were asked to stop at this point. The search would essentially tell us that the best action to take is to go from s0 to s2. Because the average value of s2 is 24/2 = 12, and the average value of s1 is 20/2 = 10.
+
