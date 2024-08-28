@@ -264,6 +264,12 @@ mv config/private.pem config/private_old.pem
 openssl rsa -in config/private_old.pem -out config/private.pem -des3
 ```
 
+OR
+
+```bash
+ssh-keygen -p -m PEM -f <path-to-private-key>
+```
+
 
 <h2 id="c49947d2d71ef4c590461fc98b234651"></h2>
 
