@@ -20,7 +20,7 @@
 - install kubectl...
     - https://github.com/kubernetes-sigs/kind/releases
     ```bash
-    $ curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.14.0/kind-$(uname)-amd64
+    $ curl -Lo ./kind https://github.com/kubernetes-sigs/kind/releases/download/v0.24.0/kind-$(uname)-amd64
     $ chmod +x ./kind
     $ sudo mv ./kind /usr/local/bin/
 
@@ -54,8 +54,16 @@
       - containerPort: 443
         hostPort: 443
         protocol: TCP
+      extraMounts:
+      - hostPath: /home/<user-name>/www
+        containerPath: /www
     EOF
     ```
+    - extraMounts may be used to mount a host directory into the container
+    - NOTE: you can use a loopback proxy, e.g. '127.0.0.1:3128' for kind, it will result `ErrImagePull` when creating pod containers. You can use a dedicated proxy for kind, e.g. '
+        ```bash
+        export HTTP_PROXY=http://xxx-proxy:3128 && export HTTPS_PROXY=$HTTP_PROXY && export NO_PROXY="localhost, 127.0.0.*, 172.17.*" && export http_proxy=$HTTP_PROXY && export https_proxy=$HTTPS_PROXY && export no_proxy=$NO_PROXY && cat <<EOF | kind create cluster ...
+        ```
 - test whether it works...
     ```bash
     $ kubectl cluster-info
