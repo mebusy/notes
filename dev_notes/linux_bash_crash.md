@@ -375,6 +375,7 @@ done
     - 所有输出都不看
         - `xxx &> /dev/null`
         - or `xxx >& /dev/null`
+        - short-cut to ` > /dev/null 2>&1`,  but not support by Dash, POSIX Shells, and Ksh, e.g. `/bin/sh`
     - 将标准报错输出，重定向到和标准输出相同的地方
         - `xxx 2>&1`
         - `&1` 表示 引用 fd 1
