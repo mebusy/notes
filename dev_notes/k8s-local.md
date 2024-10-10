@@ -35,6 +35,7 @@
 - create cluster
     - extraPortMappings allow the local host to make requests to the Ingress controller over ports 80/443
     - node-labels only allow the ingress controller to run on a specific node(s) matching the label selector
+    - before creating a cluster, please check your proxy setting
     ```bash
     cat <<EOF | kind create cluster --name wslk8s  --config=-
     kind: Cluster
@@ -60,10 +61,15 @@
     EOF
     ```
     - extraMounts may be used to mount a host directory into the container
-    - NOTE: you can use a loopback proxy, e.g. '127.0.0.1:3128' for kind, it will result `ErrImagePull` when creating pod containers. You can use a dedicated proxy for kind, e.g. '
+    - **NOTE**: you can NOT use a loopback proxy, e.g. '127.0.0.1:3128' for kind, it will result `ErrImagePull` when creating pod containers. You must use a dedicated proxy for kind, e.g. '
         ```bash
         export HTTP_PROXY=http://xxx-proxy:3128 && export HTTPS_PROXY=$HTTP_PROXY && export NO_PROXY="localhost, 127.0.0.*, 172.17.*" && export http_proxy=$HTTP_PROXY && export https_proxy=$HTTPS_PROXY && export no_proxy=$NO_PROXY && cat <<EOF | kind create cluster ...
         ```
+        - check proxy setting
+            ```bash
+            # wslk8s-control-plane is the name of kind node container
+            $ docker inspect wslk8s-control-plane | grep -i proxy
+            ```
 - test whether it works...
     ```bash
     $ kubectl cluster-info
