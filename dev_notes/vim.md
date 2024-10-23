@@ -162,6 +162,13 @@
     $ export PYTHON_CONFIGURE_OPTS="--enable-framework"
     $ pyenv install 3.10.3
     ```
+- pyenv: BUILD FAILED (OS X 14.7 using python-build 20180424)
+    - make: [sharedinstall] Error 71
+    ```bash
+    brew uninstall --ignore-dependencies openssl@1.1
+    env CONFIGURE_OPTS='--enable-optimizations' pyenv install 3.12.0
+    # brew install openssl@1.1  # disabled since 2024.10.24
+    ```
 
 
 <h2 id="2182a74bab7188d959e795d9301e87ff"></h2>
