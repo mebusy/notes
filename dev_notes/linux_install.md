@@ -77,6 +77,7 @@ neofetch
 ### CPU/GPU 温度
 
 ```bash
+# error !!
 curl -L https://bit.ly/glances | /bin/bash
 glances # and press `f`
 glances -s # 显示隐藏的传感器信息
@@ -85,7 +86,8 @@ glances -s # 显示隐藏的传感器信息
 glances will install `lm-sensors`
 
 ```bash
-sensor-detect
+sudo sensors-detect
+sensors  # or `watch sensors`
 ```
 
 
