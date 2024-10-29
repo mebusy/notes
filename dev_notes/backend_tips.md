@@ -81,6 +81,20 @@ curl -H "Origin: http://example.com" \
 < Access-Control-Allow-Headers: X-Requested-With
 ```
 
+### Socket.io Adapter
+
+- method also works within a cluster of multiple Socket.IO servers.
+    1. server.disconnectSockets([close])
+    2. server.fetchSockets()
+    3. server.socketsJoin(rooms)
+    4. server.socketsLeave(rooms)
+- "server" means io or io.of("/") or io.in("room1")
+- if you only want to affect the socket instances on the given node, you need to use the local flag:
+
+
+- Emitter
+    - The Redis emitter allows sending packets to the connected clients from another Node.js process:
+
 
 <h2 id="f779c9d1d9da7473f0eebf90d56dc319"></h2>
 
