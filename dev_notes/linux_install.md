@@ -29,6 +29,13 @@ sudo ufw allow ssh
 
 > ubuntu server shipped with ssh server, so no need to install it.
 
+## essential tools
+
+```bash
+sudo apt update
+sudo apt install build-essential
+```
+
 
 ## Install Docker
 
