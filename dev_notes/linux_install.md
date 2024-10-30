@@ -29,6 +29,13 @@ sudo ufw allow ssh
 
 > ubuntu server shipped with ssh server, so no need to install it.
 
+## essential tools
+
+```bash
+sudo apt update
+sudo apt install build-essential
+```
+
 
 ## Install Docker
 
@@ -110,4 +117,37 @@ sensors  # or `watch sensors`
 - `sudo apt install linux-firmware`
 
 
+## install DWM
 
+```bash
+# build-essential
+sudo apt install --no-install-recommends xorg
+sudo apt install libxcb-xinerama0-dev libxinerama-dev libxft-dev suckless-tools mesa-utils network-manager feh wget cu
+
+$ mkdir .suckless
+$ cd .suckless/
+
+$ wget https://dl.suckless.org/dwm/dwm-6.5.tar.gz
+
+# simple terminal
+$ wget https://dl.suckless.org/st/st-0.9.2.tar.gz
+
+$ wget https://dl.suckless.org/tools/dmenu-5.3.tar.gz
+
+tar -xzf <all>
+
+
+# cd && make all 3
+
+# the following is not not necessary, yon can just sudo make install
+cd ~
+mkdir bin
+
+ln -s ~/.suckless/dwm-6.5/dwm ~/bin
+ln -s ~/.suckless/st-0.9.2/st  ~/bin
+ln -s ~/.suckless/dmenu-5.3/dmenu  ~/bin
+# ===============
+
+$ cat ~/.xsessionrc
+exec dwm
+```
