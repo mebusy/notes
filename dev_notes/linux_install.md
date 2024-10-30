@@ -121,33 +121,52 @@ sensors  # or `watch sensors`
 
 ```bash
 # build-essential
-sudo apt install --no-install-recommends xorg
-sudo apt install libxcb-xinerama0-dev libxinerama-dev libxft-dev suckless-tools mesa-utils network-manager feh wget cu
-
-$ mkdir .suckless
-$ cd .suckless/
-
-$ wget https://dl.suckless.org/dwm/dwm-6.5.tar.gz
-
-# simple terminal
-$ wget https://dl.suckless.org/st/st-0.9.2.tar.gz
-
-$ wget https://dl.suckless.org/tools/dmenu-5.3.tar.gz
-
-tar -xzf <all>
+sudo apt install -y --no-install-recommends xorg
+sudo apt install -y libxcb-xinerama0-dev libxinerama-dev libxft-dev suckless-tools mesa-utils network-manager feh wget cu
+```
 
 
-# cd && make all 3
+```bash
+#bash
 
-# the following is not not necessary, yon can just sudo make install
-cd ~
-mkdir bin
+set -e
 
-ln -s ~/.suckless/dwm-6.5/dwm ~/bin
-ln -s ~/.suckless/st-0.9.2/st  ~/bin
-ln -s ~/.suckless/dmenu-5.3/dmenu  ~/bin
-# ===============
+# array of elements  dwm, st, dmenu
+tools=(dwm st dmenu)
+# url path
+pathes=(dwm st tools)
 
-$ cat ~/.xsessionrc
-exec dwm
+mkdir -p .suckless
+cd .suckless
+
+mkdir -p ~/bin
+
+for i in ${!tools[@]}; do
+    # sort and print the last line
+    fname=`curl -sL https://dl.suckless.org/${pathes[$i]} | grep "${tools[$i]}-" | sort | tail -n 1 | cut -d '"' -f 2` 
+    echo $fname
+
+    # download the file
+    rm -f $fname
+    wget https://dl.suckless.org/${pathes[$i]}/$fname
+    tar -xvf $fname
+    
+    # remove suffix .tar.gz from the file name
+    dirname=`echo $fname | sed 's/.tar.gz//'`
+    echo $dirname
+
+    cd $dirname
+    # if is Linux
+    if [ "$(uname)" == "Linux" ]; then
+        make clean && make
+    fi
+
+    ln -sf `pwd`/${tools[$i]} ~/bin/
+
+    cd ..
+done
+
+echo "exec dwm" > ~/.xinitrc
+# echo "exec dwm" > ~/.xsessionrc
+
 ```
