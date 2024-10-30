@@ -97,6 +97,7 @@ sensors  # or `watch sensors`
 ### 1
 
 - 查看可用的驱动更新：
+    - may need `sudo apt install alsa-utils`
     - `sudo ubuntu-drivers list`
 - 自动安装推荐的驱动：
     - `sudo ubuntu-drivers autoinstall`
