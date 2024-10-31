@@ -53,10 +53,10 @@ To Configure i3 to Launch a Login Shell in i3-terminal:
 vi ~/.config/i3/config
 ```
 
-Find the terminal command, replace with
+Find the terminal command, add `-e bash -l`, e.g. for `alacritty`
 
 ```bash
-bindsym $mod+Return "exec <your-terminal> -e bash -l"
+bindsym $mod+Return exec "alacritty -e bash -l"
 ```
 
 
