@@ -6,6 +6,16 @@
 - basic dev tools
     - `sudo pacman -S base-devel`
 
+
+## Install Arch Linux
+
+Create USB bootable disk: https://wiki.archlinux.org/title/USB_flash_installation_medium#In_macOS_2
+
+```bash
+# before install, if you stuck on mirror choosing ...
+systemctl mask reflector.service
+```
+
 ## change mirror
 
 https://archlinux.org/mirrorlist/
@@ -42,6 +52,7 @@ restart i3:  `Mod + Shift + R`
 
 ```bash
 sudo pacman -S fcitx fcitx-googlepinyin fcitx-configtool
+# reboot
 ```
 
 run `fcitx-configtool` to config
@@ -95,3 +106,13 @@ exec chromium
 exec_always xrandr --output Virtual1 --primary --mode 1440x900 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
 ```
 
+
+
+## mbpfan
+
+```bash
+makepkg -si
+
+systemctl enable mbpfan
+systemctl start mbpfan
+```
