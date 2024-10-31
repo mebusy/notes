@@ -24,7 +24,9 @@ for i3-wm:
 vi ~/.config/i3/config
 ```
 
-replace the `font` line with `font pango:Noto Sans CJK SC 10`
+~replace the `font` line with `font pango:Noto Sans CJK SC 10`~
+
+find the `font` line, comment `monospace`, and uncomment `deJavU`
 
 
 restart i3:  `Mod + Shift + R`
