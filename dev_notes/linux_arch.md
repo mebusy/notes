@@ -75,7 +75,9 @@ Find the terminal command, add `-e bash -l`, e.g. for `alacritty`
 bindsym $mod+Return exec "alacritty -e bash -l"
 ```
 
-## Other Config
+## config i3-wm
+
+https://i3wm.org/docs/userguide.html
 
 ```conf
 # workspace
@@ -91,8 +93,8 @@ assign [class="Chromium"] $ws2
 #
 # select your icon from: https://fontawesome.com/v4/cheatsheet/, and copy to $ws identifier
 
-# customize shortcut key
-bindsym $mod+Shift+x exec i3lock
+# customize shortcut key, like MacOS
+bindsym $mod+Ctrl+q exec i3lock --color=000000
 
 # lanuch program when login
 exec chromium
@@ -102,7 +104,7 @@ exec chromium
 # set wallpaper
 # wget blob:https://github.com/6848b5c7-96e6-4fc4-bbcd-c5adab933e92
 # mkdir ~/.wallpapers
-# exec_always feh --bg-scale ~/.wallpapers/<pic-name>
+exec_always feh --bg-scale ~/.wallpapers/<pic-name>
 
 # monitor config
 # config, then save to a file, copy the content
@@ -135,8 +137,19 @@ font pango:System San Francisco Display 14
 # replace d-menu
 # $ sudo pacman -S rofi
 # $ rofi -show run
+# in i3 config file, replace dmenu with rofi (rofi already in config file, just uncomment it)
 ```
 
+## ssh to archlinux sever and run gtk program
+
+in archlinux server,  
+
+```bash
+vi ~/.bash_profile
+
+# add the following line
+[ -n "$SSH_CONNECTION" ] && [ -z "$DISPLAY" ] && export DISPLAY=<your-ip:disp_num>
+```
 
 
 ## mbpfan
