@@ -84,9 +84,11 @@ bindsym $mod+Return exec "alacritty -e bash -l"
 assign [class="Chromium"] $ws2
 
 # use font for workspace icon: https://github.com/FortAwesome/Font-Awesome, download the web version, find the .ttf font file
-# cd fontawesome-free-6.6.0-web/webfonts/
-# mkdir -p ~/.fonts
-# cp fa-v4compatibility.ttf ~/.fonts/
+# we use 4.x version: 
+#   wget https://raw.githubusercontent.com/FortAwesome/Font-Awesome/refs/heads/4.x/fonts/fontawesome-webfont.ttf
+# sudo mv fontawesome-webfont.ttf /usr/share/fonts/
+# sudo fc-cache -fv
+#
 # select your icon from: https://fontawesome.com/v4/cheatsheet/, and copy to $ws identifier
 
 # customize shortcut key
@@ -97,13 +99,42 @@ exec chromium
 # lanuch program everytime i3 restart
 # exec_always chromium
 
-# set backgroud
-# exec_always feh --bg-scale <pic-path>
+# set wallpaper
+# wget blob:https://github.com/6848b5c7-96e6-4fc4-bbcd-c5adab933e92
+# mkdir ~/.wallpapers
+# exec_always feh --bg-scale ~/.wallpapers/<pic-name>
 
 # monitor config
 # config, then save to a file, copy the content
 # sudo pacman -S arandr
 exec_always xrandr --output Virtual1 --primary --mode 1440x900 --pos 0x0 --rotate normal --output Virtual2 --off --output Virtual3 --off --output Virtual4 --off --output Virtual5 --off --output Virtual6 --off --output Virtual7 --off --output Virtual8 --off
+
+# title font & bar font
+# https://github.com/supermarin/YosemiteSanFranciscoFont
+# clean up the files, leave 4 .ttf files
+# sudo mv YosemiteSanFranciscoFont-master /usr/share/fonts/
+# sudo fc-cache -fv
+# $ fc-list | grep "San Francisco"
+# ... System San Francisco Display Ultralight.ttf: SFNS Display:style=UltraLight
+font pango:System San Francisco Display 14
+
+# gkt font
+# sudo pacman -S lxappearancey
+# run lxappearance, change current font size, then apply. 
+# 2 files ~/.gtkrc-2.0 and  ~/.config/gtk-3.0/settings.ini will be generated
+# manually change the font name to "System San Francisco Display 14"
+# Optional: use infinality to improve font rendering
+
+# file explorer
+# sudo pacman -S thunar
+
+# gtk-theme
+# sudo pacman -S arc-gtk-theme
+# use lxappearance to change theme
+
+# replace d-menu
+# $ sudo pacman -S rofi
+# $ rofi -show run
 ```
 
 
