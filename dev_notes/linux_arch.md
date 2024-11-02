@@ -233,6 +233,11 @@ Now you can use paru to install AUR packages, e.g. envycontrol (hybrid GPU contr
 paru envycontrol
 ```
 
+## Dev Tools
+
+- tk (for python)
+- rustup (rustup default stable)
+
 
 
 
