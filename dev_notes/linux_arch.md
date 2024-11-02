@@ -211,3 +211,31 @@ systemctl start mbpfan
     # default dpi is 96, change to 192
     exec_always xrandr --dpi 192
     ```
+
+## NVIDIA GPU
+
+- pre-installed driver may conflict with nvidia driver
+- check the wiki for more info:
+    - https://wiki.archlinux.org/title/NVIDIA
+
+## paru:  packed AUR help
+
+1. install rust
+    - sudo pacman -S rustup
+    - rustup default stable
+2. install paru
+    - https://github.com/Morganamilo/paru
+
+
+Now you can use paru to install AUR packages, e.g. envycontrol (hybrid GPU control)
+
+```bash
+paru envycontrol
+```
+
+
+
+
+
+
+
