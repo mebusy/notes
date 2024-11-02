@@ -33,6 +33,7 @@ sudo fc-cache -fv
 sudo pacman -S alacritty
 ```
 
+
 for i3-wm:
 
 ```bash
@@ -40,10 +41,31 @@ vi ~/.config/i3/config
 ```
 
 1. find the `font` line, comment `monospace`, and uncomment `deJavU`
-2. find the `terminal` line, replace `i3-sensible-terminal` with `alacritty -o font.size=8`
-
+2. find the `terminal` line, replace `i3-sensible-terminal` with `alacritty`
 
 restart i3:  `Mod + Shift + R`
+
+### Alacritty setting
+
+```bash
+# vi .alacritty.toml
+
+# https://alacritty.org/config-alacritty.html#s12
+# config change will affect UI right now
+[font]
+size=8
+
+[window]
+opacity=0.9
+```
+
+```bash
+# picom
+sudo pacman -S picom
+
+# vi ~/.config/i3/config
+exec --no-startup-id picom -f --xrender-sync-fence
+```
 
 
 ### Chinese Input
@@ -80,7 +102,7 @@ vi ~/.config/i3/config
 Find the terminal command, add `-e bash -l`, e.g. for `alacritty`
 
 ```bash
-bindsym $mod+Return exec "alacritty -o font.size=8 -e bash -l"
+bindsym $mod+Return exec "alacritty -e bash -l"
 ```
 
 ## config i3-wm
@@ -148,6 +170,9 @@ font pango:System San Francisco Display 14
 # $ sudo pacman -S rofi
 # $ rofi -show run
 # in i3 config file, replace dmenu with rofi (rofi already in config file, just uncomment it)
+
+# sould control
+# sudo pacman -S pavucontrol
 ```
 
 ## ssh to archlinux sever and run gtk program
@@ -170,3 +195,19 @@ makepkg -si
 systemctl enable mbpfan
 systemctl start mbpfan
 ```
+
+## HiDPI
+
+1. terminal
+    - e.g. alacritty: chang font size *=2
+2. gtk app
+    - ~/.bash_profile
+    ```bash
+    export GDK_SCALE=2
+    ```
+3. xrandr
+    - ~/.config/i3/config
+    ```bash
+    # default dpi is 96, change to 192
+    exec_always xrandr --dpi 192
+    ```
