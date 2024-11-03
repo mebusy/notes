@@ -233,6 +233,12 @@ Now you can use paru to install AUR packages, e.g. envycontrol (hybrid GPU contr
 paru envycontrol
 ```
 
+## i3blocks
+
+- `sudo pacman -S acpi i3blocks`   // acpi for battery info
+- `paru mpstat`  // for cpu info
+- `paru amixer`  // for volume control
+
 
 ## Laptop Battery Life
 
