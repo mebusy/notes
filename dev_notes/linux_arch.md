@@ -250,6 +250,10 @@ check `auto-cpufreq` on github
 - tk (for python)
 - rustup (rustup default stable)
 
+## headers
+
+- `sudo pacman -S linux-headers`
+- lts headers: `sudo pacman -S linux-lts-headers`
 
 
 
