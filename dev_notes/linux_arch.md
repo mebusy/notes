@@ -48,7 +48,7 @@ restart i3:  `Mod + Shift + R`
 ### Alacritty setting
 
 ```bash
-# vi .alacritty.toml
+# vi ./config/alacritty/alacritty.toml
 
 # https://alacritty.org/config-alacritty.html#s12
 # config change will affect UI right now
