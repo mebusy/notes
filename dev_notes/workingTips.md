@@ -247,11 +247,8 @@ ab -r -k -s 120 -n 100000 -c 1500  <url>
 
 ## check wheter `keep-alive` is  enabled by server
 
-- `curl -lv -k <url> <url>  2>&1 | grep  "Re-using" `
-
 ```bash
-$ curl -lv -k https://xxx.com/ https://xxx.com/  2>&1 | grep  "Re-using"
-* Re-using existing connection! (#0) with host xxx.com
+curl -I <url>
 ```
 
 <h2 id="60a277f978363c21b4ced8cb1ea9c06f"></h2>
