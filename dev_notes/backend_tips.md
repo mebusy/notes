@@ -101,15 +101,10 @@ curl -H "Origin: http://example.com" \
 ## check whether server enable 'keepalive' feature
 
 ```
-curl  -Iv  -k  <url> <url>  2>&1 | grep -i '#0'
+curl  -I  <url>
 ```
 
-- if server enable 'keepalive' , it should output something like
-
-```
-* Re-using existing connection! (#0) with proxy 127.0.0.1
-```
-
+check reponse header
 
 
 <h2 id="b09fb18aea2fecd5ff9b30027f00a5aa"></h2>
