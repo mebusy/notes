@@ -198,18 +198,19 @@ systemctl start mbpfan
 
 ## HiDPI
 
-1. terminal
-    - e.g. alacritty: chang font size *=2
-2. gtk app
-    - ~/.bash_profile
-    ```bash
-    export GDK_SCALE=2
-    ```
-3. xrandr
+1. xrandr
     - ~/.config/i3/config
     ```bash
     # default dpi is 96, change to 192
     exec_always xrandr --dpi 192
+    ```
+2. terminal
+    - e.g. alacritty: chang font size *=2
+3. gtk app
+    - **PS: not necessary !!!!**
+    - ~/.bash_profile
+    ```bash
+    export GDK_SCALE=2
     ```
 
 ## NVIDIA GPU
