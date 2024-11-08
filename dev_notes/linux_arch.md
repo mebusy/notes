@@ -111,7 +111,8 @@ https://i3wm.org/docs/userguide.html
 
 ```conf
 # workspace
-# use xprop to identify app's class(2nd value), e.g. chromium's class is Chromium
+# use xprop + mouse click on app window 
+#   to identify app's class(2nd value), e.g. chromium's class is Chromium
 # now launch chromium in workspace 2
 assign [class="Chromium"] $ws2
 # lanuch program when login
