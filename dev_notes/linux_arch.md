@@ -199,6 +199,9 @@ systemctl start mbpfan
 
 ## HiDPI
 
+https://wiki.archlinux.org/title/HiDPI
+
+
 1. xrandr
     - ~/.config/i3/config
     ```bash
@@ -213,6 +216,7 @@ systemctl start mbpfan
     ```bash
     export GDK_SCALE=2
     ```
+4. more apps ...
 
 ## NVIDIA GPU
 
