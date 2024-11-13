@@ -262,5 +262,14 @@ check `auto-cpufreq` on github
 - lts headers: `sudo pacman -S linux-lts-headers`
 
 
+## Resize Partitions
+
+1. boot from usb installer
+2. `parted /dev/sda`
+3. (parted) print
+4. (parted) resizepart <your-partition number to resize>
+5. (parted) <provide a END>
+6. (parted) quit
+7. `resize2fs /dev/sda2`
 
 
