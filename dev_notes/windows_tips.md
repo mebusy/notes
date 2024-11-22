@@ -48,11 +48,13 @@
 
 ## Run ML container accelerated by NVidia CPU On WSL2
 
+
 https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
 
 1. Install NVIDIA GeForce Game Ready or NVIDIA RTX Quadro Windows 11 display driver 
     - https://www.nvidia.com/Download/index.aspx?lang=en-us
-2. Install NVIDIA Container Toolkit
+2. ~Install NVIDIA Container Toolkit~
+    - Deprecated!!!  move to https://github.com/NVIDIA/nvidia-container-toolkit instead.
     ```bash
     distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
     curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
