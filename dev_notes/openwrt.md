@@ -126,6 +126,79 @@ convert image to vdi
 VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img openwrt.vdi
 ```
 
+# VMWare run openwrt
 
+## download 
+
+https://downloads.openwrt.org/
+
+openwrt-x86-generic-combined-ext4.img.gz
+
+
+## convert image to vmdk
+
+```bash
+# 1
+gunzip ...
+
+# 2
+qemu-img convert -f raw -O vmdk  openwrt-15.05-x86-64-combined-ext4.img openwrt-15.05-x86-64-combined-ext4.vmdk
+```
+
+## create new Linux VM
+
+img kernel version: https://openwrt.org/docs/techref/targets/kernelversions
+
+- config
+    - HDD
+        - use an existing virtual disk, select the vmdk file
+        - create a copy , NOT share
+        - increate HDD size to 0.5G later
+    - Advanced
+        - Disable Side Channel Mitigations: yes
+    - Network: 
+        - Bridged Networking / Ethernet
+
+
+## lanuch openwrt
+
+### modify IP address
+
+```bash
+vi /etc/config/network
+```
+
+change the IP address to the same subnet as your host machine
+
+reboot   and access the openwrt web interface
+
+- network/interface:  
+    - general settrings
+        - 'IPV4 Gateway' : your gateway
+    - Advanced settings
+        - 'Use custom DNS servers'  :  
+    - DHCP Server
+        - Ignore interface: yes
+
+
+### install passwall
+
+https://github.com/xiaorouji/openwrt-passwall/releases
+
+luci-app-passwall***  and passwall_packages_<your-architecture>*
+
+scp all files to 
+
+```bash
+# e.g. -O is to solve the scp version compatibility issue
+scp -O  * root@192.168.71.235:/root/Downloads/
+```
+
+install
+
+```bash
+cd /root/Downloads
+opkg install *.ipk --force-reinstall
+```
 
 
