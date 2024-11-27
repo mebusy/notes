@@ -381,6 +381,15 @@ done
         - `&1` 表示 引用 fd 1
     - 从描述符3读取
         - `3<`
+- To understand "redirecting to /dev/null" 
+    - redirect both stdin and stderr to /dev/null
+        - `CMD 1> /dev/null 2> /dev/null`
+    - Enhancement 1: You can replace `1>` with just `>`. This is because 1 is the default stdout and you can ignore mentioning defaults.
+        - `CMD  > /dev/null 2> /dev/null`
+    - Enhancement 2: You can replace the 2nd file redirect (`> /dev/null`) with a file descriptor duplication (`>& 1`). This is because /dev/null is already pointed to by stdout 1.
+        - `CMD  > /dev/null 2>& 1`
+    - Enhancement 3: This is such a common operation, that many shells have a shortened form of this as a single `&>` operator.
+        - `CMD  &> /dev/null`
 
 
 <h2 id="99f6f4be0908f24bb4a22a4ffb277da4"></h2>
