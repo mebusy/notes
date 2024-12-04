@@ -205,3 +205,9 @@ kind: List
 ```
 
 
+# Deploy a sharded Redis Cluster
+
+```bash
+helm install redis-cluster bitnami/redis-cluster --namespace helm-redis-626 \
+  --set image.tag=6.2.6 --version 8.1.1   # specify 8.1.1 to work with redis 6.2.6
+```
