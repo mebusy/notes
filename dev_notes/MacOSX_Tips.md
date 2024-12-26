@@ -304,4 +304,10 @@ softwareupdate -l : to see a list of the current updates (to make sure I was upd
 sudo softwareupdate -i -a -R : to install the updates, and restart the computer if required
 ```
 
+### 2. install specific MacOSX version
+
+```bash
+softwareupdate  --list-full-installers
+sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2
+```
 
