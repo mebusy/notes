@@ -205,3 +205,22 @@ kind: List
 ```
 
 
+# Deploy a sharded Redis Cluster
+
+```bash
+helm install redis-cluster bitnami/redis-cluster --namespace helm-redis-626 \
+  --set usePassword=false \
+  --set redis.configmap="save '' " \
+  --set cluster.nodes=3 --set cluster.replicas=0 \
+  --set image.tag=6.2.6 --version 8.1.1   # specify 8.1.1 to work with redis 6.2.6
+```
+
+```bash
+# resource limit
+  --set resources.requests.memory=200m \
+  --set resources.requests.cpu=200m \
+  --set resources.limits.memory=1Gi \
+  --set resources.limits.cpu=1 \
+```
+
+

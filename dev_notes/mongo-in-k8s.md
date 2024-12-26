@@ -146,3 +146,14 @@ kubectl -n mongo-503  --address 127.0.0.1 port-forward   statefulset.apps/mongod
 kubectl -n mongo-503  --address 0.0.0.0 port-forward   statefulset.apps/mongodb-test 27017:27017
 ```
 
+
+# Deploy a shard cluster
+
+```bash
+helm install shard-mongo bitnami/mongodb-sharded --namespace helm-mongo-606  \
+  --set image.tag=6.0.6 --version 6.0 \
+  --set auth.rootUser=root \
+  --set auth.rootPassword=root
+```
+
+
