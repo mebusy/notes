@@ -308,6 +308,6 @@ sudo softwareupdate -i -a -R : to install the updates, and restart the computer 
 
 ```bash
 softwareupdate  --list-full-installers
-sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2
+sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agree-to-license
 ```
 
