@@ -311,3 +311,28 @@ softwareupdate  --list-full-installers
 sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agree-to-license
 ```
 
+
+## v2rayA
+
+- install
+    ```bash
+    brew tap v2raya/v2raya
+    brew install v2raya/v2raya/v2raya
+    brew services start v2raya
+    ```
+- create server
+    - localhost:2017
+    - Create a new Server
+        - select it in `Operations` column
+        - click `start` at the top-left corner of the page
+- Settings
+    - Transparent Proxy
+        - change to `Proxy except CN Sites` or `Proxy only GFWList`
+    - Mode when Update Subscrition
+        - Update all servers and GFWList
+            - change to `Depend on Rule Port`
+    - Address and Ports
+        - Port of HTTP(with Rule)
+            - change to `3128`
+
+
