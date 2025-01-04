@@ -9,6 +9,13 @@
     - [Rpi 连接](#510b0501c2ea4da197aed7494488e288)
     - [Rpi 设置](#f669ab422f5fcf79de0338fae12db0ea)
 - [VBox run openwrt on Host machine](#9d548d8b61422c151c5b8652c1003587)
+- [VMWare run openwrt](#50ef7031fba0114ee4c0545b669bf368)
+    - [download](#fd456406745d816a45cae554c788e754)
+    - [convert image to vmdk](#1db4db8b788df81c79488948b4c11419)
+    - [create new Linux VM](#bfd90f2b7e62cddc79f22d128ecbe892)
+    - [lanuch openwrt](#7bd4bccda2889c8f0cffb7a333f1a567)
+        - [modify IP address](#d1a0135f0e3e61dfd3a41a1b1bfe9667)
+        - [install passwall](#8fc6717e5ac38ba94024aa7ae724eac0)
 
 [](...menuend)
 
@@ -126,7 +133,11 @@ convert image to vdi
 VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img openwrt.vdi
 ```
 
+<h2 id="50ef7031fba0114ee4c0545b669bf368"></h2>
+
 # VMWare run openwrt
+
+<h2 id="fd456406745d816a45cae554c788e754"></h2>
 
 ## download 
 
@@ -134,6 +145,8 @@ https://downloads.openwrt.org/
 
 openwrt-x86-generic-combined-ext4.img.gz
 
+
+<h2 id="1db4db8b788df81c79488948b4c11419"></h2>
 
 ## convert image to vmdk
 
@@ -144,6 +157,8 @@ gunzip ...
 # 2
 qemu-img convert -f raw -O vmdk  openwrt-15.05-x86-64-combined-ext4.img openwrt-15.05-x86-64-combined-ext4.vmdk
 ```
+
+<h2 id="bfd90f2b7e62cddc79f22d128ecbe892"></h2>
 
 ## create new Linux VM
 
@@ -160,7 +175,11 @@ img kernel version: https://openwrt.org/docs/techref/targets/kernelversions
         - Bridged Networking / Ethernet
 
 
+<h2 id="7bd4bccda2889c8f0cffb7a333f1a567"></h2>
+
 ## lanuch openwrt
+
+<h2 id="d1a0135f0e3e61dfd3a41a1b1bfe9667"></h2>
 
 ### modify IP address
 
@@ -172,20 +191,22 @@ change the IP address to the same subnet as your host machine
 
 reboot   and access the openwrt web interface
 
-- network/interface:  
+- network/interface:
     - general settrings
         - 'IPV4 Gateway' : your gateway
     - Advanced settings
-        - 'Use custom DNS servers'  :  
+        - 'Use custom DNS servers':
     - DHCP Server
         - Ignore interface: yes
 
+
+<h2 id="8fc6717e5ac38ba94024aa7ae724eac0"></h2>
 
 ### install passwall
 
 https://github.com/xiaorouji/openwrt-passwall/releases
 
-luci-app-passwall***  and passwall_packages_<your-architecture>*
+luci-app-passwall and `passwall_packages_<your-architecture>`
 
 scp all files to 
 

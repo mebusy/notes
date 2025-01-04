@@ -1,6 +1,7 @@
 [](...menustart)
 
 - [Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)](#0504ebb2cb3cdae2dd497029e147d0e3)
+- [Another solution: bash profile works for user but not sudo](#b8e48b9acfa1659182f7fbf00655549b)
 
 [](...menuend)
 
@@ -49,6 +50,8 @@ Generally,
 - For zsh, put stuff in ~/.zshrc, which is always executed.
 
 
+
+<h2 id="b8e48b9acfa1659182f7fbf00655549b"></h2>
 
 # Another solution: bash profile works for user but not sudo
 

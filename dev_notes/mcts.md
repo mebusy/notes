@@ -1,4 +1,19 @@
+[](...menustart)
+
+- [Monte Carlo Tree Search](#d0a68bbde4a8ba76f8761cef0126247c)
+    - [Four Phases](#18eb8ba1439923476980fa86411d6303)
+    - [Tree Traversal & Node Expansion](#6272bdabc982f3f99130aecdc6565188)
+    - [Rollout](#56ee398637559b61c89c9924f3f19733)
+    - [Worked Example](#ccd190b6e6e99df9972443aab2ea15ac)
+
+[](...menuend)
+
+
+<h2 id="d0a68bbde4a8ba76f8761cef0126247c"></h2>
+
 # Monte Carlo Tree Search
+
+<h2 id="18eb8ba1439923476980fa86411d6303"></h2>
 
 ## Four Phases
 
@@ -13,6 +28,8 @@
 
 
 
+<h2 id="6272bdabc982f3f99130aecdc6565188"></h2>
+
 ## Tree Traversal & Node Expansion
 
 - <img src="../imgs/mcts_1_s.png" width=360 />
@@ -23,11 +40,15 @@
     - if it's have been sampled before, you expand it by adding all of its children to the tree, and then you choose one of them to rollout from.
 
 
+<h2 id="56ee398637559b61c89c9924f3f19733"></h2>
+
 ## Rollout
 
 - <img src="../imgs/mcts_2_s.png" width=420 />
 - random choose an available action, and keep doing that until reach terminal state
 
+
+<h2 id="ccd190b6e6e99df9972443aab2ea15ac"></h2>
 
 ## Worked Example
 

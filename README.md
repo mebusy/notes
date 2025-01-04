@@ -214,6 +214,11 @@ a | b | c | d
 [GPU Acceleration on MacOSX](dev_notes/GPUAccOnMac.md) |
 [openssl](dev_notes/openssl_cookbook.md) | [windows WSL2 tips](dev_notes/windows_tips.md) | 
 
+<h2 id="7d3144b362b6e52faf1d3c82b38953a5"></h2>
+
+#### Mac M-Silicon
+
+[orbstack](dev_notes/orbstack.md)
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
 

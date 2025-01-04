@@ -13,6 +13,7 @@
     - [查找不是 running 状态的 pod](#145f750dc8c7bde1231227e5d027eafd)
     - [JSONPath 表达式](#f0cfc2eb04f3c904ba876b4ff5e36744)
     - [Deleting Namespace "stuck" as Terminating,  how to solve it ?](#cba1fee733817c7d24cf75e1c715d127)
+    - [Run Image with specific command to test purpose](#e102a8a45a54e61034fac6f1c808984b)
     - [Advanced Skill](#10e2e86d43aa4ce9a791d75c478a23dc)
 
 [](...menuend)
@@ -192,6 +193,8 @@ kubectl get namespace "stucked-namespace" -o json \
   | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/" \
   | kubectl replace --raw /api/v1/namespaces/stucked-namespace/finalize -f -
 ```
+
+<h2 id="e102a8a45a54e61034fac6f1c808984b"></h2>
 
 ## Run Image with specific command to test purpose
 

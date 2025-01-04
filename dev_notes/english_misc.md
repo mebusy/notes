@@ -1,5 +1,20 @@
+[](...menustart)
+
+- [用法解析](#dd61bd31702542a0416cc17e6e70a7d1)
+    - [do / make](#703174e581507b26e7c601b276ff54e4)
+    - [可数/不可数名词 区分](#5f8eef40a81207903c2cd8a6d652f8d0)
+    - [动词-ing形式](#91dde202664c3b40d5b58719bad571b0)
+    - [介词in/on/at](#5e5ca3419b9ad60e31513b289c4b2b21)
+    - [`the` in phrase](#0af846787aab309d8c5df6abbb4961eb)
+
+[](...menuend)
+
+
+<h2 id="dd61bd31702542a0416cc17e6e70a7d1"></h2>
 
 # 用法解析
+
+<h2 id="703174e581507b26e7c601b276ff54e4"></h2>
 
 ## do / make
 
@@ -7,6 +22,8 @@
 - A: 无中生有用make, 锦上添花就用do
     - 晚饭在做之前是没有的，所以是make dinner
     - 作业(家务)，不管做不做都在，所以是do homework
+
+<h2 id="5f8eef40a81207903c2cd8a6d652f8d0"></h2>
 
 ## 可数/不可数名词 区分
 
@@ -17,6 +34,8 @@
     - 每一半**还可以叫** 原来的名名称，或**仍具备**整体功能
     - e.g. water, rice, sugar, money, advice, information, furniture, luggage, equipment, homework, work, traffic, weather, news, progress, research, etc.
 
+<h2 id="91dde202664c3b40d5b58719bad571b0"></h2>
+
 ## 动词-ing形式
 
 - **直去双改**
@@ -24,6 +43,8 @@
     2. 去掉不发音的e，再加ing write -> writing
     3. 重读闭音节结尾, 双写最后一个辅音字母，再加ing run -> running
     4. ie结尾，变y再加ing lie -> lying
+
+<h2 id="5e5ca3419b9ad60e31513b289c4b2b21"></h2>
 
 ## 介词in/on/at
 
@@ -45,6 +66,8 @@
     - at the door, at the window
     - at the bus stop, at the station
     - at 7 o'clock, at noon, at midnight
+
+<h2 id="0af846787aab309d8c5df6abbb4961eb"></h2>
 
 ## `the` in phrase
 

@@ -4,6 +4,7 @@
     - [Test whether your server supoort CORS](#548a5cc4c4019da5a34fbb22dcf5a26d)
         - [Normal HTTP server](#778777314b185e9e67802ca4dd15ebfb)
         - [Socket.io Server](#7a07e7f39c73f6c4430af211308bfd16)
+        - [Socket.io Adapter](#3acc4269cbd9af5cfefdcf353c48631e)
     - [check whether server enable 'keepalive' feature](#f779c9d1d9da7473f0eebf90d56dc319)
     - [self signed cert](#b09fb18aea2fecd5ff9b30027f00a5aa)
     - [Redeem](#81ed4dcb851fefbbbc791eeef4cd97a2)
@@ -80,6 +81,8 @@ curl -H "Origin: http://example.com" \
 < Vary: Access-Control-Request-Headers
 < Access-Control-Allow-Headers: X-Requested-With
 ```
+
+<h2 id="3acc4269cbd9af5cfefdcf353c48631e"></h2>
 
 ### Socket.io Adapter
 

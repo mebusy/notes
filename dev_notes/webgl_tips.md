@@ -4,6 +4,13 @@
     - [Qualifiers](#619dd4db8171a8f1bf978f44c9cf10c4)
     - [BUILT-IN VARIABLES](#435827c0432e29e22a2b69df5c4a9db4)
 - [Three.js Tips](#bcf2f4a04de7d50e787ded8c2c14e655)
+    - [custom shader](#e48da1c737f1655b744c811c680d3a01)
+    - [custom uniform](#ddb9793eb33e73dbb5efd004dd1f0067)
+    - [useful GSGL functions](#b9127c15ee95fc51f216337c3ae87785)
+    - [signed distance field](#1ffab6b43cffaf7152da1e8eb69b5bf1)
+    - [Customize ThreeJS Materials With Shaders](#966c363221199d08c9f13c2395d749b4)
+    - [toon shader implementation](#f465ba0887fa03fc7200ca948442b511)
+    - [Add Toon effect on prebuilt realistic model](#75a39e5fcd8379930c0c1925bf27ff15)
 
 [](...menuend)
 
@@ -54,6 +61,8 @@ gl_FragDepth | depth value in [0,1] | Fragment | Read only
     - https://threejs.org/docs/#api/en/renderers/webgl/WebGLProgram 
 
 
+<h2 id="e48da1c737f1655b744c811c680d3a01"></h2>
+
 ## custom shader
 
 ```javascript
@@ -80,6 +89,8 @@ import fragmentShader from './shaders/fragment.glsl'
         precision mediump float;
         ```
 
+<h2 id="ddb9793eb33e73dbb5efd004dd1f0067"></h2>
+
 ## custom uniform
 
 e.g. create a float uniform named `uTime`
@@ -94,6 +105,8 @@ e.g. create a float uniform named `uTime`
 uniform float uTime;
 ```
 
+<h2 id="b9127c15ee95fc51f216337c3ae87785"></h2>
+
 ## useful GSGL functions
 
 - [pow](https://thebookofshaders.com/glossary/?search=pow)
@@ -106,10 +119,14 @@ uniform float uTime;
 - [dot](https://thebookofshaders.com/glossary/?search=dot), [cross](https://thebookofshaders.com/glossary/?search=cross)
 
 
+<h2 id="1ffab6b43cffaf7152da1e8eb69b5bf1"></h2>
+
 ## signed distance field
 
 https://iquilezles.org/articles/distfunctions2d/
 
+
+<h2 id="966c363221199d08c9f13c2395d749b4"></h2>
 
 ## Customize ThreeJS Materials With Shaders
 
@@ -146,6 +163,8 @@ add `defines`
     #endif
 ```
 
+
+<h2 id="f465ba0887fa03fc7200ca948442b511"></h2>
 
 ## toon shader implementation
 
@@ -210,6 +229,8 @@ import TOON_TONE from './images/textures/threeTone.jpg'
 <img src="../imgs/fourTone_s.png" width=80>  (fourTone 4x1)
 <img src="../imgs/fiveTone_s.png" width=80>  (fiveTone 5x1)
 
+
+<h2 id="75a39e5fcd8379930c0c1925bf27ff15"></h2>
 
 ## Add Toon effect on prebuilt realistic model
 

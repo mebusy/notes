@@ -4,6 +4,7 @@
     - [install kind k8s](#e629a5281ed6903f92a461cc54e08857)
     - [Install ingress controller](#588da1e7cecfc3f40fa3e015ff722499)
     - [Install Dashboard](#5633d2848d737c44ec1d89bc54ccdfa9)
+    - [metrics server](#5be52954321051abb86007a11a9a0b17)
 
 [](...menuend)
 
@@ -489,6 +490,8 @@ NOTE: **As of version 7.0.0, we have dropped support for Manifest-based installa
         nohup ssh -p 2222 -L $loc_port:127.0.0.1:45933 -N -f -l <ssh user> <ssh host> &> /dev/null
     fi
     ```
+
+<h2 id="5be52954321051abb86007a11a9a0b17"></h2>
 
 ## metrics server 
 

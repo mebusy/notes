@@ -1,5 +1,20 @@
+[](...menustart)
+
+- [Go Tool Chain](#125e912e5b4d16be23474018aa68afef)
+    - [go list](#a7e1d632b7f0f204484907aaedbcdba6)
+    - [go tool](#1c2eb2d3edc197362fa18a3512057756)
+        - [list all GOOS/GOARCH](#e761880bea8f1f8b4c77ba1e0662b258)
+    - [go doc](#97dafa559620d720a718b8756436b45d)
+    - [trace](#04a75036e9d520bb983c5ed03b8d0182)
+
+[](...menuend)
+
+
+<h2 id="125e912e5b4d16be23474018aa68afef"></h2>
 
 # Go Tool Chain
+
+<h2 id="a7e1d632b7f0f204484907aaedbcdba6"></h2>
 
 ## go list
 
@@ -38,7 +53,11 @@ github.com/kyroy/priority-queue v0.0.0-20180327160706-6e21825e7e0c
 github.com/pmezard/go-difflib v1.0.0
 ```
 
+<h2 id="1c2eb2d3edc197362fa18a3512057756"></h2>
+
 ## go tool
+
+<h2 id="e761880bea8f1f8b4c77ba1e0662b258"></h2>
 
 ### list all GOOS/GOARCH
 
@@ -53,6 +72,8 @@ android/arm64
 ...
 ```
 
+
+<h2 id="97dafa559620d720a718b8756436b45d"></h2>
 
 ## go doc
 
@@ -78,6 +99,8 @@ func Printf(format string, a ...any) (n int, err error)
             return 2
         }
         ```
+
+<h2 id="04a75036e9d520bb983c5ed03b8d0182"></h2>
 
 ## trace
 

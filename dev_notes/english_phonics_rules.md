@@ -7,6 +7,15 @@
     - [4. vowel combination](#ba62558f2ca56236f21d5d3c44d8e82e)
     - [5. consonant + "l" + "e"   子+le](#548e677117e1493a20d04b70647bf3a3)
     - [6. R-controlled syllable](#759282e7f43770ffb1d471cd07029f82)
+- [英语 6种音节类型](#6cb58295f6aa9e94fc6f93b01597dcda)
+    - [clover](#177f6b75da142d09d92cab3c06218e2c)
+        - [c : closed](#4452a33da577f7cb1ba5e99b58058a5b)
+        - [e : slient e](#aaf6ae4a0b539ae6a0fe4d26e66f1b96)
+        - [o : open](#c94030caf35d026d76bfb3a21ff1e3ef)
+        - [l : c + le](#91d2050a06c5b18b1f2c45ecb69a5315)
+        - [v : vowel team](#497b8b89c02359a8e2010ca9fb94a3fe)
+        - [r : r-controlled](#106cc989bb32820c13f2786d3717b5d1)
+    - [REVLOC 音节划分](#3012d9af1321c9e9a3a2de937608c894)
 
 [](...menuend)
 
@@ -116,9 +125,15 @@ ur | fur
 5. 该元音是元音规则的特例。
 
 
+<h2 id="6cb58295f6aa9e94fc6f93b01597dcda"></h2>
+
 # 英语 6种音节类型
 
+<h2 id="177f6b75da142d09d92cab3c06218e2c"></h2>
+
 ## clover
+
+<h2 id="4452a33da577f7cb1ba5e99b58058a5b"></h2>
 
 ### c : closed
 
@@ -133,12 +148,16 @@ e.g. quiz
 辅2 不能是 w, y 这两个半元音。 因为半元音w,y 会和前面的元音结合， 如 snow不是闭音节.
 
 
+<h2 id="aaf6ae4a0b539ae6a0fe4d26e66f1b96"></h2>
+
 ### e : slient e
 
 元 + 辅 + e(不发音)
 
 
 <img src="../imgs/vowel-consonant-e.png" width=320 />
+
+<h2 id="c94030caf35d026d76bfb3a21ff1e3ef"></h2>
 
 ### o : open
 
@@ -147,12 +166,16 @@ e.g. quiz
 e.g. be
 
 
+<h2 id="91d2050a06c5b18b1f2c45ecb69a5315"></h2>
+
 ### l : c + le
 
 辅 + le
 
 e.g. apple
 
+
+<h2 id="497b8b89c02359a8e2010ca9fb94a3fe"></h2>
 
 ### v : vowel team
 
@@ -171,6 +194,8 @@ e.g. steak
 
 
 
+<h2 id="106cc989bb32820c13f2786d3717b5d1"></h2>
+
 ### r : r-controlled
 
 元音 + r
@@ -181,6 +206,8 @@ e.g. steak
 - er-ir-ur (jerk, shirt, hurt)
 - or (fort)
 
+
+<h2 id="3012d9af1321c9e9a3a2de937608c894"></h2>
 
 ## REVLOC 音节划分
 

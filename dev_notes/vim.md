@@ -1,9 +1,9 @@
 [](...menustart)
 
 - [VIM](#d53cfc4bdeb96eaee47dd710b3c2ed21)
-    - [Plugin Installation](#431e27fdb6a4c378a592fb761c7e5519)
     - [YouCompleteMe Configuaration Tips](#72aef9272e534c2840a7b9f5e4899694)
     - [C-Family \[ycm_extra_conf.py\]](#e70cbc3e7d4a60990580571997e5e3a5)
+    - [Java Completer](#97dfe9730e2d92cdc0543f220b141071)
         - [YCMD Troubleshoot](#fab255294e7b3b58a06c83405029a7c0)
     - [Markdown](#2182a74bab7188d959e795d9301e87ff)
     - [viminspect](#05792acc8846850d5650256c2f89d097)
@@ -21,7 +21,7 @@
     - [%s  newline `\n` in replace str](#6c24d675fa3c2aeb536fa5d6901dcd17)
         - [复制/移动 行](#87b0406cc2b93c7df74c3cfc9b2e690b)
         - [MOVE](#f7f93635f8e193a924ae4a691bb66b8f)
-        - [Advance g](#b492b625b61dc9e4718c98561d7b0296)
+        - [Advanced `g`](#debe66560ff90b0a8b9314425af297bf)
 - [grok VIM](#fc1f1e8c6d70d860957c66f735e60e2b)
     - [A sampling of more advanced tricks:](#a5787082a16f14e8db2acbf78497ee99)
 - [VIM Regular Expressions](#97786adcbde368256fe1cb51b6339c7e)
@@ -115,6 +115,8 @@
 		'./program/include/' , # you project headers
 		...
 	```
+
+<h2 id="97dfe9730e2d92cdc0543f220b141071"></h2>
 
 ## Java Completer
 
@@ -402,7 +404,7 @@ use `\r` instead.
     ```
 
 
-<h2 id="b492b625b61dc9e4718c98561d7b0296"></h2>
+<h2 id="debe66560ff90b0a8b9314425af297bf"></h2>
 
 ### Advanced `g`
 

@@ -1,5 +1,14 @@
+[](...menustart)
+
+- [multiple owners via the `Rc<T>` type](#6f89ac8ad90c874cd0197cdc3d99acce)
+- [Arc (Atomically Reference Counted)](#53dd50ec86132eaae56fd0aaccfbcca0)
+- [share a struct between threads](#ff685bf526710a87ccd325a2b96f4399)
+- [as](#f970e2767d0cfe75876ea857f92e319b)
+
+[](...menuend)
 
 
+```
 slice reference
      let a = [1, 2, 3, 4, 5];
      let nice_slice = &a[1..4];
@@ -34,7 +43,7 @@ vec 2
                 element * 2
             }).collect()
     }
-
+```
 
 
 mod 1
@@ -76,17 +85,17 @@ parent scope
 
 Option
 
-- Option<T>
-    - Some(T) / None
+- `Option<T>`
+    - `Some(T) / None`
     - normally use `if let` or `while let` to filter out the None value
 
 Result
 
-- Result<T,E>
-    - Ok(T) / Err(E)
+- `Result<T,E>`
+    - `Ok(T) / Err(E)`
 
 
-Box<dyn ???>
+`Box<dyn ???>`
 
 any type which implements a particular trait ??? ,  think as interface in other languages.
 
@@ -101,22 +110,27 @@ Lifetime
 
 collect()方法可以被用来将一个可迭代对象转成任意类型的集合，包括数组、向量、链表、哈希表等等
 
+```rust
     words
         .iter()
         .map(|word| capitalize_first(word))
         .collect::<Vec<String>>()  // 如果编译器不能推断类型，则需要指定 collect的类型
         .join("")
-
+```
 
 `Box` - a smart pointer used to store data on the heap, which also allows us  to wrap a recursive type.
 
+```rust
 pub enum List {
     Cons(i32, Box<List>),
     Nil,
 }
+```
 
 
-## multiple owners via the Rc<T> type
+<h2 id="6f89ac8ad90c874cd0197cdc3d99acce"></h2>
+
+## multiple owners via the `Rc<T>` type
 
 
 ```rust
@@ -128,6 +142,8 @@ drop(mercury);
 
 
 
+<h2 id="53dd50ec86132eaae56fd0aaccfbcca0"></h2>
+
 ## Arc (Atomically Reference Counted)
 
 ```rust
@@ -137,6 +153,8 @@ let shared_numbers = Arc::new(numbers);
 let child_numbers = Arc::clone(&shared_numbers);
 ```
 
+
+<h2 id="ff685bf526710a87ccd325a2b96f4399"></h2>
 
 ## share a struct between threads
 
@@ -172,6 +190,8 @@ fn main() {
     }
 }
 ```
+
+<h2 id="f970e2767d0cfe75876ea857f92e319b"></h2>
 
 ## as 
 

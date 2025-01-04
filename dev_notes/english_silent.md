@@ -1,3 +1,15 @@
+[](...menustart)
+
+- [不发音的辅音们](#4edcab669141561056b18c68d9ee220b)
+- [phonotactics 音位学](#75c4dbdb1618a7cfc640ca896bb6e526)
+- [Inflection 词型变化](#db3aa21cec02580bec1fbac4746161b5)
+- [stop consonant](#74a5c2b102a055994d2dcd7e1b064cb1)
+
+[](...menuend)
+
+
+<h2 id="4edcab669141561056b18c68d9ee220b"></h2>
+
 # 不发音的辅音们
 
 - b
@@ -81,6 +93,8 @@
     - 解释: 古英语有一个由“gh”组合代表的声音。这个声音在现代英语中已经消失了，但是“gh”仍然保留在单词中。在中古英语向现代英语的过渡过程中，gh的发音要么消失（如“night”），要么突变为另一个摩擦音f（如“enough”或“trough”）。
 
 
+<h2 id="75c4dbdb1618a7cfc640ca896bb6e526"></h2>
+
 # phonotactics 音位学
 
 https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
@@ -101,6 +115,8 @@ https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
 6. if the first consonant in a two-consonant onset is not an /s/, the second consonant must be a liquid or a glide - /l/, /r/, /w/, /j/
 
 
+<h2 id="db3aa21cec02580bec1fbac4746161b5"></h2>
+
 # Inflection 词型变化
 
 - 名词
@@ -118,6 +134,8 @@ https://staffnew.uny.ac.id/upload/132310014/pendidikan/7-phonotactical-rules.pdf
     - 最高级 +est
     - 副词 +ly
 
+
+<h2 id="74a5c2b102a055994d2dcd7e1b064cb1"></h2>
 
 # stop consonant
 

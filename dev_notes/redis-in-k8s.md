@@ -5,6 +5,7 @@
     - [STATEFUL SET Redis](#305457477e783f4354ecabe28cd3081c)
     - [Deploy](#507a3a88cebc46603ce2be8eaa924eee)
 - [If you just want redis as memory cache...](#15b6834685dfbd80ef67e02007df091d)
+- [Deploy a sharded Redis Cluster](#e2e77c5f017ea9f68dc318151ea60a94)
 
 [](...menuend)
 
@@ -204,6 +205,8 @@ items:
 kind: List
 ```
 
+
+<h2 id="e2e77c5f017ea9f68dc318151ea60a94"></h2>
 
 # Deploy a sharded Redis Cluster
 

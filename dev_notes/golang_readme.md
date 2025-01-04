@@ -58,7 +58,7 @@ cd $GOPATH/src/golang.org/x
 git clone https://github.com/golang/tools.git
 ```
 
-<h2 id="592aa5aafd64f18a5b4759ec0820ef33"></h2>
+<h2 id="8b0927427c6701380f8da7a5f64d3068"></h2>
 
 ### go get update multiple pacakge 
 

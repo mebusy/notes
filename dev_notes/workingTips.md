@@ -14,6 +14,7 @@
     - [using ffmpeg to convert video to mp3 (未验证)](#a8e23293ddbb3302f18d430ee2fdaaf2)
     - [use ffmpeg select left audio channel and downgrade to mono](#160eb38b6a6c8f90bf98171aa12bb8d8)
     - [use ffmpeg manipulate audio channel](#a2ccb84c0c3f7f1113c305a7f2499969)
+    - [merge subtile to video](#89227893b957e1a49fb887ab2e9c7441)
     - [ab benchmark](#4eda4ef40a71cb2632162cc03ece5480)
     - [check wheter `keep-alive` is  enabled by server](#e06944207d65338bc4b5d43aef44aef4)
     - [change .pem password](#60a277f978363c21b4ced8cb1ea9c06f)
@@ -24,6 +25,7 @@
     - [FTP Server](#98cc3814df5e703cb40d72247999d91a)
     - [\[MacOSX\] move large files out of system volumn](#876a5afb8f5f4d9fe22d3f93b322e87d)
     - [\[MacOSX\] monitor files changes under current folder](#75da08a12859c3c32281ae78bfb39348)
+    - [\[MacOSX\] chrome gpu acceleration not work](#dbf1e7162f6bb3506ff0d88de4b6f014)
 
 [](...menuend)
 
@@ -193,6 +195,8 @@ change audio volume
 ```
 
 
+<h2 id="89227893b957e1a49fb887ab2e9c7441"></h2>
+
 ## merge subtile to video
 
 ```bash
@@ -340,6 +344,8 @@ watch -n 1 -d find .
 # to skie .git folder
 watch -n 1 -d find . -path ./.git  -prune -o -print
 ```
+
+<h2 id="dbf1e7162f6bb3506ff0d88de4b6f014"></h2>
 
 ## [MacOSX] chrome gpu acceleration not work
 

@@ -6,6 +6,8 @@
     - [remove single-line / multiple-line comments](#2ff3865f3455ca50e9de317f1c7851ea)
     - [defaultdict tree](#7a652adbada4c294364e2c3c61fb5c25)
     - [lru_cache](#89dd193fac1729cebfd50aff749b688c)
+    - [cgi server](#34dfa276fe76c42ed2d058af8371d11d)
+    - [open a link in webbrowser](#95bf337c28c64ebb9ff843e5272d1eb0)
 
 [](...menuend)
 
@@ -196,6 +198,8 @@ print([fibonacci(n) for n in range(1, 9)])
 ```
 
 
+<h2 id="34dfa276fe76c42ed2d058af8371d11d"></h2>
+
 ## cgi server
 
 CGIHTTPRequestHandler
@@ -206,6 +210,8 @@ python -m http.server --cgi
 
 - This defaults to ['/cgi-bin', '/htbin'] and describes directories to treat as containing CGI scripts.
 
+
+<h2 id="95bf337c28c64ebb9ff843e5272d1eb0"></h2>
 
 ## open a link in webbrowser
 

@@ -15,7 +15,17 @@
     - [partial commmit](#365a5d68e803e7cd517640176167c02b)
     - [handling conflict](#bcccf2d6eb0a519d64f1b86b59fe5db3)
         - [Undo a conflict and start over](#a44d692e0cfa312f2d01e7cc424f3531)
+        - [submodule conflict](#fa5d35e52d212826f6db4e5848225378)
     - [Reset Submodule](#740e34f3f2acfa61cdf6a6d376b3510d)
+- [Cool Git Command](#d20b942b01ae2b1dfea868bef17311aa)
+    - [1. git stash](#e8b1c432f98d5c748f95102d380a7c20)
+    - [2. git blame](#542b33295697f34fbd23380681cba26f)
+    - [3. git log -S](#55e715223f7159cff8db9230fa66239a)
+    - [4. git diff](#a79a6a8890c5cd62ba1fb9880efd8809)
+    - [5. git maintenance](#c4365ba7819dc70ffcd5d1725fc7677f)
+- [Big Repo Stuff](#a7e9e6c6f49c00941b9544ca57942d3a)
+    - [filesystem monitor](#ff25f328d4a2e9ff575c8910e76f2f70)
+    - [partially clone](#3266b369555db75a99102c28caf62ae2)
 
 [](...menuend)
 
@@ -178,6 +188,8 @@ git commit -p <filename>
     git rebase --abort
     ```
 
+<h2 id="fa5d35e52d212826f6db4e5848225378"></h2>
+
 ### submodule conflict
 
 Well, its not technically managing conflicts with submodules (ie: keep this but not that), but I found a way to continue working...and all I had to do was pay attention to my git status output and reset the submodules:
@@ -203,7 +215,11 @@ $ git submodule foreach --recursive git reset --hard
 ```
 
 
+<h2 id="d20b942b01ae2b1dfea868bef17311aa"></h2>
+
 # Cool Git Command
+
+<h2 id="e8b1c432f98d5c748f95102d380a7c20"></h2>
 
 ## 1. git stash
 
@@ -212,6 +228,8 @@ $ git submodule foreach --recursive git reset --hard
 - Restore saved progress
     - `git stash pop`
 
+
+<h2 id="542b33295697f34fbd23380681cba26f"></h2>
 
 ## 2. git blame
 
@@ -251,6 +269,8 @@ find line movements
 git blame -w -M -M -M
 ```
 
+<h2 id="55e715223f7159cff8db9230fa66239a"></h2>
+
 ## 3. git log -S
 
 the *pickaxe*
@@ -261,6 +281,8 @@ filter all my git log output to anything that has this regular expression or the
 git log -S files_watcher -p
 ```
 
+
+<h2 id="a79a6a8890c5cd62ba1fb9880efd8809"></h2>
 
 ## 4. git diff
 
@@ -275,6 +297,8 @@ example:
 ```txt
 reset a [-specified-]{+speci fied+} sub module
 ```
+
+<h2 id="c4365ba7819dc70ffcd5d1725fc7677f"></h2>
 
 ## 5. git maintenance 
 
@@ -298,7 +322,11 @@ start background job to
 
 
 
+<h2 id="a7e9e6c6f49c00941b9544ca57942d3a"></h2>
+
 # Big Repo Stuff
+
+<h2 id="ff25f328d4a2e9ff575c8910e76f2f70"></h2>
 
 ## filesystem monitor
 
@@ -306,6 +334,8 @@ start background job to
 git config core.untrackedCache true
 git config core.fsmonitor true
 ```
+
+<h2 id="3266b369555db75a99102c28caf62ae2"></h2>
 
 ## partially clone
 

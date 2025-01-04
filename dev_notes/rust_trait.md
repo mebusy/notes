@@ -18,6 +18,7 @@
     - [Object Safe Trait](#54cd7d1ff84ce266ad43e9146fdb1149)
 - [Advanced Traits](#4ffb7ac08a15b1d3811fff77137701ec)
     - [Associated Types](#985cb623ec3c652fac4377ad107f3f9a)
+- [Choosing impl Trait or dyn Trait](#d1f3435abbcd7313bf8a4f15de4b6b01)
 
 [](...menuend)
 
@@ -532,6 +533,8 @@ impl Iterator<u16> for Counter {
 
 Using associated type trait if for any given implementation  you want the `next` method to return the same concrete type. 
 
+
+<h2 id="d1f3435abbcd7313bf8a4f15de4b6b01"></h2>
 
 # Choosing impl Trait or dyn Trait
 

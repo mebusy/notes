@@ -1,9 +1,37 @@
+[](...menustart)
+
+- [Something About Arch Linux + i3-wm](#2b01560d0d559955f35c6f0b3f0aabee)
+    - [Install Arch Linux](#a193e259b8223762b6d0e67651401dd0)
+    - [change mirror](#aa1b405e688e650e0d8820dc650d601b)
+    - [Chinese Support](#70df1833cae594ee437d74d5fdf920c8)
+        - [Show Chinese in Brower, Terminal, etc.](#919acbd697cc37e840ef92a6bb862d80)
+        - [Alacritty setting](#3f16b3dedd1de377102fa4d06f90e0e8)
+        - [Chinese Input](#f97631860fcc7681892ed91e6b37b497)
+    - [IF ONLY ~/.bash_profile  not sourced in i3-terminal](#fc756afc9ffc982cea38445ec61fe0d1)
+    - [config i3-wm](#180e2c5ed883b898d5e40cb0022c1a98)
+    - [ssh to archlinux sever and run gtk program](#0250b35cf47190e9d755c9b49f5b058a)
+    - [mbpfan](#17a619241bc8f98a839dfbc931009f8b)
+    - [HiDPI](#7fe62e51915c286c0cf4c72ab5307033)
+    - [NVIDIA GPU](#1f14b1b0e6e7f15adc85beb49514c09e)
+    - [paru:  packed AUR help](#7e150414eb9bd14e4769252dda140335)
+    - [i3blocks](#d6b8ea18f9137882156a9d41fd989cd6)
+    - [Laptop Battery Life](#b3fa013ae44a3d42e6cc8298c03951fc)
+    - [Dev Tools](#f73a3dfcf8bbecf604228b1b8f4bbb15)
+    - [headers](#4340fd73e75df7a9d9e45902a59ba3a4)
+    - [Resize Partitions](#55b8c4a0eb572538a44c6c44511b00b3)
+
+[](...menuend)
+
+
+<h2 id="2b01560d0d559955f35c6f0b3f0aabee"></h2>
 
 # Something About Arch Linux + i3-wm
 
 - pacman upate: 
     - `sudo pacman -Syyu`
 
+
+<h2 id="a193e259b8223762b6d0e67651401dd0"></h2>
 
 ## Install Arch Linux
 
@@ -14,13 +42,19 @@ Create USB bootable disk: https://wiki.archlinux.org/title/USB_flash_installatio
 systemctl mask reflector.service
 ```
 
+<h2 id="aa1b405e688e650e0d8820dc650d601b"></h2>
+
 ## change mirror
 
 https://archlinux.org/mirrorlist/
 
 
+<h2 id="70df1833cae594ee437d74d5fdf920c8"></h2>
+
 ## Chinese Support
 
+
+<h2 id="919acbd697cc37e840ef92a6bb862d80"></h2>
 
 ### Show Chinese in Brower, Terminal, etc.
 
@@ -45,6 +79,8 @@ vi ~/.config/i3/config
 
 restart i3:  `Mod + Shift + R`
 
+<h2 id="3f16b3dedd1de377102fa4d06f90e0e8"></h2>
+
 ### Alacritty setting
 
 ```bash
@@ -68,6 +104,8 @@ exec --no-startup-id picom -f --xrender-sync-fence
 ```
 
 
+<h2 id="f97631860fcc7681892ed91e6b37b497"></h2>
+
 ### Chinese Input
 
 ```bash
@@ -88,6 +126,8 @@ fcitx &
 run `fcitx-configtool` to config
 
 
+<h2 id="fc756afc9ffc982cea38445ec61fe0d1"></h2>
+
 ## IF ONLY ~/.bash_profile  not sourced in i3-terminal
 
 In Arch Linux, when using i3 with a terminal (like i3-terminal), the ~/.bash_profile file may not be sourced because, by default, it only gets loaded for login shells, not interactive non-login shells.
@@ -104,6 +144,8 @@ Find the terminal command, add `-e bash -l`, e.g. for `alacritty`
 ```bash
 bindsym $mod+Return exec "alacritty -e bash -l"
 ```
+
+<h2 id="180e2c5ed883b898d5e40cb0022c1a98"></h2>
 
 ## config i3-wm
 
@@ -176,6 +218,8 @@ font pango:System San Francisco Display 14
 # sudo pacman -S pavucontrol
 ```
 
+<h2 id="0250b35cf47190e9d755c9b49f5b058a"></h2>
+
 ## ssh to archlinux sever and run gtk program
 
 in archlinux server,  
@@ -188,6 +232,8 @@ vi ~/.bash_profile
 ```
 
 
+<h2 id="17a619241bc8f98a839dfbc931009f8b"></h2>
+
 ## mbpfan
 
 ```bash
@@ -196,6 +242,8 @@ makepkg -si
 systemctl enable mbpfan
 systemctl start mbpfan
 ```
+
+<h2 id="7fe62e51915c286c0cf4c72ab5307033"></h2>
 
 ## HiDPI
 
@@ -218,11 +266,15 @@ https://wiki.archlinux.org/title/HiDPI
     ```
 4. more apps ...
 
+<h2 id="1f14b1b0e6e7f15adc85beb49514c09e"></h2>
+
 ## NVIDIA GPU
 
 - pre-installed driver may conflict with nvidia driver
 - check the wiki for more info:
     - https://wiki.archlinux.org/title/NVIDIA
+
+<h2 id="7e150414eb9bd14e4769252dda140335"></h2>
 
 ## paru:  packed AUR help
 
@@ -239,6 +291,8 @@ Now you can use paru to install AUR packages, e.g. envycontrol (hybrid GPU contr
 paru envycontrol
 ```
 
+<h2 id="d6b8ea18f9137882156a9d41fd989cd6"></h2>
+
 ## i3blocks
 
 - `sudo pacman -S acpi i3blocks`   // acpi for battery info
@@ -246,21 +300,29 @@ paru envycontrol
 - `paru amixer`  // for volume control
 
 
+<h2 id="b3fa013ae44a3d42e6cc8298c03951fc"></h2>
+
 ## Laptop Battery Life
 
 check `auto-cpufreq` on github
 
+
+<h2 id="f73a3dfcf8bbecf604228b1b8f4bbb15"></h2>
 
 ## Dev Tools
 
 - tk (for python)
 - rustup (rustup default stable)
 
+<h2 id="4340fd73e75df7a9d9e45902a59ba3a4"></h2>
+
 ## headers
 
 - `sudo pacman -S linux-headers`
 - lts headers: `sudo pacman -S linux-lts-headers`
 
+
+<h2 id="55b8c4a0eb572538a44c6c44511b00b3"></h2>
 
 ## Resize Partitions
 

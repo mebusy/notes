@@ -1,7 +1,6 @@
 [](...menustart)
 
 - [MacOSX](#5dad7f6f2d7af4cc1196128ec251af8a)
-    - [sidebar 丢失](#2921868f08055ef268441139489a6130)
     - [Useful Commands](#ec69fb46be4996fda376dcb4054c528b)
         - [bash64 decode to hex](#9ce547db2f9c1a445bc410d99d7ac737)
         - [xxd](#25c04b9b782789c092a38c06cc87632a)
@@ -18,7 +17,14 @@
         - [load and test it](#548797edc19fa3483f6f9a6f36faa5e2)
     - [check SSD lifespan](#fb8aa0d64bf13765b2377276fc9e9ed7)
     - [screen capture to clipborad](#49d6e205c8881024108f1681926717a8)
+    - [screen video capture](#41524438733bc8c786cbf6d76bbb7300)
     - [copy wifi password to clipboard](#6831a70b0b58947b7c63e20394b71a09)
+    - [open finder where specific file exists](#310ac7673aa532eb722e5d134bc9f875)
+    - [Easily Find Forgotten Commands from History (bck-i-search)](#0fc461d9f1b4d0b7b5d786613b2741bd)
+    - [software update issue](#57af19cce52d7a06935a3c519714ee89)
+        - [1. software update stuck on restarting...](#28020a9db98f0ce52e44b40e1d3dda4c)
+        - [2. install specific MacOSX version](#19a0004c2a1db482bbf4a286eb007285)
+    - [v2rayA](#20d0eee4bef3515b35f820e9cec00f3d)
 
 [](...menuend)
 
@@ -267,6 +273,8 @@ smartctl -t short /dev/disk0
 
 cmd +  ctl + shift + 4
 
+<h2 id="41524438733bc8c786cbf6d76bbb7300"></h2>
+
 ## screen video capture
 
 cmd +  ctl + shift + 5
@@ -281,11 +289,15 @@ cmd +  ctl + shift + 5
 $ security find-generic-password -wa "ChinaNet-Mebusy" |  pbcopy
 ```
 
+<h2 id="310ac7673aa532eb722e5d134bc9f875"></h2>
+
 ## open finder where specific file exists
 
 ```bash
 open -R <path-to-file>
 ```
+
+<h2 id="0fc461d9f1b4d0b7b5d786613b2741bd"></h2>
 
 ## Easily Find Forgotten Commands from History (bck-i-search)
 
@@ -295,7 +307,11 @@ open -R <path-to-file>
 4. As you type, the terminal keeps suggesting a command that matches what you’ve typed. 
 
 
+<h2 id="57af19cce52d7a06935a3c519714ee89"></h2>
+
 ## software update issue
+
+<h2 id="28020a9db98f0ce52e44b40e1d3dda4c"></h2>
 
 ### 1. software update stuck on restarting...
 
@@ -304,6 +320,8 @@ softwareupdate -l : to see a list of the current updates (to make sure I was upd
 sudo softwareupdate -i -a -R : to install the updates, and restart the computer if required
 ```
 
+<h2 id="19a0004c2a1db482bbf4a286eb007285"></h2>
+
 ### 2. install specific MacOSX version
 
 ```bash
@@ -311,6 +329,8 @@ softwareupdate  --list-full-installers
 sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agree-to-license
 ```
 
+
+<h2 id="20d0eee4bef3515b35f820e9cec00f3d"></h2>
 
 ## v2rayA
 

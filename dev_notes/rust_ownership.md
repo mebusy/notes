@@ -4,7 +4,7 @@
     - [Ownership rules](#e8d1ae0e7d33cb31e8ff0b54bc904f86)
     - [Move / Borrow](#3260e15ab0b0472a8c60fe10dc282a51)
     - [Reference](#63d5049791d9d79d86e9a108b0a999ca)
-    - [Slices](#ebb25066940285a0271542b54f76e9e1)
+    - [Slices: a different kind of reference](#c5de796fb83414ef46f03dc09bbf733d)
 
 [](...menuend)
 
@@ -116,7 +116,7 @@
     }
     ```
 
-<h2 id="ebb25066940285a0271542b54f76e9e1"></h2>
+<h2 id="c5de796fb83414ef46f03dc09bbf733d"></h2>
 
 ## Slices: a different kind of reference
 
