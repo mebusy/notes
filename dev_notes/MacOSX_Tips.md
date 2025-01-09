@@ -366,3 +366,21 @@ sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agr
 
 
 
+## LM Studio
+
+huggingface 换源
+
+```bash
+$ cd  /Applications/LM Studio.app/Contents/Resources/app/.webpack
+$ cat mirror.sh
+#!/bin/sh
+
+set -e
+
+
+# find all .js file in the current directory, and repace 'huggingface co' with 'hf-mirror.com'
+
+find . -type f -name "*.js" -exec sed -i '' 's/huggingface.co/hf-mirror.com/g' {} \;
+```
+
+
