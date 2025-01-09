@@ -365,6 +365,8 @@ sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agr
         - 再次点击更新
 
 
+[more docs](https://v2raya.org/en/docs/prologue/installation/macos/)
+
 ## Add a Route for the Loopback Network , and LAN Network
 
 ```bash
