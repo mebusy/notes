@@ -365,6 +365,15 @@ sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agr
         - 再次点击更新
 
 
+[more docs](https://v2raya.org/en/docs/prologue/installation/macos/)
+
+## Add a Route for the Loopback Network , and LAN Network
+
+```bash
+sudo route add -net 127.0.0.0/8 127.0.0.1
+sudo route add -net 192.168.0.0/16 $(route -n get default | grep 'gateway' | awk '{print $2}')
+```
+
 
 ## LM Studio
 
