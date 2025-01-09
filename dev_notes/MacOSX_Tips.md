@@ -369,7 +369,7 @@ sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agr
 
 ```bash
 sudo route add -net 127.0.0.0/8 127.0.0.1
-sudo route add -net 10.192.0.0/16 $(route -n get default | grep 'gateway' | awk '{print $2}')
+sudo route add -net 192.168.0.0/16 $(route -n get default | grep 'gateway' | awk '{print $2}')
 ```
 
 
