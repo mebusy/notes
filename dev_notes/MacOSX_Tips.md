@@ -365,4 +365,11 @@ sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agr
         - 再次点击更新
 
 
+## Add a Route for the Loopback Network , and LAN Network
+
+```bash
+sudo route add -net 127.0.0.0/8 127.0.0.1
+sudo route add -net 10.192.0.0/16 $(route -n get default | grep 'gateway' | awk '{print $2}')
+```
+
 
