@@ -2,6 +2,19 @@
 
 [CSP-J/S/X, NOIP, NOI, IOI, 信息学奥林匹克竞赛历年真题收录](https://github.com/winterant/oi)
 
+NOI Linux 2.0 . 基于Ubuntu 20.04.1. 将自2021年9月1日起作为NOI系列比赛和CSP-J/S等活动的标准环境使用
+
+https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml  (上面还有软件清单)
+
+
+安装到 独立的机器:
+
+https://blog.csdn.net/jiangshaoting/article/details/126086104
+
+2023 竞赛大纲
+
+https://www.noi.cn/upload/resources/file/2023/03/15/1fa58eac9c412e01ce3c89c761058a43.pdf
+
 
 
 学习资料
