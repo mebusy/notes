@@ -50,3 +50,74 @@ chain forward | `scores = self.fc2(F.relu(self.fc1(x)))`
 stack model |  model = nn.Sequential( Flatten(), <br>nn.Linear(3 * 32 * 32, hidden_layer_size), <br>nn.ReLU(), <br>nn.Linear(hidden_layer_size, 10),<br>)
 
 
+## Tutorial
+
+### Tensor
+
+1. in-place operation
+    - in-place method is suffixed with `_`
+    ```python
+    x = torch.randn(1)
+    y = torch.randn(1)
+    x.add_(y)
+    ```
+2. extract value from tensor
+    ```python
+    x = torch.randn(1)  # tensor([0.1234])
+    x.item()  # 0.1234
+    ```
+3. re-shape
+    ```python
+    x = torch.randn(4, 4)
+    y = x.view(16)
+    z = x.view(-1, 8)  # the size -1 is inferred from other dimensions
+    ```
+4. convert between numpy and tensor
+    ```python
+    a = torch.ones(5)
+    b = a.numpy()
+    ```
+    ```python
+    a = np.ones(5)
+    b = torch.from_numpy(a)
+    ```
+    - if tensor is on CPU, they share the same memory
+    - if tensor is on GPU, you need to move it to CPU first
+        ```python
+        a = torch.ones(5, dtype=torch.float16)
+        a = a.cuda()  # a = a.to('cuda') | a = a.to('mps')
+        # a is on GPU, move it to cpu and convert to numpy
+        b = a.cpu().numpy()
+
+
+---
+
+### Autograd
+
+- `requires_grad=True` to track computation
+- `backward()` to compute gradient
+- `grad` to get gradient
+    ```python
+    x = torch.randn(3, requires_grad=True)
+    y = x + 2 # tensor([2.3538, 2.1904, 1.6464], grad_fn=<AddBackward0>)
+    z = y * y * 2 # tensor([11.0805,  9.5954,  5.4214], grad_fn=<MulBackward0>)
+    out = z.mean() # tensor(8.6991, grad_fn=<MeanBackward0>)
+    out.backward() # dout/dx,  backward() should need a vector argument if out is not scalar
+    x.grad  # tensor([3.1384, 2.9205, 2.1952])
+    ```    
+- 3 ways to stop tracking gradient
+    1. `x.requires_grad_(False)`
+    2. `x.detach()`
+    3. wrap within `with torch.no_grad():` 
+- after backward, `x.grad` accumulates gradient, so you need to zero it before next iteration
+    ```python
+    x.grad.zero_()
+    ```
+    - noramlly you may use optimizer to do this, `optimizer.zero_grad()`
+- `Function` to define custom autograd function
+
+
+
+
+
+
