@@ -52,6 +52,10 @@ stack model |  model = nn.Sequential( Flatten(), <br>nn.Linear(3 * 32 * 32, hidd
 
 ## Tutorial
 
+https://www.youtube.com/watch?v=c36lUUr864M&t=1s
+
+https://github.com/patrickloeber/pytorchTutorial
+
 ### Tensor
 
 1. in-place operation
