@@ -196,4 +196,15 @@ model.load_state_dict(arg)
 model.eval()
 ```
 
+### Transfer Learning
+
+```python
+# Load pre-trained model
+model = models.resnet18(pretrained=True)
+# exchange the last FC layer
+num_ftrs = model.fc.in_features
+# create a new layer
+model.fc = nn.Linear(num_ftrs, 2)
+...
+```
 
