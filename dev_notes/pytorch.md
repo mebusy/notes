@@ -121,7 +121,79 @@ https://github.com/patrickloeber/pytorchTutorial
 - `Function` to define custom autograd function
 
 
+--- 
+
+### Logistic Regression
+
+- zero mean and unit variance is always recommended when dealing with logistic regression
+    ```python
+    from sklearn.preprocessing import StandardScaler
+    sc = StandardScaler()
+    X_train = sc.fit_transform(X_train)
+    ```
 
 
+### TensorBoard
+
+```bash
+# run tensorboard server
+tensorboard --logdir=runs 
+```
+
+example 
+
+```python
+############## TENSORBOARD ########################
+from torch.utils.tensorboard import SummaryWriter
+# default `log_dir` is "runs" - we'll be more specific here
+writer = SummaryWriter('runs/mnist1')
+###################################################
+
+# add image
+writer.add_image('mnist_images', img_grid)
+
+# add graph
+writer.add_graph(model, example_data.reshape(-1, 28*28).to(device))
+
+# in training epoch loop
+            writer.add_scalar('training loss', running_loss / 100, epoch * n_total_steps + i)
+            running_accuracy = running_correct / 100 / predicted.size(0)
+            writer.add_scalar('accuracy', running_accuracy, epoch * n_total_steps + i)
+
+
+# result
+    ############## TENSORBOARD ########################
+    classes = range(10)
+    for i in classes:
+        labels_i = class_labels == i
+        preds_i = class_preds[:, i]
+        writer.add_pr_curve(str(i), labels_i, preds_i, global_step=0)
+        writer.close()  # should n't be out side of loop ?
+    ###################################################
+```
+
+
+### Save & Load Modelsave 
+
+=== Complete model (Lazy)===
+
+```python
+torch.save(model, 'model.pth')
+
+model = torch.load('model.pth')
+model.eval()
+```
+
+=== State Dict ===
+
+```python
+arg=model.state_dict()
+# use python's pickle module to serialize the model
+torch.save(arg, 'model.pth')
+
+arg=torch.load('model.pth')
+model.load_state_dict(arg)
+model.eval()
+```
 
 
