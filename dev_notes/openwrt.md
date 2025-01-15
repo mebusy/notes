@@ -215,15 +215,10 @@ change the IP address to the same subnet as your host machine
 
 ### Install Passwall
 
-```bash
-# TODO need verify
-vi /etc/opkg/customfeeds.conf
-src/gz passwall_packages https://op.supes.top/packages/<your-arch>
-	e.g. src/gz passwall_packages https://op.supes.top/packages/x86_64
-opkg update
+immortalwrt example
 
-# Install PassWall and core dependencies:
+```bash
+opkg update
+opkg install luci-compat luci-lib-ipkg
 opkg install luci-app-passwall
-# Install additional plugin support as needed (e.g., V2Ray, Trojan):
-opkg install passwall-binaries passwall-luci
 ```
