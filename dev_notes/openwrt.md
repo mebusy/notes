@@ -141,22 +141,35 @@ VBoxManage convertfromraw --format VDI openwrt-x86-64-combined-squashfs.img open
 
 ## download 
 
+<details>
+<summary>install officical release</summary>
+
 https://downloads.openwrt.org/
 
 openwrt-x86-generic-combined-ext4.img.gz
 
 
-<h2 id="1db4db8b788df81c79488948b4c11419"></h2>
 
-## convert image to vmdk
+convert image to vmdk
 
 ```bash
+# 0
+brew install qemu
 # 1
 gunzip ...
 
 # 2
 qemu-img convert -f raw -O vmdk  openwrt-15.05-x86-64-combined-ext4.img openwrt-15.05-x86-64-combined-ext4.vmdk
 ```
+
+</details>
+
+
+Or immortalwrt  release
+
+https://downloads.immortalwrt.org/
+
+down the `vmdk` file directly
 
 <h2 id="bfd90f2b7e62cddc79f22d128ecbe892"></h2>
 
@@ -184,12 +197,12 @@ img kernel version: https://openwrt.org/docs/techref/targets/kernelversions
 ### modify IP address
 
 ```bash
-vi /etc/config/network
+$ vi /etc/config/network
 ```
 
 change the IP address to the same subnet as your host machine
 
-reboot   and access the openwrt web interface
+`$ reboot`   and access the openwrt web interface
 
 - network/interface:
     - general settrings
@@ -200,26 +213,17 @@ reboot   and access the openwrt web interface
         - Ignore interface: yes
 
 
-<h2 id="8fc6717e5ac38ba94024aa7ae724eac0"></h2>
-
-### install passwall
-
-https://github.com/xiaorouji/openwrt-passwall/releases
-
-luci-app-passwall and `passwall_packages_<your-architecture>`
-
-scp all files to 
+### Install Passwall
 
 ```bash
-# e.g. -O is to solve the scp version compatibility issue
-scp -O  * root@192.168.71.235:/root/Downloads/
+# TODO need verify
+vi /etc/opkg/customfeeds.conf
+src/gz passwall_packages https://op.supes.top/packages/<your-arch>
+	e.g. src/gz passwall_packages https://op.supes.top/packages/x86_64
+opkg update
+
+# Install PassWall and core dependencies:
+opkg install luci-app-passwall
+# Install additional plugin support as needed (e.g., V2Ray, Trojan):
+opkg install passwall-binaries passwall-luci
 ```
-
-install
-
-```bash
-cd /root/Downloads
-opkg install *.ipk --force-reinstall
-```
-
-
