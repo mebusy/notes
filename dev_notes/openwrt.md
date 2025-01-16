@@ -211,7 +211,7 @@ change the IP address to the same subnet as your host machine
         - 'Use custom DNS servers':
     - DHCP Server
         - Ignore interface: yes
-
+    - optional:  select  en0 instead of bridge
 
 ### Install Passwall
 
