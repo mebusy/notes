@@ -222,3 +222,20 @@ opkg update
 opkg install luci-compat luci-lib-ipkg
 opkg install luci-app-passwall
 ```
+
+
+### QA
+
+xray not longer support VLESS `xtls-rprx-direct` flow mode.
+
+possible solution(NOT verified):
+
+- use xray core 1.7.5
+    - https://github.com/xtls/xray-core/releases?page=4
+    ```bash
+    mv xray /usr/bin/
+    chmod +x /usr/bin/xray
+    ```
+- create a node, and then directly change the config in
+    - `/etc/config/passwall`
+
