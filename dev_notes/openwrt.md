@@ -228,16 +228,11 @@ opkg install luci-app-passwall
 
 ### QA
 
-xray not longer support VLESS `xtls-rprx-direct` flow mode.
+因为xray的更新, OpenClash 和 Passwall 新版本不支持 VLESS `xtls-rprx-direct` flow 了.
 
-possible solution(NOT verified):
+如果确实需要, 可以使用 v2raya, 并且使用 v2ray-core （openwrt v2raya 默认xray-core）
 
-- use xray core 1.7.5
-    - https://github.com/xtls/xray-core/releases?page=4
-    ```bash
-    mv xray /usr/bin/
-    chmod +x /usr/bin/xray
-    ```
-- create a node, and then directly change the config in
-    - `/etc/config/passwall`
+方法:  删除 `/usr/bin/xray` 然后 `ln -s /usr/bin/v2ray /usr/bin/xray`, 重启openwrt.
+
+
 
