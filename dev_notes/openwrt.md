@@ -235,4 +235,6 @@ opkg install luci-app-passwall
 方法:  删除 `/usr/bin/xray` 然后 `ln -s /usr/bin/v2ray /usr/bin/xray`, 重启openwrt.
 
 
+v2ray `Prevent DNS Spoofing`:  DoH(dns-over-https)
+
 
