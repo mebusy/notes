@@ -73,6 +73,19 @@
         }
         ```
         - to support ES6, you can also add compilerOptions: `"target": "es6"`
+        - useful example
+        ```json
+        {
+          "compilerOptions": {
+            "baseUrl": "./",
+            "paths": {
+                "@/*": ["src/*"]
+            },
+            "checkJs": true
+          },
+          "exclude": ["node_modules", "dist"]
+        }
+        ```
 - Rust support: install Rust and add `--rust-completer`
     - put `~/.cargo/bin`   in you $PATH ?
         ```bash
