@@ -289,6 +289,14 @@ cmd +  ctl + shift + 5
 $ security find-generic-password -wa "ChinaNet-Mebusy" |  pbcopy
 ```
 
+## find internet password
+
+e.g. find github password
+
+```bash
+security find-internet-password -s github.com -a your_github_username -w
+```
+
 <h2 id="310ac7673aa532eb722e5d134bc9f875"></h2>
 
 ## open finder where specific file exists
