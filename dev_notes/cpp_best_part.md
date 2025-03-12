@@ -465,13 +465,13 @@ Double_Data get_data() {
 }
 ```
 
-In c++11, it's a move, but by defining a destructor we made it a copy
+In **c++11**, it's a move, but by defining a destructor we made it a copy
 
 ```c++
 Double_Data get_data() {
     Double_Data data(3);
     data.data[0] = 1.1; data.data[1] = 2.2; data.data[2] = 3.3;
-    return data; // move from a copy
+    return data; // move 
 }
 ```
 
@@ -496,5 +496,134 @@ Not very useful at the moment, but we know it’s safe.
 
 ## #23: Defaulted and Deleted Functions 
 
+- Any special member function can be explicitly `= default`
+- Any function can be `= delete`
+- This can make you API harder to use wrong
+    ```c++
+    struct S {
+        // by providing a constructor we have implicitly disable the default constructor
+        S(int) {}
+        // explicitly default the default constructor
+        S() = default;
+    };
+    ```
+
+If only there was a way of not even having to think about heap allocated memory…(other than containers mentioned previously, use those of course!)
+
+
+## #24: `std::unique_ptr` and `std::make_unique`
+
+```c++
+#include <cstddef>
+#include <memory>
+
+
+struct Double_Data {
+    Double_Data(const std::size_t size) 
+        : data(std::make_unique<double[]>(size)) {
+    }
+    std::unique_ptr<double[]> data;
+}
+```
+
+- Automatic, safe, very diﬀicult to use incorrectly.
+- Interestingly, relies on:
+    - `= delete` special member functions
+    - destructor
+    - r-value references
+- And plays nicely with guaranteed copy/move elision for factory functions.
+
+------
+
+Let's make a quick sum function.
+
+```c++
+template <typename... T>
+auto sum(const T &... t) {
+    // sum recursively ?
+}
+```
+
+We can do it with an interesting `initializer_list` trick.
+
+```c++
+#include <initializer_list>
+
+template <typename First, typename ... T>
+auto sum(const First &first, const T &... t) {
+    // trick was first published by Sean Parent and Eric Niebler
+    auto result = first;
+    (void)std::initializer_list<int>{(result += t, 0)...};
+    return result;
+}
+```
+
+Avoids the recursion but fixes the result type as the type of the first parameter.
+
+Corrected type version:
+
+```c++
+#include <initializer_list>
+#include <type_traits>
+
+template <typename First, typename ... T>
+auto sum(const First &first, const T &... t) {
+    typename std::common_type<First, T...>::type result = first;
+    (void)std::initializer_list<int>{(result += t, 0)...};
+    return result;
+}
+```
+
+If only there was some way to ask the compiler to sum up the parameters for us…
+
+## #25 Fold Expressions (C++17)
+
+
+```c++
+template <typename... T>
+auto sum(const T &... t) {
+    return (t + ...);
+}
+```
+
+Fold expressions are for use in variadic expansions and can be used with any common operator.
+
+-------
+
+
+## Key C++ Features
+
+- C++98
+    1. A C++ Standard
+    2. `const`
+    3. Deterministic Object Lifetime and Destruction
+    4. Templates
+    5. Algorithms and Standard Template Library
+- C++11
+    1. std::array
+    2. List Initialization
+    3. Variadic Templates
+    4. `constexpr`
+    5. `auto`
+    6. Lambdas
+    7. Range-based for loop
+    8. rvalue references
+    9. Defaulted and Deleted Functions
+    10. `std::unique_ptr`
+- C++14
+    1. relaxed `constexpr`
+    2. generic and variadic lambdas
+    3. return type deduction for normal functions
+    4. `std::make_unique`
+- C++17
+    1. Structured Bindings
+    2. `std::string_view`
+    3. Class Template Argument Deduction
+    4. Guaranteed Copy Elision
+    5. Fold Expressions
+- C++20
+    1. Concepts
+    2. Text Formatting
+    3. Ranges
 
 
