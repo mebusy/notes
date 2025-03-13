@@ -38,18 +38,15 @@
     - 因为  -x=~x+1 , 所以
         - x & (-x) : 把 x 最右侧的 bit 1 以外的 位全部置0  (不考虑0的情况,结果一定是2的幂)
 - 判断两个整数是否异号
-    -
-    ```
+    ```c
     bool f = ((x ^ y) < 0); // true iff x and y have opposite signs
     ```
 - 判断一个数是否为2的n次幂：
-    -
-    ```
+    ```c
     (v & (v - 1)) == 0;
     ```
 - 计算一个数含有多少个比特1:
-    -
-    ```
+    ```c
     unsigned int v; // count the number of bits set in v
     unsigned int c; // c accumulates the total bits set in v
     for (c = 0; v; c++)
@@ -81,12 +78,18 @@ XOR is analogous to set difference.
 
 - Identity element : x ^ 0 = x
     - 不变
-- Self-inverse: x ^ A = 0
+- Self-inverse: x ^ x = 0
     - when we consider it in the context of assembly language. In fact XOR’ing a register with itself is the fastest way for the compiler to zero the register.
-- x ^ -1 = ~x
+    ```c
+    xor eax, eax  ; 清零 eax
+    ```
+- x ^ (-1) = ~x
     - 等效 各位求反
-- 把 x 第n位 求反
-    - `x ^ (1<<n)`
+    - 所以:  x ^ (-1) = ~x = -(x+1)
+- 翻转(flip) x 第n位
+    ```c
+    x ^ (1<<n)`
+    ```
 - xor is **addition mod 2**
     - so xor is commutative and associative.
 
@@ -116,11 +119,12 @@ XOR is analogous to set difference.
         a ^= b ^= a ^= b;
     }
     ```
+    - 并不推荐，因为指令无法并行，实际上比 使用临时变量的naive版本慢
 - cipher attack
-    ```
+    ```c
     m     -> enc( ^ k ) ->  m ^ k 
                              ^ p
-    m ^ p <- dec( ^ k ) <- (m ^ k ^ p)     
+    m ^ p <- dec( ^ k ) <- (m ^ k ^ p)
     ```
 
 
