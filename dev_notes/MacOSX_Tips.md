@@ -400,4 +400,16 @@ set -e
 find . -type f -name "*.js" -exec sed -i '' 's/huggingface.co/hf-mirror.com/g' {} \;
 ```
 
+## VMWare 手动挂载共享文件夹
+
+```bash
+sudo mkdir -p /mnt/hgfs
+sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
+```
+
+如果手动挂载 /mnt/hgfs/ 成功，但重启后消失，可以在 /etc/fstab 里添加：
+
+```bash
+.host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
+```
 
