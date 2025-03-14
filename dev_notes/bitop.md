@@ -178,12 +178,22 @@ n |= n >> 32;
 - de Bruijn 序列
     - 通过查表的方式，可以在O(1)的时间内找到最高位1的索引
 
+Nowadays there's actually a hardware instruction for this, called `clz` (count leading zeros), which is available on most modern CPUs. In C, you can use the GCC built-in function `__builtin_clzll` to access this instruction.
+
+```c
+int log2(uint64_t n) {
+    return 63 - __builtin_clzll(n);
+}
+```
+
+So you don't actually have to implement this trick.
+
 
 方法 | 复杂度 | 额外存储 | 适用范围
 --- | --- | --- | ---
 循环位移 `while (n >>= 1) ++c;` | O(logn) | No | 小整数
 `__builtin_clzll(n)`（GCC 内置）| O(1) | No | 需要GCC
-de Bruijn 查表 | O(1) | No |  通用，最快
+de Bruijn 查表 | O(1) | No |  
 
 
 ## Q&A
