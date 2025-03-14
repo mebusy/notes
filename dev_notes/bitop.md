@@ -141,6 +141,33 @@ n |= n >> 32;
 
 怎么只保留 most significant bit 1 ?
 
+## uint64 n,   保留最高位1，其余位全部置0
+
+就是计算 pow(2, floor(log₂(n) ) )
+
+```c
+n |= n >> 1;
+n |= n >> 2;
+n |= n >> 4;
+n |= n >> 8;
+n |= n >> 16;
+n |= n >> 32;
+// add me !
+n &= ~(n >> 1)
+```
+
+## uint64 n,  计算 pow(2, ceil(log₂(n) ) )
+
+```c
+--n;
+n |= n >> 1;
+n |= n >> 2;
+n |= n >> 4;
+n |= n >> 8;
+n |= n >> 16;
+n |= n >> 32;
+++n;
+```
 
 
 ## 计算 floor( log₂(n) )
