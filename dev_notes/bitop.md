@@ -139,6 +139,9 @@ n |= n >> 16;
 n |= n >> 32;
 ```
 
+怎么只保留 most significant bit 1 ?
+
+
 
 ## 计算 floor( log₂(n) )
 
