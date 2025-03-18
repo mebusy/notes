@@ -55,6 +55,9 @@
       v &= v - 1; // clear the least significant bit set
     }
     ```
+    - most modern CPUs have a special instruction for this, called the population count or popcount instruction. In C, you can use the GCC built-in function `__builtin_popcount` to access this instruction.
+    - be useful to calcuate x from log2(pow(2,x))
+
 
 <h2 id="bf94eee92531fcf0a63c55eddb6a558c"></h2>
 
