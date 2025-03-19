@@ -83,7 +83,7 @@
         ```
     - check minikube docker registry-mirror
         ```bash
-        cat ~/.minikube/machines/minikube/config.json 
+        cat ~/.minikube/machines/minikube/config.json
         ```
 
 
