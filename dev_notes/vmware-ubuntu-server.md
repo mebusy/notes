@@ -86,3 +86,4 @@
         cat ~/.minikube/machines/minikube/config.json 
         ```
 
+
