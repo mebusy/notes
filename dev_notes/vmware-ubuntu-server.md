@@ -1,6 +1,13 @@
 # VMWare UbuntuServer
 
-1. remove snap if you want
+1. Auto-Mount VMWare Shared Folder 
+    ```bash
+    mkdir -p /mnt/hgfs
+    sudo vi /etc/fstab
+    # add
+    .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
+    ```
+2. remove snap if you want
     ```bash
     snap list
     # Then, remove listed package one by one:
@@ -22,12 +29,12 @@
     Pin: release a=*
     Pin-Priority: -10" | sudo tee /etc/apt/preferences.d/no-snapd
     ```
-2. install docker
+3. install docker
     ```bash
     curl -fsSL https://get.docker.com | sudo bash
     ```
     - `/etc/docker/daemon.json` setup registry mirrors
-3. install minikube
+4. install minikube
     ```bash
     curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
     sudo install minikube-linux-amd64 /usr/local/bin/minikube
@@ -46,7 +53,7 @@
         ```bash
         alias kubectl="minikube kubectl --"
       ```
-4. make minikube run as service, and share data with host
+5. make minikube run as service, and share data with host
     - Create a systemd service file:
         ```bash
         sudo vi /etc/systemd/system/minikube.service
@@ -58,7 +65,7 @@
 
         [Service]
         Type=simple
-        ExecStart=/bin/bash -c 'minikube start --driver=docker && minikube mount /mnt/hgfs/_DockerMntUbs:/mnt/data'
+        ExecStart=/bin/bash -c 'minikube start --driver=docker --registry-mirror=https://docker.m.daocloud.io --registry-mirror=https://dockerproxy.com --registry-mirror=https://docker.nju.edu.cn --registry-mirror=https://docker.mirrors.ustc.edu.cn  && minikube mount /home/ubserver/data:/mnt/data'
         Restart=always
         User=ubserver
         Group=ubserver
@@ -74,3 +81,8 @@
         sudo systemctl enable minikube.service
         sudo systemctl start minikube.service
         ```
+    - check minikube docker registry-mirror
+        ```bash
+        cat ~/.minikube/machines/minikube/config.json 
+        ```
+
