@@ -6,8 +6,11 @@
     sudo mkdir -p /mnt/hgfs
     sudo vi /etc/fstab
     # add
-    .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
+    .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other,uid=999,gid=999    0 0
     ```
+    - `uid=999,gid=999`
+        - VMware 共享文件夹的 vmhgfs-fuse 驱动不支持更改所有权，即使使用 sudo 也无效。因此，chown 命令会失败。
+        - 在 /etc/fstab 里添加 uid 和 gid 选项，使共享文件夹归指定用户所有
 3. install docker
     ```bash
     curl -fsSL https://get.docker.com | sudo bash
