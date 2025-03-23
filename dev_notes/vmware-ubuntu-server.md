@@ -1,5 +1,6 @@
 # VMWare UbuntuServer
 
+
 1. Auto-Mount VMWare Shared Folder 
     ```bash
     sudo mkdir -p /mnt/hgfs
@@ -20,13 +21,22 @@
     ```
 4. install microk8s
     - https://github.com/canonical/microk8s
+        ```bash
+        sudo usermod -a -G microk8s $USER
+        ```
     - kubectl
         ```bash
         alias kubectl="microk8s kubectl "
       ```
 5. microk8s config registry-mirrors
     - https://microk8s.io/docs/registry-private
+        - /var/snap/microk8s/current/args/certs.d/registry.k8s.io/host.toml
+        - /var/snap/microk8s/current/args/certs.d/docker.io/host.toml
     - check
         ```bash
-        microk8s ctr image pull  docker.io/mongo:6.0.6
+        microk8s ctr image pull  docker.io/library/mongo:6.0.6
         ```
+
+
+
+
