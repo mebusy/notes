@@ -39,6 +39,10 @@
         ```bash
         microk8s ctr image pull  docker.io/library/mongo:6.0.6
         ```
+6. export k8s config for usage from host
+    ```bash
+    microk8s config > /mnt/hgfs/<your-shared-folder>/microk8s.config
+    ```
 
 
 
