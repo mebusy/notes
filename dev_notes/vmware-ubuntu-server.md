@@ -2,7 +2,7 @@
 
 1. Auto-Mount VMWare Shared Folder 
     ```bash
-    mkdir -p /mnt/hgfs
+    sudo mkdir -p /mnt/hgfs
     sudo vi /etc/fstab
     # add
     .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
