@@ -45,13 +45,3 @@
     ```
 
 
-# FAQ
-
-- how to keep `kubectl portforward` to ubuntu client k8s service keep alive
-    ```bash
-    vi /etc/sysctl.conf
-    # add
-    net.ipv4.tcp_keepalive_time=60
-    net.ipv4.tcp_keepalive_intvl=10
-    net.ipv4.tcp_keepalive_probes=5
-    ```
