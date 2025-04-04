@@ -413,3 +413,17 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
 ```
 
+## Downgrade Command Line Tools
+
+1. remove old version
+    ```bash
+    sudo rm -rf /Library/Developer/CommandLineTools
+    ```
+2. download correct CommandLine Tools  
+    - https://developer.apple.com/download/all/
+3. check CLTools version: 
+    ```bash
+    $ pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+    ```
+
+
