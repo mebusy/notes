@@ -132,7 +132,20 @@ class FloatConverter : JsonConverter
 ```
 
 
+## protobuf message in Object and deserialize while using msg.ToString()
 
 
+```csharp
+        var msg = new XXXRequest();  // protobuf request instance
+        msg.YYY = YYYY ;
+ 
+        Dictionary<string, object> dMsg = new Dictionary<string, object>();
+        dMsg["c"] = msg.GetType().Name;
+        dMsg["d"] = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(
+            msg.ToString());
+ 
+        string jsonDec = Newtonsoft.Json.JsonConvert.SerializeObject(dMsg);
+        // jsonDec:  {"d":"XXXRequest","d":{ ... }}
+```
 
 
