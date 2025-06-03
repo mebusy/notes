@@ -34,7 +34,7 @@ TODO
 1. creating SSH Keys on you local machine
     - we can use ssh-keygen to generate a key pair, by default, this will create a 3072 bit RSA key pair.
         ```bash
-        $ ssh-keygen
+        $ ssh-keygen -b 3072 -t rsa
         Generating public/private rsa key pair.
         Enter file in which to save the key (/Users/mebusy/.ssh/id_rsa): 
         ```
