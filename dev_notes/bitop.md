@@ -134,7 +134,7 @@ XOR is analogous to set difference.
 ## int64 n, 自最高位1开始，全部填充1
 
 ```c
-n |= n >> 1;
+n |= n >> 1;  // fill with all 1s from the MSB  
 n |= n >> 2;
 n |= n >> 4;
 n |= n >> 8;
@@ -149,7 +149,7 @@ n |= n >> 32;
 就是计算 pow(2, floor(log₂(n) ) )
 
 ```c
-n |= n >> 1;
+n |= n >> 1; // fill with all 1s from the MSB  
 n |= n >> 2;
 n |= n >> 4;
 n |= n >> 8;
@@ -159,11 +159,11 @@ n |= n >> 32;
 n &= ~(n >> 1)
 ```
 
-## uint64 n,  计算 pow(2, ceil(log₂(n) ) )
+## uint64 n,  计算 pow(2, ceil(log₂(n) ) ) , e.g. 54 -> 64
 
 ```c
---n;
-n |= n >> 1;
+--n;  // if case v is power of 2
+n |= n >> 1;  // fill with all 1s from the MSB
 n |= n >> 2;
 n |= n >> 4;
 n |= n >> 8;

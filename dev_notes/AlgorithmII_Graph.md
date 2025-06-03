@@ -158,7 +158,6 @@ private void bfs(Graph G, int s)
 } // end bfs
 ```
 
-**BFS,DFS的应用，一般只会访问一个节点一次; Astar这类graph search算法往往需要多次访问同一个节点**
 
 <h2 id="4f075a5c6b893a805fb941a4db775c4a"></h2>
 

@@ -167,15 +167,12 @@ public:
 
 ## Initialization is not assignment
 
-Don't confuse the `=` for **initialization** with **assignment**!.
-
-- 
+- Don't confuse the `=` for **initialization** with **assignment**!.
     ```cpp
     NaiveVector w=v;
     ```
     - an initialzation (**constrcutor**) of a **new** object.
     - It calls a copy constructor.
-- 
     ```cpp
     NaiveVector w;
     w = v;
