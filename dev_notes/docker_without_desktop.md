@@ -9,6 +9,10 @@
 
 # [MacOS] Run Docker Without Docker-Desktop
 
+```bash
+colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount /Volumes/WORK:w --mount /Volumes/eWORK:w
+```
+
 1. `brew install docker-credential-helper docker`
 2. edit `~/.docker/config.json`
     ```json
