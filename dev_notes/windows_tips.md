@@ -186,3 +186,38 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     Deleted 1 rule(s).
     ```
 
+## Miarate WSL2 distro
+
+1. 管理员身份运行 cmd terminal
+2. shutdown WLS
+    ```bash
+    wsl --shutdown
+    ```
+3. 导出指定发行版, e.g. Arch
+    ```bash
+    wsl -l -v
+    wsl --export Arch D:\arch_backup.tar
+    ```
+3. 注销（卸载）原发行版
+    ```bash
+    wsl --unregister Arch
+    ```
+4. 在 D 盘创建新目录
+    ```bash
+    md D:\WSL\Arch\
+    ```
+5. 导入备份到 D 盘
+    ```bash
+    wsl --import Arch  D:\WSL\Arch\ D:\arch_backup.tar --version 2
+    ```
+6. 设置默认用户（避免以 root 启动）, e.g. 默认用户 arch
+    ```bash
+    wsl [-d Arch]
+    echo -e "[user]\ndefault = arch" | sudo tee /etc/wsl.conf
+    exit
+    ```
+    ```bash
+    wsl --shutdown
+    ```
+
+
