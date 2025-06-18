@@ -220,4 +220,44 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     wsl --shutdown
     ```
 
+## Store version terminal app Color Scheme
+
+```bash
+# home brew
+        {
+            "background": "#000000",
+            "black": "#000000",
+            "blue": "#2472C8",
+            "brightBlack": "#666666",
+            "brightBlue": "#3B8EEA",
+            "brightCyan": "#00E5E5",
+            "brightGreen": "#00D900",
+            "brightPurple": "#E500E5",
+            "brightRed": "#E50000",
+            "brightWhite": "#E5E5E5",
+            "brightYellow": "#E5E500",
+            "cursorColor": "#23FF18",
+            "cyan": "#00A6B2",
+            "foreground": "#00FF00",
+            "green": "#00A600",
+            "name": "Homebrew",
+            "purple": "#B200B2",
+            "red": "#990000",
+            "selectionBackground": "#083905",
+            "white": "#BFBFBF",
+            "yellow": "#999900"
+        }
+```
+
+where does scheme config file saved ?
+
+```bash
+%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\
+```
+
+Normally, you can just edit/add by click 'Open by JSON'
+
+
+
+
 
