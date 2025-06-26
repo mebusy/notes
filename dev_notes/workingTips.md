@@ -332,6 +332,12 @@ DockerRaw  ->  ~/Library/Containers/com.docker.docker/Data/vms/0/data
 UnityLogs  ->  ~/Library/Logs/Unity
 ```
 
+If you dont want Unity write log file to disk
+
+```bash
+$ ln -s -f /dev/null Editor.log
+```
+
 <h2 id="75da08a12859c3c32281ae78bfb39348"></h2>
 
 ## [MacOSX] monitor files changes under current folder
