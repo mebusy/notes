@@ -413,6 +413,11 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
 ```
 
+## VMWare 内存泄漏
+
+- guest 兼容性里， hardware version 设置为17.
+
+
 ## Downgrade Command Line Tools
 
 1. remove old version
