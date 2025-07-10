@@ -81,7 +81,10 @@
             "paths": {
                 "@/*": ["src/*"]
             },
-            "checkJs": true
+            "checkJs": true,
+            // 如果你使用的是 ESM 或 Node.js 18+ 的项目结构，可以加上：
+            "module": "CommonJS",
+            "moduleResolution": "node"
           },
           "exclude": ["node_modules", "dist"]
         }
