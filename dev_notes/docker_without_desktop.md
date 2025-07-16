@@ -10,7 +10,7 @@
 # [MacOS] Run Docker Without Docker-Desktop
 
 ```bash
-colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount /Volumes/WORK:w --mount /Volumes/eWORK:w
+colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount /Volumes/WORK:w --mount /Volumes/eWORK:w -k
 ```
 
 1. `brew install docker-credential-helper docker`
@@ -48,13 +48,13 @@ By default, Colima only mounts your home directory, so it’s easiest to use it 
 
 ```yaml
 # vi ~/.colima/default/colima.yaml
-# add
+# replace `docker: {}` with
 
 docker:
   registry-mirrors:
-    - "https://docker.m.daocloud.io"
-    - "https://dockerproxy.com"
-    - "https://docker.nju.edu.cn"
-    - "https://docker.mirrors.ustc.edu.cn"
+    - https://docker.m.daocloud.io
+    - https://dockerproxy.com
+    - https://docker.nju.edu.cn
+    - https://docker.mirrors.ustc.edu.cn
 ```
 
