@@ -58,3 +58,8 @@ docker:
     - https://docker.mirrors.ustc.edu.cn
 ```
 
+to verify whether mirrors setting works
+
+```bash
+colima ssh -- cat /etc/docker/daemon.json; echo
+```
