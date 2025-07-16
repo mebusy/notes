@@ -48,7 +48,8 @@ By default, Colima only mounts your home directory, so it’s easiest to use it 
 
 ```yaml
 # vi ~/.colima/default/colima.yaml
-runtime: docker
+# find docker: {}, change to
+
 docker:
   registryMirrors:
     - "https://docker.m.daocloud.io"
