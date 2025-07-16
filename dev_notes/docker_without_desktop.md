@@ -40,4 +40,20 @@ brew services start colima
 
 By default, Colima only mounts your home directory, so it’s easiest to use it in a subdirectory there. See the `~/.colima/default/colima.yaml`.
 
+# Colima Registry Mirrors
+
+在 Colima 中启用 Kubernetes + Docker runtime 时，docker 运行的是 Colima VM 内部的 Docker daemon，不是你的 macOS 系统 Docker。
+要使 registry mirror 生效，必须正确配置 Colima VM 中的 Docker 守护进程。
+
+
+```yaml
+# vi ~/.colima/default/colima.yaml
+runtime: docker
+docker:
+  registryMirrors:
+    - "https://docker.m.daocloud.io"
+    - "https://dockerproxy.com"
+    - "https://docker.nju.edu.cn"
+    - "https://docker.mirrors.ustc.edu.cn"
+```
 
