@@ -1,4 +1,4 @@
-# CPP SIMD
+# CPP SIMD (c++26?)
 
 [pdf](https://github.com/CppCon/CppCon2023/blob/main/Presentations/stdsimd_how_to_express_inherent_parallelism_efficiently_via_data_parallel_types.pdf)
 
