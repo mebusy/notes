@@ -49,3 +49,20 @@ void f(std::simd<float> x, std::simd<float> y) {
 - simd_mask can be reduced to bool via all_of, any_of, none_of
 
 
+## Reductions
+
+- simd_mask reductions
+    - `all_of`, `any_of`, `none_of`
+    - reduce_count, reduce_min_index, reduce_max_index
+- simd reductions
+    - reduce, reduce_min, reduce_max
+
+```cpp
+void f(std::simd<float> x) {
+    float sum = reduce(x); // sum of all elements
+    float min = reduce_min(x); // min of all elements
+    float max = reduce_max(x); // max of all elements
+    int count = reduce_count(x < 0); // count of elements < 0
+    float product = reduce(x, 1.0f, std::multiplies<float>()); // product of all elements
+}
+```
