@@ -34,3 +34,14 @@ fi
 ```
 
 
+## Node
+
+```bash 
+node --prof server.js
+
+运行一段时间后会生成 isolate-*.log
+
+用 node --prof-process isolate-*.log 分析热点函数
+```
+
+
