@@ -74,4 +74,14 @@ The character follows 's'  stands for the delimiter, you can change if your text
 sed 's|find|replace|' filename
 ```
 
+# Tricks
+
+## recursive replace in all files in a directory
+
+```bash
+# linux bash
+find . -type f              -exec sed -i 's/find/replace/g' {} +
+
+find . -type f -name "*.cs" -exec sed -i 's/find/replace/g' {} +
+```
 
