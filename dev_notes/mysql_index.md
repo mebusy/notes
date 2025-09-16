@@ -37,20 +37,23 @@ https://mp.weixin.qq.com/s/p7NTu1NpAgt9frOg-ivVIA
     - `where a=x and b>=y and c=z`  只用到a,b 两个索引
     - `where a=x and c=z and b>=y `  只用到a,b 两个索引
 3. 使用了 `select *`
+    - 依然会使用索引，但是效率不高
+    - 因为使用了 `select *`，会导致回表操作
     - 如果select的列都是索引列a,b,c，则被称为覆盖索引， 不需要回表，更高效
 4. 索引列上有计算
-    - 和5条一样，附加了额外的计算后，原来的索引就没有意义了
 5. 索引列上 使用了函数
+    - 4,5 其实是一类情况
 6. 字符类型没有加引号
     - 如果索引列是 字符串, where 语句中使用的是 数字类型， 类型不匹配会导致索引失效
     - **类型不匹配导致索引丢失问题，是我们平时工作中非常容易忽视的问题，一定要引起足够的重视**
 7. 用 `is null` 和 `is not null` 没注意字段是否允许为空
     - 如果字段 **不允许为空**，则is null 和 is not null这两种情况索引都会失效
     - 如果字段 **允许为空**，则is null走ref类型的索引，而is not null走range类型的索引
-8. like 查询左边有 %
+8. like 查询(模糊查找)左边有 % 
     - `where a like "%001"`   索引失效
     - `where a like "001%"`   索引失效, 走range类型的索引
 9. 使用 `or` 关键字没有注意
+    - 用or分割开的条件， 如果or前的条件中的列有索引，而后面的列中没有索引，那么涉及的索引都不会被用到。
     - or关键字大部分情况下都会导致索引失效(**自行explain 测试一下**)，可以用union代替
     ```mysql
     (select * from test1 where   code = '001') union (select * from test1 where  height = 8);
