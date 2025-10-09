@@ -10,7 +10,7 @@
 # [MacOS] Run Docker Without Docker-Desktop
 
 ```bash
-colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount /Volumes/WORK:w --mount /Volumes/eWORK:w -k
+colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount-type=reverse-sshfs --mount /Volumes/WORK:w --mount /Volumes/eWORK:w -k
 ```
 
 1. `brew install docker-credential-helper docker`
@@ -27,6 +27,8 @@ colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memo
     - `--mount /Volumes/WORK:w` this is very important, you must make some Volumn writable which you want to mount 
     - `--network-address` mechanism for OSX , it asks for an admin pwd to be able to work.
     - `--mount-type=virtiofs`  virtiofs is limited to macOS and vmType `vz`. It is the fastest of the options.
+    - `--mount-type=reverse-sshfs` 避免 macOS 的 FSEvents 监控导致cpu使用率过高
+        - 也可以直接不扫描宿主目录变化 `--no-inotify`
 
 After the initial run above, you can use `colima start` or use `colima start -e` to edit the configuration file. Run `colima status` at any time to check Colima’s status.
 
