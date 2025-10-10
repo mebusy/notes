@@ -10,7 +10,7 @@
 # [MacOS] Run Docker Without Docker-Desktop
 
 ```bash
-colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount-inotify=false --mount /Volumes/WORK:w --mount /Volumes/eWORK:w -k
+colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount-inotify=false --mount /Volumes/WORK:w --mount /Volumes/eWORK:w
 ```
 
 1. `brew install docker-credential-helper docker`
@@ -29,6 +29,9 @@ colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memo
     - `--mount-type=virtiofs`  virtiofs is limited to macOS and vmType `vz`. It is the fastest of the options.
         -  换成 `--mount-type=reverse-sshfs` 可以避免 macOS 的 FSEvents 监控导致cpu使用率过高, 但是会稍微慢一些
         - 也可以配合`--mount-inotify=false` 直接不扫描宿主目录变化 
+    - 另外一个可以有效降低cpu使用率的方法是 把需要挂载的目录软连接到 `~/` 目录下
+        - `ln -s /Volumes/eWORK ~/eWORK`
+        - `colima start --mount ~/eWORK:w`
 
 After the initial run above, you can use `colima start` or use `colima start -e` to edit the configuration file. Run `colima status` at any time to check Colima’s status.
 
