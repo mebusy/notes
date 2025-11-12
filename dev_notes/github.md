@@ -321,6 +321,13 @@ start background job to
 - pack-refs:  none
 
 
+## 提交发生冲突后，撤销掉自己的本地提交
+
+```bash
+git merge --abort  # 放弃合并，回到合并前的状态
+git reset --soft HEAD~1 # 撤销掉本地提交，但保留修改内容在工作区
+git checkout <path>  # 放弃工作区的修改
+```
 
 <h2 id="a7e9e6c6f49c00941b9544ca57942d3a"></h2>
 
