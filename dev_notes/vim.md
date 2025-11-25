@@ -196,6 +196,18 @@
 - chrome plugin  :  [Markdown Preview Plus](https://chrome.google.com/webstore/detail/markdown-preview-plus/febilkbfcbhebfnokafefeacimjdckgl)
 - visit `chrome://extensions/` ， Check  “Allow access to file URLs” in the settings page
 
+- copy as html 问题
+    - chrome api 修改，导致 copy as html 失效
+    - 解决方案，在 console 执行以下代码，然后速度点击 preview 页面以获取focus
+    ```js
+    setTimeout(() => {
+      const html = document.documentElement.outerHTML;
+      navigator.clipboard.writeText(html)
+        .then(() => console.log("Copied HTML OK"))
+        .catch(e => console.error(e));
+    }, 2000);
+    ```
+
 
 <h2 id="05792acc8846850d5650256c2f89d097"></h2>
 
