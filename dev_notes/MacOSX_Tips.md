@@ -432,3 +432,15 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
     ```
 
 
+## pdf 处理
+
+- OCR
+  - `ocrmypdf` (brew, 可能需要重新 ln -s python 运行库)
+- split pdf
+  - `qpdf` (brew)
+    ```bash
+    qpdf bigfile.pdf --pages . 1-750 -- output_part1.pdf
+    qpdf bigfile.pdf --pages . 751-1500 -- output_part2.pdf
+    ```
+
+
