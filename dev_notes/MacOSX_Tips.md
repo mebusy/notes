@@ -438,6 +438,11 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
   - `ocrmypdf` (brew, 可能需要重新 ln -s python 运行库)
   - `brew install ocrmypdf tesseract tesseract-lang`
   ```bash
+  # 文件缺失
+  cd /usr/local/share/tessdata
+  curl -LO https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata
+  ```
+  ```bash
   ocrmypdf \
   -l chi_sim \
   --deskew \
