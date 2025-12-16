@@ -441,6 +441,7 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
   # 文件缺失
   cd /usr/local/share/tessdata
   curl -LO https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata
+  # 或者从 ./script 目录下 ln -s osd.traineddata 出来
   ```
   ```bash
   ocrmypdf \
