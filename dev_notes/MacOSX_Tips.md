@@ -436,6 +436,17 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 
 - OCR
   - `ocrmypdf` (brew, 可能需要重新 ln -s python 运行库)
+  - `brew install ocrmypdf tesseract tesseract-lang`
+  ```bash
+  ocrmypdf \
+  -l chi_sim \
+  --deskew \
+  --rotate-pages \
+  --optimize 3 \
+  --jobs 8 \
+  --force-ocr \
+  input.pdf output.pdf
+  ```
 - split pdf
   - `qpdf` (brew)
     ```bash
