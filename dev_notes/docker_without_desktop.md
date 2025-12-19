@@ -10,7 +10,8 @@
 # [MacOS] Run Docker Without Docker-Desktop
 
 ```bash
-colima start --kubernetes --runtime containerd  --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 100 --mount-inotify=false  --mount /Volumes/eWORK:w
+# 注意： 强烈不推荐 开始k8s --kubernetes，CPU使用率会非常高, k8s 可以使用 kind
+colima start [--kubernetes]  --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 100 --mount-inotify=false  --mount /Volumes/eWORK:w
 ```
 
 1. `brew install docker-credential-helper docker`
