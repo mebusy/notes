@@ -10,7 +10,7 @@
 # [MacOS] Run Docker Without Docker-Desktop
 
 ```bash
-colima start --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 64 --mount-inotify=false --mount /Volumes/WORK:w --mount /Volumes/eWORK:w
+colima start --kubernetes --runtime containerd  --network-address --vm-type=vz --mount-type=virtiofs --cpu 2 --memory 4 --disk 100 --mount-inotify=false  --mount /Volumes/eWORK:w
 ```
 
 1. `brew install docker-credential-helper docker`
