@@ -173,5 +173,19 @@ to move to specific panel with panel number, e.g. panel 2
     - then type `y` to confirm
 
 
+## FAQ
 
+### tmux 下， netty 网络请求报错，route 找不到
+
+原因是, 原因是本机 env no_proxy 中 带了 本机的 域名, 导致 tmux session 中的 proxy / no_proxy 设置出现问题。 删掉后解决。
+
+```bash
+# tmux 环境下
+tmux new-session -d "env | sort > /tmp/env-tmux.log"
+# 正常 zsh 环境下
+env | sort > /tmp/env-zsh.log
+
+# diff 两者的区别，看看是否 proxy / no_proxy 有区别
+diff -u /tmp/env-zsh.log /tmp/env-tmux.log
+```
 
