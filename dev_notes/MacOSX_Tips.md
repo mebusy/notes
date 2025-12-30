@@ -435,7 +435,17 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 ## pdf 处理
 
 - OCR
-  - `ocrmypdf` (brew, 可能需要重新 ln -s python 运行库)
+  - `brew install ocrmypdf tesseract tesseract-lang`
+  - `ocrmypdf` (可能需要重新 ln -s python 运行库)
+  ```bash
+  # 如果!!文件缺失
+  cd /usr/local/share/tessdata
+  curl -LO https://github.com/tesseract-ocr/tessdata_fast/raw/main/osd.traineddata
+  # 或者从 ./script 目录下 ln -s osd.traineddata 出来
+  ```
+  ```bash
+  ocrmypdf --force-ocr -l chi_sim+eng input.pdf output.pdf
+  ```
 - split pdf
   - `qpdf` (brew)
     ```bash

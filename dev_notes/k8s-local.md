@@ -80,6 +80,39 @@
     To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
     ```
 
+或者使用 配置 kind-proxy-mirror.yaml
+
+```yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-ip: "127.0.0.1"
+
+    extraMounts:
+      - hostPath: /etc/hosts
+        containerPath: /etc/hosts
+
+containerdConfigPatches:
+  - |
+    [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+      endpoint = [
+        "https://docker.m.daocloud.io",
+        "https://dockerproxy.com",
+        "https://docker.nju.edu.cn",
+        "https://docker.mirrors.ustc.edu.cn"
+      ]
+
+```
+
+kind create cluster --config kind-proxy-mirror.yaml
+
 </details>
 
 

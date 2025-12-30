@@ -598,7 +598,7 @@ paths:
     post:
       summary: Add a new pet
       requestBody:
-        description: Optional description in *Markdown*
+        description: Optional description in 
         required: true
         content:
           application/json:
