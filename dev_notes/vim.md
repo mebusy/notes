@@ -225,7 +225,9 @@
 - launch app in inspect mode
     ```bash
     node --inspect[=port] app.js
-    
+    # or
+    node --inspect-brk[=port] app.js # to break at the beginning of app.js
+    ```
     # if you're using nodemon
     nodemon --config nodemon.json --async-stack-traces --exec 'node --inspect[=port] app.js'
     ```
