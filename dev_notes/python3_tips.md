@@ -220,3 +220,19 @@ python -m webbrowser [-t|-n] <url>
 ```
 
 
+## 把 python 对象输出成 可以其他语言源码的字面值
+
+两次 json.dumps
+
+```python
+import json
+
+d= { ... }
+# ensure_ascii=False  # 避免中文被转义
+# separators=(",", ":") # 可选, 紧凑型输出
+s= json.dumps( d, ensure_ascii=False )
+# 再次 dumps, 变成字符串字面值
+literal= json.dumps( s, ensure_ascii=False )
+```
+
+
