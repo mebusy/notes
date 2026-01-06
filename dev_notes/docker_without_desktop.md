@@ -81,15 +81,22 @@ PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND
 536 root 20 0 17656 8320 7424 R 100.0 0.2 20,31 systemd-logind
 ```
 
-已知bug, 在 MacOS上尤其明显
+在 x86_64 + vz backend 下，systemd-logind 是“已知问题源”
 
 解决:
 
 ```bash
+colima ssh
+
+# 永久禁用
+sudo systemctl disable systemd-logind.service --now
+sudo systemctl mask systemd-logind.service
+
+# 仅本次禁用
 sudo systemctl disable systemd-logind --now
+
+# 验证
 systemctl status systemd-logind
-# 应该显示
-inactive (dead)
 ```
 
 
