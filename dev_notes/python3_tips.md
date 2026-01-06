@@ -235,4 +235,6 @@ s= json.dumps( d, ensure_ascii=False )
 literal= json.dumps( s, ensure_ascii=False )
 ```
 
+see  bash function `json2literal`
+
 
