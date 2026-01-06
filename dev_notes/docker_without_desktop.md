@@ -70,3 +70,26 @@ to verify whether mirrors setting works
 colima ssh -- cat /etc/docker/daemon.json; echo
 ```
 
+
+## colima cpu 占用高
+
+
+```bash
+> colima ssh
+$ top
+PID USER PR NI VIRT RES SHR S %CPU %MEM TIME+ COMMAND 
+536 root 20 0 17656 8320 7424 R 100.0 0.2 20,31 systemd-logind
+```
+
+已知bug, 在 MacOS上尤其明显
+
+解决:
+
+```bash
+sudo systemctl disable systemd-logind --now
+systemctl status systemd-logind
+# 应该显示
+inactive (dead)
+```
+
+
