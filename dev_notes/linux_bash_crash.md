@@ -644,6 +644,8 @@ examples:
 - `!:x-y` —— 参数切片
 
 - `$_` 历史最后一个标识符 命令/参数 等
+- `$_:h` — 上一条命令最后一个参数的目录部分 (head)
+- `$_:t` — 上一条命令最后一个参数的文件名部分 (tail)
 - 修改上一条命令
     ```bash
     grpe foo file.txt
@@ -653,5 +655,13 @@ examples:
     ```bash
     !!:s/grpe/grep/
     ```
+- `!string` — 最近以 *string* 开头的命令
+- `!?string?` — 最近包含 *string* 的命令
+    ```bash
+    !?ssh?
+    !?nginx?
+    ````
+    - 模糊记忆救星
+    - Ctrl-R 的“无手模式”
 
 
