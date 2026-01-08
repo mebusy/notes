@@ -662,6 +662,6 @@ examples:
     !?nginx?
     ````
     - 模糊记忆救星
-    - Ctrl-R 的“无手模式”
+    - Ctrl-R 的“无手模式” (fzf 提供)
 
 
