@@ -33,7 +33,7 @@
     $ curl -fsSL https://test.docker.com -o test-docker.sh
     $ sudo sh test-docker.sh
     ...
-    # IMPORTANT: systemctl not work on WLS !!!
+    # IMPORTANT: if systemctl not enabled, do this: (otherwise, see how to enable systemctl on WSL2 below)
     #   use service instead
     $ sudo service docker start
     ```
