@@ -219,6 +219,12 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     ```bash
     wsl --shutdown
     ```
+6. 启动 systemd
+    - 编辑 /etc/wsl.conf , 添加以下内容
+    ```bash
+    [boot]
+    systemd=true
+    ```
 
 ## Store version terminal app Color Scheme
 
