@@ -63,6 +63,14 @@
         - so any redirection, assignment, etc. performed inside the parentheses has **NO EFFECT** outside the parentheses.
     - With a leading dollar sign, `$(…)` is a command substitution
     - the output from the command is used as part of the command line
+    - `<(..)`
+        - 进程替代(process substitution)
+        - 把一个命令的输出，伪装成“一个文件名”，让别的命令像读文件一样去读它。
+        - e.g.
+        ```bash
+        $ diff <(sort file1.txt) <(sort file2.txt)
+        ```
+        - 进程替换让你不用真的创建临时文件
 - `((...))`
     - double parentheses surround an *arithmetic instruction*
     - mostly used for assignments and in conditionals. This only exists in ksh/bash/zsh, not in plain sh.
@@ -390,7 +398,9 @@ done
         - `CMD  > /dev/null 2>& 1`
     - Enhancement 3: This is such a common operation, that many shells have a shortened form of this as a single `&>` operator.
         - `CMD  &> /dev/null`
-
+    - 不改变文件描述符的情况下 删除文件内容
+        - `$ : > filename`
+        - `truncate -s 0 filename`
 
 <h2 id="99f6f4be0908f24bb4a22a4ffb277da4"></h2>
 
