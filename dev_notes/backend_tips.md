@@ -218,3 +218,21 @@ node --prof server.js
 用 node --prof-process isolate-*.log 分析热点函数
 ```
 
+
+## 查看某个请求 造成的瞬间内存压力
+
+登陆容器, 运行
+
+```bash
+#!/bin/bash
+
+CGROUP_FILE="/sys/fs/cgroup/memory/memory.usage_in_bytes"
+
+while true; do
+  bytes=$(cat "$CGROUP_FILE")
+  mb=$(awk "BEGIN {printf \"%.1f\", $bytes/1024/1024}")
+  echo "$(date '+%F %T') ${mb} MB"
+  sleep 0.1
+done
+```
+
