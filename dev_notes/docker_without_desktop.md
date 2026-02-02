@@ -70,6 +70,40 @@ to verify whether mirrors setting works
 colima ssh -- cat /etc/docker/daemon.json; echo
 ```
 
+## 不重启 colima 的情况下，修改 docker registry mirrors
+
+```bash
+$ colima ssh
+$ cat /etc/docker/daemon.json # 在这基础上追加 registry-mirrors, 然后写回
+$ sudo sh -c 'cat > /etc/docker/daemon.json <<EOF
+> {
+  "exec-opts": [
+    "native.cgroupdriver=cgroupfs"
+  ],
+  "features": {
+    "buildkit": true,
+    "containerd-snapshotter": true
+  },
+  "proxies": {
+    "http-proxy": "http://192.168.5.2:3128",
+    "https-proxy": "http://192.168.5.2:3128",
+    "no-proxy": "localhost,127.0.0.0/24,10.192.0.0/16,192.168.0.0/16,kubernetes.docker.internal,wpad,172.16.0.0/12,172.17.0.0/16"
+  },
+  "registry-mirrors": [
+    "https://docker.m.daocloud.io",
+    "https://dockerproxy.com",
+    "https://docker.nju.edu.cn",
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+}
+EOF'
+
+$ sudo systemctl reload docker # apply 
+
+$ docker info  # 确认
+
+# 注意，如果要用就生效，还是需要修改 colima.yaml
+```
 
 ## colima cpu 占用高
 
