@@ -33,7 +33,7 @@
     $ curl -fsSL https://test.docker.com -o test-docker.sh
     $ sudo sh test-docker.sh
     ...
-    # IMPORTANT: systemctl not work on WLS !!!
+    # IMPORTANT: if systemctl not enabled, do this: (otherwise, see how to enable systemctl on WSL2 below)
     #   use service instead
     $ sudo service docker start
     ```
@@ -218,6 +218,12 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     ```
     ```bash
     wsl --shutdown
+    ```
+6. 启动 systemd
+    - 编辑 /etc/wsl.conf , 添加以下内容
+    ```bash
+    [boot]
+    systemd=true
     ```
 
 ## Store version terminal app Color Scheme
