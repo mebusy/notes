@@ -27,6 +27,9 @@ Here is the basic workflow of Model Synthesis:
 1. unique components, and knowledge of how they fit together
     - in other words, modules and constraints
     - ![](..//imgs/ModelSynthesis_workflow_01_s.png)
+        - the grass tile(2nd) connects to the little tree and sand, and vice versa
+        - the big tree connects to the little tree
+        - and finally water connect to sand.
 2. select a cell to collapse
     - ![](..//imgs/ModelSynthesis_workflow_02_s.png)
 3. assign a random module from its current domain.
