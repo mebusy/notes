@@ -10,6 +10,9 @@ https://www.youtube.com/watch?v=zIRTOgfsjl0
 
 [wave function collapse c++](https://gist.github.com/jdah/ad997b858513a278426f8d91317115b9)
 
+[another repo, include tileset and rules](https://github.com/CodingQuest2023/Algorithms)
+
+
 Wave Function Collapse and Model Synthesis all fall under CSP. Unlike many puzzel games where the goal is to find one correct solution, with WFCMS the goal is to create any solution that satisfies the constraints. This makes them more about exploration and creativity rather than problem-solving.
 
 WFCMS also draw inspiration from the texture synthesis family of algorithms. 
