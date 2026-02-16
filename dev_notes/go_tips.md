@@ -320,13 +320,6 @@ var ErrTimeout = errors.New("The request timed out")
 return "", ErrTimeout
 ```
 
-<h2 id="d3679e82565b6cc42c359a29ad5c8ffd"></h2>
-
-## Panics and goroutines
-
-- If a panic on a goroutine goes unhandled on that goroutine’s call stack, it crashes the entire program
-- `github.com/Masterminds/cookoo/safely`
-    - `safely.Go( xxxx )`
 
 <h2 id="88d00ec4fe58aa422b9c3e2fd7eac2a0"></h2>
 
