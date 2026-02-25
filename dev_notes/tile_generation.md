@@ -1,5 +1,11 @@
 # Tile Generation
 
+- 一个关键认知（很多人不知道）
+    - WFC 其实不是新算法，它是：
+    - 随机化的 CSP + Arc Consistency
+- 也可以理解为：
+    - 游戏版 CSP 求解器
+
 https://www.youtube.com/watch?v=zIRTOgfsjl0
 
 [cainos tile set](https://cainos.itch.io/pixel-art-top-down-basic)
