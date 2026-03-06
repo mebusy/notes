@@ -11,7 +11,13 @@
 
 <h2 id="3f43a8743eade0074a537f7f38a8899e"></h2>
 
-# XArgs
+# XArgs (eXtended arguments)
+
+**Reads items from standard input (stdin) and builds command-line arguments from them.**
+
+```bash
+stdin → argument list → command execution
+```
 
 - some shell commands can not take stdin and use that as a parameter, to do this you need another program to help with this and that is what `xargs` command does.
 - xargs allows to take **standard input** and pass that along as **an argument** into another command.
@@ -103,4 +109,14 @@ $ seq 5 | xargs -n 1 -P 2 bash -c 'echo $0;sleep 1'
 If `maxprocs` is set to 0, xargs will run as many processes as possible.
 
 
+## Very Important Option: -0
 
+- Regular xargs splits on whitespace.
+- If filenames contain spaces, it's dangerous.
+- Correct way:
+    ```bash
+    find . -name "*.log" -print0 | xargs -0 rm
+    ```
+- Here:
+    - `-print0` separates results with null character
+    - `-0` tells xargs to split on null
