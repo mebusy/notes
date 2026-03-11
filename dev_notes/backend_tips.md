@@ -236,3 +236,31 @@ while true; do
 done
 ```
 
+
+## debug 线上 nodejs server
+
+1. 进入 Pod 找 Node PID
+    ```bash
+    kubectl -n qc exec -it pod-name -- sh
+    ```
+2. 获取 nodejs 进程 PID
+    ```bash
+    ps aux | grep node
+    ```
+3. 开启 Node inspector
+    ```bash
+    kill -USR1 17
+    # 退出 Pod
+    ```
+4. 在本地执行 port-forward
+    ```bash
+    kubectl -n qc port-forward pod-name 9229:9229
+    ```
+5. 打开 Chrome DevTools
+    - 在地址栏输入 `chrome://inspect`
+    - 点击 "Configure..." 按钮，添加 "localhost:9229" 
+    - 点击 "Open dedicated DevTools for Node"
+
+注意： inspector 一旦打开，无法关闭.
+
+
