@@ -64,3 +64,17 @@ trap cleanup INT TERM EXIT
 
 cat <"$fifo"
 ```
+
+
+## 子bash 继承 父bash的环境变量
+
+```bash
+
+#!/bin/bash
+
+bash -c 'set' > /dev/null
+
+```
+
+
+
