@@ -630,6 +630,15 @@ conservative quantifiers       |  `\{-n,m}`        |  `*?, +?, ??, {}?`
 match without retry            |  `atom\@>`        |  `(?>atom)`
 
 
+非贪婪匹配详解
+
+常见正则  |  Vim 写法  |  含义
+--- | --- | ---
+a?  |  `a\=`  |  a 出现 0 或 1 次
+a*?  |  `a\{-}`  |  最少匹配任意多个 a
+a+?  |  `a\{-1,}`  |  最少匹配 1 个或更多 a
+a{m,n}?  |  `a\{-m,n}`  |  最少匹配 m 到 n 次
+
 
 - Capture group notation is slightly different from perl, use **`@`** instead of `(?`
 - The location of the pattern for capturing groups in vim differs from perl
