@@ -75,6 +75,9 @@
     - double parentheses surround an *arithmetic instruction*
     - mostly used for assignments and in conditionals. This only exists in ksh/bash/zsh, not in plain sh.
     - The same syntax is used in arithmetic expressions `$((…))`, which expand to the integer value of the expression.
+- `{ ...;}`
+    - group commands together, but unlike `(...)`, the commands are executed in the **current shell**.  while `(...)` executes in a subshell.
+    - 通常用于把一组命令放在一起，作为一个整体来使用，比如在if语句中，或者在管道中, 或者 通过 pipe 整体传递
 - list
     - 若干shell命令组成的序列， 使用 `管道`，`;`，`&` ，`&&` ，`||` 这些符号串联起来
 - 一切皆表达式
