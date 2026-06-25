@@ -189,6 +189,46 @@ def random(self):
     - 这样，通过结合几个随机数发生器的输出，可以产生一个更长的序列。
 
 
+## 设计一个指定n的线性同余发生器
+
+这通常需要设计一个置换函数，比如：
+
+```javascript
+pos = (a * index + b) % n
+```
+
+只要满足： , 
+
+前提是 a 和 n 互质, 即 `gcd(a,n) = 1` , `1 <= a < n,  0<= b < n-1`
+
+```javascript
+
+// javascript
+function gcd(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+  while (b !== 0) {
+    const t = a % b;
+    a = b;
+    b = t;
+  }
+  return a;
+}
+
+
+function randomCoprime(n) {
+  if (n <= 1) return 0;
+
+  while (true) {
+    const a = Math.floor(Math.random() * (n - 1)) + 1;
+    if (gcd(a, n) === 1) {
+      return a;
+    }
+  }
+}
+```
+
+
 <h2 id="f0bac093bb884df2891d32385d053788"></h2>
 
 ## Distribution
