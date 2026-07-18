@@ -368,7 +368,7 @@ sudo softwareupdate --fetch-full-installer --full-installer-version 14.7.2 --agr
         - 查看日志
             - e.g. `Downloading https://github.com/v2rayA/dist-v2ray-rules-dat/raw/202412312211/geosite.dat to /Users/xxoo/Library/Application Support/v2ray/LoyalsoldierSite.dat.new`
         - 手动下载
-            - ``wget -O "/Users/xxoo/Library/Application Support/v2ray/LoyalsoldierSite.dat" https://github.com/v2rayA/dist-v2ray-rules-dat/raw/202412312211/geosite.dat
+            - `wget -O "/Users/mebusy/Library/Application Support/v2ray/LoyalsoldierSite.dat" https://github.com/v2rayA/dist-v2ray-rules-dat/blob/master/geosite.dat`
             - 注: 下载的文件不需要 .new 后缀
         - 再次点击更新
 
