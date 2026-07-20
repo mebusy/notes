@@ -133,4 +133,30 @@ sudo systemctl disable systemd-logind --now
 systemctl status systemd-logind
 ```
 
+## MacOS silicon上运行 x86_64 docker 镜像
 
+in Dockefile, 需要写 类似
+
+```dockerfile
+FROM --platform=linux/amd64 centos:centos7
+```
+
+但是 docker build 对这个支持的不好，需要使用 docker buildx
+
+```bash
+brew install docker-buildx
+```
+
+使用 buildx
+
+```bash
+mkdir -p ~/.docker/cli-plugins
+
+ln -sf /opt/homebrew/bin/docker-buildx \
+    ~/.docker/cli-plugins/docker-buildx
+```
+
+```dockerifle
+# build
+docker buildx build --platform linux/amd64 -t idip_test .
+```
