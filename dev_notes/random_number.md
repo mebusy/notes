@@ -191,6 +191,8 @@ def random(self):
 
 ## 设计一个指定n的线性同余发生器
 
+[random_number_方法与参数选择总结](random_number_方法与参数选择总结.md)
+
 这通常需要设计一个置换函数，比如：
 
 ```javascript
