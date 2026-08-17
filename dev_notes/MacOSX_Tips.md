@@ -366,7 +366,7 @@ sudo softwareupdate --fetch-full-installer --agree-to-license --full-installer-v
 - QA
     - 更新 GFWList 失败
         - 手动下载
-            - `wget -O "~/Library/Application\ Support/v2raya/LoyalsoldierSite.dat" https://raw.githubusercontent.com/v2rayA/dist-v2ray-rules-dat/refs/heads/master/geosite.dat`
+            - `wget -O ~/Library/Application\ Support/v2raya/LoyalsoldierSite.dat https://raw.githubusercontent.com/v2rayA/dist-v2ray-rules-dat/refs/heads/master/geosite.dat`
             - 开启 http server
                 - `python -m http.server 8000`
             - custom update 网址: `http://localhost:8000/LoyalsoldierSite.dat`
