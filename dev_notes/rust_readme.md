@@ -13,6 +13,7 @@
 10. [rust collections](rust_collections.md)
 11. [rust for cpp user](rust_4_cppuser.md)
 12. [rust 哲学](rust_philosophy.md)
+13. [rust unwrap](rust_wrap_unwrap.md)
 
 20. [rust & webasm](https://rustwasm.github.io/docs/book/introduction.html)
 
