@@ -219,6 +219,9 @@ a | b | c | d
 #### Mac M-Silicon
 
 [orbstack](dev_notes/orbstack.md)
+[ollama local LLM](dev_notes/macos_local_ai_models.md)
+
+
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
 
