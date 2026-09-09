@@ -1327,7 +1327,7 @@ def graphSearch( problem, fringe):
 [best_first_graph_search in aima-python](https://raw.githubusercontent.com/aimacode/aima-python/master/search.py)
 
 
-
+[A* 算法详解：closed 是必须的吗](./astar_closed_explain.md)
 
 ---
 
