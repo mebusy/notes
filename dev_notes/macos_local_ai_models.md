@@ -404,9 +404,6 @@ ollama --version
 
 ```
 ollama serve
-
-如果遇到下载慢，可以试试
-OLLAMA_EXPERIMENT=client2 OLLAMA_REGISTRY_MAXSTREAMS=2 ollama serve
 ```
 
 如果 Ollama.app 已经启动，不需要再执行第二个 `ollama serve`。
