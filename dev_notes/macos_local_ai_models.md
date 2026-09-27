@@ -432,6 +432,8 @@ curl http://localhost:11434/api/tags
 
 ```
 ollama pull qwen3-coder:30b
+# 或
+ollama pull gpt-oss:20b
 ```
 
 然后：
@@ -525,6 +527,8 @@ PARAMETER top_p 0.9
 
 ```
 ollama create qwen3-coder-local -f Qwen3-Coder.modelfile
+
+ollama create gpt-oss-local -f GptOss20b.modelfile
 ```
 
 检查：
