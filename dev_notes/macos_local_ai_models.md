@@ -1936,7 +1936,7 @@ Mac mini
 ## 代码专用
 
 ```bash
-ollama run qwen2.5-coder:14b-instruct-q5_K_M
+ollama pull qwen2.5-coder:14b-instruct-q5_K_M
 ```
 
 ```bash
