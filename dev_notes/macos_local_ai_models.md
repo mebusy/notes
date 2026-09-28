@@ -1933,38 +1933,3 @@ Mac mini
 }
 ```
 
-## 代码专用
-
-```bash
-ollama pull qwen2.5-coder:14b-instruct-q5_K_M
-```
-
-```bash
-FROM qwen2.5-coder:14b-instruct-q5_K_M
-
-PARAMETER num_ctx 32768
-
-# Coding agent：降低随机性，减少“自作主张”的概率
-PARAMETER temperature 0.15
-PARAMETER top_p 0.9
-
-SYSTEM """
-You are a careful local software-engineering agent.
-
-Rules:
-- Inspect relevant files before proposing edits.
-- Prefer minimal, scoped changes.
-- Do not claim that tests passed unless you ran them and report their result.
-- Before destructive actions, explain the action and wait for approval.
-- When requirements are ambiguous, ask a concise clarifying question.
-- Keep responses concise; use tools to inspect the repository rather than guessing.
-"""
-```
-
-```bash
-ollama create qwen25-coder-14b-q5 -f Qwen2.5Coder.modelfile
-```
-
-
-
-
