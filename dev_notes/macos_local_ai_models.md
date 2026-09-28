@@ -361,22 +361,9 @@ OpenCode 可以：
 如果还没安装：
 
 ```
-brew install --cask ollama
+brew install ollama
 ```
 
-启动：
-
-```
-open -a Ollama
-```
-
-确认：
-
-```
-ollama --version
-```
-
-然后：
 
 ```
 ollama list
@@ -387,8 +374,6 @@ ollama list
 # 三、确认 Ollama 的 MLX backend
 
 这里需要特别注意：
-
-**不要自己安装 MLX，然后以为 Ollama 就自动用了 MLX。**
 
 现在的 Ollama 已经把 MLX engine 集成进去。官方文档显示，Apple Silicon 上的 Ollama 会利用 unified memory，并针对 coding agents 做 cache 优化。[Ollama+1](https://ollama.com/blog/mlx?utm_source=chatgpt.com)
 
@@ -406,7 +391,6 @@ ollama --version
 ollama serve
 ```
 
-如果 Ollama.app 已经启动，不需要再执行第二个 `ollama serve`。
 
 检查 API：
 
@@ -522,6 +506,38 @@ PARAMETER num_ctx 32768
 PARAMETER temperature 0.2
 PARAMETER top_p 0.9
 ```
+
+Gpt-Oss coder 配置
+
+```config
+FROM gpt-oss:20b
+
+# 推荐：48GB M4 Pro 从 32K 起；24GB 改为 16384；64GB+ 可改 49152 或 65536
+PARAMETER num_ctx 32768
+
+# 代码任务偏确定性：减少“花样”和无谓猜测
+PARAMETER temperature 0.2
+PARAMETER top_p 0.9
+PARAMETER top_k 40
+PARAMETER min_p 0.05
+PARAMETER repeat_penalty 1.05
+
+# 防止一次任务无限生成；复杂修改可在客户端临时提高
+PARAMETER num_predict 4096
+
+SYSTEM """
+你是资深软件工程师，协助本地代码开发。
+
+工作方式：
+- 先阅读并理解用户提供的代码、错误、约束和项目结构；不确定时明确说明假设。
+- 优先给出小而安全、可验证的改动，避免无关重构。
+- 修改代码时说明：改了什么、为什么改、如何测试、可能的边界情况。
+- 除非用户明确要求，不要编造不存在的文件、API、依赖版本或测试结果。
+- 对涉及删除数据、生产环境、密钥、权限或外部副作用的操作，先提示风险并要求确认。
+- 输出代码时保持与现有项目的语言、风格和格式一致。
+"""
+```
+
 
 然后：
 
@@ -648,10 +664,9 @@ ollama/qwen3-coder-local
 
 这种情况下手工配置。
 
-项目根目录：
 
 ```
-nano opencode.json
+vi ~/.config/opencode/opencode.json
 ```
 
 根据当前 OpenCode 文档，可以配置 Ollama：
