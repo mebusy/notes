@@ -1893,10 +1893,10 @@ Mac mini
   "$schema": "https://app.kilo.ai/config.json",
 
   // 主 agent 模型
-  "model": "ollama/kilo-qwen25-coder-14b-q5",
+  "model": "ollama/qwen25-coder-14b-q5",
 
   // 防止 small model 回落到 Kilo Gateway / 云模型
-  "small_model": "ollama/kilo-qwen25-coder-14b-q5",
+  "small_model": "ollama/qwen25-coder-14b-q5",
 
   "provider": {
     "ollama": {
@@ -1906,7 +1906,7 @@ Mac mini
       },
 
       "models": {
-        "kilo-qwen25-coder-14b-q5": {
+        "qwen25-coder-14b-q5": {
           "name": "Qwen2.5-Coder 14B Q5 — Local Kilo",
 
           // 没有这个，Kilo 可能把模型按纯文本模型处理，
@@ -1925,7 +1925,7 @@ Mac mini
 
   // 对小模型而言，尽早压缩旧对话，避免工具输出撑爆 8K 窗口。
   "compaction": {
-    "auto": true,
+    "auto": false,  // auto true 会在每次对话后压缩，可能失败
     "threshold_percent": 65,
     "prune": true,
     "tail_turns": 2
@@ -1942,7 +1942,7 @@ ollama pull qwen2.5-coder:14b-instruct-q5_K_M
 ```bash
 FROM qwen2.5-coder:14b-instruct-q5_K_M
 
-PARAMETER num_ctx = 32768
+PARAMETER num_ctx 32768
 
 # Coding agent：降低随机性，减少“自作主张”的概率
 PARAMETER temperature 0.15
@@ -1962,7 +1962,7 @@ Rules:
 ```
 
 ```bash
-ollama create kilo-qwen25-coder-14b-q5 -f Qwen2.5Coder.modelfile
+ollama create qwen25-coder-14b-q5 -f Qwen2.5Coder.modelfile
 ```
 
 
