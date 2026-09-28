@@ -1884,3 +1884,87 @@ Mac mini
 [Kilo Code 官方 Ollama 配置文档](https://kilo.ai/docs/ai-providers/ollama?utm_source=chatgpt.com)
 
 [Kilo CLI 官方文档](https://kilo.ai/docs/code-with-ai/platforms/cli?utm_source=chatgpt.com)
+
+
+~/.config/kilo/local.json
+
+```config
+{
+  "$schema": "https://app.kilo.ai/config.json",
+
+  // 主 agent 模型
+  "model": "ollama/kilo-qwen25-coder-14b-q5",
+
+  // 防止 small model 回落到 Kilo Gateway / 云模型
+  "small_model": "ollama/kilo-qwen25-coder-14b-q5",
+
+  "provider": {
+    "ollama": {
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1",
+        "timeout": 1200000
+      },
+
+      "models": {
+        "kilo-qwen25-coder-14b-q5": {
+          "name": "Qwen2.5-Coder 14B Q5 — Local Kilo",
+
+          // 没有这个，Kilo 可能把模型按纯文本模型处理，
+          // 无法可靠发起 read/edit/bash 等 agent 工具调用。
+          "tool_call": true,
+
+          // 必须与 Ollama Modelfile 中的 num_ctx 一致。
+          "limit": {
+            "context": 32768,
+            "output": 4096
+          }
+        }
+      }
+    }
+  },
+
+  // 对小模型而言，尽早压缩旧对话，避免工具输出撑爆 8K 窗口。
+  "compaction": {
+    "auto": true,
+    "threshold_percent": 65,
+    "prune": true,
+    "tail_turns": 2
+  }
+}
+```
+
+## 代码专用
+
+```bash
+ollama run qwen2.5-coder:14b-instruct-q5_K_M
+```
+
+```bash
+FROM qwen2.5-coder:14b-instruct-q5_K_M
+
+PARAMETER num_ctx = 32768
+
+# Coding agent：降低随机性，减少“自作主张”的概率
+PARAMETER temperature 0.15
+PARAMETER top_p 0.9
+
+SYSTEM """
+You are a careful local software-engineering agent.
+
+Rules:
+- Inspect relevant files before proposing edits.
+- Prefer minimal, scoped changes.
+- Do not claim that tests passed unless you ran them and report their result.
+- Before destructive actions, explain the action and wait for approval.
+- When requirements are ambiguous, ask a concise clarifying question.
+- Keep responses concise; use tools to inspect the repository rather than guessing.
+"""
+```
+
+```bash
+ollama create kilo-qwen25-coder-14b-q5 -f Qwen2.5Coder.modelfile
+```
+
+
+
+
