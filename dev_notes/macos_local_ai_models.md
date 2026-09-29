@@ -1925,7 +1925,7 @@ Mac mini
 
   // 对小模型而言，尽早压缩旧对话，避免工具输出撑爆 8K 窗口。
   "compaction": {
-    "auto": false,  // auto true 会在每次对话后压缩，可能失败
+    "auto": true,
     "threshold_percent": 65,
     "prune": true,
     "tail_turns": 2
