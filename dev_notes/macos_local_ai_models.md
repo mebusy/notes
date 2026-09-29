@@ -418,6 +418,8 @@ curl http://localhost:11434/api/tags
 ollama pull qwen3-coder:30b
 # 或
 ollama pull gpt-oss:20b
+# qwen3-coder的更小量化
+ollama run qooba/qwen3-coder-30b-a3b-instruct:q3_k_m
 ```
 
 然后：
@@ -1886,17 +1888,29 @@ Mac mini
 [Kilo CLI 官方文档](https://kilo.ai/docs/code-with-ai/platforms/cli?utm_source=chatgpt.com)
 
 
-~/.config/kilo/local.json
+kilo 默认会合并 所有config，如果需要一个独立的配置环境
+
+
+```bash
+mkdir -p ~/.config/kilo-local
+XDG_CONFIG_HOME=$HOME/.config/kilo-local kilo
+
+# 配置文件放在 ~/.config/kilo-local/kilo/kilo.json
+# 使用XDG_CONFIG_HOME=$HOME/.config/kilo-local kilo debug paths 查看配置路径
+```
+
+
+~/.config/kilo-local/kilo/kilo.json
 
 ```config
 {
   "$schema": "https://app.kilo.ai/config.json",
 
   // 主 agent 模型
-  "model": "ollama/qwen25-coder-14b-q5",
+  "model": "ollama/qwen2.5-coder:14b-instruct-q5_K_M",
 
   // 防止 small model 回落到 Kilo Gateway / 云模型
-  "small_model": "ollama/qwen25-coder-14b-q5",
+  "small_model": "ollama/qwen2.5-coder:14b-instruct-q5_K_M",
 
   "provider": {
     "ollama": {
@@ -1906,7 +1920,7 @@ Mac mini
       },
 
       "models": {
-        "qwen25-coder-14b-q5": {
+        "qwen2.5-coder:14b-instruct-q5_K_M": {
           "name": "Qwen2.5-Coder 14B Q5 — Local Kilo",
 
           // 没有这个，Kilo 可能把模型按纯文本模型处理，
@@ -1914,6 +1928,7 @@ Mac mini
           "tool_call": true,
 
           // 必须与 Ollama Modelfile 中的 num_ctx 一致。
+          // ollama show qwen2.5-coder:14b-instruct-q5_K_M 查看
           "limit": {
             "context": 32768,
             "output": 4096
@@ -1932,4 +1947,5 @@ Mac mini
   }
 }
 ```
+
 
