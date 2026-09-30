@@ -1949,3 +1949,13 @@ XDG_CONFIG_HOME=$HOME/.config/kilo-local kilo
 ```
 
 
+## 针对 ollama + qwen3:14b 的额外建议
+
+本地模型较容易在工具调用时“串台”，尤其当系统提示词里同时出现过 Claude Code、Cursor、Cline、Aider 或自定义 MCP 的工具描述。建议：
+
+只保留一套工具协议：优先 OpenCode 原生 read/write/edit/bash。
+Agent system prompt 开头加入：
+Only call tools exactly as listed in the current tool catalog. Never invent tool names or namespaces.
+温度设低一些：0 ~ 0.2，减少结构化工具调用漂移。
+如果 OpenCode 可配置模型模板/工具调用格式，选择对应 Ollama/Qwen 的原生 tool-calling 模板，不要用 OpenAI、Anthropic 或其他 Agent 的工具模板硬套。
+
