@@ -1959,3 +1959,24 @@ Only call tools exactly as listed in the current tool catalog. Never invent tool
 温度设低一些：0 ~ 0.2，减少结构化工具调用漂移。
 如果 OpenCode 可配置模型模板/工具调用格式，选择对应 Ollama/Qwen 的原生 tool-calling 模板，不要用 OpenAI、Anthropic 或其他 Agent 的工具模板硬套。
 
+
+## openCode + Gemma4
+
+1. 确保 有足够的 context windows
+2. opencode 配置里确保支持image输入
+
+```bash
+        "gemma4-12b-local": {
+          "name": "Gemma4 12b local",
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+```
+
