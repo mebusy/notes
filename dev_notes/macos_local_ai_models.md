@@ -1965,9 +1965,13 @@ Only call tools exactly as listed in the current tool catalog. Never invent tool
 1. 确保 有足够的 context windows
 2. opencode 配置里确保支持image输入
 
+// "options": { "think": false },
+
 ```bash
         "gemma4-12b-local": {
           "name": "Gemma4 12b local",
+          // 设置上下文，不然ollama 会根据显存自动设置
+          "limit": { "context": 65536, "output": 16384 },
           "modalities": {
             "input": [
               "text",
