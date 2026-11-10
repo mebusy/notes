@@ -4,6 +4,8 @@
 
 [更多多模态模型02 QWEN-Image qwen3.5-9B](./local_models_02.md)
 
+[小米 Xiaomi-OCR-0](./local_xiaomi_ocr.md)
+
 
 我参考了 2026 年近期的 Apple Silicon 实测，以及 Ollama/MLX 对 Apple Silicon 的最新支持。尤其值得注意的是，Ollama 现在已经有基于 MLX 的 Apple Silicon backend，并针对 coding agent 做了缓存和推理优化。[Ollama+1](https://ollama.com/blog/mlx-performance?utm_source=chatgpt.com)
 
