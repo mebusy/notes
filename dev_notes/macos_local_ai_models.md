@@ -2002,14 +2002,7 @@ Q: 24G mac 运行本地大模型，是不是建议关闭thinking ？
 尤其是本地运行 7B、14B、32B 量化模型时，关闭 Thinking 往往能获得更好的交互体验。
 
 ```bash
-{
-  "$schema": "https://opencode.ai/config.json",
-  "providers": {
-    "ollama": {
-          "options": {
-            "think": false
-          }
-    }
+  "options": {
+    "think": false
   }
-}
 ```
