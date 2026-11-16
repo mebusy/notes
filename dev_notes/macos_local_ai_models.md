@@ -2006,9 +2006,9 @@ Q: 24G mac 运行本地大模型，是不是建议关闭thinking ？
   "$schema": "https://opencode.ai/config.json",
   "providers": {
     "ollama": {
-      "settings": {
-        "reasoningEffort": "none"
-      }
+          "options": {
+            "think": false
+          }
     }
   }
 }
