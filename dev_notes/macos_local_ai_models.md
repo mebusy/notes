@@ -1990,3 +1990,26 @@ Only call tools exactly as listed in the current tool catalog. Never invent tool
         }
 ```
 
+
+## 关闭thinking
+
+Q: 24G mac 运行本地大模型，是不是建议关闭thinking ？
+
+是的。对于只有 24GB 统一内存的 Apple Silicon Mac，我通常建议：默认关闭 Thinking（深度思考），需要解决复杂问题时再开启。
+
+但不是因为 Thinking 本身特别占内存，而是因为它会增加推理过程中的 Token 消耗、运行时间和上下文占用。
+
+尤其是本地运行 7B、14B、32B 量化模型时，关闭 Thinking 往往能获得更好的交互体验。
+
+```bash
+{
+  "$schema": "https://opencode.ai/config.json",
+  "providers": {
+    "ollama": {
+      "settings": {
+        "reasoningEffort": "none"
+      }
+    }
+  }
+}
+```
