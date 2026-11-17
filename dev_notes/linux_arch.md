@@ -28,7 +28,19 @@
 # Something About Arch Linux + i3-wm
 
 - pacman upate: 
-    - `sudo pacman -Syyu`
+    - 常规日常更新: `sudo pacman -Syu`
+    - 换源后更新: `sudo pacman -Syyu`
+        - 区别 -yy 会强制刷新软件包数据库，而 -y 是按需刷新数据库。
+- 自动选择镜像
+    - `sudo pacman -S reflector`
+    ```bash
+    sudo reflector \
+      --country Singapore,Japan,South_Korea \
+      --protocol https \
+      --latest 20 \
+      --sort rate \
+      --save /etc/pacman.d/mirrorlist
+    ```
 
 
 <h2 id="a193e259b8223762b6d0e67651401dd0"></h2>
