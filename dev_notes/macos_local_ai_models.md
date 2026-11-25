@@ -1396,6 +1396,42 @@ kilo.json
 
 Kilo 官方的 Ollama 配置也是这个思路。[GitHub](https://github.com/kilo-org/kilocode/blob/main/packages/kilo-docs/pages/ai-providers/ollama.md?utm_source=chatgpt.com)
 
+
+更多配置：
+
+```bash
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "enabled_providers": [
+    "ollama"
+  ],
+  "compaction": {
+    "auto": false,
+    // "threshold_percent": 25
+  },
+  "provider": {
+    "ollama": {
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "bonsai-2-27b-32k": {
+          "name": "Bonsai 2 27B 32K",
+          "tool_call": true,
+          "limit": {
+            "context": 32768,
+            "output": 4096
+          }
+        }
+      }
+    }
+  },
+  "permission": {
+    "bash": "allow"
+  }
+}
+```
+
 然后：
 
 ```
