@@ -1937,7 +1937,7 @@ XDG_CONFIG_HOME=$HOME/.config/kilo-local kilo
           // ollama show qwen2.5-coder:14b-instruct-q5_K_M 查看
           "limit": {
             "context": 32768,
-            "output": 4096
+            "output": 8192 // 不能太低
           }
         }
       }
