@@ -1406,7 +1406,7 @@ Kilo 官方的 Ollama 配置也是这个思路。[GitHub](https://github.com/kil
     "ollama"
   ],
   "compaction": {
-    "auto": false,
+    "auto": auto
     // "threshold_percent": 25
   },
   "provider": {
@@ -1420,7 +1420,7 @@ Kilo 官方的 Ollama 配置也是这个思路。[GitHub](https://github.com/kil
           "tool_call": true,
           "limit": {
             "context": 32768,
-            "output": 4096
+            "output": 8192
           }
         }
       }
@@ -2040,4 +2040,47 @@ Q: 24G mac 运行本地大模型，是不是建议关闭thinking ？
   "options": {
     "think": false
   }
+```
+
+
+## kaggle 
+
+
+```bash
+opencode 配置：
+
+    "kaggle": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kaggle",
+      "options": {
+        "baseURL": "https://detected-seeking-supported-unsigned.trycloudflare.com/v1"
+      },
+      "models": {
+        "qwen3-8-27b": {
+          "name": "qwen3-8-27b-gguf-unsloth",
+          "limit": { "context": 65536}
+        }
+      }
+    }
+
+kilo 配置
+
+
+    "kaggle": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Kaggle",
+      "options": {
+        "baseURL": "https://xxxxx.com"
+      },
+      "models": {
+        "qwen3-8-27b-gguf-unsloth": {
+          "name": "Qwen3 8 27B GGUF Unsloth",
+          "limit": {
+            "context": 65536,
+            "output": 8192
+          }
+        }
+      }
+    }
+
 ```
