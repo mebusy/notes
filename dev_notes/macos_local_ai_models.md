@@ -1972,8 +1972,7 @@ XDG_CONFIG_HOME=$HOME/.config/kilo-local kilo
           // 必须与 Ollama Modelfile 中的 num_ctx 一致。
           // ollama show qwen2.5-coder:14b-instruct-q5_K_M 查看
           "limit": {
-            "context": 32768,
-            "output": 8192 // 不能太低
+            "context": 32768
           }
         }
       }
