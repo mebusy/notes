@@ -53,7 +53,13 @@ def createMenu4MD(path):
     bFollowLinkID = True
 
     all_title_level = set([])
+    last_line_number = 0
+    last_line = ""
+    last_result = None
     for i, line in enumerate(lines):
+        last_line_number = i
+        last_line = line
+
         if RE_PATTERN_CODE_BLOCK.search(line) is not None:
             bCodeStart = not bCodeStart
             DEBUG = False
@@ -70,6 +76,8 @@ def createMenu4MD(path):
 
         result = re.search(RE_PATTERN_MENU_SYNTAX, line)
         if result:
+            last_result = result
+
             sharps = result.group(1)
             title = result.group(2).strip()
 
@@ -148,7 +156,7 @@ def createMenu4MD(path):
         menu = ""
 
     if bCodeStart:
-        print(_name)
+        print(_name, last_line_number, last_line, last_result)
         raise Exception("code pair error")
 
     # print( menu)
