@@ -311,7 +311,11 @@ Model loaded.
 
 例如，三国游戏语音可以增加专有词汇：
 
-Pythonresult = model.transcribe(    "test.wav",    language="Chinese",    context="Vocabulary: 曹操、刘备、孙权、诸葛亮、周瑜、司马懿、赤壁之战、官渡之战。")
+Python
+
+```python
+result = model.transcribe(    "test.wav",    language="Chinese",    context="Vocabulary: 曹操、刘备、孙权、诸葛亮、周瑜、司马懿、赤壁之战、官渡之战。")
+```
 
 <h2 id="c695582060ab5083b9b78143001088c5"></h2>
 
