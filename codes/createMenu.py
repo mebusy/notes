@@ -215,7 +215,8 @@ if "__main__" == __name__:
     RE_PATTERN_LINK_FILE = re.compile(r"\[.*?\]\s*\(.*?(?=[^/]+\.md)([^/()]+\.md)\s*\)")
     linkFiles = []
     for key in all_md_filenames:
-        if key.lower().endswith("readme.md"):
+        # if key.lower().endswith("readme.md"):
+        if True:
             # print( key)
             fp = open(all_md_filenames[key])
             data = fp.read()
@@ -231,8 +232,8 @@ if "__main__" == __name__:
                     print("no such key: ", unescape_url)
 
     for linkFile in linkFiles:
-        del all_md_filenames[linkFile]
-        pass
+        if linkFile in all_md_filenames:
+            del all_md_filenames[linkFile]
 
     for key in all_md_filenames:
         print(key)
