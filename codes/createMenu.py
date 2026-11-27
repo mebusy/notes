@@ -52,7 +52,7 @@ def createMenu4MD(path):
 
     content = re.sub(RE_PATTERN_MENU_BODY, replacer, content)
 
-    print("menu lines removed: ", n_menu_lines)
+    # print("menu lines removed: ", n_menu_lines)
 
     menu = "[](...menustart)\n\n"
     body = ""
