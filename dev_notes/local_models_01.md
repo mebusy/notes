@@ -258,7 +258,9 @@ model = Qwen3ASR.from_pretrained(MODEL)
 print("Model loaded.")
 audio_file = "test.wav"
 result = model.transcribe(    audio_file,    language="Chinese",)
-print("\n识别语言:", result.language)print("音频时长:", result.duration)print("识别结果:", result.text)
+print("\n识别语言:", result.language)
+print("音频时长:", result.duration)
+print("识别结果:", result.text)
 model.close()
 ```
 
