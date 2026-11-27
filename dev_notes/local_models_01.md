@@ -854,6 +854,20 @@ GodotUnity自研 C++ 游戏引擎还没确定
 
 <h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
 
-## User
+## ACE_STEP 1.5
 
-Qwen-Image 2.1 怎么安装/使用
+```bash
+git clone https://github.com/ACE-Step/ACE-Step-1.5.git
+cd ACE-Step-1.5
+
+python -m venv venvs
+source venvs/bin/activate
+
+pip install -e .
+
+python acestep/acestep_v15_pipeline.py          # Gradio UI
+python acestep/api_server.py                     # REST API
+```
+
+
+
