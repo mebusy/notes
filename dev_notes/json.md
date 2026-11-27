@@ -3,6 +3,7 @@
 - [JSON misk](#650bc7423e41dab11cdd854b7d823a25)
     - [encode with sorted objected keys](#5d04d34527e63407c1192d2df7274935)
     - [For number type x.0, remove the tailing .0](#5f97e015797c375ca0dc997cccf4b847)
+    - [protobuf message in Object and deserialize while using msg.ToString()](#9de54fc56cfa72aaeb15eb8b4270a2f5)
 
 [](...menuend)
 
@@ -131,6 +132,8 @@ class FloatConverter : JsonConverter
     strJson = JsonConvert.SerializeObject(obj, settings);
 ```
 
+
+<h2 id="9de54fc56cfa72aaeb15eb8b4270a2f5"></h2>
 
 ## protobuf message in Object and deserialize while using msg.ToString()
 

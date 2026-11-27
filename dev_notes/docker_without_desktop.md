@@ -1,6 +1,10 @@
 [](...menustart)
 
 - [\[MacOS\] Run Docker Without Docker-Desktop](#bc00c0499363e10c195a32b09f289cf6)
+- [Colima Registry Mirrors](#05940335c724f89b9ff06726fc265d79)
+    - [不重启 colima 的情况下，修改 docker registry mirrors](#8b52659f4759e153a8a7ad740a6521b3)
+    - [colima cpu 占用高](#a4b9e0fe75fc3a1d8a84ce53770410ab)
+    - [MacOS silicon上运行 x86_64 docker 镜像](#cc9a595d1d1895e160c1f4d2fa226410)
 
 [](...menuend)
 
@@ -48,6 +52,8 @@ brew services start colima
 
 By default, Colima only mounts your home directory, so it’s easiest to use it in a subdirectory there. See the `~/.colima/default/colima.yaml`.
 
+<h2 id="05940335c724f89b9ff06726fc265d79"></h2>
+
 # Colima Registry Mirrors
 
 在 Colima 中启用 Kubernetes + Docker runtime 时，docker 运行的是 Colima VM 内部的 Docker daemon，不是你的 macOS 系统 Docker。
@@ -71,6 +77,8 @@ to verify whether mirrors setting works
 ```bash
 colima ssh -- cat /etc/docker/daemon.json; echo
 ```
+
+<h2 id="8b52659f4759e153a8a7ad740a6521b3"></h2>
 
 ## 不重启 colima 的情况下，修改 docker registry mirrors
 
@@ -107,6 +115,8 @@ $ docker info  # 确认
 # 注意，如果要用就生效，还是需要修改 colima.yaml
 ```
 
+<h2 id="a4b9e0fe75fc3a1d8a84ce53770410ab"></h2>
+
 ## colima cpu 占用高
 
 
@@ -134,6 +144,8 @@ sudo systemctl disable systemd-logind --now
 # 验证
 systemctl status systemd-logind
 ```
+
+<h2 id="cc9a595d1d1895e160c1f4d2fa226410"></h2>
 
 ## MacOS silicon上运行 x86_64 docker 镜像
 

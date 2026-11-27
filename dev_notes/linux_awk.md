@@ -1,6 +1,19 @@
 [](...menustart)
 
 - [AWK](#00dbc48aa9a98544b52efb89b6ae601a)
+    - [awk 的设计哲学（这是核心）](#8c964ca24202f40e88054182f081661f)
+        - [1. 世界观：文本 = 记录流（record stream）](#0b2ee23d60bde1e2808e2f89076cb9cf)
+        - [2. 程序结构：隐式 for-each](#13a66dcc27187ab6c24b03dca404d25d)
+        - [3. Pattern → Action，而不是 Control Flow](#48e7ba73dfe0be1162808fc6bcda7660)
+        - [4. 内建状态，而非对象模型](#20b75db2d70e07d30b95c22456906a0a)
+        - [5. 流式优先（Streaming First）](#d863cce6672cd8224c4452133e871954)
+    - [进阶](#fa11f8c07c1629d5f0ab1cfecdf1f686)
+        - [阶段 2： 精通 4 个核心概念（80% 能力）](#3127797f60c3d0e3ff480055464c5e09)
+        - [阶段 3：把 awk 当“数据库引擎”](#a15cf8c67037e98f53949df374297018)
+    - [awk 的“内功心法”（高手共识）](#4984d3d9f86c2efb3a202ec160d1f7b3)
+        - [1. awk 是声明式，不是命令式](#7f74ada2c9bece69f3a7832352aad4b0)
+        - [2. awk 的变量是“列驱动”的](#2d0f8a9519d6993e3a477c1e958562c4)
+        - [3. 好 awk 程序长得像“公式”](#7dada20a00c2803e57c293f9f2e6fd9f)
     - [Syntax](#92e9d6227d5534e7afc27a11179c808e)
     - [Example](#0a52730597fb4ffa01fc117d9e71e3a9)
     - [Specify field separator](#afdd5066763979dfed0ba27a5e973afe)
@@ -38,7 +51,11 @@ ARGC | - | 命令行参数个数 | `awk 'BEGIN { print ARGC }' file.txt arg1 arg
 ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print ARGV[i] }' file.txt arg1 arg2`
 
 
+<h2 id="8c964ca24202f40e88054182f081661f"></h2>
+
 ## awk 的设计哲学（这是核心）
+
+<h2 id="0b2ee23d60bde1e2808e2f89076cb9cf"></h2>
 
 ### 1. 世界观：文本 = 记录流（record stream）
 
@@ -57,6 +74,8 @@ ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print AR
     { sum += $3 }
     ```
 
+<h2 id="13a66dcc27187ab6c24b03dca404d25d"></h2>
+
 ### 2. 程序结构：隐式 for-each
 
 - awk 程序等价于：
@@ -66,6 +85,8 @@ ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print AR
     }
     ```
 - 设计哲学：**程序员只描述“条件 + 动作”**.
+
+<h2 id="48e7ba73dfe0be1162808fc6bcda7660"></h2>
 
 ### 3. Pattern → Action，而不是 Control Flow
 
@@ -79,6 +100,8 @@ ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print AR
     ```
 - 这本质上是一个 规则系统（rule engine）。
 
+<h2 id="20b75db2d70e07d30b95c22456906a0a"></h2>
+
 ### 4. 内建状态，而非对象模型
 
 - awk 的状态来源：
@@ -87,6 +110,8 @@ ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print AR
     - 用户变量
 - 哲学: 状态应当显式、扁平、可观察
     - 这也是 awk 非常适合统计、聚合的原因。
+
+<h2 id="d863cce6672cd8224c4452133e871954"></h2>
 
 ### 5. 流式优先（Streaming First）
 
@@ -98,7 +123,11 @@ ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print AR
     - 能用数组解决的就用数组
     - 能一次算完的绝不回头
 
+<h2 id="fa11f8c07c1629d5f0ab1cfecdf1f686"></h2>
+
 ## 进阶
+
+<h2 id="3127797f60c3d0e3ff480055464c5e09"></h2>
 
 ### 阶段 2： 精通 4 个核心概念（80% 能力）
 
@@ -126,6 +155,8 @@ ARGV | - | 命令行参数数组 | `awk 'BEGIN { for (i=0; i<ARGC; i++) print AR
     - 这是一个 Map → Reduce 的模型
 
 
+<h2 id="a15cf8c67037e98f53949df374297018"></h2>
+
 ### 阶段 3：把 awk 当“数据库引擎”
 
 用 SQL 思维写 awk
@@ -145,7 +176,11 @@ example
 awk '{cnt[$2]++} END{for(k in cnt) if(cnt[k]>10) print k,cnt[k]}'
 ```
 
+<h2 id="4984d3d9f86c2efb3a202ec160d1f7b3"></h2>
+
 ## awk 的“内功心法”（高手共识）
+
+<h2 id="7f74ada2c9bece69f3a7832352aad4b0"></h2>
 
 ### 1. awk 是声明式，不是命令式
 
@@ -156,6 +191,8 @@ $3 > 100 { print }
 不是：`如果……然后……`, 而是： **凡是满足条件的记录，都做这件事**.
 
 
+<h2 id="2d0f8a9519d6993e3a477c1e958562c4"></h2>
+
 ### 2. awk 的变量是“列驱动”的
 
 
@@ -164,6 +201,8 @@ $3 > 100 { print }
 ```awk
 for(i=1;i<=NF;i++) ...
 ```
+
+<h2 id="7dada20a00c2803e57c293f9f2e6fd9f"></h2>
 
 ### 3. 好 awk 程序长得像“公式”
 

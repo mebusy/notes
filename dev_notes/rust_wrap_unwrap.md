@@ -1,10 +1,41 @@
+[](...menustart)
+
+- [2. unwrap()：强行把里面的东西拿出来](#1b6e81681a43f4adc18acdf7ca1ef473)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+    - [1. 最基本的 `wrap`](#be4d2dba48fd0e2b072f1d0eb8313493)
+        - [`Some(...)`](#719a48c5046c8786b5ff90a4d3f5ac38)
+        - [`Ok(...)`](#40acb0a622280b2dfca6366f6d0d7e58)
+- [2. `unwrap()`：强行把里面的东西拿出来](#4d06c8df82b6b9574820bfcbd0433ca3)
+    - [3. `Result::unwrap()` 完全一样](#5caee234393bbeb399960cf92b00e5f7)
+- [4. 为什么 Rust 要搞 `unwrap`？](#a313cd050cd82e8493a0af429300ae7a)
+- [5. `expect()`：比 `unwrap()` 更好用的 unwrap](#a2af21d4e4608a7cefe853ac77592667)
+- [6. 然后开始出现 `unwrap_or`](#e1379a2a39b57cf78b378b010ac1f3c0)
+- [7. `unwrap_or_else`](#69ce4dc49a9c179c527fa682ff10ba02)
+- [8. `unwrap_or_default`](#39b6a9e4f69f63ca08af0a663e5475a5)
+- [9. `map` 和 `unwrap` 经常一起出现](#142a2e845920d6355c0ece2ba76666dd)
+- [10. `map(...).unwrap()` 是一种非常常见的组合](#55eec54ad0501e8a1fdb473d18286a1c)
+- [11. `unwrap` 的反方向其实就是 `wrap`](#beb37197925af8d5cdb5c444d30a9604)
+- [12. 真正名字里带 `wrap` 的 API](#2ee7045dba16f3fa96af0c7ca756eecb)
+- [13. `?` 其实比 `unwrap()` 更重要](#8389610eb4d204df47acbeeff046c396)
+- [14. 一张表基本就全串起来了](#5e78b1d6b69782223d977b6e3231fbd6)
+
+[](...menuend)
+
+
+<h2 id="1b6e81681a43f4adc18acdf7ca1ef473"></h2>
+
 # 2. unwrap()：强行把里面的东西拿出来
 
 > Exported from ChatGPT on 2026-09-03T05:45:14.097Z
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 rust 中的 各种 wrap unwrap 怎么理解
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -20,7 +51,11 @@ Rust 里 `wrap / unwrap` 一大堆，初学时确实很容易混在一起。
 
 ---
 
+<h2 id="be4d2dba48fd0e2b072f1d0eb8313493"></h2>
+
 ## 1. 最基本的 `wrap`
+
+<h2 id="719a48c5046c8786b5ff90a4d3f5ac38"></h2>
 
 ### `Some(...)`
 
@@ -49,6 +84,8 @@ Some(x)
 > “我把 `x` 包装成了一个 `Option<T>`。”
 
 ---
+
+<h2 id="40acb0a622280b2dfca6366f6d0d7e58"></h2>
 
 ### `Ok(...)`
 
@@ -100,6 +137,8 @@ Err(error)    // 失败
 
 ---
 
+<h2 id="4d06c8df82b6b9574820bfcbd0433ca3"></h2>
+
 # 2. `unwrap()`：强行把里面的东西拿出来
 
 例如：
@@ -139,6 +178,8 @@ panic!
 > `unwrap()` = **“我确定这里有东西，给我拿出来；如果没有，就炸。”**
 
 ---
+
+<h2 id="5caee234393bbeb399960cf92b00e5f7"></h2>
 
 ## 3. `Result::unwrap()` 完全一样
 
@@ -182,6 +223,8 @@ Result<T, E>::unwrap()
 > **失败 → panic**
 
 ---
+
+<h2 id="a313cd050cd82e8493a0af429300ae7a"></h2>
 
 # 4. 为什么 Rust 要搞 `unwrap`？
 
@@ -227,6 +270,8 @@ let n = "123".parse::<i32>().unwrap();
 
 ---
 
+<h2 id="a2af21d4e4608a7cefe853ac77592667"></h2>
+
 # 5. `expect()`：比 `unwrap()` 更好用的 unwrap
 
 ```
@@ -269,6 +314,8 @@ expect("xxx")
 
 ---
 
+<h2 id="e1379a2a39b57cf78b378b010ac1f3c0"></h2>
+
 # 6. 然后开始出现 `unwrap_or`
 
 这是非常重要的一组。
@@ -299,6 +346,8 @@ let name = name.unwrap_or("unknown");
 ```
 
 ---
+
+<h2 id="69ce4dc49a9c179c527fa682ff10ba02"></h2>
 
 # 7. `unwrap_or_else`
 
@@ -353,6 +402,8 @@ unwrap_or_else(...)
 
 ---
 
+<h2 id="39b6a9e4f69f63ca08af0a663e5475a5"></h2>
+
 # 8. `unwrap_or_default`
 
 这个也非常常见：
@@ -401,6 +452,8 @@ unwrap_or_default()
 > “没有就给我这个类型的默认值。”
 
 ---
+
+<h2 id="142a2e845920d6355c0ece2ba76666dd"></h2>
 
 # 9. `map` 和 `unwrap` 经常一起出现
 
@@ -464,6 +517,8 @@ map()
 
 ---
 
+<h2 id="55eec54ad0501e8a1fdb473d18286a1c"></h2>
+
 # 10. `map(...).unwrap()` 是一种非常常见的组合
 
 ```
@@ -491,6 +546,8 @@ Some(20)
 这也是理解 Rust 链式 API 的一个关键。
 
 ---
+
+<h2 id="beb37197925af8d5cdb5c444d30a9604"></h2>
 
 # 11. `unwrap` 的反方向其实就是 `wrap`
 
@@ -549,6 +606,8 @@ Ok(x)
 或者一些真正叫 `wrap_*` 的 API。
 
 ---
+
+<h2 id="2ee7045dba16f3fa96af0c7ca756eecb"></h2>
 
 # 12. 真正名字里带 `wrap` 的 API
 
@@ -615,6 +674,8 @@ file.read_to_string(&mut s)
 
 ---
 
+<h2 id="8389610eb4d204df47acbeeff046c396"></h2>
+
 # 13. `?` 其实比 `unwrap()` 更重要
 
 如果你开始写 Rust，建议把：
@@ -680,6 +741,8 @@ unwrap()
 这其实是 Rust 错误处理的一个核心分水岭。
 
 ---
+
+<h2 id="5e78b1d6b69782223d977b6e3231fbd6"></h2>
 
 # 14. 一张表基本就全串起来了
 

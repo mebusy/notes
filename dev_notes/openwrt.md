@@ -11,11 +11,11 @@
 - [VBox run openwrt on Host machine](#9d548d8b61422c151c5b8652c1003587)
 - [VMWare run openwrt](#50ef7031fba0114ee4c0545b669bf368)
     - [download](#fd456406745d816a45cae554c788e754)
-    - [convert image to vmdk](#1db4db8b788df81c79488948b4c11419)
     - [create new Linux VM](#bfd90f2b7e62cddc79f22d128ecbe892)
     - [lanuch openwrt](#7bd4bccda2889c8f0cffb7a333f1a567)
         - [modify IP address](#d1a0135f0e3e61dfd3a41a1b1bfe9667)
-        - [install passwall](#8fc6717e5ac38ba94024aa7ae724eac0)
+        - [Install Passwall](#41b5f79a08f945f121c490636b644784)
+        - [QA](#0ab687c6a13802a6674d5327e3d4177e)
 
 [](...menuend)
 
@@ -215,6 +215,8 @@ change the IP address to the same subnet as your host machine
         - select  en0 instead of bridge
         - confirm broadcast IP address
 
+<h2 id="41b5f79a08f945f121c490636b644784"></h2>
+
 ### Install Passwall
 
 immortalwrt example
@@ -225,6 +227,8 @@ opkg install luci-compat luci-lib-ipkg
 opkg install luci-app-passwall
 ```
 
+
+<h2 id="0ab687c6a13802a6674d5327e3d4177e"></h2>
 
 ### QA
 

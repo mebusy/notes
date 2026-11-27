@@ -10,8 +10,16 @@
     - [#13 Generic And Variadic Lambdas (C++14)](#76005f0b9720124fdc4d06cf098f17fa)
     - [#14 range-based for loop (C++11)](#47f24a12632f1bc48ebb43dabd31844a)
     - [#15 Structured Bindings (C++17)](#d36ee5721e2136e8485d007b6908053d)
+    - [#17 std::string_view (C++17)](#4fb6cdd0b6470dbe119265f6c2b0da1d)
+    - [#18: Text Formatting (C++20)](#6e66f068f2c8dd73aabb484fb624fa94)
+    - [#19 Ranges](#1bf5c7dfb0818038d55c63b0affdf929)
     - [#20 Class Template Argument Deduction (C++17)](#5104199984b3db0a9e5cb95cbb760f4a)
+    - [#21 rvalue References](#f104d31344e76b8f96e5b7bcd16ad0a9)
     - [#22: Guaranteed Copy Elision (C++17)](#5390d4b827185948e9f9a87999bd453a)
+    - [#23: Defaulted and Deleted Functions](#272fa8e8273c91b3753806374e78ff97)
+    - [#24: `std::unique_ptr` and `std::make_unique`](#51be66308ef9157fec7130329dc90de4)
+    - [#25 Fold Expressions (C++17)](#92da78a8719abc1ec25a5caf1714bee6)
+    - [Key C++ Features](#19a1ec9300fb152ecfbe6893c301c1c0)
 
 [](...menuend)
 
@@ -263,6 +271,8 @@ void print_map(const auto &map, const std::string &key_desc = "key",
 ```
 
 
+<h2 id="4fb6cdd0b6470dbe119265f6c2b0da1d"></h2>
+
 ## #17 std::string_view (C++17)
 
 But there’s a potential ineﬀiciency hiding here.
@@ -291,6 +301,8 @@ void print_map(const auto &map, const std::string_view &key_desc = "key",
     ```
 
 
+<h2 id="6e66f068f2c8dd73aabb484fb624fa94"></h2>
+
 ## #18: Text Formatting (C++20)
 
 std::cout is quite verbose, relatively slow, and diﬀicult to reason about. If only there was some easier way of formatting our output…
@@ -316,6 +328,8 @@ void print_map(const auto &map, const std::string_view &key_desc = "key",
 
 
 
+
+<h2 id="1bf5c7dfb0818038d55c63b0affdf929"></h2>
 
 ## #19 Ranges
 
@@ -390,6 +404,8 @@ auto get_data(const auto & ... params)
 
 The only problem now is that this code requires the types to be copyable.
 
+
+<h2 id="f104d31344e76b8f96e5b7bcd16ad0a9"></h2>
 
 ## #21 rvalue References
 
@@ -494,6 +510,8 @@ struct Double_Data {
 
 Not very useful at the moment, but we know it’s safe.
 
+<h2 id="272fa8e8273c91b3753806374e78ff97"></h2>
+
 ## #23: Defaulted and Deleted Functions 
 
 - Any special member function can be explicitly `= default`
@@ -510,6 +528,8 @@ Not very useful at the moment, but we know it’s safe.
 
 If only there was a way of not even having to think about heap allocated memory…(other than containers mentioned previously, use those of course!)
 
+
+<h2 id="51be66308ef9157fec7130329dc90de4"></h2>
 
 ## #24: `std::unique_ptr` and `std::make_unique`
 
@@ -576,6 +596,8 @@ auto sum(const First &first, const T &... t) {
 
 If only there was some way to ask the compiler to sum up the parameters for us…
 
+<h2 id="92da78a8719abc1ec25a5caf1714bee6"></h2>
+
 ## #25 Fold Expressions (C++17)
 
 
@@ -590,6 +612,8 @@ Fold expressions are for use in variadic expansions and can be used with any com
 
 -------
 
+
+<h2 id="19a1ec9300fb152ecfbe6893c301c1c0"></h2>
 
 ## Key C++ Features
 

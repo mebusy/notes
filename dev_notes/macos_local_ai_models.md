@@ -1,3 +1,79 @@
+[](...menustart)
+
+- [Mac Mini M4 pro Local LLM](#1ebc9bc9ba4782eb9bc2655b34fbda6a)
+    - [🏆 M4 Pro 24GB 本地 AI 实战排行榜](#3a05278fc70ea680f3b47afb2f80852c)
+        - [总榜](#bf2534862d012aec30411fcf8289d8e7)
+- [🥇 第一名：Qwen3-Coder 30B-A3B](#a4ce06fdc06791065d344ecf61724eba)
+    - [最适合](#3447b637272faa684efab5c1120ac1c1)
+- [🥈 第二名：GPT-OSS 20B](#195aab42bd961c1d7cc72ad111462553)
+    - [我会这样分工：](#07ba3c40890df99955d78708180af824)
+- [🥉 第三名：Gemma 4 12B](#835d195075c01086afad657a3233d60c)
+- [④ Qwen3.5 27B](#c7fd3c1e0c0a40b5c0ec7920d29338e3)
+    - [单纯聊天](#17d4d5b9f863571d2fa251ba6f305676)
+    - [长上下文 coding agent](#74257d71bae016cbde135b70b57b5275)
+    - [一直后台跑](#061d7e8948d38be1da6be58f39475b04)
+- [⑥ Qwen3 14B](#0b8eaba395aabf29105ef05f71bdc62d)
+    - [最后给你一个“安装优先级”](#b0b71e5455fe4f4c14e5ec7b5fd62b76)
+        - [第一梯队](#05a566170beae438581897476a96b020)
+        - [第二梯队](#6ce223a4e034976d7bbca6425927fafb)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+- [一、最终架构](#9c87f17f72724550c6738a7413c4af5a)
+- [二、第一步：安装 Ollama](#2072d0fea40bd01ec9700ca6206630ac)
+- [三、确认 Ollama 的 MLX backend](#92f6be1a01e6f78a14bd966527055b80)
+- [四、先装一个“主力模型”](#a10b354db17eeed6c9b0e341267c1468)
+- [五、但是：24GB 不要一上来开 128K context](#01a831142697cd16e55790930d3048a0)
+- [六、给 Qwen3-Coder 设置一个专门的 Modelfile](#f52cd1dececf18582bcf0995c7c76f75)
+- [七、为什么 temperature 我建议 0.2？](#a7c7c46b1c48811b7008fe583cc0ca91)
+- [八、安装 OpenCode](#5ed5a850edebd1deff0bc5a6c6734d49)
+- [九、进入你的项目](#42e96648a41b63c3ea5b052c62365da3)
+- [十、如果没有自动发现](#44cf21358bdb97d4488069693658f132)
+- [十一、第一次千万不要直接让它改代码](#6486481aaa97e31e3b5823cdd6c64bf4)
+- [十二、然后开始真正的 Agent 模式](#8b462ff5db3609aa4820f351e4da1a0f)
+- [十三、我特别建议你建立一个 AGENTS.md](#960d57567565c0481f9456589829f0ce)
+- [十四、然后给它一个真正的任务](#11144e4e2420220e491755651de2d139)
+- [十五、再装第二个模型](#948c0767933a20887c129b9fa76f21db)
+- [十六、还有一个很重要的技巧：别让 30B 模型负责所有事情](#f9deab6c0a2814be141735046e2fd514)
+- [十七、24GB 的推荐参数](#03a888aa34c82a701567e34ea9e449f4)
+    - [不建议](#cf51af89c2440e73851af39d9e3df34e)
+- [十八、如何判断是不是“跑在 GPU / MLX”](#1319f76d6c348662cbc8be3393a0579c)
+- [十九、给你一个“一键启动”脚本](#de0c2d39449bbaf084f254147d7ef0a0)
+- [二十、最终我建议你这样使用](#54c8dd02155f3427264855ca353bf56a)
+    - [但我会再加一个非常重要的升级](#533469946ce17d4821144b93cb00d400)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+- [1. 最终架构不变](#6ce1d77f6485f2a1e732760468b4a7ca)
+- [2. 安装 Kilo](#d250e5866b933cd9d6751cc15f6288a0)
+- [3. Ollama 完全不变](#befbc231d1f82dbf9c792ec6683f6298)
+- [4. Kilo 配置文件改成 `kilo.json`](#b4bac6ba73d6a64a419b0c78afd35673)
+- [5. 最简单的配置](#63b9ef98e80e1d5709521214cc8b59e6)
+- [6. 但我更推荐显式告诉 Kilo：32K context](#047476f72a007aeff293755145c1e6d0)
+- [7. 这里有一个容易混淆的地方](#fc8331eb1f8140d37081b4f97ce85085)
+- [8. Kilo 比 OpenCode 多一个我很喜欢的东西：Profiles / Agents](#c864ec28d1711fc099dadcaeebaf4b20)
+    - [coder](#0ea4a0db010efd4ed3ca4ebee723b65c)
+    - [reviewer](#7ba917e4e5158c8a9ed6eda08a6ec572)
+    - [debugger](#61fa153f2827c887a48a351ae3c6cfd3)
+    - [architect](#618f65b39a51680bbdd74cc4907526f6)
+- [9. `AGENTS.md` 也继续保留](#099e19995aa9c20e257e7236185c3390)
+- [10. 然后第一次测试不要直接让它改](#6ca33d2178bc41386009dc60a8b17169)
+- [11. 然后测试真正的 Agent loop](#3d1e71b4a870b1d66f7d9d23ec7364f1)
+- [12. 我会对之前的方案做一个重要修改](#53c3a27e36f9759e0e1070566b91f357)
+- [13. 所以你以后甚至可以这样玩](#32f2fc365d98b76aa4044508b29b54ba)
+    - [普通任务](#652297413c545a54761df4918f060815)
+    - [Coding](#cddcade0405954c4325ee1fb11e3dc0e)
+    - [极难问题](#695b09d77ed7d80c3af4939d30712790)
+- [14. 还有一个 Kilo 特别适合你的地方](#f2dae7026e45094eac1c21040fd98e4f)
+    - [最后，我会这样选](#794c65dbdfb5c841dba412b99182f7c0)
+    - [针对 ollama + qwen3:14b 的额外建议](#56c47a5454f4f09b75b9564e4f37fccb)
+    - [openCode + Gemma4](#c7f0c8ddc0c88cce3d44de1c8dc70c17)
+    - [关闭thinking](#eed819f6fddfd13af8ebe79928c24692)
+    - [kaggle](#b94fe3dc13862f7292183a015d4a87eb)
+
+[](...menuend)
+
+
+<h2 id="1ebc9bc9ba4782eb9bc2655b34fbda6a"></h2>
+
 # Mac Mini M4 pro Local LLM
 
 [更多多模态模型01 Qwopus breeze qwen3-ASR MOSS-Image QWEN-Image ](./local_models_01.md)
@@ -9,7 +85,11 @@
 
 我参考了 2026 年近期的 Apple Silicon 实测，以及 Ollama/MLX 对 Apple Silicon 的最新支持。尤其值得注意的是，Ollama 现在已经有基于 MLX 的 Apple Silicon backend，并针对 coding agent 做了缓存和推理优化。[Ollama+1](https://ollama.com/blog/mlx-performance?utm_source=chatgpt.com)
 
+<h2 id="3a05278fc70ea680f3b47afb2f80852c"></h2>
+
 ## 🏆 M4 Pro 24GB 本地 AI 实战排行榜
+
+<h2 id="bf2534862d012aec30411fcf8289d8e7"></h2>
 
 ### 总榜
 
@@ -27,6 +107,8 @@
 其中一个比较有参考价值的 M4 Pro 24GB 实测表显示：Qwen3 8B 约 **52 tok/s**、Qwen3 14B 约 **29 tok/s**、Gemma 3 12B 约 **31 tok/s**；这基本就是这台机器非常舒服的甜点区间。[GitHub](https://github.com/weklund/mlx-coding-bench?utm_source=chatgpt.com)
 
 ---
+
+<h2 id="a4ce06fdc06791065d344ecf61724eba"></h2>
 
 # 🥇 第一名：Qwen3-Coder 30B-A3B
 
@@ -54,6 +136,8 @@ Qwen3-Coder
 ```
 
 目前针对 24GB Mac 的测试/经验里，它大约是 **17–21GB 内存级别**，速度约 **30 tok/s 左右**；有些配置需要调整 GPU wired memory 才能尽量避免 CPU spill。[GitHub+1](https://github.com/imagewize/ollama-opencode-setup/blob/main/docs/MLX-RUNTIME.md?utm_source=chatgpt.com)
+
+<h2 id="3447b637272faa684efab5c1120ac1c1"></h2>
 
 ### 最适合
 
@@ -89,6 +173,8 @@ Cursor 类 agent
 
 ---
 
+<h2 id="195aab42bd961c1d7cc72ad111462553"></h2>
+
 # 🥈 第二名：GPT-OSS 20B
 
 这个我非常推荐你试。
@@ -120,6 +206,8 @@ Agent
 
 近期的本地模型测试也把 GPT-OSS 20B 列为 24GB Mac 上值得考虑的主力模型。[BSWEN](https://docs.bswen.com/blog/2026-03-25-best-local-llm-mac-mini-m4/?utm_source=chatgpt.com)
 
+<h2 id="07ba3c40890df99955d78708180af824"></h2>
+
 ### 我会这样分工：
 
 ```
@@ -135,6 +223,8 @@ GPT-OSS 20B
 这个组合非常好。
 
 ---
+
+<h2 id="835d195075c01086afad657a3233d60c"></h2>
 
 # 🥉 第三名：Gemma 4 12B
 
@@ -171,6 +261,8 @@ Gemma 4
 近期用户在 M4 24GB 上的实际体验也显示，Gemma 4 12B 在 coding issue detection 上表现不错，只是某些 inference backend 下速度会偏慢。[Reddit](https://www.reddit.com/r/ollama/comments/1vi72aq/which_ollama_mlxgguf_model_is_best_for_macbook_m4/?utm_source=chatgpt.com)
 
 ---
+
+<h2 id="c7fd3c1e0c0a40b5c0ec7920d29338e3"></h2>
 
 # ④ Qwen3.5 27B
 
@@ -210,18 +302,26 @@ tool calling
 
 所以：
 
+<h2 id="17d4d5b9f863571d2fa251ba6f305676"></h2>
+
 ### 单纯聊天
 
 👍
+
+<h2 id="74257d71bae016cbde135b70b57b5275"></h2>
 
 ### 长上下文 coding agent
 
 ⚠️
 
+<h2 id="061d7e8948d38be1da6be58f39475b04"></h2>
+
 ### 一直后台跑
 
 ❌ 不太舒服
 
+
+<h2 id="0b8eaba395aabf29105ef05f71bdc62d"></h2>
 
 # ⑥ Qwen3 14B
 
@@ -256,9 +356,13 @@ Mac
 基本没什么压力。
 
 
+<h2 id="b0b71e5455fe4f4c14e5ec7b5fd62b76"></h2>
+
 ## 最后给你一个“安装优先级”
 
 如果你现在就准备搞：
+
+<h2 id="05a566170beae438581897476a96b020"></h2>
 
 ### 第一梯队
 
@@ -267,6 +371,8 @@ Mac
 🥈 GPT-OSS 20B
 🥉 Gemma 4 12B
 ```
+
+<h2 id="6ce223a4e034976d7bbca6425927fafb"></h2>
 
 ### 第二梯队
 
@@ -284,9 +390,13 @@ Qwen3 8B
 
 从 `Ollama + MLX → Qwen3-Coder → Claude Code/OpenCode → 让 AI 自己改代码、跑测试、修 bug`，给你一套可以直接复制执行的配置。
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 从 `Ollama + MLX → Qwen3-Coder → OpenCode → 让 AI 自己改代码、跑测试、修 bug`，给你一套可以直接复制执行的配置。
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -297,6 +407,8 @@ Qwen3 8B
 另外，当前 OpenCode 已经可以**自动发现本机 Ollama 模型**，默认连接 `127.0.0.1:11434`，所以实际上不需要手工写一大堆 provider 配置。[OpenCode](https://opencode.ai/v2/docs/models?utm_source=chatgpt.com)
 
 ---
+
+<h2 id="9c87f17f72724550c6738a7413c4af5a"></h2>
 
 # 一、最终架构
 
@@ -362,6 +474,8 @@ OpenCode 可以：
 
 ---
 
+<h2 id="2072d0fea40bd01ec9700ca6206630ac"></h2>
+
 # 二、第一步：安装 Ollama
 
 如果还没安装：
@@ -376,6 +490,8 @@ ollama list
 ```
 
 ---
+
+<h2 id="92f6be1a01e6f78a14bd966527055b80"></h2>
 
 # 三、确认 Ollama 的 MLX backend
 
@@ -414,6 +530,8 @@ curl http://localhost:11434/api/tags
 
 ---
 
+<h2 id="a10b354db17eeed6c9b0e341267c1468"></h2>
+
 # 四、先装一个“主力模型”
 
 我建议第一步不要同时装 5 个。
@@ -449,6 +567,8 @@ ollama run qwen3-coder:30b
 退出。
 
 ---
+
+<h2 id="01a831142697cd16e55790930d3048a0"></h2>
 
 # 五、但是：24GB 不要一上来开 128K context
 
@@ -489,6 +609,8 @@ macOS
 全都要吃 unified memory。
 
 ---
+
+<h2 id="f52cd1dececf18582bcf0995c7c76f75"></h2>
 
 # 六、给 Qwen3-Coder 设置一个专门的 Modelfile
 
@@ -575,6 +697,8 @@ ollama run qwen3-coder-local
 
 ---
 
+<h2 id="a7c7c46b1c48811b7008fe583cc0ca91"></h2>
+
 # 七、为什么 temperature 我建议 0.2？
 
 Coding agent 和聊天不一样。
@@ -614,6 +738,8 @@ temperature 0.1 ~ 0.3
 
 ---
 
+<h2 id="5ed5a850edebd1deff0bc5a6c6734d49"></h2>
+
 # 八、安装 OpenCode
 
 这里建议直接使用官方安装方式，而不是固定某个旧 npm 版本。
@@ -635,6 +761,8 @@ opencode --version
 如果 brew 里的版本明显落后，则按照 OpenCode 官方安装方式安装最新版。
 
 ---
+
+<h2 id="42e96648a41b63c3ea5b052c62365da3"></h2>
 
 # 九、进入你的项目
 
@@ -667,6 +795,8 @@ ollama/qwen3-coder-local
 选择它。
 
 ---
+
+<h2 id="44cf21358bdb97d4488069693658f132"></h2>
 
 # 十、如果没有自动发现
 
@@ -706,6 +836,8 @@ vi ~/.config/opencode/opencode.json
 
 ---
 
+<h2 id="6486481aaa97e31e3b5823cdd6c64bf4"></h2>
+
 # 十一、第一次千万不要直接让它改代码
 
 先让它读。
@@ -744,6 +876,8 @@ opencode
 
 ---
 
+<h2 id="8b462ff5db3609aa4820f351e4da1a0f"></h2>
+
 # 十二、然后开始真正的 Agent 模式
 
 例如 Rust：
@@ -767,6 +901,8 @@ opencode
 OpenCode 本身就是面向 agentic coding 的工具，可以调用 shell、读取文件、修改文件等；它的本地 Ollama 集成就是为了这种使用方式。[OpenCode+1](https://opencode.ai/docs/zh-cn/providers/?utm_source=chatgpt.com)
 
 ---
+
+<h2 id="960d57567565c0481f9456589829f0ce"></h2>
 
 # 十三、我特别建议你建立一个 AGENTS.md
 
@@ -851,6 +987,8 @@ OpenCode
 
 ---
 
+<h2 id="11144e4e2420220e491755651de2d139"></h2>
+
 # 十四、然后给它一个真正的任务
 
 比如你之前那个 matrix 项目。
@@ -907,6 +1045,8 @@ pass
 
 ---
 
+<h2 id="948c0767933a20887c129b9fa76f21db"></h2>
+
 # 十五、再装第二个模型
 
 等第一套工作了，再：
@@ -935,6 +1075,8 @@ qwen3:14b
 ```
 
 ---
+
+<h2 id="f9deab6c0a2814be141735046e2fd514"></h2>
 
 # 十六、还有一个很重要的技巧：别让 30B 模型负责所有事情
 
@@ -968,6 +1110,8 @@ Qwen3-Coder 30B-A3B
 
 ---
 
+<h2 id="03a888aa34c82a701567e34ea9e449f4"></h2>
+
 # 十七、24GB 的推荐参数
 
 我给你的第一版配置就是：
@@ -991,6 +1135,8 @@ Qwen3-Coder 30B-A3B
                 OpenCode
 ```
 
+<h2 id="cf51af89c2440e73851af39d9e3df34e"></h2>
+
 ### 不建议
 
 ```
@@ -1012,6 +1158,8 @@ VS Code
 24GB 会直接开始内存压力。
 
 ---
+
+<h2 id="1319f76d6c348662cbc8be3393a0579c"></h2>
 
 # 十八、如何判断是不是“跑在 GPU / MLX”
 
@@ -1058,6 +1206,8 @@ CPU 20%
 > “AI 没用 GPU。”
 
 ---
+
+<h2 id="de0c2d39449bbaf084f254147d7ef0a0"></h2>
 
 # 十九、给你一个“一键启动”脚本
 
@@ -1115,6 +1265,8 @@ cd ~/src/my-project
 
 ---
 
+<h2 id="54c8dd02155f3427264855ca353bf56a"></h2>
+
 # 二十、最终我建议你这样使用
 
 你每天真正工作的流程：
@@ -1161,6 +1313,8 @@ cd ~/src/my-project
 
 ---
 
+<h2 id="533469946ce17d4821144b93cb00d400"></h2>
+
 ### 但我会再加一个非常重要的升级
 
 **不要把 OpenCode 永远锁死在本地模型。**
@@ -1199,9 +1353,13 @@ OpenCode 本身支持很多 provider，也支持自定义 OpenAI-compatible endp
 
 另外，如果你想把这套东西做得更像一个真正的**家庭 AI server**，下一步还可以把 **Mac mini + Ollama + OpenCode 做成一个局域网 AI 服务**，然后 MacBook/iPad 上都能调用；不过这一步需要单独处理 Ollama 的监听地址、局域网访问和安全认证，不能直接把 `11434` 裸暴露到局域网。
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 如果使用kilo 替代 opencode， 有哪些需要修改的地方？
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -1214,6 +1372,8 @@ OpenCode 本身支持很多 provider，也支持自定义 OpenAI-compatible endp
 而且 Kilo 对 Ollama 有**原生 provider**，所以我反而建议你不要走 OpenAI-compatible 的绕路。[GitHub](https://github.com/kilo-org/kilocode/blob/main/packages/kilo-docs/pages/ai-providers/ollama.md?utm_source=chatgpt.com)
 
 ---
+
+<h2 id="6ce1d77f6485f2a1e732760468b4a7ca"></h2>
 
 # 1. 最终架构不变
 
@@ -1254,6 +1414,8 @@ OpenCode 本身支持很多 provider，也支持自定义 OpenAI-compatible endp
 
 ---
 
+<h2 id="d250e5866b933cd9d6751cc15f6288a0"></h2>
+
 # 2. 安装 Kilo
 
 如果你之前按照我的方案装过 OpenCode：
@@ -1286,6 +1448,8 @@ kilo --version
 ```
 
 ---
+
+<h2 id="befbc231d1f82dbf9c792ec6683f6298"></h2>
 
 # 3. Ollama 完全不变
 
@@ -1336,6 +1500,8 @@ http://localhost:11434/v1
 
 ---
 
+<h2 id="b4bac6ba73d6a64a419b0c78afd35673"></h2>
+
 # 4. Kilo 配置文件改成 `kilo.json`
 
 这是和 OpenCode 最主要的区别之一。
@@ -1373,6 +1539,8 @@ kilo.json
 ```
 
 ---
+
+<h2 id="63b9ef98e80e1d5709521214cc8b59e6"></h2>
 
 # 5. 最简单的配置
 
@@ -1447,6 +1615,8 @@ ollama/qwen3-coder:30b
 
 ---
 
+<h2 id="047476f72a007aeff293755145c1e6d0"></h2>
+
 # 6. 但我更推荐显式告诉 Kilo：32K context
 
 这一点非常重要。
@@ -1485,6 +1655,8 @@ Kilo 官方特别提醒：
 Kilo 官方的 custom Ollama model 配置就是使用 `tool_call`、`limit.context`、`limit.output` 这种字段。[GitHub](https://github.com/kilo-org/kilocode/blob/main/packages/kilo-docs/pages/ai-providers/ollama.md?utm_source=chatgpt.com)
 
 ---
+
+<h2 id="fc8331eb1f8140d37081b4f97ce85085"></h2>
 
 # 7. 这里有一个容易混淆的地方
 
@@ -1531,6 +1703,8 @@ Agent
 
 ---
 
+<h2 id="c864ec28d1711fc099dadcaeebaf4b20"></h2>
+
 # 8. Kilo 比 OpenCode 多一个我很喜欢的东西：Profiles / Agents
 
 这其实是我觉得你**值得从 OpenCode 换到 Kilo 的地方**。
@@ -1553,6 +1727,8 @@ Kilo
 
 然后：
 
+<h2 id="0ea4a0db010efd4ed3ca4ebee723b65c"></h2>
+
 ### coder
 
 ```
@@ -1560,6 +1736,8 @@ Kilo
 修改
 运行测试
 ```
+
+<h2 id="7ba917e4e5158c8a9ed6eda08a6ec572"></h2>
 
 ### reviewer
 
@@ -1569,6 +1747,8 @@ Kilo
 寻找 bug
 ```
 
+<h2 id="61fa153f2827c887a48a351ae3c6cfd3"></h2>
+
 ### debugger
 
 ```
@@ -1577,6 +1757,8 @@ Kilo
 修改
 再次运行
 ```
+
+<h2 id="618f65b39a51680bbdd74cc4907526f6"></h2>
 
 ### architect
 
@@ -1591,6 +1773,8 @@ Kilo
 因为本地 20B/30B 模型相比顶级云模型，更容易在 agent loop 里面“自作聪明”。
 
 ---
+
+<h2 id="099e19995aa9c20e257e7236185c3390"></h2>
 
 # 9. `AGENTS.md` 也继续保留
 
@@ -1650,6 +1834,8 @@ When fixing a bug:
 
 ---
 
+<h2 id="6ca33d2178bc41386009dc60a8b17169"></h2>
+
 # 10. 然后第一次测试不要直接让它改
 
 进入：
@@ -1678,6 +1864,8 @@ kilo
 看它能不能正确理解。
 
 ---
+
+<h2 id="3d1e71b4a870b1d66f7d9d23ec7364f1"></h2>
 
 # 11. 然后测试真正的 Agent loop
 
@@ -1732,6 +1920,8 @@ PASS
 
 ---
 
+<h2 id="53c3a27e36f9759e0e1070566b91f357"></h2>
+
 # 12. 我会对之前的方案做一个重要修改
 
 之前我给你的方案是：
@@ -1770,6 +1960,8 @@ Kilo 本身支持很多 provider，包括 Ollama、LM Studio、OpenAI-compatible
 
 ---
 
+<h2 id="32f2fc365d98b76aa4044508b29b54ba"></h2>
+
 # 13. 所以你以后甚至可以这样玩
 
 比如：
@@ -1786,17 +1978,23 @@ Kilo 本身支持很多 provider，包括 Ollama、LM Studio、OpenAI-compatible
    Qwen3-Coder
 ```
 
+<h2 id="652297413c545a54761df4918f060815"></h2>
+
 ### 普通任务
 
 ```
 ollama/qwen3:14b
 ```
 
+<h2 id="cddcade0405954c4325ee1fb11e3dc0e"></h2>
+
 ### Coding
 
 ```
 ollama/qwen3-coder:30b
 ```
+
+<h2 id="695b09d77ed7d80c3af4939d30712790"></h2>
 
 ### 极难问题
 
@@ -1817,6 +2015,8 @@ AGENTS.md
 这些 Agent 层面的东西都不变。
 
 ---
+
+<h2 id="f2dae7026e45094eac1c21040fd98e4f"></h2>
 
 # 14. 还有一个 Kilo 特别适合你的地方
 
@@ -1882,6 +2082,8 @@ Mac mini
 > **Mac mini 专门负责 AI inference，MacBook 负责开发。**
 
 ---
+
+<h2 id="794c65dbdfb5c841dba412b99182f7c0"></h2>
 
 ## 最后，我会这样选
 
@@ -1990,6 +2192,8 @@ XDG_CONFIG_HOME=$HOME/.config/kilo-local kilo
 ```
 
 
+<h2 id="56c47a5454f4f09b75b9564e4f37fccb"></h2>
+
 ## 针对 ollama + qwen3:14b 的额外建议
 
 本地模型较容易在工具调用时“串台”，尤其当系统提示词里同时出现过 Claude Code、Cursor、Cline、Aider 或自定义 MCP 的工具描述。建议：
@@ -2000,6 +2204,8 @@ Only call tools exactly as listed in the current tool catalog. Never invent tool
 温度设低一些：0 ~ 0.2，减少结构化工具调用漂移。
 如果 OpenCode 可配置模型模板/工具调用格式，选择对应 Ollama/Qwen 的原生 tool-calling 模板，不要用 OpenAI、Anthropic 或其他 Agent 的工具模板硬套。
 
+
+<h2 id="c7f0c8ddc0c88cce3d44de1c8dc70c17"></h2>
 
 ## openCode + Gemma4
 
@@ -2026,6 +2232,8 @@ Only call tools exactly as listed in the current tool catalog. Never invent tool
 ```
 
 
+<h2 id="eed819f6fddfd13af8ebe79928c24692"></h2>
+
 ## 关闭thinking
 
 Q: 24G mac 运行本地大模型，是不是建议关闭thinking ？
@@ -2042,6 +2250,8 @@ Q: 24G mac 运行本地大模型，是不是建议关闭thinking ？
   }
 ```
 
+
+<h2 id="b94fe3dc13862f7292183a015d4a87eb"></h2>
 
 ## kaggle 
 

@@ -10,6 +10,9 @@
     - [Redeem](#81ed4dcb851fefbbbc791eeef4cd97a2)
     - [golang forward request](#e165301d2a7fe3a79049eb6aab23632a)
     - [Platform nodejs code to browser](#ea16176003eeb0aed81b048e08bdf2f4)
+    - [Node performance profile](#04ccd6d524ed518ef06fd4c5ef929ff8)
+    - [查看某个请求 造成的瞬间内存压力](#44b28d52606106a54f22d3f7f5ca4f59)
+    - [debug 线上 nodejs server](#256c91b59f6e5a2024471c4ad5f7107c)
 
 [](...menuend)
 
@@ -208,6 +211,8 @@ How to use
 }
 ```
 
+<h2 id="04ccd6d524ed518ef06fd4c5ef929ff8"></h2>
+
 ## Node performance profile
 
 ```bash 
@@ -218,6 +223,8 @@ node --prof server.js
 用 node --prof-process isolate-*.log 分析热点函数
 ```
 
+
+<h2 id="44b28d52606106a54f22d3f7f5ca4f59"></h2>
 
 ## 查看某个请求 造成的瞬间内存压力
 
@@ -236,6 +243,8 @@ while true; do
 done
 ```
 
+
+<h2 id="256c91b59f6e5a2024471c4ad5f7107c"></h2>
 
 ## debug 线上 nodejs server
 

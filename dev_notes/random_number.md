@@ -6,6 +6,7 @@
         - [Choice of multiplier](#bdc47eab24c15e7a55f50a5e665743de)
         - [An implementation :  No guaranteed of correctness](#29c8b42cc2ff4fc09c6a75a4dfbc1885)
     - [Python random implementation](#31d89b288043a80670b7a9af27dba6b6)
+    - [设计一个指定n的线性同余发生器](#c36b79f3f6943de6f717b95acdcdf2a1)
     - [Distribution](#f0bac093bb884df2891d32385d053788)
         - [Python normalvariate implementation](#ee34ac09342e568469b18ca9916547d5)
 
@@ -188,6 +189,8 @@ def random(self):
     - 如果把周期N1和N2的波形加起来那么得到的波形周期为 N = lcm（N1,N2） 
     - 这样，通过结合几个随机数发生器的输出，可以产生一个更长的序列。
 
+
+<h2 id="c36b79f3f6943de6f717b95acdcdf2a1"></h2>
 
 ## 设计一个指定n的线性同余发生器
 

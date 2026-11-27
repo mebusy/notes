@@ -25,6 +25,7 @@
     - [su (switch user)](#80a2812465be83176899c0fe624e5967)
     - [permission](#4b65ca0f8b76e7181a12bf1fabc48532)
     - [chmod](#417e248f80c35ca0d471575a5fb951f5)
+    - [历史展开黑魔法](#ed3d85bff319a985b106f43dfd0faed9)
 
 [](...menuend)
 
@@ -646,6 +647,8 @@ examples:
     ```bash
     chmod o-rwx file.txt
     ```
+
+<h2 id="ed3d85bff319a985b106f43dfd0faed9"></h2>
 
 ## 历史展开黑魔法
 

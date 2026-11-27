@@ -4,6 +4,8 @@
     - [Use WSL2 & Docker](#01eecc176d31e7097d965d39e191b2f3)
     - [Run ML container accelerated by NVidia CPU On WSL2](#8f5b01b3ae0423d2602655c621faefea)
     - [SSH to Win10 WSL2](#e623b8257a43fa5e9f6166407a2e3914)
+    - [Miarate WSL2 distro](#046b5eb0d80aa75a034aac50da0156b2)
+    - [Store version terminal app Color Scheme](#e5de2361d9d423116719b18f7d7b633b)
 
 [](...menuend)
 
@@ -186,6 +188,8 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     Deleted 1 rule(s).
     ```
 
+<h2 id="046b5eb0d80aa75a034aac50da0156b2"></h2>
+
 ## Miarate WSL2 distro
 
 1. 管理员身份运行 cmd terminal
@@ -225,6 +229,8 @@ https://docs.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute
     [boot]
     systemd=true
     ```
+
+<h2 id="e5de2361d9d423116719b18f7d7b633b"></h2>
 
 ## Store version terminal app Color Scheme
 

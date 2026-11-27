@@ -1,10 +1,44 @@
+[](...menustart)
+
+- [1. Rust 首先想解决的是什么？](#c6f9c747da61ad57253a7524e5b942d5)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+- [1. Rust 首先想解决的是什么？](#c6f9c747da61ad57253a7524e5b942d5)
+- [2. 所以 Rust 最核心的设计其实不是 borrow checker](#a579a3ad804db2b9e00674d133c2187c)
+- [3. 为什么 Rust 不直接用 GC？](#57560e48e0ac64b6185a626a2fa41f4a)
+- [4. Ownership 到底解决了什么？](#14c80a5b2d684d2073b610022e981e2b)
+- [5. 那为什么又允许引用？](#a2942bf8c2dc6983310294963820a20f)
+- [6. 为什么 Rust 对 mutable reference 这么严格？](#9c33b37ee6c349372a1bced2ea298037)
+- [7. `Send` / `Sync` 又是在解决什么？](#3aa45580916571ce22c4762909a502d7)
+- [8. 为什么 Rust 没有传统意义上的继承？](#972951f4b0cebc09f1bd092932e91086)
+- [9. 为什么 Rust 的 `enum` 特别强？](#9058b03e3a52992d35ab48feccc37610)
+- [10. `Option<T>` 为什么不是 nullable pointer？](#d00d4325646a96dce13d6c6f0d6ba83c)
+- [11. `Result<T, E>` 又是什么哲学？](#9ec35300d53be226466eb97c52e45eb6)
+- [12. 为什么 Rust 特别喜欢“显式”？](#e50b3e9745bb81b9847eb08ef755c2b3)
+- [13. `unsafe` 又为什么存在？](#394bb9708df8032d4dd2adddbe5d9d3a)
+- [14. 为什么 Rust 的 abstraction 要求 zero-cost？](#92113f9c0467d38ada86c9e3ecc6018f)
+- [15. 那 Rust 为什么编译这么慢？](#f3aec6b661480f67652462e275b17ca7)
+- [16. 为什么 Rust 学起来这么痛苦？](#eb7021c8f6e388cbaccdb51e9b942e0a)
+- [17. 把 Rust 的设计哲学串起来](#1bbf7280b8811b4da223eb86b47d35b4)
+- [18. 最核心的痛点其实可以浓缩成 5 个](#789f969de1d386ef53a12189ab627422)
+    - [我觉得最值得记住的一句话](#bbe795ec5ea01153780c6aeeac7eb8d3)
+
+[](...menuend)
+
+
+<h2 id="c6f9c747da61ad57253a7524e5b942d5"></h2>
+
 # 1. Rust 首先想解决的是什么？
 
 > Exported from ChatGPT on 2026-08-17T09:28:32.983Z
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 rust 的设计哲学，为什么要这么设计，是为了解决什么痛点
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -17,6 +51,8 @@ rust 的设计哲学，为什么要这么设计，是为了解决什么痛点
 **把 C/C++ 中大量依赖程序员纪律才能保证的正确性，尽可能变成编译器可以证明的东西。**
 
 ---
+
+<h2 id="c6f9c747da61ad57253a7524e5b942d5"></h2>
 
 # 1. Rust 首先想解决的是什么？
 
@@ -97,6 +133,8 @@ Rust 的野心就是：
 
 ---
 
+<h2 id="a579a3ad804db2b9e00674d133c2187c"></h2>
+
 # 2. 所以 Rust 最核心的设计其实不是 borrow checker
 
 很多人第一次学 Rust，会觉得：
@@ -141,6 +179,8 @@ Borrow Checker
 这是一条完整的设计链。
 
 ---
+
+<h2 id="57560e48e0ac64b6185a626a2fa41f4a"></h2>
 
 # 3. 为什么 Rust 不直接用 GC？
 
@@ -241,6 +281,8 @@ let x = Foo::new();
 
 ---
 
+<h2 id="14c80a5b2d684d2073b610022e981e2b"></h2>
+
 # 4. Ownership 到底解决了什么？
 
 Ownership 本质上是在回答：
@@ -332,6 +374,8 @@ Rust 直接说：
 
 ---
 
+<h2 id="a2942bf8c2dc6983310294963820a20f"></h2>
+
 # 5. 那为什么又允许引用？
 
 如果所有东西都 move，那 Rust 根本没法写程序。
@@ -394,6 +438,8 @@ write + write     NO
 
 ---
 
+<h2 id="9c33b37ee6c349372a1bced2ea298037"></h2>
+
 # 6. 为什么 Rust 对 mutable reference 这么严格？
 
 因为它不仅解决内存安全。
@@ -435,6 +481,8 @@ Data-race freedom
 > **同一套语言规则，同时解决单线程内存安全和多线程数据竞争。**
 
 ---
+
+<h2 id="3aa45580916571ce22c4762909a502d7"></h2>
 
 # 7. `Send` / `Sync` 又是在解决什么？
 
@@ -486,6 +534,8 @@ Sync
 > **这个类型具有什么并发语义？**
 
 ---
+
+<h2 id="972951f4b0cebc09f1bd092932e91086"></h2>
 
 # 8. 为什么 Rust 没有传统意义上的继承？
 
@@ -567,6 +617,8 @@ Type
 
 ---
 
+<h2 id="9058b03e3a52992d35ab48feccc37610"></h2>
+
 # 9. 为什么 Rust 的 `enum` 特别强？
 
 Rust 非常喜欢：
@@ -639,6 +691,8 @@ socket = nullptr
 
 ---
 
+<h2 id="d00d4325646a96dce13d6c6f0d6ba83c"></h2>
+
 # 10. `Option<T>` 为什么不是 nullable pointer？
 
 C/C++：
@@ -695,6 +749,8 @@ match foo {
 > **把 runtime assumptions 搬到 type system。**
 
 ---
+
+<h2 id="9ec35300d53be226466eb97c52e45eb6"></h2>
 
 # 11. `Result<T, E>` 又是什么哲学？
 
@@ -770,6 +826,8 @@ fn foo() -> Result<Data, Error> {
 
 ---
 
+<h2 id="e50b3e9745bb81b9847eb08ef755c2b3"></h2>
+
 # 12. 为什么 Rust 特别喜欢“显式”？
 
 Rust 有一个很强的倾向：
@@ -837,6 +895,8 @@ let y = &mut x;
 
 ---
 
+<h2 id="394bb9708df8032d4dd2adddbe5d9d3a"></h2>
+
 # 13. `unsafe` 又为什么存在？
 
 这是 Rust 很聪明的地方。
@@ -898,6 +958,8 @@ Hardware / OS / FFI
 
 ---
 
+<h2 id="92113f9c0467d38ada86c9e3ecc6018f"></h2>
+
 # 14. 为什么 Rust 的 abstraction 要求 zero-cost？
 
 这是它和很多现代语言最大的区别之一。
@@ -931,6 +993,8 @@ let x = iterator
 > **Pay only for what you use.**
 
 ---
+
+<h2 id="f3aec6b661480f67652462e275b17ca7"></h2>
 
 # 15. 那 Rust 为什么编译这么慢？
 
@@ -978,6 +1042,8 @@ compile time
 
 ---
 
+<h2 id="eb7021c8f6e388cbaccdb51e9b942e0a"></h2>
+
 # 16. 为什么 Rust 学起来这么痛苦？
 
 因为它实际上要求你改变思维方式。
@@ -1013,6 +1079,8 @@ Rust：
 > **它逼你把原本模糊的程序员直觉，变成明确的 ownership / lifetime / aliasing 模型。**
 
 ---
+
+<h2 id="1bbf7280b8811b4da223eb86b47d35b4"></h2>
 
 # 17. 把 Rust 的设计哲学串起来
 
@@ -1069,6 +1137,8 @@ unsafe
 
 ---
 
+<h2 id="789f969de1d386ef53a12189ab627422"></h2>
+
 # 18. 最核心的痛点其实可以浓缩成 5 个
 
 | Rust 设计 | 它想解决的痛点 |
@@ -1092,6 +1162,8 @@ unsafe
 很多设计突然就合理了。
 
 ---
+
+<h2 id="bbe795ec5ea01153780c6aeeac7eb8d3"></h2>
 
 ## 我觉得最值得记住的一句话
 

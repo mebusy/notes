@@ -18,6 +18,8 @@
         - [move between panels](#5ae57863ca99d6a3bc9e5d7b8a1f5b44)
         - [show panel number](#5522cf8642d141657c4919711c645e58)
         - [delete a panel](#7bd4c19590c81309063e3bd25573500e)
+    - [FAQ](#1fe917b01f9a3f87fa2d7d3b7643fac1)
+        - [tmux 下， netty 网络请求报错，route 找不到](#f987c8a289a9e31382fc7544b7c208f0)
 
 [](...menuend)
 
@@ -173,7 +175,11 @@ to move to specific panel with panel number, e.g. panel 2
     - then type `y` to confirm
 
 
+<h2 id="1fe917b01f9a3f87fa2d7d3b7643fac1"></h2>
+
 ## FAQ
+
+<h2 id="f987c8a289a9e31382fc7544b7c208f0"></h2>
 
 ### tmux 下， netty 网络请求报错，route 找不到
 

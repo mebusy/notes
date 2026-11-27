@@ -6,6 +6,8 @@
     - [Find and Delete  - d](#692ebbacb84e6f8a7aab45236119e1d5)
     - [Multiple Commands  -e](#c481c5c5953e30563788d5e1e70b4a62)
     - [Specify Delimiter](#3a52a9a2e940669071b653b8d3f77037)
+- [Tricks](#256baaed916e3419e1f658a2f07fd14b)
+    - [recursive replace in all files in a directory](#ffbaed027346a1e223010caac3f91aaa)
 
 [](...menuend)
 
@@ -74,7 +76,11 @@ The character follows 's'  stands for the delimiter, you can change if your text
 sed 's|find|replace|' filename
 ```
 
+<h2 id="256baaed916e3419e1f658a2f07fd14b"></h2>
+
 # Tricks
+
+<h2 id="ffbaed027346a1e223010caac3f91aaa"></h2>
 
 ## recursive replace in all files in a directory
 

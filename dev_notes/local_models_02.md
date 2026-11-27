@@ -1,16 +1,57 @@
+[](...menustart)
+
+- [Qwopus3.8评测 񟿿 (1)](#c7ec86c1afdaa7afcbc7479852816ffb)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+    - [一、安装：LightX2V-Mac-App](#b975bcd743239a77b9f4ab5dcf695ea8)
+        - [1. 下载](#e75ae49a506fa94be0e94239c058a219)
+        - [2. 首次启动](#ce6ea0b2ea455aac51ad1e84929b4f7f)
+        - [3. 下载模型](#31685bf1c0338d665549bf190004d424)
+    - [二、怎么使用](#f60609fd190da5abf9bc88175a3d8683)
+        - [先做一个三国兵种 Sprite](#9786502bae1b26213acc487ba53492e5)
+    - [三、针对 24GB 内存的使用建议](#a594709d8209815d5232cb1bf65e7b4c)
+    - [四、我的建议：按游戏素材类型来用](#36f46b82522ec7bf7b514379bd1d216e)
+    - [五、我建议你接下来先确定游戏的美术规格](#b8fdf7fc3382f52b25e8ae54e83a70d5)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+    - [1. 它能做什么？](#d0160e86ea7408171e5ddf2ff6c7e498)
+    - [2. 它有哪些不能做的事？](#0e12125dbe21e24e368a120330168972)
+    - [3. 4bit 版本适合 M4 Pro 24GB 吗？](#d6af309899f2e37f094b92a6c7a3cffa)
+    - [4. 与你目前研究的模型怎么分工？](#84cd13e66a6e06ab871eaec6cdd7d25c)
+    - [5. 怎么运行？](#b6d3bc92c5f76489f76b815e281132ff)
+    - [我的建议](#3edd2a0aa7d000bc9373d8a24861d716)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+    - [1. 核心区别](#a90097c0641652528ba7082b3766d3f4)
+    - [2. 哪个更聪明？](#c3c67f1e48eab2997c7d4e02bc78c8dd)
+    - [3. 在你的 M4 Pro 24GB 上怎么选？](#11c839058dc0df35e18fff2b81771860)
+    - [4. 我的实际建议](#e378b5d00c57cf0e8287fb5dcfd6afe0)
+    - [5. 我想确认一个关键点](#ea7d883d5a482bf1de1b48e981e869b2)
+
+[](...menuend)
+
+
+<h2 id="c7ec86c1afdaa7afcbc7479852816ffb"></h2>
+
 # Qwopus3.8评测 񟿿 (1)
 
 > Exported from ChatGPT on 2026-11-10T07:37:42.077Z
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 Qwen-Image 2.1 怎么安装/使用
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
 结合你的 M4 Pro、24GB 统一内存，我建议先走 LightX2V-Mac-App 原生 macOS 应用这条路线，不必先折腾 ComfyUI，也不需要自己配置 PyTorch 环境。
 
 先区分一下：Qwen-Image 2.1 有标准版和 Turbo 等不同版本。你的机器建议先从 Qwen-Image-2.1-Turbo 开始，生成速度更适合日常制作游戏素材；之后再考虑标准版或图像编辑模型。
+
+<h2 id="b975bcd743239a77b9f4ab5dcf695ea8"></h2>
 
 ## 一、安装：LightX2V-Mac-App
 
@@ -25,6 +66,8 @@ LightX2V-Mac-App
 项目明确列出了 M4 Pro 24GB 的验证记录。
 
 [GitHub 项目主页](https://github.com/ModelTC/LightX2V-Mac-App?utm_source=chatgpt.com)
+
+<h2 id="e75ae49a506fa94be0e94239c058a219"></h2>
 
 ### 1. 下载
 
@@ -41,6 +84,8 @@ LightX2V-Mac-App
 
 项目 README 标注的 Stable 版本适用于 Apple Silicon、macOS 14 及以上。ModelTC/LightX2V-Mac-App · GitHub+1
 
+<h2 id="ce6ea0b2ea455aac51ad1e84929b4f7f"></h2>
+
 ### 2. 首次启动
 
 如果 macOS 提示无法验证开发者：
@@ -51,6 +96,8 @@ LightX2V-Mac-App
 4. 再次确认打开。
 
 **安全提醒：**只对从上述项目官方 Releases 下载的应用执行这个操作。ModelTC/LightX2V-Mac-App · GitHub
+
+<h2 id="31685bf1c0338d665549bf190004d424"></h2>
 
 ### 3. 下载模型
 
@@ -65,6 +112,8 @@ LightX2V-Mac-App
 注意：PE-T2I 和 PE-I2I 的 Q8_0 不是主图像模型的 8bit 量化版本，而是提示词增强组件。主模型是 Turbo。ModelTC/LightX2V-Mac-App · GitHub+1
 
 如果应用首次启动提供模型下载选项，先下载 Turbo 主模型；提示词增强模型可以稍后再装。
+
+<h2 id="f60609fd190da5abf9bc88175a3d8683"></h2>
 
 ## 二、怎么使用
 
@@ -83,6 +132,8 @@ Image to Image（图生图）
 上传一张参考图，通过文字指令修改人物服装、武器、背景、风格等。
 
 Turbo 采用 8 步去噪生成，相比常规扩散模型的较多采样步数，生成速度更快。Hugging Face+1
+
+<h2 id="9786502bae1b26213acc487ba53492e5"></h2>
 
 ### 先做一个三国兵种 Sprite
 
@@ -116,6 +167,8 @@ No text, no UI, no border, no extra characters.`
 
 生成后检查人物轮廓、武器、盔甲细节和透明背景是否符合要求。
 
+<h2 id="a594709d8209815d5232cb1bf65e7b4c"></h2>
+
 ## 三、针对 24GB 内存的使用建议
 
 - 一次只运行一个图像模型任务。
@@ -125,6 +178,8 @@ No text, no UI, no border, no extra characters.`
 - 不建议一开始就追求 2048×2048 大图。
 
 Qwen-Image-2.1 的 7B 图像生成模型还配有 Qwen3-VL 8B 文本编码器，并支持原生 RGBA 透明图像、参考图和局部编辑。GitHub+1
+
+<h2 id="36f46b82522ec7bf7b514379bd1d216e"></h2>
 
 ## 四、我的建议：按游戏素材类型来用
 
@@ -139,6 +194,8 @@ Qwen-Image-2.1 的 7B 图像生成模型还配有 Qwen3-VL 8B 文本编码器，
 不要直接要求 AI 一次生成完整 Sprite Sheet。最好先生成单个角色，再用 Aseprite 制作行走、攻击、受击等帧，最后打包 Sprite Atlas。
 
 **还有一个重要事项：**Qwen-Image-2.1 使用 Qwen Research License，准备将生成素材用于商业游戏前，应仔细核对许可条款，不要默认它等同于 Apache-2.0。GitHub+1
+
+<h2 id="b8fdf7fc3382f52b25e8ae54e83a70d5"></h2>
 
 ## 五、我建议你接下来先确定游戏的美术规格
 
@@ -156,15 +213,21 @@ Qwen-Image-2.1 的 7B 图像生成模型还配有 Qwen3-VL 8B 文本编码器，
 
 GodotUnity自研 C++尚未确定
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 qwen3.5-9B 4bit 这个模型能干什么
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
 Qwen3.5-9B 4bit 是一个适合本地运行的多模态 AI 模型。它不只是聊天机器人，还能看图片、理解图表和文档、编程、推理、分析视频，以及配合外部工具执行任务。
 
 对你的 M4 Pro 24GB 来说，4bit 量化版本是值得尝试的本地通用模型。
+
+<h2 id="d0160e86ea7408171e5ddf2ff6c7e498"></h2>
 
 ## 1. 它能做什么？
 
@@ -220,6 +283,8 @@ Qwen3.5-9B 4bit 是一个适合本地运行的多模态 AI 模型。它不只是
 
 官方模型卡将它定义为带视觉编码器的多模态模型，原生上下文长度 262,144 tokens，并支持扩展。官方还公布了工具调用、视觉理解、推理和编程等评测。Hugging Face+1
 
+<h2 id="0e12125dbe21e24e368a120330168972"></h2>
+
 ## 2. 它有哪些不能做的事？
 
 这里有几个容易混淆的地方：
@@ -237,6 +302,8 @@ Qwen3.5-9B 4bit 是一个适合本地运行的多模态 AI 模型。它不只是
 
 特别注意：它可以理解图片，但不能替代 Qwen-Image 2.1 生成图片。
 
+<h2 id="d6af309899f2e37f094b92a6c7a3cffa"></h2>
+
 ## 3. 4bit 版本适合 M4 Pro 24GB 吗？
 
 推荐尝试
@@ -253,6 +320,8 @@ Qwen3.5-9B 4bit 是一个适合本地运行的多模态 AI 模型。它不只是
 | 超长视频分析 | 不建议一次处理大量内容 |
 
 实际体验还取决于量化格式、推理引擎、上下文长度和图片分辨率。
+
+<h2 id="84cd13e66a6e06ab871eaec6cdd7d25c"></h2>
 
 ## 4. 与你目前研究的模型怎么分工？
 
@@ -277,6 +346,8 @@ Qwen3.5-9B 4bit 是一个适合本地运行的多模态 AI 模型。它不只是
 - 分析游戏截图，找出 UI 和地图布局问题。
 
 但真正画角色、建筑、地形，仍然交给 Qwen-Image 2.1。
+
+<h2 id="b6d3bc92c5f76489f76b815e281132ff"></h2>
 
 ## 5. 怎么运行？
 
@@ -308,6 +379,8 @@ ollama list
 
 官方模型地址：[Qwen3.5-9B Hugging Face](https://huggingface.co/Qwen/Qwen3.5-9B?utm_source=chatgpt.com)。
 
+<h2 id="3edd2a0aa7d000bc9373d8a24861d716"></h2>
+
 ## 我的建议
 
 如果你准备在 M4 Pro 24GB 上搭建一套本地 AI 工具链，我会把 Qwen3.5-9B 4bit 放在最核心的位置：它负责思考、编程、看图和调度其他工具；图像、语音、音乐则由专用模型负责。
@@ -321,15 +394,21 @@ ollama list
 
 不同格式会直接影响 M4 Pro 上的速度、视觉能力兼容性和安装方式。
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 qwen3.5-9B  和 qwen3-14B
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
 如果是在你的 M4 Pro、24GB 统一内存上二选一，我会倾向于 Qwen3.5-9B 4bit，尤其是你希望一个模型同时承担日常聊天、编程、图片理解和 Agent 任务的情况。
 
 但两者不是简单的 9B 和 14B 谁更强：它们属于不同代际，架构和能力侧重点也不同。下面按实际用途比较。
+
+<h2 id="a90097c0641652528ba7082b3766d3f4"></h2>
 
 ## 1. 核心区别
 
@@ -347,6 +426,8 @@ qwen3.5-9B  和 qwen3-14B
 | 原生上下文 | 262K | 32K（可扩展至 131K） |
 
 Qwen3.5-9B 使用混合注意力架构，结合 Gated DeltaNet 和传统 Attention；Qwen3-14B 是传统 Dense Transformer 架构。Hugging Face+2
+
+<h2 id="c3c67f1e48eab2997c7d4e02bc78c8dd"></h2>
 
 ## 2. 哪个更聪明？
 
@@ -367,6 +448,8 @@ Qwen3.5-9B 的优势：
 
 Qwen 官方公布的 Qwen3.5 评测显示，9B 在部分知识、推理和指令遵循项目上表现很强，但这些官方基准不能直接证明它在所有代码、数学任务上都胜过 Qwen3-14B。Hugging Face+1
 
+<h2 id="11c839058dc0df35e18fff2b81771860"></h2>
+
 ## 3. 在你的 M4 Pro 24GB 上怎么选？
 
 如果两个模型都用 4bit 量化：
@@ -384,6 +467,8 @@ Qwen 官方公布的 Qwen3.5 评测显示，9B 在部分知识、推理和指令
 
 14B 的 4bit 权重比 9B 更大，运行时内存压力也更高。两者在 24GB 上都可以尝试，但上下文长度不要一开始就开到最大。
 
+<h2 id="e378b5d00c57cf0e8287fb5dcfd6afe0"></h2>
+
 ## 4. 我的实际建议
 
 优先选择 Qwen3.5-9B 4bit
@@ -399,6 +484,8 @@ Qwen 官方公布的 Qwen3.5 评测显示，9B 在部分知识、推理和指令
 这些工作中，视觉理解能力很有价值。
 
 但我不会因此建议你把 Qwen3-14B 删除。它可以作为纯文本推理的对照模型，实际测试同一批编程和数学问题，再决定是否保留。
+
+<h2 id="ea7d883d5a482bf1de1b48e981e869b2"></h2>
 
 ## 5. 我想确认一个关键点
 

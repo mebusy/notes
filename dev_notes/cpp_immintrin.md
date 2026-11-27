@@ -1,4 +1,19 @@
+[](...menustart)
+
+- [immintrin.h](#72a1cbe22738dfb2a009514a64a01bb0)
+    - [AVX: Advanced Vector Extensions](#2f850999bc81d8d67f10d1af95bfc9cf)
+    - [Using AVX to Speed Up Array Code](#aa3155b6b4e2f900fc6f673a1290cf78)
+    - [Alignment in AVX](#f9b430ead0117050a0c00162474bd35e)
+    - [SSE/AVX intrinsic functions](#293e847d68579f9430f98c8b7a9d418f)
+
+[](...menuend)
+
+
+<h2 id="72a1cbe22738dfb2a009514a64a01bb0"></h2>
+
 # immintrin.h
+
+<h2 id="2f850999bc81d8d67f10d1af95bfc9cf"></h2>
 
 ## AVX: Advanced Vector Extensions
 
@@ -58,6 +73,8 @@ void foo(void)
 ```
 
 
+<h2 id="aa3155b6b4e2f900fc6f673a1290cf78"></h2>
+
 ## Using AVX to Speed Up Array Code
 
 Usually it's as easy as just operating on 8 iterations of the loop at a time!  But there are often minor complications, like scalar values that need to be broadcast to fill all 8 slots:
@@ -96,6 +113,8 @@ On my Skylake machine, using AVX takes only 44ns to compute 1000 floats; the sim
 
 Where things get really tricky is when each float wants to do its own separate operations, like per-float branching.  AVX handles branches exactly like SSE .
 
+<h2 id="f9b430ead0117050a0c00162474bd35e"></h2>
+
 ## Alignment in AVX
 
 AVX instructions expect input operands to be aligned on a 32-byte boundary.  
@@ -113,6 +132,8 @@ For std::vector, you should use an aligning allocator like my [osl/alignocator.h
 If you don't do this, your first AVX load has a 50% chance of crashing.
 
 Of course, you still need to advance by 32 bytes / 8 floats from the start of the vector.
+
+<h2 id="293e847d68579f9430f98c8b7a9d418f"></h2>
 
 ## SSE/AVX intrinsic functions
 

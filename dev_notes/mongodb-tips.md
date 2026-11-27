@@ -1,4 +1,18 @@
+[](...menustart)
+
+- [MongoDb Tips and Tricks](#15f81a9ce3a1844c94eed0bd01171c53)
+    - [set highest value](#6c8d0f0f49e6a6f7a5d14f70daa79b51)
+    - [符合索引排序问题](#4f7211fa6044eb409f227ba25eec97e4)
+    - [read then set](#df8ab2a0d6ebf4540709e05fa302d4b4)
+
+[](...menuend)
+
+
+<h2 id="15f81a9ce3a1844c94eed0bd01171c53"></h2>
+
 # MongoDb Tips and Tricks
+
+<h2 id="6c8d0f0f49e6a6f7a5d14f70daa79b51"></h2>
 
 ## set highest value
 
@@ -17,10 +31,14 @@ await YourModel.updateOne(
 ```
 
 
+<h2 id="4f7211fa6044eb409f227ba25eec97e4"></h2>
+
 ## 符合索引排序问题
 
 - 复合索引只有全部方向一致或全部反向时才能用于排序。
 
+
+<h2 id="df8ab2a0d6ebf4540709e05fa302d4b4"></h2>
 
 ## read then set
 

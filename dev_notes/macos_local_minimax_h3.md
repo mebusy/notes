@@ -1,10 +1,35 @@
+[](...menustart)
+
+- [Vpipe 与 minimax h3 部署](#9127d2853e20a23ebe24c6d41a1f3568)
+    - [@mebusy](#2e0f562704332e89a6a069647fcc26a4)
+    - [Copilot](#bb9ba583e0d586b939ccbec68636d278)
+    - [@mebusy](#2e0f562704332e89a6a069647fcc26a4)
+    - [Copilot](#bb9ba583e0d586b939ccbec68636d278)
+    - [@mebusy](#2e0f562704332e89a6a069647fcc26a4)
+    - [Copilot](#bb9ba583e0d586b939ccbec68636d278)
+    - [@mebusy](#2e0f562704332e89a6a069647fcc26a4)
+    - [Copilot](#bb9ba583e0d586b939ccbec68636d278)
+    - [@mebusy](#2e0f562704332e89a6a069647fcc26a4)
+    - [Copilot](#bb9ba583e0d586b939ccbec68636d278)
+    - [@mebusy](#2e0f562704332e89a6a069647fcc26a4)
+    - [Copilot](#bb9ba583e0d586b939ccbec68636d278)
+
+[](...menuend)
+
+
+<h2 id="9127d2853e20a23ebe24c6d41a1f3568"></h2>
+
 # Vpipe 与 minimax h3 部署
 
 **User:** @mebusy
 
+<h2 id="2e0f562704332e89a6a069647fcc26a4"></h2>
+
 ## @mebusy
 
 Mac Mini M4 24G   vpipe + MiniMax H3  快速流程
+
+<h2 id="bb9ba583e0d586b939ccbec68636d278"></h2>
 
 ## Copilot
 
@@ -19,9 +44,13 @@ cd vpipe-workbench
 
 浏览器打开 `http://127.0.0.1:8765`，先进入「设置检查」安装 vpipe 和 MiniMax H3 模型，再选 H3、输入提示词，先用界面提供的最短时长和较低分辨率试跑。模型下载约 **115GB**，安装期间建议预留约 **185GB** 空间；24GB 内存够用，但生成仍可能较慢。H3 有单独的使用许可，商用前请先核对。
 
+<h2 id="2e0f562704332e89a6a069647fcc26a4"></h2>
+
 ## @mebusy
 
 下载的模型存放在哪里？
+
+<h2 id="bb9ba583e0d586b939ccbec68636d278"></h2>
 
 ## Copilot
 
@@ -29,9 +58,13 @@ cd vpipe-workbench
 
 如果设置了 `VPIPE_WORK` 环境变量，模型则在该目录下的 `models/` 文件夹里。
 
+<h2 id="2e0f562704332e89a6a069647fcc26a4"></h2>
+
 ## @mebusy
 
 我是初学者，请给一下制作8秒左右视频的一些教程/建议
+
+<h2 id="bb9ba583e0d586b939ccbec68636d278"></h2>
 
 ## Copilot
 
@@ -53,9 +86,13 @@ cd vpipe-workbench
 
 生成速度会受分辨率、时长和设置影响，**8 秒可能需要较长时间**；M4 的实际耗时会因设置而异。生成时接上电源，尽量不要同时运行其他大型图形或 AI 任务。
 
+<h2 id="2e0f562704332e89a6a069647fcc26a4"></h2>
+
 ## @mebusy
 
 ”5秒视频， G1版 变形金刚，太空桥边上， 龙型钢索 张口咬中 大力神左腿“ ， 提示词怎么写？
+
+<h2 id="bb9ba583e0d586b939ccbec68636d278"></h2>
 
 ## Copilot
 
@@ -65,9 +102,13 @@ cd vpipe-workbench
 
 如果工作台有“负面提示词”栏，可填：`文字，标志，切镜，肢体畸形，额外肢体，模糊主体`。
 
+<h2 id="2e0f562704332e89a6a069647fcc26a4"></h2>
+
 ## @mebusy
 
 Reference  只能选择 Text Only ,  First/Last Frame,   Reference Images  是灰色的，不能选择， 所以没法设置 参考图
+
+<h2 id="bb9ba583e0d586b939ccbec68636d278"></h2>
 
 ## Copilot
 
@@ -88,9 +129,13 @@ Reference  只能选择 Text Only ,  First/Last Frame,   Reference Images  是�
 
 **暂时不安装也能用图：**选择 **First/Last Frame**，把图片放在首帧位置，就能让视频从这张图开始。但它与 Reference Images 不同：首帧是画面起点，参考图主要用于提供人物、物品或风格。
 
+<h2 id="2e0f562704332e89a6a069647fcc26a4"></h2>
+
 ## @mebusy
 
 "加载 Ref2VA 文件并点击 Start" ,  显示timeout。 本机访问 hugginface 需要走代理， 是不是因为 vpipe-manager 没有设置网络代理的原因 ？ 但是 vpip-manage 怎么设置 proxy ？
+
+<h2 id="bb9ba583e0d586b939ccbec68636d278"></h2>
 
 ## Copilot
 

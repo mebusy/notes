@@ -23,6 +23,7 @@
     - [3. git log -S](#55e715223f7159cff8db9230fa66239a)
     - [4. git diff](#a79a6a8890c5cd62ba1fb9880efd8809)
     - [5. git maintenance](#c4365ba7819dc70ffcd5d1725fc7677f)
+    - [提交发生冲突后，撤销掉自己的本地提交](#849f27bc45e255e0e06c0ebb9882ba73)
 - [Big Repo Stuff](#a7e9e6c6f49c00941b9544ca57942d3a)
     - [filesystem monitor](#ff25f328d4a2e9ff575c8910e76f2f70)
     - [partially clone](#3266b369555db75a99102c28caf62ae2)
@@ -320,6 +321,8 @@ start background job to
 - incremental-repack: daily
 - pack-refs:  none
 
+
+<h2 id="849f27bc45e255e0e06c0ebb9882ba73"></h2>
 
 ## 提交发生冲突后，撤销掉自己的本地提交
 

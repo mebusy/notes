@@ -1,4 +1,17 @@
+[](...menustart)
+
+- [performance profile](#b3b2af02ef1b4b395df5845889bc8fd9)
+    - [JAVA](#c71e8d17d41c21de0d260881d69662ff)
+    - [Node](#6c3a6944a808a7c0bbb6788dbec54a9f)
+
+[](...menuend)
+
+
+<h2 id="b3b2af02ef1b4b395df5845889bc8fd9"></h2>
+
 # performance profile
+
+<h2 id="c71e8d17d41c21de0d260881d69662ff"></h2>
 
 ## JAVA
 
@@ -33,6 +46,8 @@ if [ -n "$APROF" ]; then
 fi
 ```
 
+
+<h2 id="6c3a6944a808a7c0bbb6788dbec54a9f"></h2>
 
 ## Node
 

@@ -1,4 +1,17 @@
+[](...menustart)
+
+- [Java Tips](#388422a8915fd2bfbe9b79f826fd3033)
+    - [check directly string compare in source code](#65d6c889cd403ce04b4de0470efa7ca4)
+    - [check Non-referential public method](#6bfa2f56c97c8c9dcc581c46063576fd)
+
+[](...menuend)
+
+
+<h2 id="388422a8915fd2bfbe9b79f826fd3033"></h2>
+
 # Java Tips
+
+<h2 id="65d6c889cd403ce04b4de0470efa7ca4"></h2>
 
 ## check directly string compare in source code 
 
@@ -8,6 +21,8 @@ $ mvn spotbugs:check | grep ES_COMPARING_STRINGS_WITH_EQ
 
 see `working_settings/myProfileLSP`
 
+
+<h2 id="6bfa2f56c97c8c9dcc581c46063576fd"></h2>
 
 ## check Non-referential public method 
 

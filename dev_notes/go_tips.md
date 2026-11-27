@@ -25,7 +25,6 @@
     - [T17 Use custom error types to return additional information](#d1de0b2cb3348dca42f909c843dcf5bc)
         - [Or use to wrap an error](#65263ac49cb63677beb20a5cefd0791d)
     - [T18 Error variables , create errors as package-scoped variables and reference those variables](#87b731d7e572733aa294fbdd8513c9e0)
-    - [Panics and goroutines](#d3679e82565b6cc42c359a29ad5c8ffd)
     - [use panic only in very specific situations, you have to handle error](#88d00ec4fe58aa422b9c3e2fd7eac2a0)
 - [Debug & Test](#4582db50ce6fbe4c2d279f27c53a8741)
     - [Accessing stack traces](#ede22a82337ad92405e2e3f2875d248f)

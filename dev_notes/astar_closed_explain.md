@@ -1,6 +1,51 @@
+[](...menustart)
+
+- [2. 去掉 CLOSED 以后怎么办？](#fc305f76cfa1274bff7128f712c20bc0)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+        - [1. A* Tree Search：可以没有 `closed`](#a8cec7dabf2d641cf74b4245eb19f443)
+        - [2. A* Graph Search：通常需要 `closed`](#9f927299c81f1cf595b139af466c119a)
+        - [3. 但这里有一个非常重要的细节](#85461ef70b2f707ef55deaaa6c6f92b4)
+        - [4. 如果 heuristic 只有 admissible，而不 consistent 呢？](#fbcdc1ae9301101bafbc74b3f7e1d3d9)
+        - [5. 所以可以把几种情况放在一起](#b77f1d5c75d58d5d202aabc855766836)
+        - [6. 还有一个更有意思的问题：`closed` 甚至不一定要单独存在](#56701b04ee251ae1c492cc17edd2a2a1)
+        - [一句话总结](#dcada8f37903bfafc4c8d3fb483a6980)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+    - [1. 先看经典 CLOSED 版本](#7a53ee302f5823056db32a7b64b268e8)
+- [2. 去掉 CLOSED 以后怎么办？](#fc305f76cfa1274bff7128f712c20bc0)
+- [3. 关键技巧：pop 时检查是不是“过期节点”](#054623f69ecd41dfffb26c0b57911506)
+- [4. 这其实非常像 Dijkstra](#0b26528333a1d3a9382f0e617ea4403c)
+- [5. A* 完全可以照搬这个思想](#fab37510b3c01f59683e2ea0a66f5f44)
+- [6. 那它和 CLOSED 版本有什么区别？](#26db25a8ee059eb3f947e255b9565677)
+- [7. 那为什么还要 CLOSED？](#7e8aca6e61d32302e1b59a782ee203c9)
+    - [CLOSED 版本](#dde09755d6f32ed80f1329555812e113)
+    - [gScore + lazy deletion](#6717546b21aadd40feda75a12878ec11)
+- [8. 更重要的是：它还能自然支持“重新打开”](#79989b12420240bc2c17a38e0224671a)
+- [9. 但是有一个坑：不能只写 `gScore` 而不检查旧节点](#587a016d6324e2b9042103d227e5a825)
+- [10. 最终可以这样理解](#8562d116659609ae00884a68b3795e2a)
+    - [显式去重](#e2846460e523e3659e805442137f7049)
+    - [延迟去重](#b9e7db4ad29e4cdcfb9e931e4c75f4b9)
+    - [User](#8f9bfe9d1345237cb3b2b205864da075)
+    - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
+    - [1. 为什么 admissible？](#55b98809a9a4f88f0a1f58f0e83faba7)
+    - [2. 为什么 consistent？](#2a011ad21a6ad2b10b2acc104b80130e)
+- [3. 这里有一个容易犯的错误](#611b2bfbc4662f31c948e5093ac58b72)
+- [4. 为什么应该乘最小 cost？](#eded369971b21ed81e6ba7cb197e6d07)
+- [5. 但是还有一个更有意思的问题](#c0f3576c10c61a3f9a8be17f5abe4245)
+- [6. 能不能设计一个更强的 heuristic？](#9dbc342894b076aba12463cebfa839f1)
+    - [7. 甚至可以做得更强](#54b181d3ce99b0f114c701f57f9927e1)
+- [8. 对游戏地图来说，我会这样选](#2a7c0cecf1b34082d500f9b1923a0717)
+
+[](...menuend)
+
+
+<h2 id="fc305f76cfa1274bff7128f712c20bc0"></h2>
+
 # 2. 去掉 CLOSED 以后怎么办？
 
 > Exported from ChatGPT on 2026-09-09T07:43:36.364Z
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -9,6 +54,8 @@
 但对于经典的 A* 图搜索（graph search），`closed` 通常是非常重要的；而对于 **A* 树搜索（tree search）**，则可以没有 `closed`。
 
 关键区别在于：**搜索空间是树，还是图。**
+
+<h2 id="a8cec7dabf2d641cf74b4245eb19f443"></h2>
 
 ### 1. A* Tree Search：可以没有 `closed`
 
@@ -67,6 +114,8 @@ A B C B C B C ...
 
 ---
 
+<h2 id="9f927299c81f1cf595b139af466c119a"></h2>
+
 ### 2. A* Graph Search：通常需要 `closed`
 
 Graph Search 会记录已经处理过的状态：
@@ -122,6 +171,8 @@ D ∈ CLOSED
 
 ---
 
+<h2 id="85461ef70b2f707ef55deaaa6c6f92b4"></h2>
+
 ### 3. 但这里有一个非常重要的细节
 
 很多人学习 A* 时会形成一个错误印象：
@@ -151,6 +202,8 @@ n -> CLOSED
 这时候 `closed` 非常好用。
 
 ---
+
+<h2 id="fbcdc1ae9301101bafbc74b3f7e1d3d9"></h2>
 
 ### 4. 如果 heuristic 只有 admissible，而不 consistent 呢？
 
@@ -195,6 +248,8 @@ CLOSED
 
 ---
 
+<h2 id="b77f1d5c75d58d5d202aabc855766836"></h2>
+
 ### 5. 所以可以把几种情况放在一起
 
 | 算法 | closed | 重复状态 | 需要 reopen |
@@ -212,6 +267,8 @@ A∗with h(n)=0
 而 `h=0` 显然是 consistent 的。
 
 ---
+
+<h2 id="56701b04ee251ae1c492cc17edd2a2a1"></h2>
 
 ### 6. 还有一个更有意思的问题：`closed` 甚至不一定要单独存在
 
@@ -252,6 +309,8 @@ best_g
 
 ---
 
+<h2 id="dcada8f37903bfafc4c8d3fb483a6980"></h2>
+
 ### 一句话总结
 
 如果你问：
@@ -277,9 +336,13 @@ CLOSED = set
 
 如果你愿意，我还可以进一步解释一个**非常容易混淆的问题：为什么有些 A* 实现甚至可以完全不需要 CLOSED，只靠 `gScore + priority_queue`，以及它和 Dijkstra 的关系**。
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 为什么有些 A* 实现甚至可以完全不需要 CLOSED，只靠 `gScore + priority_queue`
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -310,6 +373,8 @@ new_g < gScore[state]
 ```
 
 ---
+
+<h2 id="7a53ee302f5823056db32a7b64b268e8"></h2>
 
 ## 1. 先看经典 CLOSED 版本
 
@@ -371,6 +436,8 @@ gScore
 
 ---
 
+<h2 id="fc305f76cfa1274bff7128f712c20bc0"></h2>
+
 # 2. 去掉 CLOSED 以后怎么办？
 
 可以变成：
@@ -425,6 +492,8 @@ push(A, g=5)
 
 ---
 
+<h2 id="054623f69ecd41dfffb26c0b57911506"></h2>
+
 # 3. 关键技巧：pop 时检查是不是“过期节点”
 
 这就是这种实现最核心的地方：
@@ -473,6 +542,8 @@ A(g=10)
 这就是所谓的 **lazy deletion（延迟删除）**。
 
 ---
+
+<h2 id="0b26528333a1d3a9382f0e617ea4403c"></h2>
 
 # 4. 这其实非常像 Dijkstra
 
@@ -534,6 +605,8 @@ if (d != dist[u])
 
 ---
 
+<h2 id="fab37510b3c01f59683e2ea0a66f5f44"></h2>
+
 # 5. A* 完全可以照搬这个思想
 
 把 Dijkstra：
@@ -594,6 +667,8 @@ CLOSED
 ```
 
 ---
+
+<h2 id="26db25a8ee059eb3f947e255b9565677"></h2>
 
 # 6. 那它和 CLOSED 版本有什么区别？
 
@@ -678,9 +753,13 @@ gScore 版本
 
 ---
 
+<h2 id="7e8aca6e61d32302e1b59a782ee203c9"></h2>
+
 # 7. 那为什么还要 CLOSED？
 
 因为两种方式各有优缺点。
+
+<h2 id="dde09755d6f32ed80f1329555812e113"></h2>
 
 ### CLOSED 版本
 
@@ -710,6 +789,8 @@ CLOSED.add(X)
 - 实现上仍然需要 `gScore`
 
 ---
+
+<h2 id="6717546b21aadd40feda75a12878ec11"></h2>
 
 ### gScore + lazy deletion
 
@@ -748,6 +829,8 @@ X(13)  → 丢弃
 - 最坏情况下内存和运行时间可能增加
 
 ---
+
+<h2 id="79989b12420240bc2c17a38e0224671a"></h2>
 
 # 8. 更重要的是：它还能自然支持“重新打开”
 
@@ -814,6 +897,8 @@ X(g=10)
 
 ---
 
+<h2 id="587a016d6324e2b9042103d227e5a825"></h2>
+
 # 9. 但是有一个坑：不能只写 `gScore` 而不检查旧节点
 
 错误写法：
@@ -867,6 +952,8 @@ if (n.g != gScore[n.state])
 
 ---
 
+<h2 id="8562d116659609ae00884a68b3795e2a"></h2>
+
 # 10. 最终可以这样理解
 
 A* 并不是非得：
@@ -889,6 +976,8 @@ BEST-G
 
 因此可以有两种实现：
 
+<h2 id="e2846460e523e3659e805442137f7049"></h2>
+
 ### 显式去重
 
 ```
@@ -906,6 +995,8 @@ CLOSED？
     ↓
 OPEN
 ```
+
+<h2 id="b9e7db4ad29e4cdcfb9e931e4c75f4b9"></h2>
 
 ### 延迟去重
 
@@ -944,9 +1035,13 @@ unordered_set<State> closed;
 
 **它不是没有 CLOSED 的功能，而是把“CLOSED 的一部分职责”变成了 lazy deletion。**
 
+<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
+
 ## User
 
 一个2d map， 每次可以上下左右移动 1格， 每个cell 有 移动cost : 1~3,  h(x) 怎么设计，才能保证 admissible consistant ?
+
+<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
 
 ## Assistant
 
@@ -970,6 +1065,8 @@ h(n)=∣x−xg​∣+∣y−yg​∣​
 这个 `h` **同时满足 admissible 和 consistent**。
 
 ---
+
+<h2 id="55b98809a9a4f88f0a1f58f0e83faba7"></h2>
 
 ## 1. 为什么 admissible？
 
@@ -1000,6 +1097,8 @@ h(n)≤h∗(n)
 所以 **admissible**。
 
 ---
+
+<h2 id="2a011ad21a6ad2b10b2acc104b80130e"></h2>
 
 ## 2. 为什么 consistent？
 
@@ -1033,6 +1132,8 @@ h(n)≤c(n,m)+h(m)​
 所以 **consistent**。
 
 ---
+
+<h2 id="611b2bfbc4662f31c948e5093ac58b72"></h2>
 
 # 3. 这里有一个容易犯的错误
 
@@ -1075,6 +1176,8 @@ h(S)=3×3=9
 
 ---
 
+<h2 id="eded369971b21ed81e6ba7cb197e6d07"></h2>
+
 # 4. 为什么应该乘最小 cost？
 
 一般规律非常值得记住：
@@ -1099,6 +1202,8 @@ Cmin​=1
 h(n)=∣dx∣+∣dy∣​
 
 ---
+
+<h2 id="c0f3576c10c61a3f9a8be17f5abe4245"></h2>
 
 # 5. 但是还有一个更有意思的问题
 
@@ -1140,6 +1245,8 @@ A* 得不到多少信息。
 
 ---
 
+<h2 id="9dbc342894b076aba12463cebfa839f1"></h2>
+
 # 6. 能不能设计一个更强的 heuristic？
 
 可以。
@@ -1167,6 +1274,8 @@ h1​(n)=Manhattan(n,goal)
 这是刚才的 heuristic。
 
 ---
+
+<h2 id="54b181d3ce99b0f114c701f57f9927e1"></h2>
 
 ## 7. 甚至可以做得更强
 
@@ -1215,6 +1324,8 @@ consistent​
 的时候才特别有价值。
 
 ---
+
+<h2 id="2a7c0cecf1b34082d500f9b1923a0717"></h2>
 
 # 8. 对游戏地图来说，我会这样选
 

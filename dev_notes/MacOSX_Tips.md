@@ -19,12 +19,19 @@
     - [screen capture to clipborad](#49d6e205c8881024108f1681926717a8)
     - [screen video capture](#41524438733bc8c786cbf6d76bbb7300)
     - [copy wifi password to clipboard](#6831a70b0b58947b7c63e20394b71a09)
+    - [find internet password](#5f8816909a87d2a9b5748d793cec9c18)
     - [open finder where specific file exists](#310ac7673aa532eb722e5d134bc9f875)
     - [Easily Find Forgotten Commands from History (bck-i-search)](#0fc461d9f1b4d0b7b5d786613b2741bd)
     - [software update issue](#57af19cce52d7a06935a3c519714ee89)
         - [1. software update stuck on restarting...](#28020a9db98f0ce52e44b40e1d3dda4c)
         - [2. install specific MacOSX version](#19a0004c2a1db482bbf4a286eb007285)
     - [v2rayA](#20d0eee4bef3515b35f820e9cec00f3d)
+    - [Add a Route for the Loopback Network , and LAN Network](#2278d38507f440f9600b55eff511dcac)
+    - [LM Studio](#7b9b319662715e90583e823a6c3cfdbe)
+    - [VMWare 手动挂载共享文件夹](#f4e53a17149c87f0ed4ee3a9e7f684b2)
+    - [VMWare 内存泄漏](#7cf27fabb49096cd7bd0e9184f960016)
+    - [Downgrade Command Line Tools](#e2a97fb132bba896e931a3170c6d051b)
+    - [pdf 处理](#4664ebfb0eabdb9fb9ac2e73e1932289)
 
 [](...menuend)
 
@@ -289,6 +296,8 @@ cmd +  ctl + shift + 5
 $ security find-generic-password -wa "ChinaNet-Mebusy" |  pbcopy
 ```
 
+<h2 id="5f8816909a87d2a9b5748d793cec9c18"></h2>
+
 ## find internet password
 
 e.g. find github password
@@ -375,6 +384,8 @@ sudo softwareupdate --fetch-full-installer --agree-to-license --full-installer-v
 
 [more docs](https://v2raya.org/en/docs/prologue/installation/macos/)
 
+<h2 id="2278d38507f440f9600b55eff511dcac"></h2>
+
 ## Add a Route for the Loopback Network , and LAN Network
 
 ```bash
@@ -382,6 +393,8 @@ sudo route add -net 127.0.0.0/8 127.0.0.1
 sudo route add -net 192.168.0.0/16 $(route -n get default | grep 'gateway' | awk '{print $2}')
 ```
 
+
+<h2 id="7b9b319662715e90583e823a6c3cfdbe"></h2>
 
 ## LM Studio
 
@@ -400,6 +413,8 @@ set -e
 find . -type f -name "*.js" -exec sed -i '' 's/huggingface.co/hf-mirror.com/g' {} \;
 ```
 
+<h2 id="f4e53a17149c87f0ed4ee3a9e7f684b2"></h2>
+
 ## VMWare 手动挂载共享文件夹
 
 ```bash
@@ -413,10 +428,14 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
 .host:/    /mnt/hgfs    fuse.vmhgfs-fuse    defaults,allow_other    0 0
 ```
 
+<h2 id="7cf27fabb49096cd7bd0e9184f960016"></h2>
+
 ## VMWare 内存泄漏
 
 - guest 兼容性里， hardware version 设置为17.
 
+
+<h2 id="e2a97fb132bba896e931a3170c6d051b"></h2>
 
 ## Downgrade Command Line Tools
 
@@ -431,6 +450,8 @@ sudo mount -t fuse.vmhgfs-fuse .host:/ /mnt/hgfs -o allow_other
     $ pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
     ```
 
+
+<h2 id="4664ebfb0eabdb9fb9ac2e73e1932289"></h2>
 
 ## pdf 处理
 

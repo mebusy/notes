@@ -1,4 +1,17 @@
+[](...menustart)
+
+- [Linux Bash Tips](#9546b349cbdc73613e8f39b80f9b7b23)
+    - [合并多个进程的输出到stdout](#097d60665c01554908438cae3697a9de)
+    - [子bash 继承 父bash的环境变量](#c057abf87d4b08e3126cf44407c9b397)
+
+[](...menuend)
+
+
+<h2 id="9546b349cbdc73613e8f39b80f9b7b23"></h2>
+
 # Linux Bash Tips
+
+<h2 id="097d60665c01554908438cae3697a9de"></h2>
 
 ## 合并多个进程的输出到stdout
 
@@ -65,6 +78,8 @@ trap cleanup INT TERM EXIT
 cat <"$fifo"
 ```
 
+
+<h2 id="c057abf87d4b08e3126cf44407c9b397"></h2>
 
 ## 子bash 继承 父bash的环境变量
 

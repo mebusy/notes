@@ -8,6 +8,7 @@
     - [lru_cache](#89dd193fac1729cebfd50aff749b688c)
     - [cgi server](#34dfa276fe76c42ed2d058af8371d11d)
     - [open a link in webbrowser](#95bf337c28c64ebb9ff843e5272d1eb0)
+    - [把 python 对象输出成 可以其他语言源码的字面值](#044b28f456b30009d891852d03b5fd2d)
 
 [](...menuend)
 
@@ -219,6 +220,8 @@ python -m http.server --cgi
 python -m webbrowser [-t|-n] <url>
 ```
 
+
+<h2 id="044b28f456b30009d891852d03b5fd2d"></h2>
 
 ## 把 python 对象输出成 可以其他语言源码的字面值
 

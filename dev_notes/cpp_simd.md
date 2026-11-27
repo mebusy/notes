@@ -1,6 +1,22 @@
+[](...menustart)
+
+- [CPP SIMD (c++26?)](#2dec7764279c7dd113659165e18cce15)
+    - [Synopsis](#24da3c4b755f1bb2b7cc2c32ee6751b3)
+    - [Constructor examples](#19f52f7a190df07ef49dd0f7f93a0482)
+    - [Arithmetic & math](#50044e767de894f1f4ec3a6db31d34b8)
+    - [Same for compares (element-wise)](#e7322018b1be7ce8be700c52cc9ed834)
+    - [Reductions](#9a819585a6c0017acaff053c740cec70)
+
+[](...menuend)
+
+
+<h2 id="2dec7764279c7dd113659165e18cce15"></h2>
+
 # CPP SIMD (c++26?)
 
 [pdf](https://github.com/CppCon/CppCon2023/blob/main/Presentations/stdsimd_how_to_express_inherent_parallelism_efficiently_via_data_parallel_types.pdf)
+
+<h2 id="24da3c4b755f1bb2b7cc2c32ee6751b3"></h2>
 
 ## Synopsis
 
@@ -11,6 +27,8 @@
 - Abi determines width and ABI (i.e.  how parameters are passed to functions)
     - example: `std::simd<int, 8>` on x86 can be two xmm registers (alignof == 16) or one ymm register (alignof == 32).
 
+
+<h2 id="19f52f7a190df07ef49dd0f7f93a0482"></h2>
 
 ## Constructor examples
 
@@ -23,6 +41,8 @@ std::simd<int> iota([](int i) { return i; }); // 0, 1, 2, 3, ...
 ```
 
 
+<h2 id="50044e767de894f1f4ec3a6db31d34b8"></h2>
+
 ## Arithmetic & math
 
 ```cpp
@@ -33,6 +53,8 @@ void f(std::simd<float> x, std::simd<float> y) {
 // etc. all operators and <cmath>
 }
 ```
+
+<h2 id="e7322018b1be7ce8be700c52cc9ed834"></h2>
 
 ## Same for compares (element-wise)
 
@@ -48,6 +70,8 @@ void f(std::simd<float> x, std::simd<float> y) {
 - simd_mask is not convertible to bool
 - simd_mask can be reduced to bool via all_of, any_of, none_of
 
+
+<h2 id="9a819585a6c0017acaff053c740cec70"></h2>
 
 ## Reductions
 

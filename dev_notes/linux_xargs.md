@@ -1,15 +1,16 @@
 [](...menustart)
 
-- [XArgs](#3f43a8743eade0074a537f7f38a8899e)
+- [XArgs (eXtended arguments)](#468ef5e2d99f83d05861c29cd95a8a17)
     - [-t](#b7cc4b6b2b8c0f37377b5cc259385de0)
     - [-I alias](#e5609751fdeeccc7f4fc2691c6f82f12)
     - [-n number](#259f085821c8ece082980839c0a87d3c)
     - [-P maxprocs](#59d1e8dcbb71e4e67597a52af6a4158f)
+    - [Very Important Option: -0](#59c42c0f7bd9de022b9e54baa1f00e1b)
 
 [](...menuend)
 
 
-<h2 id="3f43a8743eade0074a537f7f38a8899e"></h2>
+<h2 id="468ef5e2d99f83d05861c29cd95a8a17"></h2>
 
 # XArgs (eXtended arguments)
 
@@ -108,6 +109,8 @@ $ seq 5 | xargs -n 1 -P 2 bash -c 'echo $0;sleep 1'
 
 If `maxprocs` is set to 0, xargs will run as many processes as possible.
 
+
+<h2 id="59c42c0f7bd9de022b9e54baa1f00e1b"></h2>
 
 ## Very Important Option: -0
 

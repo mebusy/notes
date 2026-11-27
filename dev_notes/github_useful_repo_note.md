@@ -1,3 +1,12 @@
+[](...menustart)
+
+- [\[tinyrenderer\](https://github.com/ssloy/tinyrenderer)](#5d2f9febc11dee2fb9f75c103e999b2f)
+
+[](...menuend)
+
+
+<h2 id="5d2f9febc11dee2fb9f75c103e999b2f"></h2>
+
 # [tinyrenderer](https://github.com/ssloy/tinyrenderer)
 
 tinyrenderer（常指 Dmitry V. Sokolov 的 Tiny Renderer 教程/小型软渲染管线实现）的核心优势不在“工业级可用”，而在于用极少的代码把现代渲染管线的关键概念端到端跑通。因此它最适合的应用场景是“学习、验证、原型、研究”，而不是直接拿来做商业渲染器。

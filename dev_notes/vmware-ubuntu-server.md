@@ -1,3 +1,12 @@
+[](...menustart)
+
+- [VMWare UbuntuServer](#dc4acdbdc9674e5fc993728a552aee62)
+
+[](...menuend)
+
+
+<h2 id="dc4acdbdc9674e5fc993728a552aee62"></h2>
+
 # VMWare UbuntuServer
 
 

@@ -1,3 +1,13 @@
+[](...menustart)
+
+- [Deriving automatically](#cc57f04f60e6fbe979e8845ac121e9e7)
+- [Manual implementation](#ed172ca372e952606da6ae5a39a70b51)
+- [Common pitfalls](#22d03490683846a79f6628d0aee4af69)
+- [Quick checklist for using `HashSet`/`HashMap`](#5c92b2d6244433393a8e4dbe72929dcc)
+
+[](...menuend)
+
+
 **`Eq`, `PartialEq` and `Hash` basics**
 
 | Trait | Purpose | Typical use |
@@ -7,6 +17,8 @@
 | `Hash` | Gives a hash value used by `HashSet`/`HashMap`. | Derivable for most types; implement manually if hashing must ignore some fields or use custom hashing logic. |
 
 ---
+
+<h2 id="cc57f04f60e6fbe979e8845ac121e9e7"></h2>
 
 ### Deriving automatically
 
@@ -33,6 +45,8 @@ fn main() {
 `derive` expands to implementations that compare **all fields** and hash all fields in the order they appear. This is suitable when all fields are relevant for identity.
 
 ---
+
+<h2 id="ed172ca372e952606da6ae5a39a70b51"></h2>
 
 ### Manual implementation
 
@@ -66,6 +80,8 @@ Only `id` participates in equality and hashing; `nickname` and `last_login` are 
 
 ---
 
+<h2 id="22d03490683846a79f6628d0aee4af69"></h2>
+
 ### Common pitfalls
 
 | Issue | Fix |
@@ -76,6 +92,8 @@ Only `id` participates in equality and hashing; `nickname` and `last_login` are 
 | Mutating a key while in a hash collection | Never modify fields that influence equality/hash while the key is in a `HashMap`/`HashSet`. If needed, remove and re‑insert. |
 
 ---
+
+<h2 id="5c92b2d6244433393a8e4dbe72929dcc"></h2>
 
 ### Quick checklist for using `HashSet`/`HashMap`
 

@@ -5,6 +5,11 @@
         - [flip bits](#bf94eee92531fcf0a63c55eddb6a558c)
     - [XOR](#97675eb3f268048604dc5155511a2a4d)
         - [XOR application](#cc352fea6e400fa736030527056c3fc2)
+    - [int64 n, 自最高位1开始，全部填充1](#f39dc2528eb818ce8b7828e75cdd4c35)
+    - [uint64 n,   保留最高位1，其余位全部置0](#a30d8bea47ff3ad527b3bc04472e0388)
+    - [uint64 n,  计算 pow(2, ceil(log₂(n) ) ) , e.g. 54 -> 64](#3c8592f0015653186cea882a3e407965)
+    - [计算 floor( log₂(n) )](#3c53e38f150342af24c35be07b23fbf3)
+    - [Q&A](#bcd92bcee57648f2bd4480c4a1193ac0)
 
 [](...menuend)
 
@@ -131,6 +136,8 @@ XOR is analogous to set difference.
     m ^ p <- dec( ^ k ) <- (m ^ k ^ p)
     ```
 
+<h2 id="f39dc2528eb818ce8b7828e75cdd4c35"></h2>
+
 ## int64 n, 自最高位1开始，全部填充1
 
 ```c
@@ -143,6 +150,8 @@ n |= n >> 32;
 ```
 
 怎么只保留 most significant bit 1 ?
+
+<h2 id="a30d8bea47ff3ad527b3bc04472e0388"></h2>
 
 ## uint64 n,   保留最高位1，其余位全部置0
 
@@ -159,6 +168,8 @@ n |= n >> 32;
 n &= ~(n >> 1)
 ```
 
+<h2 id="3c8592f0015653186cea882a3e407965"></h2>
+
 ## uint64 n,  计算 pow(2, ceil(log₂(n) ) ) , e.g. 54 -> 64
 
 ```c
@@ -172,6 +183,8 @@ n |= n >> 32;
 ++n;
 ```
 
+
+<h2 id="3c53e38f150342af24c35be07b23fbf3"></h2>
 
 ## 计算 floor( log₂(n) )
 
@@ -198,6 +211,8 @@ So you don't actually have to implement this trick.
 `__builtin_clzll(n)`（GCC 内置）| O(1) | No | 需要GCC
 de Bruijn 查表 | O(1) | No |  
 
+
+<h2 id="bcd92bcee57648f2bd4480c4a1193ac0"></h2>
 
 ## Q&A
 

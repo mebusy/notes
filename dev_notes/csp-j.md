@@ -1,3 +1,12 @@
+[](...menustart)
+
+- [CSP-J](#38bef0599723a3f8764c3c5e58f1fcc3)
+
+[](...menuend)
+
+
+<h2 id="38bef0599723a3f8764c3c5e58f1fcc3"></h2>
+
 # CSP-J
 
 [CSP-J/S/X, NOIP, NOI, IOI, 信息学奥林匹克竞赛历年真题收录](https://github.com/winterant/oi)
