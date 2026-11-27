@@ -73,6 +73,23 @@ curl -v --noproxy 127.0.0.1
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ... 
 ```
 
+永久换源
+
+```bash
+> cat ~/.config/pip/pip.conf
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+uv pip 换源
+
+```bash
+> cat ~/.config/uv/uv.toml
+[pip]
+index-url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+```
+
+
 <h2 id="1bca9692962e3deeda270ab8db1b80f2"></h2>
 
 ## pip upgrade all outdated package
