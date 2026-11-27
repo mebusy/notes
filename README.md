@@ -220,7 +220,7 @@ a | b | c | d
 
 [orbstack](dev_notes/orbstack.md)
 [ollama local LLM](dev_notes/macos_local_ai_models.md)
-
+[minimax-h3](dev_notes/macos_local_minimax_h3.md)
 
 
 [在线数学公式生成](http://codecogs.com/latex/eqneditor.php)
