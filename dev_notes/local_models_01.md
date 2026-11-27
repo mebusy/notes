@@ -1,5 +1,6 @@
 [](...menustart)
 
+
 - [Q8_0](#7d752b3cc49838890790999912af5a83)
     - [User](#8f9bfe9d1345237cb3b2b205864da075)
     - [Assistant](#9b1363da9503dbd4142c0274a88e8d4b)
@@ -48,6 +49,39 @@
 
 [](...menuend)
 
+
+## Breeze TTS 文字 → 语音
+
+https://github.com/breezeblue-ai/breeze-tts
+
+
+```bash
+mkdir breeze
+cd breeze
+
+uv venv venvs
+source venvs/bin/activate
+
+uv pip install -U mlx-audio[server]
+
+# [-4bit]
+
+mlx_audio.tts.generate \
+  --model mlx-community/Breeze-TTS-2-mlx \
+  --text "你好，欢迎使用 Breeze TTS。今天我们来体验中文语音合成。" \
+  --instruct "一位温柔自然的女性，标准普通话，语速适中。" \
+  --cfg_scale 4 \
+  --output_path ./outputs \
+  --file_prefix test
+
+其他值得注意的参数
+你的版本还支持：
+- --ref_audio：参考音频，用于声音克隆。
+- --ref_text：参考音频对应的文字。
+- --voice：指定音色。
+- --lang_code：指定语言。
+- --speed：语速。
+```
 
 <h2 id="7d752b3cc49838890790999912af5a83"></h2>
 
