@@ -154,6 +154,7 @@ def createMenu4MD(path):
                 ]:
                     print(result, "in a html tag may can not display")
                     print(" -> ", path, i + n_menu_lines, line)
+                    print(debug_str)
                     raise Exception("html tag issue")
 
     global bForceCreateMenu

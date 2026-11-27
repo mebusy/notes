@@ -3,6 +3,13 @@
 - [PyTorch](#95b88f180e9eb5678e0f9ebac2cbe643)
     - [Docker](#c5fd214cdd0d2b3b4272e73b022ba5c2)
     - [Tips](#a0d4cc0f54602c3f247c72f15a7d2dbf)
+    - [Tutorial](#368fe771261fcb18f7988833c9294a20)
+        - [Tensor](#f20fc369b14cb5d40e695dab98bcb742)
+        - [Autograd](#d9c536cbdd6cfc95bfa8524cf6248112)
+        - [Logistic Regression](#3261e6107adbefc58955de2aa613847a)
+        - [TensorBoard](#7f95bf7af146ebc14a56b3b826b00beb)
+        - [Save & Load Modelsave](#b34b76b02808cc07a4f6111dd8ae6816)
+        - [Transfer Learning](#dfa3ce771fe26af0b3cc33bacfe98830)
 
 [](...menuend)
 
@@ -50,11 +57,15 @@ chain forward | `scores = self.fc2(F.relu(self.fc1(x)))`
 stack model |  model = nn.Sequential( Flatten(), <br>nn.Linear(3 * 32 * 32, hidden_layer_size), <br>nn.ReLU(), <br>nn.Linear(hidden_layer_size, 10),<br>)
 
 
+<h2 id="368fe771261fcb18f7988833c9294a20"></h2>
+
 ## Tutorial
 
 https://www.youtube.com/watch?v=c36lUUr864M&t=1s
 
 https://github.com/patrickloeber/pytorchTutorial
+
+<h2 id="f20fc369b14cb5d40e695dab98bcb742"></h2>
 
 ### Tensor
 
@@ -92,9 +103,11 @@ https://github.com/patrickloeber/pytorchTutorial
         a = a.cuda()  # a = a.to('cuda') | a = a.to('mps')
         # a is on GPU, move it to cpu and convert to numpy
         b = a.cpu().numpy()
-
+        ```
 
 ---
+
+<h2 id="d9c536cbdd6cfc95bfa8524cf6248112"></h2>
 
 ### Autograd
 
@@ -123,6 +136,8 @@ https://github.com/patrickloeber/pytorchTutorial
 
 --- 
 
+<h2 id="3261e6107adbefc58955de2aa613847a"></h2>
+
 ### Logistic Regression
 
 - zero mean and unit variance is always recommended when dealing with logistic regression
@@ -132,6 +147,8 @@ https://github.com/patrickloeber/pytorchTutorial
     X_train = sc.fit_transform(X_train)
     ```
 
+
+<h2 id="7f95bf7af146ebc14a56b3b826b00beb"></h2>
 
 ### TensorBoard
 
@@ -173,6 +190,8 @@ writer.add_graph(model, example_data.reshape(-1, 28*28).to(device))
 ```
 
 
+<h2 id="b34b76b02808cc07a4f6111dd8ae6816"></h2>
+
 ### Save & Load Modelsave 
 
 === Complete model (Lazy)===
@@ -195,6 +214,8 @@ arg=torch.load('model.pth')
 model.load_state_dict(arg)
 model.eval()
 ```
+
+<h2 id="dfa3ce771fe26af0b3cc33bacfe98830"></h2>
 
 ### Transfer Learning
 
