@@ -28,9 +28,6 @@ RE_TAG_CONTENT = re.compile(r"<([a-zA-Z0-9-_]+?)>")
 PARAGRAPH_SEP = "-----"
 
 
-n_menu_lines = 0
-
-
 def createMenu4MD(path):
     # print( 'parsing' , path)
 
@@ -45,14 +42,16 @@ def createMenu4MD(path):
 
     content = content.replace("\r", "")
 
+    n_menu_lines = 0
+
     def replacer(match):
-        global n_menu_lines
+        nonlocal n_menu_lines
         n_menu_lines += match.group(0).count("\n") + 1
         return ""
 
     content = re.sub(RE_PATTERN_MENU_BODY, replacer, content)
 
-    # print("menu lines removed: ", n_menu_lines)
+    print(path, "menu lines removed: ", n_menu_lines)
 
     menu = "[](...menustart)\n\n"
     body = ""
