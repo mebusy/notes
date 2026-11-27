@@ -248,7 +248,10 @@ uv pip install qwen3-asr-mlx
 
 创建文件 `asr.py`：
 
-Pythonfrom qwen3_asr_mlx import Qwen3ASR
+
+```python
+from pathlib import Path
+from qwen3_asr_mlx import Qwen3ASR
 MODEL = "mlx-community/Qwen3-ASR-0.6B-bf16"
 print("Loading Qwen3-ASR-0.6B...")
 model = Qwen3ASR.from_pretrained(MODEL)
@@ -257,6 +260,7 @@ audio_file = "test.wav"
 result = model.transcribe(    audio_file,    language="Chinese",)
 print("\n识别语言:", result.language)print("音频时长:", result.duration)print("识别结果:", result.text)
 model.close()
+```
 
 首次运行会自动从 Hugging Face 下载模型权重，之后可以离线使用。GitHub
 
@@ -325,55 +329,7 @@ Pythonresult = model.transcribe(    "test.wav",    language="Chinese",    contex
 
 对于你的 M4 Pro 24GB，这也是比较实用的本地语音处理工作流。
 
-<h2 id="8f9bfe9d1345237cb3b2b205864da075"></h2>
 
-## User
-
-脚本缺少导入  from qwen3_asr_mlx import Qwen3ASR
-
-<h2 id="9b1363da9503dbd4142c0274a88e8d4b"></h2>
-
-## Assistant
-
-你说得对。之前给出的脚本漏掉了 `Qwen3ASR` 的导入语句。实际上，正确的完整脚本应该包含：
-
-Pythonfrom qwen3_asr_mlx import Qwen3ASR
-
-另外，我核对了项目文档，确认这个包确实提供该类，且支持 0.6B 和 1.7B 模型。GitHub+1
-
-下面给你一份修正后的完整版本。
-
-<h2 id="39535549be174797fbd15f0357042547"></h2>
-
-## 完整 asr.py
-
-Python
-from pathlib import Pathfrom qwen3_asr_mlx import Qwen3ASR
-MODEL = "mlx-community/Qwen3-ASR-0.6B-bf16"AUDIO = "test.wav"
-def main():    if not Path(AUDIO).exists():        raise FileNotFoundError(f"Audio file not found: {AUDIO}")
-    print("Loading Qwen3-ASR-0.6B...")
-    model = Qwen3ASR.from_pretrained(MODEL)
-    try:        print(f"Transcribing: {AUDIO}")
-        result = model.transcribe(            AUDIO,            language="Chinese",        )
-        print("\n========== ASR Result ==========")        print("Language:", result.language)        print("Duration:", result.duration)        print("Text:", result.text)
-    finally:        model.close()
-if __name__ == "__main__":    main()
-
-<h2 id="bc6377b932d37432ff435bbac750c9ee"></h2>
-
-## 安装及运行
-
-确保在之前创建的虚拟环境中：
-
-Bash
-
-```
-source ~/venvs/qwen3-asr/bin/activate
-
-uv pip install -U qwen3-asr-mlx
-
-python asr.py
-```
 
 注意：这个项目的 0.6B 模型权重需要首次从 Hugging Face 下载；MLX 推理代码和模型权重是两个独立部分。
 
