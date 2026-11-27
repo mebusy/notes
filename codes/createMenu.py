@@ -28,6 +28,9 @@ RE_TAG_CONTENT = re.compile(r"<([a-zA-Z0-9-_]+?)>")
 PARAGRAPH_SEP = "-----"
 
 
+n_menu_lines = 0
+
+
 def createMenu4MD(path):
     # print( 'parsing' , path)
 
@@ -42,7 +45,14 @@ def createMenu4MD(path):
 
     content = content.replace("\r", "")
 
-    content = re.sub(RE_PATTERN_MENU_BODY, "", content)
+    def replacer(match):
+        global n_menu_lines
+        n_menu_lines += match.group(0).count("\n") + 1
+        return ""
+
+    content = re.sub(RE_PATTERN_MENU_BODY, replacer, content)
+
+    print("menu lines removed: ", n_menu_lines)
 
     menu = "[](...menustart)\n\n"
     body = ""
@@ -53,21 +63,20 @@ def createMenu4MD(path):
     bFollowLinkID = True
 
     all_title_level = set([])
-    last_line_number = 0
-    last_line = ""
-    last_result = None
+    debug_str = ""
     for i, line in enumerate(lines):
-        last_line_number = i
-        last_line = line
-
         if RE_PATTERN_CODE_BLOCK.search(line) is not None:
             bCodeStart = not bCodeStart
-            DEBUG = False
-            if DEBUG:
-                if bCodeStart:
-                    print("codeline start: ", i + 1, lines[i + 1])
-                else:
-                    print("codeline end: ", i - 1, lines[i - 1])
+            if bCodeStart:
+                # print("codeline start: ", i + n_menu_lines + 1, lines[i + 1])
+                debug_str += "codeline start: {}, {}\n".format(
+                    i + n_menu_lines + 1, lines[i + 1]
+                )
+            else:
+                # print("codeline end: ", i + n_menu_lines - 1, lines[i - 1])
+                debug_str += "codeline end: {}, {}\n".format(
+                    i + n_menu_lines - 1, lines[i - 1]
+                )
 
         if bCodeStart:
             if not re.search(RE_PATTERN_MENU_JUMP_ID, line):
@@ -76,8 +85,6 @@ def createMenu4MD(path):
 
         result = re.search(RE_PATTERN_MENU_SYNTAX, line)
         if result:
-            last_result = result
-
             sharps = result.group(1)
             title = result.group(2).strip()
 
@@ -156,7 +163,7 @@ def createMenu4MD(path):
         menu = ""
 
     if bCodeStart:
-        print(_name, last_line_number, last_line, last_result)
+        print(_name, debug_str)
         raise Exception("code pair error")
 
     # print( menu)
