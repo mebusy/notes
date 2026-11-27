@@ -690,6 +690,26 @@ moss-mlx \
 
 注意：MOSS 目前这个方案是命令行原生 MLX，而不是完整的 Mac GUI 应用。它和 LightX2V 的操作体验不同。
 
+
+turbo 加速
+
+```bash
+moss-mlx "Epic Transformers battle scene, featuring two gigantic combiner robots.
+
+Volcanicus, the Dinobot combiner, faithfully recreated in the classic 1980s G1 Transformers design. Retro G1 toy-inspired mechanical appearance, iconic colorful armor, massive robotic dinosaur features, powerful and intimidating proportions. He wields an enormous mechanical energy sword with both hands.
+
+Devastator, the Constructicon combiner, faithfully recreated in the original G1 design, with iconic green and purple construction vehicle components and bulky mechanical armor.
+
+**Action:** Volcanicus unleashes a devastating downward sword slash, striking Devastator with tremendous force. A brilliant blue-white energy trail follows the giant sword. Devastator is being split apart and violently disassembled. All six Constructicons are separating from the combined robot, with mechanical limbs, armor plates, and construction vehicle components flying in different directions.
+
+**Composition:** Dynamic low-angle cinematic shot. Volcanicus dominates the left and center of the frame, while Devastator occupies the right side, being torn apart by the sword strike. Strong sense of scale, dramatic perspective, explosive action, flying debris, sparks, dust and smoke.
+
+**Art style:** Authentic 1980s G1 Transformers animated series aesthetic, retro cel animation, faithful classic character designs, bold outlines, vibrant vintage colors, detailed mechanical structures, dramatic cinematic lighting, highly dynamic action illustration." \
+  --model VisualInference/MOSS-Image-SFT-MLX-8bit \
+  --turbo \
+  -o g1_battle_turbo.png
+```
+
 <h2 id="6e79db231a470da7d1c92713777f58c1"></h2>
 
 ## 四、三国战棋游戏的素材生产流程
